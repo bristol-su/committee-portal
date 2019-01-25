@@ -1,0 +1,15 @@
+{
+    "name": "TestModuleOne",
+    "alias": "testmoduleone",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\TestModuleOne\\Providers\\TestModuleOneServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\TestModuleOne\\ModuleConfiguration"
+}
