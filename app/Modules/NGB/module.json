@@ -1,0 +1,15 @@
+{
+    "name": "NGB",
+    "alias": "ngb",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 9,
+    "providers": [
+        "App\\Modules\\NGB\\Providers\\NGBServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\NGB\\ModuleConfiguration"
+}

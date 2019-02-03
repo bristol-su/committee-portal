@@ -32,6 +32,7 @@ class ViewServiceProvider extends ServiceProvider
 
     private function bootViewComposers()
     {
+
         // Give the portal access to all modules
         View::composer('portal', function($view) {
             $configuration = $this->getModuleConfigurations();
@@ -40,14 +41,14 @@ class ViewServiceProvider extends ServiceProvider
 
         // Allow student groups to appear on the header
         View::composer('templates.groupselect', function($view) {
-            $groups = Auth::user()->getGroups();
+            $groups = Auth::user()->getCurrentPosition();
             $view->with('_groups', $groups);
         });
     }
 
     private function getModuleConfigurations()
     {
-        $rawModules = Module::toCollection()->filter(function($module) {
+        $rawModules = collect(Module::getOrdered())->filter(function($module) {
             return $module->active === 1;
         });
         $configuration = new Collection();

@@ -1,0 +1,15 @@
+{
+    "name": "GroupInfo",
+    "alias": "groupinfo",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\GroupInfo\\Providers\\GroupInfoServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\GroupInfo\\ModuleConfiguration"
+}

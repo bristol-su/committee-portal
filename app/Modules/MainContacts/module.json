@@ -1,0 +1,15 @@
+{
+    "name": "MainContacts",
+    "alias": "maincontacts",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 3,
+    "providers": [
+        "App\\Modules\\MainContacts\\Providers\\MainContactsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\MainContacts\\ModuleConfiguration"
+}

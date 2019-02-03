@@ -1,0 +1,15 @@
+{
+    "name": "EquipmentList",
+    "alias": "equipmentlist",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 6,
+    "providers": [
+        "App\\Modules\\EquipmentList\\Providers\\EquipmentListServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\EquipmentList\\ModuleConfiguration"
+}

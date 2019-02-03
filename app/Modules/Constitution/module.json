@@ -1,0 +1,15 @@
+{
+    "name": "Constitution",
+    "alias": "constitution",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 5,
+    "providers": [
+        "App\\Modules\\Constitution\\Providers\\ConstitutionServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\Constitution\\ModuleConfiguration"
+}

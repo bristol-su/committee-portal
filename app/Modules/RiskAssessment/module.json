@@ -1,0 +1,15 @@
+{
+    "name": "RiskAssessment",
+    "alias": "riskassessment",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 4,
+    "providers": [
+        "App\\Modules\\RiskAssessment\\Providers\\RiskAssessmentServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\RiskAssessment\\ModuleConfiguration"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "IncomingTreasurer",
+    "alias": "incomingtreasurer",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 8,
+    "providers": [
+        "App\\Modules\\IncomingTreasurer\\Providers\\IncomingTreasurerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\IncomingTreasurer\\ModuleConfiguration"
+
+}

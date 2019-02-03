@@ -1,0 +1,25 @@
+{
+    "name": "bristol-su/committeedetails",
+    "description": "",
+    "authors": [
+        {
+            "name": "Toby Twigger",
+            "email": "tt15951@bristol.ac.uk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\CommitteeDetails\\Providers\\CommitteeDetailsServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\CommitteeDetails\\": ""
+        }
+    }
+}

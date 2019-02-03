@@ -2,13 +2,16 @@
 
 namespace App;
 
+use App\Packages\ControlDB\ControlDBInterface;
+use App\Traits\LogsIntoPosition;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, LogsIntoPosition;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -28,17 +31,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function getGroups()
+    // Logging into a group
+
+    /**
+     * Get the control database ID
+     *
+     * @return int
+     */
+    public function getControlID()
     {
-        return [
-            1 => 'Chaos',
-            2 => 'Bristol Real Ale',
-            4 => 'Swing Dance'
-        ];
+        return $this->control_id;
     }
 
-    public function getCurrentGroup()
+    public function getPositionsForUser()
     {
-        return 1;
+        return $this->getPositionsFromControl($this->getControlID());
     }
+
+
 }

@@ -1,0 +1,15 @@
+{
+    "name": "CommitteeDetails",
+    "alias": "committeedetails",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "App\\Modules\\CommitteeDetails\\Providers\\CommitteeDetailsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\CommitteeDetails\\ModuleConfiguration"
+}

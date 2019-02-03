@@ -24,7 +24,7 @@
 
                                     @if($module['visible'])
 
-                                        <div class="col-xs-4" style="width: 33%;">
+                                        <div class="col-xs-4" style="width: 33%; padding: 2px;">
                                             <a href="{{url($module['user_url'])}}">
                                                 <button
                                                         type="button"
@@ -48,4 +48,7 @@
         @endforeach
     </div>
 </div>
+@can('test-edit')
+    Can edit
+@endcan
 @endsection
