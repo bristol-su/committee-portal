@@ -32,11 +32,10 @@ class LogIntoPositionFromControl
 
         if($positions instanceof \Exception)
         {
-            return $positions;
+            throw $positions;
         }
         // Set the positions in the user model
         Auth::user()->setPositions($positions);
-        Log::info(Auth::user()->getCurrentPosition());
 
         return $next($request);
     }
@@ -68,6 +67,7 @@ class LogIntoPositionFromControl
 
             return $formattedPositions;
         }
+
 
         return Cache::get('authentication:userpositions.'.$user->id);
 

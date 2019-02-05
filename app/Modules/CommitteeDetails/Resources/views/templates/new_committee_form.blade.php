@@ -26,6 +26,7 @@
             }
         </style>
         <form id="edit-user-form" class="form-horizontal" method="POST" action="{{url('committeedetails/add')}}">
+            @csrf
             <div class="card text-white bg-dark mb-0">
 
 
@@ -44,23 +45,9 @@
                     </div>
 
                     <!-- UnionCloud Account -->
-                    <fieldset class="scheduler-border">
-                        <legend class="scheduler-border">UnionCloud Account</legend>
-                        <small>Search for an account by Student ID or Email</small>
-                        <!-- UnionCloud ID -->
-                        <div class="form-group">
-                            <label class="col-form-label" for="modal-input-name">Student ID</label>
-                            <input type="text" name="modal-input-name" class="form-control" id="modal-input-name" required="" autofocus="">
-                        </div>
+                    @include('committeedetails::templates.unioncloud_search_form')
 
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label class="col-form-label" for="modal-input-description">Email</label>
-                            <input type="text" name="modal-input-description" class="form-control" id="modal-input-description" required="">
-                        </div>
-                    </fieldset>
-
-                    <button class="btn btn-info">Add Committee Member</button>
+                    <button type="button" onclick="$('#edit-user-form').submit();" class="btn btn-info">Add Committee Member</button>
 
                 </div>
             </div>
@@ -76,8 +63,7 @@
         <script type="text/javascript">
             function onLoadModal()
             {
-                console.log('populating');
-                var el = $(".edit-item-{{$triggerID}}-trigger-clicked"); // See how its usefull right here?
+                var el = $(".edit-item-{{$triggerID}}-trigger-clicked");
                 var row = el.closest(".data-row");
 
                 // get the data
@@ -85,7 +71,6 @@
                 var name = row.children(".name").text();
                 var description = row.children(".description").text();
 
-                console.log(id, name, description);
 
                 // fill the data in the input fields
                 // $("#modal-input-id").val(id);

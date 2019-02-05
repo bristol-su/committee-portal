@@ -2,69 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Packages/UnionCloud/UnionCloud.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Packages/UnionCloud/UnionCloudInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/LogsIntoPosition.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/components/modal-form.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/committee-portal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/committee-portal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/unioncloud_search_form.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Config/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/committee_row.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Config/config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Console/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/ControlDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Database/Migrations/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/ControlDBInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Database/Seeders/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/config/control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Database/Seeders/TestModuleOneDatabaseSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Database/factories/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Entities/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Http/Controllers/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Http/Controllers/TestModuleOneController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Http/Middleware/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Http/Requests/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Providers/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Providers/RouteServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Providers/TestModuleOneServiceProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/assets/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/assets/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/assets/sass/app.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/lang/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/views/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/views/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Resources/views/layouts/master.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Routes/api.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Routes/web.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/Tests/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/module.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TestModuleOne/webpack.mix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/portal.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/portal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/portal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/portal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/groupselect.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/groupselect.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,10 +28,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Traits/LogsIntoPosition.php">
+        <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/unioncloud_search_form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+            <state relative-caret-position="435">
+              <caret line="84" column="15" selection-start-line="84" selection-start-column="15" selection-end-line="84" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -93,16 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>router</find>
-      <find>auth(</find>
-      <find>register</find>
-      <find>nav-link</find>
-      <find>'/home'</find>
-      <find>all(</find>
-      <find>scan(</find>
-      <find>unique</find>
-      <find>__call</find>
-      <find>__</find>
       <find>namespace</find>
       <find>json</find>
       <find>json(</find>
@@ -123,6 +60,16 @@
       <find>linearl</find>
       <find>linear-gradient</find>
       <find>margin-bottom: .5</find>
+      <find>search-for</find>
+      <find>modal-student-email-error</find>
+      <find>console.log</find>
+      <find>populating</find>
+      <find>console.log(</find>
+      <find>$resources</find>
+      <find>vue</find>
+      <find>count(</find>
+      <find>:</find>
+      <find>uid</find>
     </findStrings>
     <replaceStrings>
       <replace>position</replace>
@@ -140,10 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TaskAllocation/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/MainContacts/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/RiskAssessment/module.json" />
         <option value="$PROJECT_DIR$/app/Modules/Constitution/module.json" />
         <option value="$PROJECT_DIR$/app/Modules/EquipmentList/module.json" />
         <option value="$PROJECT_DIR$/app/Modules/ExitingTreasurer/module.json" />
@@ -161,12 +104,9 @@
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Providers/ViewServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/views/portal.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/module.json" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/modal-form.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/user-form.blade.php" />
@@ -188,9 +128,16 @@
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Providers/ViewServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/views/components/modal-form.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/groupselect.blade.php" />
         <option value="$PROJECT_DIR$/app/Traits/LogsIntoPosition.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Providers/RouteServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/unioncloud_search_form.blade.php" />
       </list>
     </option>
   </component>
@@ -316,6 +263,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -401,7 +349,20 @@
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -414,7 +375,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -482,14 +442,16 @@
       <workItem from="1549029121093" duration="420000" />
       <workItem from="1549042415963" duration="4140000" />
       <workItem from="1549218721130" duration="9346000" />
+      <workItem from="1549307930314" duration="18240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82533000" />
+    <option name="totallyTimeSpent" value="100773000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22291666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -517,53 +479,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-02-01.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="26" selection-start-line="26" selection-start-column="2" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="e#39#80#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Gate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Access/Gate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="432" column="5" lean-forward="true" selection-start-line="432" selection-start-column="5" selection-end-line="432" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/flash/modal.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/flash/message.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -589,13 +504,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/index.blade.php" />
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -603,27 +511,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret column="218110" selection-start-column="218110" selection-end-column="218110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Migrations/2019_02_03_185342_create_committeeetails_committee_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Migrations/2019_02_03_185342_create_committeeetails_committee_table.php" />
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -729,9 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Providers/RouteServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/ControlDBInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -777,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/details_submission.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="122" selection-start-line="32" selection-start-column="122" selection-end-line="32" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Providers/ViewServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -798,16 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="e#383#426#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,8 +705,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Traits/LogsIntoPosition.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
+        <state relative-caret-position="574">
+          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/LogIntoPositionFromControl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+          <folding>
+            <element signature="e#39#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/details_submission.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="122" selection-start-line="32" selection-start-column="122" selection-end-line="32" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/Request/BaseRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="903" column="39" selection-start-line="903" selection-start-column="39" selection-end-line="903" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/Response/BaseResponse.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/ResourceCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-02-04.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="675">
+          <caret line="135" column="200" selection-start-line="135" selection-start-column="175" selection-end-line="135" selection-end-column="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="49" selection-start-column="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/unioncloud_search_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="84" column="15" selection-start-line="84" selection-start-column="15" selection-end-line="84" selection-end-column="15" />
         </state>
       </provider>
     </entry>
