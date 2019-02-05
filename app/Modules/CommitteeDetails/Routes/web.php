@@ -18,33 +18,13 @@
 
     Route::get('/unioncloud/user/search', function(\Illuminate\Http\Request $request) {
         $request->validate([
-            'id' => 'required_without:email',
-            'email' => 'required_without:id',
+            'q' => 'required:string'
         ]);
+        $q = $request->input('q');
 
-        $unioncloud = app()->make('Twigger\UnionCloud\API\UnionCloud');
+        $unioncloud = app()->make('App\Packages\UnionCloud\UnionCloudInterface');
 
-        try {
-            $users = $unioncloud->users()->search($request->only(['id', 'email']))->get()->toArray();
-            if(count($users) === 0)
-            {
-                throw new \Twigger\UnionCloud\API\Exception\Resource\ResourceNotFoundException();
-            }
-        } catch (\Twigger\UnionCloud\API\Exception\Resource\ResourceNotFoundException $exception) {
-            return response('The user couldn\'t be found.', 404);
-        }
+        return $unioncloud->getAccountSearchDetails($q);
 
-        $reducedUser = [];
-
-        foreach($users as $user)
-        {
-            $reducedUser[] = [
-                'uid' => $user->uid,
-                'name' => $user->forename.' '.$user->surname,
-                'email' => $user->email
-            ];
-        }
-
-        return $reducedUser;
     });
 });

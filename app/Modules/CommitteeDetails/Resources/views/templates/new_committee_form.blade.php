@@ -7,30 +7,14 @@
 
     @slot('body')
 
-        <style>
-            fieldset.scheduler-border {
-                border: 2px groove #ddd !important;
-                padding: 0 1.4em 1.4em 1.4em !important;
-                margin: 0 0 1.5em 0 !important;
-                -webkit-box-shadow: 0px 0px 0px 0px #000;
-                box-shadow: 0px 0px 0px 0px #000;
-            }
 
-            legend.scheduler-border {
-                font-size: 1.2em !important;
-                font-weight: bold !important;
-                text-align: left !important;
-                width: auto;
-                padding: 0 10px;
-                border-bottom: none;
-            }
-        </style>
+
         <form id="edit-user-form" class="form-horizontal" method="POST" action="{{url('committeedetails/add')}}">
             @csrf
-            <div class="card text-white bg-dark mb-0">
+            <div class="card text-black bg-white mb-0">
 
 
-                <div class="card-header" style="background-color: #343a40">
+                <div class="card-header">
                     <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account on our <a href="https://www.bristolsu.org.uk">website!</a></h4>
                 </div>
 
@@ -39,13 +23,82 @@
 
                     <!-- Position -->
                     <div class="form-group">
-                        <label class="col-form-label" for="modal-input-position">Position</label>
+                        <label for="modal-input-position">Position</label>
                         <div><small>Select the position of the new member</small></div>
                         <input type="text" name="modal-input-position" class="form-control" id="modal-input-position" required="">
                     </div>
 
+
                     <!-- UnionCloud Account -->
-                    @include('committeedetails::templates.unioncloud_search_form')
+                    <div class="form-group">
+
+
+                        <!-- UnionCloud Account -->
+                        <div class="tab-pane fade show active" id="student" role="tabpanel" aria-labelledby="student-tab">
+                            <div id="unioncloud_account_search">
+
+                                <label class="col-form-label" for="modal-input-position">Committee Member</label>
+                                <div><small>Search by Email or Student ID</small></div>
+
+                                <!-- UnionCloud ID Holder -->
+                                <input type="hidden" name="unioncloud_id" v-model="uid"/>
+
+                                <v-select
+                                        label="fullLabel"
+                                        :filterable="false"
+                                        :options="options"
+                                        :get-option-label="getLabel"
+                                        @search="onSearch"
+                                        {{--@change="updateuid" TODO Get this working--}}
+                                >
+                                </v-select>
+                                <small><span v-show="errorVisible">No users found.</span></small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        new Vue({
+                            el: "#unioncloud_account_search",
+                            data: {
+                                options: [],
+                                errorVisible: false,
+                                uid: 12398923
+                            },
+                            methods: {
+                                onSearch(search, loading) {
+                                    loading(true);
+                                    this.search(loading, search, this);
+                                },
+                                search: _.debounce((loading, search, vm) => {
+                                    axios.get('{{ url('/committeedetails/unioncloud/user/search') }}',
+                                        {
+                                            params: {q: search},
+                                            accept: 'application/json'
+                                        }
+                                    ).then(response => {
+                                        vm.errorVisible = false;
+                                        vm.options = response.data;
+                                        loading(false);
+                                    }).catch(error => {
+                                        vm.errorVisible = true;
+                                        vm.options = [];
+                                        loading(false);
+
+                                    });
+                                }, 1000),
+                                getLabel(option) {
+                                    return option.name + ' - ' + option.email;
+                                },
+                                updateuid() {
+                                    this.uid = this.mutableValue.uid
+                                }
+                            }
+                        });
+
+                    </script>
+
 
                     <button type="button" onclick="$('#edit-user-form').submit();" class="btn btn-info">Add Committee Member</button>
 

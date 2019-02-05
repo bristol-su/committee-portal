@@ -14,4 +14,6 @@ interface UnionCloudInterface
     public function getNameByUID($uid);
 
     public function getStudentIDByUID($uid);
+
+    public function getAccountSearchDetails($q);
 }

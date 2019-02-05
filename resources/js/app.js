@@ -14,6 +14,8 @@ window.Popper = require('popper.js');
 window.jQuery = require('jquery');
 
 window.axios = require('axios');
+
+window.VueSelect = require('vue-select');
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -21,8 +23,11 @@ window.axios = require('axios');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//
+// const files = require.context('./', true, /\.vue$/i); // Get all files in this directory
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default)); // register
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+Vue.component("v-select", VueSelect.VueSelect);
+
