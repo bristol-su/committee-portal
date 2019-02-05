@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 // Welcome Route
 Route::middleware('guest')->get('/', function () { return view('welcome'); });
 
-Route::middleware(['auth:web', 'verified', 'control'])->group(function()
+Route::middleware(['auth:web', 'verified'])->group(function()
 {
     // Portal Dashboard Route
     Route::get('/portal', 'PortalController@index')->name('portal');

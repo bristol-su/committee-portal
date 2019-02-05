@@ -24,18 +24,18 @@ class LogIntoPositionFromControl
      */
     public function handle($request, Closure $next)
     {
-//        Gate::after(function ($user, $ability, $result, $arguments) {
-//            return true;
-//        });
-        // Get the positions from the Control Database or Cache
-        $positions = $this->getPositions();
 
-        if($positions instanceof \Exception)
+        if(Auth::check())
         {
-            throw $positions;
+            $positions = $this->getPositions();
+
+            if($positions instanceof \Exception)
+            {
+                throw $positions;
+            }
+            // Set the positions in the user model
+            Auth::user()->setPositions($positions);
         }
-        // Set the positions in the user model
-        Auth::user()->setPositions($positions);
 
         return $next($request);
     }

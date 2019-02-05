@@ -11,7 +11,7 @@
 |
 */
 
-\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware('control')->group(function() {
+\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware('auth')->group(function() {
     Route::get('/', 'CommitteeDetailsController@showUserForm');
     Route::post('/add', 'CommitteeDetailsController@addCommittee');
     Route::post('/', 'CommitteeDetailsController@submitCommittee');
