@@ -134,8 +134,6 @@ class ControlDB implements ControlDBInterface
 
     public function getSpecificPosition($position_id)
     {
-        // We don't use the specific position API here so that we can
-        // use the caching on getPosition()
 
         $positions = $this->getPositions();
         foreach($positions as $position)
@@ -146,7 +144,7 @@ class ControlDB implements ControlDBInterface
             }
         }
 
-        return false;
+        return [];
     }
 
     public function getAllGroups()
