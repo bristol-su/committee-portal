@@ -25,7 +25,7 @@ Route::middleware(['auth:web', 'verified'])->group(function()
     Route::post('/login/position', function(\Illuminate\Http\Request $request) {
         if($request->has('position_id'))
         {
-            Auth::user()->loginToPosition($request->get('position_id'));
+            Auth::user()->setCurrentPosition($request->get('position_id'));
             Toast::message('You\'re acting as '.Auth::user()->getCurrentPosition()['position_name'].' for group '.Auth::user()->getCurrentPosition()['group_name'], 'success', 'Logged in');
             return redirect()->route('portal');
         }

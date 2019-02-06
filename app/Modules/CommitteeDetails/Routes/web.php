@@ -16,15 +16,19 @@
     Route::post('/add', 'CommitteeDetailsController@addCommittee');
     Route::post('/', 'CommitteeDetailsController@submitCommittee');
 
-    Route::get('/unioncloud/user/search', function(\Illuminate\Http\Request $request) {
+    Route::get('/unioncloud/user/search', function(\Illuminate\Http\Request $request, \App\Packages\UnionCloud\UnionCloudInterface $unionCloud) {
         $request->validate([
             'q' => 'required:string'
         ]);
         $q = $request->input('q');
 
-        $unioncloud = app()->make('App\Packages\UnionCloud\UnionCloudInterface');
+        return $unionCloud->getAccountSearchDetails($q);
 
-        return $unioncloud->getAccountSearchDetails($q);
+    });
+
+    Route::get('/control/positions/getall', function(\Illuminate\Http\Request $request, \App\Packages\ControlDB\ControlDBInterface $controlDB) {
+
+        return $controlDB->getPositions();
 
     });
 });

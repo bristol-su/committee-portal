@@ -23,40 +23,49 @@
 
                     <!-- Position -->
                     <div class="form-group">
-                        <label for="modal-input-position">Position</label>
-                        <div><small>Select the position of the new member</small></div>
-                        <input type="text" name="modal-input-position" class="form-control" id="modal-input-position" required="">
+                        <div id="control_position_search">
+
+                            <label class="col-form-label" for="position-vue-select">Committee Member</label>
+                            <div><small>Search by Email or Student ID</small></div>
+
+                            <!-- Position ID Holder -->
+                            <input type="hidden" name="position_id" v-model="position"/>
+
+                            <v-select
+                                    label="name"
+                                    :options="options"
+                                    @input="updatePosition"
+                            >
+                            </v-select>
+                        </div>
                     </div>
+
 
 
                     <!-- UnionCloud Account -->
                     <div class="form-group">
+                        <div id="unioncloud_account_search">
 
+                            <label class="col-form-label" for="student-vue-select">Committee Member</label>
+                            <div><small>Search by Email or Student ID</small></div>
 
-                        <!-- UnionCloud Account -->
-                        <div class="tab-pane fade show active" id="student" role="tabpanel" aria-labelledby="student-tab">
-                            <div id="unioncloud_account_search">
+                            <!-- UnionCloud ID Holder -->
+                            <input type="hidden" name="unioncloud_id" v-model="uid"/>
 
-                                <label class="col-form-label" for="modal-input-position">Committee Member</label>
-                                <div><small>Search by Email or Student ID</small></div>
-
-                                <!-- UnionCloud ID Holder -->
-                                <input type="hidden" name="unioncloud_id" v-model="uid"/>
-
-                                <v-select
-                                        label="fullLabel"
-                                        :filterable="false"
-                                        :options="options"
-                                        :get-option-label="getLabel"
-                                        @search="onSearch"
-                                        {{--@change="updateuid" TODO Get this working--}}
-                                >
-                                </v-select>
-                                <small><span v-show="errorVisible">No users found.</span></small>
-                            </div>
+                            <v-select
+                                    label="fullLabel"
+                                    :filterable="false"
+                                    :options="options"
+                                    :get-option-label="getLabel"
+                                    @search="onSearch"
+                                    @input="updateUid"
+                            >
+                            </v-select>
+                            <small><span v-show="errorVisible">No users found.</span></small>
                         </div>
-
                     </div>
+
+
 
                     <script>
                         new Vue({
@@ -91,9 +100,35 @@
                                 getLabel(option) {
                                     return option.name + ' - ' + option.email;
                                 },
-                                updateuid() {
-                                    this.uid = this.mutableValue.uid
+                                updateUid(student) {
+                                    this.uid = student.uid
                                 }
+                            }
+                        });
+
+                        new Vue({
+                            el: "#control_position_search",
+                            data: {
+                                options: [],
+                                position: null
+                            },
+                            methods: {
+                                updatePosition(position) {
+                                    this.position = position.id;
+                                }
+                            },
+                            mounted() {
+
+                                let self = this;
+                                axios.get('{{ url('/committeedetails/control/positions/getall') }}',
+                                    {
+                                        accept: 'application/json'
+                                    }
+                                ).then(response => {
+                                    self.options = response.data;
+                                }).catch(error => {
+                                    self.options = [];
+                                });
                             }
                         });
 

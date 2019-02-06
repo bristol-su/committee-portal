@@ -27,7 +27,19 @@ class LogIntoPositionFromControl
 
         if(Auth::check())
         {
-            $positions = $this->getPositions();
+            try {
+                $positions = $this->getPositions();
+            } catch(\Exception $e)
+            {
+                if($e->getCode() === 404)
+                {
+                    return response('Your student account wasn\'t found in our records.', 404);
+                } elseif($e instanceof StudentHasNoPositions)
+                {
+                    return response($e->getMessage());
+                }
+                return abort(500, 'Sorry, we couldn\'t log you in!');
+            }
 
             if($positions instanceof \Exception)
             {
@@ -46,33 +58,21 @@ class LogIntoPositionFromControl
         $user = Auth::user();
 
         // Get the positions if necessary
-        if( ! Cache::has('authentication:userpositions.'.$user->id))
-        {
-            try {
-                $positions = $user->getPositionsForUser();
-            } catch(\Exception $e)
-            {
-                if($e->getCode() === 404)
-                {
-                    return response('Your student account wasn\'t found in our records.', 404);
-                } elseif($e instanceof StudentHasNoPositions)
-                {
-                    return response($e->getMessage());
-                }
-                return response('Sorry, we couldn\'t log you in!', 500);
-            }
+        $positions = $user->getPositionsForUser();
 
-            $formattedPositions = $this->formatPositions($positions);
-            Cache::put('authentication:userpositions.'.$user->id, $formattedPositions, 5);
+        $formattedPositions = $this->formatPositions($positions);
 
-            return $formattedPositions;
-        }
+        return $formattedPositions;
 
 
-        return Cache::get('authentication:userpositions.'.$user->id);
 
     }
 
+    /**
+     * @param array $positions May be positions or groups. If $isAdmin is true,
+     * it's just groups.
+     * @return array
+     */
     private function formatPositions($positions)
     {
         $isAdmin = Auth::user()->isAdmin();
@@ -83,7 +83,7 @@ class LogIntoPositionFromControl
                 'position_id' => ($isAdmin?null:$position->id),
                 'group_id' => ($isAdmin?$position->id:$position->pivot->group_id),
                 'position_name' => ($isAdmin?'Admin':$position->name),
-                'group_name' => $this->getGroupNameByID(($isAdmin?$position->id:$position->pivot->group_id))
+                'group_name' => ($isAdmin?$position->name:$this->getGroupNameByID($position->pivot->group_id))
             ];
         }
         return $userPositions;

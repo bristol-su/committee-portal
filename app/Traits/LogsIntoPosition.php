@@ -42,6 +42,20 @@ trait LogsIntoPosition
     }
 
     /**
+     * @param $positionNumber
+     * @throws \Exception
+     */
+    public function setCurrentPosition($positionNumber)
+    {
+        if($positionNumber >= count($this->positions))
+        {
+            throw new \Exception('Unable to log you into your group', 500);
+        }
+
+        Session::put('authentication.user.position.id', $positionNumber);
+    }
+
+    /**
      * @return int|mixed
      */
     public function getCurrentPositionID()
@@ -55,8 +69,8 @@ trait LogsIntoPosition
      */
     public function getPositionsFromControl($controlID = null)
     {
-
         $controlDB = resolve('App\Packages\ControlDB\ControlDBInterface');
+
         if(method_exists($this, 'isAdmin')) {
             if (!$this->isAdmin()) {
                 $positions = $controlDB->getPositionsFromStudent($controlID);
@@ -64,25 +78,13 @@ trait LogsIntoPosition
                 $positions = $controlDB->getAllGroups();
             }
 
+        } else {
+            $positions = $controlDB->getPositionsFromStudent($controlID);
         }
 
         return $positions;
     }
 
-
-    /**
-     * @param $positionNumber
-     * @throws \Exception
-     */
-    public function loginToPosition($positionNumber)
-    {
-        if($positionNumber >= count($this->positions))
-        {
-            throw new \Exception('Unable to log you into your group', 500);
-        }
-
-        Session::put('authentication.user.position.id', $positionNumber);
-    }
 
 
 

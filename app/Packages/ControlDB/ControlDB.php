@@ -4,7 +4,9 @@ namespace App\Packages\ControlDB;
 
 use App\Exceptions\StudentHasNoPositions;
 use GuzzleHttp\Client;
+use function GuzzleHttp\Psr7\get_message_body_summary;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ControlDB implements ControlDBInterface
 {
@@ -37,7 +39,6 @@ class ControlDB implements ControlDBInterface
             ],
         ]);
         $token = json_decode((string) $response->getBody(), true);
-
         Cache::put('authentication:control:auth_token', $token['access_token'], ((int) $token['expires_in'])/60);
 
         return $token['access_token'];
@@ -54,6 +55,15 @@ class ControlDB implements ControlDBInterface
      */
     private function sendRequest($method, $url, $body=null, $refreshAuth=false)
     {
+
+        $cacheKey = 'control:request:parameters.'.$method.'.'.htmlspecialchars($url).'.'.htmlspecialchars( (is_array($body)?json_encode($body):$body));
+
+
+        if(Cache::has($cacheKey) && !$refreshAuth)
+        {
+            return json_decode(Cache::get($cacheKey));
+        }
+
         try{
             $response = $this->client->request(
                 $method,
@@ -63,19 +73,24 @@ class ControlDB implements ControlDBInterface
                     'headers' => [
                         'Accept' => 'application/json',
                         'Authorization' => 'Bearer '.$this->getAuthToken()
-                    ]
+                    ],
+                    'http_errors' => true,
                 ]
             );
         } catch (\Exception $e)
         {
             if($e->getCode() === 401 && ! $refreshAuth)
             {
-                return $this->sendRequest($method, $url, $body, true);
+                $response = $this->sendRequest($method, $url, $body, true);
+            } else {
+                throw $e;
             }
-            throw $e;
         }
+        if($refreshAuth) { return $response; }
 
-        return $response;
+        Cache::put($cacheKey, $response->getBody()->getContents(), 60);
+
+        return json_decode($response->getBody()->getContents());
     }
 
     /**
@@ -86,12 +101,11 @@ class ControlDB implements ControlDBInterface
      */
     public function getPositionsFromStudent(int $studentId)
     {
-        $response = $this->sendRequest(
+        $positions = $this->sendRequest(
             'GET',
             'students/'.$studentId.'/positions'
         );
 
-        $positions = json_decode($response->getBody()->getContents());
         if(count($positions) === 0)
         {
             throw new StudentHasNoPositions();
@@ -101,29 +115,28 @@ class ControlDB implements ControlDBInterface
 
     public function getGroupByID($id)
     {
-        $positions = $this->sendRequest(
+        return $this->sendRequest(
             'GET',
             'groups/'.$id
         );
-
-        return json_decode($positions->getBody()->getContents());
     }
 
 
     public function getPositions()
     {
-        return Cache::remember('control_all_positions', 60, function() {
-            $positions = $this->sendRequest(
-                'GET',
-                'positions'
-            );
 
-            return json_decode($positions->getBody()->getContents());
-        });
+        return $this->sendRequest(
+            'GET',
+            'positions'
+        );
+
     }
 
     public function getSpecificPosition($position_id)
     {
+        // We don't use the specific position API here so that we can
+        // use the caching on getPosition()
+
         $positions = $this->getPositions();
         foreach($positions as $position)
         {
@@ -138,7 +151,6 @@ class ControlDB implements ControlDBInterface
 
     public function getAllGroups()
     {
-        $groups = $this->sendRequest('GET', 'groups');
-        return json_decode($groups->getBody()->getContents());
+        return $this->sendRequest('GET', 'groups');
     }
 }
