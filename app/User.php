@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'admin' => 'boolean'
+    ];
     // Logging into a group
 
     /**
@@ -46,6 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getPositionsForUser()
     {
         return $this->getPositionsFromControl($this->getControlID());
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin;
     }
 
 

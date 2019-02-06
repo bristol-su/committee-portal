@@ -75,14 +75,15 @@ class LogIntoPositionFromControl
 
     private function formatPositions($positions)
     {
+        $isAdmin = Auth::user()->isAdmin();
         $userPositions = [];
         foreach($positions as $position)
         {
             $userPositions[] = [
-                'position_id' => $position->id,
-                'group_id' => $position->pivot->group_id,
-                'position_name' => $position->name,
-                'group_name' => $this->getGroupNameByID($position->pivot->group_id)
+                'position_id' => ($isAdmin?null:$position->id),
+                'group_id' => ($isAdmin?$position->id:$position->pivot->group_id),
+                'position_name' => ($isAdmin?null:$position->name),
+                'group_name' => $this->getGroupNameByID(($isAdmin?$position->id:$position->pivot->group_id))
             ];
         }
         return $userPositions;

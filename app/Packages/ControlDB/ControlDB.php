@@ -135,4 +135,10 @@ class ControlDB implements ControlDBInterface
 
         return false;
     }
+
+    public function getAllGroups()
+    {
+        $groups = $this->sendRequest('GET', 'groups');
+        return json_decode($groups->getBody()->getContents());
+    }
 }

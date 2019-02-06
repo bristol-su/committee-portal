@@ -50,13 +50,21 @@ trait LogsIntoPosition
     }
 
     /**
-     * @param $controlID
+     * @param int $controlID Student control ID
      * @return mixed
      */
-    public function getPositionsFromControl($controlID)
+    public function getPositionsFromControl($controlID = null)
     {
+
         $controlDB = resolve('App\Packages\ControlDB\ControlDBInterface');
-        $positions = $controlDB->getPositionsFromStudent($controlID);
+        if(method_exists($this, 'isAdmin')) {
+            if (!$this->isAdmin()) {
+                $positions = $controlDB->getPositionsFromStudent($controlID);
+            } else {
+                $positions = $controlDB->getAllGroups();
+            }
+
+        }
         return $positions;
     }
 

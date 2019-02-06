@@ -11,4 +11,6 @@ interface ControlDBInterface
     public function getPositions();
 
     public function getSpecificPosition($position_id);
+
+    public function getAllGroups();
 }
