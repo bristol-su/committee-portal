@@ -82,7 +82,7 @@ class LogIntoPositionFromControl
             $userPositions[] = [
                 'position_id' => ($isAdmin?null:$position->id),
                 'group_id' => ($isAdmin?$position->id:$position->pivot->group_id),
-                'position_name' => ($isAdmin?null:$position->name),
+                'position_name' => ($isAdmin?'Admin':$position->name),
                 'group_name' => $this->getGroupNameByID(($isAdmin?$position->id:$position->pivot->group_id))
             ];
         }

@@ -65,6 +65,7 @@ trait LogsIntoPosition
             }
 
         }
+
         return $positions;
     }
 
