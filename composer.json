@@ -14,8 +14,10 @@
         "grimthorr/laravel-toast": "^1.1",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "nimbly/activeresource": "^1.1",
         "nwidart/laravel-modules": "^4.0",
-        "twigger/unioncloud": "dev-master"
+        "twigger/unioncloud": "dev-master",
+        "yoeunes/toastr": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

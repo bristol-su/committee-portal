@@ -14,7 +14,13 @@
     <div class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"><a id="new-committee-member" class="btn btn-outline-primary" href="#">Add Committee Member</a><a class="btn btn-secondary" href="#">Save and Submit</a></div>
+                <div class="col-md-12">
+                    <a id="new-committee-member" class="btn btn-outline-primary" href="#">Add Committee Member</a>
+                    <a class="btn btn-secondary" href="#" onclick="event.preventDefault(); document.getElementById('sync_committee_members_form').submit();"><i class="fa fa-tick"></i>Save and Submit</a>
+                    <form id="sync_committee_members_form" action="{{ url('/committeedetails') }}" method="POST">
+                        @csrf
+                    </form>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">

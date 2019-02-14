@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'committee-role' => [
+            'driver' => 'session',
+            'provider' => 'committee-roles'
+        ]
     ],
 
     /*
@@ -70,10 +75,11 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'committee-roles' => [
+            'driver' => 'committee-role-provider',
+            'model' => App\CommitteeRole::class
+        ],
+
     ],
 
     /*

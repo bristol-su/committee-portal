@@ -17,18 +17,26 @@ Auth::routes(['verify' => true]);
 // Welcome Route
 Route::middleware('guest')->get('/', function () { return view('welcome'); });
 
-Route::middleware(['auth:web', 'verified'])->group(function()
+Route::middleware(['auth:web', 'committeerole', 'verified'])->group(function()
 {
     // Portal Dashboard Route
     Route::get('/portal', 'PortalController@index')->name('portal');
 
     Route::post('/login/position', function(\Illuminate\Http\Request $request) {
-        if($request->has('position_id'))
+        if($request->has('committee_role_id'))
         {
-            Auth::user()->setCurrentPosition($request->get('position_id'));
-            Toast::message('You\'re acting as '.Auth::user()->getCurrentPosition()['position_name'].' for group '.Auth::user()->getCurrentPosition()['group_name'], 'success', 'Logged in');
-            return redirect()->route('portal');
+            if(Auth::guard('committee-role')->attempt([
+                'committee_role_id' => $request->input('committee_role_id'),
+                'student_control_id' => Auth::user()->control_id
+            ])) {
+                \Toast::message('You\'re acting as '.Auth::guard('committee-role')->user()->position->name.' for group '.Auth::guard('committee-role')->user()->group->name, 'success', 'Logged in');
+
+            } else {
+                \Toast::message('Couldn\'t log you in', 'error', 'Error');
+            }
+
         }
-        return redirect()->route('portal')->withErrors(['login' => 'There was a problem logging into your group']);
+        return redirect()->route('portal');
+
     });
 });

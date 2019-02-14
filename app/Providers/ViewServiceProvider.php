@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Student;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -41,8 +43,9 @@ class ViewServiceProvider extends ServiceProvider
 
         // Allow student groups to appear on the header
         View::composer('templates.groupselect', function($view) {
-            $groups = Auth::user()->getCurrentPosition();
-            $view->with('_groups', $groups);
+            $student = Student::find(Auth::user()->control_id);
+            $committeeRoles = CommitteeRole::allThrough($student);
+            $view->with('_committeeRoles', $committeeRoles);
         });
     }
 

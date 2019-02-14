@@ -15,7 +15,7 @@ class CreateCommitteedetailsCommitteeTable extends Migration
     {
         Schema::create('committeedetails_committee', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('control_id');
+            $table->unsignedInteger('control_id')->nullable();
             $table->string('unioncloud_id');
             $table->unsignedInteger('position_control_id');
             $table->unsignedInteger('group_control_id');
