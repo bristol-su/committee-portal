@@ -15,7 +15,7 @@
     Route::get('/', 'CommitteeDetailsController@showUserForm');
     Route::post('/add', 'CommitteeDetailsController@addCommittee');
     Route::post('/', 'CommitteeDetailsController@submitCommittee');
-
+    Route::delete('/delete/{committeedetails_committee}', 'CommitteeDetailsController@deleteCommittee');
     Route::get('/unioncloud/user/search', function(\Illuminate\Http\Request $request, \App\Packages\UnionCloud\UnionCloudInterface $unionCloud) {
         $request->validate([
             'q' => 'required:string'
@@ -28,7 +28,9 @@
 
     Route::get('/control/positions/getall', function(\Illuminate\Http\Request $request, \App\Packages\ControlDB\ControlDBInterface $controlDB) {
 
-        return $controlDB->getPositions();
+        return \App\Packages\ControlDB\Models\Position::all()->toArray();
 
     });
+
+
 });

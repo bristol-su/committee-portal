@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Packages\ControlDB\ControlDBInterface;
-use App\Traits\LogsIntoPosition;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, LogsIntoPosition;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +45,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->control_id;
     }
 
+    /**
+     * Call the trait function to get the positions for yourself
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
     public function getPositionsForUser()
     {
         return $this->getPositionsFromControl($this->getControlID());

@@ -4,13 +4,15 @@ namespace App\Packages\ControlDB;
 
 interface ControlDBInterface
 {
-    public function getPositionsFromStudent(int $studentId);
+    public function getAuthToken();
+
+    public function getPositionsByStudentID(int $studentId);
 
     public function getGroupByID($id);
 
-    public function getPositions();
+    public function getAllPositions();
 
-    public function getSpecificPosition($position_id);
+    public function getPositionByID($position_id);
 
     public function getAllGroups();
 }

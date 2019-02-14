@@ -25,8 +25,8 @@
                     <div class="form-group">
                         <div id="control_position_search">
 
-                            <label class="col-form-label" for="position-vue-select">Committee Member</label>
-                            <div><small>Search by Email or Student ID</small></div>
+                            <label class="col-form-label" for="position-vue-select">Position</label>
+                            <div><small>Select the position of the student</small></div>
 
                             <!-- Position ID Holder -->
                             <input type="hidden" name="position_id" v-model="position"/>

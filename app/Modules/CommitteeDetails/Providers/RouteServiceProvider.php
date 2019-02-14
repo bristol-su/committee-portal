@@ -2,6 +2,7 @@
 
 namespace App\Modules\CommitteeDetails\Providers;
 
+use App\Modules\CommitteeDetails\Entities\Committee;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -24,6 +25,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Route::bind('committeedetails_committee', function($id) {
+            return Committee::findOrFail($id);
+        });
     }
 
     /**

@@ -6,8 +6,5 @@ return [
     'client_secret' => env('CONTROL_CLIENT_SECRET'),
     'email' => env('CONTROL_EMAIL'),
     'password' => env('CONTROL_PASSWORD'),
-    'executive_committee_positions' => [
-        1,2,3
-    ]
 
 ];
