@@ -39,4 +39,45 @@ Route::middleware(['auth:web', 'committeerole', 'verified'])->group(function()
         return redirect()->route('portal');
 
     });
+
+
+});
+
+# Control DB Internal API Routes
+Route::middleware(['auth:web', 'committeerole', 'verified'])->prefix('/control-database/api')->group(function() {
+
+    Route::get('positions', function(\Illuminate\Http\Request $request) {
+        $position = \App\Packages\ControlDB\Models\Position::all();
+        abort_if(!$position, 404);
+        return $position->toArray();
+    });
+
+    Route::get('positions/{controlposition}', function(\Illuminate\Http\Request $request, \App\Packages\ControlDB\Models\Position $position) {
+        return $position;
+    });
+});
+
+# UnionCloud Routes
+
+Route::middleware(['auth:web', 'committeerole', 'verified'])->prefix('/unioncloud/api')->group(function() {
+    Route::get('/user', function(\Illuminate\Http\Request $request, \Twigger\UnionCloud\API\UnionCloud $unionCloud) {
+        $request->validate([
+            'uid' => 'required'
+        ]);
+        $params = $request->only(['uid']);
+        $user = $unionCloud->users()->getByUID($params['uid'])->get()->first();
+        return [
+            'id' => $user->id,
+            'forename' => $user->forename,
+            'surname' => $user->surname,
+            'email' => $user->email
+        ];
+    });
+
+    Route::get('/user/search', function(\Illuminate\Http\Request $request, \Twigger\UnionCloud\API\UnionCloud $unionCloud) {
+        $params = $request->only(['id', 'email']);
+        return $unionCloud->users()->search($params)->get();
+
+    });
+
 });

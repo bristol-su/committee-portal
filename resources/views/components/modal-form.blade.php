@@ -26,7 +26,7 @@
     $(document).ready(function() {
 
         // Show the popup
-        $(document).on('click', "#{{ $triggerID }}", function() {
+        $(document).on('click', ".{{ $triggerID }}", function() {
             $(this).addClass('edit-item-{{ $triggerID}}-trigger-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
 
             var options = {

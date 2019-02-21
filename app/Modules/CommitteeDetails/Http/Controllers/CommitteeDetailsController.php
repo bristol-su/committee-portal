@@ -3,31 +3,30 @@
 namespace App\Modules\CommitteeDetails\Http\Controllers;
 
 use App\Modules\CommitteeDetails\Entities\Committee;
+use App\Modules\CommitteeDetails\Rules\PositionExists;
 use App\Packages\ControlDB\Models\Position;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\UnionCloudUIDExists;
+use Illuminate\Support\Facades\Log;
 
 class CommitteeDetailsController extends Controller
 {
-    // TODO Create policy
-
     public function showUserForm()
     {
+        $this->authorize('view', Committee::class);
 
-        $committee = $this->getCommittee();
-
-        foreach(array_diff(config('committeedetails.executive_committee_positions'), $committee->pluck('position_control_id')->toArray()) as $position)
-        {
-            $committee[] = Position::find($position);
-        }
-
-        return view('committeedetails::details_submission')->with(['committee' => $committee]);
+        return view('committeedetails::committee_details');
     }
 
     public function addCommittee(Request $request)
     {
-        // TODO Validate request
+
+        $request->validate([
+            'position_id' => ['required', 'integer', new PositionExists],
+            'unioncloud_id' => ['required', 'integer', new UnionCloudUIDExists]
+        ]);
 
         // Check if this position is still available
 
@@ -45,6 +44,8 @@ class CommitteeDetailsController extends Controller
             'year' => getReaffiliationYear()
         ]);
 
+        $this->authorize('create', $student);
+
         if(!$student->save()) {
             \Toast::message('Couldn\'t save the user', 'error');
         } else {
@@ -56,6 +57,9 @@ class CommitteeDetailsController extends Controller
     }
 
     public function deleteCommittee(Committee $committeeMember) {
+
+        $this->authorize('delete', $committeeMember);
+
         if($committeeMember->delete()) {
             \Toast::message('Committee member deleted', 'success', 'Deleted');
             return back();
@@ -66,12 +70,17 @@ class CommitteeDetailsController extends Controller
 
     public function submitCommittee(Request $request)
     {
+        $this->authorize('upload', Committee::class);
+        // TODO Make this work
+
+        // Check all required positions are filled
+
+
         dd($request);
     }
 
     private function getCommittee()
     {
-        // TODO Order by exec committee order
         return Committee::where([
             'year' => getReaffiliationYear(),
             'group_control_id' => Auth::guard('committee-role')->user()->group->id

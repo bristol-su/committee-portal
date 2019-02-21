@@ -14,34 +14,28 @@ class CommitteeRole extends Model implements Authenticatable
     public function getAuthIdentifier()
     {
         return $this->id;
-        // TODO: Implement getAuthIdentifier() method.
     }
 
     public function getAuthPassword()
     {
         return $this->student_id;
-        // TODO: Implement getAuthPassword() method.
     }
 
     public function getRememberToken()
     {
-        // TODO: Implement getRememberToken() method.
     }
 
     public function setRememberToken($value)
     {
-        // TODO: Implement setRememberToken() method.
     }
 
     public function getRememberTokenName()
     {
-        // TODO: Implement getRememberTokenName() method.
     }
 
     public function getAuthIdentifierName()
     {
         return 'id';
-        // TODO: Implement getAuthIdentifierName() method.
     }
 
     public function group($data) {

@@ -11,11 +11,4 @@ class Position extends Model
 
     protected $resourceName = 'positions';
 
-    public function __toString()
-    {
-       return json_encode([
-           'value' => $this->id,
-           'label' => $this->name
-       ]);
-    }
 }

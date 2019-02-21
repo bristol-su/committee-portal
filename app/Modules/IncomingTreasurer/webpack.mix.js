@@ -1,11 +1,7 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 require('laravel-mix-merge-manifest');
 
-mix.setPublicPath('../../public').mergeManifest();
 
-mix.js(__dirname + '/Resources/assets/js/app.js', 'js/incomingtreasurer.js')
-    .sass( __dirname + '/Resources/assets/sass/app.scss', 'css/incomingtreasurer.css');
-
-if (mix.inProduction()) {
-    mix.version();
-}
+mix.js(__dirname + '/Resources/assets/js/incomingtreasurer.js', 'public/js')
+    .sass(__dirname + '/Resources/assets/sass/incomingtreasurer.scss', 'public/css')
+    .mergeManifest();

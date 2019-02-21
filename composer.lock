@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b31ff314b2e25f5789990ea3bc576e4",
+    "content-hash": "1360265834196671f210d0f05d7c13c8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -693,16 +693,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.24",
+            "version": "v5.7.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2ede55db4b8201ed0450fa7e7a4d7220aa29bc34"
+                "reference": "688fbfa889d43f392825b381ad3981847120fdfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2ede55db4b8201ed0450fa7e7a4d7220aa29bc34",
-                "reference": "2ede55db4b8201ed0450fa7e7a4d7220aa29bc34",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/688fbfa889d43f392825b381ad3981847120fdfa",
+                "reference": "688fbfa889d43f392825b381ad3981847120fdfa",
                 "shasum": ""
             },
             "require": {
@@ -835,7 +835,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-01-29T22:13:46+00:00"
+            "time": "2019-02-19T14:37:47+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -1294,16 +1294,16 @@
         },
         {
             "name": "nexmo/client",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nexmo/nexmo-php.git",
-                "reference": "3dc03ca1dab726a23b757110897740e54304fc65"
+                "reference": "2f79f67f24225ea627ee14578e98c96276cdd4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/3dc03ca1dab726a23b757110897740e54304fc65",
-                "reference": "3dc03ca1dab726a23b757110897740e54304fc65",
+                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/2f79f67f24225ea627ee14578e98c96276cdd4c5",
+                "reference": "2f79f67f24225ea627ee14578e98c96276cdd4c5",
                 "shasum": ""
             },
             "require": {
@@ -1338,20 +1338,20 @@
                 }
             ],
             "description": "PHP Client for using Nexmo's API.",
-            "time": "2019-01-02T09:06:47+00:00"
+            "time": "2019-02-07T11:14:34+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a"
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5221f49a608808c1e4d436df32884cbc1b821ac0",
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0",
                 "shasum": ""
             },
             "require": {
@@ -1389,7 +1389,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-01-12T16:31:37+00:00"
+            "time": "2019-02-16T20:54:15+00:00"
         },
         {
             "name": "nimbly/activeresource",
@@ -3510,16 +3510,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c"
+                "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/9d5caf43c5f3a3aea2178942f281054805872e7c",
-                "reference": "9d5caf43c5f3a3aea2178942f281054805872e7c",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ba046deba51f3899963c7d09840bf623c4ebf5ed",
+                "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed",
                 "shasum": ""
             },
             "require": {
@@ -3574,7 +3574,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2018-11-09T08:37:55+00:00"
+            "time": "2019-02-04T10:23:43+00:00"
         },
         {
             "name": "beyondcode/laravel-dump-server",
@@ -4007,16 +4007,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.2.0",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "100633629bf76d57430b86b7098cd6beb996a35a"
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/100633629bf76d57430b86b7098cd6beb996a35a",
-                "reference": "100633629bf76d57430b86b7098cd6beb996a35a",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
                 "shasum": ""
             },
             "require": {
@@ -4025,7 +4025,7 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.7.10|~6.5|~7.0"
+                "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
             },
             "type": "library",
             "extra": {
@@ -4068,7 +4068,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2018-10-02T21:52:37+00:00"
+            "time": "2019-02-13T09:37:52+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4896,16 +4896,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.3",
+            "version": "7.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746"
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2cb759721e53bc05f56487f628c6b9fbb6c18746",
-                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
+                "reference": "09c85e14994df92e5ff1f5ec0b481bdb7d3d3df9",
                 "shasum": ""
             },
             "require": {
@@ -4976,7 +4976,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-01T05:24:07+00:00"
+            "time": "2019-02-18T09:24:50+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5089,23 +5089,23 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "366541b989927187c4ca70490a35615d3fef2dce"
+                "reference": "720fcc7e9b5cf384ea68d9d930d480907a0c1a29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/366541b989927187c4ca70490a35615d3fef2dce",
-                "reference": "366541b989927187c4ca70490a35615d3fef2dce",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/720fcc7e9b5cf384ea68d9d930d480907a0c1a29",
+                "reference": "720fcc7e9b5cf384ea68d9d930d480907a0c1a29",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0",
+                "phpunit/phpunit": "^7.5 || ^8.0",
                 "symfony/process": "^2 || ^3.3 || ^4"
             },
             "type": "library",
@@ -5141,7 +5141,7 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2018-06-10T07:54:39+00:00"
+            "time": "2019-02-04T06:01:07+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -5645,16 +5645,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v5.7.24",
+            "version": "v5.7.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/collect.git",
-                "reference": "e841daa7959b3017f8a86e0ec899c042591c5dc3"
+                "reference": "c1a36a2a8a0aa731c1acdcd83f57724ffe630d00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/e841daa7959b3017f8a86e0ec899c042591c5dc3",
-                "reference": "e841daa7959b3017f8a86e0ec899c042591c5dc3",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/c1a36a2a8a0aa731c1acdcd83f57724ffe630d00",
+                "reference": "c1a36a2a8a0aa731c1acdcd83f57724ffe630d00",
                 "shasum": ""
             },
             "require": {
@@ -5691,7 +5691,7 @@
                 "collection",
                 "laravel"
             ],
-            "time": "2019-01-29T17:59:42+00:00"
+            "time": "2019-02-13T19:40:13+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -5754,7 +5754,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1.3",
-        "ext-json": "^1.6"
+        "ext-json": "^1.6",
+        "ext-openssl": "^7.2"
     },
     "platform-dev": []
 }

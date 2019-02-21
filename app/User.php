@@ -62,5 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->admin;
     }
 
+    public function isNewCommittee()
+    {
+        // TODO Populate is new committee Method
+        return true;
+    }
+
 
 }

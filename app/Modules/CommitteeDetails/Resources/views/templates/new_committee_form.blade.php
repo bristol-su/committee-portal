@@ -32,7 +32,6 @@
                             <input type="hidden" name="position_id" v-model="position"/>
 
                             <v-select
-                                    label="name"
                                     :options="options"
                                     @input="updatePosition"
                             >
@@ -73,7 +72,7 @@
                             data: {
                                 options: [],
                                 errorVisible: false,
-                                uid: 12398923
+                                uid: ''
                             },
                             methods: {
                                 onSearch(search, loading) {

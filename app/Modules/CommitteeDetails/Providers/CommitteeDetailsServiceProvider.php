@@ -2,6 +2,9 @@
 
 namespace App\Modules\CommitteeDetails\Providers;
 
+use App\Modules\CommitteeDetails\Entities\Committee;
+use App\Modules\CommitteeDetails\Policies\CommitteePolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -26,6 +29,8 @@ class CommitteeDetailsServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        Gate::policy(Committee::class, CommitteePolicy::class);
     }
 
     /**

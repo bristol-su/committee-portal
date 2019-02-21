@@ -10,8 +10,22 @@ namespace App\Packages\ControlDB\Models;
 
 
 use ActiveResource\Model;
+use Illuminate\Contracts\Support\Jsonable;
 
-class BaseControlActiveRecordModel extends Model
+class BaseControlActiveRecordModel extends Model implements Jsonable
 {
     protected $connectionName = 'control';
+
+    public function __toString()
+    {
+        return json_encode($this->toArray());
+    }
+
+    /**
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->toArray(), $options);
+    }
 }

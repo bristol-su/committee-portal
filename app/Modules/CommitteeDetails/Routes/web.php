@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware('auth')->group(function() {
+\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware(['auth', 'committeerole'])->group(function() {
     Route::get('/', 'CommitteeDetailsController@showUserForm');
     Route::post('/add', 'CommitteeDetailsController@addCommittee');
     Route::post('/', 'CommitteeDetailsController@submitCommittee');
@@ -27,10 +26,20 @@
     });
 
     Route::get('/control/positions/getall', function(\Illuminate\Http\Request $request, \App\Packages\ControlDB\ControlDBInterface $controlDB) {
-
-        return \App\Packages\ControlDB\Models\Position::all()->toArray();
-
+        $positions = collect(\App\Packages\ControlDB\Models\Position::all()->toArray());
+        $options = [];
+        $positions->whereIn('id', config('committeedetails.all_positions'))->each(function($position) use (&$options) {
+            $options[] = [
+                'value' => $position['id'],
+                'label' => $position['name']
+            ];
+        });
+        return $options;
     });
 
+    Route::get('/api/group_committee', function(\Illuminate\Http\Request $request) {
+        $groupID = \Auth::guard('committee-role')->user()->group->id;
+        return App\Modules\CommitteeDetails\Entities\Committee::getGroupCommittee($groupID);
+    });
 
 });

@@ -15,18 +15,20 @@
     "cross-env": "^5.1",
     "jquery": "^3.2",
     "laravel-mix": "^4.0.7",
+    "laravel-mix-merge-manifest": "^0.1.2",
     "lodash": "^4.17.5",
     "popper.js": "^1.12",
-    "resolve-url-loader": "^2.3.1",
-    "sass": "^1.15.2",
+    "resolve-url-loader": "^2.3.2",
+    "sass": "^1.17.1",
     "sass-loader": "^7.1.0",
-    "vue": "^2.5.17",
-    "vue-template-compiler": "^2.6.0"
+    "vue": "^2.6.6",
+    "vue-template-compiler": "^2.6.6"
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
+    "restful-model": "^0.1.8",
     "vue-select": "^2.5.1"
   }
 }

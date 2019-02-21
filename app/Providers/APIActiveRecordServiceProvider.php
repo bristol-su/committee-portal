@@ -17,7 +17,7 @@ class APIActiveRecordServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**

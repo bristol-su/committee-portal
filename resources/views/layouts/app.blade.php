@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'Committee Portal') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,18 +17,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{{ mix('js/vendor.js') }}"></script>
 </head>
 
 <body>
 
-    @include('templates.header')
 
-    @include('toast::messages-jquery')
+@include('templates.header')
 
-    @yield('content')
+@include('toast::messages-jquery')
 
+@yield('content')
+
+
+<script src="{{ mix('js/app.js') }}"></script>
 @stack('scripts')
+
+
 
 </body>
 

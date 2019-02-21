@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ControlDBInterface::class, ControlDB::class);
         $this->app->bind(UnionCloudInterface::class, UnionCloud::class);
 
-        Gate::before(function($user, $ability) {
-            Log::info('Called before gate');
-            return false;
-        });
+//        Gate::before(function($user, $ability) {
+//            Log::info('Called before gate');
+//            return false;
+//        });
         Gate::define('test-edit', function($user) {
             Log::info('Called original gate, return false');
             return false;

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Packages\ControlDB\Models\Position;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -24,7 +25,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
+        Route::bind('controlposition', function($id) {
+            $position = Position::find($id);
+            abort_if(!$position, 404);
+            return $position;
+        });
         parent::boot();
     }
 
