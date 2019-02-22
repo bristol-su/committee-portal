@@ -4,42 +4,39 @@
         <!-- Action buttons (add and save) -->
         <div class="row">
             <div class="col-md-12">
-                <input type="button" value="Add Committee Member" class="btn btn-outline-info" @click="showNewCommitteeForm"/>
-             </div>
+                <input @click="openCommitteeForm" class="btn btn-outline-info" type="button"
+                       value="Add Committee Member"/>
+            </div>
         </div>
 
-
+        <!-- Table -->
         <div class="row">
             <div class="col-md-12">
 
                 <div class="table-responsive">
                     <table class="table table-striped table-borderless">
                         <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Student ID</th>
-                                <th scope="col">Position</th>
-                                <th scope="col"></th>
-                            </tr>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Student ID</th>
+                            <th scope="col">Position</th>
+                            <th scope="col"></th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <committee-member-row
+                        <committee-member-row
                                 v-for="committee in committee_members"
-                                :key="committee.id"
                                 :committeemember="committee"
-                                @editing="editCommitteeMember"
-                            >
+                                :key="committee.id"
+                                @editing="openCommitteeForm"
+                        >
 
-                            </committee-member-row>
+                        </committee-member-row>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
-        <committee-member-form>
-
-        </committee-member-form>
 
     </div>
 
@@ -55,6 +52,7 @@
             'committee-member-row': CommitteeMemberRow,
             'committee-member-form': CommitteeMemberForm
         },
+
 
         data() {
             return {
@@ -75,17 +73,21 @@
                     })
             },
 
-            showNewCommitteeForm() {
-                CommitteeDetailsEvent.$emit('committeedetails-add-new-committee-member', {});
-            },
+            openCommitteeForm(id) {
+                let data = {};
 
-            editCommitteeMember(id) {
-                CommitteeDetailsEvent.$emit('committeedetails-edit-committee-member',
-                    this.editingCommitteeMember = this.committee_members.filter(committee => {
-                        return committee.id = id;
-                    })[0]
-                );
-            }
+                if (Number.isInteger(id)) {
+                    let member = this.committee_members.filter(committee => {
+                        return committee.id === id;
+                    })[0];
+                    data = {
+                        initialUid: member.unioncloud_id,
+                        initialPositionId: member.position_id,
+                        initialPositionName: member.position_name
+                    }
+                }
+                this.$modal.show(CommitteeMemberForm, data, {draggable: true});
+            },
 
         }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1360265834196671f210d0f05d7c13c8",
+    "content-hash": "bafd36de366e716af8ffaf488a9668d8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1515,16 +1515,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.1.5",
+            "version": "3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "41f5da65d75cf473e5ee582df8fc7f2c733ce9d6"
+                "reference": "ccb8e3928c5c8181c76cdd0ed9366c5bcaafd91b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/41f5da65d75cf473e5ee582df8fc7f2c733ce9d6",
-                "reference": "41f5da65d75cf473e5ee582df8fc7f2c733ce9d6",
+                "url": "https://api.github.com/repos/opis/closure/zipball/ccb8e3928c5c8181c76cdd0ed9366c5bcaafd91b",
+                "reference": "ccb8e3928c5c8181c76cdd0ed9366c5bcaafd91b",
                 "shasum": ""
             },
             "require": {
@@ -1572,7 +1572,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2019-01-14T14:45:33+00:00"
+            "time": "2019-02-22T10:30:00+00:00"
         },
         {
             "name": "optimus/onion",
@@ -3271,16 +3271,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tobytwigger/nus-unioncloud-api-wrapper.git",
-                "reference": "0d83ec6a021ef2a21ff141b94ecd51e6df3ec4c4"
+                "reference": "b7dc75658ded30bcb6ee663abb149e8a35bb2499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tobytwigger/nus-unioncloud-api-wrapper/zipball/0d83ec6a021ef2a21ff141b94ecd51e6df3ec4c4",
-                "reference": "0d83ec6a021ef2a21ff141b94ecd51e6df3ec4c4",
+                "url": "https://api.github.com/repos/tobytwigger/nus-unioncloud-api-wrapper/zipball/b7dc75658ded30bcb6ee663abb149e8a35bb2499",
+                "reference": "b7dc75658ded30bcb6ee663abb149e8a35bb2499",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "^1.6",
+                "ext-json": "^1.5",
                 "guzzlehttp/guzzle": "^6.3",
                 "nesbot/carbon": "^1.36.1"
             },
@@ -3312,7 +3312,7 @@
                 }
             ],
             "description": "An API Wrapper for the NUS UnionCloud platform",
-            "time": "2019-01-08T12:08:34+00:00"
+            "time": "2019-02-22T12:04:46+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4798,16 +4798,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f"
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b8454ea6958c3dee38453d3bd571e023108c91f",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b389aebe1b8b0578430bda0c7c95a829608e059",
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059",
                 "shasum": ""
             },
             "require": {
@@ -4819,7 +4819,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -4843,7 +4843,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2018-02-01T13:07:23+00:00"
+            "time": "2019-02-20T10:12:59+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -5754,7 +5754,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1.3",
-        "ext-json": "^1.6",
+        "ext-json": "^1.5",
         "ext-openssl": "^7.2"
     },
     "platform-dev": []

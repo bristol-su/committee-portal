@@ -18,7 +18,7 @@ return [
     ],
 
     'reaffiliation_status' => [
-        'incomplete' => 'btn btn-danger',
+            'incomplete' => 'btn btn-danger',
     ],
 
     'reaffiliation_year' => (int) env('REAFFILIATION_YEAR', 2017),
