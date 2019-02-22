@@ -59,7 +59,7 @@ class CommitteeRoleProvider implements UserProvider
         if(isset($credentials['student_control_id']) && isset($credentials['committee_role_id'])) {
             // Ensure the user owns the position
             $role = $this->retrieveById($credentials['committee_role_id']);
-            if($role !== false && $role->student_id === $credentials['student_control_id']) {
+            if($role !== false && $role->student_id === (int) $credentials['student_control_id']) {
                 return true;
             }
         }

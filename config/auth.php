@@ -77,7 +77,7 @@ return [
 
         'committee-roles' => [
             'driver' => 'committee-role-provider',
-            'model' => App\CommitteeRole::class
+            'model' => \App\Packages\ControlDB\Models\CommitteeRole::class
         ],
 
     ],
