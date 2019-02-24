@@ -69,24 +69,25 @@
             loadCommittee() {
                 axios.get('/committeedetails/api/group_committee')
                     .then(response => {
+                        console.log(response);
                         this.committee_members = response.data;
                     })
             },
 
-            openCommitteeForm(id) {
+            openCommitteeForm(member) {
                 let data = {};
-
-                if (Number.isInteger(id)) {
-                    let member = this.committee_members.filter(committee => {
-                        return committee.id === id;
-                    })[0];
+                if(!(member instanceof MouseEvent)) {
                     data = {
                         initialUid: member.unioncloud_id,
-                        initialPositionId: member.position_id,
-                        initialPositionName: member.position_name
-                    }
+                        initialPositionId: member.position_control_id,
+                        initialPositionName: member.position_name,
+                    };
                 }
-                this.$modal.show(CommitteeMemberForm, data, {draggable: true});
+
+                data.takenPositions = this.committee_members.map(o => o.position_control_id);
+
+                // https://www.npmjs.com/package/vue-js-modal#properties
+                this.$modal.show(CommitteeMemberForm, data, {draggable: true, adaptive: true, scrollable: true, resizable: true});
             },
 
         }

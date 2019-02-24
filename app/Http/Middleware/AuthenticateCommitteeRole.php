@@ -26,12 +26,12 @@ class AuthenticateCommitteeRole
             {
                 $student = Student::find(Auth::user()->control_id);
                 $committeeRole = CommitteeRole::allThrough($student);
-                abort_if($committeeRole === false || $committeeRole === null || count($committeeRole) === 0, 403);
+                abort_if($committeeRole === false || $committeeRole === null || count($committeeRole) === 0, 403, 'Couldn\'t find your committee role.');
                 $committeeRole = $committeeRole->first();
                 if( !Auth::guard('committee-role')->attempt([
                     'committee_role_id'=>$committeeRole->id,
                     'student_control_id' => Auth::user()->control_id])) {
-                    abort(403);
+                    abort(403, 'Sorry, we were unable to log you into your committee role.');
                 }
             }
 

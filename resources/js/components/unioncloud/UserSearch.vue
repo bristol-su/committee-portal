@@ -6,6 +6,7 @@
                 :options="options"
                 @search="onSearch"
                 v-model="selectedOption"
+                :loading="loading"
         >
         </v-select>
         
@@ -34,13 +35,21 @@
             return {
                 options: [],
                 errorVisible: false,
-                selectedOption: null
+                selectedOption: null,
+                loading: false
+            }
+        },
+
+        watch: {
+            selectedOption: function(val) {
+                this.$emit('studentSelected', val);
             }
         },
 
         mounted() {
             // Load the preselected option
             if (this.initialUid !== null) {
+                this.loading = true;
                 axios.get('unioncloud/api/user', {
                     params: {
                         'uid': this.initialUid
@@ -50,37 +59,37 @@
                         this.selectedOption = response.data;
                         this.options = [response.data];
                         this.errorVisible = false;
+                        this.loading = false;
                     })
                     .catch(error => {
                         this.errorVisible = true;
+                        this.loading = false;
                     });
             }
         },
 
         methods: {
             onSearch(search, loading) {
-                loading(true);
+                this.loading = true;
                 this.search(loading, search, this);
             },
 
             search: _.debounce((loading, search, vm) => {
-                let self = this;
                 axios.get('/unioncloud/api/user/multisearch',
                     {
                         params: {search: search},
                         accept: 'application/json'
                     }
                 ).then(response => {
-                    console.log(response);
-                    loading(false);
+                    vm.loading = false;
                     vm.errorVisible = false;
                     vm.options = response.data;
-                    self.selectedOption = null;
+                    vm.selectedOption = null;
                 }).catch(error => {
-                    loading(false);
+                    self.loading = false;
                     vm.errorVisible = true;
                     vm.options = [];
-                    self.selectedOption = null;
+                    vm.loading = false;
                 });
             }, 1000),
 

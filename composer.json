@@ -13,6 +13,7 @@
         "ext-openssl": "^7.2",
         "fideloper/proxy": "^4.0",
         "grimthorr/laravel-toast": "^1.1",
+        "laracasts/utilities": "^3.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "nimbly/activeresource": "^1.1",

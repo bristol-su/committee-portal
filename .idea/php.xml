@@ -104,6 +104,7 @@
       <path value="$PROJECT_DIR$/vendor/optimus/onion" />
       <path value="$PROJECT_DIR$/vendor/nimbly/activeresource" />
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
+      <path value="$PROJECT_DIR$/vendor/laracasts/utilities" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

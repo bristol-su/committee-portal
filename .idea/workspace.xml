@@ -2,9 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsInternalAPIController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/control/PositionSearch.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTagCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTagCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/committee-portal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/committee-portal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ControlController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ControlController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PortalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PortalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateCommitteeRole.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateCommitteeRole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Seeders/CommitteeDetailsDatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Seeders/CommitteeDetailsDatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/APIActiveRecordServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/APIActiveRecordServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/committeedetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/committeedetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Modal.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/control/PositionSearch.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +53,13 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php">
+        <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsInternalAPIController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
+            <state relative-caret-position="570">
+              <caret line="38" column="11" lean-forward="true" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+              <folding>
+                <element signature="e#65#101#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,19 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>committeedetails::</find>
-      <find>Messenger http</find>
-      <find>if(Session::has('toasts'))</find>
-      <find>use grimthorr</find>
-      <find>use toast</find>
-      <find>TODO</find>
-      <find>Polic</find>
-      <find>policies</find>
-      <find>authorize</find>
-      <find>before ga</find>
-      <find>executive_committee_positions</find>
-      <find>__tostr</find>
-      <find>$this-&gt;properties</find>
       <find>__toString</find>
       <find>toJson</find>
       <find>Twigger</find>
@@ -63,6 +85,19 @@
       <find>vue-sele</find>
       <find>selectedOption</find>
       <find>this2</find>
+      <find>only_single_committee_member</find>
+      <find>5</find>
+      <find>$request-&gt;get('search')</find>
+      <find>group</find>
+      <find>abort</find>
+      <find>isCommitteeMemberExec</find>
+      <find>required_committee_positions</find>
+      <find>single_role_available</find>
+      <find>all_positions</find>
+      <find>sorted_positions</find>
+      <find>position_only_has_single_committee_member</find>
+      <find>position_has_only_single_committee_member</find>
+      <find>group_type.</find>
     </findStrings>
     <replaceStrings>
       <replace>edit-user-form</replace>
@@ -83,6 +118,12 @@
       <replace>mix.setPublicPath('../../../public').mergeManifest();</replace>
       <replace>v-slot</replace>
       <replace>value</replace>
+      <replace>position_has_only_single_committee_member</replace>
+      <replace>22</replace>
+      <replace>23</replace>
+      <replace>$search</replace>
+      <replace>student</replace>
+      <replace>position_only_has_single_committee_member</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/vendor/nwidart</dir>
@@ -97,32 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Packages/ControlDB/Models/BaseControlActiveRecordModel.php" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/Unioncloud.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/UnioncloudStudent.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/APIResource.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/Control/Position.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/UnionCloud/UnionCloudStudent.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/models/APIModel.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/models/Collection.js" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/models/control/ControlModel.js" />
-        <option value="$PROJECT_DIR$/app/Providers/APIActiveRecordServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" />
-        <option value="$PROJECT_DIR$/resources/js/utilities/models/control/Position.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/LoadingDiv.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/LoadingSpan.vue" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRowCell.vue" />
-        <option value="$PROJECT_DIR$/resources/js/vendor.js" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/app.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/app/Modules/Budget/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Modules/TaskAllocation/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Modules/StrategicPlan/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Modules/RiskAssessment/webpack.mix.js" />
-        <option value="$PROJECT_DIR$/app/Modules/NGB/webpack.mix.js" />
         <option value="$PROJECT_DIR$/app/Modules/MainContacts/webpack.mix.js" />
         <option value="$PROJECT_DIR$/app/Modules/IncomingTreasurer/webpack.mix.js" />
         <option value="$PROJECT_DIR$/app/Modules/GroupInfo/webpack.mix.js" />
@@ -133,21 +148,47 @@
         <option value="$PROJECT_DIR$/resources/js/components/unioncloud/UnionCloudUserSearch.vue" />
         <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Modal.vue" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/config/portal.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ControlController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/control/PositionSearch.vue" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRow.vue" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue" />
         <option value="$PROJECT_DIR$/.env.example" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/auth.php" />
         <option value="$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php" />
+        <option value="$PROJECT_DIR$/database/factories/UserFactory.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Migrations/2019_02_23_182841_create_position_settings_table.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/PositionSetting.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/factories/PositionSettingFactory.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/factories/CommitteeFactory.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRow.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/control/PositionSearch.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Providers/APIActiveRecordServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/LoadGroupTagsFromControl.php" />
+        <option value="$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTag.php" />
+        <option value="$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTagCategory.php" />
+        <option value="$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTag.php" />
+        <option value="$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTagCategory.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/LoadStudentTagsFromControl.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/AuthenticateCommitteeRole.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/config/javascript.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Config/config.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Seeders/CommitteeDetailsDatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ControlController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/control/PositionSearch.vue" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/api.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PortalController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue" />
+        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsInternalAPIController.php" />
       </list>
     </option>
   </component>
@@ -261,13 +302,14 @@
       <path value="$PROJECT_DIR$/vendor/optimus/onion" />
       <path value="$PROJECT_DIR$/vendor/nimbly/activeresource" />
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
+      <path value="$PROJECT_DIR$/vendor/laracasts/utilities" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="312" />
+    <option name="x" value="960" />
     <option name="y" value="27" />
-    <option name="width" value="1430" />
-    <option name="height" value="798" />
+    <option name="width" value="960" />
+    <option name="height" value="1004" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -300,6 +342,40 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
               <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+              <item name="Seeders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -343,30 +419,21 @@
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="control" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="CommitteeDetails" type="462c0819:PsiDirectoryNode" />
+              <item name="Routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -382,7 +449,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../control-database/control-database" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -393,17 +460,17 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components" />
+      <recent name="$PROJECT_DIR$/resources/views/templates" />
+      <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/js/utilities/models" />
       <recent name="$PROJECT_DIR$/resources/js/utilities/models/control" />
-      <recent name="$PROJECT_DIR$/resources/js/utilities/models/control/controlmodel.js" />
-      <recent name="$PROJECT_DIR$/resources/js/utilities/UnionCloud" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Packages/ControlDB/Models" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/resources/js/utilities/models/unioncloud" />
       <recent name="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates" />
-      <recent name="$PROJECT_DIR$/app/Packages/ControlDB/Models" />
-      <recent name="$PROJECT_DIR$/app/Modules/GroupInfo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -418,11 +485,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.UnionCloudController.php">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="UnionCloudController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.UnionCloudController.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -469,12 +544,16 @@
       <workItem from="1550756304126" duration="4366000" />
       <workItem from="1550763799297" duration="6962000" />
       <workItem from="1550777904124" duration="15753000" />
-      <workItem from="1550835642835" duration="12208000" />
+      <workItem from="1550835642835" duration="14581000" />
+      <workItem from="1550941538726" duration="10192000" />
+      <workItem from="1550954090856" duration="99000" />
+      <workItem from="1550954412443" duration="9820000" />
+      <workItem from="1550964587547" duration="1913000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261811000" />
+    <option name="totallyTimeSpent" value="286208000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,12 +566,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49899194" visible="true" weight="0.22291666" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49798387" visible="true" weight="0.22291666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" sideWeight="0.5010081" side_tool="true" weight="0.22291666" />
+      <window_info id="Favorites" order="3" sideWeight="0.5020161" side_tool="true" weight="0.22291666" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32862905" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -538,328 +616,352 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Modules/EquipmentList/webpack.mix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Constitution/webpack.mix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/EquipmentList/Resources/assets/js/equipmentlist.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/ExitingTreasurer/Resources/assets/js/exitingtreasurer.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TaskAllocation/Resources/assets/sass/taskallocation.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" selection-start-line="34" selection-start-column="3" selection-end-line="36" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/budget.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/groupinfo.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/wireframe.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31455" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="7" column="2668" lean-forward="true" selection-start-line="7" selection-start-column="2668" selection-end-line="7" selection-end-column="2668" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vue-js-modal/types/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="44" lean-forward="true" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/Modal.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/committee_row.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/templates/new_committee_form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="112" column="30" lean-forward="true" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/Request/BaseRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2853">
-          <caret line="903" column="39" lean-forward="true" selection-start-line="903" selection-start-column="39" selection-end-line="903" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/ResourceCollection.php">
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="67" column="7" lean-forward="true" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="7" />
+          <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/twigger/unioncloud/src/Response/BaseResponse.php">
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
-          <caret line="966" column="24" lean-forward="true" selection-start-line="966" selection-start-column="24" selection-end-line="966" selection-end-column="24" />
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_9.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="685" column="9" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Collection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="1969" column="23" selection-start-line="1969" selection-start-column="23" selection-end-line="1969" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="419" column="13" selection-start-line="419" selection-start-column="13" selection-end-line="419" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/vue-select/docs/homepage/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/NodeJS/lib/NodeJS.jar!/com/jetbrains/nodejs/packageJson/packageJsonSchema.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="45" column="140" selection-start-line="45" selection-start-column="140" selection-end-line="45" selection-end-column="140" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/constitution.js">
+    <entry file="file://$PROJECT_DIR$/database/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Migrations/2019_02_23_182841_create_position_settings_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="285">
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/sass/committeedetails.scss">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/factories/PositionSettingFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="37" />
+          <folding>
+            <element signature="e#7#26#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/committeedetails.js">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/factories/CommitteeFactory.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/PositionSetting.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="62" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1935" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/portal.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
+        <state relative-caret-position="210">
+          <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="646">
+          <caret line="77" column="53" lean-forward="true" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
           <folding>
-            <element signature="e#40#78#0#PHP" expanded="true" />
+            <element signature="e#40#77#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRowCell.vue">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state relative-caret-position="435">
+          <caret line="29" column="29" lean-forward="true" selection-end-line="103" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/control/PositionSearch.vue">
+    <entry file="file://$PROJECT_DIR$/vendor/nimbly/activeresource/src/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="330">
+          <caret line="559" column="23" selection-start-line="559" selection-end-line="560" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
           <folding>
-            <marker date="1550845844694" expanded="true" signature="196:939" ph="..." />
+            <element signature="e#28#78#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ControlController.php">
+    <entry file="file://$PROJECT_DIR$/vendor/nimbly/activeresource/src/Connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="705">
+          <caret line="68" column="10" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/APIActiveRecordServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="44" column="68" selection-start-line="44" selection-start-column="68" selection-end-line="44" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/league/flysystem/deprecations.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="270">
+            <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-02-23.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-12748" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/LoadGroupTagsFromControl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="69" />
           <folding>
-            <element signature="e#40#83#0#PHP" expanded="true" />
+            <element signature="e#39#79#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTagCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTagCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/Group.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/Student.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/GroupTag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/StudentTag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/LoadStudentTagsFromControl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#39#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laracasts/utilities/src/JavaScriptFacade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AuthenticateCommitteeRole.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/javascript_injection.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/javascript.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Modal.vue" />
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Database/Seeders/CommitteeDetailsDatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="30" />
+          <folding>
+            <element signature="e#65#117#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Entities/Committee.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
+          <folding>
+            <element signature="e#65#101#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberRow.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="118" selection-start-line="18" selection-start-column="118" selection-end-line="18" selection-end-column="118" />
+        <state relative-caret-position="151">
+          <caret line="18" column="115" selection-start-line="18" selection-start-column="115" selection-end-line="18" selection-end-column="115" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ControlController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="210">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
           <folding>
-            <element signature="e#1421#1475#0" expanded="true" />
+            <element signature="e#40#83#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+        <state relative-caret-position="15">
+          <caret line="19" column="61" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/unioncloud/UserSearch.vue">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env.example">
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/routes/console.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/groupselect.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="57" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="57" />
+        <state relative-caret-position="120">
+          <caret line="17" column="64" selection-start-line="17" selection-start-column="64" selection-end-line="17" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/AuthenticateCommitteeRole.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PortalController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="55" lean-forward="true" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+        <state relative-caret-position="510">
+          <caret line="34" column="41" lean-forward="true" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/Models/CommitteeRole.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/UserPage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="781">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#1421#1475#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/control/PositionSearch.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="79" column="60" lean-forward="true" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+        <state relative-caret-position="705">
+          <caret line="53" column="35" lean-forward="true" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AuthServiceProvider.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+        <state relative-caret-position="270">
+          <caret line="18" column="101" selection-start-line="18" selection-start-column="101" selection-end-line="18" selection-end-column="101" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Packages/ControlDB/CommitteeRoleProvider.php">
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Collection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="61" column="62" selection-start-line="61" selection-start-column="62" selection-end-line="61" selection-end-column="62" />
+        <state relative-caret-position="465">
+          <caret line="1742" column="13" lean-forward="true" selection-start-line="1742" selection-start-column="13" selection-end-line="1742" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsInternalAPIController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="11" lean-forward="true" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+          <folding>
+            <element signature="e#65#101#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

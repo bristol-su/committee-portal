@@ -6,6 +6,7 @@ use ActiveResource\Connection;
 use ActiveResource\ConnectionManager;
 use App\Packages\ControlDB\ActiveRecordAuthentication;
 use App\Packages\ControlDB\ControlDBInterface;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class APIActiveRecordServiceProvider extends ServiceProvider
@@ -40,7 +41,8 @@ class APIActiveRecordServiceProvider extends ServiceProvider
             Connection::OPTION_DEFAULT_HEADERS => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token
-            ]
+            ],
+            Connection::OPTION_COLLECTION_CLASS => Collection::class
         ];
         $connection = new Connection($options);
         ConnectionManager::add('control', $connection);

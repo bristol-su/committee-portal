@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 class ControlController extends Controller
 {
     public function getPositions() {
-        $position = \App\Packages\ControlDB\Models\Position::all();
-        abort_if(!$position, 404);
-        return $position->toArray();
+        $position = Position::all();
+
+        abort_if(!$position, 404, 'Position could not be found');
+
+        return $position;
     }
 
     public function getPosition(Position $position) {

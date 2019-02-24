@@ -2,20 +2,23 @@
 
 namespace App\Modules\CommitteeDetails\Http\Controllers;
 
-use App\Modules\CommitteeDetails\Entities\Committee;
-use App\Modules\CommitteeDetails\Rules\PositionExists;
-use App\Packages\ControlDB\Models\Position;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Modules\CommitteeDetails\Entities\Committee;
+use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\Modules\CommitteeDetails\Rules\PositionExists;
 use App\Rules\UnionCloudUIDExists;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class CommitteeDetailsController extends Controller
 {
+
     public function showUserForm()
     {
         $this->authorize('view', Committee::class);
+        $this->injectJavascriptPositionSettings();
 
         return view('committeedetails::committee_details');
     }
@@ -31,11 +34,11 @@ class CommitteeDetailsController extends Controller
         // Check if this position is still available
 
         // If the position is only allowed one committee members
-        if(in_array($request->input('position_id'), config('committeedetails.single_role_available'))) {
-            if( count($this->getCommittee()->where('position_control_id', $request->input('position_id'))) > 0) {
-                return back()->withErrors(['position_id', 'Position has already been taken.']);
-            }
-        }
+//        if (in_array($request->input('position_id'), config('committeedetails.single_role_available'))) {
+//            if (count($this->getCommittee()->where('position_control_id', $request->input('position_id'))) > 0) {
+//                return back()->withErrors(['position_id', 'Position has already been taken.']);
+//            }
+//        }
 
         $student = new Committee([
             'unioncloud_id' => $request->input('unioncloud_id'),
@@ -46,21 +49,23 @@ class CommitteeDetailsController extends Controller
 
         $this->authorize('create', $student);
 
-        if(!$student->save()) {
+        if (!$student->save()) {
             \Toast::message('Couldn\'t save the user', 'error');
         } else {
             \Toast::message('User saved', 'success');
         }
 
+        $this->injectJavascriptPositionSettings();
         return back();
 
     }
 
-    public function deleteCommittee(Committee $committeeMember) {
+    public function deleteCommittee(Committee $committeeMember)
+    {
 
         $this->authorize('delete', $committeeMember);
 
-        if($committeeMember->delete()) {
+        if ($committeeMember->delete()) {
             \Toast::message('Committee member deleted', 'success', 'Deleted');
             return back();
         }
@@ -85,6 +90,29 @@ class CommitteeDetailsController extends Controller
             'year' => getReaffiliationYear(),
             'group_control_id' => Auth::guard('committee-role')->user()->group->id
         ])->get();
+    }
+
+    private function injectJavascriptPositionSettings()
+    {
+        /** @var Collection $groupTags */
+        $groupTags = request()->get('auth_group_tags');
+        $groupTags->filter(function ($groupTag) {
+            return $groupTag->category->reference === config('committeedetails.group_type_tag_category_reference');
+        });
+
+        abort_if(count($groupTags) === 0, 403, 'We couldn\'t find your group type.');
+
+        $tagReference = $groupTags->first()->reference;
+
+        JavaScriptFacade::put([
+            'group_type' => $tagReference,
+            'group_settings' => PositionSetting::where('tag_reference', $tagReference)->get()->first()->only([
+                'allowed_positions',
+                'required_positions',
+                'position_only_has_single_committee_member',
+                'committee_member_only_has_single_position'
+            ])
+        ]);
     }
 
 }

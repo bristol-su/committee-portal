@@ -37,6 +37,7 @@
 @stack('scripts')
 
 
+@include('templates.javascript_injection')
 </body>
 
 </html>

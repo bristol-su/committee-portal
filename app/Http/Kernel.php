@@ -3,7 +3,8 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthenticateCommitteeRole;
-use App\Http\Middleware\LogIntoPositionFromControl;
+use App\Http\Middleware\LoadGroupTagsFromControl;
+use App\Http\Middleware\LoadStudentTagsFromControl;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,6 +44,14 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        'user' => [
+            'auth:web',
+            'committeerole',
+            'verified',
+            LoadGroupTagsFromControl::class,
+            LoadStudentTagsFromControl::class
+        ]
     ];
 
     /**
@@ -80,5 +89,7 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
         AuthenticateCommitteeRole::class,
+        LoadStudentTagsFromControl::class,
+        LoadGroupTagsFromControl::class
     ];
 }

@@ -9,11 +9,13 @@
 namespace App\Packages\ControlDB\Models;
 
 use App\Packages\ControlDB\Models\BaseControlActiveRecordModel as Model;
-use Illuminate\Support\Facades\Log;
 
 class StudentTag extends Model
 {
 
     protected $resourceName = 'student_tags';
 
+    protected function category($data) {
+        return $this->includesOne(StudentTagCategory::class, $data);
+    }
 }

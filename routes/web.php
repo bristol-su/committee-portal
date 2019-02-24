@@ -15,36 +15,18 @@
 Auth::routes(['verify' => true]);
 
 // Welcome Route
-Route::middleware('guest')->get('/', function () {
-    return view('welcome');
-});
+Route::middleware('guest')->get('/', 'PortalController@guestView');
 
-Route::middleware(['auth:web', 'committeerole', 'verified'])->group(function () {
+Route::middleware('user')->group(function () {
     // Portal Dashboard Route
     Route::get('/portal', 'PortalController@index')->name('portal');
 
-    Route::post('/login/position', function (\Illuminate\Http\Request $request) {
-        if ($request->has('committee_role_id')) {
-            if (Auth::guard('committee-role')->attempt([
-                'committee_role_id' => $request->input('committee_role_id'),
-                'student_control_id' => Auth::user()->control_id
-            ])) {
-                \Toast::message('You\'re acting as ' . Auth::guard('committee-role')->user()->position->name . ' for group ' . Auth::guard('committee-role')->user()->group->name, 'success', 'Logged in');
-
-            } else {
-                \Toast::message('Couldn\'t log you in', 'error', 'Error');
-            }
-
-        }
-        return redirect()->route('portal');
-
-    });
-
+    Route::post('/login/position', 'PortalController@logIntoCommitteeRole');
 
 });
 
 # Control DB Internal API Routes
-Route::middleware(['auth:web', 'committeerole', 'verified'])->prefix('/control-database/api')->group(function () {
+Route::middleware('user')->prefix('/control-database/api')->group(function () {
 
     Route::get('positions', 'ControlController@getPositions');
 
@@ -54,7 +36,7 @@ Route::middleware(['auth:web', 'committeerole', 'verified'])->prefix('/control-d
 
 # UnionCloud Routes
 
-Route::middleware(['auth:web', 'committeerole', 'verified'])->prefix('/unioncloud/api')->group(function () {
+Route::middleware('user')->prefix('/unioncloud/api')->group(function () {
 
     Route::get('/user', 'UnionCloudController@getUserByUID');
 

@@ -16,22 +16,12 @@ class Committee extends Model
 
     protected $table = 'committeedetails_committee';
 
-    public function isCommitteeMemberExec()
-    {
-        return in_array($this->position_id, config('committeedetails.required_committee_positions'));
-    }
-
     public static function getGroupCommittee($groupID) {
         // TODO This data should come from the control DB if the module has been completed
         $committee = static::getGroupCommitteeFromDB($groupID);
 
         $committee->sortBy(function($committee, $key) {
-
-            if($committee instanceof Committee) {
-                $positionId = $committee->position_control_id;
-            } elseif($committee instanceof Position) {
-                $positionId = $committee->id;
-            }
+            $positionId = $committee->position_control_id;
 
             $configKey = array_search($positionId, config('committeedetails.all_positions'));
 
@@ -49,11 +39,7 @@ class Committee extends Model
             'group_control_id' => $groupID
         ])->get();
 
-//        foreach(array_diff(config('committeedetails.required_committee_positions'), $committee->pluck('position_control_id')->toArray()) as $position)
-//        {
-//            $committee[] = Position::find($position);
-//        }
-
+//
         return $committee;
 
     }

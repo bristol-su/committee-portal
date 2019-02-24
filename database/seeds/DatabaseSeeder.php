@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+         $this->command->info('Generating users');
+         factory(App\User::class)->create();
+
+         $this->command->info('Framework seeding complete. Please run php artisan module:seed to seed any modules.');
     }
 }

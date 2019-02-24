@@ -16,7 +16,7 @@
         ></committee-member-row-cell>
 
         <td>
-            <input type="button" value="Edit" class="btn btn-outline-info" @click="$emit('editing', committeemember.id)"/>
+            <input type="button" value="Edit" class="btn btn-outline-info" @click="$emit('editing', committeemember)"/>
             <input type="button" value="Delete" class="btn btn-outline-danger"/>
         </td>
     </tr>

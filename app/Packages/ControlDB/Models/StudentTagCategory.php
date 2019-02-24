@@ -11,12 +11,10 @@ namespace App\Packages\ControlDB\Models;
 use App\Packages\ControlDB\Models\BaseControlActiveRecordModel as Model;
 use Illuminate\Support\Facades\Log;
 
-class GroupTag extends Model
+class StudentTagCategory extends Model
 {
 
-    protected $resourceName = 'group_tags';
+    protected $resourceName = 'student_tag_categories';
 
-    protected function category($data) {
-        return $this->includesOne(GroupTagCategory::class, $data);
-    }
+    
 }

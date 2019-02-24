@@ -16,13 +16,22 @@
                         <small>Select the position of the student</small>
                     </div>
 
-                    <!--<position-select-->
-                        <!--v-model="positionId"-->
-
-                    <!--&gt;</position-select>-->
-                    <!--:positionSelected-->
+                    <position-select
+                        :initialPositionId="initialPositionId"
+                        :takenPositions="takenPositions"
+                    ></position-select>
                 </div>
 
+
+                <div class="form-group">
+                    <div>
+                            <small>Position Name</small>
+                    </div>
+
+                    <input type="text" v-model="positionName" class="form-control"/>
+
+
+                </div>
 
 
                 <div class="form-group">
@@ -33,8 +42,9 @@
 
                     <user-select
                         :initialUid="initialUid"
+                        @studentSelected="updateStudent"
                     ></user-select>
-                    <!--@studentSelected="updateUid"-->
+
                 </div>
 
 
@@ -51,7 +61,7 @@
 <script>
 
     import UserSearch from './../../../../../../../resources/js/components/unioncloud/UserSearch';
-    import PositionSearch from './../../../../../../../resources/js/components/control/PositionSearch';
+    import PositionSearch from './control/PositionSearch';
 
     export default {
         props: {
@@ -63,18 +73,28 @@
             },
             initialPositionName: {
                 'default': null
+            },
+            takenPositions: {
+                'required': true
+            }
+        },
+
+        data() {
+            return {
+                uid: null,
+                positionId: null,
+                positionName: null
             }
         },
 
         created() {
-            this.uid = this.initialUid;
             this.positionName = this.initialPositionName;
             this.positionId = this.initialPositionId;
         },
 
         methods: {
-            updateUid(uid) {
-                this.uid = uid;
+            updateStudent(student) {
+                this.uid = (student === null?null:student.uid);
             },
 
             updatePosition(position) {
@@ -86,14 +106,6 @@
         components: {
             'user-select': UserSearch,
             'position-select': PositionSearch
-        },
-
-        data() {
-            return {
-                uid: null,
-                positionId: null,
-                positionName: null
-            }
         }
     }
 </script>
