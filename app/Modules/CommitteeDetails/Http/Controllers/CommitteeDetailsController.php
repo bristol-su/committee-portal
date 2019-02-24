@@ -104,9 +104,13 @@ class CommitteeDetailsController extends Controller
 
         $tagReference = $groupTags->first()->reference;
 
+        $positionSetting = PositionSetting::where('tag_reference', $tagReference)->get()->first();
+
+        abort_if($positionSetting === null, 403, 'We couldn\'t find your group type on our system');
+
         JavaScriptFacade::put([
             'group_type' => $tagReference,
-            'group_settings' => PositionSetting::where('tag_reference', $tagReference)->get()->first()->only([
+            'group_settings' => $positionSetting->only([
                 'allowed_positions',
                 'required_positions',
                 'position_only_has_single_committee_member',
