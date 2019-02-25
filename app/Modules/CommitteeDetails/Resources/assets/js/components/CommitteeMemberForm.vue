@@ -1,61 +1,64 @@
 <template>
-    <form action="#" class="form-horizontal">
+    <div>
+        <div class="form-horizontal">
+            <div class="card text-black bg-white mb-0">
 
-        <div class="card text-black bg-white mb-0">
-
-            <div class="card-header">
-                <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account on our
-                    <a href="https://www.bristolsu.org.uk">website!</a></h4>
-            </div>
-
-            <div class="card-body">
-
-                <div class="form-group">
-
-                    <div>
-                        <small>Select the position of the student</small>
-                    </div>
-
-                    <position-select
-                        :initialPositionId="initialPositionId"
-                        :takenPositions="takenPositions"
-                    ></position-select>
+                <div class="card-header">
+                    <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account on
+                        our
+                        <a href="https://www.bristolsu.org.uk">website!</a></h4>
                 </div>
 
+                <div class="card-body">
 
-                <div class="form-group">
-                    <div>
+                    <div class="form-group">
+
+                        <div>
+                            <small>Select the position of the student</small>
+                        </div>
+
+                        <position-select
+                                :initialPositionId="form.position_id"
+                                :takenPositions="takenPositions"
+                                @positionSelected="updatePosition"
+                        ></position-select>
+                    </div>
+
+
+                    <div class="form-group" v-if="shouldShowPositionName">
+                        <div>
                             <small>Position Name</small>
+                        </div>
+
+                        <input class="form-control" type="text" v-model="form.position_name"/>
+
+
                     </div>
 
-                    <input type="text" v-model="positionName" class="form-control"/>
 
+                    <div class="form-group">
 
-                </div>
+                        <div>
+                            <small>Search by Email or Student ID</small>
+                        </div>
 
+                        <user-select
+                                :initialUid="form.unioncloud_id"
+                                @studentSelected="updateStudent"
+                        ></user-select>
 
-                <div class="form-group">
-
-                    <div>
-                        <small>Search by Email or Student ID</small>
                     </div>
 
-                    <user-select
-                        :initialUid="initialUid"
-                        @studentSelected="updateStudent"
-                    ></user-select>
+
+                    <button @click="saveCommitteeMember" class="btn btn-info" type="submit">Add
+                        Committee Member
+                    </button>
 
                 </div>
-
-
-                <button @submit.prevent="alert('saving')" class="btn btn-info" type="button">Add
-                    Committee Member
-                </button>
-
             </div>
-        </div>
 
-    </form>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -65,42 +68,70 @@
 
     export default {
         props: {
-            initialUid: {
-                'default': null
+            committeeMember: {
+                default: null
             },
-            initialPositionId: {
-                'default': null
-            },
-            initialPositionName: {
-                'default': null
-            },
+
             takenPositions: {
-                'required': true
-            }
+                required: true
+            },
+
         },
 
         data() {
             return {
-                uid: null,
-                positionId: null,
-                positionName: null
+                form: {}
             }
         },
 
         created() {
-            this.positionName = this.initialPositionName;
-            this.positionId = this.initialPositionId;
+            let newForm = (this.committeeMember === null);
+
+            this.form = new window.VueForm({
+                unioncloud_id: (newForm ? null : this.committeeMember.student.uc_uid),
+                position_id: (newForm ? null : this.committeeMember.position.id),
+                position_name: (newForm ? '' : this.committeeMember.position_name),
+            });
+        },
+
+
+        computed: {
+            shouldShowPositionName() {
+                return this.form.position_id !== null;
+            },
         },
 
         methods: {
             updateStudent(student) {
-                this.uid = (student === null?null:student.uid);
+                this.form.unioncloud_id = (student === null ? null : student.uid);
             },
 
             updatePosition(position) {
-                this.position_id = position.id;
-                this.position_name = position.name;
+                // Clear or update the form position id holder
+                if (position === null) {
+                    this.form.position_id = null;
+                    this.form.position_name = '';
+                } else {
+                    this.form.position_id = position.id;
+
+                    // Fill in the position name if blank
+                    if (this.form.position_name === '') {
+                        this.form.position_name = position.name;
+                    }
+                }
+            },
+
+            saveCommitteeMember() {
+                // Fire a request to the backend
+                let url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
+                this.form.post(url)
+                    .then(response => {
+                        window.location.reload();
+                    })
+                    .catch(error => console.log(error));
+                this.$emit('close');
             }
+
         },
 
         components: {

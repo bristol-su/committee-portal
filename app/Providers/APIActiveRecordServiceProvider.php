@@ -42,7 +42,9 @@ class APIActiveRecordServiceProvider extends ServiceProvider
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token
             ],
-            Connection::OPTION_COLLECTION_CLASS => Collection::class
+            Connection::OPTION_COLLECTION_CLASS => Collection::class,
+            Connection::OPTION_UPDATE_METHOD => 'patch',
+            Connection::OPTION_UPDATE_DIFF => true
         ];
         $connection = new Connection($options);
         ConnectionManager::add('control', $connection);

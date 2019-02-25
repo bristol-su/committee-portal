@@ -12,10 +12,8 @@
 */
 \Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware('user')->group(function() {
     Route::get('/', 'CommitteeDetailsController@showUserForm');
-    Route::post('/add', 'CommitteeDetailsController@addCommittee');
-    Route::post('/', 'CommitteeDetailsController@submitCommittee');
-    Route::delete('/delete/{committeedetails_committee}', 'CommitteeDetailsController@deleteCommittee');
-
-    Route::get('/api/group_committee', 'CommitteeDetailsInternalAPIController@getMergedGroupCommittee');
+    Route::post('/', 'CommitteeDetailsController@addUserToControl');
+    Route::post('/{positionStudentGroupID}', 'CommitteeDetailsController@updateUserInControl');
+    Route::delete('/{positionStudentGroupID}', 'CommitteeDetailsController@deleteCommitteeRoleFromControl');
 
 });

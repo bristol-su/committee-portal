@@ -44,7 +44,7 @@
 
         watch: {
             selectedOption: function (val) {
-                this.$emit('studentSelected', val);
+                this.$emit('positionSelected', val);
             }
         },
 
@@ -60,7 +60,6 @@
                     }
                 })
                 .catch(error => {
-                    console.log(error);
                     this.errorVisible = true;
                     this.loading = false;
                 });

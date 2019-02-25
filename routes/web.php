@@ -32,6 +32,8 @@ Route::middleware('user')->prefix('/control-database/api')->group(function () {
 
     Route::get('positions/{controlposition}', 'ControlController@getPosition');
 
+    Route::get('position_student_groups', 'ControlController@getPositionStudentGroups');
+
 });
 
 # UnionCloud Routes

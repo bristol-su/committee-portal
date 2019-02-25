@@ -30,7 +30,6 @@ class CommitteeDetailsServiceProvider extends ServiceProvider
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
-        Gate::policy(Committee::class, CommitteePolicy::class);
     }
 
     /**

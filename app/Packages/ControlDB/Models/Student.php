@@ -16,5 +16,13 @@ class Student extends Model
 
     protected $resourceName = 'students';
 
+    public function parseAll($payload)
+    {
+        return $payload;
+    }
+
+    public function hydrate($data) {
+        return parent::hydrate($data);
+    }
 
 }

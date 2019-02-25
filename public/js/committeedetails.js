@@ -524,41 +524,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    initialUid: {
-      'default': null
-    },
-    initialPositionId: {
-      'default': null
-    },
-    initialPositionName: {
-      'default': null
+    committeeMember: {
+      default: null
     },
     takenPositions: {
-      'required': true
+      required: true
     }
   },
   data: function data() {
     return {
-      uid: null,
-      positionId: null,
-      positionName: null
+      form: {}
     };
   },
   created: function created() {
-    this.positionName = this.initialPositionName;
-    this.positionId = this.initialPositionId;
+    var newForm = this.committeeMember === null;
+    this.form = new window.VueForm({
+      unioncloud_id: newForm ? null : this.committeeMember.student.uc_uid,
+      position_id: newForm ? null : this.committeeMember.position.id,
+      position_name: newForm ? '' : this.committeeMember.position_name
+    });
+  },
+  computed: {
+    shouldShowPositionName: function shouldShowPositionName() {
+      return this.form.position_id !== null;
+    }
   },
   methods: {
     updateStudent: function updateStudent(student) {
-      this.uid = student === null ? null : student.uid;
+      this.form.unioncloud_id = student === null ? null : student.uid;
     },
     updatePosition: function updatePosition(position) {
-      this.position_id = position.id;
-      this.position_name = position.name;
+      // Clear or update the form position id holder
+      if (position === null) {
+        this.form.position_id = null;
+        this.form.position_name = '';
+      } else {
+        this.form.position_id = position.id; // Fill in the position name if blank
+
+        if (this.form.position_name === '') {
+          this.form.position_name = position.name;
+        }
+      }
+    },
+    saveCommitteeMember: function saveCommitteeMember() {
+      // Fire a request to the backend
+      var url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
+      this.form.post(url).then(function (response) {
+        window.location.reload();
+      }).catch(function (error) {
+        return console.log(error);
+      });
+      this.$emit('close');
     }
   },
   components: {
@@ -604,6 +627,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -616,9 +640,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      position: {},
       student: {},
-      positionFailed: false,
       studentFailed: false
     };
   },
@@ -630,12 +652,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/control-database/api/positions/' + this.committeemember.position_control_id).then(function (response) {
-      return _this.position = response.data;
-    }).catch(function (error) {
-      return _this.positionFailed = true;
-    });
-    axios.get('/unioncloud/api/user/?uid=' + this.committeemember.unioncloud_id).then(function (response) {
+    axios.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid).then(function (response) {
       return _this.student = response.data;
     }).catch(function (error) {
       return _this.studentFailed = true;
@@ -766,31 +783,41 @@ __webpack_require__.r(__webpack_exports__);
     loadCommittee: function loadCommittee() {
       var _this = this;
 
-      axios.get('/committeedetails/api/group_committee').then(function (response) {
+      axios.get('/control-database/api/position_student_groups').then(function (response) {
         _this.committee_members = response.data;
       });
+    },
+    committeeChanged: function committeeChanged(event) {
+      console.log('committee_changed');
+      this.loadCommittee();
     },
     openCommitteeForm: function openCommitteeForm(member) {
       var data = {};
 
       if (!(member instanceof MouseEvent)) {
         data = {
-          initialUid: member.unioncloud_id,
-          initialPositionId: member.position_control_id,
-          initialPositionName: member.position_name
+          committeeMember: member
         };
       }
 
       data.takenPositions = this.committee_members.map(function (o) {
-        return o.position_control_id;
+        return o.position.id;
       }); // https://www.npmjs.com/package/vue-js-modal#properties
 
-      this.$modal.show(_CommitteeMemberForm__WEBPACK_IMPORTED_MODULE_1__["default"], data, {
-        draggable: true,
-        adaptive: true,
-        scrollable: true,
-        resizable: true
+      this.$modal.show(_CommitteeMemberForm__WEBPACK_IMPORTED_MODULE_1__["default"], data, window.$defaultModalSettings, {
+        'committeeChanged': this.committeeChanged
       });
+    },
+    deleteCommitteeMember: function deleteCommitteeMember(member) {
+      var _this2 = this;
+
+      if (Number.isInteger(member.id)) {
+        axios.delete('committeedetails/' + member.id).then(function (response) {
+          _this2.loadCommittee();
+        }).catch(function (e) {
+          return console.log(e);
+        });
+      }
     }
   }
 });
@@ -847,7 +874,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     selectedOption: function selectedOption(val) {
-      this.$emit('studentSelected', val);
+      this.$emit('positionSelected', val);
     }
   },
   mounted: function mounted() {
@@ -865,7 +892,6 @@ __webpack_require__.r(__webpack_exports__);
         })[0];
       }
     }).catch(function (error) {
-      console.log(error);
       _this.errorVisible = true;
       _this.loading = false;
     });
@@ -1018,10 +1044,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    { staticClass: "form-horizontal", attrs: { action: "#" } },
-    [
+  return _c("div", [
+    _c("div", { staticClass: "form-horizontal" }, [
       _c("div", { staticClass: "card text-black bg-white mb-0" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -1034,39 +1058,42 @@ var render = function() {
               _vm._v(" "),
               _c("position-select", {
                 attrs: {
-                  initialPositionId: _vm.initialPositionId,
+                  initialPositionId: _vm.form.position_id,
                   takenPositions: _vm.takenPositions
-                }
+                },
+                on: { positionSelected: _vm.updatePosition }
               })
             ],
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.positionName,
-                  expression: "positionName"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text" },
-              domProps: { value: _vm.positionName },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _vm.shouldShowPositionName
+            ? _c("div", { staticClass: "form-group" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.position_name,
+                      expression: "form.position_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.form.position_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "position_name", $event.target.value)
+                    }
                   }
-                  _vm.positionName = $event.target.value
-                }
-              }
-            })
-          ]),
+                })
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "div",
@@ -1075,7 +1102,7 @@ var render = function() {
               _vm._m(3),
               _vm._v(" "),
               _c("user-select", {
-                attrs: { initialUid: _vm.initialUid },
+                attrs: { initialUid: _vm.form.unioncloud_id },
                 on: { studentSelected: _vm.updateStudent }
               })
             ],
@@ -1086,20 +1113,19 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-info",
-              attrs: { type: "button" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.alert("saving")
-                }
-              }
+              attrs: { type: "submit" },
+              on: { click: _vm.saveCommitteeMember }
             },
-            [_vm._v("Add\n                Committee Member\n            ")]
+            [
+              _vm._v(
+                "Add\n                    Committee Member\n                "
+              )
+            ]
           )
         ])
       ])
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -1109,7 +1135,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("h4", { staticClass: "m-0" }, [
         _vm._v(
-          "Add a new committee member for your society. Anyone you add must have an account on our\n                "
+          "Add a new committee member for your society. Anyone you add must have an account on\n                    our\n                    "
         ),
         _c("a", { attrs: { href: "https://www.bristolsu.org.uk" } }, [
           _vm._v("website!")
@@ -1171,7 +1197,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("committee-member-row-cell", {
-        attrs: { display: _vm.position.name, failed: _vm.positionFailed }
+        attrs: { display: _vm.committeemember.position_name, failed: true }
       }),
       _vm._v(" "),
       _c("td", [
@@ -1180,14 +1206,19 @@ var render = function() {
           attrs: { type: "button", value: "Edit" },
           on: {
             click: function($event) {
-              return _vm.$emit("editing", _vm.committeemember)
+              return _vm.$emit("edit", _vm.committeemember)
             }
           }
         }),
         _vm._v(" "),
         _c("input", {
           staticClass: "btn btn-outline-danger",
-          attrs: { type: "button", value: "Delete" }
+          attrs: { type: "button", value: "Delete" },
+          on: {
+            click: function($event) {
+              return _vm.$emit("delete", _vm.committeemember)
+            }
+          }
         })
       ])
     ],
@@ -1217,10 +1248,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("td", [
-    _vm.failed
-      ? _c("span", [_vm._v("\n        Error\n    ")])
-      : _vm.hasDisplay
+    _vm.hasDisplay
       ? _c("span", [_vm._v("\n        " + _vm._s(_vm.display) + "\n    ")])
+      : _vm.failed
+      ? _c("span", [_vm._v("\n        Error\n    ")])
       : _c("span", [_vm._v("\n        Loading...\n    ")])
   ])
 }
@@ -1269,7 +1300,10 @@ var render = function() {
                 return _c("committee-member-row", {
                   key: committee.id,
                   attrs: { committeemember: committee },
-                  on: { editing: _vm.openCommitteeForm }
+                  on: {
+                    delete: _vm.deleteCommitteeMember,
+                    edit: _vm.openCommitteeForm
+                  }
                 })
               }),
               1

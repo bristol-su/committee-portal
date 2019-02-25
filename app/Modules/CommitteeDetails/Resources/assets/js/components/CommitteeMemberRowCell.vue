@@ -1,10 +1,10 @@
 <template>
         <td>
-            <span v-if="failed">
-                Error
-            </span>
-            <span v-else-if="hasDisplay">
+            <span v-if="hasDisplay">
                 {{display}}
+            </span>
+            <span v-else-if="failed">
+                Error
             </span>
             <span v-else>
                 Loading...

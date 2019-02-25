@@ -25,10 +25,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        Route::bind('committeedetails_committee', function($id) {
-            return Committee::findOrFail($id);
-        });
     }
 
     /**

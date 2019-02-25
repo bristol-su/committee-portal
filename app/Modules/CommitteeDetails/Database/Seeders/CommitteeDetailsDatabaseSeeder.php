@@ -16,25 +16,9 @@ class CommitteeDetailsDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->generateCommittee(5);
 
         $this->generatePositionSetting();
 
-
-
-    }
-
-    protected function generateCommittee($count)
-    {
-        $unionCloud = resolve('Twigger\UnionCloud\API\UnionCloud');
-        $uids = $this->getUids($unionCloud);
-        $this->command->info('Generating committee members');
-        for ($i=0;$i<$count;$i++) {
-            if(count($uids) === 0) { $uids = $this->getUids($unionCloud); }
-            factory(Committee::class)->create([
-                'unioncloud_id' => array_shift($uids)
-            ]);
-        }
     }
 
     protected function generatePositionSetting() {
@@ -70,20 +54,5 @@ class CommitteeDetailsDatabaseSeeder extends Seeder
         }
 
 
-    }
-
-    private function getUids(UnionCloud $unionCloud, $timeout=5)
-    {
-        $letter = chr(rand(65,90));
-        $uids = [];
-
-        $i = 0;
-
-        while(count($uids) === 0 || $i >= $timeout) {
-            $this->command->info('Getting sample UIDs from UnionCloud');
-            $uids = $unionCloud->users()->search(['forename' => $letter])->get()->pluck('uid'); //Search for something with a high number of results
-            $i++;
-        }
-        return $uids;
     }
 }

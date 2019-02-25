@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Twigger\UnionCloud\API\UnionCloud;
-use Illuminate\Http\Request;
 
 class UnionCloudController extends Controller
 {
@@ -23,7 +23,7 @@ class UnionCloudController extends Controller
 
         $uid = $request->get('uid');
 
-        return Cache::remember('UnionCloudController.getUserByUID.'.$uid, $this->cacheRemember, function() use ($uid, $unionCloud) {
+        return Cache::remember('App.Http.Controllers.UnionCloudController.getUserByUID.'.$uid, $this->cacheRemember, function() use ($uid, $unionCloud) {
             $user = $unionCloud->users()->getByUID($uid)->get()->first();
 
             return [
@@ -49,14 +49,19 @@ class UnionCloudController extends Controller
 
         // Get by User ID
         try {
-            $usersById = collect($unionCloud->users()->search(['id' => $search])->get()->toArray());
+            $usersById = Cache::remember('App.Http.Controllers.UnionCloudController.searchOneTerm.searchByID.'.$search, $this->cacheRemember, function() use ($search, $unionCloud) {
+                return collect($unionCloud->users()->search(['id' => $search])->get()->toArray());
+            });
+
         } catch (\Exception $e) {
             $usersById = new \Illuminate\Support\Collection();
         }
 
         // Get by Email
         try {
-            $usersByEmail = collect($unionCloud->users()->setMode('basic')->search(['email' => $search])->get()->toArray());
+            $usersByEmail = Cache::remember('App.Http.Controllers.UnionCloudController.searchOneTerm.searchByEmail.'.$search, $this->cacheRemember, function() use ($search, $unionCloud) {
+                return collect($unionCloud->users()->search(['email' => $search])->get()->toArray());
+            });
         } catch (\Exception $e) {
             $usersByEmail = new \Illuminate\Support\Collection();
         }
@@ -74,21 +79,21 @@ class UnionCloudController extends Controller
         abort_if($attributes->count() === 0, 404);
 
         // map acts as an 'only' function
-        return Cache::remember('UnionCloudController.searchOneTerm.'.$search, $this->cacheRemember, function() use ($attributes) {
-            return $attributes->map(function($user) {
-                $filteredAttributes = [
-                    'uid' => '',
-                    'id' => '',
-                    'forename' => '',
-                    'surname' => '',
-                    'email' => ''
-                ];
-                foreach($filteredAttributes as $attribute => $key) {
-                    $filteredAttributes[$attribute] = (isset($user[$attribute])?$user[$attribute]:'');
-                }
-                return $filteredAttributes;
-            })->unique()->sortBy('forename')->values()->toJson();
-        });
+        return $attributes->map(function ($user) {
+            $filteredAttributes = [
+                'uid' => '',
+                'id' => '',
+                'forename' => '',
+                'surname' => '',
+                'email' => ''
+            ];
+            foreach ($filteredAttributes as $attribute => $key) {
+                $filteredAttributes[$attribute] = (isset($user[$attribute]) ? $user[$attribute] : '');
+            }
+            return $filteredAttributes;
+        })->unique()->sortBy('forename')->values()->toJson();
     }
+
+
 
 }

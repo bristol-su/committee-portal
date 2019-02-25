@@ -25,10 +25,11 @@
                         </thead>
                         <tbody>
                         <committee-member-row
-                                v-for="committee in committee_members"
                                 :committeemember="committee"
                                 :key="committee.id"
-                                @editing="openCommitteeForm"
+                                @delete="deleteCommitteeMember"
+                                @edit="openCommitteeForm"
+                                v-for="committee in committee_members"
                         >
 
                         </committee-member-row>
@@ -37,7 +38,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </template>
@@ -67,28 +67,42 @@
         methods: {
 
             loadCommittee() {
-                axios.get('/committeedetails/api/group_committee')
+                axios.get('/control-database/api/position_student_groups')
                     .then(response => {
-                        console.log(response);
                         this.committee_members = response.data;
                     })
             },
 
+            committeeChanged(event) {
+                console.log('committee_changed');
+                this.loadCommittee();
+            },
+
             openCommitteeForm(member) {
                 let data = {};
-                if(!(member instanceof MouseEvent)) {
+                if (!(member instanceof MouseEvent)) {
                     data = {
-                        initialUid: member.unioncloud_id,
-                        initialPositionId: member.position_control_id,
-                        initialPositionName: member.position_name,
+                        committeeMember: member
                     };
                 }
 
-                data.takenPositions = this.committee_members.map(o => o.position_control_id);
-
+                data.takenPositions = this.committee_members.map(o => o.position.id);
                 // https://www.npmjs.com/package/vue-js-modal#properties
-                this.$modal.show(CommitteeMemberForm, data, {draggable: true, adaptive: true, scrollable: true, resizable: true});
+                this.$modal.show(CommitteeMemberForm, data, window.$defaultModalSettings, {
+                    'committeeChanged': this.committeeChanged
+                });
             },
+
+            deleteCommitteeMember(member) {
+                if (Number.isInteger(member.id)) {
+                    axios.delete('committeedetails/'+member.id)
+                        .then(response => {
+                            this.loadCommittee();
+                        })
+                        .catch(e => console.log(e));
+                }
+
+            }
 
         }
 

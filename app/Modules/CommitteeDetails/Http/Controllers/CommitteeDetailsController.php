@@ -2,121 +2,106 @@
 
 namespace App\Modules\CommitteeDetails\Http\Controllers;
 
+use ActiveResource\ConnectionManager;
 use App\Http\Controllers\Controller;
-use App\Modules\CommitteeDetails\Entities\Committee;
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
-use App\Modules\CommitteeDetails\Rules\PositionExists;
-use App\Rules\UnionCloudUIDExists;
+use App\Modules\CommitteeDetails\Http\Middleware\LoadGroupPositionRequirementsIntoJavascript;
+use App\Modules\CommitteeDetails\Http\Requests\CommitteeMemberRequest;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Laracasts\Utilities\JavaScript\JavaScriptFacade;
+use Illuminate\Support\Facades\Log;
 
 class CommitteeDetailsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(LoadGroupPositionRequirementsIntoJavascript::class);
+    }
+
     public function showUserForm()
     {
-        $this->authorize('view', Committee::class);
-        $this->injectJavascriptPositionSettings();
-
         return view('committeedetails::committee_details');
     }
 
-    public function addCommittee(Request $request)
+    public function addUserToControl(Request $request)
     {
+        // Validate the request
+        $this->validateUserAdditionRequest($request);
 
-        $request->validate([
-            'position_id' => ['required', 'integer', new PositionExists],
-            'unioncloud_id' => ['required', 'integer', new UnionCloudUIDExists]
-        ]);
+        // Create a new committee role, populate and save it
+        return $this->updateCommitteeRole($request, new CommitteeRole());
 
-        // Check if this position is still available
+    }
 
-        // If the position is only allowed one committee members
-//        if (in_array($request->input('position_id'), config('committeedetails.single_role_available'))) {
-//            if (count($this->getCommittee()->where('position_control_id', $request->input('position_id'))) > 0) {
-//                return back()->withErrors(['position_id', 'Position has already been taken.']);
-//            }
-//        }
+    public function updateUserInControl(Request $request, $positionStudentGroupID)
+    {
+        // Validate the request
+        $this->validateUserAdditionRequest($request);
 
-        $student = new Committee([
-            'unioncloud_id' => $request->input('unioncloud_id'),
-            'position_control_id' => $request->input('position_id'),
-            'group_control_id' => Auth::guard('committee-role')->user()->group_id,
-            'year' => getReaffiliationYear()
-        ]);
+        // Find and check the committee role that needs editing
+        $committeeRole = CommitteeRole::find($positionStudentGroupID);
+        abort_if($committeeRole === false, 404, 'Couldn\'t find your role ID');
+        // Update and save the committee role
+        return $this->updateCommitteeRole($request, $committeeRole);
+    }
 
-        $this->authorize('create', $student);
+    public function deleteCommitteeRoleFromControl(Request $request, $positionStudentGroupID)
+    {
+        $positionStudentGroup = CommitteeRole::find($positionStudentGroupID);
 
-        if (!$student->save()) {
-            \Toast::message('Couldn\'t save the user', 'error');
+        abort_if($positionStudentGroup === false, 404, 'Couldn\'t find the committee role');
+
+        if(!$positionStudentGroup->destroy())
+        {
+            Log::error($positionStudentGroup->getResponse()->getStatusCode().' - '.$positionStudentGroup->getResponse()->getStatusPhrase());
+            abort(500,'Couldn\'t delete the committee role');
+        }
+        return response('', 200);
+    }
+
+    private function validateUserAdditionRequest(Request $request)
+    {
+        // TODO Implement validation
+    }
+
+    private function updateCommitteeRole(Request $request, CommitteeRole $committeeRole)
+    {
+        // Validate Request
+        $committeeRole->student_id = $this->getStudentControlID($request->get('unioncloud_id'));
+        $committeeRole->group_id = Auth::guard('committee-role')->user()->group->id;
+        $committeeRole->position_id = $request->get('position_id');
+        $committeeRole->position_name = $request->get('position_name');
+
+        if(!$committeeRole->save()) {
+            Log::error('Could not save committee role. Code '.$committeeRole->getResponse()->getStatusCode().', Message '.$committeeRole->getResponse()->getStatusPhrase());
+            abort(500, 'We could not save your new committee position');
+        }
+        return $committeeRole;
+    }
+
+    private function getStudentControlID($uid)
+    {
+        // Search for a student by Student ID
+
+        // Create an empty student model
+        $student = new Student();
+
+        // Send request
+        $connection = ConnectionManager::get('control');
+        $request = $connection->buildRequest('post', 'students/search', ['uc_uid' => $uid]);
+        $response = $connection->send($request);
+
+        // Parse the response by hydrating the model
+        if( $response->isSuccessful()) {
+            $student->hydrate($response->getPayload()[0]);
         } else {
-            \Toast::message('User saved', 'success');
+            $student->uc_uid = $uid;
+            abort_if(!$student->save(), 500, 'We couldn\'t save you in our system.');
         }
 
-        $this->injectJavascriptPositionSettings();
-        return back();
-
-    }
-
-    public function deleteCommittee(Committee $committeeMember)
-    {
-
-        $this->authorize('delete', $committeeMember);
-
-        if ($committeeMember->delete()) {
-            \Toast::message('Committee member deleted', 'success', 'Deleted');
-            return back();
-        }
-        \Toast::message('Committee member not deleted', 'error', 'Not deleted');
-        return back();
-    }
-
-    public function submitCommittee(Request $request)
-    {
-        $this->authorize('upload', Committee::class);
-        // TODO Make this work
-
-        // Check all required positions are filled
-
-
-        dd($request);
-    }
-
-    private function getCommittee()
-    {
-        return Committee::where([
-            'year' => getReaffiliationYear(),
-            'group_control_id' => Auth::guard('committee-role')->user()->group->id
-        ])->get();
-    }
-
-    private function injectJavascriptPositionSettings()
-    {
-        /** @var Collection $groupTags */
-        $groupTags = request()->get('auth_group_tags');
-        $groupTags->filter(function ($groupTag) {
-            return $groupTag->category->reference === config('committeedetails.group_type_tag_category_reference');
-        });
-
-        abort_if(count($groupTags) === 0, 403, 'We couldn\'t find your group type.');
-
-        $tagReference = $groupTags->first()->reference;
-
-        $positionSetting = PositionSetting::where('tag_reference', $tagReference)->get()->first();
-
-        abort_if($positionSetting === null, 403, 'We couldn\'t find your group type on our system');
-
-        JavaScriptFacade::put([
-            'group_type' => $tagReference,
-            'group_settings' => $positionSetting->only([
-                'allowed_positions',
-                'required_positions',
-                'position_only_has_single_committee_member',
-                'committee_member_only_has_single_position'
-            ])
-        ]);
+        return $student->id;
     }
 
 }
