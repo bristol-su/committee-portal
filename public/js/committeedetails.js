@@ -809,11 +809,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteCommitteeMember: function deleteCommitteeMember(member) {
-      var _this2 = this;
-
       if (Number.isInteger(member.id)) {
         axios.delete('committeedetails/' + member.id).then(function (response) {
-          _this2.loadCommittee();
+          window.location.reload();
         }).catch(function (e) {
           return console.log(e);
         });

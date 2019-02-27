@@ -97,7 +97,7 @@
                 if (Number.isInteger(member.id)) {
                     axios.delete('committeedetails/'+member.id)
                         .then(response => {
-                            this.loadCommittee();
+                            window.location.reload();
                         })
                         .catch(e => console.log(e));
                 }
