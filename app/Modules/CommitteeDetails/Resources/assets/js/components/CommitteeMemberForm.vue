@@ -126,9 +126,11 @@
                 let url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
                 this.form.post(url)
                     .then(response => {
-                        window.location.reload();
+                        // window.location.reload();
                     })
-                    .catch(error => console.log(error));
+                    .catch(error => {
+                        console.log(error)
+                    });
                 this.$emit('close');
             }
 

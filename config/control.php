@@ -7,4 +7,5 @@ return [
     'email' => env('CONTROL_EMAIL'),
     'password' => env('CONTROL_PASSWORD'),
 
+    'group_type_tag_category_reference' => 'group_type',
 ];

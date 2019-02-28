@@ -576,10 +576,9 @@ __webpack_require__.r(__webpack_exports__);
     saveCommitteeMember: function saveCommitteeMember() {
       // Fire a request to the backend
       var url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
-      this.form.post(url).then(function (response) {
-        window.location.reload();
+      this.form.post(url).then(function (response) {// window.location.reload();
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
       this.$emit('close');
     }

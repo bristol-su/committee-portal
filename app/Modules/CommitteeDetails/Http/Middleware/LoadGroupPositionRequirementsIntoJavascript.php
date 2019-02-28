@@ -20,14 +20,9 @@ class LoadGroupPositionRequirementsIntoJavascript
     public function handle(Request $request, Closure $next)
     {
         /** @var Collection $groupTags */
-        $groupTags = request()->get('auth_group_tags');
-        $groupTags->filter(function ($groupTag) {
-            return $groupTag->category->reference === config('committeedetails.group_type_tag_category_reference');
-        });
-
-        abort_if(count($groupTags) === 0, 403, 'We couldn\'t find your group type.');
-
-        $tagReference = $groupTags->first()->reference;
+        if(!($tagReference = getTagReference())) {
+            abort(403, 'Could not find your group type.');
+        }
 
         $positionSetting = PositionSetting::where('tag_reference', $tagReference)->get()->first();
 

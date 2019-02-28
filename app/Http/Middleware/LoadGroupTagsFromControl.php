@@ -7,6 +7,7 @@ use App\Packages\ControlDB\Models\GroupTag;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class LoadGroupTagsFromControl
 {
@@ -20,7 +21,6 @@ class LoadGroupTagsFromControl
     public function handle($request, Closure $next)
     {
         $groupId = Auth::guard('committee-role')->user()->group_id;
-
         $groupTags = Cache::remember('Middleware.LoadGroupTagsFromControl.'.$groupId, 200, function() use ($groupId){
 
             $group = Group::find($groupId);
@@ -30,7 +30,6 @@ class LoadGroupTagsFromControl
         });
 
         $request->attributes->add(['auth_group_tags' => $groupTags]);
-
         return $next($request);
     }
 }
