@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Rules\ExistsInUsersTable;
+use App\Traits\SetsPassword;
+use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -27,6 +32,27 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('portal');
+
+    }
+
+    /**
+     * Validate the email for the given request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateEmail(Request $request)
+    {
+        $request->validate([
+            'identity' => [new ExistsInUsersTable]
+        ]);
+
+        $user = User::where('email', $request->input('identity'))
+            ->orWhere('student_id', $request->input('identity'))
+            ->get()->first();
+
+        abort_if($user === null, 404, 'Could not find you in our system.');
+
+        $request->merge(['email' => $user->email]);
     }
 }

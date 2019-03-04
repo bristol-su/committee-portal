@@ -50,7 +50,7 @@
             // Load the preselected option
             if (this.initialUid !== null) {
                 this.loading = true;
-                axios.get('unioncloud/api/user', {
+                this.$http.get('unioncloud/api/user', {
                     params: {
                         'uid': this.initialUid
                     }
@@ -75,7 +75,7 @@
             },
 
             search: _.debounce((loading, search, vm) => {
-                axios.get('/unioncloud/api/user/multisearch',
+                this.$http.get('/unioncloud/api/user/multisearch',
                     {
                         params: {search: search},
                         accept: 'application/json'

@@ -2,7 +2,7 @@
 
 namespace App\Modules\Constitution;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -24,6 +24,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/constitution';
     }
 
+    public function getAdminURL()
+    {
+        return '/constitution/admin';
+    }
+
     public function getVisibility()
     {
         return true;
@@ -37,6 +42,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the constitution module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'documents';
     }
 
 }

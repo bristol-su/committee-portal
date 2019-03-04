@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('budget')->group(function() {
+Route::prefix('budget')->middleware(['user', 'module', 'module.status:budget'])->group(function() {
     Route::get('/', 'BudgetController@index');
 });

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('equipmentlist')->group(function() {
+Route::prefix('equipmentlist')->middleware(['user', 'module', 'module.status:equipmentlist'])->group(function() {
     Route::get('/', 'EquipmentListController@index');
 });

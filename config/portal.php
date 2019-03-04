@@ -14,13 +14,42 @@ return [
         'reaffiliation-optional' => [
             'header' => 'Reaffiliation - Optional',
             'subtitle' => 'Optional tasks to help your group throughout the year.'
-        ]
+        ],
+
+        // Admin Headers
+        'financial' => [
+            'header' => 'Finance',
+            'subtitle' => 'Financial Tasks.'
+        ],
+        'committee-details' => [
+            'header' => 'Committee Details',
+            'subtitle' => 'Information about the committee in a group.'
+        ],
+        'documents' => [
+            'header' => 'Documents',
+            'subtitle' => 'Documents submitted by committees.'
+        ],
+        'assets' => [
+            'header' => 'Assets',
+            'subtitle' => 'Information about assets of groups.'
+        ],
+        'group-info' => [
+            'header' => 'Group Information',
+            'subtitle' => 'Information about groups.'
+        ],
+        'ngb' => [
+            'header' => 'NGB',
+            'subtitle' => 'Still can\'t remember what this is....'
+        ],
+
     ],
 
     'reaffiliation_status' => [
-            'incomplete' => 'btn btn-danger',
+        'incomplete' => 'btn btn-danger',
+
+        'admin' => 'btn btn-success'
     ],
 
-    'reaffiliation_year' => (int) env('REAFFILIATION_YEAR', 2017),
+    'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
 
 ];

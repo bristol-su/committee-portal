@@ -48,7 +48,4 @@
         @endforeach
     </div>
 </div>
-@can('test-edit')
-    Can edit
-@endcan
 @endsection

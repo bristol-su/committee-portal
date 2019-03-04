@@ -49,6 +49,11 @@ return [
         'committee-role' => [
             'driver' => 'session',
             'provider' => 'committee-roles'
+        ],
+
+        'view-as-student' => [
+            'driver' => 'session',
+            'provider' => 'view-as-students'
         ]
     ],
 
@@ -78,6 +83,11 @@ return [
         'committee-roles' => [
             'driver' => 'committee-role-provider',
             'model' => \App\Packages\ControlDB\Models\CommitteeRole::class
+        ],
+
+        'view-as-students' => [
+            'driver' => 'view-as-student-provider',
+            'model' => \App\Authentication\ViewAsStudent::class
         ],
 
     ],

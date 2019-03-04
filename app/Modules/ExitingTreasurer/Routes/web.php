@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('exitingtreasurer')->group(function() {
+Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.status:exitingtreasurer'])->group(function() {
     Route::get('/', 'ExitingTreasurerController@index');
 });

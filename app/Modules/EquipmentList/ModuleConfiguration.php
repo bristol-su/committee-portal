@@ -2,7 +2,7 @@
 
 namespace App\Modules\EquipmentList;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -21,7 +21,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/equipment_list';
+        return '/equipmentlist';
+    }
+
+    public function getAdminURL()
+    {
+        return '/equipmentlist/admin';
     }
 
     public function getVisibility()
@@ -39,4 +44,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return 'incomplete';
     }
 
+    public function getDescription()
+    {
+        return 'This is the equipment list module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'assets';
+    }
 }

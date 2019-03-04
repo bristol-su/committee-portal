@@ -67,7 +67,7 @@
         methods: {
 
             loadCommittee() {
-                axios.get('/control-database/api/position_student_groups')
+                this.$http.get('/control-database/api/position_student_groups')
                     .then(response => {
                         this.committee_members = response.data;
                     })
@@ -95,7 +95,7 @@
 
             deleteCommitteeMember(member) {
                 if (Number.isInteger(member.id)) {
-                    axios.delete('committeedetails/'+member.id)
+                    this.$http.delete('committeedetails/'+member.id)
                         .then(response => {
                             window.location.reload();
                         })

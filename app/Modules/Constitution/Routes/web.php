@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('constitution')->group(function() {
+Route::prefix('constitution')->middleware(['user', 'module', 'module.status:constitution'])->group(function() {
     Route::get('/', 'ConstitutionController@index');
 });

@@ -2,7 +2,7 @@
 
 namespace App\Modules\RiskAssessment;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -21,7 +21,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/risk_assessment';
+        return '/riskassessment';
+    }
+
+    public function getAdminURL()
+    {
+        return '/riskassessment/admin';
     }
 
     public function getVisibility()
@@ -37,6 +42,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the risk assessment module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'documents';
     }
 
 }

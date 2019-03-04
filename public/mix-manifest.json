@@ -27,5 +27,6 @@
     "/js/ngb.js": "/js/ngb.js",
     "/js/riskassessment.js": "/js/riskassessment.js",
     "/js/strategicplan.js": "/js/strategicplan.js",
-    "/js/taskallocation.js": "/js/taskallocation.js"
+    "/js/taskallocation.js": "/js/taskallocation.js",
+    "/js/admin.js": "/js/admin.js"
 }

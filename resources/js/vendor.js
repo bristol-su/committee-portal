@@ -3,7 +3,8 @@ import Popper from 'popper.js';
 import jQuery from 'jquery';
 import axios from 'axios';
 import Vue from 'vue';
-
+import Notifications from 'vue-notification'
+import bootstrap from 'bootstrap';
 /**
  * Load lodash
  */
@@ -11,18 +12,19 @@ window._ = _;
 
 window.Vue = Vue;
 
+window.Notifications = Notifications;
+
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
 
-try {
-    window.Popper = Popper.default;
-    window.$ = window.jQuery = jQuery;
 
-    require('bootstrap');
-} catch (e) {}
+window.Popper = Popper.default;
+window.$ = window.jQuery = jQuery;
+
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

@@ -11,5 +11,6 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\Constitution\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\Constitution\\ModuleConfiguration",
+    "in_development": true
 }

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('maincontacts')->group(function() {
+Route::prefix('maincontacts')->middleware(['user', 'module', 'module.status:maincontacts'])->group(function() {
     Route::get('/', 'MainContactsController@index');
 });

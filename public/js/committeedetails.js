@@ -651,7 +651,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid).then(function (response) {
+    this.$http.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid).then(function (response) {
       return _this.student = response.data;
     }).catch(function (error) {
       return _this.studentFailed = true;
@@ -782,7 +782,7 @@ __webpack_require__.r(__webpack_exports__);
     loadCommittee: function loadCommittee() {
       var _this = this;
 
-      axios.get('/control-database/api/position_student_groups').then(function (response) {
+      this.$http.get('/control-database/api/position_student_groups').then(function (response) {
         _this.committee_members = response.data;
       });
     },
@@ -809,7 +809,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteCommitteeMember: function deleteCommitteeMember(member) {
       if (Number.isInteger(member.id)) {
-        axios.delete('committeedetails/' + member.id).then(function (response) {
+        this.$http.delete('committeedetails/' + member.id).then(function (response) {
           window.location.reload();
         }).catch(function (e) {
           return console.log(e);
@@ -878,7 +878,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     this.loading = true;
-    axios.get('control-database/api/positions').then(function (response) {
+    this.$http.get('control-database/api/positions').then(function (response) {
       _this.options = response.data;
       _this.errorVisible = false;
       _this.loading = false;
@@ -934,6 +934,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
 /* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_0__);
+var _this2 = undefined;
+
 //
 //
 //
@@ -980,7 +982,7 @@ __webpack_require__.r(__webpack_exports__);
     // Load the preselected option
     if (this.initialUid !== null) {
       this.loading = true;
-      axios.get('unioncloud/api/user', {
+      this.$http.get('unioncloud/api/user', {
         params: {
           'uid': this.initialUid
         }
@@ -1001,7 +1003,7 @@ __webpack_require__.r(__webpack_exports__);
       this.search(loading, search, this);
     },
     search: _.debounce(function (loading, search, vm) {
-      axios.get('/unioncloud/api/user/multisearch', {
+      _this2.$http.get('/unioncloud/api/user/multisearch', {
         params: {
           search: search
         },

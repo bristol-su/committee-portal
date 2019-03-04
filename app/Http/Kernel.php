@@ -2,9 +2,15 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AuthenticateCommitteeRole;
+use App\Http\Middleware\AuthenticateUserGuard;
+use App\Http\Middleware\CheckAdminCanViewAsStudent;
+use App\Http\Middleware\CheckIfAdmin;
+use App\Http\Middleware\CheckPasswordIsSet;
 use App\Http\Middleware\LoadGroupTagsFromControl;
 use App\Http\Middleware\LoadStudentTagsFromControl;
+use App\Http\Middleware\SetAdminGuard;
+use App\Modules\BaseModule\Http\Middleware\CheckDevelopmentStatus;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -22,6 +28,29 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+    ];
+
+    /**
+     * The application's route middleware.
+     *
+     * These middleware may be assigned to groups or used individually.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'committee-role' => AuthenticateUserGuard::class,
+        'is-admin' => CheckIfAdmin::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'module.status' => CheckDevelopmentStatus::class,
+        'can-view-as-student' => CheckAdminCanViewAsStudent::class,
     ];
 
     /**
@@ -47,31 +76,21 @@ class Kernel extends HttpKernel
 
         'user' => [
             'auth:web',
-            'committeerole',
+            'committee-role',
             'verified',
             LoadGroupTagsFromControl::class,
             LoadStudentTagsFromControl::class
-        ]
-    ];
+        ],
 
-    /**
-     * The application's route middleware.
-     *
-     * These middleware may be assigned to groups or used individually.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'committeerole' => AuthenticateCommitteeRole::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => [
+            'auth:web',
+            'is-admin',
+            'verified',
+        ],
+
+        'module' => [
+
+        ]
     ];
 
     /**
@@ -87,9 +106,13 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \Illuminate\Auth\Middleware\Authorize::class,
-        AuthenticateCommitteeRole::class,
+        EnsureEmailIsVerified::class,
+        CheckIfAdmin::class,
+        CheckPasswordIsSet::class,
+        AuthenticateUserGuard::class,
         LoadStudentTagsFromControl::class,
-        LoadGroupTagsFromControl::class
+        LoadGroupTagsFromControl::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
+        CheckDevelopmentStatus::class
     ];
 }

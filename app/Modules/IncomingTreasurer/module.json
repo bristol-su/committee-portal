@@ -11,6 +11,7 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\IncomingTreasurer\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\IncomingTreasurer\\ModuleConfiguration",
+    "in_development": true
 
 }

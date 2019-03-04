@@ -11,5 +11,6 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\MainContacts\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\MainContacts\\ModuleConfiguration",
+    "in_development": true
 }

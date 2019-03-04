@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
+use App\Packages\ControlDB\Models\Student;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,13 +35,24 @@ class ControlController extends Controller
 
     public function getPositionStudentGroups()
     {
-        $groupID = Auth::guard('committee-role')->user()->group->id;
+        $groupID = Auth::user()->getAuthenticatedUser()->group->id;
 
         $group = \App\Packages\ControlDB\Models\Group::find($groupID);
         return CommitteeRole::allThrough($group);
 
+    }
 
+    public function getAvailableCommitteeRoles()
+    {
+        $student = Student::find(Auth::user()->control_id);
+        return CommitteeRole::allThrough($student);
+    }
 
+    public function getAllGroups()
+    {
+        return Group::all()->sortBy(function($group) {
+            return $group->name;
+        })->values()    ;
     }
 }
 

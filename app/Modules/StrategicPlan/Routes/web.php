@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('strategicplan')->group(function() {
+Route::prefix('strategicplan')->middleware(['user', 'module', 'module.status:strategicplan'])->group(function() {
     Route::get('/', 'StrategicPlanController@index');
 });

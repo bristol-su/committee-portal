@@ -11,5 +11,6 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\GroupInfo\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\GroupInfo\\ModuleConfiguration",
+    "in_development": true
 }

@@ -2,7 +2,7 @@
 
 namespace App\Modules\StrategicPlan;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -19,7 +19,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/strategic_plan';
+        return '/strategicplan';
+    }
+
+    public function getAdminURL()
+    {
+        return '/strategicplan/admin';
     }
 
     public function getVisibility()
@@ -35,6 +40,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the strategic plan module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'documents';
     }
 
 }

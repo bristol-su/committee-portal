@@ -16,6 +16,7 @@
         "laravel/tinker": "^1.0",
         "nimbly/activeresource": "^1.1",
         "nwidart/laravel-modules": "^4.0",
+        "spatie/laravel-permission": "^2.35",
         "twigger/unioncloud": "dev-master",
         "yoeunes/toastr": "^1.1"
     },

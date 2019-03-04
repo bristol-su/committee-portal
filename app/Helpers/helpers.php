@@ -19,3 +19,60 @@ if (!function_exists('getTagReference')) {
         return ($groupTags->first() !== null ? $groupTags->first()->reference : false);
     }
 }
+
+//function getModuleConfiguration()
+//{
+//    return [
+//        [
+//            'header' => true,
+//            'title' => 'Main Navigation',
+//            // component: componentName
+//            // visibleOnCollapse: true
+//        ],
+//        [
+//            'href' => '/',
+//            'title' => 'Dashboard',
+//            'icon' => 'fa fa-user',
+//            /*
+//            disabled: true
+//            badge: {
+//                text: 'new',
+//                // class:''
+//            }
+//            */
+//        ],
+//        [
+//            'title' => 'Charts',
+//            'icon' => 'fa fa-chart-area',
+//            'child' => [
+//                [
+//                    'href' => '/charts/sublink',
+//                    'title' => 'Sub Link'
+//                ]
+//            ]
+//        ]
+//    ];
+//}
+
+if (!function_exists('getModuleConfiguration')) {
+
+    function getModuleConfiguration()
+    {
+        $rawModules = collect(\Nwidart\Modules\Facades\Module::getOrdered())->filter(function ($module) {
+            return $module->active === 1;
+        });
+        $configuration = new \Illuminate\Support\Collection();
+        foreach ($rawModules as $rawModule) {
+            if (!class_exists($rawModule->dynamic_configuration)) {
+                throw new \Exception('Please define a dynamic_configuration property in module ' . $rawModule->getName());
+            }
+
+            $moduleConfig = (new $rawModule->dynamic_configuration)->getConfiguration();
+            $moduleConfig['rawModule'] = $rawModule;
+            $configuration->push($moduleConfig);
+        }
+        return $configuration;
+
+    }
+
+}

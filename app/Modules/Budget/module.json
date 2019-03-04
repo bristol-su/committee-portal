@@ -11,6 +11,7 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\Budget\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\Budget\\ModuleConfiguration",
+    "in_development": true
 
 }

@@ -52,7 +52,7 @@
         },
 
         mounted() {
-            axios.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid)
+            this.$http.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid)
                 .then(response => this.student = response.data)
                 .catch(error => this.studentFailed = true);
         }

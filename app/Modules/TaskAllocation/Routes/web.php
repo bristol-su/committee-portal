@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('taskallocation')->group(function() {
+Route::prefix('taskallocation')->middleware(['user', 'module', 'module.status:taskallocation'])->group(function() {
     Route::get('/', 'TaskAllocationController@index');
 });

@@ -2,7 +2,7 @@
 
 namespace App\Modules\TaskAllocation;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -21,7 +21,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/task_allocation';
+        return '/taskallocation';
+    }
+
+    public function getAdminURL()
+    {
+        return '/taskallocation/admin';
     }
 
     public function getVisibility()
@@ -37,6 +42,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the task allocation module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'committee-details';
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Modules\Budget;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -25,6 +25,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/budget';
     }
 
+    public function getAdminURL()
+    {
+        return '/budget/admin';
+    }
+
     public function getVisibility()
     {
         return true;
@@ -38,6 +43,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the budget module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'financial';
     }
 
 }

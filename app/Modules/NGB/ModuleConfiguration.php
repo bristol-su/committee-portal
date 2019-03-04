@@ -2,7 +2,7 @@
 
 namespace App\Modules\NGB;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -24,6 +24,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/ngb';
     }
 
+    public function getAdminURL()
+    {
+        return '/ngb/admin';
+    }
+
     public function getVisibility()
     {
         return true;
@@ -39,4 +44,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return 'incomplete';
     }
 
+    public function getDescription()
+    {
+        return 'This is the ngb module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'ngb';
+    }
 }

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('riskassessment')->group(function() {
+Route::prefix('riskassessment')->middleware(['user', 'module', 'module.status:riskassessment'])->group(function() {
     Route::get('/', 'RiskAssessmentController@index');
 });

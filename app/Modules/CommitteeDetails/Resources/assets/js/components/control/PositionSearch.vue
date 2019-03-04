@@ -50,7 +50,7 @@
 
         mounted() {
             this.loading = true;
-            axios.get('control-database/api/positions')
+            this.$http.get('control-database/api/positions')
                 .then(response => {
                     this.options = response.data;
                     this.errorVisible = false;

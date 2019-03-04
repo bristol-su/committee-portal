@@ -10,34 +10,39 @@
     <title>{{ config('app.name', 'Committee Portal') }}</title>
 
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
+
+
 </head>
 
 <body>
+    <div id="portal-notification-root">
+
+        <notifications group="notification"></notifications>
+    </div>
+    @include('templates.header')
+
+    @include('toast::messages-jquery')
+
+    @yield('content')
+
+    @include('templates.footer')
+    <script src="{{ mix('js/app.js') }}"></script>
+    @stack('scripts')
+
+    @include('templates.javascript_injection')
 
 
-@include('templates.header')
-
-@include('toast::messages-jquery')
-
-@yield('content')
-
-
-<script src="{{ mix('js/app.js') }}"></script>
-@stack('scripts')
-
-
-@include('templates.javascript_injection')
 </body>
 
 </html>

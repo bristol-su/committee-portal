@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules;
+namespace App\Modules\BaseModule;
 
 abstract class ModuleConfiguration
 {
@@ -18,8 +18,10 @@ abstract class ModuleConfiguration
             'visible' => $this->getVisibility(), // Should this module be visible to the user
             'active' => $this->isActive(), // Should this module be active or greyed out?
             'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?
-            'reaffiliation_status' => $this->getReaffiliationStatus() // What status is this module? Use config keys
-
+            'reaffiliation_status' => $this->getReaffiliationStatus(), // What status is this module? Use config keys
+            'description' => $this->getDescription(),
+            'admin_header' => $this->getAdminHeaderKey(),
+            'admin_url' => $this->getAdminURL()
         ];
     }
 
@@ -33,11 +35,25 @@ abstract class ModuleConfiguration
     abstract public function getHeaderKey();
 
     /**
+     * Get the header key for a module button on the admin side
+     *
+     * @return mixed
+     */
+    abstract public function getAdminHeaderKey();
+
+    /**
      * Get the text to show on a button
      *
      * @return string
      */
     abstract public function getButtonTitle();
+
+    /**
+     * Get the description of a module
+     *
+     * @return string
+     */
+    abstract public function getDescription();
 
     /**
      * Get the URL of the user page
@@ -47,6 +63,15 @@ abstract class ModuleConfiguration
      * @return string
      */
     abstract public function getUserURL();
+
+    /**
+     * Get the admin URL of the user page
+     *
+     * This will be put through the laravel url() function
+     *
+     * @return string
+     */
+    abstract public function getAdminURL();
 
     /**
      * Should the module be drawn as a button on the portal dashboard?
@@ -66,8 +91,7 @@ abstract class ModuleConfiguration
      */
     public function isMandatoryForReaffiliation()
     {
-        if(property_exists($this, 'mandatoryForReaffiliation'))
-        {
+        if (property_exists($this, 'mandatoryForReaffiliation')) {
             return $this->mandatoryForReaffiliation;
         }
 
@@ -84,8 +108,7 @@ abstract class ModuleConfiguration
      */
     public function getReaffiliationStatus()
     {
-        if(method_exists($this, 'reaffiliationStatus'))
-        {
+        if (method_exists($this, 'reaffiliationStatus')) {
             return $this->reaffiliationStatus();
         }
         return 'default';

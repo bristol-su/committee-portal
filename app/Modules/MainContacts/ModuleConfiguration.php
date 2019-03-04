@@ -2,7 +2,7 @@
 
 namespace App\Modules\MainContacts;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -21,7 +21,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/main_contacts';
+        return '/maincontacts';
+    }
+
+    public function getAdminURL()
+    {
+        return '/maincontacts/admin';
     }
 
     public function getVisibility()
@@ -39,4 +44,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return 'incomplete';
     }
 
+    public function getDescription()
+    {
+        return 'This is the main contacts module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'committee-details';
+    }
 }

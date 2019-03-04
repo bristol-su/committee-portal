@@ -2,15 +2,18 @@
 
 namespace App;
 
+use App\Notifications\VerifyEmailNotification;
+use App\Notifications\ResetPasswordNotification;
 use App\Packages\ControlDB\ControlDBInterface;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'forename', 'surname', 'email', 'student_id', 'control_id'
     ];
 
     /**
@@ -30,11 +33,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'admin' => 'boolean'
-    ];
-    // Logging into a group
-
     /**
      * Get the control database ID
      *
@@ -45,28 +43,46 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->control_id;
     }
 
-    /**
-     * Call the trait function to get the positions for yourself
-     *
-     * @return mixed
-     *
-     * @throws \Exception
-     */
-    public function getPositionsForUser()
-    {
-        return $this->getPositionsFromControl($this->getControlID());
-    }
-
-    public function isAdmin()
-    {
-        return $this->admin;
-    }
-
     public function isNewCommittee()
     {
         // TODO Populate is new committee Method
         return true;
     }
 
+    public function isAdmin()
+    {
+        return $this->hasPermissionTo('act-as-admin');
+    }
+
+    public function getAuthenticatedUser()
+    {
+        if($this->isAdmin()) {
+            return Auth::guard('view-as-student')->user();
+        } elseif(Auth::guard('committee-role')->check() ) {
+            return Auth::guard('committee-role')->user();
+        }
+        abort(403, 'Could not authenticate you.');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        if($this->password === null)
+        {
+            $this->notify(new VerifyEmailNotification($token));
+        } else {
+
+            $this->notify(new ResetPasswordNotification($token));
+        }
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification());
+    }
 
 }

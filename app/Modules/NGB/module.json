@@ -11,5 +11,6 @@
     "aliases": {},
     "files": [],
     "requires": [],
-    "dynamic_configuration": "App\\Modules\\NGB\\ModuleConfiguration"
+    "dynamic_configuration": "App\\Modules\\NGB\\ModuleConfiguration",
+    "in_development": true
 }

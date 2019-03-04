@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('ngb')->group(function() {
+Route::prefix('ngb')->middleware(['user', 'module', 'module.status:ngb'])->group(function() {
     Route::get('/', 'NGBController@index');
 });

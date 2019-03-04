@@ -97,7 +97,7 @@ class CommitteeDetailsController extends Controller
      */
     private function validateUserAdditionRequest(Request $request)
     {
-        $groupId = Auth::guard('committee-role')->user()->group->id;
+        $groupId = Auth::user()->getAuthenticatedUser()->group->id;
         $group = Group::find($groupId);
 
         $request->validate([
@@ -137,7 +137,7 @@ class CommitteeDetailsController extends Controller
     {
         // Validate Request
         $committeeRole->student_id = $this->getStudentControlID($request->get('unioncloud_id'));
-        $committeeRole->group_id = Auth::guard('committee-role')->user()->group->id;
+        $committeeRole->group_id = Auth::user()->getAuthenticatedUser()->group->id;
         $committeeRole->position_id = $request->get('position_id');
         $committeeRole->position_name = $request->get('position_name');
 

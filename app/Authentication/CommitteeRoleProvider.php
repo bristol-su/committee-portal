@@ -6,7 +6,7 @@
  * Time: 18:32
  */
 
-namespace App\Packages\ControlDB;
+namespace App\Authentication;
 
 
 use App\Packages\ControlDB\Models\CommitteeRole;
@@ -33,6 +33,7 @@ class CommitteeRoleProvider implements UserProvider
 
     public function retrieveByToken($identifier, $token)
     {
+
     }
 
     public function updateRememberToken(Authenticatable $user, $token)

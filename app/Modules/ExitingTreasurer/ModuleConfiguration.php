@@ -2,7 +2,7 @@
 
 namespace App\Modules\ExitingTreasurer;
 
-use App\Modules\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -21,7 +21,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getUserURL()
     {
-        return '/exiting_treasurer';
+        return '/exitingtreasurer';
+    }
+
+    public function getAdminURL()
+    {
+        return '/exitingtreasurer/admin';
     }
 
     public function getVisibility()
@@ -37,6 +42,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         return 'incomplete';
+    }
+
+    public function getDescription()
+    {
+        return 'This is the exiting treasurer module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'financial';
     }
 
 }
