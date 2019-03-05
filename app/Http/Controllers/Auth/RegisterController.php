@@ -7,6 +7,9 @@ use App\Events\UserVerificationRequestGenerated;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
 use App\Packages\ControlDB\Models\Student;
+use App\Rules\IsAValidUserByStudentIDOrEmail;
+use App\Rules\IsValidPassword;
+use App\Traits\GetsControlStudentByUnionCloudID;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -18,7 +21,7 @@ class RegisterController extends Controller
 {
 
 
-    use RegistersUsers;
+    use RegistersUsers, GetsControlStudentByUnionCloudID;
 
     /**
      * Create a new controller instance.
@@ -36,9 +39,9 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
 
-        // TODO validate passwords and identity does not exist
         $request->validate([
-            'identity' => ['required', 'string']
+            'identity' => ['required', 'string', new IsAValidUserByStudentIDOrEmail()],
+            'password' => ['required', 'confirmed', new IsValidPassword()]
         ]);
 
         try {
@@ -48,7 +51,7 @@ class RegisterController extends Controller
 
                 $this->guard()->login($user);
             } else {
-                return back()->withErrors(['identity' => 'Couldn\'t find you on our system. Please contact us.']);
+                return back()->withErrors(['identity' => 'Error creating you on our systems. Please contact us for help!']);
             }
         } catch (\Exception $e) {
             return back()->withErrors(['identity' => $e->getMessage()]);
@@ -94,7 +97,7 @@ class RegisterController extends Controller
 
         $uid = $unionCloudUser->uid;
 
-        $controlUser = $this->getControlUserByUid($uid);
+        $controlUser = $this->getStudentByUid($uid);
 
         if ($controlUser !== false) {
             $user = new User([
@@ -124,23 +127,6 @@ class RegisterController extends Controller
         return $unionCloudUsers[0];
     }
 
-    public function getControlUserByUid($uid)
-    {
-        $student = new Student();
-
-        // Send request
-        $connection = ConnectionManager::get('control');
-        $request = $connection->buildRequest('post', 'students/search', ['uc_uid' => $uid]);
-        $response = $connection->send($request);
-
-        // Parse the response by hydrating the model
-        if ($response->isSuccessful()) {
-            $student->hydrate($response->getPayload()[0]);
-            return $student;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * Redirect the user

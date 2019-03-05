@@ -27,10 +27,15 @@
 
 <body>
     <div id="portal-notification-root">
-
         <notifications group="notification"></notifications>
     </div>
     @include('templates.header')
+
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
 
     @include('toast::messages-jquery')
 

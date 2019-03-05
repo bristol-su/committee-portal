@@ -8,6 +8,8 @@ use App\Modules\CommitteeDetails\Entities\PositionSetting;
 use App\Modules\CommitteeDetails\Http\Middleware\LoadGroupPositionRequirementsIntoJavascript;
 use App\Modules\CommitteeDetails\Http\Requests\CommitteeMemberRequest;
 use App\Modules\CommitteeDetails\Rules\PositionIsAllowed;
+use App\Modules\CommitteeDetails\Rules\PositionMustBeEmpty;
+use App\Modules\CommitteeDetails\Rules\IsStudentAvailable;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Student;
@@ -54,6 +56,7 @@ class CommitteeDetailsController extends Controller
 
     /**
      * Edit a committee role in control
+     *
      * @param Request $request
      * @param $positionStudentGroupID
      * @return CommitteeRole
@@ -61,11 +64,12 @@ class CommitteeDetailsController extends Controller
     public function updateUserInControl(Request $request, $positionStudentGroupID)
     {
         // Validate the request
-        $this->validateUserAdditionRequest($request);
+        $this->validateUserAdditionRequest($request, (int) $positionStudentGroupID);
 
         // Find and check the committee role that needs editing
         $committeeRole = CommitteeRole::find($positionStudentGroupID);
         abort_if($committeeRole === false, 404, 'Couldn\'t find your role ID');
+
         // Update and save the committee role
         return $this->updateCommitteeRole($request, $committeeRole);
     }
@@ -82,11 +86,8 @@ class CommitteeDetailsController extends Controller
         $positionStudentGroup = CommitteeRole::find($positionStudentGroupID);
 
         abort_if($positionStudentGroup === false, 404, 'Couldn\'t find the committee role');
+        abort_if(!$positionStudentGroup->destroy(), 500, 'Couldn\'t delete the committee role');
 
-        if (!$positionStudentGroup->destroy()) {
-            Log::error($positionStudentGroup->getResponse()->getStatusCode() . ' - ' . $positionStudentGroup->getResponse()->getStatusPhrase());
-            abort(500, 'Couldn\'t delete the committee role');
-        }
         return response('', 200);
     }
 
@@ -94,36 +95,17 @@ class CommitteeDetailsController extends Controller
      * Validate the Student and Position details
      *
      * @param Request $request
+     * @param int|null $ignoreCommitteeRoleID ID of a committee role to ignore for rules
      */
-    private function validateUserAdditionRequest(Request $request)
+    private function validateUserAdditionRequest(Request $request, $ignoreCommitteeRoleID=null)
     {
-        $groupId = Auth::user()->getAuthenticatedUser()->group->id;
-        $group = Group::find($groupId);
 
         $request->validate([
-            'unioncloud_id' => ['required', new UnionCloudUIDExists],
-            'position_id' => ['required', new PositionIsAllowed],
+            'unioncloud_id' => ['required', new UnionCloudUIDExists()],
+            'position_id' => ['required', new PositionIsAllowed(), new PositionMustBeEmpty($ignoreCommitteeRoleID), new IsStudentAvailable($ignoreCommitteeRoleID)],
             'position_name' => 'sometimes|string|min:3|max:255'
         ]);
 
-        $positionId = $request->get('position_id');
-
-        $positionSettings = PositionSetting::where('tag_reference', getTagReference())->get()->first();
-
-        // Only allowed single committee member
-        if(in_array($request->get('position_id'), $positionSettings->position_only_has_single_committee_member)) {
-            // Error if anyone else currently holds this position
-            if (CommitteeRole::allThrough($group)->filter(function($committeeRole) use ($positionId) {
-                return $committeeRole->position_id === $positionId;
-            })->count() === 0) {
-                abort(422, 'Someone else already has that position.');
-            }
-        }
-
-        // Not allowed any other position
-        if(in_array($request->get('position_id'), $positionSettings->committee_member_only_has_single_position)) {
-            // If this student holds any other position, error
-        }
     }
 
     /**

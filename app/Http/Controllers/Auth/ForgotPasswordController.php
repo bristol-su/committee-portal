@@ -51,8 +51,20 @@ class ForgotPasswordController extends Controller
             ->orWhere('student_id', $request->input('identity'))
             ->get()->first();
 
-        abort_if($user === null, 404, 'Could not find you in our system.');
-
         $request->merge(['email' => $user->email]);
+    }
+
+    /**
+     * Get the response for a failed password reset link.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return back()
+            ->withInput($request->only('identity'))
+            ->withErrors(['identity' => trans($response)]);
     }
 }

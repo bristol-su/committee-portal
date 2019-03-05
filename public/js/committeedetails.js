@@ -576,7 +576,8 @@ __webpack_require__.r(__webpack_exports__);
     saveCommitteeMember: function saveCommitteeMember() {
       // Fire a request to the backend
       var url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
-      this.form.post(url).then(function (response) {// window.location.reload();
+      this.form.post(url).then(function (response) {
+        window.location.reload();
       }).catch(function (error) {
         console.log(error);
       });
@@ -934,8 +935,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
 /* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_0__);
-var _this2 = undefined;
-
 //
 //
 //
@@ -1003,7 +1002,8 @@ var _this2 = undefined;
       this.search(loading, search, this);
     },
     search: _.debounce(function (loading, search, vm) {
-      _this2.$http.get('/unioncloud/api/user/multisearch', {
+      // TODO Change from axios
+      axios.get('/unioncloud/api/user/multisearch', {
         params: {
           search: search
         },

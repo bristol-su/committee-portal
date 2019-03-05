@@ -34,14 +34,16 @@
 
         computed: {
             currentGroup() {
-                if (this.groupId === null) {
+                let group = this.groups.filter(Gid => Gid.id === this.groupId);
+
+                if (group.length === 0) {
                     return {
                         id: -1,
                         name: 'Select a group'
                     };
                 }
 
-                return this.groups.filter(Gid => Gid.id === this.groupId)[0];
+                return group[0];
             }
         },
 

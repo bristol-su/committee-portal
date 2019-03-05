@@ -31,6 +31,6 @@ class CreatePositionSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_settings');
+        Schema::dropIfExists('committeedetails_position_settings');
     }
 }

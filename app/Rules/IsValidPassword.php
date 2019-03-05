@@ -2,10 +2,9 @@
 
 namespace App\Rules;
 
-use App\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class ExistsInUsersTable implements Rule
+class IsValidPassword implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,9 +25,7 @@ class ExistsInUsersTable implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('email', $value)
-            ->orWhere('student_id', $value)
-            ->count() === 1;
+        return count(str_split($value)) >= 6;
     }
 
     /**
@@ -38,6 +35,6 @@ class ExistsInUsersTable implements Rule
      */
     public function message()
     {
-        return 'No user with that Email or Student ID found.';
+        return 'The password must be 6 characters long.';
     }
 }

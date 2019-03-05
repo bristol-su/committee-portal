@@ -14,7 +14,7 @@ Vue.use(VModal, {dynamic: true, injectModalsContainer: true });
 Vue.prototype.$http = axios;
 
 // Default modal settings for the VModal
-window.$defaultModalSettings = {draggable: true, adaptive: true, resizable: true};
+window.$defaultModalSettings = {adaptive: true, height: 'auto'};
 
 // Form helper class
 window.VueForm = Form;

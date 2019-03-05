@@ -2,32 +2,33 @@
 
 namespace App\Modules\CommitteeDetails\Rules;
 
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
-use Illuminate\Contracts\Validation\Rule;
-
-class PositionIsAllowed implements Rule
+class PositionIsAllowed extends HandlesCommitteeRoleFormBaseRule
 {
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  string $attribute
+     * @param  mixed $value
      * @return bool
+     *
      */
     public function passes($attribute, $value)
     {
-        $positionIDs = PositionSetting::where('tag_reference', getTagReference())->get()->first();
-        return in_array($value, $positionIDs->allowed_positions);
+
+        // Check position is allowed
+        return $this->positionIsAllowed();
+
+    }
+
+    /**
+     * Check settings to see if the position is allowed
+     *
+     * @return bool
+     */
+    public function positionIsAllowed()
+    {
+        return $this->checkInPositionSettings($this->position->id, $this->positionSetting->allowed_positions);
     }
 
     /**
@@ -37,6 +38,6 @@ class PositionIsAllowed implements Rule
      */
     public function message()
     {
-        return 'Position does not exist.';
+        return 'Position is not available for your group type.';
     }
 }

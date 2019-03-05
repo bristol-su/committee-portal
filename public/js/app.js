@@ -215,16 +215,18 @@ __webpack_require__.r(__webpack_exports__);
     currentGroup: function currentGroup() {
       var _this = this;
 
-      if (this.groupId === null) {
+      var group = this.groups.filter(function (Gid) {
+        return Gid.id === _this.groupId;
+      });
+
+      if (group.length === 0) {
         return {
           id: -1,
           name: 'Select a group'
         };
       }
 
-      return this.groups.filter(function (Gid) {
-        return Gid.id === _this.groupId;
-      })[0];
+      return group[0];
     }
   },
   created: function created() {
@@ -600,9 +602,8 @@ Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default.a, {
 Vue.prototype.$http = axios; // Default modal settings for the VModal
 
 window.$defaultModalSettings = {
-  draggable: true,
   adaptive: true,
-  resizable: true
+  height: 'auto'
 }; // Form helper class
 
 window.VueForm = _utilities_Form__WEBPACK_IMPORTED_MODULE_1__["default"]; // Main Vue Instance

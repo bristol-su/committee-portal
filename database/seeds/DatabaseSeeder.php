@@ -12,17 +12,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(PermissionAndRoleSeeder::class);
 
         $this->command->info('Generating users');
-        factory(App\User::class)->create([
+        $user = factory(App\User::class)->create([
              'control_id' => 5,
              'student_id' => 'xy12345'
          ]);
-        factory(App\User::class)->create([
+
+        $user->givePermissionTo('bypass-maintenance');
+        $admin = factory(App\User::class)->create([
              'email' => 'admin@example.com',
          ]);
+        $admin->givePermissionTo('bypass-maintenance');
+        $admin->givePermissionTo('view-as-student');
+        $admin->givePermissionTo('act-as-super-admin');
 
-        $this->call(PermissionAndRoleSeeder::class);
+
+
 
         User::where('email', 'admin@example.com')->get()->first()->givePermissionTo('act-as-admin');
 
