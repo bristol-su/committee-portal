@@ -46,4 +46,8 @@ class CommitteeRole extends Model implements Authenticatable
         return $this->includesOne(Position::class, $data);
     }
 
+    public function student($data) {
+        return $this->includesOne(Student::class, $data);
+    }
+
 }

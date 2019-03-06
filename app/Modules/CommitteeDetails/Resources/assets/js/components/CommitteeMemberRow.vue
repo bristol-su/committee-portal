@@ -6,7 +6,7 @@
         ></committee-member-row-cell>
 
         <committee-member-row-cell
-                :display="student.id"
+                :display="studentId"
                 :failed="studentFailed"
         ></committee-member-row-cell>
 
@@ -18,7 +18,7 @@
             <td>
                 <input @click="$emit('edit', committeemember)" class="btn btn-outline-info" type="button"
                        value="Edit"/>
-                <input @click="$emit('delete', committeemember)" class="btn btn-outline-danger" type="button" value="Delete"/>
+                <input @click="deleteCommitteeMember" class="btn btn-outline-danger" type="button" value="Delete"/>
             </td>
     </tr>
 
@@ -48,6 +48,10 @@
         computed: {
             studentName() {
                 return (Object.keys(this.student).length > 0 ? this.student.forename + ' ' + this.student.surname : '');
+            },
+            studentId() {
+                console.log(this.student);
+                return (this.student.id === false ? 'N/A' : this.student.id)
             }
         },
 
@@ -55,6 +59,14 @@
             this.$http.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid)
                 .then(response => this.student = response.data)
                 .catch(error => this.studentFailed = true);
+        },
+
+        methods: {
+            deleteCommitteeMember() {
+                if(confirm('Are you sure you wish to remove this student from the committee?')) {
+                    this.$emit('delete', this.committeemember)
+                }
+            }
         }
     }
 </script>

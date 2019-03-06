@@ -20,7 +20,7 @@ class LoadGroupPositionRequirementsIntoJavascript
     public function handle(Request $request, Closure $next)
     {
         /** @var Collection $groupTags */
-        if(!($tagReference = getTagReference())) {
+        if(!($tagReference = getGroupType())) {
             abort(403, 'Could not find your group type.');
         }
 

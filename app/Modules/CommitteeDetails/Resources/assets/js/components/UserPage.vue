@@ -38,6 +38,17 @@
                 </div>
             </div>
         </div>
+        <modal
+                name="committee-member-form"
+                height="auto"
+        >
+
+            <committee-member-form
+                    :committee-member="editingCommitteeMember"
+                    @memberAdded="memberAdded"
+            >
+            </committee-member-form>
+        </modal>
     </div>
 
 </template>
@@ -57,6 +68,8 @@
         data() {
             return {
                 committee_members: [],
+                editingCommitteeMember: null,
+                showForm: false
             }
         },
 
@@ -73,31 +86,26 @@
                     })
             },
 
-            committeeChanged(event) {
-                console.log('committee_changed');
-                this.loadCommittee();
+            memberAdded(member) {
+                this.$modal.hide('committee-member-form');
+                this.committee_members.push(member);
             },
 
             openCommitteeForm(member) {
-                let data = {};
                 if (!(member instanceof MouseEvent)) {
-                    data = {
-                        committeeMember: member
-                    };
+                    this.editingCommitteeMember = member;
                 }
+                this.$modal.show('committee-member-form');
 
-                data.takenPositions = this.committee_members.map(o => o.position.id);
-                // https://www.npmjs.com/package/vue-js-modal#properties
-                this.$modal.show(CommitteeMemberForm, data, window.$defaultModalSettings, {
-                    'committeeChanged': this.committeeChanged
-                });
             },
 
             deleteCommitteeMember(member) {
                 if (Number.isInteger(member.id)) {
-                    this.$http.delete('committeedetails/'+member.id)
+                    this.$http.delete('committeedetails/' + member.id)
                         .then(response => {
-                            window.location.reload();
+                            this.committee_members = this.committee_members.filter(allMembers => {
+                                return allMembers.id !== member.id;
+                            });
                         })
                         .catch(e => console.log(e));
                 }

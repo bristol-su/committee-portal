@@ -28,5 +28,13 @@
     "/js/riskassessment.js": "/js/riskassessment.js",
     "/js/strategicplan.js": "/js/strategicplan.js",
     "/js/taskallocation.js": "/js/taskallocation.js",
-    "/js/admin.js": "/js/admin.js"
+    "/js/admin.js": "/js/admin.js",
+    "/css/executivesummary.css": "/css/executivesummary.css",
+    "/css/furtherinformation.css": "/css/furtherinformation.css",
+    "/css/presentation.css": "/css/presentation.css",
+    "/css/tierselection.css": "/css/tierselection.css",
+    "/js/executivesummary.js": "/js/executivesummary.js",
+    "/js/furtherinformation.js": "/js/furtherinformation.js",
+    "/js/presentation.js": "/js/presentation.js",
+    "/js/tierselection.js": "/js/tierselection.js"
 }

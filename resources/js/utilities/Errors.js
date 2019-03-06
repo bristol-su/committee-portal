@@ -62,4 +62,13 @@ export default class Errors {
 
         this.errors = {};
     }
+
+    /**
+     * Return all errors
+     *
+     * @returns {object}
+     */
+    all() {
+        return this.errors;
+    }
 }

@@ -15,6 +15,10 @@ return [
             'header' => 'Reaffiliation - Optional',
             'subtitle' => 'Optional tasks to help your group throughout the year.'
         ],
+        'we-are-bristol' => [
+            'header' => '#WeAreBristol',
+            'subtitle' => 'We are Bristol Registration Modules'
+        ],
 
         // Admin Headers
         'financial' => [

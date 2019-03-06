@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use ActiveResource\Connection;
 use ActiveResource\ConnectionManager;
-use App\Packages\ControlDB\ActiveRecordAuthentication;
-use App\Packages\ControlDB\ControlDBInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,10 +35,10 @@ class APIActiveRecordServiceProvider extends ServiceProvider
         $token = app('App\Packages\ControlDB\ControlDBInterface')->getAuthToken();
 
         $options = [
-            Connection::OPTION_BASE_URI => config('control.base_uri').'/api/',
+            Connection::OPTION_BASE_URI => config('control.base_uri') . '/api/',
             Connection::OPTION_DEFAULT_HEADERS => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer '.$token
+                'Authorization' => 'Bearer ' . $token
             ],
             Connection::OPTION_COLLECTION_CLASS => Collection::class,
             Connection::OPTION_UPDATE_METHOD => 'patch',

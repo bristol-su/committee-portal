@@ -141,10 +141,32 @@
 
 /***/ }),
 
+/***/ "./app/Modules/ExecutiveSummary/Resources/assets/sass/executivesummary.scss":
+/*!**********************************************************************************!*\
+  !*** ./app/Modules/ExecutiveSummary/Resources/assets/sass/executivesummary.scss ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss":
 /*!**********************************************************************************!*\
   !*** ./app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss ***!
   \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./app/Modules/FurtherInformation/Resources/assets/sass/furtherinformation.scss":
+/*!**************************************************************************************!*\
+  !*** ./app/Modules/FurtherInformation/Resources/assets/sass/furtherinformation.scss ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -196,6 +218,17 @@
 
 /***/ }),
 
+/***/ "./app/Modules/Presentation/Resources/assets/sass/presentation.scss":
+/*!**************************************************************************!*\
+  !*** ./app/Modules/Presentation/Resources/assets/sass/presentation.scss ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss":
 /*!******************************************************************************!*\
   !*** ./app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss ***!
@@ -229,6 +262,17 @@
 
 /***/ }),
 
+/***/ "./app/Modules/TierSelection/Resources/assets/sass/tierselection.scss":
+/*!****************************************************************************!*\
+  !*** ./app/Modules/TierSelection/Resources/assets/sass/tierselection.scss ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -241,9 +285,9 @@
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./app/Modules/Budget/Resources/assets/js/budget.js ./app/Modules/Budget/Resources/assets/sass/budget.scss ./app/Modules/CommitteeDetails/Resources/assets/sass/committeedetails.scss ./app/Modules/Constitution/Resources/assets/sass/constitution.scss ./app/Modules/EquipmentList/Resources/assets/sass/equipmentlist.scss ./app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss ./app/Modules/GroupInfo/Resources/assets/sass/groupinfo.scss ./app/Modules/IncomingTreasurer/Resources/assets/sass/incomingtreasurer.scss ./app/Modules/MainContacts/Resources/assets/sass/maincontacts.scss ./app/Modules/NGB/Resources/assets/sass/ngb.scss ./app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss ./app/Modules/StrategicPlan/Resources/assets/sass/strategicplan.scss ./app/Modules/TaskAllocation/Resources/assets/sass/taskallocation.scss ./resources/sass/app.scss ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./app/Modules/Budget/Resources/assets/js/budget.js ./app/Modules/Budget/Resources/assets/sass/budget.scss ./app/Modules/CommitteeDetails/Resources/assets/sass/committeedetails.scss ./app/Modules/Constitution/Resources/assets/sass/constitution.scss ./app/Modules/EquipmentList/Resources/assets/sass/equipmentlist.scss ./app/Modules/ExecutiveSummary/Resources/assets/sass/executivesummary.scss ./app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss ./app/Modules/FurtherInformation/Resources/assets/sass/furtherinformation.scss ./app/Modules/GroupInfo/Resources/assets/sass/groupinfo.scss ./app/Modules/IncomingTreasurer/Resources/assets/sass/incomingtreasurer.scss ./app/Modules/MainContacts/Resources/assets/sass/maincontacts.scss ./app/Modules/NGB/Resources/assets/sass/ngb.scss ./app/Modules/Presentation/Resources/assets/sass/presentation.scss ./app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss ./app/Modules/StrategicPlan/Resources/assets/sass/strategicplan.scss ./app/Modules/TaskAllocation/Resources/assets/sass/taskallocation.scss ./app/Modules/TierSelection/Resources/assets/sass/tierselection.scss ./resources/sass/app.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -252,14 +296,18 @@ __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/commit
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/CommitteeDetails/Resources/assets/sass/committeedetails.scss */"./app/Modules/CommitteeDetails/Resources/assets/sass/committeedetails.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/Constitution/Resources/assets/sass/constitution.scss */"./app/Modules/Constitution/Resources/assets/sass/constitution.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/EquipmentList/Resources/assets/sass/equipmentlist.scss */"./app/Modules/EquipmentList/Resources/assets/sass/equipmentlist.scss");
+__webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/ExecutiveSummary/Resources/assets/sass/executivesummary.scss */"./app/Modules/ExecutiveSummary/Resources/assets/sass/executivesummary.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss */"./app/Modules/ExitingTreasurer/Resources/assets/sass/exitingtreasurer.scss");
+__webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/FurtherInformation/Resources/assets/sass/furtherinformation.scss */"./app/Modules/FurtherInformation/Resources/assets/sass/furtherinformation.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/GroupInfo/Resources/assets/sass/groupinfo.scss */"./app/Modules/GroupInfo/Resources/assets/sass/groupinfo.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/IncomingTreasurer/Resources/assets/sass/incomingtreasurer.scss */"./app/Modules/IncomingTreasurer/Resources/assets/sass/incomingtreasurer.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/MainContacts/Resources/assets/sass/maincontacts.scss */"./app/Modules/MainContacts/Resources/assets/sass/maincontacts.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/NGB/Resources/assets/sass/ngb.scss */"./app/Modules/NGB/Resources/assets/sass/ngb.scss");
+__webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/Presentation/Resources/assets/sass/presentation.scss */"./app/Modules/Presentation/Resources/assets/sass/presentation.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss */"./app/Modules/RiskAssessment/Resources/assets/sass/riskassessment.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/StrategicPlan/Resources/assets/sass/strategicplan.scss */"./app/Modules/StrategicPlan/Resources/assets/sass/strategicplan.scss");
 __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/TaskAllocation/Resources/assets/sass/taskallocation.scss */"./app/Modules/TaskAllocation/Resources/assets/sass/taskallocation.scss");
+__webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/app/Modules/TierSelection/Resources/assets/sass/tierselection.scss */"./app/Modules/TierSelection/Resources/assets/sass/tierselection.scss");
 module.exports = __webpack_require__(/*! /home/toby/development/bristolsu/committee-portal/committee-portal/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

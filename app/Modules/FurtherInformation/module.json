@@ -1,0 +1,16 @@
+{
+    "name": "FurtherInformation",
+    "alias": "furtherinformation",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\FurtherInformation\\Providers\\FurtherInformationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\FurtherInformation\\ModuleConfiguration",
+    "in_development": true
+}

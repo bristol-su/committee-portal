@@ -2,7 +2,7 @@
     <div>
         <v-select
                 :loading="loading"
-                :options="filteredOptions"
+                :options="options"
                 label="name"
                 v-model="selectedOption"
         >
@@ -26,19 +26,15 @@
         props: {
             initialPositionId: {
                 default: null
-            },
-            takenPositions: {
-                required: true,
-                type: Array
             }
         },
 
         data() {
             return {
                 options: [],
-                errorVisible: false,
                 selectedOption: null,
-                loading: false
+                errorVisible: false,
+                loading: false,
             }
         },
 
@@ -50,46 +46,32 @@
 
         mounted() {
             this.loading = true;
-            this.$http.get('control-database/api/positions')
+            // Load available positions
+            this.$http.get('committeedetails/positions')
                 .then(response => {
                     this.options = response.data;
-                    this.errorVisible = false;
                     this.loading = false;
-                    if (this.initialPositionId !== null) {
-                        this.selectedOption = response.data.filter(position => position.id === this.initialPositionId)[0]
-                    }
                 })
                 .catch(error => {
                     this.errorVisible = true;
                     this.loading = false;
                 });
+
+            // If the user is being edited, add their position too
+            if (this.initialPositionId !== null) {
+                this.$http.get('control-database/api/positions')
+                    .then(response => {
+                        let option = response.data.filter(position => position.id === this.initialPositionId)[0];
+                        this.options.push(option);
+                        this.selectedOption = option;
+                    })
+                    .catch(error => {
+                        this.errorVisible = true;
+                    });
+            }
+
         },
 
-        computed: {
-            filteredOptions() {
-                return this.options.filter(option => this.shouldPositionBeSelectable(option.id));
-            }
-        },
-
-        methods: {
-            shouldPositionBeSelectable(id) {
-                return this.isPositionAllowed(id) &&
-                    (this.isPositionAllowedMultipleCommitteeMembers(id)?true:!this.isPositionTaken(id))
-            },
-            isPositionAllowed(id) {
-                // Should be in the allowed position array
-                return committeePortal.group_settings.allowed_positions.indexOf(id) !== -1;
-
-            },
-            isPositionAllowedMultipleCommitteeMembers(id) {
-                // Shouldn't be in the single committee member array
-                return committeePortal.group_settings.position_only_has_single_committee_member.indexOf(id) === -1;
-            },
-            isPositionTaken(id) {
-                // Does at least one person hold this position?
-                return this.takenPositions.indexOf(id) !== -1;
-            }
-        }
     }
 
 </script>

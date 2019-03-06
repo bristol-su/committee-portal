@@ -14,6 +14,7 @@ namespace App\Traits;
 
 use ActiveResource\ConnectionManager;
 use App\Packages\ControlDB\Models\Student;
+use Illuminate\Support\Facades\Log;
 
 trait GetsControlStudentByUnionCloudID
 {
@@ -42,4 +43,23 @@ trait GetsControlStudentByUnionCloudID
         }
     }
 
+    /**
+     * @param $uid
+     * @return Student
+     * @throws \Exception
+     */
+    public function getOrCreateStudentByUid($uid) {
+        try {
+            $student = $this->getStudentByUid($uid);
+            return $student;
+        } catch (\Exception $e) {
+            $student = new Student();
+            $student->uc_uid = $uid;
+            if($student->save()) {
+                return $student;
+            }
+        }
+
+        throw new \Exception('Student not found', 404);
+    }
 }

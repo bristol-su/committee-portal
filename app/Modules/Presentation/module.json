@@ -1,0 +1,16 @@
+{
+    "name": "Presentation",
+    "alias": "presentation",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\Presentation\\Providers\\PresentationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\Presentation\\ModuleConfiguration",
+    "in_development": true
+}

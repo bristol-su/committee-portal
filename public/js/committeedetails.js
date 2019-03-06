@@ -527,20 +527,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     committeeMember: {
       default: null
-    },
-    takenPositions: {
-      required: true
     }
   },
   data: function data() {
     return {
-      form: {}
+      form: {},
+      submitting: false
     };
   },
   created: function created() {
@@ -574,14 +582,25 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     saveCommitteeMember: function saveCommitteeMember() {
+      var _this = this;
+
       // Fire a request to the backend
       var url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
+      this.submitting = true;
       this.form.post(url).then(function (response) {
-        window.location.reload();
+        _this.$notify({
+          'title': 'Success',
+          'text': 'Committee member added.'
+        });
+
+        _this.$emit('memberAdded', response);
+
+        _this.submitting = false;
       }).catch(function (error) {
-        console.log(error);
+        _this.form.errors.record(error.errors);
+
+        _this.submitting = false;
       });
-      this.$emit('close');
     }
   },
   components: {
@@ -647,6 +666,10 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     studentName: function studentName() {
       return Object.keys(this.student).length > 0 ? this.student.forename + ' ' + this.student.surname : '';
+    },
+    studentId: function studentId() {
+      console.log(this.student);
+      return this.student.id === false ? 'N/A' : this.student.id;
     }
   },
   mounted: function mounted() {
@@ -657,6 +680,13 @@ __webpack_require__.r(__webpack_exports__);
     }).catch(function (error) {
       return _this.studentFailed = true;
     });
+  },
+  methods: {
+    deleteCommitteeMember: function deleteCommitteeMember() {
+      if (confirm('Are you sure you wish to remove this student from the committee?')) {
+        this.$emit('delete', this.committeemember);
+      }
+    }
   }
 });
 
@@ -764,6 +794,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -773,7 +814,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      committee_members: []
+      committee_members: [],
+      editingCommitteeMember: null,
+      showForm: false
     };
   },
   created: function created() {
@@ -787,31 +830,25 @@ __webpack_require__.r(__webpack_exports__);
         _this.committee_members = response.data;
       });
     },
-    committeeChanged: function committeeChanged(event) {
-      console.log('committee_changed');
-      this.loadCommittee();
+    memberAdded: function memberAdded(member) {
+      this.$modal.hide('committee-member-form');
+      this.committee_members.push(member);
     },
     openCommitteeForm: function openCommitteeForm(member) {
-      var data = {};
-
       if (!(member instanceof MouseEvent)) {
-        data = {
-          committeeMember: member
-        };
+        this.editingCommitteeMember = member;
       }
 
-      data.takenPositions = this.committee_members.map(function (o) {
-        return o.position.id;
-      }); // https://www.npmjs.com/package/vue-js-modal#properties
-
-      this.$modal.show(_CommitteeMemberForm__WEBPACK_IMPORTED_MODULE_1__["default"], data, window.$defaultModalSettings, {
-        'committeeChanged': this.committeeChanged
-      });
+      this.$modal.show('committee-member-form');
     },
     deleteCommitteeMember: function deleteCommitteeMember(member) {
+      var _this2 = this;
+
       if (Number.isInteger(member.id)) {
         this.$http.delete('committeedetails/' + member.id).then(function (response) {
-          window.location.reload();
+          _this2.committee_members = _this2.committee_members.filter(function (allMembers) {
+            return allMembers.id !== member.id;
+          });
         }).catch(function (e) {
           return console.log(e);
         });
@@ -856,17 +893,13 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     initialPositionId: {
       default: null
-    },
-    takenPositions: {
-      required: true,
-      type: Array
     }
   },
   data: function data() {
     return {
       options: [],
-      errorVisible: false,
       selectedOption: null,
+      errorVisible: false,
       loading: false
     };
   },
@@ -878,46 +911,28 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.loading = true;
-    this.$http.get('control-database/api/positions').then(function (response) {
-      _this.options = response.data;
-      _this.errorVisible = false;
-      _this.loading = false;
+    this.loading = true; // Load available positions
 
-      if (_this.initialPositionId !== null) {
-        _this.selectedOption = response.data.filter(function (position) {
-          return position.id === _this.initialPositionId;
-        })[0];
-      }
+    this.$http.get('committeedetails/positions').then(function (response) {
+      _this.options = response.data;
+      _this.loading = false;
     }).catch(function (error) {
       _this.errorVisible = true;
       _this.loading = false;
-    });
-  },
-  computed: {
-    filteredOptions: function filteredOptions() {
-      var _this2 = this;
+    }); // If the user is being edited, add their position too
 
-      return this.options.filter(function (option) {
-        return _this2.shouldPositionBeSelectable(option.id);
+    if (this.initialPositionId !== null) {
+      this.$http.get('control-database/api/positions').then(function (response) {
+        var option = response.data.filter(function (position) {
+          return position.id === _this.initialPositionId;
+        })[0];
+
+        _this.options.push(option);
+
+        _this.selectedOption = option;
+      }).catch(function (error) {
+        _this.errorVisible = true;
       });
-    }
-  },
-  methods: {
-    shouldPositionBeSelectable: function shouldPositionBeSelectable(id) {
-      return this.isPositionAllowed(id) && (this.isPositionAllowedMultipleCommitteeMembers(id) ? true : !this.isPositionTaken(id));
-    },
-    isPositionAllowed: function isPositionAllowed(id) {
-      // Should be in the allowed position array
-      return committeePortal.group_settings.allowed_positions.indexOf(id) !== -1;
-    },
-    isPositionAllowedMultipleCommitteeMembers: function isPositionAllowedMultipleCommitteeMembers(id) {
-      // Shouldn't be in the single committee member array
-      return committeePortal.group_settings.position_only_has_single_committee_member.indexOf(id) === -1;
-    },
-    isPositionTaken: function isPositionTaken(id) {
-      // Does at least one person hold this position?
-      return this.takenPositions.indexOf(id) !== -1;
     }
   }
 });
@@ -1056,12 +1071,26 @@ var render = function() {
               _vm._m(1),
               _vm._v(" "),
               _c("position-select", {
-                attrs: {
-                  initialPositionId: _vm.form.position_id,
-                  takenPositions: _vm.takenPositions
-                },
+                attrs: { initialPositionId: _vm.form.position_id },
                 on: { positionSelected: _vm.updatePosition }
-              })
+              }),
+              _vm._v(" "),
+              _c("small", [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: this.form.errors.has("position_id"),
+                        expression: "this.form.errors.has('position_id')"
+                      }
+                    ]
+                  },
+                  [_vm._v(_vm._s(this.form.errors.get("position_id")))]
+                )
+              ])
             ],
             1
           ),
@@ -1090,7 +1119,24 @@ var render = function() {
                       _vm.$set(_vm.form, "position_name", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c("small", [
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: this.form.errors.has("position_name"),
+                          expression: "this.form.errors.has('position_name')"
+                        }
+                      ]
+                    },
+                    [_vm._v(_vm._s(this.form.errors.get("position_name")))]
+                  )
+                ])
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -1103,7 +1149,24 @@ var render = function() {
               _c("user-select", {
                 attrs: { initialUid: _vm.form.unioncloud_id },
                 on: { studentSelected: _vm.updateStudent }
-              })
+              }),
+              _vm._v(" "),
+              _c("small", [
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: this.form.errors.has("unioncloud_id"),
+                        expression: "this.form.errors.has('unioncloud_id')"
+                      }
+                    ]
+                  },
+                  [_vm._v(_vm._s(this.form.errors.get("unioncloud_id")))]
+                )
+              ])
             ],
             1
           ),
@@ -1112,12 +1175,12 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-info",
-              attrs: { type: "submit" },
+              attrs: { disabled: _vm.submitting, type: "submit" },
               on: { click: _vm.saveCommitteeMember }
             },
             [
               _vm._v(
-                "Add\n                    Committee Member\n                "
+                "\n                    Add\n                    Committee Member\n                "
               )
             ]
           )
@@ -1134,7 +1197,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("h4", { staticClass: "m-0" }, [
         _vm._v(
-          "Add a new committee member for your society. Anyone you add must have an account on\n                    our\n                    "
+          "Add a new committee member for your society. Anyone you add must have an account\n                    on\n                    our\n                    "
         ),
         _c("a", { attrs: { href: "https://www.bristolsu.org.uk" } }, [
           _vm._v("website!")
@@ -1192,7 +1255,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("committee-member-row-cell", {
-        attrs: { display: _vm.student.id, failed: _vm.studentFailed }
+        attrs: { display: _vm.studentId, failed: _vm.studentFailed }
       }),
       _vm._v(" "),
       _c("committee-member-row-cell", {
@@ -1213,11 +1276,7 @@ var render = function() {
         _c("input", {
           staticClass: "btn btn-outline-danger",
           attrs: { type: "button", value: "Delete" },
-          on: {
-            click: function($event) {
-              return _vm.$emit("delete", _vm.committeemember)
-            }
-          }
+          on: { click: _vm.deleteCommitteeMember }
         })
       ])
     ],
@@ -1276,42 +1335,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("input", {
-          staticClass: "btn btn-outline-info",
-          attrs: { type: "button", value: "Add Committee Member" },
-          on: { click: _vm.openCommitteeForm }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-striped table-borderless" }, [
-            _vm._m(0),
-            _vm._v(" "),
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("input", {
+            staticClass: "btn btn-outline-info",
+            attrs: { type: "button", value: "Add Committee Member" },
+            on: { click: _vm.openCommitteeForm }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "table-responsive" }, [
             _c(
-              "tbody",
-              _vm._l(_vm.committee_members, function(committee) {
-                return _c("committee-member-row", {
-                  key: committee.id,
-                  attrs: { committeemember: committee },
-                  on: {
-                    delete: _vm.deleteCommitteeMember,
-                    edit: _vm.openCommitteeForm
-                  }
-                })
-              }),
-              1
+              "table",
+              { staticClass: "table table-striped table-borderless" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.committee_members, function(committee) {
+                    return _c("committee-member-row", {
+                      key: committee.id,
+                      attrs: { committeemember: committee },
+                      on: {
+                        delete: _vm.deleteCommitteeMember,
+                        edit: _vm.openCommitteeForm
+                      }
+                    })
+                  }),
+                  1
+                )
+              ]
             )
           ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        { attrs: { name: "committee-member-form", height: "auto" } },
+        [
+          _c("committee-member-form", {
+            attrs: { "committee-member": _vm.editingCommitteeMember },
+            on: { memberAdded: _vm.memberAdded }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -1356,11 +1435,7 @@ var render = function() {
     "div",
     [
       _c("v-select", {
-        attrs: {
-          loading: _vm.loading,
-          options: _vm.filteredOptions,
-          label: "name"
-        },
+        attrs: { loading: _vm.loading, options: _vm.options, label: "name" },
         model: {
           value: _vm.selectedOption,
           callback: function($$v) {

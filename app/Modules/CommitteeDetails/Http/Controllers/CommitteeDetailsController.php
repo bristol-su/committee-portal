@@ -12,6 +12,7 @@ use App\Modules\CommitteeDetails\Rules\PositionMustBeEmpty;
 use App\Modules\CommitteeDetails\Rules\IsStudentAvailable;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
+use App\Packages\ControlDB\Models\Position;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsCorrectPositionId;
 use App\Rules\IsCorrectUnionCloudUid;
@@ -43,6 +44,8 @@ class CommitteeDetailsController extends Controller
      *
      * @param Request $request
      * @return CommitteeRole
+     *
+     * @throws \Exception
      */
     public function addUserToControl(Request $request)
     {
@@ -60,6 +63,8 @@ class CommitteeDetailsController extends Controller
      * @param Request $request
      * @param $positionStudentGroupID
      * @return CommitteeRole
+     *
+     * @throws \Exception
      */
     public function updateUserInControl(Request $request, $positionStudentGroupID)
     {
@@ -92,10 +97,53 @@ class CommitteeDetailsController extends Controller
     }
 
     /**
+     * Get available positions for a group
+     *
+     * @return array
+     */
+    public function getPositions()
+    {
+        $positions = Position::all();
+        $positionSettings = PositionSetting::where('tag_reference', getGroupType())->get()->first();
+        $group = Group::find(
+            Auth::user()->getAuthenticatedUser()->group->id
+        );
+        $committeeRoles = CommitteeRole::allThrough($group);
+
+        if($positionSettings === false) {
+            return back()
+                ->withErrors(['position_id' => 'Could not find your group type']);
+        }
+
+
+        $filteredPositions = $positions->filter(function($position) use ($positionSettings, $group, $committeeRoles) {
+            // TODO Make this use the rules which committee roles use
+
+            // Ensure the position is allowed
+            if( !in_array($position->id, $positionSettings->allowed_positions)) {
+                return false;
+            }
+            // Ensure the position isn't taken
+            if(in_array($position->id, $positionSettings->position_only_has_single_committee_member)) {
+                if($committeeRoles->filter(function($committeeRole) use ($position) {
+                    return $committeeRole->position_id === $position->id
+                        && $committeeRole->committee_year === config('portal.reaffiliation_year');
+                })->count() > 0) {
+                    return false;
+                }
+            }
+            return true;
+        })->values();
+
+        return $filteredPositions;
+    }
+    /**
      * Validate the Student and Position details
      *
      * @param Request $request
      * @param int|null $ignoreCommitteeRoleID ID of a committee role to ignore for rules
+     *
+     * @throws \Exception
      */
     private function validateUserAdditionRequest(Request $request, $ignoreCommitteeRoleID=null)
     {
@@ -113,7 +161,7 @@ class CommitteeDetailsController extends Controller
      *
      * @param Request $request
      * @param CommitteeRole $committeeRole
-     * @return CommitteeRole
+     * @return \ActiveResource\Model|bool
      */
     private function updateCommitteeRole(Request $request, CommitteeRole $committeeRole)
     {
@@ -127,7 +175,8 @@ class CommitteeDetailsController extends Controller
             Log::error('Could not save committee role. Code ' . $committeeRole->getResponse()->getStatusCode() . ', Message ' . $committeeRole->getResponse()->getStatusPhrase());
             abort(500, 'We could not save your new committee position');
         }
-        return $committeeRole;
+
+        return CommitteeRole::find($committeeRole->id);
     }
 
     /**

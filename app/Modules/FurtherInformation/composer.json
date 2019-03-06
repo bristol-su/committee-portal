@@ -1,0 +1,25 @@
+{
+    "name": "bristol-su/furtherinformation",
+    "description": "",
+    "authors": [
+        {
+            "name": "Toby Twigger",
+            "email": "tt15951@bristol.ac.uk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\FurtherInformation\\Providers\\FurtherInformationServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\FurtherInformation\\": ""
+        }
+    }
+}

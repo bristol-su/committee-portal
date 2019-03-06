@@ -1,0 +1,16 @@
+{
+    "name": "TierSelection",
+    "alias": "tierselection",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\TierSelection\\Providers\\TierSelectionServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\TierSelection\\ModuleConfiguration",
+    "in_development": true
+}

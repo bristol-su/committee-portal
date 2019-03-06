@@ -4,7 +4,8 @@
             <div class="card text-black bg-white mb-0">
 
                 <div class="card-header">
-                    <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account on
+                    <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account
+                        on
                         our
                         <a href="https://www.bristolsu.org.uk">website!</a></h4>
                 </div>
@@ -19,9 +20,12 @@
 
                         <position-select
                                 :initialPositionId="form.position_id"
-                                :takenPositions="takenPositions"
                                 @positionSelected="updatePosition"
                         ></position-select>
+
+                        <small><span v-show="this.form.errors.has('position_id')">{{this.form.errors.get('position_id')}}</span>
+                        </small>
+
                     </div>
 
 
@@ -31,6 +35,9 @@
                         </div>
 
                         <input class="form-control" type="text" v-model="form.position_name"/>
+
+                        <small><span v-show="this.form.errors.has('position_name')">{{this.form.errors.get('position_name')}}</span>
+                        </small>
 
 
                     </div>
@@ -47,16 +54,19 @@
                                 @studentSelected="updateStudent"
                         ></user-select>
 
+                        <small><span v-show="this.form.errors.has('unioncloud_id')">{{this.form.errors.get('unioncloud_id')}}</span>
+                        </small>
+
                     </div>
 
 
-                    <button @click="saveCommitteeMember" class="btn btn-info" type="submit">Add
+                    <button :disabled="submitting" @click="saveCommitteeMember" class="btn btn-info" type="submit">
+                        Add
                         Committee Member
                     </button>
 
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -70,17 +80,14 @@
         props: {
             committeeMember: {
                 default: null
-            },
-
-            takenPositions: {
-                required: true
-            },
+            }
 
         },
 
         data() {
             return {
-                form: {}
+                form: {},
+                submitting: false
             }
         },
 
@@ -124,14 +131,20 @@
             saveCommitteeMember() {
                 // Fire a request to the backend
                 let url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
+                this.submitting = true;
                 this.form.post(url)
                     .then(response => {
-                        window.location.reload();
+                        this.$notify({
+                            'title': 'Success',
+                            'text': 'Committee member added.'
+                        });
+                        this.$emit('memberAdded', response);
+                        this.submitting = false;
                     })
                     .catch(error => {
-                        console.log(error)
+                        this.form.errors.record(error.errors);
+                        this.submitting = false;
                     });
-                this.$emit('close');
             }
 
         },

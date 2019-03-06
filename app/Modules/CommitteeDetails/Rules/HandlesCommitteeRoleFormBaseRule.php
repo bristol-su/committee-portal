@@ -90,12 +90,12 @@ abstract class HandlesCommitteeRoleFormBaseRule implements Rule
         $this->position = Position::find($request->get('position_id'));
 
         try {
-            $this->student = $this->getStudentByUid($request->get('unioncloud_id'));
+            $this->student = $this->getOrCreateStudentByUid($request->get('unioncloud_id'));
         } catch (\Exception $e) {
             $this->student = null;
         }
 
-        $this->positionSetting = PositionSetting::where('tag_reference', getTagReference())->get()->first();
+        $this->positionSetting = PositionSetting::where('tag_reference', getGroupType())->get()->first();
 
         return $this->getPropertyErrors();
     }

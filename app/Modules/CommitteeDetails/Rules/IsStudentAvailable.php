@@ -2,13 +2,7 @@
 
 namespace App\Modules\CommitteeDetails\Rules;
 
-use App\Modules\CommitteeDetails\Traits\ValidatesCommitteeRole;
 use App\Packages\ControlDB\Models\CommitteeRole;
-use Illuminate\Contracts\Validation\Rule;
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
-use App\Packages\ControlDB\Models\Group;
-use App\Packages\ControlDB\Models\Position;
-use App\Packages\ControlDB\Models\Student;
 
 class IsStudentAvailable extends HandlesCommitteeRoleFormBaseRule
 {
@@ -16,8 +10,8 @@ class IsStudentAvailable extends HandlesCommitteeRoleFormBaseRule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param  string $attribute
+     * @param  mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
@@ -46,10 +40,10 @@ class IsStudentAvailable extends HandlesCommitteeRoleFormBaseRule
     /**
      * Get the validation error message.
      *
-     * @return string
+     * @return array
      */
     public function message()
     {
-        return 'The student is already in a position.';
+        return ['unioncloud_id' => 'The student is already in a position.'];
     }
 }

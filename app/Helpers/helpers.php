@@ -7,8 +7,8 @@ if (!function_exists('getReaffiliationYear')) {
     }
 }
 
-if (!function_exists('getTagReference')) {
-    function getTagReference()
+if (!function_exists('getGroupType')) {
+    function getGroupType()
     {
         abort_if(request()->get('auth_group_tags') === null, 403, 'Could not find your group tag.');
         $groupTags = request()->get('auth_group_tags');

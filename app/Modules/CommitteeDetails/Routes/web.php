@@ -15,5 +15,5 @@
     Route::post('/', 'CommitteeDetailsController@addUserToControl');
     Route::post('/{positionStudentGroupID}', 'CommitteeDetailsController@updateUserInControl');
     Route::delete('/{positionStudentGroupID}', 'CommitteeDetailsController@deleteCommitteeRoleFromControl');
-
+    Route::get('/positions', 'CommitteeDetailsController@getPositions');
 });
