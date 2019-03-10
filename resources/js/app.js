@@ -16,7 +16,7 @@ import PortalVue from 'portal-vue'
 window.Event = new Vue();
 
 // Extend Vue
-// Vue.use(Notifications);
+// Vue.use(Notifications)wir;
 Vue.use(VModal);
 Vue.use(PortalVue);
 

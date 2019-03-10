@@ -2,71 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Modules/Budget/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNotes.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/notification.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Http/Controllers/BudgetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Http/Controllers/BudgetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Http/Controllers/CommitteeDetailsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/assets/js/components/CommitteeMemberForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Http/Controllers/ConstitutionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Http/Controllers/ConstitutionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Http/Controllers/RiskAssessmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Http/Controllers/RiskAssessmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Http/Controllers/StrategicPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Http/Controllers/StrategicPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadMigration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadMigration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/NoteModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/NoteModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/FileUploadServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/FileUploadServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/budget.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/budget.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/committeedetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/committeedetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/CommitteeRoleSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CommitteeRoleSelect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/CustomFileUpload.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/CustomFileUpload.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/FileTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/FileTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -597,12 +532,12 @@
       <workItem from="1551976697472" duration="1309000" />
       <workItem from="1552074609849" duration="9080000" />
       <workItem from="1552150211820" duration="31848000" />
-      <workItem from="1552213468980" duration="25661000" />
+      <workItem from="1552213468980" duration="26186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="500909000" />
+    <option name="totallyTimeSpent" value="501434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -615,7 +550,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.32760417" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
