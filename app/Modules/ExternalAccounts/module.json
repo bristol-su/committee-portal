@@ -1,0 +1,16 @@
+{
+    "name": "ExternalAccounts",
+    "alias": "externalaccounts",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\ExternalAccounts\\Providers\\ExternalAccountsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\ExternalAccounts\\ModuleConfiguration",
+    "in_development": true
+}

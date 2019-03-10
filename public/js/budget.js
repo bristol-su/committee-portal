@@ -93,7 +93,12 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+new Vue({
+  el: '#budget-root',
+  components: {
+    'upload-file': CustomFileUpload
+  }
+});
 
 /***/ }),
 

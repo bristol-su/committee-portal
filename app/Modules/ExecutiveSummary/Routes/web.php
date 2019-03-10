@@ -11,6 +11,11 @@
 |
 */
 
-Route::prefix('executivesummary')->group(function() {
-    Route::get('/', 'ExecutiveSummaryController@index');
+Route::prefix('executivesummary')->middleware(['user', 'module', 'module.status:executivesummary'])->group(function() {
+
+    Route::get('/', 'ExecutiveSummaryController@showUserPage');
+
+    Route::FileUploads('ExecutiveSummaryController');
+
 });
+

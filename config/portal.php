@@ -51,6 +51,8 @@ return [
     'reaffiliation_status' => [
         'incomplete' => 'btn btn-danger',
 
+        'complete' => 'btn btn-success',
+
         'admin' => 'btn btn-success'
     ],
 

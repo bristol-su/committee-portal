@@ -2,14 +2,26 @@
 
 namespace App\Modules\Constitution\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use App\Modules\Constitution\Entities\File;
+use App\Modules\Constitution\Entities\Note;
+use App\Packages\FileUpload\FileUploadController;
 
-class ConstitutionController extends Controller
+class ConstitutionController extends FileUploadController
 {
-    public function index() {
-        return response('In development.');
+
+    public function showUserForm()
+    {
+        return view('constitution::constitution');
+    }
+
+    protected function noteModel(): string
+    {
+        return Note::class;
+    }
+
+    protected function fileModel(): string
+    {
+        return File::class;
     }
 
 }

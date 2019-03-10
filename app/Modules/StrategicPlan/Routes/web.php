@@ -12,5 +12,8 @@
 */
 
 Route::prefix('strategicplan')->middleware(['user', 'module', 'module.status:strategicplan'])->group(function() {
-    Route::get('/', 'StrategicPlanController@index');
+    Route::get('/', 'StrategicPlanController@showUserForm');
+
+    Route::FileUploads('StrategicPlanController');
+
 });

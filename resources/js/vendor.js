@@ -3,8 +3,9 @@ import Popper from 'popper.js';
 import jQuery from 'jquery';
 import axios from 'axios';
 import Vue from 'vue';
-import Notifications from 'vue-notification'
 import bootstrap from 'bootstrap';
+import Moment from 'moment';
+
 /**
  * Load lodash
  */
@@ -12,7 +13,7 @@ window._ = _;
 
 window.Vue = Vue;
 
-window.Notifications = Notifications;
+
 
 
 /**

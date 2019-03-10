@@ -11,6 +11,11 @@
 |
 */
 
-Route::prefix('tierselection')->group(function() {
-    Route::get('/', 'TierSelectionController@showTierSelection');
+Route::prefix('tierselection')->middleware(['user', 'module', 'module.status:tierselection'])->group(function() {
+    Route::get('/', 'TierSelectionController@showTierSelectionUserPage');
+    Route::post('/', 'TierSelectionController@submitTier');
+});
+
+Route::prefix('tierselection/api')->middleware(['user', 'module', 'module.status:tierselection'])->group(function() {
+    Route::get('/tiers', 'TierSelectionController@getTiers');
 });

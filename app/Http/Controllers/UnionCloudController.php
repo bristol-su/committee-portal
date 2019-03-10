@@ -24,7 +24,7 @@ class UnionCloudController extends Controller
         $uid = $request->get('uid');
 
         return Cache::remember('App.Http.Controllers.UnionCloudController.getUserByUID.'.$uid, $this->cacheRemember, function() use ($uid, $unionCloud) {
-            $user = $unionCloud->users()->getByUID($uid)->get()->first();
+            $user = $unionCloud->users()->getByUID($uid)->first();
 
             return [
                 'uid' => $user->uid,

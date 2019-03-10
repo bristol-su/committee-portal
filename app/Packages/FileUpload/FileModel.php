@@ -1,0 +1,69 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: toby
+ * Date: 10/03/19
+ * Time: 12:10
+ */
+
+namespace App\Packages\FileUpload;
+
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+abstract class FileModel extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'filename',
+        'mime',
+        'path',
+        'size',
+        'year',
+        'title',
+        'status',
+    ];
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = $this->getModuleName() . '_files';
+        parent::__construct($attributes);
+    }
+
+    /**
+     * Get the name of the module
+     *
+     * @return string
+     */
+    abstract protected function getModuleName(): string;
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function getSafeFileName()
+    {
+        return mb_convert_encoding(
+                str_replace([
+                    '/', '\\', '%'
+                ],
+                    '_',
+                    $this->title
+                ), 'ASCII') .
+            $this->getExtension();
+    }
+
+    public function getExtension()
+    {
+        $extension = last(explode('.', $this->filename));
+        return ('.' . $extension ?: '');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Modules\ExecutiveSummary\Entities\Note');
+    }
+}

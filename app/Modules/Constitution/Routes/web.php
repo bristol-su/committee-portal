@@ -12,5 +12,8 @@
 */
 
 Route::prefix('constitution')->middleware(['user', 'module', 'module.status:constitution'])->group(function() {
-    Route::get('/', 'ConstitutionController@index');
+    Route::get('/', 'ConstitutionController@showUserForm');
+
+    Route::FileUploads('ConstitutionController');
+
 });

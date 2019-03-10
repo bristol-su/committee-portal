@@ -3,6 +3,8 @@
 namespace App\Modules\TierSelection;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\TierSelection\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -41,7 +43,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function reaffiliationStatus()
     {
-        return 'incomplete';
+        if(Auth::user()->getCurrentRole() === null ) {
+            return 'admin';
+        }
+
+        if(Submission::countSubmissions(getGroupID()) > 0)
+        {
+            return 'complete';
+        } else {
+            return 'incomplete';
+        }
     }
 
     public function getDescription()

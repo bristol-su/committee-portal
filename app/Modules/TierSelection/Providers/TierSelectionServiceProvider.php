@@ -2,6 +2,7 @@
 
 namespace App\Modules\TierSelection\Providers;
 
+use App\Modules\TierSelection\Entities\Submission;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -26,6 +27,11 @@ class TierSelectionServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        // Default the tier submission year to the current reaffiliation year.
+        Submission::creating(function($submission) {
+            $submission->year = config('portal.reaffiliation_year');
+        });
     }
 
     /**

@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+
+class FileUploadServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Route::macro('FileUploads', function ($controller) {
+            Route::post('/upload-files', $controller.'@uploadFile');
+
+            Route::get('/retrieve-files', $controller.'@retrieveFile');
+
+            Route::get('/download-files/{id}', $controller.'@downloadFile');
+
+            Route::get('get-notes', $controller.'@getNotes');
+
+            Route::post('post-note/{id}', $controller.'@postNote');
+        });
+    }
+}

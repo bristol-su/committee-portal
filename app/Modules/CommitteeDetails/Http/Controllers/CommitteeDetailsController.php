@@ -104,9 +104,9 @@ class CommitteeDetailsController extends Controller
     public function getPositions()
     {
         $positions = Position::all();
-        $positionSettings = PositionSetting::where('tag_reference', getGroupType())->get()->first();
+        $positionSettings = PositionSetting::where('tag_reference', getGroupType())->first();
         $group = Group::find(
-            Auth::user()->getAuthenticatedUser()->group->id
+            getGroupID()
         );
         $committeeRoles = CommitteeRole::allThrough($group);
 
@@ -167,7 +167,7 @@ class CommitteeDetailsController extends Controller
     {
         // Validate Request
         $committeeRole->student_id = $this->getStudentControlID($request->get('unioncloud_id'));
-        $committeeRole->group_id = Auth::user()->getAuthenticatedUser()->group->id;
+        $committeeRole->group_id = getGroupID();
         $committeeRole->position_id = $request->get('position_id');
         $committeeRole->position_name = $request->get('position_name');
 

@@ -7,8 +7,12 @@
 
         <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right">
             <a @click.prevent="logout" class="dropdown-item" href="#" v-if="groupId !== null">
-                <button type="button" class="btn btn-outline-danger">Logout</button>
+                <button type="button" class="btn btn-outline-danger group-select-dropdown-button">Logout</button>
             </a>
+            <a class="dropdown-item" href="/portal" v-if="groupId !== null">
+                <button type="button" class="btn btn-outline-success group-select-dropdown-button">Go to portal</button>
+            </a>
+
             <a :id="group.id" @click.prevent="login" class="dropdown-item" href="#" v-for="group in groups"
                v-if="group.id !== currentGroup.id">
                 {{group.name}}
@@ -85,5 +89,9 @@
 </script>
 
 <style>
+
+    .group-select-dropdown-button {
+        width: 100%
+    }
 
 </style>

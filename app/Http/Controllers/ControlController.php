@@ -35,7 +35,7 @@ class ControlController extends Controller
 
     public function getPositionStudentGroups()
     {
-        $groupID = Auth::user()->getAuthenticatedUser()->group->id;
+        $groupID = getGroupID();
 
         $group = \App\Packages\ControlDB\Models\Group::find($groupID);
         return CommitteeRole::allThrough($group);

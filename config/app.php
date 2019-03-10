@@ -175,7 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        \App\Providers\APIActiveRecordServiceProvider::class
+        \App\Providers\APIActiveRecordServiceProvider::class,
+        \App\Providers\GoogleDriveServiceProvider::class,
+        \App\Providers\FileUploadServiceProvider::class,
     ],
 
     /*
@@ -228,4 +230,5 @@ return [
 
     ],
 
+    'google_dev_folder_id' => env('GOOGLE_DEV_FOLDER_ID')
 ];

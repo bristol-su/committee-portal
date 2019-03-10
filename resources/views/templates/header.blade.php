@@ -30,14 +30,14 @@
                         {{--This will give admins access to logging in as groups--}}
                         @if(\Auth::user()->hasPermissionTo('view-as-student'))
                             <group-select
-                                    @if(\Auth::guard('view-as-student')->check()) :group-id="{{\Auth::user()->getAuthenticatedUser()->group->id}}"  @endif >
+                                    @if(\Auth::guard('view-as-student')->check()) :group-id="{{\getGroupID()}}"  @endif >
 
                             </group-select>
 
                             {{--This grants access to logging in as another role owned by a student--}}
                         @elseif(\Auth::guard('committee-role')->check())
                             <committee-role-select
-                                    :role-id="{{ \Auth::user()->getAuthenticatedUser()->id }}">
+                                    :role-id="{{ \Auth::user()->getCurrentRole()->id }}">
                             </committee-role-select>
                         @endif
 

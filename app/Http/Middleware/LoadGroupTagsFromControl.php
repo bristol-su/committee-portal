@@ -20,7 +20,7 @@ class LoadGroupTagsFromControl
      */
     public function handle($request, Closure $next)
     {
-        $groupId = Auth::user()->getAuthenticatedUser()->group->id;
+        $groupId = getGroupID();
         $groupTags = Cache::remember('Middleware.LoadGroupTagsFromControl.'.$groupId, 200, function() use ($groupId){
 
             $group = Group::find($groupId);

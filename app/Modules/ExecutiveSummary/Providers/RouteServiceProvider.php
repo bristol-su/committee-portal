@@ -2,6 +2,7 @@
 
 namespace App\Modules\ExecutiveSummary\Providers;
 
+use App\Modules\ExecutiveSummary\Entities\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

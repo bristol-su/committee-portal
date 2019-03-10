@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Modules\Budget\Entities;
+
+
+use App\Packages\FileUpload\NoteModel;
+
+class Note extends NoteModel
+{
+    public function getModuleName(): string
+    {
+        return 'budget';
+    }
+}

@@ -12,5 +12,8 @@
 */
 
 Route::prefix('riskassessment')->middleware(['user', 'module', 'module.status:riskassessment'])->group(function() {
-    Route::get('/', 'RiskAssessmentController@index');
+    Route::get('/', 'RiskAssessmentController@showUserForm');
+
+    Route::FileUploads('RiskAssessmentController');
+
 });

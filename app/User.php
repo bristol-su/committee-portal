@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasPermissionTo('act-as-admin');
     }
 
-    public function getAuthenticatedUser()
+    public function getCurrentRole()
     {
         if($this->isAdmin()) {
             return Auth::guard('view-as-student')->user();

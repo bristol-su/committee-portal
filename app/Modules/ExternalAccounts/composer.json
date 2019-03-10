@@ -1,0 +1,25 @@
+{
+    "name": "bristol-su/externalaccounts",
+    "description": "",
+    "authors": [
+        {
+            "name": "Toby Twigger",
+            "email": "tt15951@bristol.ac.uk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\ExternalAccounts\\Providers\\ExternalAccountsServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\ExternalAccounts\\": ""
+        }
+    }
+}

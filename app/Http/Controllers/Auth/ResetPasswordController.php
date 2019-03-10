@@ -69,7 +69,7 @@ class ResetPasswordController extends Controller
         // Changes:
         $user = User::where('email', $request->input('identity'))
             ->orWhere('student_id', $request->input('identity'))
-            ->get()->first();
+            ->first();
 
         $request->merge(['email' => $user->email]);
 

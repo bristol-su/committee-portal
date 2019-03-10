@@ -12,5 +12,7 @@
 */
 
 Route::prefix('budget')->middleware(['user', 'module', 'module.status:budget'])->group(function() {
-    Route::get('/', 'BudgetController@index');
+    Route::get('/', 'BudgetController@showUserForm');
+
+    Route::FileUploads('BudgetController');
 });

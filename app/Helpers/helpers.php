@@ -20,39 +20,6 @@ if (!function_exists('getGroupType')) {
     }
 }
 
-//function getModuleConfiguration()
-//{
-//    return [
-//        [
-//            'header' => true,
-//            'title' => 'Main Navigation',
-//            // component: componentName
-//            // visibleOnCollapse: true
-//        ],
-//        [
-//            'href' => '/',
-//            'title' => 'Dashboard',
-//            'icon' => 'fa fa-user',
-//            /*
-//            disabled: true
-//            badge: {
-//                text: 'new',
-//                // class:''
-//            }
-//            */
-//        ],
-//        [
-//            'title' => 'Charts',
-//            'icon' => 'fa fa-chart-area',
-//            'child' => [
-//                [
-//                    'href' => '/charts/sublink',
-//                    'title' => 'Sub Link'
-//                ]
-//            ]
-//        ]
-//    ];
-//}
 
 if (!function_exists('getModuleConfiguration')) {
 
@@ -75,4 +42,11 @@ if (!function_exists('getModuleConfiguration')) {
 
     }
 
+}
+
+if (!function_exists('getGroupID')) {
+    function getGroupID()
+    {
+        return \Illuminate\Support\Facades\Auth::user()->getCurrentRole()->group->id;
+    }
 }

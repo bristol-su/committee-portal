@@ -12,5 +12,8 @@
 */
 
 Route::prefix('presentation')->group(function() {
-    Route::get('/', 'PresentationController@index');
+    Route::get('/', 'PresentationController@showUserPage');
+
+    Route::FileUploads('PresentationController');
+
 });

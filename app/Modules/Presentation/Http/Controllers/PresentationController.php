@@ -2,71 +2,30 @@
 
 namespace App\Modules\Presentation\Http\Controllers;
 
+use App\Modules\Presentation\Entities\File;
+use App\Modules\Presentation\Entities\Note;
+use App\Packages\FileUpload\FileUploadController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class PresentationController extends Controller
+class PresentationController extends FileUploadController
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+
+    public function showUserPage()
     {
-        return view('presentation::index');
+        return view('presentation::presentation');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+
+    protected function fileModel(): string
     {
-        return view('presentation::create');
+        return File::class;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    protected function noteModel(): string
     {
+        return Note::class;
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('presentation::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('presentation::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }

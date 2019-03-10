@@ -24,7 +24,7 @@ class LoadGroupPositionRequirementsIntoJavascript
             abort(403, 'Could not find your group type.');
         }
 
-        $positionSetting = PositionSetting::where('tag_reference', $tagReference)->get()->first();
+        $positionSetting = PositionSetting::where('tag_reference', $tagReference)->first();
 
         abort_if($positionSetting === null, 403, 'We couldn\'t find your group type on our system');
 

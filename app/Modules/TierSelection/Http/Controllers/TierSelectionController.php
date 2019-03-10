@@ -2,71 +2,42 @@
 
 namespace App\Modules\TierSelection\Http\Controllers;
 
+use App\Modules\TierSelection\Entities\Submission;
+use App\Modules\TierSelection\Entities\Tier;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TierSelectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    public function showTierSelectionUserPage()
     {
-        return view('tierselection::index');
+        return view('tierselection::tier_selection');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    public function getTiers()
     {
-        return view('tierselection::create');
+        return Tier::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function submitTier(Request $request)
     {
-    }
+        $request->validate([
+            'tier_id' => 'required|exists:tierselection_tiers,id'
+        ]);
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('tierselection::show');
-    }
+        $groupId = getGroupID();
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('tierselection::edit');
-    }
+        abort_if(Submission::countSubmissions($groupId) > 0, 400, 'You have already submitted your tier');
 
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
+        $submission = new Submission([
+            'group_id' => $groupId,
+            'tier_id' => $request->input('tier_id')
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+        abort_unless($submission->save(), 500, 'We were unable to save your selection.');
+
+        return $submission;
     }
 }

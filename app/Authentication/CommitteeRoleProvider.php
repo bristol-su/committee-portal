@@ -45,7 +45,7 @@ class CommitteeRoleProvider implements UserProvider
         if(isset($credentials['committee_role_id'])) {
             return $this->retrieveById($credentials['committee_role_id']);
         }
-        return null;
+        return false;
     }
 
     /**

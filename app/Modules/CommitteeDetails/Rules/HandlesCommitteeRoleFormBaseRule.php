@@ -84,7 +84,7 @@ abstract class HandlesCommitteeRoleFormBaseRule implements Rule
     {
         // Get the group
         $this->group = Group::find(
-            Auth::user()->getAuthenticatedUser()->group->id
+            getGroupID()
         );
 
         $this->position = Position::find($request->get('position_id'));
@@ -95,7 +95,7 @@ abstract class HandlesCommitteeRoleFormBaseRule implements Rule
             $this->student = null;
         }
 
-        $this->positionSetting = PositionSetting::where('tag_reference', getGroupType())->get()->first();
+        $this->positionSetting = PositionSetting::where('tag_reference', getGroupType())->first();
 
         return $this->getPropertyErrors();
     }

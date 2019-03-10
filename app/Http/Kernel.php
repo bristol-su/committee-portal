@@ -108,7 +108,6 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         EnsureEmailIsVerified::class,
         CheckIfAdmin::class,
-        CheckPasswordIsSet::class,
         AuthenticateUserGuard::class,
         LoadStudentTagsFromControl::class,
         LoadGroupTagsFromControl::class,

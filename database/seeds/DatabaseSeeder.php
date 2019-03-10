@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
 
 
-        User::where('email', 'admin@example.com')->get()->first()->givePermissionTo('act-as-admin');
+        User::where('email', 'admin@example.com')->first()->givePermissionTo('act-as-admin');
 
         $this->command->info('Framework seeding complete. Please run php artisan module:seed to seed any modules.');
     }
