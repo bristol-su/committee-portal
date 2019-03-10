@@ -36,5 +36,7 @@
     "/js/executivesummary.js": "/js/executivesummary.js",
     "/js/furtherinformation.js": "/js/furtherinformation.js",
     "/js/presentation.js": "/js/presentation.js",
-    "/js/tierselection.js": "/js/tierselection.js"
+    "/js/tierselection.js": "/js/tierselection.js",
+    "/css/externalaccounts.css": "/css/externalaccounts.css",
+    "/js/externalaccounts.js": "/js/externalaccounts.js"
 }

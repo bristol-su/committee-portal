@@ -23,7 +23,7 @@ class CheckDevelopmentStatus
         $module = Module::find($moduleName);
 
         // If the module is in development status and we are not a developer
-        if($module->json()->in_development && ! Auth::user()->hasPermissionTo('bypass-maintenance')) {
+        if($module->json()->in_development && ! Auth::user()->hasPermissionTo('bypass-maintenance') && !app()->isLocal()) {
 
             $data = [
                 'name' => $module->name,
