@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller;
 class RiskAssessmentController extends FileUploadController
 {
 
-    public function showUserForm() {
+    public function showUserPage() {
         return view('riskassessment::riskassessment');
     }
 

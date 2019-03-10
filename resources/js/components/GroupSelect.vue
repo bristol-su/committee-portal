@@ -66,22 +66,14 @@
                 this.$http.post('/login/group', {group_id: event.target.id})
                     .then(response => window.location.href = '/portal')
                     .catch(error => {
-                        this.$notify({
-                            group: 'notification',
-                            title: 'Error',
-                            text: 'There was an error logging you in.'
-                        });
+                        this.$notify.alert('There was an error logging you in');
                     })
             },
             logout(event) {
                 this.$http.post('/logout/group')
                     .then(response => window.location.href = '/admin')
                     .catch(error => {
-                        this.$notify({
-                            group: 'notification',
-                            title: 'Error',
-                            text: 'Could not log you out.'
-                        });
+                        this.$notify.alert('Could not log you out');
                     })
             }
         }

@@ -10,4 +10,9 @@ class Note extends NoteModel
     {
         return 'executivesummary';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

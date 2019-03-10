@@ -12,7 +12,7 @@
 */
 
 Route::prefix('constitution')->middleware(['user', 'module', 'module.status:constitution'])->group(function() {
-    Route::get('/', 'ConstitutionController@showUserForm');
+    Route::get('/', 'ConstitutionController@showUserPage');
 
     Route::FileUploads('ConstitutionController');
 

@@ -49,6 +49,7 @@
                     :module="module"
                     :uploadingDocumentTitle="documentTitle"
                     @upload="submitFile"
+                    @updatedfile="retrieveFiles"
             >
 
             </file-table>
@@ -97,11 +98,7 @@
         created() {
             this.documentTitle = this.defaultTitle;
 
-            if (this.retrieveUrl !== null) {
-                this.$http.get('/' + this.module + '/retrieve-files')
-                    .then(response => this.files = response.data)
-                    .catch(error => console.log('could not load initial files'))
-            }
+            this.retrieveFiles();
         },
 
         methods: {
@@ -143,7 +140,12 @@
                 }
             },
 
-            // Methods to display files
+            retrieveFiles() {
+                this.$http.get('/' + this.module + '/retrieve-files')
+                    .then(response => this.files = response.data)
+                    .catch(error => console.log('could not load initial files'))
+            },
+
 
         }
 

@@ -26,7 +26,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getAdminURL()
     {
-        return '/taskallocation/admin';
+        return '/admin/taskallocation';
     }
 
     public function getVisibility()

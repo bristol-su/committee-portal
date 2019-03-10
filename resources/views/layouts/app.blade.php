@@ -26,9 +26,6 @@
 </head>
 
 <body>
-    <div id="portal-notification-root">
-        <notifications group="notification"></notifications>
-    </div>
     @include('templates.header')
 
     @if (session('status'))

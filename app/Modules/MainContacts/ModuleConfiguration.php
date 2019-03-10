@@ -26,7 +26,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getAdminURL()
     {
-        return '/maincontacts/admin';
+        return '/admin/maincontacts';
     }
 
     public function getVisibility()

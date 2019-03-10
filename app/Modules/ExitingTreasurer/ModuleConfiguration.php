@@ -26,7 +26,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getAdminURL()
     {
-        return '/exitingtreasurer/admin';
+        return '/admin/exitingtreasurer';
     }
 
     public function getVisibility()

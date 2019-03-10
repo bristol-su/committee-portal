@@ -26,7 +26,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getAdminURL()
     {
-        return '/committeedetails/admin';
+        return '/admin/committeedetails';
     }
 
     public function getVisibility()

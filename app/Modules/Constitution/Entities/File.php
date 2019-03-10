@@ -10,4 +10,9 @@ class File extends FileModel
     {
         return 'constitution';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

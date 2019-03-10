@@ -9,9 +9,14 @@ use App\Packages\FileUpload\FileUploadController;
 class BudgetController extends FileUploadController
 {
 
-    public function showUserForm()
+    public function showUserPage()
     {
         return view('budget::budget');
+    }
+
+    public function showAdminPage()
+    {
+        return view('budget::admin');
     }
 
     protected function noteModel(): string

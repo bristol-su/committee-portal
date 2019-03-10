@@ -11,4 +11,9 @@ class Note extends NoteModel
     {
         return 'budget';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

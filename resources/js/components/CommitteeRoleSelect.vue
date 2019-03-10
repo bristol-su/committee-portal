@@ -63,11 +63,7 @@
                         window.location.reload();
                     })
                     .catch(error => {
-                        this.$notify({
-                            group: 'notification',
-                            title: 'Error',
-                            text: 'There was an error logging you in.'
-                        });
+                        this.$notify.alert('There was an error logging you in');
                     })
             }
         }

@@ -134,10 +134,7 @@
                 this.submitting = true;
                 this.form.post(url)
                     .then(response => {
-                        this.$notify({
-                            'title': 'Success',
-                            'text': 'Committee member added.'
-                        });
+                        this.$notify.success('Committee member added');
                         this.$emit('memberAdded', response);
                         this.submitting = false;
                     })

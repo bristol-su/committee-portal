@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller;
 class StrategicPlanController extends FileUploadController
 {
 
-    public function showUserForm() {
+    public function showUserPage() {
         return view('strategicplan::strategicplan');
     }
 

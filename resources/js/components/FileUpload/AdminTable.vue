@@ -1,8 +1,10 @@
 <template>
     <div>
+        <!--// TODO Make filterable-->
         <table class="table table-striped table-responsive table-condensed table-hover" v-if="files.length > 0">
             <thead>
             <tr>
+                <th>Group</th>
                 <th>Title</th>
                 <th>Filename</th>
                 <th>Size</th>
@@ -14,57 +16,50 @@
             </thead>
             <tbody v-for="(file, index) in sortedFiles">
 
-            <!-- Currently uploading file -->
-            <tr v-if="!(isSaved(file))">
-                <td>{{ uploadingDocumentTitle }}</td>
-                <td>{{file.name}}</td>
-                <td>{{file.size | bytesToHuman}}</td>
-                <td>{{ currentReaffiliationYear | reaffiliation_year}}</td>
-                <td colspan="2">
-                    <button @click="$emit('upload', index)" class="btn btn-outline-info" style="width: 100%;">
-                        Upload
-                    </button>
-                </td>
-                <td v-if="isUploading(index)"><i class="fa fa-spinner fa-spin"></i> Uploading</td>
-                <td v-else>Please confirm upload</td>
-            </tr>
-
-            <!-- Previously uploaded files -->
-            <tr v-else>
+            <tr>
+                <td>{{file.group.name}}</td>
                 <td>{{file.title}}</td>
                 <td>{{file.filename}}</td>
                 <td>{{file.size | bytesToHuman}}</td>
                 <td>{{file.year | reaffiliation_year}}</td>
                 <td>{{file.user | username }}</td>
                 <td @click="toggleDate(index)" class="clickable">
-                    <span v-if="fullDate.indexOf(index) === -1">
-                        {{file.created_at | timeToHuman}}
-                    </span>
+                        <span v-if="fullDate.indexOf(index) === -1">
+                            {{file.created_at | timeToHuman}}
+                        </span>
                     <span v-else>
-                        {{file.created_at | date_format}}
-                    </span>
+                            {{file.created_at | date_format}}
+                        </span>
                 </td>
-                <td v-if="file.status === 'awaiting approval'"><i class="fa fa-hourglass"></i> Awaiting Approval</td>
-                <td v-else-if="file.status === 'approved'"><i class="fa fa-check"></i> Approved</td>
-                <td v-else-if="file.status === 'rejected'"><i class="fa fa-times"></i> Rejected</td>
-                <td v-else><i class="fa fa-exclamation-triangle"></i> Error</td>
-
+                <td>
+                    <select @change="changeStatus(file, $event)" class="form-control" v-model="file.status">
+                        <option value="awaiting approval"><i class="fa fa-hourglass"></i>
+                            Awaiting
+                            Approval
+                        </option>
+                        <option value="approved"><i class="fa fa-check"></i> Approved
+                        </option>
+                        <option value="rejected"><i class="fa fa-times"></i> Rejected
+                        </option>
+                    </select>
+                </td>
                 <td>
                     <a :href="downloadUrl(file.id)">Download</a>&nbsp;|&nbsp;
                     <!--// TODO Preview File-->
                     <a @click="showNotes(index)" href="#">Notes ({{file.notes.length}})</a>
 
                     <modal
-                            height="auto"
                             :name="'notes-file-upload-form-' + index"
+                            height="auto"
                     >
-                        <notes
+                        <admin-notes
                                 :file="file"
                                 :module="module"
+                                :notes="file.notes"
                                 @close="hideNotes(index)"
-                                @updatedfile="fileUpdated"
+                                @updatedfile="retrieveFiles"
                         >
-                        </notes>
+                        </admin-notes>
                     </modal>
 
                 </td>
@@ -77,33 +72,12 @@
 </template>
 
 <script>
-    // TODO Should this component utilise tooltips instead of clicks for the date?
     import moment from 'moment';
-    import Notes from './Notes';
+    import AdminNotes from './AdminNotes';
+    import Errors from "../../utilities/Errors";
 
     export default {
         props: {
-            files: {
-                required: true,
-                default: function () {
-                    return [];
-                },
-                type: Array
-            },
-
-            uploadingDocumentTitle: {
-                required: true,
-                default: '',
-                type: String
-            },
-
-            uploading: {
-                required: true,
-                default: function () {
-                    return [];
-                },
-                type: Array
-            },
 
             module: {
                 required: true,
@@ -116,8 +90,8 @@
         data() {
             return {
                 fullDate: [],
-                currentReaffiliationYear: parseInt(process.env.MIX_REAFFILIATION_YEAR),
-                notes: []
+                files: [],
+                errors: new Errors()
             }
         },
 
@@ -132,16 +106,8 @@
                 }
             },
 
-            isSaved(file) {
-                return !(file instanceof File);
-            },
-
-            isUploading(fileIndex) {
-                return this.uploading.indexOf(fileIndex) !== -1;
-            },
-
             downloadUrl(id) {
-                return '/' + this.module + '/download-files/' + id;
+                return '/admin/' + this.module + '/download-files/' + id;
             },
 
             showNotes(fileIndex) {
@@ -152,10 +118,29 @@
                 this.$modal.hide('notes-file-upload-form-' + fileIndex);
             },
 
-            fileUpdated(file) {
-                this.$emit('updatedfile', file);
+            retrieveFiles() {
+                this.$http.get('/admin/' + this.module + '/retrieve-files')
+                    .then(response => {
+                        this.files = response.data;
+                    })
+                    .catch(error => {
+                        this.errors.record(error);
+                    });
             },
 
+            changeStatus(file, event) {
+                this.$http.post('/admin/' + this.module + '/change-file-status/' + file.id, {
+                    status: event.target.value
+                })
+                    .then(response => {
+                        this.retrieveFiles();
+                        this.$notify.success('Updated status')
+                    })
+                    .catch(error => {
+                        this.$notify.alert('Status not updated')
+                    });
+
+            }
         },
 
         filters: {
@@ -187,24 +172,23 @@
                 let self = this;
                 return this.files.sort(function (a, b) {
                     // Ensure the file is before the non file
-                    if (!(self.isSaved(a)) && self.isSaved(b)) {
-                        return -1
-                    }
-                    if (self.isSaved(a) && !(self.isSaved(b))) {
-                        return 1
-                    }
+                    // TODO Ordering
 
                     // Order by filename for File or time for uploaded files since they are of the same type
-                    let asort = (!(self.isSaved(a)) ? parseInt(a.name.charAt(0), 36) - 9 : moment(a.created_at).unix());
-                    let bsort = (!(self.isSaved(b)) ? parseInt(b.name.charAt(0), 36) - 9 : moment(b.created_at).unix());
+                    let asort = moment(a.created_at).unix();
+                    let bsort = moment(b.created_at).unix();
                     return (bsort - asort);
                 });
             },
         },
 
         components: {
-            Notes,
+            AdminNotes,
         },
+
+        created() {
+            this.retrieveFiles()
+        }
 
     }
 

@@ -11,4 +11,9 @@ class File extends FileModel
     {
         return 'presentation';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

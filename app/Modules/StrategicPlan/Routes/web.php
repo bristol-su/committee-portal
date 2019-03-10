@@ -12,7 +12,7 @@
 */
 
 Route::prefix('strategicplan')->middleware(['user', 'module', 'module.status:strategicplan'])->group(function() {
-    Route::get('/', 'StrategicPlanController@showUserForm');
+    Route::get('/', 'StrategicPlanController@showUserPage');
 
     Route::FileUploads('StrategicPlanController');
 

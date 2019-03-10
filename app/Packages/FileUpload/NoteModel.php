@@ -31,9 +31,11 @@ abstract class NoteModel extends Model
      */
     abstract protected function getModuleName(): string;
 
+    abstract protected function getModelNamespace(): string;
+
     public function file()
     {
-        return $this->belongsTo('App\Modules\ExecutiveSummary\Entities\File');
+        return $this->belongsTo($this->getModelNamespace().'\File');
     }
 
     public function user()

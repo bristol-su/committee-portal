@@ -39,6 +39,9 @@ abstract class FileModel extends Model
      */
     abstract protected function getModuleName(): string;
 
+    abstract protected function getModelNamespace(): string;
+
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -64,6 +67,6 @@ abstract class FileModel extends Model
 
     public function notes()
     {
-        return $this->hasMany('App\Modules\ExecutiveSummary\Entities\Note');
+        return $this->hasMany($this->getModelNamespace().'\Note');
     }
 }

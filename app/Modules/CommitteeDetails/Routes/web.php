@@ -11,7 +11,7 @@
 |
 */
 \Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware(['user', 'module', 'module.status:committeedetails'])->group(function() {
-    Route::get('/', 'CommitteeDetailsController@showUserForm');
+    Route::get('/', 'CommitteeDetailsController@showUserPage');
     Route::post('/', 'CommitteeDetailsController@addUserToControl');
     Route::post('/{positionStudentGroupID}', 'CommitteeDetailsController@updateUserInControl');
     Route::delete('/{positionStudentGroupID}', 'CommitteeDetailsController@deleteCommitteeRoleFromControl');

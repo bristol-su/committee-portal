@@ -588,10 +588,7 @@ __webpack_require__.r(__webpack_exports__);
       var url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
       this.submitting = true;
       this.form.post(url).then(function (response) {
-        _this.$notify({
-          'title': 'Success',
-          'text': 'Committee member added.'
-        });
+        _this.$notify.success('Committee member added');
 
         _this.$emit('memberAdded', response);
 

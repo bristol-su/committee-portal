@@ -11,4 +11,9 @@ class Note extends NoteModel
     {
         return 'presentation';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

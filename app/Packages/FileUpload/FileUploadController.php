@@ -9,9 +9,11 @@
 namespace App\Packages\FileUpload;
 
 
+use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 abstract class FileUploadController
 {
@@ -27,6 +29,13 @@ abstract class FileUploadController
         $this->noteModel = $this->noteModel();
     }
 
+    abstract protected function fileModel(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected function noteModel(): string;
+
     public function uploadFile(Request $request)
     {
         $request->validate([
@@ -38,7 +47,7 @@ abstract class FileUploadController
         $filename = $file->getClientOriginalName();
 
         // TODO Change from dev-documents
-        if($path = $request->file('file')->store('/dev-documents')) {
+        if ($path = $request->file('file')->store('/dev-documents')) {
 
             $fileModel = new $this->fileModel;
             $fileModel->fill([
@@ -54,9 +63,8 @@ abstract class FileUploadController
             $fileModel->user_id = Auth::user()->id;
             $fileModel->group_id = getGroupID();
             $fileModel->position_id = (Auth::user()->getCurrentRole()->position->id !== 'admin' ? Auth::user()->getCurrentRole()->position->id : null);
-            if($fileModel->save()) {
-                $fileModel->load('user')->only(['forename', 'surname', 'email']);
-                return response($fileModel, 200);
+            if ($fileModel->save()) {
+                return $this->getFileWithRelations($fileModel->id);
             }
 
         }
@@ -65,25 +73,22 @@ abstract class FileUploadController
         ], 500);
     }
 
-    public function retrieveFile() {
-        $file = $this->fileModel;
-        return $file::where('group_id', getGroupID())->with('user:id,forename,surname,email')->get();
+    public function retrieveFile()
+    {
+        return $this->getFileWithRelations()->filter(function($file) {
+            return $file->group_id === getGroupID();
+        });
     }
 
-    public function downloadFile($id) {
+    public function downloadFile($id)
+    {
         $file = $this->fileModel::findOrFail($id);
         abort_if(getGroupID() !== $file->group_id, 403, 'Please log in as a member of this society.');
         return Storage::download($file->path, $file->getSafeFileName());
     }
 
-    public function getNotes()
-    {
-        return $this->noteModel::where('group_id', getGroupID())->with('user:id,forename,surname,email')->get();
-    }
-
     public function postNote(Request $request, $id)
     {
-        $file = $this->fileModel::findOrFail($id);
         // Validate
         $request->validate([
             'note' => 'required|min:3|max:10000'
@@ -95,21 +100,98 @@ abstract class FileUploadController
         $note->user_id = Auth::user()->id;
         $note->group_id = getGroupID();
         $note->position_id = (Auth::user()->getCurrentRole()->position->id === 'admin' ? null : Auth::user()->getCurrentRole()->position->id);
-        $note->file_id = $file->id;
+        $note->file_id = $id;
 
         // Return
-        if($note->save()) {
-            return $note->load('user:id,forename,surname,email');
+        if ($note->save()) {
+            return $this->getFileWithRelations($id);
         }
         return response(['note' => 'Could not save the note'], 500);
     }
 
+    public function adminRetrieveFile(Request $request)
+    {
+        return $this->getFileWithRelations();
+    }
+
+    public function adminDownloadFile(Request $request, $id)
+    {
+        $file = $this->fileModel::findOrFail($id);
+        return Storage::download($file->path, $file->getSafeFileName());
+    }
+
+    public function adminPostNote(Request $request, $id)
+    {
+        // Validate
+        $request->validate([
+            'note' => 'required|min:3|max:10000'
+        ]);
+
+        // Save
+        $note = new $this->noteModel;
+        $note->note = $request->get('note');
+        $note->user_id = Auth::user()->id;
+        $note->group_id = null;
+        $note->position_id = null;
+        $note->file_id = $id;
+
+        // Return
+        if ($note->save()) {
+            return $this->getFileWithRelations($id);
+        }
+        return response(['note' => 'Could not save the note'], 500);
+    }
+
+    public function adminChangeFileStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => [
+                'required',
+                Rule::in([
+                    'awaiting approval',
+                    'approved',
+                    'rejected'
+                ])
+            ]
+        ]);
+
+        $status = $request->get('status');
+
+        $file = $this->fileModel::find($id);
+
+        if($file->status !== $status) {
+            $file->status = $status;
+            if($file->save()) {
+                // TODO Fire event
+
+            }
+        }
+
+        return $file->status;
+    }
 
     /**
-     * @return string
+     * @param null $id
+     * @return mixed
      */
-    abstract protected function noteModel() : string;
+    private function getFileWithRelations($id=null)
+    {
+        $with = [
+            'user:id,forename,surname,email',
+            'notes',
+            'notes.user:id,forename,surname,email',
+        ];
+        if($id === null ) {
+            $files = $this->fileModel::with($with)->get();
+            return $files->map(function($file) {
+                $file->group = Group::find($file->group_id)->toArray();
+                return $file;
+            });
+        } else {
 
-    abstract protected function fileModel() : string;
-
+            $file = $this->fileModel::with($with)->findOrFail($id);
+            $file->group = Group::find($file->group_id)->toArray();
+            return $file;
+        }
+    }
 }

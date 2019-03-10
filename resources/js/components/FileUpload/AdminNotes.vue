@@ -81,7 +81,7 @@
 
         methods: {
             postNote() {
-                this.$http.post('/' + this.module + '/post-note/' + this.file.id, {
+                this.$http.post('/admin/' + this.module + '/post-note/' + this.file.id, {
                     note: this.note
                 })
                     .then(response => {
@@ -90,10 +90,6 @@
                     })
                     .catch(error => this.submitErrors.record(error));
             },
-
-            getNoteCount(id) {
-                return this.file.notes.length;
-            }
         },
 
         filters: {

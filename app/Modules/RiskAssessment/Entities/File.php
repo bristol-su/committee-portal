@@ -10,4 +10,9 @@ class File extends FileModel
     {
         return 'riskassessment';
     }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 }

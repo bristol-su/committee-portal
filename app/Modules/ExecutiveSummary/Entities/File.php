@@ -11,4 +11,9 @@ class File extends FileModel
         return 'executivesummary';
     }
 
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
+
 }

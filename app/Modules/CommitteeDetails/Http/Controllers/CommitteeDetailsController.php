@@ -26,7 +26,7 @@ class CommitteeDetailsController extends Controller
 
     public function __construct()
     {
-        $this->middleware(LoadGroupPositionRequirementsIntoJavascript::class)->only('showUserForm');
+        $this->middleware(LoadGroupPositionRequirementsIntoJavascript::class)->only('showUserPage');
     }
 
     /**
@@ -34,7 +34,7 @@ class CommitteeDetailsController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showUserForm()
+    public function showUserPage()
     {
         return view('committeedetails::committee_details');
     }

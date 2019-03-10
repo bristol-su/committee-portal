@@ -9,7 +9,7 @@ use App\Packages\FileUpload\FileUploadController;
 class ConstitutionController extends FileUploadController
 {
 
-    public function showUserForm()
+    public function showUserPage()
     {
         return view('constitution::constitution');
     }

@@ -35,5 +35,15 @@ class FileUploadServiceProvider extends ServiceProvider
 
             Route::post('post-note/{id}', $controller.'@postNote');
         });
+
+        Route::macro('FileUploadsAdmin', function($controller) {
+            Route::get('/retrieve-files', $controller.'@adminRetrieveFile');
+
+            Route::get('/download-files/{id}', $controller.'@adminDownloadFile');
+
+            Route::post('post-note/{id}', $controller.'@adminPostNote');
+
+            Route::post('/change-file-status/{id}', $controller.'@adminChangeFileStatus');
+        });
     }
 }

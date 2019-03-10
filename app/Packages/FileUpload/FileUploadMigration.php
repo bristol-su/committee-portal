@@ -32,7 +32,7 @@ abstract class FileUploadMigration extends Migration
         Schema::create($this->getModuleName().'_files', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('group_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
             $table->year('year');
             $table->string('title');
@@ -52,7 +52,7 @@ abstract class FileUploadMigration extends Migration
         Schema::create($this->getModuleName().'_file_notes', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('group_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
             $table->unsignedInteger('file_id');
             $table->text('note');

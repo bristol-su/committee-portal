@@ -4,5 +4,10 @@ new Vue({
 
     components: {
         'upload-file': CustomFileUpload,
+        'admin-file-table': CustomFileUploadAdminFileTable
     },
+
+    data: {
+
+    }
 });
