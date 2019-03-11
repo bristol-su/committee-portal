@@ -44,6 +44,16 @@ class FileUploadServiceProvider extends ServiceProvider
             Route::post('post-note/{id}', $controller.'@adminPostNote');
 
             Route::post('/change-file-status/{id}', $controller.'@adminChangeFileStatus');
+
+            /* Note template routes */
+
+            Route::get('/retrieve-note-templates', $controller.'@adminGetNoteTemplates');
+
+            Route::post('/create-note-template', $controller.'@adminCreateNoteTemplate');
+
+            Route::post('/update-note-tempate/{id}', $controller.'@adminUpdateNoteTemplate');
+
+            Route::delete('/note-template/{id}', $controller.'@adminDeleteNoteTemplate');
         });
     }
 }

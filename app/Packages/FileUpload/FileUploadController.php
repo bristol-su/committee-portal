@@ -12,6 +12,7 @@ namespace App\Packages\FileUpload;
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -23,10 +24,16 @@ abstract class FileUploadController
 
     protected $noteModel;
 
+    /**
+     * @var string
+     */
+    protected $templateModel;
+
     public function __construct()
     {
         $this->fileModel = $this->fileModel();
         $this->noteModel = $this->noteModel();
+        $this->templateModel = $this->templateModel();
     }
 
     abstract protected function fileModel(): string;
@@ -35,6 +42,8 @@ abstract class FileUploadController
      * @return string
      */
     abstract protected function noteModel(): string;
+
+    abstract protected function templateModel(): string;
 
     public function uploadFile(Request $request)
     {
@@ -73,11 +82,38 @@ abstract class FileUploadController
         ], 500);
     }
 
+    /**
+     * @param null $id
+     * @return mixed
+     */
+    private function getFileWithRelations($id = null)
+    {
+        $with = [
+            'user:id,forename,surname,email',
+            'notes',
+            'notes.user:id,forename,surname,email',
+        ];
+        if ($id === null) {
+            $files = $this->fileModel::with($with)->get();
+            return $files->map(function ($file) {
+                $file->group = Group::find($file->group_id)->toArray();
+                return $file;
+            });
+        } else {
+
+            $file = $this->fileModel::with($with)->findOrFail($id);
+            $file->group = Group::find($file->group_id)->toArray();
+            return $file;
+        }
+    }
+
     public function retrieveFile()
     {
-        return $this->getFileWithRelations()->filter(function($file) {
+        $files = $this->getFileWithRelations();
+        $files = $files->filter(function ($file) {
             return $file->group_id === getGroupID();
         });
+        return $files->values();
     }
 
     public function downloadFile($id)
@@ -159,39 +195,71 @@ abstract class FileUploadController
 
         $file = $this->fileModel::find($id);
 
-        if($file->status !== $status) {
+        if ($file->status !== $status) {
             $file->status = $status;
-            if($file->save()) {
-                // TODO Fire event
-
+            if ($file->save()) {
+                Event::dispatch($this->getModuleName() . '.fileStatusChanged', ['file' => $this->getFileWithRelations($file->id)]);
             }
         }
 
         return $file->status;
     }
 
-    /**
-     * @param null $id
-     * @return mixed
-     */
-    private function getFileWithRelations($id=null)
-    {
-        $with = [
-            'user:id,forename,surname,email',
-            'notes',
-            'notes.user:id,forename,surname,email',
-        ];
-        if($id === null ) {
-            $files = $this->fileModel::with($with)->get();
-            return $files->map(function($file) {
-                $file->group = Group::find($file->group_id)->toArray();
-                return $file;
-            });
-        } else {
+    abstract protected function getModuleName(): string;
 
-            $file = $this->fileModel::with($with)->findOrFail($id);
-            $file->group = Group::find($file->group_id)->toArray();
-            return $file;
+    public function adminGetNoteTemplates()
+    {
+        return $this->templateModel::all();
+    }
+
+    public function adminCreateNoteTemplate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:3|max:255',
+            'template' => 'required|min:10|max:65000'
+        ]);
+
+        $template = $this->templateModel::create($request->only([
+            'name',
+            'description',
+            'template'
+        ]));
+
+        if ($template->exists) {
+            return $template;
         }
+
+        return response('Template could not be saved', 500);
+
+    }
+
+    public function adminUpdateNoteTemplate(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'sometimes|min:3|max:255',
+            'description' => 'sometimes|min:3|max:255',
+            'template' => 'sometimes|min:10|max:65000'
+        ]);
+
+        $template = $this->templateModel::findOrFail($id);
+
+        if ($template->update($request->only([
+            'name',
+            'description',
+            'template'
+        ]))) {
+            return $template;
+        }
+
+        return response('Template could not be saved', 500);
+    }
+
+    public function adminDeleteNoteTemplate($id)
+    {
+        if ($this->templateModel::destroy($id)) {
+            return response('', 200);
+        }
+        return response('Could not delete the template', 500);
     }
 }

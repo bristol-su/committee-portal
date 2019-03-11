@@ -5,7 +5,7 @@
             <div :class="{deselected: selectedTier !== tier, selected: selectedTier === tier}" @click="selectTier(tier)" class="column tier-holder"
                  v-for="tier in tiers">
                 <img :alt="tier.name" :src="tier.filename" style="width:100%">
-                <div style="text-align: center; font-weight: bold; font-size: 30px;">{{tier.name}}</div>
+                <!--<div style="text-align: center; font-weight: bold; font-size: 30px;">{{tier.name}}</div>-->
             </div>
         </div>
 
@@ -17,7 +17,7 @@
         <!--Submit button-->
         <div class="row">
             <div class="column" style="display: flex; align-items: center; justify-content: center;">
-                <button :class="{'btn-warning': selectedTier === null, 'btn-success': selectedTier !== null}" :disabled="selectedTier === null || completed"
+                <button :class="{'btn-danger': selectedTier === null, 'btn-success': selectedTier !== null}" :disabled="selectedTier === null || completed"
                         @click="submitTier"
                         style="width: 50%;"
                         class="btn">{{ buttonText }}
@@ -86,7 +86,7 @@
 
         computed: {
             buttonText() {
-                return (this.selectedTier === null ? 'Select Tier' : (this.canBeSubmitted ? 'Confirm tier ' : 'Entered in Tier ' ) + this.selectedTier.name);
+                return (this.selectedTier === null ? 'Select' : (this.canBeSubmitted ? 'Confirm tier ' : 'Entered in Tier ' ) + this.selectedTier.name);
             },
 
             canBeSubmitted() {
@@ -109,15 +109,15 @@
 
     /* deselected is applied to deselected tiers, applied to applied tiers */
     .deselected {
-        border: 3px solid black;
+        border: 3px solid #f8fafc;
     }
 
     .selected {
-        border: 5px solid green;
+        border: 5px solid red;
     }
 
     .tier-holder:hover.deselected {
-        border: 3px solid lightgreen;
+        border: 3px solid red;
     }
 
 </style>

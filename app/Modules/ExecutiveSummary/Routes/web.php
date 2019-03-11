@@ -19,3 +19,10 @@ Route::prefix('executivesummary')->middleware(['user', 'module', 'module.status:
 
 });
 
+Route::prefix('admin/executivesummary')->middleware(['admin', 'module', 'module.status:executivesummary'])->group(function() {
+    Route::get('/', 'ExecutiveSummaryController@showAdminPage');
+
+    Route::get('/note-templates', 'ExecutiveSummaryController@showNoteTemplatePage');
+
+    Route::FileUploadsAdmin('ExecutiveSummaryController');
+});

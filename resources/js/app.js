@@ -5,6 +5,8 @@ import GroupSelect from './components/GroupSelect';
 import Notifications from 'vue-notification';
 import CustomFileUpload from './components/FileUpload/CustomFileUpload';
 import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
+import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
+
 import AWN from 'awesome-notifications';
 import axios from 'axios';
 
@@ -36,6 +38,7 @@ window.VueForm = Form;
 
 window.CustomFileUpload = CustomFileUpload;
 window.CustomFileUploadAdminFileTable = CustomFileUploadAdminFileTable;
+window.CustomFileUploadAdminNoteTemplate = CustomFileUploadAdminNoteTemplate;
 
 // Main Vue Instance
 new Vue({

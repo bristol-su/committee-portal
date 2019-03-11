@@ -17,3 +17,11 @@ Route::prefix('constitution')->middleware(['user', 'module', 'module.status:cons
     Route::FileUploads('ConstitutionController');
 
 });
+
+Route::prefix('admin/constitution')->middleware(['admin', 'module', 'module.status:constitution'])->group(function() {
+    Route::get('/', 'ConstitutionController@showAdminPage');
+
+    Route::get('/note-templates', 'ConstitutionController@showNoteTemplatePage');
+
+    Route::FileUploadsAdmin('ConstitutionController');
+});

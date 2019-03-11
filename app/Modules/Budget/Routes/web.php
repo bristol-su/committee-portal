@@ -20,5 +20,7 @@ Route::prefix('budget')->middleware(['user', 'module', 'module.status:budget'])-
 Route::prefix('admin/budget')->middleware(['admin', 'module', 'module.status:budget'])->group(function() {
     Route::get('/', 'BudgetController@showAdminPage');
 
+    Route::get('/note-templates', 'BudgetController@showNoteTemplatePage');
+
     Route::FileUploadsAdmin('BudgetController');
 });

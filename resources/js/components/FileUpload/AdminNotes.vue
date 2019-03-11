@@ -40,6 +40,16 @@
                         <button class="btn btn-default">Add</button>
                     </div>
                 </form>
+
+                <div v-if="templates.length > 0">
+                    <hr/>
+                    Templates:
+                        <select class="form-control" style="width: 50%" @change="loadTemplate" v-model="selectedTemplate">
+                            <option value="selecttemplate">Select a template...</option>
+                            <option v-for="(template, index) in templates" :value="index">{{template.name}}</option>
+                        </select>
+                </div>
+
             </div>
         </div>
 
@@ -75,7 +85,9 @@
         data() {
             return {
                 submitErrors: new Errors(),
-                note: ''
+                note: '',
+                templates: [],
+                selectedTemplate: 'selecttemplate'
             }
         },
 
@@ -90,6 +102,15 @@
                     })
                     .catch(error => this.submitErrors.record(error));
             },
+
+            loadTemplate(event) {
+                if(this.selectedTemplate !== 'selecttemplate') {
+                    let template = this.templates[this.selectedTemplate];
+                    this.note = template.template;
+                }
+                this.selectedTemplate = 'selecttemplate';
+
+            }
         },
 
         filters: {
@@ -111,6 +132,12 @@
                     return (asort - bsort);
                 });
             }
+        },
+
+        created() {
+            this.$http.get('/admin/' + this.module + '/retrieve-note-templates')
+                .then(response => this.templates = response.data)
+                .catch(error => this.$notify.alert('Sorry, something went wrong retrieving note templates'))
         }
 
     }

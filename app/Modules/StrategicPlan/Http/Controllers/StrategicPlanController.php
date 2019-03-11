@@ -4,6 +4,7 @@ namespace App\Modules\StrategicPlan\Http\Controllers;
 
 use App\Modules\StrategicPlan\Entities\File;
 use App\Modules\StrategicPlan\Entities\Note;
+use App\Modules\StrategicPlan\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,6 +17,21 @@ class StrategicPlanController extends FileUploadController
         return view('strategicplan::strategicplan');
     }
 
+    public function showAdminPage()
+    {
+        return view('strategicplan::admin');
+    }
+
+    public function showNoteTemplatePage()
+    {
+        return view('strategicplan::note_template');
+    }
+
+    protected function templateModel(): string
+    {
+        return NoteTemplate::class;
+    }
+
     protected function noteModel(): string
     {
         return Note::class;
@@ -26,4 +42,8 @@ class StrategicPlanController extends FileUploadController
         return File::class;
     }
 
+    protected function getModuleName() : string
+    {
+        return 'strategicplan';
+    }
 }

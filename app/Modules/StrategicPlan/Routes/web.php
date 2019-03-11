@@ -17,3 +17,11 @@ Route::prefix('strategicplan')->middleware(['user', 'module', 'module.status:str
     Route::FileUploads('StrategicPlanController');
 
 });
+
+Route::prefix('admin/strategicplan')->middleware(['admin', 'module', 'module.status:strategicplan'])->group(function() {
+    Route::get('/', 'StrategicPlanController@showAdminPage');
+
+    Route::get('/note-templates', 'StrategicPlanController@showNoteTemplatePage');
+
+    Route::FileUploadsAdmin('StrategicPlanController');
+});

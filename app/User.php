@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Mail\ResetPasswordMail;
+use App\Mail\VerifyEmailMail;
 use App\Notifications\VerifyEmailNotification;
 use App\Notifications\ResetPasswordNotification;
 use App\Packages\ControlDB\ControlDBInterface;
@@ -9,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -66,13 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-        if($this->password === null)
-        {
-            $this->notify(new VerifyEmailNotification($token));
-        } else {
-
-            $this->notify(new ResetPasswordNotification($token));
-        }
+        Mail::to($this->email)->send(new ResetPasswordMail($token));
     }
 
     /**
@@ -82,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmailNotification());
+        Mail::to($this->email)->send(new VerifyEmailMail($this));
     }
 
 }

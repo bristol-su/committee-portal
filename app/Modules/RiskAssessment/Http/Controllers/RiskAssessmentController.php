@@ -4,6 +4,7 @@ namespace App\Modules\RiskAssessment\Http\Controllers;
 
 use App\Modules\RiskAssessment\Entities\File;
 use App\Modules\RiskAssessment\Entities\Note;
+use App\Modules\RiskAssessment\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,6 +17,21 @@ class RiskAssessmentController extends FileUploadController
         return view('riskassessment::riskassessment');
     }
 
+    public function showAdminPage()
+    {
+        return view('riskassessment::admin');
+    }
+
+    public function showNoteTemplatePage()
+    {
+        return view('riskassessment::note_template');
+    }
+
+    protected function templateModel(): string
+    {
+        return NoteTemplate::class;
+    }
+
     protected function noteModel(): string
     {
         return Note::class;
@@ -24,6 +40,11 @@ class RiskAssessmentController extends FileUploadController
     protected function fileModel(): string
     {
         return File::class;
+    }
+
+    protected function getModuleName() : string
+    {
+        return 'riskassessment';
     }
 
 }

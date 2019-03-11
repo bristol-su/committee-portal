@@ -6,6 +6,7 @@ use ActiveResource\ConnectionManager;
 use App\Events\UserVerificationRequestGenerated;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
+use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsAValidUserByStudentIDOrEmail;
 use App\Rules\IsValidPassword;
@@ -51,10 +52,14 @@ class RegisterController extends Controller
 
                 $this->guard()->login($user);
             } else {
-                return back()->withErrors(['identity' => 'Error creating you on our systems. Please contact us for help!']);
+                return back()
+                    ->withErrors(['identity' => 'Error creating you on our systems. Please contact us for help!'])
+                    ->withInput();
             }
         } catch (\Exception $e) {
-            return back()->withErrors(['identity' => $e->getMessage()]);
+            return back()
+                ->withErrors(['identity' => $e->getMessage()])
+                ->withInput();
         }
 
 
@@ -99,7 +104,7 @@ class RegisterController extends Controller
 
         $controlUser = $this->getStudentByUid($uid);
 
-        if ($controlUser !== false) {
+        if ($controlUser !== false && $this->userHasCommitteeRole($controlUser)) {
             $user = new User([
                 'forename' => $unionCloudUser->forename,
                 'surname' => $unionCloudUser->surname,
@@ -116,6 +121,12 @@ class RegisterController extends Controller
 
         return false;
 
+    }
+
+
+    private function userHasCommitteeRole(Student $controlUser)
+    {
+        return count(CommitteeRole::allThrough($controlUser)) > 0;
     }
 
     private function getUnionCloudUser($searchTerm, Request $request)

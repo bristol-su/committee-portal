@@ -4,6 +4,7 @@ namespace App\Modules\Budget\Http\Controllers;
 
 use App\Modules\Budget\Entities\File;
 use App\Modules\Budget\Entities\Note;
+use App\Modules\Budget\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
 
 class BudgetController extends FileUploadController
@@ -19,6 +20,16 @@ class BudgetController extends FileUploadController
         return view('budget::admin');
     }
 
+    public function showNoteTemplatePage()
+    {
+        return view('budget::note_template');
+    }
+
+    protected function templateModel(): string
+    {
+        return NoteTemplate::class;
+    }
+
     protected function noteModel(): string
     {
         return Note::class;
@@ -27,6 +38,11 @@ class BudgetController extends FileUploadController
     protected function fileModel(): string
     {
         return File::class;
+    }
+
+    protected function getModuleName() : string
+    {
+        return 'budget';
     }
 
 }

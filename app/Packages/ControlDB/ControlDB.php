@@ -117,8 +117,6 @@ class ControlDB implements ControlDBInterface
 
             $positions = ($promise->wait())->getBody()->getContents();
 
-            dd($positions);
-
             if(count($positions) === 0)
             {
                 throw new StudentHasNoPositions();

@@ -17,3 +17,11 @@ Route::prefix('riskassessment')->middleware(['user', 'module', 'module.status:ri
     Route::FileUploads('RiskAssessmentController');
 
 });
+
+Route::prefix('admin/riskassessment')->middleware(['admin', 'module', 'module.status:riskassessment'])->group(function() {
+    Route::get('/', 'RiskAssessmentController@showAdminPage');
+
+    Route::get('/note-templates', 'RiskAssessmentController@showNoteTemplatePage');
+
+    Route::FileUploadsAdmin('RiskAssessmentController');
+});

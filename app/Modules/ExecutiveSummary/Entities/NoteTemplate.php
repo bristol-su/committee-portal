@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Modules\ExecutiveSummary\Entities;
+
+use App\Packages\FileUpload\NoteTemplateModel;
+
+class NoteTemplate extends NoteTemplateModel
+{
+    public function getModuleName(): string
+    {
+        return 'executivesummary';
+    }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
+}

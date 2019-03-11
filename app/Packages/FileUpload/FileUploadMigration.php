@@ -58,6 +58,15 @@ abstract class FileUploadMigration extends Migration
             $table->text('note');
             $table->timestamps();
         });
+
+        Schema::create($this->getModuleName().'_file_note_templates', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+            $table->text('template');
+            $table->timestamps();
+        });
+
         Schema::table($this->getModuleName().'_files', function(Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });

@@ -17,3 +17,11 @@ Route::prefix('presentation')->group(function() {
     Route::FileUploads('PresentationController');
 
 });
+
+Route::prefix('admin/presentation')->middleware(['admin', 'module', 'module.status:presentation'])->group(function() {
+    Route::get('/', 'PresentationController@showAdminPage');
+
+    Route::get('/note-templates', 'PresentationController@showNoteTemplatePage');
+
+    Route::FileUploadsAdmin('PresentationController');
+});
