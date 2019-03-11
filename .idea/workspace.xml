@@ -2,69 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Modules/Budget/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Constitution/Entities/NoteTemplate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Constitution/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Constitution/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities/NoteTemplate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Presentation/Entities/NoteTemplate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities/NoteTemplate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities/NoteTemplate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/note_template.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Packages/FileUpload/NoteTemplateModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNoteTemplate.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/auth/reset.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/auth/verify.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/default_file_status_updated.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UnionCloudController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/BaseModule/Http/Middleware/CheckDevelopmentStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Http/Controllers/BudgetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Http/Controllers/BudgetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Providers/BudgetServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Providers/BudgetServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/committee_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/Resources/views/committee_details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Http/Controllers/ConstitutionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Http/Controllers/ConstitutionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Resources/assets/js/constitution.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Resources/assets/js/constitution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Http/Controllers/ExecutiveSummaryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Http/Controllers/ExecutiveSummaryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/assets/js/executivesummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/assets/js/executivesummary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Http/Controllers/PresentationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Http/Controllers/PresentationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Resources/assets/js/presentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Resources/assets/js/presentation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Http/Controllers/RiskAssessmentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Http/Controllers/RiskAssessmentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Resources/assets/js/riskassessment.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Resources/assets/js/riskassessment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Http/Controllers/StrategicPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Http/Controllers/StrategicPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/ResetPasswordNotification.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/VerifyEmailNotification.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/ControlDB/ControlDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/ControlDB/ControlDB.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadMigration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadMigration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/FileUploadServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/FileUploadServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNotes.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNotes.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/app/Console/Kernel.php" afterDir="false" />
     </list>
@@ -97,10 +35,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="345">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -228,7 +166,6 @@
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" />
         <option value="$PROJECT_DIR$/app/Packages/ControlDB/ControlDB.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" />
@@ -243,6 +180,7 @@
         <option value="$PROJECT_DIR$/app/Mail/DefaultDocumentStatusChanged.php" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" />
       </list>
     </option>
   </component>
@@ -398,6 +336,19 @@
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -592,12 +543,12 @@
       <workItem from="1552150211820" duration="31848000" />
       <workItem from="1552213468980" duration="26186000" />
       <workItem from="1552243444425" duration="202000" />
-      <workItem from="1552291917540" duration="19227000" />
+      <workItem from="1552291917540" duration="19529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520863000" />
+    <option name="totallyTimeSpent" value="521165000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -609,7 +560,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.22239584" />
@@ -753,13 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="25" column="121" selection-start-line="25" selection-start-column="121" selection-end-line="25" selection-end-column="121" />
         </state>
       </provider>
     </entry>
@@ -1009,20 +953,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Routes/web.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="180">
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
