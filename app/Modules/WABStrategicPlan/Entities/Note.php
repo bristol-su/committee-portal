@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Modules\WABStrategicPlan\Entities;
+
+
+use App\Packages\FileUpload\NoteModel;
+
+class Note extends NoteModel
+{
+    public function getModuleName(): string
+    {
+        return 'wabstrategicplan';
+    }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
+}

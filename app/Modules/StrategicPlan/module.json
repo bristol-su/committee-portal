@@ -3,7 +3,7 @@
     "alias": "strategicplan",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 10,
     "providers": [
         "App\\Modules\\StrategicPlan\\Providers\\StrategicPlanServiceProvider"

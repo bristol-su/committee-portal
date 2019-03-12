@@ -1,0 +1,16 @@
+{
+    "name": "WABBudget",
+    "alias": "wabbudget",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\WABBudget\\Providers\\WABBudgetServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\WABBudget\\ModuleConfiguration",
+    "in_development": true
+}

@@ -31,7 +31,7 @@
                 </ul>
                 <form @submit.prevent="postNote" class="form-inline" role="form">
                     <div class="form-group">
-                        <input class="form-control" placeholder="Your notes" type="text" v-model="note"/>
+                        <input class="form-control" placeholder="Leave a note..." type="text" v-model="note"/>
                         <small><span @keyup="this.submitErrors.clear('note')" v-show="this.submitErrors.has('note')">{{this.submitErrors.get('note')}}</span>
                         </small>
 

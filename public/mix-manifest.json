@@ -38,5 +38,11 @@
     "/js/presentation.js": "/js/presentation.js",
     "/js/tierselection.js": "/js/tierselection.js",
     "/css/externalaccounts.css": "/css/externalaccounts.css",
-    "/js/externalaccounts.js": "/js/externalaccounts.js"
+    "/js/externalaccounts.js": "/js/externalaccounts.js",
+    "/wab/css/wabbudget.css": "/wab/css/wabbudget.css",
+    "/wabpublic/js/wabbudget.js": "/wabpublic/js/wabbudget.js",
+    "/css/wabbudget.css": "/css/wabbudget.css",
+    "/js/wabbudget.js": "/js/wabbudget.js",
+    "/css/wabstrategicplan.css": "/css/wabstrategicplan.css",
+    "/js/wabstrategicplan.js": "/js/wabstrategicplan.js"
 }

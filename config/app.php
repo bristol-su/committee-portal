@@ -231,4 +231,9 @@ return [
 
     ],
 
+    'analytics'=> [
+        'UA' => env('GA_UA', ''),
+        'enabled' => env('GA_ENABLED', false)
+    ]
+
 ];

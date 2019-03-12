@@ -2,56 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Database/Seeders/PermissionAndRoleSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Entities/File.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Entities/Note.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Entities/NoteTemplate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Listeners/NotifyUserOfWABBudgetFileStatusChange.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Providers/EventServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/admin.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/layouts/app.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/note_template.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/wabbudget.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Seeders/PermissionAndRoleSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/File.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/Note.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/NoteTemplate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Listeners/NotifyUserOfWABStrategicPlanFileStatusChange.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/EventServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/admin.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/note_template.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/wabstrategicplan.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/templates/analytics.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/DefaultDocumentStatusChanged.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/DefaultDocumentStatusChanged.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/ResetPasswordMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/ResetPasswordMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/VerifyEmailMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/VerifyEmailMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/Resources/views/budget.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/Resources/views/budget.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/EquipmentList/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/EquipmentList/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/executive_summary.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/executive_summary.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExternalAccounts/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExternalAccounts/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/Http/Controllers/FurtherInformationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/Http/Controllers/FurtherInformationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/furtherinformation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/GroupInfo/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/GroupInfo/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/MainContacts/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/MainContacts/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/NGB/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/NGB/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/presentation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/presentation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/strategicplan.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/strategicplan.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TaskAllocation/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TaskAllocation/module.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/GetsControlStudentByUnionCloudID.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/GetsControlStudentByUnionCloudID.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/module.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/seh-club-evolution.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/seh-kickstart.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/seh-performance-sport.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/seh-we-are-bristol.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNotes.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/AdminNotes.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/modal-form.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/in_development.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/in_development.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/portal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/portal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
@@ -85,10 +65,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="108" column="59" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
+            <state relative-caret-position="375">
+              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -97,18 +77,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>load</find>
-      <find>forename</find>
-      <find>note</find>
-      <find>notes.user</find>
-      <find>{...</find>
-      <find>this.$notify</find>
       <find>wireframe.css</find>
       <find>time</find>
       <find>noteModel</find>
       <find>destroy(</find>
       <find>first()</find>
-      <find>budget</find>
       <find>getModule</find>
       <find>fileStatus</find>
       <find>Filter</find>
@@ -123,17 +96,19 @@
       <find>put</find>
       <find>false</find>
       <find>dd(</find>
-      <find>FurtherInformation</find>
       <find>AWS</find>
       <find>AWS_URL</find>
       <find>config('</find>
+      <find>FurtherInformation</find>
+      <find>wabbudget</find>
+      <find>Wabbudget</find>
+      <find>Your note...</find>
+      <find>strategicplan</find>
+      <find>Strategicplan</find>
+      <find>Your notes</find>
+      <find>budget</find>
     </findStrings>
     <replaceStrings>
-      <replace>this.$http</replace>
-      <replace>this.$http.</replace>
-      <replace>AuthenticateUserGuard</replace>
-      <replace>Auth::user()-&gt;isAdmin()</replace>
-      <replace>Auth::user()-&gt;getAuthenticatedUser()</replace>
       <replace />
       <replace>roleId</replace>
       <replace>try { $this-&gt;bootTrait(); } catch (\Exception $exception) { return false; }</replace>
@@ -156,9 +131,14 @@
       <replace>executivesummary</replace>
       <replace>presentation</replace>
       <replace>riskassessment</replace>
-      <replace>strategicplan</replace>
       <replace>AWS_STATIC</replace>
       <replace>process.env.</replace>
+      <replace>wab-budget</replace>
+      <replace>WABBudget</replace>
+      <replace>strategicplan</replace>
+      <replace>wabstrategicplan</replace>
+      <replace>StrategicPlan</replace>
+      <replace>Leave a note...</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/vendor/nwidart</dir>
@@ -172,6 +152,9 @@
       <dir>$PROJECT_DIR$/</dir>
       <dir>$PROJECT_DIR$/app/Modules/TierSelection</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/app/Modules/WABBudget</dir>
+      <dir>$PROJECT_DIR$/app/Modules/WABBudget/Entities</dir>
+      <dir>$PROJECT_DIR$/app/Modules/WABStrategicPlan</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -180,57 +163,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/emails/default_file_status_updated.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Budget/Listeners/NotifyUserOfBudgetFileStatusChange.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/CheckModuleDevelopmentStatus.php" />
-        <option value="$PROJECT_DIR$/config/queue.php" />
-        <option value="$PROJECT_DIR$/resources/views/emails/auth/verify.blade.php" />
-        <option value="$PROJECT_DIR$/app/Mail/ResetPasswordMail.php" />
-        <option value="$PROJECT_DIR$/app/Mail/VerifyEmailMail.php" />
-        <option value="$PROJECT_DIR$/app/Mail/DefaultDocumentStatusChanged.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" />
-        <option value="$PROJECT_DIR$/app/Traits/GetsControlStudentByUnionCloudID.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/verify.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/modules/in_development.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/header.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/templates/footer.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/CommitteeDetails/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/Constitution/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/EquipmentList/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/ExitingTreasurer/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/ExternalAccounts/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/GroupInfo/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/IncomingTreasurer/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/MainContacts/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/NGB/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/RiskAssessment/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/TaskAllocation/module.json" />
-        <option value="$PROJECT_DIR$/app/Modules/FurtherInformation/Http/Controllers/FurtherInformationController.php" />
-        <option value="$PROJECT_DIR$/app/Modules/FurtherInformation/Routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/portal.blade.php" />
-        <option value="$PROJECT_DIR$/app/Helpers/helpers.php" />
-        <option value="$PROJECT_DIR$/config/filesystems.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/note_template.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Presentation/Resources/views/presentation.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/executive_summary.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/strategicplan.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/furtherinformation.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/Budget/Resources/views/budget.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Database/Migrations/2019_03_12_220206_create_we_are_bristol_budget_file_table.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Database/Seeders/PermissionAndRoleSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Entities/NoteTemplate.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Entities/Note.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Entities/File.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Http/Controllers/WABBudgetController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Listeners/NotifyUserOfWABBudgetFileStatusChange.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Providers/EventServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Providers/WABBudgetServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Resources/assets/js/wabbudget.js" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/admin.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/budget.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/note_template.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Budget/module.json" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/module.json" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABBudget/webpack.mix.js" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Migrations/2019_03_12_220206_create_we_are_bristol_budget_file_table.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Seeders/PermissionAndRoleSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/File.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/Note.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/NoteTemplate.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Http/Controllers/WABStrategicPlanController.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Listeners/NotifyUserOfWABBudgetFileStatusChange.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/WABStrategicPlanServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/assets/js/wabstrategicplan.js" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/note_template.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/StrategicPlan/module.json" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/wabstrategicplan.blade.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/module.json" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/webpack.mix.js" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Migrations/2019_03_12_222103_create_we_are_bristol_strategic_plan_file_table.php" />
+        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/EventServiceProvider.php" />
+        <option value="$PROJECT_DIR$/resources/views/templates/analytics.blade.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
       </list>
     </option>
   </component>
@@ -391,8 +374,7 @@
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -403,29 +385,21 @@
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="FileUpload" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
-              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -444,19 +418,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Modules/StrategicPlan/Entities" />
-      <recent name="$PROJECT_DIR$/app/Modules/RiskAssessment/Entities" />
-      <recent name="$PROJECT_DIR$/app/Modules/Presentation/Entities" />
-      <recent name="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Entities" />
-      <recent name="$PROJECT_DIR$/app/Modules/Constitution/Entities" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views" />
+      <recent name="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/layouts" />
       <recent name="$PROJECT_DIR$/app/Http/Middleware" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/resources/js/components/FileUpload" />
-      <recent name="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Database/Migrations" />
-      <recent name="$PROJECT_DIR$/app/Authentication" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan" />
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/layouts" />
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers" />
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities" />
+      <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Seeders" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -561,12 +535,12 @@
       <workItem from="1552243444425" duration="202000" />
       <workItem from="1552291917540" duration="21827000" />
       <workItem from="1552351765710" duration="5717000" />
-      <workItem from="1552396754607" duration="18158000" />
+      <workItem from="1552396754607" duration="22572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547338000" />
+    <option name="totallyTimeSpent" value="551752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -581,7 +555,7 @@
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.22239584" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.34375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5030242" side_tool="true" weight="0.26614583" />
@@ -642,348 +616,356 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Rules/IsAValidUserByStudentIDOrEmail.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Listeners/NotifyUserOfBudgetFileStatusChange.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="390">
+          <caret line="30" column="5" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="30" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Rules/IsValidPassword.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Listeners/NotifyUserOfWABBudgetFileStatusChange.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Traits/GetsControlStudentByUnionCloudID.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="144" column="33" selection-start-line="144" selection-start-column="33" selection-end-line="144" selection-end-column="33" />
+        <state relative-caret-position="435">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
           <folding>
-            <element signature="e#45#93#0#PHP" expanded="true" />
+            <element signature="e#131#173#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/verify.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/components/modal-form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/modules/in_development.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-          <folding>
-            <element signature="e#54#80#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/javascript_injection.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Providers/EventServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+          <caret line="9" selection-start-line="9" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/header.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Providers/BudgetServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="555">
+          <caret line="38" selection-start-line="38" selection-end-line="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Providers/RouteServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Resources/assets/js/budget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="32" lean-forward="true" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-end-line="13" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/footer.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Resources/assets/sass/budget.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/admin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
+          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/wabbudget.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/note_template.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" selection-start-line="13" selection-end-line="25" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/module.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/portal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Config/config.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Migrations/2019_03_12_220206_create_we_are_bristol_budget_file_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Seeders/PermissionAndRoleSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="38" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/Note.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="34" selection-start-line="2" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Entities/NoteTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Http/Controllers/WABBudgetController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="5" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="44" selection-end-column="5" />
           <folding>
-            <element signature="n#style#0;n#footer#0;n#!!top" expanded="true" />
+            <element signature="e#58#98#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/note_template.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Http/Controllers/WABStrategicPlanController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+          <folding>
+            <element signature="e#65#112#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Listeners/NotifyUserOfWABStrategicPlanFileStatusChange.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Providers/EventServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="13" selection-start-line="13" selection-end-line="16" selection-end-column="3" />
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/CommitteeDetails/module.json">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Providers/WABBudgetServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="555">
+          <caret line="38" selection-start-line="38" selection-end-line="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Constitution/module.json">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/EventServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="150">
+          <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/EquipmentList/module.json">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/WABStrategicPlanServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="555">
+          <caret line="38" column="58" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/ExitingTreasurer/module.json">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Resources/assets/js/wabbudget.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state>
+          <caret selection-end-line="13" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/ExternalAccounts/module.json">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/assets/js/wabstrategicplan.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="15">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/GroupInfo/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/IncomingTreasurer/composer.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/IncomingTreasurer/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/MainContacts/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/NGB/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/RiskAssessment/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TaskAllocation/module.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/FurtherInformation/Routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Resources/views/layouts/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <caret line="17" column="8" lean-forward="true" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/layouts/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/FurtherInformation/Http/Controllers/FurtherInformationController.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/admin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/assets/js/furtherinformation.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/filesystems.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="48" column="10" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Presentation/Resources/views/note_template.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/note_template.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <caret line="7" column="62" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Presentation/Resources/views/presentation.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Modules/StrategicPlan/module.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/ExecutiveSummary/Resources/views/executive_summary.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="81" selection-start-line="11" selection-start-column="81" selection-end-line="11" selection-end-column="81" />
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/StrategicPlan/Resources/views/strategicplan.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="155" selection-start-line="12" selection-start-column="155" selection-end-line="12" selection-end-column="155" />
+        <state>
+          <caret selection-end-line="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/tierselection.js">
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/Routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        <state relative-caret-position="60">
+          <caret line="13" selection-start-line="13" selection-end-line="25" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/module.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="14" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/module.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views/wabstrategicplan.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          <folding>
+            <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABBudget/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/WABStrategicPlan/Database/Migrations/2019_03_12_222103_create_we_are_bristol_strategic_plan_file_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="235" column="45" selection-start-line="235" selection-start-column="45" selection-end-line="235" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+        <state relative-caret-position="825">
+          <caret line="55" column="16" lean-forward="true" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helpers/helpers.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/analytics.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="75" lean-forward="true" selection-start-line="56" selection-start-column="12" selection-end-line="59" selection-end-column="75" />
+        <state relative-caret-position="105">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/tier_selection.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/FurtherInformation/Resources/views/furtherinformation.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="103" selection-start-line="17" selection-start-column="103" selection-end-line="17" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Budget/Resources/views/budget.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/svg/403.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/svg/404.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/FileUpload/Notes.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="108" column="59" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
+        <state relative-caret-position="375">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Modules\WABBudget\Entities;
+
+
+use App\Packages\FileUpload\NoteModel;
+
+class Note extends NoteModel
+{
+    public function getModuleName(): string
+    {
+        return 'wabbudget';
+    }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "WABStrategicPlan",
+    "alias": "wabstrategicplan",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\WABStrategicPlan\\Providers\\WABStrategicPlanServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\WABStrategicPlan\\ModuleConfiguration",
+    "in_development": false
+}

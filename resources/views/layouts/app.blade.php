@@ -22,6 +22,10 @@
     <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
 
+    <!-- Analytics -->
+    @if(config('app.analytics.enabled'))
+       @include('templates.analytics')
+    @endif
 
 </head>
 
