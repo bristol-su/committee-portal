@@ -3,7 +3,7 @@
     "alias": "riskassessment",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 4,
     "providers": [
         "App\\Modules\\RiskAssessment\\Providers\\RiskAssessmentServiceProvider"

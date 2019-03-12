@@ -3,7 +3,7 @@
     "alias": "committeedetails",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 1,
     "providers": [
         "App\\Modules\\CommitteeDetails\\Providers\\CommitteeDetailsServiceProvider"

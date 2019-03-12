@@ -33,6 +33,8 @@ class DefaultDocumentStatusChanged extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject($this->subject)->markdown('emails.default_file_status_updated');
+        return $this
+            ->subject($this->subject)
+            ->markdown('emails.default_file_status_updated');
     }
 }

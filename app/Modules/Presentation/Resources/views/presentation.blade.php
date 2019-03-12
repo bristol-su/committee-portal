@@ -1,5 +1,7 @@
 @extends('presentation::layouts.app')
 
+@section('title', 'Presentation')
+
 @section('module-content')
 
     <!-- Title and description -->
@@ -7,16 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Presentation</h2>
-                    <p class="">Something something something</p>
+                    <h2 class="">Presentation - <small>#WeAreBristol</small></h2>
+                    <p class="">Please upload your presentation by Monday 22nd April. Your Rate My Group data will be available form 16th April if you wish to include this. Pre submissions of presentations allows presentation days to run much smoother and you don’t have to worry about technology on the day!</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-
-    <div class="py-5">
-        <div class="container">
             <div class="presentation-root">
 
 
@@ -30,6 +27,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

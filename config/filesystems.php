@@ -61,7 +61,6 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
         ],
 
         'google' => [
@@ -71,6 +70,13 @@ return [
             'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
             'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
         ],
+
+    ],
+
+    'static_content' => [
+        'bucket' => env('AWS_STATIC_BUCKET'),
+        'folder' => env('AWS_STATIC_FOLDER'),
+        'url' => env('AWS_STATIC_URL')
 
     ],
 

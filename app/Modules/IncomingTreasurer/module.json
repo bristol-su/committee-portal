@@ -3,7 +3,7 @@
     "alias": "incomingtreasurer",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 8,
     "providers": [
         "App\\Modules\\IncomingTreasurer\\Providers\\IncomingTreasurerServiceProvider"

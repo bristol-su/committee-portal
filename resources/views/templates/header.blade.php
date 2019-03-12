@@ -4,7 +4,7 @@
 
             <!-- Right side of the navbar -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Committee Portal') }}
             </a>
 
             <!-- Navigation toggle for smaller screens -->

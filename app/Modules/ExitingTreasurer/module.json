@@ -3,7 +3,7 @@
     "alias": "exitingtreasurer",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 7,
     "providers": [
         "App\\Modules\\ExitingTreasurer\\Providers\\ExitingTreasurerServiceProvider"

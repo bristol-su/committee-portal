@@ -46,7 +46,8 @@ class VerifyEmailMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.auth.verify');
+        return $this->markdown('emails.auth.verify')
+            ->subject('Verify Email');
 
     }
 }

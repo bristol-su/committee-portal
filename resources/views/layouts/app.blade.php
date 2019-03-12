@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Committee Portal') }}</title>
+    <title>{{config('app.name', 'Committee Portal')}} | @yield('title')</title>
 
 
     <!-- Fonts -->
@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body style="height: 100%; min-height: 100%;">
     @include('templates.header')
 
     @if (session('status'))

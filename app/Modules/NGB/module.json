@@ -3,7 +3,7 @@
     "alias": "ngb",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 9,
     "providers": [
         "App\\Modules\\NGB\\Providers\\NGBServiceProvider"

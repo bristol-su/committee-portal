@@ -4,7 +4,7 @@
         <div class="row">
             <div :class="{deselected: selectedTier !== tier, selected: selectedTier === tier}" @click="selectTier(tier)" class="column tier-holder"
                  v-for="tier in tiers">
-                <img :alt="tier.name" :src="tier.filename" style="width:100%">
+                <img :alt="tier.name" :src="tier.filename | static" style="width:100%">
                 <!--<div style="text-align: center; font-weight: bold; font-size: 30px;">{{tier.name}}</div>-->
             </div>
         </div>
@@ -91,6 +91,12 @@
 
             canBeSubmitted() {
                 return this.submissions.length === 0 && !this.disableButton;
+            }
+        },
+
+        filters: {
+            static(filename) {
+                return window.serveStaticContent(filename);
             }
         }
     }

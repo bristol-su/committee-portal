@@ -39,7 +39,7 @@ trait GetsControlStudentByUnionCloudID
             $student->hydrate($response->getPayload()[0]);
             return $student;
         } else {
-            throw new \Exception('Student not found', 404);
+            throw new \Exception('We could not find you on our systems.', 404);
         }
     }
 

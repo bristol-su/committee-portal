@@ -15,7 +15,7 @@
                 <ul class="noteList">
                     <li v-for="note in sortedNotes" v-if="sortedNotes.length > 0">
                         <div class="noteerImage">
-                            <img src="/images/avatar.png"/>
+                            <img :src="'document-note-avatar.png' | static"/>
                         </div>
                         <div class="noteText">
                             <span class="noterName">{{ note.user | username }}</span> <span
@@ -104,6 +104,10 @@
             username(user) {
                 return user.forename + ' ' + user.surname;
             },
+
+            static(filename) {
+                return window.serveStaticContent(filename);
+            }
 
         },
 

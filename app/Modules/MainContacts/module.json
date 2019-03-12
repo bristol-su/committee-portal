@@ -3,7 +3,7 @@
     "alias": "maincontacts",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 3,
     "providers": [
         "App\\Modules\\MainContacts\\Providers\\MainContactsServiceProvider"

@@ -3,7 +3,7 @@
     "alias": "externalaccounts",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 0,
     "providers": [
         "App\\Modules\\ExternalAccounts\\Providers\\ExternalAccountsServiceProvider"

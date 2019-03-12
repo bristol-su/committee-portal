@@ -2,7 +2,6 @@ import VModal from 'vue-js-modal';
 import Form from './utilities/Form';
 import CommitteeRoleSelect from "./components/CommitteeRoleSelect";
 import GroupSelect from './components/GroupSelect';
-import Notifications from 'vue-notification';
 import CustomFileUpload from './components/FileUpload/CustomFileUpload';
 import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
 import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
@@ -50,4 +49,10 @@ new Vue({
     }
 });
 
-
+window.serveStaticContent = function (filename) {
+    return 'https://'
+        + process.env.MIX_AWS_STATIC_URL + '/'
+        + process.env.MIX_AWS_STATIC_BUCKET + '/'
+        + process.env.MIX_AWS_STATIC_FOLDER + '/'
+        + filename
+};

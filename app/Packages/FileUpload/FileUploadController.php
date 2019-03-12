@@ -55,8 +55,7 @@ abstract class FileUploadController
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
 
-        // TODO Change from dev-documents
-        if ($path = $request->file('file')->store('/dev-documents')) {
+        if ($path = Storage::cloud()->put($this->getModuleName().'-file-uploads', $request->file('file') )) {
 
             $fileModel = new $this->fileModel;
             $fileModel->fill([
@@ -120,7 +119,7 @@ abstract class FileUploadController
     {
         $file = $this->fileModel::findOrFail($id);
         abort_if(getGroupID() !== $file->group_id, 403, 'Please log in as a member of this society.');
-        return Storage::download($file->path, $file->getSafeFileName());
+        return Storage::cloud()->download($file->path, $file->getSafeFileName());
     }
 
     public function postNote(Request $request, $id)
@@ -153,7 +152,7 @@ abstract class FileUploadController
     public function adminDownloadFile(Request $request, $id)
     {
         $file = $this->fileModel::findOrFail($id);
-        return Storage::download($file->path, $file->getSafeFileName());
+        return Storage::cloud()->download($file->path, $file->getSafeFileName());
     }
 
     public function adminPostNote(Request $request, $id)

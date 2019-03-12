@@ -50,3 +50,13 @@ if (!function_exists('getGroupID')) {
         return \Illuminate\Support\Facades\Auth::user()->getCurrentRole()->group->id;
     }
 }
+
+if(!function_exists('serveStatic')) {
+    function serveStatic($filename)
+    {
+            return 'https://'
+                .config('filesystems.static_content.url').'/'
+                .config('filesystems.static_content.bucket').'/'
+                .config('filesystems.static_content.folder').'/'.$filename;
+    }
+}

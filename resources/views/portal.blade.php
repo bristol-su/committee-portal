@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Portal Home')
 @section('content')
 
 <style>
@@ -9,7 +10,7 @@
         margin-right: 5%
     }
 </style>
-{{--'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?--}}
+
 <div class="py-5">
     <div class="container">
         @foreach($modules->pluck('header')->unique() as $header)
