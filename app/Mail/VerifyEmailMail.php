@@ -5,11 +5,12 @@ namespace App\Mail;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 
-class VerifyEmailMail extends Mailable
+class VerifyEmailMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

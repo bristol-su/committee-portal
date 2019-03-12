@@ -14,7 +14,7 @@ Regards,<br/>
 Bristol SU
 
 @component('mail::footer')
-    If you’re having trouble clicking the "Verify Email Address" button, copy and paste the URL below into your web browser: {{ $url }}
+    If you’re having trouble clicking the "Verify Email Address" button, copy and paste the URL below into your web browser: {!! $url !!}
 @endcomponent
 
 @endcomponent
