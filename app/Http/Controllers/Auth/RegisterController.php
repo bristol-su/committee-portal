@@ -84,7 +84,12 @@ class RegisterController extends Controller
             }
 
             $user->password = Hash::make($request->input('password'));
-            $user->save();
+            try {
+
+                $user->save();
+            } catch (\Exception $e) {
+                throw new \Exception('Could not register your password on our systems.');
+            }
 
             return $user;
         }
@@ -121,9 +126,14 @@ class RegisterController extends Controller
                 'email' => $unionCloudUser->email,
                 'control_id' => $controlUser->id,
             ]);
+            try {
 
-            if ($user->save()) {
-                return $user;
+                if ($user->save()) {
+                    return $user;
+                }
+            } catch (\Exception $e) {
+                throw new \Exception('Could not register you on our systems.');
+
             }
 
         }
