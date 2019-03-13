@@ -12,7 +12,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      *
      * @var array
      */
-    protected $roles = [
+    public $roles = [
         'admin' // Allow the user to do the bare minimum adminstration
     ];
 
@@ -21,7 +21,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      *
      * @var array
      */
-    protected $permissions = [
+    public $permissions = [
         'act-as-admin', // Allows the user to be seen as an administrator
         'view-as-student', // Allow the user to view the portal as a specific student
         'bypass-maintenance', // Pass the maintenance middleware for modules
@@ -33,7 +33,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      *
      * @var array
      */
-    protected $assignments = [
+    public $assignments = [
         'admin' => [
             'act-as-admin'
         ]
