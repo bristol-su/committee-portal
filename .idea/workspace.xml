@@ -38,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+            <state relative-caret-position="702">
+              <caret line="88" column="39" lean-forward="true" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -317,9 +317,10 @@
       <path value="$PROJECT_DIR$/vendor/nao-pon/flysystem-google-drive" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="960" />
     <option name="y" value="27" />
-    <option name="width" value="1920" />
+    <option name="width" value="960" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -531,12 +532,12 @@
       <workItem from="1552351765710" duration="5717000" />
       <workItem from="1552396754607" duration="43400000" />
       <workItem from="1552471008468" duration="6142000" />
-      <workItem from="1552488668335" duration="2219000" />
+      <workItem from="1552488668335" duration="2643000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="580941000" />
+    <option name="totallyTimeSpent" value="581365000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -548,10 +549,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="960" y="27" width="960" height="1053" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.20520833" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4969758" weight="0.20520833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.5030242" side_tool="true" weight="0.26614583" />
@@ -957,8 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+        <state relative-caret-position="702">
+          <caret line="88" column="39" lean-forward="true" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
         </state>
       </provider>
     </entry>

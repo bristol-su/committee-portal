@@ -72,7 +72,7 @@ abstract class FileUploadController extends Controller
         $this->authorizeModuleAction('upload');
 
         $request->validate([
-            'file' => 'required|mimes:pdf,doc,dot,zip,xml,docx,pptx,ppt,odt,txt,xls,xlsx,xls,csv,ods,otp',
+            'file' => 'required|mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
             'title' => 'required|min:3|max:255'
         ]);
 
