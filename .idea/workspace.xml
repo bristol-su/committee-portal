@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/PermissionAndRoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/PermissionAndRoleSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/TierSelectionDatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/TierSelectionDatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/BasePermissionAndRoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/BasePermissionAndRoleSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
@@ -39,10 +36,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/TierSelectionDatabaseSeeder.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+            <state relative-caret-position="30">
+              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -139,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Modules/NGB/Routes/web.php" />
         <option value="$PROJECT_DIR$/app/Modules/GroupInfo/Routes/web.php" />
         <option value="$PROJECT_DIR$/app/Modules/IncomingTreasurer/Routes/web.php" />
         <option value="$PROJECT_DIR$/app/Modules/Budget/Routes/web.php" />
@@ -190,6 +186,7 @@
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/PermissionAndRoleSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/BasePermissionAndRoleSeeder.php" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/TierSelectionDatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
       </list>
     </option>
   </component>
@@ -382,6 +379,17 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Traits" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -518,12 +526,12 @@
       <workItem from="1552291917540" duration="21827000" />
       <workItem from="1552351765710" duration="5717000" />
       <workItem from="1552396754607" duration="43400000" />
-      <workItem from="1552471008468" duration="2319000" />
+      <workItem from="1552471008468" duration="3209000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="574899000" />
+    <option name="totallyTimeSpent" value="575789000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -599,13 +607,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="91" column="60" selection-start-line="91" selection-start-column="60" selection-end-line="91" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/BaseModule/Providers/BaseAuthServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -958,6 +959,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
         </state>
       </provider>
     </entry>
