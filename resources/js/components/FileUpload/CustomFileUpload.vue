@@ -1,7 +1,23 @@
 <template>
     <div class="container">
         <!-- New Upload -->
+        <br/>
+<br/>
+        <!-- File Table -->
+        <div style="justify-content: center">
 
+            <file-table
+                    :files="files"
+                    :uploading="uploading"
+                    :module="module"
+                    :uploadingDocumentTitle="documentTitle"
+                    @upload="submitFile"
+                    @updatedfile="retrieveFiles"
+            >
+
+            </file-table>
+        </div>
+     <hr/><br/>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">New File</legend>
 
@@ -40,20 +56,6 @@
         <br/><br/>
 
 
-        <!-- File Table -->
-        <div style="justify-content: center">
-
-            <file-table
-                    :files="files"
-                    :uploading="uploading"
-                    :module="module"
-                    :uploadingDocumentTitle="documentTitle"
-                    @upload="submitFile"
-                    @updatedfile="retrieveFiles"
-            >
-
-            </file-table>
-        </div>
 
 
     </div>
@@ -106,6 +108,7 @@
             // Methods to process files
 
             newFile() {
+                this.$notify.warning('File selected. Please click \'Upload\' to confirm.');
                 this.files = this.files.filter(file => !(file instanceof File));
                 let uploadedFiles = this.$refs.files.files;
                 for (var i = 0; i < uploadedFiles.length; i++) {
@@ -129,6 +132,7 @@
 
                     this.$http.post('/' + this.module + '/upload-files', formData)
                         .then(response => {
+                            this.$notify.success('File uploaded!');
                             this.files.splice(key, 1, response.data);
                             this.uploading.splice(this.uploading.indexOf(key), 1);
                             this.$refs.files.value = '';
