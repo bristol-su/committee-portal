@@ -139,6 +139,7 @@
                         this.submitting = false;
                     })
                     .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
                         this.form.errors.record(error.errors);
                         this.submitting = false;
                     });

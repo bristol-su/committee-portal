@@ -15,8 +15,6 @@ abstract class ModuleConfiguration
             'header' => $this->getHeaderKey(), // Header key as defined in config. Will alter where the button is displayed on the page
             'button_title' => $this->getButtonTitle(), // Title of the button as displayed on the page
             'user_url' => $this->getUserURL(), // URL to direct the user to when clicking this button
-            'visible' => $this->getVisibility(), // Should this module be visible to the user
-            'active' => $this->isActive(), // Should this module be active or greyed out?
             'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?
             'reaffiliation_status' => $this->getReaffiliationStatus(), // What status is this module? Use config keys
             'description' => $this->getDescription(),
@@ -73,18 +71,6 @@ abstract class ModuleConfiguration
      */
     abstract public function getAdminURL();
 
-    /**
-     * Should the module be drawn as a button on the portal dashboard?
-     *
-     * @return bool
-     */
-    abstract public function getVisibility();
-
-    /**
-     * Check if the module should be active (i.e. not greyed out)
-     * @return bool
-     */
-    abstract public function isActive();
 
     /**
      * Defines if the module is mandatory for reaffiliation or not

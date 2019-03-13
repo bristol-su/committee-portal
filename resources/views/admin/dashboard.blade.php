@@ -23,22 +23,21 @@
                                 <div class="row">
                                     @foreach($modules->where('admin_header', $header) as $module)
 
-                                        @if($module['visible'])
+                                        @can($module['rawModule']->alias.'.module.isVisible')
 
                                             <div class="col-xs-4" style="width: 33%; padding: 2px;">
                                                 <a href="{{url($module['admin_url'])}}">
                                                     <button
                                                             type="button"
                                                             class="module_button {{config('portal.reaffiliation_status.admin')}}"
-                                                            @if(! $module['active']) disabled @endif
+                                                            @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
                                                     >
                                                         {{$module['button_title']}}
                                                     </button>
                                                 </a>
                                             </div>
 
-                                        @endif
-
+                                        @endcan
                                     @endforeach
                                 </div>
                             </div>

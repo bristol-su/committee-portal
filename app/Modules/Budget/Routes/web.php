@@ -11,13 +11,13 @@
 |
 */
 
-Route::prefix('budget')->middleware(['user', 'module', 'module.status:budget'])->group(function() {
+Route::prefix('budget')->middleware(['user', 'module', 'module.active:budget', 'module.maintenance:budget'])->group(function() {
     Route::get('/', 'BudgetController@showUserPage');
 
     Route::FileUploads('BudgetController');
 });
 
-Route::prefix('admin/budget')->middleware(['admin', 'module', 'module.status:budget'])->group(function() {
+Route::prefix('admin/budget')->middleware(['admin', 'module', 'module.active:budget', 'module.maintenance:budget'])->group(function() {
     Route::get('/', 'BudgetController@showAdminPage');
 
     Route::get('/note-templates', 'BudgetController@showNoteTemplatePage');

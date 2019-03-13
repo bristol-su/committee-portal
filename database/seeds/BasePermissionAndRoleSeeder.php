@@ -9,11 +9,17 @@ class BasePermissionAndRoleSeeder extends Seeder
 {
 
     /**
+     * Optional prefix for the start of the permission name
+     * @var null
+     */
+    public $permissionPrefix = '';
+
+    /**
      * Roles to create
      *
      * @var array
      */
-    protected $roles = [
+    public $roles = [
 
     ];
 
@@ -22,7 +28,7 @@ class BasePermissionAndRoleSeeder extends Seeder
      *
      * @var array
      */
-    protected $permissions = [
+    public $permissions = [
 
     ];
 
@@ -31,7 +37,7 @@ class BasePermissionAndRoleSeeder extends Seeder
      *
      * @var array
      */
-    protected $assignments = [
+    public $assignments = [
 
     ];
 
@@ -42,25 +48,33 @@ class BasePermissionAndRoleSeeder extends Seeder
      */
     public function run()
     {
-        foreach($this->roles as $roleName) {
-            $role = new Role([
-                'name' => $roleName
-            ]);
-            $role->save();
+        foreach ($this->roles as $roleName) {
+            try {
+                Role::findByName($roleName);
+            } catch (\Spatie\Permission\Exceptions\RoleDoesNotExist $e) {
+                Role::create([
+                    'name' => $roleName
+                ]);
+            }
         }
 
-        foreach($this->permissions as $permissionName) {
-            $permission = new Permission([
-                'name' => $permissionName
-            ]);
-            $permission->save();
+        foreach ($this->permissions as $permissionName) {
+
+            try {
+                Permission::findByName($permissionName);
+            } catch (\Spatie\Permission\Exceptions\PermissionDoesNotExist $e) {
+                Permission::create([
+                    'name' => $this->permissionPrefix . $permissionName
+                ]);
+            }
         }
 
-        foreach($this->assignments as $role => $permissions)
-        {
+        foreach ($this->assignments as $role => $permissions) {
             $role = Role::findByName($role);
-            foreach($permissions as $permission) {
-                $role->permissions()->attach(Permission::findByName($permission));
+            foreach ($permissions as $permission) {
+                if(!$role->hasPermissionTo($permission)) {
+                    $role->permissions()->attach(Permission::findByName($this->permissionPrefix . $permission));
+                }
             }
         }
     }

@@ -16,6 +16,7 @@ class CommitteeDetailsDatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(PermissionAndRoleSeeder::class);
 
         $this->generatePositionSetting();
 

@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware(['user', 'module', 'module.status:committeedetails'])->group(function() {
+\Illuminate\Support\Facades\Route::prefix('committeedetails')->middleware(['user', 'module', 'module.active:committeedetails', 'module.maintenance:committeedetails'])->group(function() {
     Route::get('/', 'CommitteeDetailsController@showUserPage');
     Route::post('/', 'CommitteeDetailsController@addUserToControl');
     Route::post('/{positionStudentGroupID}', 'CommitteeDetailsController@updateUserInControl');

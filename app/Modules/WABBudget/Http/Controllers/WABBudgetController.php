@@ -11,16 +11,19 @@ class WABBudgetController extends FileUploadController
 {
     public function showUserPage()
     {
+        $this->authorizeModuleAction('view');
         return view('wabbudget::wabbudget');
     }
 
     public function showAdminPage()
     {
+        $this->authorizeModuleAction('view-admin');
         return view('wabbudget::admin');
     }
 
     public function showNoteTemplatePage()
     {
+        $this->authorizeModuleAction('view-note-template-page');
         return view('wabbudget::note_template');
     }
 

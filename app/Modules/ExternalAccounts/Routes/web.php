@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('externalaccounts')->middleware(['user', 'module', 'module.status:externalaccounts'])->group(function() {
+Route::prefix('externalaccounts')->middleware(['user', 'module', 'module.active:externalaccounts', 'module.maintenance:externalaccounts'])->group(function() {
     Route::get('/', 'ExternalAccountsController@index');
 });

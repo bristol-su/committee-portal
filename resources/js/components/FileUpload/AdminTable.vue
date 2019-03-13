@@ -124,6 +124,7 @@
                         this.files = response.data;
                     })
                     .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
                         this.errors.record(error);
                     });
             },
@@ -137,6 +138,7 @@
                         this.$notify.success('Updated status')
                     })
                     .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
                         this.$notify.alert('Status not updated')
                     });
 

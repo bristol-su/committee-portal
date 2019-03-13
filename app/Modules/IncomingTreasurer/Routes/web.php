@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('incomingtreasurer')->middleware(['user', 'module', 'module.status:incomingtreasurer'])->group(function() {
+Route::prefix('incomingtreasurer')->middleware(['user', 'module', 'module.active:incomingtreasurer', 'module.maintenance:incomingtreasurer'])->group(function() {
     Route::get('/', 'IncomingTreasurerController@index');
 });

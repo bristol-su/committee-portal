@@ -11,14 +11,14 @@
 |
 */
 
-Route::prefix('riskassessment')->middleware(['user', 'module', 'module.status:riskassessment'])->group(function() {
+Route::prefix('riskassessment')->middleware(['user', 'module', 'module.active:riskassessment', 'module.maintenance:riskassessment'])->group(function() {
     Route::get('/', 'RiskAssessmentController@showUserPage');
 
     Route::FileUploads('RiskAssessmentController');
 
 });
 
-Route::prefix('admin/riskassessment')->middleware(['admin', 'module', 'module.status:riskassessment'])->group(function() {
+Route::prefix('admin/riskassessment')->middleware(['admin', 'module', 'module.active:riskassessment', 'module.maintenance:riskassessment'])->group(function() {
     Route::get('/', 'RiskAssessmentController@showAdminPage');
 
     Route::get('/note-templates', 'RiskAssessmentController@showNoteTemplatePage');

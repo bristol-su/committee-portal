@@ -2,8 +2,8 @@
 
 namespace App\Modules\Budget\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class BudgetDatabaseSeeder extends Seeder
 {
@@ -16,6 +16,6 @@ class BudgetDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(PermissionAndRoleSeeder::class);
     }
 }

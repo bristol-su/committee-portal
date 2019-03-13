@@ -15,16 +15,22 @@ class PresentationController extends FileUploadController
 
     public function showUserPage()
     {
+        $this->authorizeModuleAction('view');
+
         return view('presentation::presentation');
     }
 
     public function showAdminPage()
     {
+        $this->authorizeModuleAction('view-admin');
+
         return view('presentation::admin');
     }
 
     public function showNoteTemplatePage()
     {
+        $this->authorizeModuleAction('view-note-template-page');
+
         return view('presentation::note_template');
     }
 

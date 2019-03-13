@@ -4,10 +4,26 @@ namespace App\Modules\TierSelection\Database\Seeders;
 
 use App\Modules\TierSelection\Entities\Tier;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class TierSelectionDatabaseSeeder extends Seeder
 {
+    protected $tierData = [
+        [
+            'name' => 'Club Evolution',
+            'filename' => 'images/seh-club-evolution.jpg',
+
+        ],
+        [
+            'name' => 'Kickstart',
+            'filename' => 'images/seh-kickstart.jpg',
+        ],
+        [
+            'name' => 'Performance Sport',
+            'filename' => 'images/seh-performance-sport.jpg',
+
+        ]
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -15,6 +31,11 @@ class TierSelectionDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Tier::class, 3)->create();
+        foreach ($this->tierData as $tierData) {
+            if(Tier::where('name', $tierData['name'])->count() === 0 ) {
+                $tier = new Tier($tierData);
+                $tier->save();
+            }
+        }
     }
 }

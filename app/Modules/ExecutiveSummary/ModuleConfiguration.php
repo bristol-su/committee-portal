@@ -3,6 +3,7 @@
 namespace App\Modules\ExecutiveSummary;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\ExecutiveSummary\Entities\File;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -41,7 +42,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function reaffiliationStatus()
     {
-        return 'incomplete';
+        if(\Auth::user()->isAdmin()) { return 'admin'; }
+        if(File::where([
+            'year' => getReaffiliationYear(),
+            'status' => 'approved',
+            'group_id' => getGroupID()
+        ])->count() === 0) {
+
+            return 'incomplete';
+        }
+        return 'complete';
     }
 
     public function getDescription()

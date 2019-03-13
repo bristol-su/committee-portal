@@ -11,14 +11,14 @@
 |
 */
 
-Route::prefix('constitution')->middleware(['user', 'module', 'module.status:constitution'])->group(function() {
+Route::prefix('constitution')->middleware(['user', 'module', 'module.active:constitution', 'module.maintenance:constitution'])->group(function() {
     Route::get('/', 'ConstitutionController@showUserPage');
 
     Route::FileUploads('ConstitutionController');
 
 });
 
-Route::prefix('admin/constitution')->middleware(['admin', 'module', 'module.status:constitution'])->group(function() {
+Route::prefix('admin/constitution')->middleware(['admin', 'module', 'module.active:constitution', 'module.maintenance:constitution'])->group(function() {
     Route::get('/', 'ConstitutionController@showAdminPage');
 
     Route::get('/note-templates', 'ConstitutionController@showNoteTemplatePage');

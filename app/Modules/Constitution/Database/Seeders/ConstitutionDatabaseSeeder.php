@@ -15,6 +15,7 @@ class ConstitutionDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        $this->call(PermissionAndRoleSeeder::class);
 
         // $this->call("OthersTableSeeder");
     }

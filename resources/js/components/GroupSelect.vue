@@ -57,6 +57,7 @@
                     this.groups = response.data ;
                 })
                 .catch(error => {
+                    this.$notify.alert('Sorry, something went wrong.');
                     console.log('Sorry, we could not get the groups');
                 })
         },

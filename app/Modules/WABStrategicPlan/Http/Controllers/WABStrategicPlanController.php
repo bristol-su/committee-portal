@@ -14,16 +14,22 @@ class WABStrategicPlanController extends FileUploadController
 {
     public function showUserPage()
     {
+        $this->authorizeModuleAction('view');
+
         return view('wabstrategicplan::wabstrategicplan');
     }
 
     public function showAdminPage()
     {
+        $this->authorizeModuleAction('view-admin');
+
         return view('wabstrategicplan::admin');
     }
 
     public function showNoteTemplatePage()
     {
+        $this->authorizeModuleAction('view-note-template-page');
+
         return view('wabstrategicplan::note_template');
     }
 

@@ -2,14 +2,16 @@
 
 namespace App\Modules\FurtherInformation\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
 class FurtherInformationController extends Controller
 {
     public function showFurtherInformation()
     {
+        $this->authorize('furtherinformation.view');
+
         return view('furtherinformation::furtherinformation');
     }
 

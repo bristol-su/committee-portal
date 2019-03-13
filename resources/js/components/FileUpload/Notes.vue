@@ -88,7 +88,10 @@
                         this.$emit('updatedfile', response.data);
                         this.note = '';
                     })
-                    .catch(error => this.submitErrors.record(error));
+                    .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
+                        this.submitErrors.record(error)
+                    });
             },
 
             getNoteCount(id) {

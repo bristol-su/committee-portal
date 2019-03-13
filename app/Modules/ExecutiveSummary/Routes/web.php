@@ -11,7 +11,7 @@
 |
 */
 
-Route::prefix('executivesummary')->middleware(['user', 'module', 'module.status:executivesummary'])->group(function() {
+Route::prefix('executivesummary')->middleware(['user', 'module', 'module.active:executivesummary', 'module.maintenance:executivesummary'])->group(function() {
 
     Route::get('/', 'ExecutiveSummaryController@showUserPage');
 
@@ -19,7 +19,7 @@ Route::prefix('executivesummary')->middleware(['user', 'module', 'module.status:
 
 });
 
-Route::prefix('admin/executivesummary')->middleware(['admin', 'module', 'module.status:executivesummary'])->group(function() {
+Route::prefix('admin/executivesummary')->middleware(['admin', 'module', 'module.active:executivesummary', 'module.maintenance:executivesummary'])->group(function() {
     Route::get('/', 'ExecutiveSummaryController@showAdminPage');
 
     Route::get('/note-templates', 'ExecutiveSummaryController@showNoteTemplatePage');

@@ -16,6 +16,6 @@ class WABStrategicPlanDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(PermissionAndRoleSeeder::class);
     }
 }

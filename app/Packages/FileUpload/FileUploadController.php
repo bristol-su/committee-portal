@@ -9,6 +9,7 @@
 namespace App\Packages\FileUpload;
 
 
+use App\Http\Controllers\Controller;
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,22 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
-abstract class FileUploadController
+/**
+ * This file requires the following permissions to be defined, with the format modulename.permission
+ * - Upload - can they upload a file?
+ * - View - can view file?
+ * - Download - can they download the files?
+ * - post-note - can they post a note?
+ * - change-status - Can they change the status of a file?
+ * - delete-note-template
+ * - update-note-template
+ * - create-note-template
+ * - view-note-template
+ *
+ * Class FileUploadController
+ * @package App\Packages\FileUpload
+ */
+abstract class FileUploadController extends Controller
 {
 
 
@@ -45,8 +61,16 @@ abstract class FileUploadController
 
     abstract protected function templateModel(): string;
 
+    protected function authorizeModuleAction($ability)
+    {
+        $this->authorize($this->getModuleName().'.'.$ability);
+    }
+
     public function uploadFile(Request $request)
     {
+
+        $this->authorizeModuleAction('upload');
+
         $request->validate([
             'file' => 'required|max:10000|mimes:pdf,doc,docx,odt,txt,xlsm,xls,csv',
             'title' => 'required|min:3|max:255'
@@ -108,6 +132,8 @@ abstract class FileUploadController
 
     public function retrieveFile()
     {
+        $this->authorizeModuleAction('view');
+
         $files = $this->getFileWithRelations();
         $files = $files->filter(function ($file) {
             return $file->group_id === getGroupID();
@@ -117,6 +143,8 @@ abstract class FileUploadController
 
     public function downloadFile($id)
     {
+        $this->authorizeModuleAction('download');
+
         $file = $this->fileModel::findOrFail($id);
         abort_if(getGroupID() !== $file->group_id, 403, 'Please log in as a member of this society.');
         return Storage::cloud()->download($file->path, $file->getSafeFileName());
@@ -124,6 +152,7 @@ abstract class FileUploadController
 
     public function postNote(Request $request, $id)
     {
+        $this->authorizeModuleAction('post-note');
         // Validate
         $request->validate([
             'note' => 'required|min:3|max:10000'
@@ -146,17 +175,21 @@ abstract class FileUploadController
 
     public function adminRetrieveFile(Request $request)
     {
+        $this->authorizeModuleAction('view-admin');
         return $this->getFileWithRelations();
     }
 
     public function adminDownloadFile(Request $request, $id)
     {
+        $this->authorizeModuleAction('download-admin');
         $file = $this->fileModel::findOrFail($id);
         return Storage::cloud()->download($file->path, $file->getSafeFileName());
     }
 
     public function adminPostNote(Request $request, $id)
     {
+        $this->authorizeModuleAction('post-note-admin');
+
         // Validate
         $request->validate([
             'note' => 'required|min:3|max:10000'
@@ -179,6 +212,8 @@ abstract class FileUploadController
 
     public function adminChangeFileStatus(Request $request, $id)
     {
+        $this->authorizeModuleAction('change-status');
+
         $request->validate([
             'status' => [
                 'required',
@@ -208,11 +243,14 @@ abstract class FileUploadController
 
     public function adminGetNoteTemplates()
     {
+        $this->authorizeModuleAction('view-note-templates');
+
         return $this->templateModel::all();
     }
 
     public function adminCreateNoteTemplate(Request $request)
     {
+        $this->authorizeModuleAction('create-note-template');
         $request->validate([
             'name' => 'required|min:3|max:255',
             'description' => 'required|min:3|max:255',
@@ -235,6 +273,7 @@ abstract class FileUploadController
 
     public function adminUpdateNoteTemplate(Request $request, $id)
     {
+        $this->authorizeModuleAction('update-note-template');
         $request->validate([
             'name' => 'sometimes|min:3|max:255',
             'description' => 'sometimes|min:3|max:255',
@@ -256,6 +295,7 @@ abstract class FileUploadController
 
     public function adminDeleteNoteTemplate($id)
     {
+        $this->authorizeModuleAction('delete-note-template');
         if ($this->templateModel::destroy($id)) {
             return response('', 200);
         }

@@ -60,7 +60,7 @@
                     }
 
                 })
-                .catch(error => alert('Sorry, an error occured retrieving tiers. Please try again or contact us.'))
+                .catch(error => this.$notify.alert('Sorry, something went wrong.'))
         },
 
         methods: {
@@ -77,7 +77,7 @@
                         tier_id: this.selectedTier.id
                     })
                         .catch(error => {
-                            alert('Sorry, something went wrong!');
+                            this.$notify.alert('Sorry, something went wrong.');
                             window.location.reload();
                         })
                 }

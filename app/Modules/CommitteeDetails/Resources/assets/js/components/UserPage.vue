@@ -107,7 +107,7 @@
                                 return allMembers.id !== member.id;
                             });
                         })
-                        .catch(e => console.log(e));
+                        .catch(e => this.$notify.alert('Sorry, something went wrong.'));
                 }
 
             }

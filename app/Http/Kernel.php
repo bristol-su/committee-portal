@@ -5,9 +5,10 @@ namespace App\Http;
 use App\Http\Middleware\AuthenticateUserGuard;
 use App\Http\Middleware\CheckAdminCanViewAsStudent;
 use App\Http\Middleware\CheckIfAdmin;
+use App\Http\Middleware\CheckModuleActive;
+use App\Http\Middleware\CheckModuleDevelopmentStatus;
 use App\Http\Middleware\LoadGroupTagsFromControl;
 use App\Http\Middleware\LoadStudentTagsFromControl;
-use App\Http\Middleware\CheckModuleDevelopmentStatus;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -46,8 +47,9 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'module.status' => CheckModuleDevelopmentStatus::class,
+        'verified' => EnsureEmailIsVerified::class,
+        'module.active' => CheckModuleActive::class,
+        'module.maintenance' => CheckModuleDevelopmentStatus::class,
         'can-view-as-student' => CheckAdminCanViewAsStudent::class,
     ];
 

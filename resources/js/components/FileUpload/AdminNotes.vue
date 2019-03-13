@@ -100,7 +100,10 @@
                         this.$emit('updatedfile', response.data);
                         this.note = '';
                     })
-                    .catch(error => this.submitErrors.record(error));
+                    .catch(error => {
+                        this.submitErrors.record(error);
+                        this.$notify.alert('Sorry, something went wrong.');
+                    });
             },
 
             loadTemplate(event) {

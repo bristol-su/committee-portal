@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('furtherinformation')->middleware(['user', 'module', 'module.status:furtherinformation'])->group(function() {
+Route::prefix('furtherinformation')->middleware(['user', 'module', 'module.active:furtherinformation', 'module.maintenance:furtherinformation'])->group(function() {
     Route::get('/', 'FurtherInformationController@showFurtherInformation');
 });

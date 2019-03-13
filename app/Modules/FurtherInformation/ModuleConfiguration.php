@@ -29,19 +29,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/furtherinformation';
     }
 
-    public function getVisibility()
-    {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
 
     public function reaffiliationStatus()
     {
-        return 'incomplete';
+        return 'complete';
     }
 
     public function getDescription()

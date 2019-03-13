@@ -134,6 +134,7 @@
                             this.$refs.files.value = '';
                         })
                         .catch(error => {
+                            this.$notify.alert('Sorry, something went wrong.');
                             this.uploading.splice(this.uploading.indexOf(key), 1);
                             this.errors.record(error.response.data.errors);
                         });
@@ -143,7 +144,7 @@
             retrieveFiles() {
                 this.$http.get('/' + this.module + '/retrieve-files')
                     .then(response => this.files = response.data)
-                    .catch(error => console.log('could not load initial files'))
+                    .catch(error => this.$notify.alert('Sorry, something went wrong.'))
             },
 
 

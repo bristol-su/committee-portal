@@ -11,14 +11,14 @@
 |
 */
 
-Route::prefix('strategicplan')->middleware(['user', 'module', 'module.status:strategicplan'])->group(function() {
+Route::prefix('strategicplan')->middleware(['user', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
     Route::get('/', 'StrategicPlanController@showUserPage');
 
     Route::FileUploads('StrategicPlanController');
 
 });
 
-Route::prefix('admin/strategicplan')->middleware(['admin', 'module', 'module.status:strategicplan'])->group(function() {
+Route::prefix('admin/strategicplan')->middleware(['admin', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
     Route::get('/', 'StrategicPlanController@showAdminPage');
 
     Route::get('/note-templates', 'StrategicPlanController@showNoteTemplatePage');

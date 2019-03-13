@@ -58,4 +58,13 @@ return [
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
 
+    'we_are_bristol' => [
+        'enabled' => env('WE_ARE_BRISTOL_ENABLED', false)
+    ],
+
+    // TODO Is there another way?
+    'exec_committee' => [
+        5,22,23
+    ]
+
 ];

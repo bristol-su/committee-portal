@@ -53,6 +53,7 @@
                     this.loading = false;
                 })
                 .catch(error => {
+                    this.$notify.alert('Sorry, something went wrong.');
                     this.errorVisible = true;
                     this.loading = false;
                 });
@@ -66,6 +67,7 @@
                         this.selectedOption = option;
                     })
                     .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
                         this.errorVisible = true;
                     });
             }

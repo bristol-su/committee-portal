@@ -13,16 +13,22 @@ class ExecutiveSummaryController extends FileUploadController
 
     public function showUserPage()
     {
+        $this->authorizeModuleAction('view');
+
         return view('executivesummary::executive_summary');
     }
 
     public function showAdminPage()
     {
+        $this->authorizeModuleAction('view-admin');
+
         return view('executivesummary::admin');
     }
 
     public function showNoteTemplatePage()
     {
+        $this->authorizeModuleAction('view-note-template-page');
+
         return view('executivesummary::note_template');
     }
 

@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('groupinfo')->middleware(['user', 'module', 'module.status:groupinfo'])->group(function() {
+Route::prefix('groupinfo')->middleware(['user', 'module', 'module.active:groupinfo', 'module.maintenance:groupinfo'])->group(function() {
     Route::get('/', 'GroupInfoController@index');
 });

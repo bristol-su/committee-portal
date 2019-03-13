@@ -82,4 +82,14 @@ class User extends Authenticatable implements MustVerifyEmail
         Mail::to($this->email)->send(new VerifyEmailMail($this));
     }
 
+    public function hasPresidentialPosition()
+    {
+        return in_array($this->getCurrentRole()->position->id, config('portal.exec_committee'));
+    }
+
+    public function isOldCommittee()
+    {
+        return $this->getCurrentRole()->committee_year === (config('portal.reaffiliation_year') - 1);
+    }
+
 }

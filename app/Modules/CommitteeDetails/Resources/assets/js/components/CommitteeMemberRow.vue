@@ -58,7 +58,10 @@
         mounted() {
             this.$http.get('/unioncloud/api/user/?uid=' + this.committeemember.student.uc_uid)
                 .then(response => this.student = response.data)
-                .catch(error => this.studentFailed = true);
+                .catch(error => {
+                    this.studentFailed = true;
+                    this.$notify.alert('Sorry, something went wrong.');
+                });
         },
 
         methods: {

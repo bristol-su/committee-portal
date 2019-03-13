@@ -11,13 +11,13 @@
 |
 */
 
-Route::prefix('wabbudget')->middleware(['user', 'module', 'module.status:wabbudget'])->group(function() {
+Route::prefix('wabbudget')->middleware(['user', 'module', 'module.active:wabbudget', 'module.maintenance:wabbudget'])->group(function() {
     Route::get('/', 'WABBudgetController@showUserPage');
 
     Route::FileUploads('WABBudgetController');
 });
 
-Route::prefix('admin/wabbudget')->middleware(['admin', 'module', 'module.status:wabbudget'])->group(function() {
+Route::prefix('admin/wabbudget')->middleware(['admin', 'module', 'module.active:wabbudget', 'module.maintenance:wabbudget'])->group(function() {
     Route::get('/', 'WABBudgetController@showAdminPage');
 
     Route::get('/note-templates', 'WABBudgetController@showNoteTemplatePage');

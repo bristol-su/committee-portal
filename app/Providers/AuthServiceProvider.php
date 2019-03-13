@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Authentication\CommitteeRoleProvider;
 use App\Authentication\ViewAsStudentProvider;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -36,11 +38,33 @@ class AuthServiceProvider extends ServiceProvider
             return new ViewAsStudentProvider();
         });
 
-        // Override gates for admins
-        Gate::before(function($user, $ability) {
+        // Override gates for super admins
+        Gate::before(function(User $user, $ability) {
             // Allow super admins through everything
             if($user->hasPermissionTo('act-as-super-admin')) {
                 return true;
+            }
+
+            return null;
+        });
+
+        // Override user gates for ordinary admins
+        Gate::before(function(User $user, $ability) {
+
+            // Override what individuals may do on the site
+            try {
+                if($user->hasPermissionTo($ability)) {
+                    return true;
+                }
+            } catch (PermissionDoesNotExist $e) {
+                // Let them pass since it may be a user specific position
+                // or a pre-migrated position. They won't pass all gates
+                // unless they have permission to be here.
+            }
+
+            // Don't let admins into the user permissions
+            if($user->isAdmin()) {
+                return false;
             }
 
             return null;
