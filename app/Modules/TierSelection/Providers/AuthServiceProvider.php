@@ -3,6 +3,7 @@
 namespace App\Modules\TierSelection\Providers;
 
 use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Modules\TierSelection\Entities\Submission;
 use App\Modules\TierSelection\Entities\Tier;
 use App\User;
 use Illuminate\Support\Facades\Gate;
@@ -39,7 +40,7 @@ class AuthServiceProvider extends BaseAuthServiceProvider
         });
 
         Gate::define('tierselection.submit', function(User $user) {
-            return Tier::where([
+            return Submission::where([
                 'year'=>config('portal.reaffiliation_year'),
                 'group_id' => getGroupID()
             ])->count() === 0;

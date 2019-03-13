@@ -19,3 +19,8 @@ Route::prefix('tierselection')->middleware(['user', 'module', 'module.active:tie
 Route::prefix('tierselection/api')->middleware(['user', 'module', 'module.active:tierselection', 'module.maintenance:tierselection'])->group(function() {
     Route::get('/tiers', 'TierSelectionController@getTiers');
 });
+
+Route::prefix('admin/tierselection')->middleware(['admin', 'module', 'module.active:tierselection', 'module.maintenance:tierselection'])->group(function() {
+    Route::get('/', 'TierSelectionController@showAdminPage');
+    Route::get('/submissions', 'TierSelectionController@getAllSubmissions');
+});

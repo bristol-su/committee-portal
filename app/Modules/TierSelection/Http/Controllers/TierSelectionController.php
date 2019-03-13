@@ -48,7 +48,6 @@ class TierSelectionController extends Controller
         ]);
 
         abort_unless($submission->save(), 500, 'We were unable to save your selection.');
-
         return $submission;
     }
 }
