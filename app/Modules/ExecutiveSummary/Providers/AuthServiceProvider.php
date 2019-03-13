@@ -60,7 +60,6 @@ class AuthServiceProvider extends BaseAuthServiceProvider
             return $user->can('executivesummary.module.isVisible');
         });
 
-
     }
 
     /**

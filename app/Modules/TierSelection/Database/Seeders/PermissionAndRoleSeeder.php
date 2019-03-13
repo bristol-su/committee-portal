@@ -20,6 +20,8 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $permissions = [
+        'module.isActive',
+        'module.isVisible',
         'view',
         'view-admin',
         'submit',
@@ -34,5 +36,5 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
 
     ];
 
-    public $permissionPrefix = 'wabstrategicplan.';
+    public $permissionPrefix = 'tierselection.';
 }

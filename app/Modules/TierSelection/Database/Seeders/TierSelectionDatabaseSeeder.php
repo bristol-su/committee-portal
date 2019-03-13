@@ -10,16 +10,16 @@ class TierSelectionDatabaseSeeder extends Seeder
     protected $tierData = [
         [
             'name' => 'Club Evolution',
-            'filename' => 'images/seh-club-evolution.jpg',
+            'filename' => 'seh-club-evolution.jpg',
 
         ],
         [
             'name' => 'Kickstart',
-            'filename' => 'images/seh-kickstart.jpg',
+            'filename' => 'seh-kickstart.jpg',
         ],
         [
             'name' => 'Performance Sport',
-            'filename' => 'images/seh-performance-sport.jpg',
+            'filename' => 'seh-performance-sport.jpg',
 
         ]
     ];

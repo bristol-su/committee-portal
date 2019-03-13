@@ -61,7 +61,7 @@ class BasePermissionAndRoleSeeder extends Seeder
         foreach ($this->permissions as $permissionName) {
 
             try {
-                Permission::findByName($permissionName);
+                Permission::findByName($this->permissionPrefix . $permissionName);
             } catch (\Spatie\Permission\Exceptions\PermissionDoesNotExist $e) {
                 Permission::create([
                     'name' => $this->permissionPrefix . $permissionName
