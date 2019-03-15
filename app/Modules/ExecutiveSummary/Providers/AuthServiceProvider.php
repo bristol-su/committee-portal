@@ -46,19 +46,22 @@ class AuthServiceProvider extends BaseAuthServiceProvider
             return $user->hasPresidentialPosition();
         });
 
+        // Who can view the exec summary lists
         Gate::define('executivesummary.view', function(User $user) {
             return $user->can('executivesummary.module.isVisible');
         });
 
-        // Who can upload an exec summary
+        // Who can download an exec summary
         Gate::define('executivesummary.download', function(User $user) {
             // TODO Old committee over changeover period is hard
             return $user->can('executivesummary.module.isVisible');
         });
 
+        // Who can post a note
         Gate::define('executivesummary.post-note', function(User $user) {
             return $user->can('executivesummary.module.isVisible');
         });
+
 
     }
 

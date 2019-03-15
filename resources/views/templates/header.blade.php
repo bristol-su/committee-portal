@@ -2,11 +2,14 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
 
-            <!-- Right side of the navbar -->
+            <!-- Left side of the navbar -->
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Committee Portal') }}
             </a>
 
+            {{--<a class="navbar-brand" href="{{ url('/') }}"><img alt="Bristol SU Logo"--}}
+                                                               {{--src="https://s3-eu-west-1.amazonaws.com/nusdigital/union_logo/images/281/original/open-uri20180703-28672-t8fr30."--}}
+                                                                   {{--style="width: 75%; height: auto;"/>--}}
             <!-- Navigation toggle for smaller screens -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -14,7 +17,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Left side of NavBar -->
+            <!-- Right side of NavBar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 @guest

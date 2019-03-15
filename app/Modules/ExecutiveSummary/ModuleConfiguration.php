@@ -4,6 +4,7 @@ namespace App\Modules\ExecutiveSummary;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\ExecutiveSummary\Entities\File;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -30,19 +31,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/executivesummary';
     }
 
-    public function getVisibility()
-    {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
     public function reaffiliationStatus()
     {
-        if(\Auth::user()->isAdmin()) { return 'admin'; }
+        if(!$this->actingAsStudent()) { return 'admin'; }
+
         if(File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',

@@ -31,10 +31,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/presentation';
     }
 
-
     public function reaffiliationStatus()
     {
-        if(Auth::user()->isAdmin()) { return 'admin'; }
+        if(!$this->actingAsStudent()) { return 'admin'; }
+
         if(File::where([
                 'year' => getReaffiliationYear(),
                 'status' => 'approved',
