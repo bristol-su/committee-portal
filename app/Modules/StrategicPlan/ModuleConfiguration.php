@@ -39,6 +39,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function reaffiliationStatus()
     {
+        if(!$this->actingAsStudent()) { return 'admin'; }
         return 'incomplete';
     }
 

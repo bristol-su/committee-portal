@@ -45,7 +45,7 @@ new Vue({
 
     components: {
         'committee-role-select': CommitteeRoleSelect,
-        'group-select': GroupSelect
+        'group-select': GroupSelect,
     }
 });
 

@@ -53,7 +53,7 @@ return [
 
         'complete' => 'btn btn-success',
 
-        'admin' => 'btn btn-success'
+        'admin' => 'btn btn-outline-info'
     ],
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
