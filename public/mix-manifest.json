@@ -44,5 +44,6 @@
     "/css/wabbudget.css": "/css/wabbudget.css",
     "/js/wabbudget.js": "/js/wabbudget.js",
     "/css/wabstrategicplan.css": "/css/wabstrategicplan.css",
-    "/js/wabstrategicplan.js": "/js/wabstrategicplan.js"
+    "/js/wabstrategicplan.js": "/js/wabstrategicplan.js",
+    "/js/sitesettings.js": "/js/sitesettings.js"
 }

@@ -30,13 +30,19 @@ Route::middleware('user')->group(function () {
 });
 
 
-Route::middleware('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
 
-    Route::get('/admin', 'AdminController@showAdminDashboard');
+    Route::get('/', 'AdminController@showAdminDashboard');
 
-    Route::middleware('can-view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
+    Route::get('/settings', 'AdminSettingsController@showSettingsPage');
 
-    Route::middleware('can-view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
+    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage');
+
+    Route::get('/settings/admin-users/get-users', 'AdminSettingsController@getAdminUsers');
+
+    Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
+
+    Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
 });
 
 # Control DB Internal API Routes

@@ -2,34 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/admin/settings/AdminUsersTable.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/admin/settings/ManageAdminUserPermissions.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/sitesettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/admin_users.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/base_settings.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/BaseModule/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/BaseModule/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/portal.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/portal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/CheckAdminCanViewAsStudent.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PermissionAndRoleSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PermissionAndRoleSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/portal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/portal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/templates/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
@@ -63,10 +52,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/admin/settings/ManageAdminUserPermissions.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="45">
+              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -75,7 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Strategicplan</find>
       <find>Your notes</find>
       <find>budget</find>
       <find>'module', 'module.status:</find>
@@ -102,9 +90,10 @@
       <find>protected $roles</find>
       <find>protected $permissions</find>
       <find>resend</find>
-      <find>rese</find>
       <find>reaffiliationStatus</find>
       <find>if($this-&gt;actingAsStudent()) { return 'admin'; }</find>
+      <find>href</find>
+      <find>rese</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;bootTrait();</replace>
@@ -155,6 +144,7 @@
       <dir>$PROJECT_DIR$/resources</dir>
       <dir>$PROJECT_DIR$/</dir>
       <dir>$PROJECT_DIR$/app/Modules</dir>
+      <dir>$PROJECT_DIR$/resources/views</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -166,19 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Modules/Presentation/Providers/AuthServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Modules/WABBudget/Providers/AuthServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Providers/AuthServiceProvider.php" />
-        <option value="$PROJECT_DIR$/database/seeds/PermissionAndRoleSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/PermissionAndRoleSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/BasePermissionAndRoleSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/TierSelectionDatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/admin.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/admin.blade.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/tierselection.js" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/AdminPage.vue" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Http/Controllers/TierSelectionController.php" />
         <option value="$PROJECT_DIR$/app/Modules/TierSelection/Providers/AuthServiceProvider.php" />
@@ -189,12 +166,9 @@
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/js/components/UserDropdown.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" />
-        <option value="$PROJECT_DIR$/resources/views/templates/header.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/resources/sass/app.scss" />
         <option value="$PROJECT_DIR$/config/portal.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Modules/BaseModule/ModuleConfiguration.php" />
         <option value="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" />
@@ -217,6 +191,22 @@
         <option value="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" />
         <option value="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" />
         <option value="$PROJECT_DIR$/resources/views/portal.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/GroupSelect.vue" />
+        <option value="$PROJECT_DIR$/resources/views/templates/header.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/webpack.mix.js" />
+        <option value="$PROJECT_DIR$/resources/views/admin/settings/base_settings.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/sitesettings.js" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/PermissionAndRoleSeeder.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/settings.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminSettingsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/settings/admin_users.blade.php" />
+        <option value="$PROJECT_DIR$/resources/js/admin/settings/AdminUsersTable.vue" />
+        <option value="$PROJECT_DIR$/resources/js/admin/settings/ManageAdminUserPermissions.vue" />
       </list>
     </option>
   </component>
@@ -378,17 +368,64 @@
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="seeds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
               <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
@@ -402,6 +439,26 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="committee-portal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="committee-portal" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -422,18 +479,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/admin" />
       <recent name="$PROJECT_DIR$/app/Modules/WABStrategicPlan/Resources/views" />
       <recent name="$PROJECT_DIR$/app/Modules/WABBudget/Resources/views/layouts" />
       <recent name="$PROJECT_DIR$/app/Http/Middleware" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
-      <recent name="$PROJECT_DIR$/resources/js/components/FileUpload" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/js/admin/settings" />
       <recent name="$PROJECT_DIR$/resources/js/components" />
       <recent name="$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components" />
       <recent name="$PROJECT_DIR$/app/Modules/TierSelection/Resources/views" />
       <recent name="$PROJECT_DIR$/app/Modules/ExecutiveSummary" />
-      <recent name="$PROJECT_DIR$/app/Modules/Presentation" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -542,12 +599,12 @@
       <workItem from="1552471008468" duration="6142000" />
       <workItem from="1552488668335" duration="3173000" />
       <workItem from="1552649471722" duration="487000" />
-      <workItem from="1552687359970" duration="5060000" />
+      <workItem from="1552687359970" duration="9179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="587442000" />
+    <option name="totallyTimeSpent" value="591561000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,7 +617,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -623,107 +679,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/views/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/tierselection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/AdminPage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="100" column="2" selection-start-line="100" selection-start-column="2" selection-end-line="100" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Database/Seeders/PermissionAndRoleSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Providers/RouteServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Providers/AuthServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-          <folding>
-            <element signature="e#55#116#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Http/Controllers/TierSelectionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/TierSelection/Resources/assets/js/components/UserPage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/FileUpload/FileTable.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/awesome-notifications/dist/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="65" selection-start-column="65" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/FileUpload/CustomFileUpload.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="134" column="64" selection-start-line="134" selection-start-column="64" selection-end-line="134" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Packages/FileUpload/FileUploadMigration.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Packages/FileUpload/FileUploadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="56" column="7" lean-forward="true" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/framework/sessions/SSVCMhZp3ef0oq3ivUFKBYqJpVEmtX1sGtQz3kwx">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -823,41 +778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/CommitteeRoleSelect.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/GroupSelect.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="831">
-          <caret line="86" column="18" selection-start-line="86" selection-start-column="15" selection-end-line="86" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/UserDropdown.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/templates/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -888,21 +812,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="71" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="71" />
-          <folding>
-            <element signature="e#314#340#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/sectional.rnc">
       <provider selected="true" editor-type-id="text-editor">
@@ -968,8 +879,162 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="240">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/admin.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/CheckAdminCanViewAsStudent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="64" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="52" column="6" lean-forward="true" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/GroupSelect.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="73" column="39" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/CommitteeRoleSelect.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="4" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/vendor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/sitesettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/settings/base_settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="40" column="88" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/PermissionAndRoleSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminSettingsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="e#40#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/settings/admin_users.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <folding>
+            <element signature="e#304#336#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/admin/settings/AdminUsersTable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/admin/settings/ManageAdminUserPermissions.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
         </state>
       </provider>
     </entry>

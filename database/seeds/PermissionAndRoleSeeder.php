@@ -26,6 +26,8 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
         'view-as-student', // Allow the user to view the portal as a specific student
         'bypass-maintenance', // Pass the maintenance middleware for modules
         'act-as-super-admin', // Pass every gate check
+        'view-site-settings-page', // Able to see the 'settings' page on admin
+        'settings.see-all-admin-users' // See all the admin users listed out.
     ];
 
     /**
