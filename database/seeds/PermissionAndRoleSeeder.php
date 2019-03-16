@@ -27,7 +27,8 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
         'bypass-maintenance', // Pass the maintenance middleware for modules
         'act-as-super-admin', // Pass every gate check
         'view-site-settings-page', // Able to see the 'settings' page on admin
-        'settings.see-all-admin-users' // See all the admin users listed out.
+        'settings.see-all-admin-users', // See all the admin users listed out.
+        'settings.see-manage-admin-permissions', // See all the roles and permissions and enter manage user permissions page
     ];
 
     /**

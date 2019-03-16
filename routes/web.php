@@ -40,6 +40,12 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/settings/admin-users/get-users', 'AdminSettingsController@getAdminUsers');
 
+    Route::delete('/settings/admin-users/{user}/delete-user', 'AdminSettingsController@deleteAdminUsers');
+
+    Route::get('/settings/permissions/get', 'AdminSettingsController@getPermissions');
+
+    Route::get('/settings/roles/get', 'AdminSettingsController@getRoles');
+
     Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
 
     Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
