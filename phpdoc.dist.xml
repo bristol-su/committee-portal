@@ -16,7 +16,7 @@
         <target>docs</target>
     </transformer>
     <transformations>
-        <template name="responsive" />
+        <template name="clean" />
     </transformations>
     <files>
         <directory>app</directory>

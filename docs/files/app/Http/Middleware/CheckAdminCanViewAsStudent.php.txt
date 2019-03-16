@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Support\Facades\Auth;
+
+class CheckAdminCanViewAsStudent
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        abort_if(!Auth::user()->hasPermissionTo('view-as-student'), 403, 'You don\'t have permission to view groups');
+        return $next($request);
+    }
+}
+

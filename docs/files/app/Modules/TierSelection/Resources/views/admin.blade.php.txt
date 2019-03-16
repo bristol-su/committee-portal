@@ -1,0 +1,25 @@
+@extends('tierselection::layouts.app')
+
+@section('title', '#WeAreBristol Tier Selection')
+@section('module-content')
+
+    <!-- Title and description -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="">Tier Selection - <small>#WeAreBristol</small></h2>
+                    <p class="">All Tier Selection Submissions</p>
+                </div>
+                <div class="col-md-12">
+                    <tier-selection-admin-page>
+
+                    </tier-selection-admin-page>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+
