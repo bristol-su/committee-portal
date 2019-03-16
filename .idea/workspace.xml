@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="221ccf3a-9cd0-4f31-a5e4-b6892807fc68" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/BaseModule/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/BaseModule/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Budget/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/CommitteeDetails/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Constitution/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/EquipmentList/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExecutiveSummary/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExitingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/ExternalAccounts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/FurtherInformation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/GroupInfo/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/IncomingTreasurer/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/MainContacts/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/NGB/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/Presentation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/RiskAssessment/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/StrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TaskAllocation/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/TierSelection/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/WABBudget/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules/WABStrategicPlan/ModuleConfiguration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/portal.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/portal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/portal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/portal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/templates/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/templates/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/control-database.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../control-database/control-database/.idea/workspace.xml" afterDir="false" />
@@ -66,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -159,9 +132,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -543,11 +513,12 @@
       <workItem from="1552488668335" duration="3173000" />
       <workItem from="1552649471722" duration="487000" />
       <workItem from="1552687359970" duration="5060000" />
+      <workItem from="1552777731674" duration="11000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="587442000" />
+    <option name="totallyTimeSpent" value="587453000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,7 +531,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969758" visible="true" weight="0.275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -724,9 +694,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/framework/sessions/SSVCMhZp3ef0oq3ivUFKBYqJpVEmtX1sGtQz3kwx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/framework/sessions/SSVCMhZp3ef0oq3ivUFKBYqJpVEmtX1sGtQz3kwx" />
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Contracts/Auth/MustVerifyEmail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -837,13 +805,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/UserDropdown.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/UserDropdown.vue" />
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -969,7 +931,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/portal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>

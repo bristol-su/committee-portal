@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Modules\Budget\Providers;
+
+use App\Modules\Budget\Listeners\NotifyUserOfBudgetFileStatusChange;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
+class EventServiceProvider extends ServiceProvider
+{
+    protected $listen = [
+        'budget.fileStatusChanged' => [
+            NotifyUserOfBudgetFileStatusChange::class
+        ]
+    ];
+}
+

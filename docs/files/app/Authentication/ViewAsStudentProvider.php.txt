@@ -1,0 +1,67 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: toby
+ * Date: 12/02/19
+ * Time: 18:32
+ */
+
+namespace App\Authentication;
+
+
+use App\Authentication\ViewAsStudent;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\Packages\ControlDB\Models\Student;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\UserProvider;
+use Illuminate\Support\Facades\Auth;
+
+class ViewAsStudentProvider implements UserProvider
+{
+
+    /**
+     * Return a ViewAsStudent instance
+     * @param mixed $identifier
+     * @return Authenticatable|null
+     */
+    public function retrieveById($identifier)
+    {
+        return new ViewAsStudent($identifier);
+    }
+
+    public function retrieveByToken($identifier, $token)
+    {
+    }
+
+    public function updateRememberToken(Authenticatable $user, $token)
+    {
+    }
+
+    public function retrieveByCredentials(array $credentials)
+    {
+        if(isset($credentials['group_id'])) {
+            return $this->retrieveById($credentials['group_id']);
+        }
+        return null;
+    }
+
+    /**
+     * Ensure the user owns the committee role
+     *
+     * @param Authenticatable $user
+     * @param array $credentials
+     * @return bool
+     */
+    public function validateCredentials(Authenticatable $user, array $credentials)
+    {
+        if(isset($credentials['group_id'])) {
+            // Ensure the user owns the position
+            $group = $this->retrieveById($credentials['group_id']);
+            if($group !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
