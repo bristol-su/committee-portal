@@ -21,9 +21,18 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $permissions = [
-        'module.isVisible', // Is the module visible?
-        'module.isActive', // Is the module active?
-        'view',
+        'module.isVisible' => [ // TODO Shouldn't affect both sides
+            'title' => '#WABFurtherInformation: Visibility of module',
+            'description' => 'Is the module visible? This will effect both the admin and user side.'
+        ],
+        'module.isActive' => [
+            'title' => '#WABFurtherInformation: Is the module disabled?',
+            'description' => 'Is the module disabled? If so, the module cannot be opened.'
+        ],
+        'view' => [
+            'title' => '#WABFurtherInformation: Viewable',
+            'description' => 'Can the module page be opened?'
+        ],
     ];
 
     /**

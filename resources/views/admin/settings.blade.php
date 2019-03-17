@@ -27,6 +27,18 @@
                                     </div>
                                 @endcan
 
+                                @can('settings.see-roles-and-permissions')
+                                    <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
+                                        <a href="{{ url('/admin/settings/roles-permissions') }}">
+                                            <button
+                                                    type="button"
+                                                    class="module_button btn btn-outline-info"
+                                            >
+                                                Roles & Permissions
+                                            </button>
+                                        </a>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
                     </div>

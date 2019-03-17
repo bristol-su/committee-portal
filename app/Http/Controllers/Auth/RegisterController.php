@@ -7,8 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
-use App\Rules\IsAValidUserByStudentIDOrEmail;
-use App\Rules\IsValidPassword;
 use App\Traits\GetsControlStudentByUnionCloudID;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -91,6 +89,23 @@ class RegisterController extends Controller
                 throw new \Exception('Could not register your password on our systems.');
             }
 
+            return $user;
+        }
+
+        if (($user = User
+            ::where('email', $request->input('identity'))
+            ->orWhere('student_id', $request->input('identity'))
+            ->first())
+            ->isAdmin()
+        ) {
+            $user->password = Hash::make($request->input('password'));
+            $user->email_verified_at = null;
+            try {
+
+                $user->save();
+            } catch (\Exception $e) {
+                throw new \Exception('Could not register your password on our systems.');
+            }
             return $user;
         }
 

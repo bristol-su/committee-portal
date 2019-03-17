@@ -6,8 +6,8 @@
                     <h2>Managing permissions for {{user.forename}}</h2>
                 </div>
                 <div class="float: right;">
-                    <button class="btn btn-danger btn-sm" @click="cancel">Cancel</button>
-                    <button class="btn btn-success btn-sm" @click="save">Save</button>
+                    <button @click="cancel" class="btn btn-danger btn-sm">Cancel</button>
+                    <button @click="save" class="btn btn-success btn-sm">Save</button>
                 </div>
             </div>
 
@@ -27,8 +27,9 @@
                         <th style="border-right: 1px dotted black">
                             <div style="text-align: left;" v-if="combined.role !== null">
 
-                                <input :id="'role-checkbox-' + combined.role.id" class="form-check-inline"
-                                       type="checkbox" :checked="isRoleSelected(combined.role)"  @change="toggleRole(combined.role)">
+                                <input :checked="isRoleSelected(combined.role)" :id="'role-checkbox-' + combined.role.id"
+                                       @change="toggleRole(combined.role)" class="form-check-inline"
+                                       type="checkbox">
                                 <label :for="'role-checkbox-'+ combined.role.id">
                                     {{combined.role.name}}
                                 </label>
@@ -36,13 +37,18 @@
                         </th>
 
                         <th>
-                            <div style="text-align: left;" v-if="combined.permission !== null">
+                            <div style="text-align: left;" v-if="combined.permission !== null" class="form-inline">
 
-                                <input :id="'role-checkbox-' + combined.permission.id" class="form-check-inline"
-                                       type="checkbox" :checked="isPermissionSelected(combined.permission)" @change="togglePermission(combined.permission)">
+                                <input :checked="isPermissionSelected(combined.permission)" :id="'role-checkbox-' + combined.permission.id"
+                                       @change="togglePermission(combined.permission)" class="form-check-inline"
+                                       type="checkbox">
                                 <label :for="'role-checkbox-'+ combined.permission.id">
-                                    {{combined.permission.name}}
+                                    {{combined.permission.title}}
                                 </label>
+
+                                <div class="help-tip">
+                                    <p>{{combined.permission.description}}</p>
+                                </div>
                             </div>
                         </th>
 
@@ -89,7 +95,7 @@
             this.selectedPermissions = this.user.permissions;
             this.user.roles.forEach(role => {
                 role.permissions.forEach(permission => {
-                    if(!this.isPermissionSelected(permission)) {
+                    if (!this.isPermissionSelected(permission)) {
                         this.selectedPermissions.push(permission);
                     }
                 });
@@ -114,7 +120,7 @@
             },
 
             toggleRole(role) {
-                if(!this.isRoleSelected(role)) {
+                if (!this.isRoleSelected(role)) {
                     this.selectedRoles.push(role);
                     this.addPermissionsDueToRole(role);
                 } else {
@@ -124,7 +130,7 @@
             },
 
             togglePermission(permission) {
-                if(!this.isPermissionSelected(permission)) {
+                if (!this.isPermissionSelected(permission)) {
                     this.selectedPermissions.push(permission);
                 } else {
                     this.selectedPermissions.splice(this.getSelectedIndexOfPermission(permission), 1);
@@ -133,7 +139,7 @@
 
             addPermissionsDueToRole(role) {
                 role.permissions.forEach(permission => {
-                    if(!this.isPermissionSelected(permission)) {
+                    if (!this.isPermissionSelected(permission)) {
                         this.selectedPermissions.push(permission);
                     }
                 });
@@ -141,8 +147,8 @@
 
             removePermissionsDueToRole(role) {
                 role.permissions.forEach(permission => {
-                    if(this.isPermissionSelected(permission)) {
-                        if(this.selectedRoles.filter(role => {
+                    if (this.isPermissionSelected(permission)) {
+                        if (this.selectedRoles.filter(role => {
                             return role.permissions.filter(rolePermission => rolePermission.id === permission.id).length === 1;
                         }).length === 0) {
                             // No other applied roles own the permission
@@ -153,19 +159,22 @@
             },
 
             cancel() {
-                if(confirm('Are you sure you wish to cancel? You will lose any unsaved changes.')) {
+                if (confirm('Are you sure you wish to cancel? You will lose any unsaved changes.')) {
                     this.$emit('close');
                 }
             },
 
             save() {
-                let permissions = this.selectedPermissions.map(permission => permission.id );
+                let permissions = this.selectedPermissions.map(permission => permission.id);
                 let roles = this.selectedRoles.map(role => role.id);
-                this.$http.post('/admin/settings/permissions/update/'+this.user.id, {
+                this.$http.post('/admin/settings/permissions/update/' + this.user.id, {
                     permissions: permissions,
                     roles: roles
                 })
-                    .then(response => this.$notify.success('Permissions updated!'))
+                    .then(response => {
+                        this.$notify.success('Permissions updated!');
+                        this.$emit('close');
+                    })
                     .catch(error => this.$notify.alert('Permissions could not be updated: ' + error.message));
             }
 

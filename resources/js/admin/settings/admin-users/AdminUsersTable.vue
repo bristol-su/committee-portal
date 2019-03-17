@@ -1,5 +1,6 @@
 <template>
     <div style="text-align: center;">
+        <button class="btn btn-outline-info" style="float:left; width: 50%;" @click="showEditUserForm(null)">Add New Administrator</button>
 
         <table class="table table-hover table-responsive table-striped table-condensed" style="margin: auto; display: table;">
             <thead>
@@ -18,7 +19,7 @@
                     <th>{{user.email}}</th>
                     <th>{{user.student_id}}</th>
                     <th>
-                        <!--<button type="button" class="btn btn-outline-info" @click="editUser(user)">Edit</button>-->
+                        <button type="button" class="btn btn-outline-info" @click="showEditUserForm(user)">Edit</button>
                         <button type="button" class="btn btn-outline-info" @click="manageUserPermissions(user)">Manage Permissions</button>
                         <button type="button" class="btn btn-outline-danger" @click="deleteUser(user)">Delete</button>
                     </th>
@@ -38,16 +39,32 @@
             >
             </manage-admin-user-permissions-and-roles>
         </modal>
+
+        <modal
+                name="manage-admin-user"
+                height="auto"
+                :scrollable="true"
+                :resizable="true"
+        >
+            <new-user-form
+                    :user="editingUser"
+                    @close="hideEditUserForm()"
+                    @userUpdated="updateUser"
+            >
+            </new-user-form>
+        </modal>
     </div>
 </template>
 
 <script>
 
     import ManageAdminUserPermissionsAndRoles from './ManageAdminUserPermissionsAndRoles';
+    import NewUser from "./NewUser";
 
     export default {
         components: {
-            ManageAdminUserPermissionsAndRoles
+            ManageAdminUserPermissionsAndRoles,
+            'new-user-form': NewUser
         },
 
         data() {
@@ -72,9 +89,6 @@
         },
 
         methods: {
-            editUser(user) {
-                // TODO Implement edit user function to allow admins to edit their/all profiles
-            },
             deleteUser(user) {
                 if(confirm('Deleting user #'+user.id+'('+ user.email +'). Are you sure?')) {
                     this.$http.delete('/admin/settings/admin-users/'+ user.id +'/delete-user')
@@ -95,6 +109,24 @@
             hideManagePermissions() {
                 this.editingUser = null;
                 this.$modal.hide('manage-admin-user-permissions')
+            },
+
+            showEditUserForm(user) {
+                this.editingUser = user;
+                this.$modal.show('manage-admin-user')
+            },
+
+            hideEditUserForm() {
+                this.editingUser = null;
+                this.$modal.hide('manage-admin-user')
+            },
+
+            updateUser(user) {
+                if (this.users.filter(singleUser => singleUser.id === user.id).length === 0) {
+                    this.users.push(user);
+                } else {
+                    this.users.splice(this.users.indexOf(this.users.filter(singleUser => singleUser.id === user.id)[0]), 1, user);
+                }
             }
         }
     }

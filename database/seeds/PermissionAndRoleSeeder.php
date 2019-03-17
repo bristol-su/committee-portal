@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
 class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
 {
 
@@ -22,14 +18,66 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $permissions = [
-        'act-as-admin', // Allows the user to be seen as an administrator
-        'view-as-student', // Allow the user to view the portal as a specific student
-        'bypass-maintenance', // Pass the maintenance middleware for modules
-        'act-as-super-admin', // Pass every gate check
-        'view-site-settings-page', // Able to see the 'settings' page on admin
-        'settings.see-all-admin-users', // See all the admin users listed out.
-        'settings.see-manage-admin-permissions', // See all the roles and permissions and enter manage user permissions page
-        'settings.update-admin-permissions', // Able to update admin permissions
+        'act-as-admin' => [
+            'title' => 'Base Admin',
+            'description' => 'This permission must be applied to all administrators.'
+        ],
+        'view-as-student' => [
+            'title' => 'View as Student',
+            'description' => 'Allow a user to view a student group portal.'
+        ], // Allow the user to view the portal as a specific student
+        'bypass-maintenance' => [
+            'title' => 'Bypass Maintenance',
+            'description' => 'Allow the user to bypass maintenance filters on modules.'
+        ], // Pass the maintenance middleware for modules
+        'act-as-super-admin' => [
+            'title' => 'Act as Super Admin',
+            'description' => 'Allow the user to do anything on the site.'
+        ], // Pass every gate check
+        'view-site-settings-page' => [
+            'title' => 'View Site Settings',
+            'description' => 'View the global site settings page.'
+        ], // Able to see the 'settings' page on admin
+        'settings.see-all-admin-users' => [
+            'title' => 'See Admin Users',
+            'description' => 'Allow the user to see all admin users.'
+        ], // See all the admin users listed out.
+        'settings.delete-admin-user' => [
+            'title' => 'Delete Admin User',
+            'description' => 'Delete an administrator user.'
+        ],
+        'settings.update-admin-permissions' => [
+            'title' => 'Edit User Permissions',
+            'description' => 'Can edit the permissions of other users.'
+        ], // Able to update admin permissions
+        'settings.see-roles-and-permissions' => [
+            'title' => 'See Roles and Permissions',
+            'description' => 'Allow the user to see the available roles and permissions.'
+        ], // Able to see all roles and permissions
+        'settings.delete-role' => [
+            'title' => 'Delete a Role',
+            'description' => 'Allow the user to delete roles.'
+        ], // Delete a role
+        'settings.update-role-permissions' => [
+            'title' => 'Update roles',
+            'description' => 'Allow the user to update the permission on roles.'
+        ],
+        'settings.create-admin-user' => [
+            'title' => 'Create Admin User',
+            'description' => 'Ability to create a new admin user'
+        ],
+        'settings.update-admin-user' => [
+            'title' => 'Update admin user',
+            'description' => 'Ability to update existing admin users'
+        ],
+        'settings.create-role' => [
+            'title' => 'Create Role',
+            'description' => 'Ability to create a new role'
+        ],
+        'settings.update-role' => [
+            'title' => 'Update Role',
+            'description' => 'Ability to update existing role'
+        ],
     ];
 
     /**
