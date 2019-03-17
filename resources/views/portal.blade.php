@@ -3,14 +3,6 @@
 @section('title', 'Portal Home')
 @section('content')
 
-    <style>
-        .module_button {
-            width: 90%;
-            margin-left: 5%;
-            margin-right: 5%
-        }
-    </style>
-
     <div class="py-5">
         <div class="container">
             <h2 style="text-align: center">Committee Portal</h2>
@@ -35,7 +27,7 @@
                                     @foreach($modules->where('header', $header) as $module)
                                         @can($module['rawModule']->alias.'.module.isVisible')
 
-                                            <div class="col-xs-4" style="width: 33%; padding: 2px;">
+                                            <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
                                                 <a href="{{url($module['user_url'])}}">
                                                     <button
                                                             type="button"

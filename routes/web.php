@@ -30,13 +30,46 @@ Route::middleware('user')->group(function () {
 });
 
 
-Route::middleware('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
 
-    Route::get('/admin', 'AdminController@showAdminDashboard');
+    Route::get('/', 'AdminController@showAdminDashboard');
 
-    Route::middleware('can-view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
+    Route::get('/settings', 'AdminSettingsController@showSettingsPage');
 
-    Route::middleware('can-view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
+    // Admin Users routes
+    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage');
+
+    Route::get('/settings/admin-users/get-users', 'AdminSettingsController@getAdminUsers');
+
+    Route::delete('/settings/admin-users/{user}/delete-user', 'AdminSettingsController@deleteAdminUsers');
+
+    Route::post('/settings/admin-users/update/{user}', 'AdminSettingsController@updateUser');
+
+    Route::post('/settings/admin-users/update', 'AdminSettingsController@createUser');
+
+    Route::post('/settings/permissions/update/{user}', 'AdminSettingsController@updateAdminUserRolesAndPermissions');
+
+    // Role and permission Routes
+
+    Route::get('/settings/permissions/get', 'AdminSettingsController@getPermissions');
+
+    Route::get('/settings/roles/get', 'AdminSettingsController@getRoles');
+
+    Route::post('/settings/roles/update/{role}', 'AdminSettingsController@updateRole');
+
+    Route::post('/settings/roles/update', 'AdminSettingsController@createRole');
+
+    Route::delete('/settings/roles/{role}', 'AdminSettingsController@deleteRole');
+
+    // Roles and Permissions
+    Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage');
+
+    Route::post('/settings/roles-permissions/update/{role}', 'AdminSettingsController@updateRolesAndPermissions');
+
+    // View as Student routes
+    Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
+
+    Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
 });
 
 # Control DB Internal API Routes

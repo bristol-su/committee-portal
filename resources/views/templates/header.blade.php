@@ -52,6 +52,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <!-- Settings -->
+                                @can('view-site-settings-page')
+                                    <a class="dropdown-item" href="{{ url('/admin/settings') }}">Settings</a>
+                                @endcan
                                 <!-- Logout -->
                                 <a class="dropdown-item" href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
