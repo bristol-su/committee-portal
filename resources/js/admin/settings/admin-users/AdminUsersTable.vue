@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div style="text-align: center;">
 
-        <table class="table table-hover table-responsive table-striped" style="margin-left:auto; margin-right:auto;">
+        <table class="table table-hover table-responsive table-striped table-condensed" style="margin: auto; display: table;">
             <thead>
             <tr>
                 <th></th>
@@ -27,8 +27,10 @@
         </table>
 
         <modal
-                height="auto"
                 name="manage-admin-user-permissions"
+                height="auto"
+                :scrollable="true"
+                :resizable="true"
         >
             <manage-admin-user-permissions-and-roles
                     :user="editingUser"

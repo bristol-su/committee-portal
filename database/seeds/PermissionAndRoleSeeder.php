@@ -29,6 +29,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
         'view-site-settings-page', // Able to see the 'settings' page on admin
         'settings.see-all-admin-users', // See all the admin users listed out.
         'settings.see-manage-admin-permissions', // See all the roles and permissions and enter manage user permissions page
+        'settings.update-admin-permissions', // Able to update admin permissions
     ];
 
     /**

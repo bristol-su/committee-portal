@@ -46,6 +46,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/settings/roles/get', 'AdminSettingsController@getRoles');
 
+    Route::post('/settings/permissions/update/{user}', 'AdminSettingsController@updateRolesAndPermissions');
+
     Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
 
     Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');

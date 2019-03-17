@@ -15,7 +15,7 @@
                             <h6 class="card-subtitle my-2 text-muted">Settings concerning users of the site</h6>
                             <div class="row">
                                 @can('settings.see-all-admin-users')
-                                    <div class="col-xs-4" style="width: 33%; padding: 2px;">
+                                    <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
                                         <a href="{{ url('/admin/settings/admin-users') }}">
                                             <button
                                                     type="button"

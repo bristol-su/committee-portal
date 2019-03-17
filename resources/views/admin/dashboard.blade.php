@@ -5,13 +5,6 @@
 @section('content')
 
     @php $modules = getModuleConfiguration(); @endphp
-    <style>
-        .module_button {
-            width: 90%;
-            margin-left: 5%;
-            margin-right: 5%
-        }
-    </style>
 
     <div class="py-5">
         <div class="container">
@@ -28,7 +21,7 @@
 
                                         @can($module['rawModule']->alias.'.module.isVisible')
 
-                                            <div class="col-xs-4" style="width: 33%; padding: 2px;">
+                                            <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
                                                 <a href="{{url($module['admin_url'])}}">
                                                     <button
                                                             type="button"

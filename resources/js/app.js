@@ -27,6 +27,7 @@ Vue.prototype.$notify = new AWN({
     position: 'top-right'
 });
 
+
 // Default modal settings for the VModal
 window.$defaultModalSettings = {adaptive: true, height: 'auto', scrollable: true};
 

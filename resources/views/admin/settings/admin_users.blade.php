@@ -9,7 +9,7 @@
         <div class="container">
             <h2 style="text-align: center">Administrator Users</h2>
                 <div class="row">
-                    <div class="col-md-12" style="justify-content: center;">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <admin-users-table>
 
                         </admin-users-table>

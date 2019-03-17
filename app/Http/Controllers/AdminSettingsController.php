@@ -28,9 +28,17 @@ class AdminSettingsController extends Controller
     {
         $this->authorize('settings.see-all-admin-users');
 
-        return User::with(['permissions', 'roles'])->get()->filter(function ($user) {
+        return User::with(['roles:id,name', 'permissions:id,name'])->get()->filter(function ($user) {
             return $user->isAdmin();
+        })->each(function (&$user) {
+            $user->roles->each(function($role) {
+                $role->load('permissions:id,name');
+                $role->permissions->makeHidden('pivot');
+            });
+            $user->roles->makeHidden('pivot');
+            $user->permissions->makeHidden('pivot');
         })->values();
+
     }
 
     public function deleteAdminUsers(User $user)
@@ -46,14 +54,32 @@ class AdminSettingsController extends Controller
     {
         $this->authorize('settings.see-manage-admin-permissions');
 
-        return Permission::get(['name', 'id']);
+        return Permission::get(['id', 'name']);
     }
 
     public function getRoles()
     {
         $this->authorize('settings.see-manage-admin-permissions');
 
-        return Role::with('permissions:id,name')->get(['name', 'id']);
+        return Role::with('permissions:id,name')->get(['id', 'name'])->each(function (&$role) {
+            $role->permissions->makeHidden('pivot');
+        });
 
+    }
+
+    public function updateRolesAndPermissions(User $user, Request $request)
+    {
+        $this->authorize('settings.update-admin-permissions');
+
+        $request->validate([
+            'permissions' => 'sometimes|array',
+            'permissions.*' => 'exists:permissions,id',
+            'roles' => 'sometimes|array',
+            'roles.*' => 'exists:roles,id',
+        ]);
+
+        if($user->permissions()->sync($request->input('permissions')) && $user->roles()->sync($request->input('roles'))){
+            return response('', 200);
+        }
     }
 }
