@@ -13,7 +13,7 @@ class CreateTierSelectionSubmissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tierselection_submissions', function (Blueprint $table) {
+        Schema::create('tierselection_submissions', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('tier_id');

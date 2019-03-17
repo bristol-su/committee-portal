@@ -40,19 +40,19 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        if(Auth::user()->isAdmin()) {
+        if (Auth::user()->isAdmin()) {
             return '/admin';
         } else {
             return '/portal';
         }
     }
 
-   public function username() {
-       $login = request()->input('identity');
-       $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'student_id';
-       request()->merge([$field => $login]);
-       return $field;
-   }
+    public function username() {
+        $login = request()->input('identity');
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'student_id';
+        request()->merge([$field => $login]);
+        return $field;
+    }
 
     /**
      * Validate the user login request.
@@ -65,7 +65,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-           'identity' => 'required|string',
+            'identity' => 'required|string',
             'password' => 'required|string',
         ]);
     }

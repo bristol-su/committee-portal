@@ -24,7 +24,7 @@ class FileUploadServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::macro('FileUploads', function ($controller) {
+        Route::macro('FileUploads', function($controller) {
             Route::post('/upload-files', $controller.'@uploadFile');
 
             Route::get('/retrieve-files', $controller.'@retrieveFile');

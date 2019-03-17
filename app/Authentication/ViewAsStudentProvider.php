@@ -40,7 +40,7 @@ class ViewAsStudentProvider implements UserProvider
 
     public function retrieveByCredentials(array $credentials)
     {
-        if(isset($credentials['group_id'])) {
+        if (isset($credentials['group_id'])) {
             return $this->retrieveById($credentials['group_id']);
         }
         return null;
@@ -55,10 +55,10 @@ class ViewAsStudentProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if(isset($credentials['group_id'])) {
+        if (isset($credentials['group_id'])) {
             // Ensure the user owns the position
             $group = $this->retrieveById($credentials['group_id']);
-            if($group !== false) {
+            if ($group !== false) {
                 return true;
             }
         }

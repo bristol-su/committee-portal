@@ -25,7 +25,7 @@ class ConstitutionServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -66,10 +66,10 @@ class ConstitutionServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/constitution';
+        $this->loadViewsFrom(array_merge(array_map(function($path) {
+            return $path.'/modules/constitution';
         }, \Config::get('view.paths')), [$sourcePath]), 'constitution');
     }
 
@@ -85,7 +85,7 @@ class ConstitutionServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'constitution');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'constitution');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'constitution');
         }
     }
 
@@ -96,8 +96,8 @@ class ConstitutionServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 

@@ -24,7 +24,7 @@ abstract class NoteTemplateModel extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = $this->getModuleName() . '_file_note_templates';
+        $this->table = $this->getModuleName().'_file_note_templates';
         parent::__construct($attributes);
     }
 

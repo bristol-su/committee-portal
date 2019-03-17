@@ -47,7 +47,7 @@ class VerificationController extends Controller
      */
     public function redirectTo()
     {
-        if(Auth::user()->isAdmin()) {
+        if (Auth::user()->isAdmin()) {
             return '/admin';
         } else {
             return '/portal';

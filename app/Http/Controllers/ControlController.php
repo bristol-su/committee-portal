@@ -16,7 +16,7 @@ class ControlController extends Controller
 
     public function getPositions()
     {
-        return Cache::remember('App.Http.Controllers.ControlController.getPositions', $this->cacheRemember, function () {
+        return Cache::remember('App.Http.Controllers.ControlController.getPositions', $this->cacheRemember, function() {
             $position = Position::all();
 
             abort_if(!$position, 404, 'Position could not be found');
@@ -52,7 +52,7 @@ class ControlController extends Controller
     {
         return Group::all()->sortBy(function($group) {
             return $group->name;
-        })->values()    ;
+        })->values();
     }
 }
 
