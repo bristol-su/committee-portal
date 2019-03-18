@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (\Auth::guard($guard)->check()) {
-            if(\Auth::guard($guard)->user()->isAdmin()) {
+            if (\Auth::guard($guard)->user()->isAdmin()) {
                 return redirect('/admin');
             } else {
                 return redirect('/portal');

@@ -20,7 +20,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $permissions = [
-        'module.isVisible' => [ // TODO Shouldn't affect both sides
+        'module.isVisible' => [// TODO Shouldn't affect both sides
             'title' => '#WABTierSelection: Visibility of module',
             'description' => 'Is the module visible? This will effect both the admin and user side.'
         ],

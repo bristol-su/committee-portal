@@ -25,7 +25,7 @@ class MainContactsServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -66,10 +66,10 @@ class MainContactsServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/maincontacts';
+        $this->loadViewsFrom(array_merge(array_map(function($path) {
+            return $path.'/modules/maincontacts';
         }, \Config::get('view.paths')), [$sourcePath]), 'maincontacts');
     }
 
@@ -85,7 +85,7 @@ class MainContactsServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'maincontacts');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'maincontacts');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'maincontacts');
         }
     }
 
@@ -96,8 +96,8 @@ class MainContactsServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 

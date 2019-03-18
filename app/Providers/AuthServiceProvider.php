@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         // Override gates for super admins
         Gate::before(function(User $user, $ability) {
             // Allow super admins through everything
-            if($user->hasPermissionTo('act-as-super-admin')) {
+            if ($user->hasPermissionTo('act-as-super-admin')) {
                 return true;
             }
 
@@ -53,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
 
             // Override what individuals may do on the site
             try {
-                if($user->hasPermissionTo($ability)) {
+                if ($user->hasPermissionTo($ability)) {
                     return true;
                 }
             } catch (PermissionDoesNotExist $e) {
@@ -63,7 +63,7 @@ class AuthServiceProvider extends ServiceProvider
             }
 
             // Don't let admins into the user permissions
-            if($user->isAdmin()) {
+            if ($user->isAdmin()) {
                 return false;
             }
 
