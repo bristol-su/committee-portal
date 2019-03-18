@@ -31,7 +31,7 @@
                     @else
 
                         {{--This will give admins access to logging in as groups--}}
-                        @if(\Auth::user()->hasPermissionTo('view-as-student'))
+                        @if(\Auth::user()->can('view-as-student'))
                             <group-select
                                     @if(\Auth::guard('view-as-student')->check()) :group-id="{{\getGroupID()}}"  @endif >
 

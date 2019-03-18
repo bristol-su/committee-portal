@@ -41,18 +41,26 @@ class AuthServiceProvider extends ServiceProvider
         // Override gates for super admins
         Gate::before(function(User $user, $ability) {
             // Allow super admins through everything
-            if ($user->hasPermissionTo('act-as-super-admin')) {
+            if ($user->can('act-as-super-admin')) {
                 return true;
             }
 
             return null;
         });
 
-        // Override user gates for ordinary admins
+        // Override user gates for Spatie permissions
         Gate::before(function(User $user, $ability) {
 
             // Override what individuals may do on the site
+
+            // We don't need to check if user is an admin,
+            // since then users may own a permission to override their default.
+            // Eg: A user may have the 'module.submit' permission to allow them to submit a document even if
+            // they shouldn't be able to normally. Eg the pres may not be able to access the portal
+
             try {
+                // TODO
+                // Use hasPermissionTo so we don't get stuck in a can loop (not sure if this will actually happen)
                 if ($user->hasPermissionTo($ability)) {
                     return true;
                 }
