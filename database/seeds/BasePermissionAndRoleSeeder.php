@@ -63,7 +63,10 @@ class BasePermissionAndRoleSeeder extends Seeder
                 throw new Exception($meta.' had no meta data.');
             };
             try {
-                Permission::findByName($this->permissionPrefix . $permissionName);
+                $permission = Permission::findByName($this->permissionPrefix . $permissionName);
+		if($permission->exists === false) {
+			throw new \Spatie\Permission\Exceptions\PermissionDoesNotExist();
+		}
             } catch (\Spatie\Permission\Exceptions\PermissionDoesNotExist $e) {
                 Permission::create([
                     'name' => $this->permissionPrefix . $permissionName,
