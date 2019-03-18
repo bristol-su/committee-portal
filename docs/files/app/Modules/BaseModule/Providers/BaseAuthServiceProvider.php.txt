@@ -23,7 +23,7 @@ class BaseAuthServiceProvider extends ServiceProvider
 
         $groupTags = GroupTag::allThrough($group);
 
-        $groupTags = $groupTags->filter(function ($groupTag) use ($categoryReference, $tagReference) {
+        $groupTags = $groupTags->filter(function($groupTag) use ($categoryReference, $tagReference) {
             return $groupTag->reference === $tagReference && $groupTag->category->reference === $categoryReference;
         });
 

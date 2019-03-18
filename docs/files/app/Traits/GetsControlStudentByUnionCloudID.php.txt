@@ -55,7 +55,7 @@ trait GetsControlStudentByUnionCloudID
         } catch (\Exception $e) {
             $student = new Student();
             $student->uc_uid = $uid;
-            if($student->save()) {
+            if ($student->save()) {
                 return $student;
             }
         }

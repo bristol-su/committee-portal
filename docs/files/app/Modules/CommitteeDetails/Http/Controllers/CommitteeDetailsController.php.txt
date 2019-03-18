@@ -110,7 +110,7 @@ class CommitteeDetailsController extends Controller
         );
         $committeeRoles = CommitteeRole::allThrough($group);
 
-        if($positionSettings === false) {
+        if ($positionSettings === false) {
             return back()
                 ->withErrors(['position_id' => 'Could not find your group type']);
         }
@@ -120,12 +120,12 @@ class CommitteeDetailsController extends Controller
             // TODO Make this use the rules which committee roles use
 
             // Ensure the position is allowed
-            if( !in_array($position->id, $positionSettings->allowed_positions)) {
+            if (!in_array($position->id, $positionSettings->allowed_positions)) {
                 return false;
             }
             // Ensure the position isn't taken
-            if(in_array($position->id, $positionSettings->position_only_has_single_committee_member)) {
-                if($committeeRoles->filter(function($committeeRole) use ($position) {
+            if (in_array($position->id, $positionSettings->position_only_has_single_committee_member)) {
+                if ($committeeRoles->filter(function($committeeRole) use ($position) {
                     return $committeeRole->position_id === $position->id
                         && $committeeRole->committee_year === config('portal.reaffiliation_year');
                 })->count() > 0) {
@@ -145,7 +145,7 @@ class CommitteeDetailsController extends Controller
      *
      * @throws \Exception
      */
-    private function validateUserAdditionRequest(Request $request, $ignoreCommitteeRoleID=null)
+    private function validateUserAdditionRequest(Request $request, $ignoreCommitteeRoleID = null)
     {
 
         $request->validate([
@@ -172,7 +172,7 @@ class CommitteeDetailsController extends Controller
         $committeeRole->position_name = $request->get('position_name');
 
         if (!$committeeRole->save()) {
-            Log::error('Could not save committee role. Code ' . $committeeRole->getResponse()->getStatusCode() . ', Message ' . $committeeRole->getResponse()->getStatusPhrase());
+            Log::error('Could not save committee role. Code '.$committeeRole->getResponse()->getStatusCode().', Message '.$committeeRole->getResponse()->getStatusPhrase());
             abort(500, 'We could not save your new committee position');
         }
 

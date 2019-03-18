@@ -19,10 +19,10 @@ class ControlDB implements ControlDBInterface
         $this->client = new Client();
     }
 
-    public function getAuthToken($refresh=false)
+    public function getAuthToken($refresh = false)
     {
         // Check if present in cache
-        if(Cache::has('authentication:control:auth_token') && ! $refresh)
+        if (Cache::has('authentication:control:auth_token') && !$refresh)
         {
             return Cache::get('authentication:control:auth_token');
         }
@@ -54,7 +54,7 @@ class ControlDB implements ControlDBInterface
      * @return \GuzzleHttp\Promise\PromiseInterface|mixed
      * @throws \Exception
      */
-    private function createPromise($method, $url, $body=null, $refreshAuth=false)
+    private function createPromise($method, $url, $body = null, $refreshAuth = false)
     {
 
 //        $cacheKey = 'control:request:parameters.'.$method.'.'.htmlspecialchars($url).'.'.htmlspecialchars( (is_array($body)?json_encode($body):$body));
@@ -66,7 +66,7 @@ class ControlDB implements ControlDBInterface
 //        }
 
         $authToken = $this->getAuthToken();
-        Log::info( "Queuing $url @ " . (new Carbon())->format('Y-m-d H:i:s'));
+        Log::info("Queuing $url @ ".(new Carbon())->format('Y-m-d H:i:s'));
 //            $response = $this->client->request(
 //                $method,
 //                config('control.base_uri').'/api/'.$url,
@@ -86,7 +86,7 @@ class ControlDB implements ControlDBInterface
             $method,
             config('control.base_uri').'/api/'.$url,
             [
-                'json' =>(is_array($body)?json_encode($body):$body),
+                'json' =>(is_array($body) ?json_encode($body) : $body),
                 'headers' => [
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer '.$authToken
@@ -117,7 +117,7 @@ class ControlDB implements ControlDBInterface
 
             $positions = ($promise->wait())->getBody()->getContents();
 
-            if(count($positions) === 0)
+            if (count($positions) === 0)
             {
                 throw new StudentHasNoPositions();
             }
@@ -155,9 +155,9 @@ class ControlDB implements ControlDBInterface
     {
 
         $positions = $this->getAllPositions();
-        foreach($positions as $position)
+        foreach ($positions as $position)
         {
-            if($position->id === $position_id)
+            if ($position->id === $position_id)
             {
                 return $position;
             }

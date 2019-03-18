@@ -20,7 +20,7 @@ class LoadStudentTagsFromControl
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::user()->isAdmin()) {
+        if (!Auth::user()->isAdmin()) {
             $studentId = Auth::guard('committee-role')->user()->student_id;
 
             $studentTags = Cache::remember('Middleware.LoadStudentTagsFromControl.'.$studentId, 200, function() use ($studentId) {

@@ -29,7 +29,7 @@ abstract class FileUploadMigration extends Migration
      */
     public function up()
     {
-        Schema::create($this->getModuleName().'_files', function (Blueprint $table) {
+        Schema::create($this->getModuleName().'_files', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('group_id')->nullable();

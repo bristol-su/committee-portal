@@ -72,14 +72,14 @@ class UnionCloudController extends Controller
         // Gets the attributes of the User classes
         // TODO Clean up
         $attributes = new \Illuminate\Support\Collection();
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $attributes->push($user->getAttributes());
         }
 
         abort_if($attributes->count() === 0, 404);
 
         // map acts as an 'only' function
-        return $attributes->map(function ($user) {
+        return $attributes->map(function($user) {
             $filteredAttributes = [
                 'uid' => '',
                 'id' => '',

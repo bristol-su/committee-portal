@@ -47,7 +47,7 @@ class ResetPasswordController extends Controller
      */
     public function redirectTo()
     {
-        if(Auth::user()->isAdmin()) {
+        if (Auth::user()->isAdmin()) {
             return '/admin';
         } else {
             return '/portal';
@@ -79,7 +79,7 @@ class ResetPasswordController extends Controller
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
         $response = $this->broker()->reset(
-            $this->credentials($request), function ($user, $password) {
+            $this->credentials($request), function($user, $password) {
             $this->resetPassword($user, $password);
         }
         );

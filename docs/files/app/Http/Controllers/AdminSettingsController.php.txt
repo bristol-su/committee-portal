@@ -49,7 +49,7 @@ class AdminSettingsController extends Controller
 
         $user->givePermissionTo('act-as-admin');
 
-        if(!$user->save()) {
+        if (!$user->save()) {
             return response('', 500);
         }
         $user->load('roles:id,name');
@@ -80,7 +80,7 @@ class AdminSettingsController extends Controller
             'forename', 'surname', 'email', 'student_id'
         ]));
 
-        if(!$user->save()) {
+        if (!$user->save()) {
             return response('', 500);
         }
 
@@ -121,9 +121,9 @@ class AdminSettingsController extends Controller
     {
         $this->authorize('settings.see-all-admin-users');
 
-        return User::with(['roles:id,name', 'permissions:id,name,title,description'])->get()->filter(function ($user) {
+        return User::with(['roles:id,name', 'permissions:id,name,title,description'])->get()->filter(function($user) {
             return $user->isAdmin();
-        })->each(function (&$user) {
+        })->each(function(&$user) {
             $user->roles->each(function($role) {
                 $role->load('permissions:id,name,title,description');
                 $role->permissions->makeHidden('pivot');
@@ -172,7 +172,7 @@ class AdminSettingsController extends Controller
     {
         $this->authorize('settings.see-roles-and-permissions');
 
-        return Role::with('permissions:id,name,title,description')->get(['id', 'name'])->each(function (&$role) {
+        return Role::with('permissions:id,name,title,description')->get(['id', 'name'])->each(function(&$role) {
             $role->permissions->makeHidden('pivot');
         });
 
@@ -197,7 +197,7 @@ class AdminSettingsController extends Controller
             'roles.*' => 'exists:roles,id',
         ]);
 
-        if($user->permissions()->sync($request->input('permissions')) && $user->roles()->sync($request->input('roles'))){
+        if ($user->permissions()->sync($request->input('permissions')) && $user->roles()->sync($request->input('roles'))) {
             return response('', 200);
         }
 
@@ -244,7 +244,7 @@ class AdminSettingsController extends Controller
             'permissions.*' => 'exists:permissions,id',
         ]);
 
-        if( $role->permissions()->sync($request->input('permissions')) ){
+        if ($role->permissions()->sync($request->input('permissions'))) {
             return response('', 200);
         }
 
@@ -261,7 +261,7 @@ class AdminSettingsController extends Controller
 
         $role = Role::create(['name'=> $request->input('name')]);
 
-        if(!$role->save()) {
+        if (!$role->save()) {
             return response('', 500);
         }
 
@@ -279,7 +279,7 @@ class AdminSettingsController extends Controller
 
         $role->name = $request->input('name');
 
-        if(!$role->save()) {
+        if (!$role->save()) {
             return response('', 500);
         }
 

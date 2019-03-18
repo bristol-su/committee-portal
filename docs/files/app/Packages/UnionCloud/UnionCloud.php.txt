@@ -16,7 +16,7 @@ class UnionCloud implements UnionCloudInterface
 
     protected $unioncloud;
 
-    public function __construct(\Twigger\UnionCloud\API\UnionCloud $unioncloud )
+    public function __construct(\Twigger\UnionCloud\API\UnionCloud $unioncloud)
     {
         $this->unioncloud = $unioncloud;
     }
@@ -43,7 +43,7 @@ class UnionCloud implements UnionCloudInterface
     {
         // Grab from the cache if possible!
 
-        return Cache::remember('unioncloud_package_search_for_account.' . htmlspecialchars($q), 60, function () use ($q){
+        return Cache::remember('unioncloud_package_search_for_account.'.htmlspecialchars($q), 60, function() use ($q){
 
             try {
                 $users = $this->unioncloud->users()->search(['id' => $q])->get()->toArray();
@@ -57,7 +57,7 @@ class UnionCloud implements UnionCloudInterface
             foreach ($users as $user) {
                 $reducedUser[] = [
                     'uid' => $user->uid,
-                    'name' => $user->forename . ' ' . $user->surname,
+                    'name' => $user->forename.' '.$user->surname,
                     'email' => $user->email
                 ];
             }
