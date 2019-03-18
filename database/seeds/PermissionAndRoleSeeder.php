@@ -85,7 +85,6 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      *
      * @var array
      */
-    public $assignments = [
-    ];
+    public $assignments = [];
 
 }
