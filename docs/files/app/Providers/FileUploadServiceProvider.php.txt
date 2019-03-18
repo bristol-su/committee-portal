@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+
+class FileUploadServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Route::macro('FileUploads', function($controller) {
+            Route::post('/upload-files', $controller.'@uploadFile');
+
+            Route::get('/retrieve-files', $controller.'@retrieveFile');
+
+            Route::get('/download-files/{id}', $controller.'@downloadFile');
+
+            Route::get('get-notes', $controller.'@getNotes');
+
+            Route::post('post-note/{id}', $controller.'@postNote');
+        });
+
+        Route::macro('FileUploadsAdmin', function($controller) {
+            Route::get('/retrieve-files', $controller.'@adminRetrieveFile');
+
+            Route::get('/download-files/{id}', $controller.'@adminDownloadFile');
+
+            Route::post('post-note/{id}', $controller.'@adminPostNote');
+
+            Route::post('/change-file-status/{id}', $controller.'@adminChangeFileStatus');
+
+            /* Note template routes */
+
+            Route::get('/retrieve-note-templates', $controller.'@adminGetNoteTemplates');
+
+            Route::post('/create-note-template', $controller.'@adminCreateNoteTemplate');
+
+            Route::post('/update-note-tempate/{id}', $controller.'@adminUpdateNoteTemplate');
+
+            Route::delete('/note-template/{id}', $controller.'@adminDeleteNoteTemplate');
+        });
+    }
+}
+

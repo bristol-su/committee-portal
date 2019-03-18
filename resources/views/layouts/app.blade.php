@@ -26,11 +26,11 @@
 <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
 
-
 </head>
 
 <body style="height: 100%; min-height: 100%;">
     @include('templates.header')
+    <script src="{{ mix('js/app.js') }}"></script>
 
     @if (session('status'))
         <div class="alert alert-success" role="alert">
@@ -43,7 +43,7 @@
     @yield('content')
 
     @include('templates.footer')
-    <script src="{{ mix('js/app.js') }}"></script>
+
     @stack('scripts')
 
     @include('templates.javascript_injection')

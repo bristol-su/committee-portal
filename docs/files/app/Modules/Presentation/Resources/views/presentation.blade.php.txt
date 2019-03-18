@@ -1,0 +1,32 @@
+@extends('presentation::layouts.app')
+
+@section('title', 'Presentation')
+
+@section('module-content')
+
+    <!-- Title and description -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="">Presentation - <small>#WeAreBristol</small></h2>
+                    <p class="">Please upload your presentation by Monday 22nd April. Your Rate My Group data will be available form 16th April if you wish to include this. Pre submissions of presentations allows presentation days to run much smoother and you don’t have to worry about technology on the day!</p>
+                </div>
+            </div>
+
+            <div class="presentation-root">
+
+
+                <upload-file
+                        module="presentation"
+                        default-title="Presentation {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}"
+                >
+                </upload-file>
+
+
+            </div>
+        </div>
+    </div>
+
+@endsection
+

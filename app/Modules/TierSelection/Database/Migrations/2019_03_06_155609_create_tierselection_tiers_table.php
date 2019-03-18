@@ -13,7 +13,7 @@ class CreateTierselectionTiersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tierselection_tiers', function (Blueprint $table) {
+        Schema::create('tierselection_tiers', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('filename');

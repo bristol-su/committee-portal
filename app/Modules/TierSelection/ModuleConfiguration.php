@@ -43,9 +43,9 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function reaffiliationStatus()
     {
-        if(Auth::user()->isAdmin()) { return 'admin'; }
+        if (!$this->actingAsStudent()) { return 'admin'; }
 
-        if(Submission::countSubmissions(getGroupID()) > 0)
+        if (Submission::countSubmissions(getGroupID()) > 0)
         {
             return 'complete';
         } else {

@@ -57,21 +57,20 @@
                     this.groups = response.data ;
                 })
                 .catch(error => {
-                    this.$notify.alert('Sorry, something went wrong.');
-                    console.log('Sorry, we could not get the groups');
+                    this.$notify.alert('Sorry, we could not find groups to view as.');
                 })
         },
 
         methods: {
             login(event) {
-                this.$http.post('/login/group', {group_id: event.target.id})
+                this.$http.post('/admin/login/group', {group_id: event.target.id})
                     .then(response => window.location.href = '/portal')
                     .catch(error => {
                         this.$notify.alert('There was an error logging you in');
                     })
             },
             logout(event) {
-                this.$http.post('/logout/group')
+                this.$http.post('/admin/logout/group')
                     .then(response => window.location.href = '/admin')
                     .catch(error => {
                         this.$notify.alert('Could not log you out');

@@ -2,8 +2,26 @@
 
 namespace App\Modules\BaseModule;
 
+use Illuminate\Support\Facades\Auth;
+
 abstract class ModuleConfiguration
 {
+
+    /**
+     * @return bool
+     */
+    protected function actingAsStudent()
+    {
+        try {
+            if (Auth::user()->getCurrentRole() === null) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * Gets the configuration of this module

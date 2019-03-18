@@ -13,7 +13,7 @@ class CreatePositionSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('committeedetails_position_settings', function (Blueprint $table) {
+        Schema::create('committeedetails_position_settings', function(Blueprint $table) {
             $table->increments('id');
             $table->string('tag_reference');
             $table->text('allowed_positions');

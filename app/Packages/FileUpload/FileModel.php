@@ -28,7 +28,7 @@ abstract class FileModel extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = $this->getModuleName() . '_files';
+        $this->table = $this->getModuleName().'_files';
         parent::__construct($attributes);
     }
 
@@ -55,14 +55,14 @@ abstract class FileModel extends Model
                 ],
                     '_',
                     $this->title
-                ), 'ASCII') .
+                ), 'ASCII').
             $this->getExtension();
     }
 
     public function getExtension()
     {
         $extension = last(explode('.', $this->filename));
-        return ('.' . $extension ?: '');
+        return ('.'.$extension ?: '');
     }
 
     public function notes()

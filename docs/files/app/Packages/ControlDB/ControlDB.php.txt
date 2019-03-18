@@ -1,0 +1,175 @@
+<?php
+
+namespace App\Packages\ControlDB;
+
+use App\Exceptions\StudentHasNoPositions;
+use Carbon\Carbon;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+
+class ControlDB implements ControlDBInterface
+{
+
+    private $client;
+
+    public function __construct()
+    {
+        $this->client = new Client();
+    }
+
+    public function getAuthToken($refresh = false)
+    {
+        // Check if present in cache
+        if (Cache::has('authentication:control:auth_token') && !$refresh)
+        {
+            return Cache::get('authentication:control:auth_token');
+        }
+
+        $http = new Client;
+
+        $response = $http->post(config('control.base_uri').'/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => config('control.client_id'),
+                'client_secret' => config('control.client_secret'),
+                'username' => config('control.email'),
+                'password' => config('control.password'),
+                'scope' => '*',
+            ],
+        ]);
+        $token = json_decode((string) $response->getBody(), true);
+        Cache::put('authentication:control:auth_token', $token['access_token'], ((int) $token['expires_in'])/60);
+
+        return $token['access_token'];
+
+    }
+
+    /**
+     * @param $method
+     * @param $url
+     * @param null $body
+     * @param bool $refreshAuth
+     * @return \GuzzleHttp\Promise\PromiseInterface|mixed
+     * @throws \Exception
+     */
+    private function createPromise($method, $url, $body = null, $refreshAuth = false)
+    {
+
+//        $cacheKey = 'control:request:parameters.'.$method.'.'.htmlspecialchars($url).'.'.htmlspecialchars( (is_array($body)?json_encode($body):$body));
+//
+//
+//        if(Cache::has($cacheKey) && !$refreshAuth)
+//        {
+//            return json_decode(Cache::get($cacheKey));
+//        }
+
+        $authToken = $this->getAuthToken();
+        Log::info("Queuing $url @ ".(new Carbon())->format('Y-m-d H:i:s'));
+//            $response = $this->client->request(
+//                $method,
+//                config('control.base_uri').'/api/'.$url,
+//                [
+//                    'json' =>(is_array($body)?json_encode($body):$body),
+//                    'headers' => [
+//                        'Accept' => 'application/json',
+//                        'Authorization' => 'Bearer '.$authToken
+//                    ],
+//                    'allow_redirects' => false,
+//                    'timeout' => 5,
+//                    'http_errors' => true,
+//                    'synchronous' => false
+//                ]
+//            );
+        $request = new Request(
+            $method,
+            config('control.base_uri').'/api/'.$url,
+            [
+                'json' =>(is_array($body) ?json_encode($body) : $body),
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer '.$authToken
+                ],
+                'allow_redirects' => false,
+                'timeout' => 5,
+                'http_errors' => true,
+
+            ]
+        );
+
+        return $this->client->sendAsync($request);
+
+    }
+
+    /**
+     * @param int $studentId
+     * @return mixed
+     * @throws StudentHasNoPositions
+     */
+    public function getPositionsByStudentID(int $studentId)
+    {
+        return Cache::remember('control.getPositionsByStudentID:id-'.$studentId, 250, function() use ($studentId) {
+            $promise = $this->createPromise(
+                'GET',
+                'students/'.$studentId.'/positions'
+            );
+
+            $positions = ($promise->wait())->getBody()->getContents();
+
+            if (count($positions) === 0)
+            {
+                throw new StudentHasNoPositions();
+            }
+
+            return $positions;
+        });
+
+
+    }
+
+    public function getGroupByID($id)
+    {
+        $promise = $this->createPromise(
+            'GET',
+            'groups/'.$id
+        );
+
+        return $promise->wait();
+    }
+
+
+    public function getAllPositions()
+    {
+
+        $promise = $this->createPromise(
+            'GET',
+            'positions'
+        );
+
+        return $promise->wait();
+
+    }
+
+    public function getPositionByID($position_id)
+    {
+
+        $positions = $this->getAllPositions();
+        foreach ($positions as $position)
+        {
+            if ($position->id === $position_id)
+            {
+                return $position;
+            }
+        }
+
+        return [];
+    }
+
+    public function getAllGroups()
+    {
+        $promise = $this->createPromise('GET', 'groups');
+        return $promise->wait();
+    }
+}
+

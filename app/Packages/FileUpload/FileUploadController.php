@@ -79,7 +79,7 @@ abstract class FileUploadController extends Controller
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
 
-        if ($path = Storage::cloud()->put($this->getModuleName().'-file-uploads', $request->file('file') )) {
+        if ($path = Storage::cloud()->put($this->getModuleName().'-file-uploads', $request->file('file'))) {
 
             $fileModel = new $this->fileModel;
             $fileModel->fill([
@@ -118,7 +118,7 @@ abstract class FileUploadController extends Controller
         ];
         if ($id === null) {
             $files = $this->fileModel::with($with)->get();
-            return $files->map(function ($file) {
+            return $files->map(function($file) {
                 $file->group = Group::find($file->group_id)->toArray();
                 return $file;
             });
@@ -135,7 +135,7 @@ abstract class FileUploadController extends Controller
         $this->authorizeModuleAction('view');
 
         $files = $this->getFileWithRelations();
-        $files = $files->filter(function ($file) {
+        $files = $files->filter(function($file) {
             return $file->group_id === getGroupID();
         });
         return $files->values();
@@ -232,7 +232,7 @@ abstract class FileUploadController extends Controller
         if ($file->status !== $status) {
             $file->status = $status;
             if ($file->save()) {
-                Event::dispatch($this->getModuleName() . '.fileStatusChanged', ['file' => $this->getFileWithRelations($file->id)]);
+                Event::dispatch($this->getModuleName().'.fileStatusChanged', ['file' => $this->getFileWithRelations($file->id)]);
             }
         }
 

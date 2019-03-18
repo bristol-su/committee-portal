@@ -1,0 +1,290 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Rules\IsAValidUserByStudentID;
+use App\User;
+use Illuminate\Http\Request;
+use App\Packages\Permissions\Permission;
+use App\Packages\Permissions\Role;
+
+class AdminSettingsController extends Controller
+{
+
+    /**
+     * Show the settings page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function showSettingsPage()
+    {
+        $this->authorize('view-site-settings-page');
+
+        return view('admin.settings');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Users
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    public function createUser(Request $request)
+    {
+        $this->authorize('settings.create-admin-user');
+
+        $request->validate([
+            'forename' => 'required|string',
+            'surname' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'student_id' => ['sometimes', new IsAValidUserByStudentID(), 'unique:users,email']
+        ]);
+
+        $user = User::create($request->only([
+            'forename', 'surname', 'email', 'student_id'
+        ]));
+
+        $user->givePermissionTo('act-as-admin');
+
+        if (!$user->save()) {
+            return response('', 500);
+        }
+        $user->load('roles:id,name');
+        $user->load('permissions:id,name,title,description');
+
+        $user->roles->each(function($role) {
+            $role->load('permissions:id,name,title,description');
+            $role->permissions->makeHidden('pivot');
+        });
+        $user->roles->makeHidden('pivot');
+        $user->permissions->makeHidden('pivot');
+
+        return $user;
+    }
+
+    public function updateUser(User $user, Request $request)
+    {
+        $this->authorize('settings.update-admin-user');
+
+        $request->validate([
+            'forename' => 'sometimes|string',
+            'surname' => 'sometimes|string',
+            'email' => 'sometimes|email',
+            'student_id' => ['sometimes', new IsAValidUserByStudentID(), 'unique:users,email']
+        ]);
+
+        $user->fill($request->only([
+            'forename', 'surname', 'email', 'student_id'
+        ]));
+
+        if (!$user->save()) {
+            return response('', 500);
+        }
+
+        $user->load('roles:id,name');
+        $user->load('permissions:id,name,title,description');
+
+        $user->roles->each(function($role) {
+            $role->load('permissions:id,name,title,description');
+            $role->permissions->makeHidden('pivot');
+        });
+        $user->roles->makeHidden('pivot');
+        $user->permissions->makeHidden('pivot');
+
+        return $user;
+
+    }
+
+    /**
+     * Show the page to edit and manage the permissions of users
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function showAdminUsersPage()
+    {
+        $this->authorize('settings.see-all-admin-users');
+
+        return view('admin.settings.admin_users');
+    }
+
+    /**
+     * Get all users to show on the admin users page.
+     *
+     * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getAdminUsers()
+    {
+        $this->authorize('settings.see-all-admin-users');
+
+        return User::with(['roles:id,name', 'permissions:id,name,title,description'])->get()->filter(function($user) {
+            return $user->isAdmin();
+        })->each(function(&$user) {
+            $user->roles->each(function($role) {
+                $role->load('permissions:id,name,title,description');
+                $role->permissions->makeHidden('pivot');
+            });
+            $user->roles->makeHidden('pivot');
+            $user->permissions->makeHidden('pivot');
+        })->values();
+
+    }
+
+    /**
+     * Delete an admin user
+     *
+     * @param User $user
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function deleteAdminUsers(User $user)
+    {
+        $this->authorize('settings.delete-admin-user');
+
+        abort_if(!$user->isAdmin(), 400, 'Can only delete admin users');
+
+        $user->delete();
+    }
+
+    /**
+     * Get all permissions
+     *
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getPermissions()
+    {
+        $this->authorize('settings.see-roles-and-permissions');
+
+        return Permission::get(['id', 'name', 'title', 'description']);
+    }
+
+    /**
+     * Get all roles
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Role[]
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function getRoles()
+    {
+        $this->authorize('settings.see-roles-and-permissions');
+
+        return Role::with('permissions:id,name,title,description')->get(['id', 'name'])->each(function(&$role) {
+            $role->permissions->makeHidden('pivot');
+        });
+
+    }
+
+    /**
+     * Update the roles and permissions of a user
+     *
+     * @param User $user
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function updateAdminUserRolesAndPermissions(User $user, Request $request)
+    {
+        $this->authorize('settings.update-admin-permissions');
+
+        $request->validate([
+            'permissions' => 'sometimes|array',
+            'permissions.*' => 'exists:permissions,id',
+            'roles' => 'sometimes|array',
+            'roles.*' => 'exists:roles,id',
+        ]);
+
+        if ($user->permissions()->sync($request->input('permissions')) && $user->roles()->sync($request->input('roles'))) {
+            return response('', 200);
+        }
+
+        return response('User permissions couldn\'t be updated', 500);
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Roles and Permissions
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    /**
+     * Show the roles and permissions edit page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function showRolesAndPermissionsPage()
+    {
+        $this->authorize('settings.see-roles-and-permissions');
+
+        return view('admin.settings.roles_permissions');
+    }
+
+    public function deleteRole(Role $role)
+    {
+        $this->authorize('settings.delete-role');
+
+        $role->delete();
+    }
+
+
+    public function updateRolesAndPermissions(Role $role, Request $request)
+    {
+        $this->authorize('settings.update-role-permissions');
+
+        $request->validate([
+            'permissions' => 'sometimes|array',
+            'permissions.*' => 'exists:permissions,id',
+        ]);
+
+        if ($role->permissions()->sync($request->input('permissions'))) {
+            return response('', 200);
+        }
+
+        return response('Role couldn\'t be updated', 500);
+    }
+
+    public function createRole(Request $request)
+    {
+        $this->authorize('settings.create-role');
+
+        $request->validate([
+            'name' => 'required|string|unique:roles'
+        ]);
+
+        $role = Role::create(['name'=> $request->input('name')]);
+
+        if (!$role->save()) {
+            return response('', 500);
+        }
+
+        $role->load('permissions:id,name,title,description');
+        return $role->only(['id', 'name', 'permissions']);
+    }
+
+    public function updateRole(Role $role, Request $request)
+    {
+        $this->authorize('settings.update-role');
+
+        $request->validate([
+            'name' => 'required|string|unique:roles'
+        ]);
+
+        $role->name = $request->input('name');
+
+        if (!$role->save()) {
+            return response('', 500);
+        }
+
+        $role->load('permissions:id,name,title,description');
+        return $role->only(['id', 'name', 'permissions']);
+
+    }
+}

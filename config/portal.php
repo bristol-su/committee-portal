@@ -49,11 +49,11 @@ return [
     ],
 
     'reaffiliation_status' => [
-        'incomplete' => 'btn btn-danger',
+        'incomplete' => 'btn btn-outline-danger',
 
-        'complete' => 'btn btn-success',
+        'complete' => 'btn btn-outline-success',
 
-        'admin' => 'btn btn-success'
+        'admin' => 'btn btn-outline-info'
     ],
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),

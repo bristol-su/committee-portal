@@ -50,7 +50,6 @@
                 return (Object.keys(this.student).length > 0 ? this.student.forename + ' ' + this.student.surname : '');
             },
             studentId() {
-                console.log(this.student);
                 return (this.student.id === false ? 'N/A' : this.student.id)
             }
         },

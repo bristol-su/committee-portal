@@ -23,7 +23,7 @@
                                 @positionSelected="updatePosition"
                         ></position-select>
 
-                        <small><span v-show="this.form.errors.has('position_id')">{{this.form.errors.get('position_id')}}</span>
+                        <small><span class="error-span" v-show="this.form.errors.has('position_id')">{{this.form.errors.get('position_id')}}</span>
                         </small>
 
                     </div>
@@ -36,7 +36,7 @@
 
                         <input class="form-control" type="text" v-model="form.position_name"/>
 
-                        <small><span v-show="this.form.errors.has('position_name')">{{this.form.errors.get('position_name')}}</span>
+                        <small><span class="error-span" v-show="this.form.errors.has('position_name')">{{this.form.errors.get('position_name')}}</span>
                         </small>
 
 
@@ -54,7 +54,7 @@
                                 @studentSelected="updateStudent"
                         ></user-select>
 
-                        <small><span v-show="this.form.errors.has('unioncloud_id')">{{this.form.errors.get('unioncloud_id')}}</span>
+                        <small><span class="error-span" v-show="this.form.errors.has('unioncloud_id')">{{this.form.errors.get('unioncloud_id')}}</span>
                         </small>
 
                     </div>

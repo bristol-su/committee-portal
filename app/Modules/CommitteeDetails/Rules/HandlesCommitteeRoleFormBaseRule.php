@@ -35,7 +35,7 @@ abstract class HandlesCommitteeRoleFormBaseRule implements Rule
 
         $errors = $this->hydrateProperties(request());
 
-        if(count($errors) > 0) {
+        if (count($errors) > 0) {
             throw ValidationException::withMessages($errors);
         }
     }
@@ -109,13 +109,13 @@ abstract class HandlesCommitteeRoleFormBaseRule implements Rule
     {
         $errors = [];
 
-        if($this->group === null) { $errors['unioncloud_id'] = 'Your group could not be found.'; }
+        if ($this->group === null) { $errors['unioncloud_id'] = 'Your group could not be found.'; }
 
-        if($this->position === null) { $errors['position_id'] = 'The position could not be found.'; }
+        if ($this->position === null) { $errors['position_id'] = 'The position could not be found.'; }
 
-        if($this->student === null) { $errors['unioncloud_id'] = 'The student could not be found.'; }
+        if ($this->student === null) { $errors['unioncloud_id'] = 'The student could not be found.'; }
 
-        if($this->positionSetting === null) { $errors['position_id'] = 'The position settings could not be found.'; }
+        if ($this->positionSetting === null) { $errors['position_id'] = 'The position settings could not be found.'; }
 
         return $errors;
 

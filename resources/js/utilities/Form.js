@@ -99,8 +99,7 @@ export default class Form {
                 })
                 .catch(error => {
                     this.onFail(error.response.data);
-                    this.$notify.alert('Sorry, something went wrong.');
-                    reject(error.response.data);
+                    reject(error);
                 });
         });
     }

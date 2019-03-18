@@ -2,8 +2,8 @@
 
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Packages\Permissions\Permission;
+use App\Packages\Permissions\Role;
 
 class BasePermissionAndRoleSeeder extends Seeder
 {
@@ -58,13 +58,17 @@ class BasePermissionAndRoleSeeder extends Seeder
             }
         }
 
-        foreach ($this->permissions as $permissionName) {
-
+        foreach ($this->permissions as $permissionName => $meta) {
+            if(!is_array($meta)) {
+                throw new Exception($meta.' had no meta data.');
+            };
             try {
                 Permission::findByName($this->permissionPrefix . $permissionName);
             } catch (\Spatie\Permission\Exceptions\PermissionDoesNotExist $e) {
                 Permission::create([
-                    'name' => $this->permissionPrefix . $permissionName
+                    'name' => $this->permissionPrefix . $permissionName,
+                    'title' => $meta['title'],
+                    'description' => $meta['description']
                 ]);
             }
         }
