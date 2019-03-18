@@ -9,7 +9,7 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $roles = [
-        'admin' // Allow the user to do the bare minimum adminstration
+
     ];
 
     /**
@@ -86,9 +86,6 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $assignments = [
-        'admin' => [
-            'act-as-admin'
-        ]
     ];
 
 }
