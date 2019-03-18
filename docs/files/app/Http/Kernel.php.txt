@@ -50,7 +50,6 @@ class Kernel extends HttpKernel
         'verified' => EnsureEmailIsVerified::class,
         'module.active' => CheckModuleActive::class,
         'module.maintenance' => CheckModuleDevelopmentStatus::class,
-        'can-view-as-student' => CheckAdminCanViewAsStudent::class,
     ];
 
     /**

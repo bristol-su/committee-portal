@@ -20,11 +20,26 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
      * @var array
      */
     public $permissions = [
-        'module.isActive',
-        'module.isVisible',
-        'view',
-        'view-admin',
-        'submit',
+        'module.isVisible' => [ // TODO Shouldn't affect both sides
+            'title' => '#WABTierSelection: Visibility of module',
+            'description' => 'Is the module visible? This will effect both the admin and user side.'
+        ],
+        'module.isActive' => [
+            'title' => '#WABTierSelection: Is the module disabled?',
+            'description' => 'Is the module disabled? If so, the module cannot be opened.'
+        ],
+        'view' => [
+            'title' => '#WABTierSelection: Viewable',
+            'description' => 'Can the module page be opened?'
+        ],
+        'view-admin' => [
+            'title' => '#WABTierSelection: Viewable',
+            'description' => 'Can the admin module be opened?'
+        ],
+        'submit' => [
+            'title' => '#WABTierSelection: Submit',
+            'description' => 'Can the user submit a tier submission?'
+        ],
     ];
 
     /**
