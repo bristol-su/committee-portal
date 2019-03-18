@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         // Override gates for super admins
         Gate::before(function(User $user, $ability) {
             // Allow super admins through everything
-            if ($user->can('act-as-super-admin')) {
+            if ($user->hasPermissionTo('act-as-super-admin')) {
                 return true;
             }
 
@@ -59,8 +59,7 @@ class AuthServiceProvider extends ServiceProvider
             // they shouldn't be able to normally. Eg the pres may not be able to access the portal
 
             try {
-                // TODO
-                // Use hasPermissionTo so we don't get stuck in a can loop (not sure if this will actually happen)
+                // Use hasPermissionTo so we don't get stuck in a can loop
                 if ($user->hasPermissionTo($ability)) {
                     return true;
                 }
