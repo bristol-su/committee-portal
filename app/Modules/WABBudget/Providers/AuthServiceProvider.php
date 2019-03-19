@@ -41,7 +41,7 @@ class AuthServiceProvider extends BaseAuthServiceProvider
         // Who can upload an exec summary
         Gate::define('wabbudget.upload', function(User $user) {
             // TODO Old committee over changeover period is hard
-            return $user->hasPresidentialPosition() && $user->id !== 3;
+            return $user->hasPresidentialPosition();
         });
 
         // Who can upload an exec summary
