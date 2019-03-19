@@ -55,8 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin()
     {
-        // Use 'can' so super-admin can be caught and permitted
-        return $this->can('act-as-admin');
+        return $this->hasPermissionTo('act-as-admin') || $this->hasPermissionTo('act-as-super-admin');
     }
 
     public function getCurrentRole()
