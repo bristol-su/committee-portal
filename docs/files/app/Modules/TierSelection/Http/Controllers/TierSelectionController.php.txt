@@ -5,6 +5,7 @@ namespace App\Modules\TierSelection\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\TierSelection\Entities\Submission;
 use App\Modules\TierSelection\Entities\Tier;
+use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -22,11 +23,14 @@ class TierSelectionController extends Controller
     public function showTierAdminPage()
     {
         $this->authorize('tierselection.view-admin');
+
+        return view('tierselection::admin');
     }
 
     public function getTiers()
     {
         $this->authorize('tierselection.view');
+
         return Tier::all();
     }
 
@@ -44,11 +48,24 @@ class TierSelectionController extends Controller
 
         $submission = new Submission([
             'group_id' => $groupId,
-            'tier_id' => $request->input('tier_id')
+            'tier_id' => $request->input('tier_id'),
+            'user_id' => Auth::user()->id
         ]);
 
         abort_unless($submission->save(), 500, 'We were unable to save your selection.');
         return $submission;
+    }
+
+    public function getAllSelections()
+    {
+        $this->authorize('view-admin');
+
+        $submissions = Submission::with(['tier:id,name', 'user:id,forename,surname'])->get();
+        $submissions->each(function(Submission &$submission) {
+            $submission->group = Group::find($submission->group_id)->toArray();
+        });
+
+        return $submissions;
     }
 }
 
