@@ -20,7 +20,7 @@ class AuthenticateUserGuard
     {
 
         // If they're an admin who has access, that's fine
-        if (Auth::user()->hasPermissionTo('view-as-student')) {
+        if (Auth::user()->can('view-as-student')) {
             abort_if(!Auth::guard('view-as-student')->check(), 403, 'Could not log you into the group');
         } // Otherwise, log into a committee role
         elseif (!Auth::guard('committee-role')->check()) {
