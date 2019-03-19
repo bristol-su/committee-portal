@@ -1,99 +1,100 @@
 <template>
     <div>
-        <!--&lt;!&ndash;Images&ndash;&gt;-->
-        <!--<div class="row">-->
-            <!--<div :class="{deselected: selectedTier !== tier, selected: selectedTier === tier}" @click="selectTier(tier)" class="column tier-holder"-->
-                 <!--v-for="tier in tiers">-->
-                <!--<img :alt="tier.name" :src="tier.filename | static" style="width:100%">-->
-                <!--&lt;!&ndash;<div style="text-align: center; font-weight: bold; font-size: 30px;">{{tier.name}}</div>&ndash;&gt;-->
-            <!--</div>-->
-        <!--</div>-->
+        <div v-if="selections.length === 0">
+            {{errorMessage}}
+        </div>
+        <div v-else>
+            <table class="table table-striped table-responsive table-condensed table-hover" style="margin: auto; display: table;">
+                <thead>
+                    <tr>
+                        <th>Group</th>
+                        <th>Tier</th>
+                        <th>Year</th>
+                        <th>Submitter</th>
+                        <th>Selection Date</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <!--&lt;!&ndash; Shows when tiers are loading &ndash;&gt;-->
-        <!--<div style="text-align: center;" v-if="tiers.length === 0">-->
-            <!--<h4>Loading tiers...</h4>-->
-        <!--</div>-->
+                    <tr v-for="(selection, index) in selections">
+                        <td>{{ selection.group.name }}</td>
+                        <td>{{ selection.tier.name }}</td>
+                        <td>{{ selection.year | reaffiliationYear }}</td>
+                        <td>{{ selection.user | username }}</td>
+                        <td @click="toggleDate(index)" class="clickable">
+                        <span v-if="fullDate.indexOf(index) === -1">
+                            {{selection.created_at | timeToHuman}}
+                        </span>
+                            <span v-else>
+                            {{selection.created_at | date_format}}
+                        </span>
+                        </td>
+                    </tr>
 
-        <!--&lt;!&ndash;Submit button&ndash;&gt;-->
-        <!--<div class="row">-->
-            <!--<div class="column" style="display: flex; align-items: center; justify-content: center;">-->
-                <!--<button :class="{'btn-danger': selectedTier === null, 'btn-success': selectedTier !== null}" :disabled="selectedTier === null || completed"-->
-                        <!--@click="submitTier"-->
-                        <!--style="width: 50%;"-->
-                        <!--class="btn">{{ buttonText }}-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
+
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
 <script>
+
+    import moment from 'moment';
     export default {
-        // props: {
-        //
-        //     // Holds the current submissions
-        //     submissions: {
-        //         default: [],
-        //         type: Array
-        //     }
-        // },
-        //
-        // data() {
-        //     return {
-        //         tiers: [],
-        //         selectedTier: null,
-        //         disableButton: false
-        //     }
-        // },
-        //
-        // created() {
-        //     this.$http.get('/tierselection/api/get-all-submissions')
-        //         .then(response => {
-        //             this.tiers = response.data;
-        //             if(!this.canBeSubmitted) {
-        //                 this.selectedTier = this.tiers.filter(tiers => this.submissions[0].tier_id === tiers.id)[0];
-        //             }
-        //
-        //         })
-        //         .catch(error => this.$notify.alert('Sorry, something went wrong.'))
-        // },
-        //
-        // methods: {
-        //     selectTier(tier) {
-        //         if(this.canBeSubmitted) {
-        //             this.selectedTier = (this.selectedTier === tier ? null : tier);
-        //         }
-        //     },
-        //
-        //     submitTier() {
-        //         if(this.canBeSubmitted) {
-        //             this.disableButton = true;
-        //             this.$http.post('/tierselection', {
-        //                 tier_id: this.selectedTier.id
-        //             })
-        //                 .catch(error => {
-        //                     this.$notify.alert('Sorry, something went wrong.');
-        //                     window.location.reload();
-        //                 })
-        //         }
-        //     }
-        // },
-        //
-        // computed: {
-        //     buttonText() {
-        //         return (this.selectedTier === null ? 'Select' : (this.canBeSubmitted ? 'Confirm tier ' : 'Entered in Tier ' ) + this.selectedTier.name);
-        //     },
-        //
-        //     canBeSubmitted() {
-        //         return this.submissions.length === 0 && !this.disableButton;
-        //     }
-        // },
-        //
-        // filters: {
-        //     static(filename) {
-        //         return window.serveStaticContent(filename);
-        //     }
-        // }
+        data() {
+            return {
+                selections: [],
+                fullDate: [],
+                errorMessage: 'Loading selections...'
+            }
+
+        },
+
+        created() {
+            this.$http.get('/admin/tierselection/selections')
+                .then(response => {
+                    this.selections = response.data
+                    if(this.selections.length === 0) {
+                        this.$notify.info('No selections have been made.');
+                        this.errorMessage = 'No selections found.'
+
+                    }
+                })
+                .catch(error => this.$notify.alert('Couldn\'t get the selections: ' + error.message))
+        },
+
+        methods: {
+            toggleDate(selectionIndex) {
+                let index = this.fullDate.indexOf(selectionIndex);
+                if (index === -1) {
+                    this.fullDate.push(selectionIndex);
+                } else {
+                    this.fullDate.splice(index, 1)
+                }
+            },
+        },
+
+        filters: {
+            reaffiliationYear(year) {
+                return year.toString() + '/' + (year + 1).toString().slice(2);
+
+            },
+
+            timeToHuman(time) {
+                return moment(time).fromNow();
+
+            },
+
+            date_format(time) {
+                return moment(time).format('lll');
+
+            },
+
+            username(user) {
+                return user.forename + ' ' + user.surname;
+            }
+        }
     }
 </script>
 

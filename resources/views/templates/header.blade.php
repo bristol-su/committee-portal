@@ -3,9 +3,15 @@
         <div class="container">
 
             <!-- Left side of the navbar -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Committee Portal') }}
-            </a>
+            @auth
+                <a class="navbar-brand" href="{{ (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal')  ) }}">
+                    {{ config('app.name', 'Committee Portal') }}
+                </a>
+            @elseauth
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Committee Portal') }}
+                </a>
+            @endauth
 
             {{--<a class="navbar-brand" href="{{ url('/') }}"><img alt="Bristol SU Logo"--}}
                                                                {{--src="https://s3-eu-west-1.amazonaws.com/nusdigital/union_logo/images/281/original/open-uri20180703-28672-t8fr30."--}}

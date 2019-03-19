@@ -14,3 +14,7 @@
 Route::prefix('furtherinformation')->middleware(['user', 'module', 'module.active:furtherinformation', 'module.maintenance:furtherinformation'])->group(function() {
     Route::get('/', 'FurtherInformationController@showFurtherInformation');
 });
+
+Route::prefix('admin/furtherinformation')->middleware(['admin', 'module', 'module.active:furtherinformation', 'module.maintenance:furtherinformation'])->group(function() {
+    Route::get('/', 'FurtherInformationController@showFurtherInformationAdmin');
+});

@@ -35,11 +35,11 @@ class TierSelectionDatabaseSeeder extends Seeder
         // Seed initial tier data. This functionality is replaced with a tier submission settings page
         // TODO
 
-        //        foreach ($this->tierData as $tierData) {
-        //            if (Tier::where('name', $tierData['name'])->count() === 0) {
-        //                $tier = new Tier($tierData);
-        //                $tier->save();
-        //            }
-        //        }
+//                foreach ($this->tierData as $tierData) {
+//                    if (Tier::where('name', $tierData['name'])->count() === 0) {
+//                        $tier = new Tier($tierData);
+//                        $tier->save();
+//                    }
+//                }
     }
 }
