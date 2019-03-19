@@ -31,7 +31,7 @@ class AdminSettingsController extends Controller
     |
     |
     */
-
+    // TODO Remove dependence of Admin in function titles, since this page services all users
     public function createUser(Request $request)
     {
         $this->authorize('settings.create-admin-user');
@@ -67,7 +67,11 @@ class AdminSettingsController extends Controller
 
     public function updateUser(User $user, Request $request)
     {
-        $this->authorize('settings.update-admin-user');
+        if($user->isAdmin()) {
+            $this->authorize('settings.update-admin-user');
+        } else {
+            $this->authorize('settings.update-user');
+        }
 
         $request->validate([
             'forename' => 'sometimes|string',
@@ -106,7 +110,7 @@ class AdminSettingsController extends Controller
      */
     public function showAdminUsersPage()
     {
-        $this->authorize('settings.see-all-admin-users');
+        $this->authorize('settings.see-all-users');
 
         return view('admin.settings.admin_users');
     }
@@ -119,11 +123,9 @@ class AdminSettingsController extends Controller
      */
     public function getAdminUsers()
     {
-        $this->authorize('settings.see-all-admin-users');
+        $this->authorize('settings.see-all-users');
 
-        return User::with(['roles:id,name', 'permissions:id,name,title,description'])->get()->filter(function($user) {
-            return $user->isAdmin();
-        })->each(function(&$user) {
+        return User::with(['roles:id,name', 'permissions:id,name,title,description'])->get()->each(function(&$user) {
             $user->roles->each(function($role) {
                 $role->load('permissions:id,name,title,description');
                 $role->permissions->makeHidden('pivot');
@@ -142,9 +144,11 @@ class AdminSettingsController extends Controller
      */
     public function deleteAdminUsers(User $user)
     {
-        $this->authorize('settings.delete-admin-user');
-
-        abort_if(!$user->isAdmin(), 400, 'Can only delete admin users');
+        if($user->isAdmin()) {
+            $this->authorize('settings.delete-admin-user');
+        } else {
+            $this->authorize('settings.delete-user');
+        }
 
         $user->delete();
     }
