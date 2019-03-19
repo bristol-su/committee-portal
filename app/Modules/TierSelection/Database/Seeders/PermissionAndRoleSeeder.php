@@ -25,8 +25,8 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
             'description' => 'Is the module visible? This will effect both the admin and user side.'
         ],
         'module.isActive' => [
-            'title' => '#WABTierSelection: Is the module disabled?',
-            'description' => 'Is the module disabled? If so, the module cannot be opened.'
+            'title' => '#WABTierSelection: Is the module enabled?',
+            'description' => 'Is the module enabled? If so, the module can be opened.'
         ],
         'view' => [
             'title' => '#WABTierSelection: Viewable',
