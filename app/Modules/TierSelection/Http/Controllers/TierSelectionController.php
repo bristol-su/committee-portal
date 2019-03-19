@@ -58,7 +58,7 @@ class TierSelectionController extends Controller
 
     public function getAllSelections()
     {
-        $this->authorize('view-admin');
+        $this->authorize('tierselection.view-admin');
 
         $submissions = Submission::with(['tier:id,name', 'user:id,forename,surname'])->get();
         $submissions->each(function(Submission &$submission) {
