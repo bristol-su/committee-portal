@@ -20,7 +20,7 @@ abstract class NoteModel extends Model
 
     public function __construct(array $attributes = [])
     {
-        $this->table = $this->getModuleName() . '_file_notes';
+        $this->table = $this->getModuleName().'_file_notes';
         parent::__construct($attributes);
     }
 

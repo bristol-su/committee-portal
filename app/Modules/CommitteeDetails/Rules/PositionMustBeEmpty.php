@@ -63,7 +63,7 @@ class PositionMustBeEmpty extends HandlesCommitteeRoleFormBaseRule
         // Get the group committee roles involving the current position
         $currentPositionId = $this->position->id;
         $committeeRoles = CommitteeRole::allThrough($this->group)
-            ->filter(function ($committeeRole) use ($currentPositionId) {
+            ->filter(function($committeeRole) use ($currentPositionId) {
                 return $committeeRole->position_id === $currentPositionId
                     && $committeeRole->committee_year === config('portal.reaffiliation_year')
                     && $committeeRole->id !== $this->ignoredCommitteeRoleID;

@@ -25,7 +25,7 @@ class EquipmentListServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -66,10 +66,10 @@ class EquipmentListServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/equipmentlist';
+        $this->loadViewsFrom(array_merge(array_map(function($path) {
+            return $path.'/modules/equipmentlist';
         }, \Config::get('view.paths')), [$sourcePath]), 'equipmentlist');
     }
 
@@ -85,7 +85,7 @@ class EquipmentListServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'equipmentlist');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'equipmentlist');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'equipmentlist');
         }
     }
 
@@ -96,8 +96,8 @@ class EquipmentListServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 

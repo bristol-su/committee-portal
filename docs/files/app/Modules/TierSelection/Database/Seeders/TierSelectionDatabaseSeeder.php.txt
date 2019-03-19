@@ -32,7 +32,7 @@ class TierSelectionDatabaseSeeder extends Seeder
     public function run()
     {
         foreach ($this->tierData as $tierData) {
-            if(Tier::where('name', $tierData['name'])->count() === 0 ) {
+            if (Tier::where('name', $tierData['name'])->count() === 0) {
                 $tier = new Tier($tierData);
                 $tier->save();
             }

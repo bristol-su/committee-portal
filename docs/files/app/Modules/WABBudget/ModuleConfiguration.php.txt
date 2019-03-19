@@ -44,8 +44,8 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function reaffiliationStatus()
     {
-        if(!$this->actingAsStudent()) { return 'admin'; }
-        if(File::where([
+        if (!$this->actingAsStudent()) { return 'admin'; }
+        if (File::where([
                 'year' => getReaffiliationYear(),
                 'status' => 'approved',
                 'group_id' => getGroupID()

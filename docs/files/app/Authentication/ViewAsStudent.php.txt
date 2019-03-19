@@ -19,7 +19,7 @@ class ViewAsStudent implements Authenticatable
 
     public function __construct($groupID)
     {
-        $this->position = (object)[
+        $this->position = (object) [
             'id' => 'admin',
             'name' => 'Administrator'
         ];

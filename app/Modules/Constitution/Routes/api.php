@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/constitution', function (Request $request) {
+Route::middleware('auth:api')->get('/constitution', function(Request $request) {
     return $request->user();
 });

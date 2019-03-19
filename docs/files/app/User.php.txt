@@ -60,9 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getCurrentRole()
     {
-        if($this->isAdmin()) {
+        if ($this->isAdmin()) {
             return Auth::guard('view-as-student')->user();
-        } elseif(Auth::guard('committee-role')->check() ) {
+        } elseif (Auth::guard('committee-role')->check()) {
             return Auth::guard('committee-role')->user();
         }
         abort(403, 'Could not authenticate you.');

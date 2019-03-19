@@ -36,7 +36,7 @@ class PortalController extends Controller
     public function logIntoCommitteeRole(Request $request)
     {
         if ($request->has('committee_role_id')) {
-            if(Auth::guard('committee-role')->attempt([
+            if (Auth::guard('committee-role')->attempt([
                 'committee_role_id' => $request->input('committee_role_id'),
                 'student_control_id' => Auth::user()->control_id
             ])) {
@@ -65,7 +65,7 @@ class PortalController extends Controller
     {
         \Auth::guard('view-as-student')->logout();
 
-        if(!\Auth::guard('view-as-student')->check()) {
+        if (!\Auth::guard('view-as-student')->check()) {
             return response('', 200);
         }
         return response('', 500);

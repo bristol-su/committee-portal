@@ -29,28 +29,28 @@ class CommitteeDetailsDatabaseSeeder extends Seeder
         $positionSettings = [
             [
                 'tag_reference' => 'society',
-                'allowed_positions' => [5,6,7,14],
-                'required_positions' => [5,6,7],
-                'position_only_has_single_committee_member' => [5,6,7],
-                'committee_member_only_has_single_position' => [5,6]
+                'allowed_positions' => [5, 6, 7, 14],
+                'required_positions' => [5, 6, 7],
+                'position_only_has_single_committee_member' => [5, 6, 7],
+                'committee_member_only_has_single_position' => [5, 6]
             ],
             [
                 'tag_reference' => 'sport',
-                'allowed_positions' => [22,6,7,14],
-                'required_positions' => [22,6,7],
-                'position_only_has_single_committee_member' => [22,6,7],
-                'committee_member_only_has_single_position' => [22,6]
+                'allowed_positions' => [22, 6, 7, 14],
+                'required_positions' => [22, 6, 7],
+                'position_only_has_single_committee_member' => [22, 6, 7],
+                'committee_member_only_has_single_position' => [22, 6]
             ],
             [
                 'tag_reference' => 'volunteering',
-                'allowed_positions' => [23,6,14],
+                'allowed_positions' => [23, 6, 14],
                 'required_positions' => [23],
-                'position_only_has_single_committee_member' => [23,6],
-                'committee_member_only_has_single_position' => [23,6]
+                'position_only_has_single_committee_member' => [23, 6],
+                'committee_member_only_has_single_position' => [23, 6]
             ]
         ];
 
-        foreach($positionSettings as $positionSetting) {
+        foreach ($positionSettings as $positionSetting) {
             factory(PositionSetting::class)->create($positionSetting);
         }
 

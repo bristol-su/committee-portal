@@ -25,7 +25,7 @@ class BudgetServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -67,10 +67,10 @@ class BudgetServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/budget';
+        $this->loadViewsFrom(array_merge(array_map(function($path) {
+            return $path.'/modules/budget';
         }, \Config::get('view.paths')), [$sourcePath]), 'budget');
     }
 
@@ -86,7 +86,7 @@ class BudgetServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'budget');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'budget');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'budget');
         }
     }
 
@@ -97,8 +97,8 @@ class BudgetServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 

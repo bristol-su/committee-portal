@@ -25,7 +25,7 @@ class WABStrategicPlanServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -68,10 +68,10 @@ class WABStrategicPlanServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/wabstrategicplan';
+        $this->loadViewsFrom(array_merge(array_map(function($path) {
+            return $path.'/modules/wabstrategicplan';
         }, \Config::get('view.paths')), [$sourcePath]), 'wabstrategicplan');
     }
 
@@ -87,7 +87,7 @@ class WABStrategicPlanServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, 'wabstrategicplan');
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'wabstrategicplan');
+            $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'wabstrategicplan');
         }
     }
 
@@ -98,8 +98,8 @@ class WABStrategicPlanServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
-            app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        if (!app()->environment('production')) {
+            app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
     }
 
