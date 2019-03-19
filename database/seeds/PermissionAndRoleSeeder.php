@@ -38,13 +38,17 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
             'title' => 'View Site Settings',
             'description' => 'View the global site settings page.'
         ], // Able to see the 'settings' page on admin
-        'settings.see-all-admin-users' => [
+        'settings.see-all-users' => [
             'title' => 'See Admin Users',
             'description' => 'Allow the user to see all admin users.'
         ], // See all the admin users listed out.
+        'settings.delete-user' => [
+            'title' => 'Delete User',
+            'description' => 'Delete a user.'
+        ],
         'settings.delete-admin-user' => [
             'title' => 'Delete Admin User',
-            'description' => 'Delete an administrator user.'
+            'description' => 'Delete an Admin user.'
         ],
         'settings.update-admin-permissions' => [
             'title' => 'Edit User Permissions',
@@ -65,6 +69,10 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
         'settings.create-admin-user' => [
             'title' => 'Create Admin User',
             'description' => 'Ability to create a new admin user'
+        ],
+        'settings.update-user' => [
+            'title' => 'Update user',
+            'description' => 'Ability to update existing users'
         ],
         'settings.update-admin-user' => [
             'title' => 'Update admin user',

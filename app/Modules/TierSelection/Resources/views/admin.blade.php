@@ -1,6 +1,7 @@
 @extends('tierselection::layouts.app')
 
 @section('title', '#WeAreBristol Tier Selection')
+
 @section('module-content')
 
     <!-- Title and description -->
@@ -9,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Tier Selection - <small>#WeAreBristol</small></h2>
-                    <p class="">All Tier Selection Submissions</p>
+                    <p class="">All submissions received are listed below.</p>
                 </div>
                 <div class="col-md-12">
                     <tier-selection-admin-page>
