@@ -1,5 +1,16 @@
 <template>
     <div>
+        <!--<a :href="'/' + module + '/download-all/' + (currentReaffiliationYear - 1)">-->
+            <!--<button class="btn btn-sm btn-info">-->
+                <!--Download all approved from {{currentReaffiliationYear - 1 | reaffiliation_year}}-->
+            <!--</button>-->
+        <!--</a>-->
+
+        <!--<a :href="'/' + module + '/download-all/' + (currentReaffiliationYear)">-->
+            <!--<button class="btn btn-sm btn-info">-->
+                <!--Download all approved from {{currentReaffiliationYear | reaffiliation_year}}-->
+            <!--</button>-->
+        <!--</a>-->
         <!--// TODO Make filterable-->
         <table class="table table-striped table-responsive table-condensed table-hover" v-if="files.length > 0">
             <thead>
@@ -94,7 +105,8 @@
             return {
                 fullDate: [],
                 files: [],
-                errors: new Errors()
+                errors: new Errors(),
+                currentReaffiliationYear: parseInt(process.env.MIX_REAFFILIATION_YEAR),
             }
         },
 

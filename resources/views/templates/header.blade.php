@@ -7,7 +7,7 @@
                 <a class="navbar-brand" href="{{ (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal')  ) }}">
                     {{ config('app.name', 'Committee Portal') }}
                 </a>
-            @elseauth
+            @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Committee Portal') }}
                 </a>
@@ -37,7 +37,7 @@
                     @else
 
                         {{--This will give admins access to logging in as groups--}}
-                        @if(\Auth::user()->can('view-as-student'))
+                        @if(\Auth::user()->can('view-as-student') && \Auth::user()->hasVerifiedEmail())
                             <group-select
                                     @if(\Auth::guard('view-as-student')->check()) :group-id="{{\getGroupID()}}"  @endif >
 

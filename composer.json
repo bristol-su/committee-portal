@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nao-pon/flysystem-google-drive": "^1.1",
+        "nelexa/zip": "^3.1",
         "nimbly/activeresource": "^1.1",
         "nwidart/laravel-modules": "^4.0",
         "php-console/php-console": "^3.1",
