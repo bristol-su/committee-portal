@@ -44,7 +44,9 @@ class TierSelectionController extends Controller
 
         $groupId = getGroupID();
 
-        abort_if(Submission::countSubmissions($groupId) > 0, 400, 'You have already submitted your tier');
+        Submission::getSubmissions($groupId)->each(function($submission) {
+            $submission->delete();
+        });
 
         $submission = new Submission([
             'group_id' => $groupId,

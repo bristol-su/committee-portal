@@ -40,10 +40,7 @@ class AuthServiceProvider extends BaseAuthServiceProvider
         });
 
         Gate::define('tierselection.submit', function(User $user) {
-            return Submission::where([
-                'year'=>config('portal.reaffiliation_year'),
-                'group_id' => getGroupID()
-            ])->count() === 0;
+            return Submission::getSubmissions(getGroupID())->count() === 0;
         });
 
     }
