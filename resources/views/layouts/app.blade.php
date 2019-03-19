@@ -31,7 +31,8 @@
 <body style="height: 100%; min-height: 100%;">
     @include('templates.header')
     <script src="{{ mix('js/app.js') }}"></script>
-
+<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+    @include('templates.freshdesk')
     @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
