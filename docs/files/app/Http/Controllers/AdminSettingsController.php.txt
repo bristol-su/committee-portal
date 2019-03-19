@@ -67,7 +67,7 @@ class AdminSettingsController extends Controller
 
     public function updateUser(User $user, Request $request)
     {
-        if($user->isAdmin()) {
+        if ($user->isAdmin()) {
             $this->authorize('settings.update-admin-user');
         } else {
             $this->authorize('settings.update-user');
@@ -144,7 +144,7 @@ class AdminSettingsController extends Controller
      */
     public function deleteAdminUsers(User $user)
     {
-        if($user->isAdmin()) {
+        if ($user->isAdmin()) {
             $this->authorize('settings.delete-admin-user');
         } else {
             $this->authorize('settings.delete-user');
