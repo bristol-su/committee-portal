@@ -2,7 +2,8 @@
     <div>
         <!--Images-->
         <div class="row">
-            <div :class="{deselected: selectedTier !== tier, selected: selectedTier === tier}" @click="selectTier(tier)" class="column tier-holder"
+            <div :class="{deselected: selectedTier !== tier, selected: selectedTier === tier}" @click="selectTier(tier)"
+                 class="column tier-holder"
                  v-for="tier in tiers">
                 <img :alt="tier.name" :src="tier.filename | static" style="width:100%">
                 <!--<div style="text-align: center; font-weight: bold; font-size: 30px;">{{tier.name}}</div>-->
@@ -17,10 +18,10 @@
         <!--Submit button-->
         <div class="row">
             <div class="column" style="display: flex; align-items: center; justify-content: center;">
-                <button :class="{'btn-danger': selectedTier === null, 'btn-success': selectedTier !== null}" :disabled="selectedTier === null || completed"
+                <button :class="{'btn-danger': selectedTier === null, 'btn-success': selectedTier !== null}"
                         @click="submitTier"
-                        style="width: 50%;"
-                        class="btn">{{ buttonText }}
+                        class="btn"
+                        style="width: 50%;">{{ buttonText }}
                 </button>
             </div>
         </div>
@@ -31,10 +32,6 @@
     export default {
         props: {
 
-            // Determines if the user may create a submission
-            completed: {
-                default: false
-            },
 
             // Holds the current submissions
             submissions: {
@@ -47,7 +44,6 @@
             return {
                 tiers: [],
                 selectedTier: null,
-                disableButton: false
             }
         },
 
@@ -55,42 +51,47 @@
             this.$http.get('/tierselection/api/tiers')
                 .then(response => {
                     this.tiers = response.data;
-                    if(!this.canBeSubmitted) {
+                    if (this.hasBeenSubmitted) {
                         this.selectedTier = this.tiers.filter(tiers => this.submissions[0].tier_id === tiers.id)[0];
                     }
-
                 })
                 .catch(error => this.$notify.alert('Sorry, something went wrong.'))
         },
 
         methods: {
             selectTier(tier) {
-                if(this.canBeSubmitted) {
-                    this.selectedTier = (this.selectedTier === tier ? null : tier);
-                }
+                this.selectedTier = (this.selectedTier === tier ? null : tier);
             },
 
             submitTier() {
-                if(this.canBeSubmitted) {
-                    this.disableButton = true;
-                    this.$http.post('/tierselection', {
-                        tier_id: this.selectedTier.id
+                this.$http.post('/tierselection', {
+                    tier_id: this.selectedTier.id
+                })
+                    .then(response => {
+                        this.$notify.success('You have been entered into the "' + this.selectedTier.name + '" tier.');
+                        this.submissions.push(this.selectedTier);
                     })
-                        .catch(error => {
-                            this.$notify.alert('Sorry, something went wrong.');
-                            window.location.reload();
-                        })
-                }
+                    .catch(error => {
+                        this.$notify.alert('Sorry, something went wrong.');
+                    })
+            },
+
+            loadSubmissions() {
+
             }
         },
 
         computed: {
             buttonText() {
-                return (this.selectedTier === null ? 'Select' : (this.canBeSubmitted ? 'Confirm tier ' : 'Entered in Tier ' ) + this.selectedTier.name);
+                return (this.selectedTier === null
+                    ? 'Select'
+                    : (this.hasBeenSubmitted && this.submissions.filter(submission => submission.id === this.selectedTier.id).length === 1
+                    ? 'Entered in Tier '
+                    : 'Enter in Tier ') + this.selectedTier.name);
             },
 
-            canBeSubmitted() {
-                return this.submissions.length === 0 && !this.disableButton;
+            hasBeenSubmitted() {
+                return this.submissions.length !== 0;
             }
         },
 

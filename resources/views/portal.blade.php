@@ -6,7 +6,7 @@
     <div class="py-5">
         <div class="container">
             <h2 style="text-align: center">Committee Portal</h2>
-            <h4 style="text-align: center"><small>Choose a module below to get started! </small></h4>
+            <h4 style="text-align: center"><small>Choose a task below to get started! </small></h4>
             @foreach($modules->pluck('header')->unique() as $header)
                 {{--// TODO Headers may be empty if user not authorised to view any of them--}}
 
