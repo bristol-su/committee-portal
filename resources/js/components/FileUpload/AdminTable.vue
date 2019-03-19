@@ -68,6 +68,9 @@
 
             </tbody>
         </table>
+        <div v-else>
+            No files have been uploaded.
+        </div>
     </div>
 </template>
 

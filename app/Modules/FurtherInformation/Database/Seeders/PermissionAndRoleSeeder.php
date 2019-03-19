@@ -33,6 +33,11 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
             'title' => '#WABFurtherInformation: Viewable',
             'description' => 'Can the module page be opened?'
         ],
+        'view-admin' => [
+            'title' => '#WABFurtherInformation: Viewable Admin',
+            'description' => 'Can the admin module page be opened?'
+        ],
+
     ];
 
     /**

@@ -15,4 +15,10 @@ class FurtherInformationController extends Controller
         return view('furtherinformation::furtherinformation');
     }
 
+    public function showFurtherInformationAdmin()
+    {
+        $this->authorize('furtherinformation.view-admin');
+
+        return view('furtherinformation::admin');
+    }
 }
