@@ -14,3 +14,4 @@ yarn-error.log
 public/css/*
 .idea
 .idea/*
+.output

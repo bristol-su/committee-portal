@@ -13,7 +13,8 @@ class Submission extends Model
 
     protected $fillable = [
         'group_id',
-        'tier_id'
+        'tier_id',
+        'user_id'
     ];
 
     protected $table = 'tierselection_submissions';
@@ -44,6 +45,16 @@ class Submission extends Model
             'group_id' => $groupId,
             'year' => config('portal.reaffiliation_year')
         ])->get();
+    }
+
+    public function tier()
+    {
+        return $this->belongsTo('App\Modules\TierSelection\Entities\Tier');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
 

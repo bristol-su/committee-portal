@@ -26,13 +26,18 @@ class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
             'description' => 'Is the module visible? This will effect both the admin and user side.'
         ],
         'module.isActive' => [
-            'title' => '#WABFurtherInformation: Is the module disabled?',
-            'description' => 'Is the module disabled? If so, the module cannot be opened.'
+            'title' => '#WABFurtherInformation: Is the module enabled?',
+            'description' => 'Is the module enabled? If so, the module can be opened.'
         ],
         'view' => [
             'title' => '#WABFurtherInformation: Viewable',
             'description' => 'Can the module page be opened?'
         ],
+        'view-admin' => [
+            'title' => '#WABFurtherInformation: Viewable Admin',
+            'description' => 'Can the admin module page be opened?'
+        ],
+
     ];
 
     /**
