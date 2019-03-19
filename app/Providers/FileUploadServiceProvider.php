@@ -31,6 +31,8 @@ class FileUploadServiceProvider extends ServiceProvider
 
             Route::get('/download-files/{id}', $controller.'@downloadFile');
 
+            Route::get('/download-all/{year}', $controller.'@downloadAll');
+
             Route::get('get-notes', $controller.'@getNotes');
 
             Route::post('post-note/{id}', $controller.'@postNote');
