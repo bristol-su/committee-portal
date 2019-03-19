@@ -14,14 +14,14 @@
                             <h5 class="card-title"><b>Users</b></h5>
                             <h6 class="card-subtitle my-2 text-muted">Settings concerning users of the site</h6>
                             <div class="row">
-                                @can('settings.see-all-admin-users')
+                                @can('settings.see-all-users')
                                     <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
                                         <a href="{{ url('/admin/settings/admin-users') }}">
                                             <button
                                                     type="button"
                                                     class="module_button btn btn-outline-info"
                                             >
-                                                Admin Users
+                                                Users
                                             </button>
                                         </a>
                                     </div>
