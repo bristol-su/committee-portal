@@ -1,12 +1,13 @@
 @extends('constitution::layouts.app')
 
+@section('title', 'Constitution')
+
 @section('module-content')
     <div class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Constitution</h2>
-                    <p class="">Something something something</p>
                 </div>
             </div>
         </div>

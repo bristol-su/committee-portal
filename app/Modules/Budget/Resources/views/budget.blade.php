@@ -7,20 +7,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Budget -
-                        <small>#WeAreBristol</small>
-                    </h2>
-                    <p class="">Please upload your completed budget by 5pm on 8th April 2019. </p>
+                    <h2 class="">Budget</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p>
-                        We've made a <a
-                                href="{{serveStatic('bristol-su-sports-group-budget-template.xls')}}">template</a> and a
-                        <a href="{{serveStatic('bristol-su-sports-group-budget-guide.pdf')}}">guide</a> on how to
-                        complete a budget.
-                    </p>
                 </div>
             </div>
 

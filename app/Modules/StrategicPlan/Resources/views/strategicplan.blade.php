@@ -7,10 +7,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Strategic Plan - <small>#WeAreBristol</small></h2>
-                    <p class="">Please upload your completed strategic plan by 5pm on 8th April 2019. </p>
-
-                    <p>A toolkit to help you make your strategic plan can be found <a href="{{serveStatic('bristol-su-strategic-planning-toolkit.docx')}}">here</a>.</p>
+                    <h2 class="">Strategic Plan</h2>
+                    <p></p>
                 </div>
             </div>
             <div class="row">

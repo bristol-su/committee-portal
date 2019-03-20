@@ -1,4 +1,4 @@
-@extends('wabstrategicplan::layouts.app')
+@extends('strategicplan::layouts.app')
 
 @section('module-content')
     <div class="py-5">
@@ -15,10 +15,10 @@
 
     <div class="py-5">
         <div class="container">
-            <div class="wabstrategicplan-root">
+            <div class="strategicplan-root">
 
                 <admin-note-template
-                        module="wabstrategicplan"
+                        module="strategicplan"
                 >
                 </admin-note-template>
 
