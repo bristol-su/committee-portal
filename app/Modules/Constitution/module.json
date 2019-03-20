@@ -3,7 +3,7 @@
     "alias": "constitution",
     "description": "",
     "keywords": [],
-    "active": 0,
+    "active": 1,
     "order": 5,
     "providers": [
         "App\\Modules\\Constitution\\Providers\\ConstitutionServiceProvider"
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\Constitution\\ModuleConfiguration",
-    "in_development": false
+    "in_development": true
 }

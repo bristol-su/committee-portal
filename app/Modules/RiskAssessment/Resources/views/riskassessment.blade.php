@@ -1,12 +1,14 @@
 @extends('riskassessment::layouts.app')
 
+@section('title', 'Risk Assessment')
+
+
 @section('module-content')
     <div class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Risk Assessment</h2>
-                    <p class="">Something something something</p>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Modules\Budget;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\Budget\Entities\File;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -30,20 +31,18 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/budget';
     }
 
-    public function getVisibility()
-    {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
     public function reaffiliationStatus()
     {
         if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if (File::where([
+                'year' => getReaffiliationYear(),
+                'status' => 'approved',
+                'group_id' => getGroupID()
+            ])->count() === 0) {
+
+            return 'incomplete';
+        }
+        return 'complete';
     }
 
     public function getDescription()

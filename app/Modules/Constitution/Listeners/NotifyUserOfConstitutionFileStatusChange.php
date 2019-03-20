@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Modules\StrategicPlan\Listeners;
+namespace App\Modules\Constitution\Listeners;
 
 use App\Mail\DefaultDocumentStatusChanged;
-use App\Modules\StrategicPlan\Entities\File;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Modules\Constitution\Entities\File;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class NotifyUserOfStrategicPlanFileStatusChange implements ShouldQueue
+class NotifyUserOfConstitutionFileStatusChange implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -29,6 +27,6 @@ class NotifyUserOfStrategicPlanFileStatusChange implements ShouldQueue
      */
     public function handle($file)
     {
-        Mail::to($file->user->email)->send(new DefaultDocumentStatusChanged($file, 'Strategic Plan Status Updated'));
+        Mail::to($file->user->email)->send(new DefaultDocumentStatusChanged($file, 'Constitution Status Updated'));
     }
 }
