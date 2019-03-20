@@ -17,9 +17,8 @@
                 <div class="col-md-12">
                     <p>
                         We've made a <a
-                                href="{{serveStatic('bristol-su-sports-group-budget-template.xls')}}">template</a> and a
-                        <a href="{{serveStatic('bristol-su-sports-group-budget-guide.pdf')}}">guide</a> on how to
-                        complete a budget.
+                                href="{{serveStatic('bristol-su-sports-group-budget-template.xls')}}">template</a> to help you create your budget.
+<!--and a <a href="{{serveStatic('bristol-su-sports-group-budget-guide.pdf')}}">guide</a> on how to complete a budget.--> 
                     </p>
                 </div>
             </div>

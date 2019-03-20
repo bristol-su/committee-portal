@@ -14,7 +14,6 @@
                 </div>
                 <div class="col-md-12">
                     <tier-selection-user-page
-                            :completed="{{ (\App\Modules\TierSelection\Entities\Submission::countSubmissions(getGroupID()) > 0 ? 'true' : 'false' )}}"
                             :submissions="{{ json_encode(\App\Modules\TierSelection\Entities\Submission::getSubmissions(getGroupID()) ) }}">
                     </tier-selection-user-page>
                 </div>
