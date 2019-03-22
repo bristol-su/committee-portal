@@ -1,10 +1,10 @@
 <template>
 
     <div>
-        <!-- Action buttons (add and save) -->
+        <!-- Action buttons - add committee member -->
         <div class="row">
             <div class="col-md-12">
-                <input @click="openCommitteeForm" class="btn btn-outline-info" type="button"
+                <input @click="openCommitteeForm(null)" class="btn btn-outline-info" type="button"
                        value="Add Committee Member"/>
             </div>
         </div>
@@ -28,7 +28,7 @@
                                 :committeemember="committee"
                                 :key="committee.id"
                                 @delete="deleteCommitteeMember"
-                                @edit="openCommitteeForm"
+                                @edit="openCommitteeForm(committee)"
                                 v-for="committee in committee_members"
                         >
 
@@ -74,25 +74,27 @@
         },
 
         created() {
-            this.loadCommittee();
+            this.$http.get('/control-database/api/position_student_groups')
+                .then(response => {
+                    this.committee_members = response.data;
+                })
+                .catch(error => this.$notify.alert('Couldn\'t find your committee: ' + error.message))
         },
 
         methods: {
 
-            loadCommittee() {
-                this.$http.get('/control-database/api/position_student_groups')
-                    .then(response => {
-                        this.committee_members = response.data;
-                    })
-            },
-
             memberAdded(member) {
                 this.$modal.hide('committee-member-form');
-                this.committee_members.push(member);
+                if(this.editingCommitteeMember !== null) {
+                    this.committee_members.splice(this.committee_members.indexOf(this.editingCommitteeMember), 1, member);
+                    this.editingCommitteeMember = null;
+                } else {
+                    this.committee_members.push(member)
+                }
             },
 
             openCommitteeForm(member) {
-                if (!(member instanceof MouseEvent)) {
+                if (member !== null) {
                     this.editingCommitteeMember = member;
                 }
                 this.$modal.show('committee-member-form');
@@ -107,7 +109,7 @@
                                 return allMembers.id !== member.id;
                             });
                         })
-                        .catch(e => this.$notify.alert('Sorry, something went wrong.'));
+                        .catch(error => this.$notify.alert('Couldn\'t delete the committee member: ' + error.message));
                 }
 
             }

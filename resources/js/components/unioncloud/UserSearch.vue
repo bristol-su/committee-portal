@@ -76,7 +76,6 @@
             },
 
             search: _.debounce((loading, search, vm) => {
-                // TODO Change from axios
                 axios.get('/unioncloud/api/user/multisearch',
                     {
                         params: {search: search},

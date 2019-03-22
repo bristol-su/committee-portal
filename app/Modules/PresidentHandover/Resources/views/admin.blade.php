@@ -1,0 +1,35 @@
+@extends('presidenthandover::layouts.app')
+
+@section('title', 'President Handover')
+
+@section('module-content')
+
+    <!-- Title and description -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <h2 class="">President Handover</h2>
+                    <p class="">All committee details are stored in the 'control database'. Committee member details
+                        are accessible through the Google Sheet below.</p>
+                    <p>
+                        <a target="_blank" href="https://docs.google.com/spreadsheets/d/1R4rbPSZVh9IP1d5RYHP2kXtcvj5dEG53IngXt68QNf8">
+                            <button type="button" class="btn btn-lg btn-info">
+                                Committee Details Contact Sheet
+                            </button>
+                        </a>
+                    </p>
+
+                    <p>
+                        To edit committee members, head to the group portal with the dropdown in the header.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+@endsection
+

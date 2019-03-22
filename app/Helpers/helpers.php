@@ -60,3 +60,20 @@ if (!function_exists('serveStatic')) {
                 .config('filesystems.static_content.folder').'/'.$filename;
     }
 }
+
+if(!function_exists('getExecutiveCommitteeRoleID')) {
+    function getExecutiveCommitteeRoleID()
+    {
+        abort_if(($groupType = getGroupType()) === false, 400, 'Could not find your group type.');
+
+        $positionSetting = \App\PositionSetting::where('tag_reference', $groupType)->first();
+
+        abort_if($positionSetting === null, 400, 'Your group type has not been set up in our system.');
+
+        // Cross reference required positions and positions which we know to be executive, then get the first one
+        $requiredPositions = $positionSetting->required_positions;
+        $execPositions = config('portal.exec_committee');
+
+        return array_intersect($requiredPositions, $execPositions)[0];
+    }
+}

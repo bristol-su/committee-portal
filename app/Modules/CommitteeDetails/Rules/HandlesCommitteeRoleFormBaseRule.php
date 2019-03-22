@@ -10,7 +10,7 @@ namespace App\Modules\CommitteeDetails\Rules;
 
 use App\Traits\GetsControlStudentByUnionCloudID;
 use Illuminate\Contracts\Validation\Rule;
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\PositionSetting;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
 use App\Packages\ControlDB\Models\Student;

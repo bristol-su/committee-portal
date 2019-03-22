@@ -4,18 +4,16 @@ namespace App\Modules\CommitteeDetails\Http\Controllers;
 
 use ActiveResource\ConnectionManager;
 use App\Http\Controllers\Controller;
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\PositionSetting;
 use App\Modules\CommitteeDetails\Http\Middleware\LoadGroupPositionRequirementsIntoJavascript;
-use App\Modules\CommitteeDetails\Http\Requests\CommitteeMemberRequest;
 use App\Modules\CommitteeDetails\Rules\PositionIsAllowed;
 use App\Modules\CommitteeDetails\Rules\PositionMustBeEmpty;
 use App\Modules\CommitteeDetails\Rules\IsStudentAvailable;
+use App\Traits\EditsControlPositions;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
 use App\Packages\ControlDB\Models\Student;
-use App\Rules\IsCorrectPositionId;
-use App\Rules\IsCorrectUnionCloudUid;
 use App\Rules\UnionCloudUIDExists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,33 +22,66 @@ use Illuminate\Support\Facades\Log;
 class CommitteeDetailsController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(LoadGroupPositionRequirementsIntoJavascript::class)->only('showUserPage');
-    }
+    use EditsControlPositions;
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Show pages
+    |--------------------------------------------------------------------------
+    |
+    | Methods to show pages for users and admins
+    |
+    */
 
     /**
-     * Show the main user edit form
+     * Show the user page for changing committee
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function showUserPage()
     {
+        $this->authorize('committeedetails.view');
+
         return view('committeedetails::committee_details');
     }
 
     /**
-     * Add a new committee role to Control
+     * Show the admin page for committee details.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function showAdminPage()
+    {
+        $this->authorize('committeedetails.view-admin');
+
+        return view('committeedetails::admin');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Control Committee Members
+    |--------------------------------------------------------------------------
+    |
+    | Create, update and delete committee members from the control database.
+    |
+    */
+
+    /**
+     * Add a new committee member to the control database, as part of the committee
      *
      * @param Request $request
-     * @return CommitteeRole
-     *
-     * @throws \Exception
+     * @return \ActiveResource\Model|bool
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function addUserToControl(Request $request)
     {
+        $this->authorize('committeedetails.add-committee-member');
         // Validate the request
-        $this->validateUserAdditionRequest($request);
+        $this->validateRequest($request);
 
         // Create a new committee role, populate and save it
         return $this->updateCommitteeRole($request, new CommitteeRole());
@@ -58,18 +89,20 @@ class CommitteeDetailsController extends Controller
     }
 
     /**
-     * Edit a committee role in control
+     * Update a committee member in the control database. This method is used when a current position is being
+     * edited.
      *
      * @param Request $request
      * @param $positionStudentGroupID
-     * @return CommitteeRole
-     *
-     * @throws \Exception
+     * @return \ActiveResource\Model|bool
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function updateUserInControl(Request $request, $positionStudentGroupID)
     {
+        $this->authorize('committeedetails.update-committee-member');
+
         // Validate the request
-        $this->validateUserAdditionRequest($request, (int) $positionStudentGroupID);
+        $this->validateRequest($request, (int) $positionStudentGroupID);
 
         // Find and check the committee role that needs editing
         $committeeRole = CommitteeRole::find($positionStudentGroupID);
@@ -80,14 +113,17 @@ class CommitteeDetailsController extends Controller
     }
 
     /**
-     * Delete committee role from control
+     * Delete a committee member from the control database
      *
      * @param Request $request
      * @param $positionStudentGroupID
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function deleteCommitteeRoleFromControl(Request $request, $positionStudentGroupID)
     {
+        $this->authorize('committeedetails.delete-committee-member');
+
         $positionStudentGroup = CommitteeRole::find($positionStudentGroupID);
 
         abort_if($positionStudentGroup === false, 404, 'Couldn\'t find the committee role');
@@ -96,8 +132,19 @@ class CommitteeDetailsController extends Controller
         return response('', 200);
     }
 
+
+    /*
+     |--------------------------------------------------------------------------
+     | Helpers
+     |--------------------------------------------------------------------------
+     |
+     | Functions to help the above
+     |
+     */
+
+
     /**
-     * Get available positions for a group
+     * Get all the possible positions for a group
      *
      * @return array
      */
@@ -137,15 +184,15 @@ class CommitteeDetailsController extends Controller
 
         return $filteredPositions;
     }
+
     /**
-     * Validate the Student and Position details
+     * Validate a request
      *
      * @param Request $request
-     * @param int|null $ignoreCommitteeRoleID ID of a committee role to ignore for rules
-     *
+     * @param int|null $ignoreCommitteeRoleID Committee Role to ignore through validation
      * @throws \Exception
      */
-    private function validateUserAdditionRequest(Request $request, $ignoreCommitteeRoleID = null)
+    private function validateRequest(Request $request, $ignoreCommitteeRoleID = null)
     {
 
         $request->validate([
@@ -157,12 +204,12 @@ class CommitteeDetailsController extends Controller
     }
 
     /**
-     * Fill data from the committee form and save a committee role
-     *
-     * @param Request $request
+     * Parse the request and save the committee role, having updated it with data from the request.
+     *    * @param Request $request
      * @param CommitteeRole $committeeRole
      * @return \ActiveResource\Model|bool
      */
+
     private function updateCommitteeRole(Request $request, CommitteeRole $committeeRole)
     {
         // Validate Request
@@ -179,34 +226,7 @@ class CommitteeDetailsController extends Controller
         return CommitteeRole::find($committeeRole->id);
     }
 
-    /**
-     * Get the Control ID of a student by their UnionCloud ID
-     *
-     * @param $uid
-     * @return mixed|null
-     */
-    private function getStudentControlID($uid)
-    {
-        // Search for a student by Student ID
 
-        // Create an empty student model
-        $student = new Student();
-
-        // Send request
-        $connection = ConnectionManager::get('control');
-        $request = $connection->buildRequest('post', 'students/search', ['uc_uid' => $uid]);
-        $response = $connection->send($request);
-
-        // Parse the response by hydrating the model
-        if ($response->isSuccessful()) {
-            $student->hydrate($response->getPayload()[0]);
-        } else {
-            $student->uc_uid = $uid;
-            abort_if(!$student->save(), 500, 'We couldn\'t save you in our system.');
-        }
-
-        return $student->id;
-    }
 
 
 

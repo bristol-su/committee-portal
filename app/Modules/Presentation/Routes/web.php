@@ -11,14 +11,13 @@
 |
 */
 
-Route::prefix('presentation')->group(function() {
+Route::prefix('presentation')->middleware(['user', 'module', 'module.active:presentation', 'module.maintenance:presentation'])->group(function() {
     Route::get('/', 'PresentationController@showUserPage');
 
     Route::FileUploads('PresentationController');
-
 });
 
-Route::prefix('admin/presentation')->middleware(['admin', 'module', 'module.active:wabstrategicplan', 'module.maintenance:presentation'])->group(function() {
+Route::prefix('admin/presentation')->middleware(['admin', 'module', 'module.active:presentation', 'module.maintenance:presentation'])->group(function() {
     Route::get('/', 'PresentationController@showAdminPage');
 
     Route::get('/note-templates', 'PresentationController@showNoteTemplatePage');

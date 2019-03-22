@@ -17,3 +17,7 @@
     Route::delete('/{positionStudentGroupID}', 'CommitteeDetailsController@deleteCommitteeRoleFromControl');
     Route::get('/positions', 'CommitteeDetailsController@getPositions');
 });
+
+\Illuminate\Support\Facades\Route::prefix('admin/committeedetails')->middleware(['admin', 'module', 'module.active:committeedetails', 'module.maintenance:committeedetails'])->group(function() {
+    Route::get('/', 'CommitteeDetailsController@showAdminPage');
+});
