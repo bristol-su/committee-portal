@@ -47,7 +47,7 @@
                         this.$http.post('/presidenthandover', {
                             uid: this.selected.uid
                         })
-                            .then(response => window.location.reload());
+                            .then(response => window.location.reload())
                             .catch(error => this.$notify.error('Could not hand over to ' + this.selected.forename + ': ' + error.message));
                 }
             }
