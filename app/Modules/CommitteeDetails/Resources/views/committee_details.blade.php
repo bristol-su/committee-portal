@@ -1,5 +1,7 @@
 @extends('committeedetails::layouts.app')
 
+@section('title', 'Committee Details')
+
 @section('module-content')
 
     <!-- Title and description -->
@@ -8,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Committee Details</h2>
-                    <p class="">Put your committee in below etc etc.</p>
+                    <p class="">Put your committee in below.</p>
                 </div>
             </div>
         </div>

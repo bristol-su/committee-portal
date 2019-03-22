@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\CommitteeDetails\Entities;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class PositionSetting extends Model
 {
-    protected $table = 'committeedetails_position_settings';
+    protected $table = 'position_settings';
 
     protected $casts = [
         'allowed_positions' => 'array',

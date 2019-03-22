@@ -43,7 +43,7 @@
                         </span>
                 </td>
                 <td>
-                    <select @change="changeStatus(file, $event)" class="form-control" v-model="file.status">
+                    <select @change="changeStatus(file)" class="form-control" v-model="file.status">
                         <option value="awaiting approval"><i class="fa fa-hourglass"></i>
                             Awaiting
                             Approval
