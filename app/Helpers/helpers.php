@@ -64,11 +64,11 @@ if (!function_exists('serveStatic')) {
 if(!function_exists('getExecutiveCommitteeRoleID')) {
     function getExecutiveCommitteeRoleID()
     {
-        abort_if(($groupType = getGroupType()) === false, 400, 'Could not find your group type.');
+        abort_if(($groupType = getGroupType()) === false, 500, 'Could not find your group type.');
 
         $positionSetting = \App\PositionSetting::where('tag_reference', $groupType)->first();
 
-        abort_if($positionSetting === null, 400, 'Your group type has not been set up in our system.');
+        abort_if($positionSetting === null, 500, 'Your group type has not been set up in our system.');
 
         // Cross reference required positions and positions which we know to be executive, then get the first one
         $requiredPositions = $positionSetting->required_positions;
