@@ -47,4 +47,13 @@ class QuestionService implements Arrayable
         });
     }
 
+    public function getAnswers(Group $group)
+    {
+        $answers = [];
+        $this->questions->each(function($question) use ($group, &$answers) {
+            $answers = array_merge($answers, $question->getAnswer($group));
+        });
+        return $answers;
+    }
+
 }

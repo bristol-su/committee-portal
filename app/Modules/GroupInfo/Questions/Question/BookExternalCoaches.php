@@ -10,9 +10,13 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 
 class BookExternalCoaches extends BaseQuestion
 {
+
+    use CanSeeGroupTags;
 
     public $name = 'Book External Coaches';
 
@@ -21,6 +25,8 @@ class BookExternalCoaches extends BaseQuestion
     public $helpText = 'Does your society book external coaches or instructors for your regular activity?';
 
     public $type = 'radio';
+
+    public $job = \App\Modules\GroupInfo\Jobs\Job\BookExternalCoaches::class;
 
     public $required = true;
 
@@ -61,6 +67,22 @@ class BookExternalCoaches extends BaseQuestion
     public function configuration()
     {
         return $this->configuration;
+    }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        if($this->groupHasTag($group, 'group_information', 'external_coaches_yes')) {
+            return ['external_coaches' => 'yes'];
+        } elseif($this->groupHasTag($group, 'group_information', 'external_coaches_no')) {
+            return ['external_coaches' => 'no'];
+        }
+
+        return [];
     }
 
 }

@@ -10,10 +10,12 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 
 class GroupType extends BaseQuestion
 {
-
+    use CanSeeGroupTags;
     public $name = 'Group Type';
 
     public $identity = 'group_type';
@@ -22,13 +24,15 @@ class GroupType extends BaseQuestion
 
     public $type = 'select';
 
+    public $job = \App\Modules\GroupInfo\Jobs\Job\GroupType::class;
+
     public $required = true;
 
     public $configuration = [
         'society' => [
             'text' => 'Society',
         ],
-        'sport'  => [
+        'sport' => [
             'text' => 'Sport Club',
         ],
         'volunteering' => [
@@ -64,6 +68,25 @@ class GroupType extends BaseQuestion
     public function configuration()
     {
         return $this->configuration;
+    }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        if($this->groupHasTag($group, 'group_information', 'group_type_society')) {
+            return ['group_type' => 'society'];
+        } elseif($this->groupHasTag($group, 'group_information', 'group_type_sport')) {
+            return ['group_type' => 'sport'];
+        } elseif($this->groupHasTag($group, 'group_information', 'group_type_volunteering')) {
+            return ['group_type' => 'volunteering'];
+        }
+
+        return [];
+
     }
 
 }

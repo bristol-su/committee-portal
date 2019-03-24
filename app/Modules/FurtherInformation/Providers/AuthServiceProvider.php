@@ -25,8 +25,8 @@ class AuthServiceProvider extends BaseAuthServiceProvider
         // Is the module visible?
         Gate::define('furtherinformation.module.isVisible', function(User $user) {
             // TODO Will this work next year with the same tags?
-            return ($this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->groupHasTag($user, 'we_are_bristol', 'applied');
+            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
+                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
 
         });
 

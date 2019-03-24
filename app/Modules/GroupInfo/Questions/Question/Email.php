@@ -10,9 +10,11 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
 
 class Email extends BaseQuestion
 {
+
 
     public $name = 'Email';
 
@@ -21,6 +23,8 @@ class Email extends BaseQuestion
     public $helpText = 'Does your sociey have a general or public facing email address?';
 
     public $type = 'text';
+
+    public $job = \App\Modules\GroupInfo\Jobs\Job\Email::class;
 
     public $required = false;
 
@@ -55,5 +59,18 @@ class Email extends BaseQuestion
     {
         return $this->configuration;
     }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        return [
+            'email' => $group->email
+        ];
+    }
+
 
 }

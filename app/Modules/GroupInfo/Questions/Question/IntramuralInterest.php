@@ -10,10 +10,13 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 
 class IntramuralInterest extends BaseQuestion
 {
 
+    use CanSeeGroupTags;
     public $name = 'Intramural Interest';
 
     public $identity = 'intramural_interest';
@@ -21,6 +24,8 @@ class IntramuralInterest extends BaseQuestion
     public $helpText = 'Would you considering entering team(s) into the Bristol SU Intramural Sport League in 2019/20?';
 
     public $type = 'radio';
+
+    public $job = \App\Modules\GroupInfo\Jobs\Job\IntramuralInterest::class;
 
     public $required = true;
 
@@ -67,6 +72,26 @@ class IntramuralInterest extends BaseQuestion
     public function configuration()
     {
         return $this->configuration;
+    }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        if($this->groupHasTag($group, 'group_information', 'intramural_interest_yes')) {
+            return ['intramural_interest' => 'yes'];
+        } elseif($this->groupHasTag($group, 'group_information', 'intramural_interest_no')) {
+            return ['intramural_interest' => 'no'];
+        } elseif($this->groupHasTag($group, 'group_information', 'intramural_interest_unsure')) {
+            return ['intramural_interest' => 'unsure'];
+        } elseif($this->groupHasTag($group, 'group_information', 'intramural_interest_what_is_it')) {
+            return ['intramural_interest' => 'what_is_it'];
+        }
+
+        return [];
     }
 
 }

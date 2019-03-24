@@ -16,4 +16,5 @@ class Group extends Model
 
     protected $resourceName = 'groups';
 
+
 }

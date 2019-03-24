@@ -3,6 +3,8 @@
 namespace App\Modules\GroupInfo;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\GroupInfo\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -32,6 +34,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function reaffiliationStatus()
     {
         if (!$this->actingAsStudent()) { return 'admin'; }
+        if(Submission::where([
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id
+            ])->count() > 0) {
+            return 'complete';
+        }
         return 'incomplete';
     }
 

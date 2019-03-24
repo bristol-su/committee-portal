@@ -26,8 +26,8 @@ class AuthServiceProvider extends BaseAuthServiceProvider
     {
         // Is the module visible?
         Gate::define('strategicplan.module.isVisible', function(User $user) {
-            return ($this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->groupHasTag($user, 'we_are_bristol', 'applied');
+            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
+                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
         });
 
         // Is the module active?

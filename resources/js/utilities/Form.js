@@ -1,12 +1,16 @@
 import Errors from './Errors';
 
 export default class Form {
+
+
     /**
      * Create a new Form instance.
      *
      * @param {object} data
      */
     constructor(data) {
+        this.shouldReset = true;
+
         this.originalData = data;
 
         for (let field in data) {
@@ -29,7 +33,6 @@ export default class Form {
 
         return data;
     }
-
 
     /**
      * Reset the form fields.
@@ -111,8 +114,9 @@ export default class Form {
      * @param {object} data
      */
     onSuccess(data) {
-
-        this.reset();
+        if(this.shouldReset) {
+            this.reset();
+        }
     }
 
 

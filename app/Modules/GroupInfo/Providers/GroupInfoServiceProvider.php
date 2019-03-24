@@ -38,6 +38,7 @@ class GroupInfoServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(QuestionServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**

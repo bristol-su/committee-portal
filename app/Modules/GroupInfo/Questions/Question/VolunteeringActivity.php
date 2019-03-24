@@ -10,9 +10,13 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 
 class VolunteeringActivity extends BaseQuestion
 {
+
+    use CanSeeGroupTags;
 
     public $name = 'Volunteering Activity';
 
@@ -22,6 +26,7 @@ class VolunteeringActivity extends BaseQuestion
 
     public $type = 'radio';
 
+    public $job = \App\Modules\GroupInfo\Jobs\Job\VolunteeringActivity::class;
     public $required = true;
 
     public $configuration = [
@@ -61,6 +66,23 @@ class VolunteeringActivity extends BaseQuestion
     public function configuration()
     {
         return $this->configuration;
+    }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        if($this->groupHasTag($group, 'group_information', 'volunteering_activity_yes')) {
+            return ['volunteering_activity' => 'yes'];
+        } elseif($this->groupHasTag($group, 'group_information', 'volunteering_activity_no')) {
+            return ['volunteering_activity' => 'no'];
+        }
+
+        return [];
+
     }
 
 }

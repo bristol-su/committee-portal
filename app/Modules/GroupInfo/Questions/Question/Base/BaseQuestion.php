@@ -9,7 +9,9 @@
 namespace App\Modules\GroupInfo\Questions\Question\Base;
 
 
+use App\Packages\ControlDB\Models\Group;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Facades\Log;
 
 // TODO Extract this to a database
 
@@ -27,6 +29,13 @@ abstract class BaseQuestion implements Arrayable
 
     abstract public function configuration();
 
+    abstract public function getAnswer(Group $group);
+
+    /**
+     * @return string
+     */
+    abstract public function job();
+
     public function html()
     {
         return view('groupinfo::questions.question.'.$this->identity());
@@ -42,5 +51,10 @@ abstract class BaseQuestion implements Arrayable
             'required' => $this->required(),
             'configuration' => $this->configuration()
         ];
+    }
+
+    public function dispatchJob($data)
+    {
+        ($this->job())::dispatch($data);
     }
 }

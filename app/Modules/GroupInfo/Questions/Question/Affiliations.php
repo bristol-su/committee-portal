@@ -10,9 +10,13 @@ namespace App\Modules\GroupInfo\Questions\Question;
 
 
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 
 class Affiliations extends BaseQuestion
 {
+
+    use CanSeeGroupTags;
 
     public $name = 'Affiliations';
 
@@ -23,6 +27,8 @@ class Affiliations extends BaseQuestion
     public $type = 'radio';
 
     public $required = true;
+
+    public $job = \App\Modules\GroupInfo\Jobs\Job\Affiliations::class;
 
     public $configuration = [
         'yes' => [
@@ -64,6 +70,28 @@ class Affiliations extends BaseQuestion
     public function configuration()
     {
         return $this->configuration;
+    }
+
+    public function job()
+    {
+        return $this->job;
+    }
+
+    public function getAnswer(Group $group)
+    {
+        if($this->groupHasTag($group, 'group_information', 'affiliations_yes')) {
+
+            return [
+                'affiliations' => 'yes',
+                'affiliations_yes_data' => $this->getTagFromGroup($group,'group_information', 'affiliations_yes')->pivot->data
+            ];
+        } elseif($this->groupHasTag($group, 'group_information', 'affiliations_no')) {
+            return [
+                'affiliations' => 'no'
+            ];
+        }
+
+        return [];
     }
 
 }
