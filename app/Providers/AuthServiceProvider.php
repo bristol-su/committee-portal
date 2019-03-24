@@ -69,7 +69,7 @@ class AuthServiceProvider extends ServiceProvider
                 // unless they have permission to be here.
             }
 
-            // Don't let admins into the user permissions
+            // Don't let admins into the user permissions. They must be seperately given their permissions.
             if ($user->isAdmin()) {
                 return false;
             }

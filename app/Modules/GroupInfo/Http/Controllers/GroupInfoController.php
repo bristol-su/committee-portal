@@ -2,14 +2,73 @@
 
 namespace App\Modules\GroupInfo\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Modules\GroupInfo\Events\GroupInformationUpdated;
+use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
+use App\Modules\GroupInfo\Questions\QuestionService;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GroupInfoController extends Controller
 {
-    public function index() {
-        return response('In development.');
+    public function showPage()
+    {
+
+        $this->authorize('groupinfo.view');
+
+        return view('groupinfo::groupinfo');
+    }
+
+    public function showAdminPage()
+    {
+        $this->authorize('groupinfo.view-admin');
+
+        return view('groupinfo::admin');
+
+    }
+
+    public function changeInformation(QuestionService $questionService, Request $request)
+    {
+        $this->authorize('groupinfo.submit');
+
+        // Send data to each question job to be processed
+        $questionService->getQuestions()->each(function (BaseQuestion $question) use ($request) {
+            // Get relevant data
+            $data = $this->extractData($question->identity(), $request->all());
+            // Dispatch job
+            $job = $question->dispatchJob($data);
+        });
+
+        event(new GroupInformationUpdated(
+            Auth::user(),
+            Auth::user()->getCurrentRole()->group
+        ));
+
+    }
+
+
+    protected function extractData($questionIdentity, $inputs)
+    {
+        $filtered = [];
+        foreach ($inputs as $key => $value) {
+            if (preg_match('/^' . $questionIdentity . '/', $key) > 0) {
+                $filtered[$key] = $value;
+            }
+        }
+        return $filtered;
+    }
+
+    protected function getQuestions(QuestionService $questionService)
+    {
+        $this->authorize('groupinfo.view');
+
+        $group = Auth::user()->getCurrentRole()->group;
+
+        return [
+            'questions' => $questionService->toArray(),
+            'answers' => $questionService->getAnswers($group)
+        ];
+
     }
 
 }

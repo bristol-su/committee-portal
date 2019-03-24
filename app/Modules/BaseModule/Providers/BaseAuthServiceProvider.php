@@ -11,23 +11,18 @@ namespace App\Modules\BaseModule\Providers;
 
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\GroupTag;
+use App\Traits\CanSeeGroupTags;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class BaseAuthServiceProvider extends ServiceProvider
 {
+    use CanSeeGroupTags;
 
-    protected function groupHasTag($user, $categoryReference, $tagReference)
+    public function usersCurrentGroupHasTag($user, $categoryReference, $tagReference)
     {
         $group = Group::find($user->getCurrentRole()->group->id);
 
-        $groupTags = GroupTag::allThrough($group);
-
-        $groupTags = $groupTags->filter(function($groupTag) use ($categoryReference, $tagReference) {
-            return $groupTag->reference === $tagReference && $groupTag->category->reference === $categoryReference;
-        });
-
-        return count($groupTags) === 1;
+        return $this->groupHasTag($group, $categoryReference, $tagReference);
     }
-
 }
