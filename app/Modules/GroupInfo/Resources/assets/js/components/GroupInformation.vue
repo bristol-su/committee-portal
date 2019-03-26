@@ -113,14 +113,7 @@
 <script>
 
     export default {
-        props: {
-            group: {
-                required: true,
-                type: Object
-            }
-        },
-
-        data() {
+       data() {
             return {
                 form: {},
                 loading: true,

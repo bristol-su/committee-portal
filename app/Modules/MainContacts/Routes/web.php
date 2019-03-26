@@ -12,5 +12,14 @@
 */
 
 Route::prefix('maincontacts')->middleware(['user', 'module', 'module.active:maincontacts', 'module.maintenance:maincontacts'])->group(function() {
-    Route::get('/', 'MainContactsController@index');
+    Route::get('/', 'MainContactsController@showPage');
+
+    Route::get('/contacts', 'MainContactsController@getContacts');
+    Route::get('/committee', 'MainContactsController@getCommittee');
+
+    Route::post('/', 'MainContactsController@updateContacts');
+});
+
+Route::prefix('/admin/maincontacts')->middleware(['admin', 'module', 'module.active:maincontacts', 'module.maintenance:maincontacts'])->group(function() {
+    Route::get('/', 'MainContactsController@showAdminPage');
 });

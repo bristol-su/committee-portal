@@ -24,7 +24,7 @@ export default class Form {
     /**
      * Fetch all relevant data for the form.
      */
-        data() {
+    data() {
         let data = {};
 
         for (let property in this.originalData) {
@@ -114,7 +114,8 @@ export default class Form {
      * @param {object} data
      */
     onSuccess(data) {
-        if(this.shouldReset) {
+        this.errors.clear();
+        if (this.shouldReset) {
             this.reset();
         }
     }
