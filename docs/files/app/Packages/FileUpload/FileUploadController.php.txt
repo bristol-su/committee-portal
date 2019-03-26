@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-
+// TODO tidy
 /**
  * This file requires the following permissions to be defined, with the format modulename.permission
  * - Upload - can they upload a file?
@@ -148,6 +148,25 @@ abstract class FileUploadController extends Controller
         $file = $this->fileModel::findOrFail($id);
         abort_if(getGroupID() !== $file->group_id, 403, 'Please log in as a member of this society.');
         return Storage::cloud()->download($file->path, $file->getSafeFileName());
+    }
+
+    public function downloadAll($year)
+    {
+        $files = $this->fileModel::where([
+            'year' => $year,
+            'status' => 'approved'
+        ])->get();
+
+        $zipFile = new \PhpZip\ZipFile();
+
+        $files->each(function($file) use (&$zipFile) {
+            $zipFile->addFile(Storage::cloud()->get($file->path));
+        });
+
+        $filename = 'approved-'.$this->getModuleName().'-'.$year.'/'.substr($year + 1, 2, 2);
+        $zipFile->outputAsAttachment($filename);
+
+        $zipFile->close();
     }
 
     public function postNote(Request $request, $id)

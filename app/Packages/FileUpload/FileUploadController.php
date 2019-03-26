@@ -163,7 +163,7 @@ abstract class FileUploadController extends Controller
             $zipFile->addFile(Storage::cloud()->get($file->path));
         });
 
-        $filename = 'approved-'.$this->getModuleName().'-'.$year.'/'.substr($year+1, 2, 2);
+        $filename = 'approved-'.$this->getModuleName().'-'.$year.'/'.substr($year + 1, 2, 2);
         $zipFile->outputAsAttachment($filename);
 
         $zipFile->close();

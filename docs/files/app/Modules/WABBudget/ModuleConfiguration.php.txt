@@ -14,7 +14,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
      */
     public function getButtonTitle()
     {
-        return '#WeAreBristol Budget';
+        return 'Budget';
     }
 
     public function getHeaderKey()
