@@ -3,13 +3,10 @@
 namespace App\Rules;
 
 use App\Packages\ControlDB\Models\Student;
-use App\Packages\UnionCloud\UnionCloudInterface;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Twigger\UnionCloud\API\UnionCloud;
 
-class UnionCloudUIDExists implements Rule
+class IsValidControlID implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,20 +23,11 @@ class UnionCloudUIDExists implements Rule
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        try {
-            $res = Cache::remember('App.Rules.UnionCloudUIDExists.'.$value, 1000, function() use ($value) {
-                $unionCloud = app()->make('Twigger\UnionCloud\API\UnionCloud');
-                return $unionCloud->users()->getByUID($value)->get()->toArray();
-            });
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
+        return Student::find($value) !== false;
     }
 
     /**
@@ -49,6 +37,6 @@ class UnionCloudUIDExists implements Rule
      */
     public function message()
     {
-        return 'The student does not exist.';
+        return 'Student not found.';
     }
 }

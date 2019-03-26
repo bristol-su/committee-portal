@@ -20,6 +20,10 @@ class CreateGroupInfoSubmissionsTable extends Migration
             $table->year('year');
             $table->timestamps();
         });
+
+        Schema::table('group_info_submissions', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
