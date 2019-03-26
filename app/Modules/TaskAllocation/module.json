@@ -3,7 +3,7 @@
     "alias": "taskallocation",
     "description": "",
     "keywords": [],
-    "active": 0,
+    "active": 1,
     "order": 2,
     "providers": [
         "App\\Modules\\TaskAllocation\\Providers\\TaskAllocationServiceProvider"
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\TaskAllocation\\ModuleConfiguration",
-    "in_development": false
+    "in_development": true
 }
