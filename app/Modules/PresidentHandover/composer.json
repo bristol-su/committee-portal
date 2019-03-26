@@ -1,0 +1,25 @@
+{
+    "name": "bristol-su/presidenthandover",
+    "description": "",
+    "authors": [
+        {
+            "name": "Toby Twigger",
+            "email": "tt15951@bristol.ac.uk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\PresidentHandover\\Providers\\PresidentHandoverServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\PresidentHandover\\": ""
+        }
+    }
+}
