@@ -60,7 +60,8 @@ class Contact extends Model
     public function answer(Group $group)
     {
         $studentTag = $this->tag();
-        return $this->getTaggedStudents($studentTag, ['group_id'=>$group->id])->first()->id;
+        $student = $this->getTaggedStudents($studentTag, ['group_id'=>$group->id])->first();
+        return ($student===null?null:$student->id);
     }
 
     /**
