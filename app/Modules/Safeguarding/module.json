@@ -1,0 +1,16 @@
+{
+    "name": "Safeguarding",
+    "alias": "safeguarding",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\Safeguarding\\Providers\\SafeguardingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\Safeguarding\\ModuleConfiguration",
+    "in_development": true
+}
