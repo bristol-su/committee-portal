@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Modules\Safeguarding\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Answer extends Model
+{
+
+    protected $table = 'safeguarding_answers';
+
+    protected $casts = [
+        'correct' => 'boolean'
+    ];
+
+    protected $fillable = [];
+}

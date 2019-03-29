@@ -11,17 +11,13 @@
 |
 */
 
-//Route::prefix('strategicplan')->middleware(['user', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
-//    Route::get('/', 'StrategicPlanController@showUserPage');
-//
-//    Route::FileUploads('StrategicPlanController');
-//
-//});
-//
-//Route::prefix('admin/strategicplan')->middleware(['admin', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
-//    Route::get('/', 'StrategicPlanController@showAdminPage');
-//
-//    Route::get('/note-templates', 'StrategicPlanController@showNoteTemplatePage');
-//
-//    Route::FileUploadsAdmin('StrategicPlanController');
-//});
+Route::prefix('safeguarding')->middleware(['user', 'module', 'module.active:safeguarding', 'module.maintenance:safeguarding'])->group(function() {
+    Route::get('/', 'SafeguardingController@showUserPage');
+    Route::get('/questions', 'SafeguardingQuestionController@get');
+    Route::post('/questions', 'SafeguardingQuestionController@verify');
+
+});
+
+Route::prefix('admin/safeguarding')->middleware(['admin', 'module', 'module.active:safeguarding', 'module.maintenance:safeguarding'])->group(function() {
+
+});
