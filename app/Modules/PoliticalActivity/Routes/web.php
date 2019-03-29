@@ -16,10 +16,13 @@ Route::prefix('politicalactivity')->middleware(['user', 'module', 'module.active
 
     Route::post('/', 'PoliticalActivityController@confirm');
 
-    Route::get('/complete', 'LibelDefamationController@isComplete');
+    Route::get('/complete', 'PoliticalActivityController@isComplete');
 
 });
 
 Route::prefix('admin/politicalactivity')->middleware(['admin', 'module', 'module.active:politicalactivity', 'module.maintenance:politicalactivity'])->group(function() {
     Route::get('/', 'PoliticalActivityController@showAdminPage');
+
+    Route::get('/submissions', 'PoliticalActivityController@getSubmissions');
+
 });

@@ -4,7 +4,7 @@
             Loading...
         </div>
         <div v-else-if="completed">
-            You've already accepted this!
+            You've accepted this!
         </div>
         <div v-else>
             <form @submit.prevent="confirm_read">
@@ -40,7 +40,10 @@
             confirm_read() {
                 if(this.accepted) {
                     this.$http.post('/politicalactivity')
-                        .then(response => this.$notify.success('Confirmed!'))
+                        .then(response => {
+                            this.$notify.success('Confirmed!');
+                            this.completed = true;
+                        })
                         .catch(error => this.$notify.alert('There was an error processing your confirmation.'))
                 } else {
                     alert('Please accept the content on this page.');
