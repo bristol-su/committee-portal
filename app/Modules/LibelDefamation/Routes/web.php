@@ -22,4 +22,6 @@ Route::prefix('libeldefamation')->middleware(['user', 'module', 'module.active:l
 
 Route::prefix('admin/libeldefamation')->middleware(['admin', 'module', 'module.active:libeldefamation', 'module.maintenance:libeldefamation'])->group(function() {
     Route::get('/', 'LibelDefamationController@showAdminPage');
+    Route::get('/submissions', 'LibelDefamationController@getSubmissions');
+
 });
