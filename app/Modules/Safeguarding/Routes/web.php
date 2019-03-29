@@ -15,6 +15,7 @@ Route::prefix('safeguarding')->middleware(['user', 'module', 'module.active:safe
     Route::get('/', 'SafeguardingController@showUserPage');
     Route::get('/questions', 'SafeguardingQuestionController@get');
     Route::post('/questions', 'SafeguardingQuestionController@verify');
+    Route::post('/completed', 'SafeguardingController@isComplete');
 
 });
 

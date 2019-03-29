@@ -2,9 +2,12 @@
 
 namespace App\Modules\Safeguarding\Rules;
 
+use App\Modules\Safeguarding\Entities\Answer;
 use App\Modules\Safeguarding\Entities\Question;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
+use Monolog\Logger;
 
 class AnswerIsCorrect implements Rule
 {
@@ -18,24 +21,30 @@ class AnswerIsCorrect implements Rule
         //
     }
 
-    /**settings.update-admin-permissions
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
+    /**
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        Log::info('sdflkjsf');
-        // Get the ID from the attribute
-        $id = substr($attribute, 2);
-        Log::info($id);
-        // Get the question
-        $question = Question::findOrFail($id);
 
-        // Ensure $value corresponds to the question answer
-        return $this->checkQuestion($question, $value);
+        // Get the ID from the attribute
+        $id = (int) substr($attribute, 3);
+
+        // Get the question
+        try {
+            $answer = Answer::findOrFail($id);
+        } catch (ModelNotFoundException $exception) {
+            return false;
+        }
+
+        if($answer === null) {
+            return false;
+        }
+
+        // Ensure $value corresponds to the answer
+        return $this->checkAnswer($answer, $value);
     }
 
     /**
@@ -45,15 +54,11 @@ class AnswerIsCorrect implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Incorrect Answer.';
     }
 
-    public function checkQuestion($question, $value)
+    public function checkAnswer($answer, $value)
     {
-        if($question->correct === 0) {
-            return $value === false;
-        } else {
-            return $value === true;
-        }
+        return $value === $answer->correct;
     }
 }

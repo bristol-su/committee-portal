@@ -4,9 +4,11 @@ namespace App\Modules\Safeguarding\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Safeguarding\Entities\Question;
+use App\Modules\Safeguarding\Entities\Submission;
 use App\Modules\Safeguarding\Rules\AnswerIsCorrect;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class SafeguardingQuestionController extends Controller
 {
@@ -30,5 +32,16 @@ class SafeguardingQuestionController extends Controller
         });
 
         $request->validate($validationRules);
+
+        // All the questions are right, so save a submission
+
+        $user = Auth::user();
+        // TODO Change all user IDs to be like this p urgently!!!
+        Submission::create([
+            'group_id' => $user->getCurrentRole()->group->id,
+            'user_id' => $user->id,
+            'position_id' => $user->getCurrentRole()->position->id,
+            'year' => getReaffiliationYear()
+        ]);
     }
 }
