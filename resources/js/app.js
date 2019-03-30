@@ -5,6 +5,7 @@ import GroupSelect from './components/GroupSelect';
 import CustomFileUpload from './components/FileUpload/CustomFileUpload';
 import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
 import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
+import DateViewer from './components/DateViewer';
 
 import AWN from 'awesome-notifications';
 import axios from 'axios';
@@ -35,7 +36,7 @@ window.currentReaffiliationYear = process.env.MIX_REAFFILIATION_YEAR;
 
 // Form helper class
 window.VueForm = Form;
-
+window.DateViewer = DateViewer;
 window.CustomFileUpload = CustomFileUpload;
 window.CustomFileUploadAdminFileTable = CustomFileUploadAdminFileTable;
 window.CustomFileUploadAdminNoteTemplate = CustomFileUploadAdminNoteTemplate;

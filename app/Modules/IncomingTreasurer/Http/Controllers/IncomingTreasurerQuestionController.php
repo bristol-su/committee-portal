@@ -45,6 +45,6 @@ class IncomingTreasurerQuestionController extends Controller
             'year' => getReaffiliationYear()
         ]);
 
-        Event::dispatch('incomingtreasurer.training_completed', $submission);
+        Event::dispatch('incomingtreasurer.training_completed', [$submission->group_id, $submission->year]);
     }
 }

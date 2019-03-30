@@ -2,6 +2,7 @@
 
 namespace App\Modules\ExitingTreasurer\Providers;
 
+use App\Modules\ExitingTreasurer\Entities\Document;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,6 +24,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('exitingtreasurer_document', function($id) {
+            return Document::findOrFail($id);
+        });
         parent::boot();
     }
 
