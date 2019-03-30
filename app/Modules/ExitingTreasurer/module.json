@@ -3,7 +3,7 @@
     "alias": "exitingtreasurer",
     "description": "",
     "keywords": [],
-    "active": 0,
+    "active": 1,
     "order": 7,
     "providers": [
         "App\\Modules\\ExitingTreasurer\\Providers\\ExitingTreasurerServiceProvider"
@@ -12,6 +12,6 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\ExitingTreasurer\\ModuleConfiguration",
-    "in_development": false
+    "in_development": true
 
 }

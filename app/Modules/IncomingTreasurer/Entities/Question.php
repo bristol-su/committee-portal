@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Modules\IncomingTreasurer\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Question extends Model
+{
+    protected $table = 'incomingtreasurer_questions';
+
+    protected $fillable = [];
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+}
