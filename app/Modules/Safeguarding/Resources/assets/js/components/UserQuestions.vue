@@ -7,10 +7,10 @@
             You've completed this training.
         </div>
         <div v-else>
-            <div class="card" v-if="questions.length > 0" v-for="question in questions">
+            <div class="card" v-if="questions.length > 0" v-for="(question, index) in questions">
                 <div class="card-body">
 
-                    <h5 class="card-title">{{question.name}}</h5>
+                    <h5 class="card-title">{{question.name}} <small><sup><a href="#" @click="hint(index)">Hint?</a></sup></small></h5>
 
                     <div class="form-group" style="text-align: left; margin-left: 20%">
                         <div v-for="answer in question.answers">
@@ -36,6 +36,12 @@
             </div>
         </div>
 
+        <modal
+                name="question-help-text"
+                height="auto"
+        >
+            <span v-html="helpText"></span>
+        </modal>
     </div>
 </template>
 
@@ -46,7 +52,8 @@
                 questions: [],
                 form: {},
                 loading: true,
-                completed: false
+                completed: false,
+                helpText: ''
             }
         },
 
@@ -81,6 +88,11 @@
                         // TODO This notification should only be for a 422 error
                         this.$notify.alert('Some of your answers weren\'t correct!');
                     });
+            },
+
+            hint(index) {
+                this.helpText = this.questions[index].helptext;
+                this.$modal.show('question-help-text');
             }
         },
 

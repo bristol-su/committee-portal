@@ -20,5 +20,7 @@ Route::prefix('safeguarding')->middleware(['user', 'module', 'module.active:safe
 });
 
 Route::prefix('admin/safeguarding')->middleware(['admin', 'module', 'module.active:safeguarding', 'module.maintenance:safeguarding'])->group(function() {
+    Route::get('/', 'SafeguardingController@showAdminPage');
+    Route::get('/submissions', 'SafeguardingController@getSubmissions');
 
 });
