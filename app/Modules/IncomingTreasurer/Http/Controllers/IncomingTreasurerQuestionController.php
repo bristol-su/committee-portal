@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Modules\Safeguarding\Http\Controllers;
+namespace App\Modules\IncomingTreasurer\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Safeguarding\Entities\Question;
-use App\Modules\Safeguarding\Entities\Submission;
-use App\Modules\Safeguarding\Rules\AnswerIsCorrect;
+use App\Modules\IncomingTreasurer\Entities\Question;
+use App\Modules\IncomingTreasurer\Entities\Submission;
+use App\Modules\IncomingTreasurer\Rules\AnswerIsCorrect;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 
-class SafeguardingQuestionController extends Controller
+class IncomingTreasurerQuestionController extends Controller
 {
     public function get()
     {
-        $this->authorize('safeguarding.view');
+        $this->authorize('incomingtreasurer.view');
 
         return Question::with('answers')->get();
     }
@@ -38,7 +38,6 @@ class SafeguardingQuestionController extends Controller
 
         $user = Auth::user();
         // TODO Change all user IDs to be like this p urgently!!!
-
         $submission = Submission::create([
             'group_id' => $user->getCurrentRole()->group->id,
             'user_id' => $user->id,
@@ -46,5 +45,6 @@ class SafeguardingQuestionController extends Controller
             'year' => getReaffiliationYear()
         ]);
 
+        Event::dispatch('incomingtreasurer.training_completed', $submission);
     }
 }

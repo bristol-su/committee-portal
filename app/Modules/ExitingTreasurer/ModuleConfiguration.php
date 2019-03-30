@@ -29,16 +29,6 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/exitingtreasurer';
     }
 
-    public function getVisibility()
-    {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
     public function reaffiliationStatus()
     {
         if (!$this->actingAsStudent()) { return 'admin'; }
