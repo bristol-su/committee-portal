@@ -3,14 +3,22 @@
 namespace App\Modules\ExitingTreasurer\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\ExitingTreasurer\Entities\Correction;
 use App\Modules\ExitingTreasurer\Entities\Document;
+use App\Modules\ExitingTreasurer\Entities\MissingIncomeAndExpenditure;
 use App\Modules\ExitingTreasurer\Entities\Note;
 use App\Modules\ExitingTreasurer\Entities\NoteTemplate;
+use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\Submission;
+use App\Modules\ExitingTreasurer\Entities\UnauthorizedExpenseClaim;
 use App\Packages\ControlDB\Models\Group;
+use App\Packages\ControlDB\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class ExitingTreasurerController extends Controller
 {
@@ -38,12 +46,146 @@ class ExitingTreasurerController extends Controller
         return $this->getDocumentWithRelations();
     }
 
+    public function isComplete()
+    {
+        $submissions = Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->get();
 
+        if(count($submissions) > 0) {
+            return $this->submissionWithRelationships($submissions->first());
+        }
+
+        return response('No submissions found', 400);
+    }
+
+    private function submissionWithRelationships(Submission $submission)
+    {
+        $submission->load([
+            'user',
+            'correction',
+            'missingIncomeAndExpenditure',
+            'outstandingInvoice',
+            'unauthorizedExpenseClaim',
+        ]);
+        $submission->group = $submission->group()->toArray();
+        $submission->position = (($submission->position() instanceof Position)?$submission->position()->toArray():$submission->position());
+        return $submission;
+    }
+
+    public function submissions() {
+        $this->authorize('exitingtreasurer.see-submissions');
+
+        return Submission::where([
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->get()->map(function($submission) {
+            return $this->submissionWithRelationships($submission);
+        });
+    }
+
+    public function allSubmissions() {
+        $this->authorize('exitingtreasurer.view-admin');
+
+        return Submission::all()->map(function($submission) {
+            return $this->submissionWithRelationships($submission);
+        });
+    }
     /*
      * Note Templates
      */
 
+    private function getDocumentWithRelations($id = null)
+    {
+        $with = [
+            'user:id,forename,surname,email',
+            'notes',
+            'notes.user:id,forename,surname,email',
+        ];
+        if ($id === null) {
+            $documents = Document::with($with)->get();
+            return $documents->map(function ($document) {
+                $document->group = Group::find($document->group_id)->toArray();
+                return $document;
+            });
+        } else {
 
+            $document = Document::with($with)->findOrFail($id);
+            $document->group = Group::find($document->group_id)->toArray();
+            return $document;
+        }
+    }
+
+    public function newSubmission(Request $request)
+    {
+        $this->authorize('exitingtreasurer.approve');
+
+        $v = Validator::make($request->all(), [
+            'corrections.present' => 'required|boolean',
+
+            'missing_i_and_e.present' => 'required|boolean',
+
+            'outstanding_invoices.present' => 'required|boolean',
+            'outstanding_invoices.data.*' => 'exists:exitingtreasurer_outstanding_invoices,id',
+
+            'unauthorized_expense_claims.present' => 'required|boolean',
+            'unauthorized_expense_claims.data.*' => 'exists:exitingtreasurer_unauthorized_expense_claims,id',
+        ]);
+        $v->sometimes('corrections.data.id', 'exists:exitingtreasurer_corrections,id', function ($input) {
+            return $input->corrections['present'];
+        });
+        $v->sometimes('missing_i_and_e.data.id', 'exists:exitingtreasurer_missing_income_and_expenditures,id', function ($input) {
+            return $input->missing_i_and_e['present'];
+        });
+        $v->sometimes('outstanding_invoices.data', 'array|between:1,100', function ($input) {
+            return $input->outstanding_invoices['present'];
+        });
+        $v->sometimes('unauthorized_expense_claims.data', 'array|between:1,100', function ($input) {
+            return $input->unauthorized_expense_claims['present'];
+        });
+        if ($v->fails()) {
+            throw ValidationException::withMessages($v->errors()->toArray());
+        }
+
+        $submission = new Submission([
+            'user_id' => Auth::user()->id,
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'position_id' => Auth::user()->getCurrentRole()->position->id,
+            'year' => getReaffiliationYear(),
+            'has_unauthorized_expense_claims' => $request->input('unauthorized_expense_claims.present'),
+            'has_outstanding_invoices' => $request->input('outstanding_invoices.present'),
+            'has_missing_income_and_expenditure' => $request->input('missing_i_and_e.present'),
+            'has_corrections' => $request->input('corrections.present'),
+        ]);
+
+        $submission->save();
+        if ($request->input('corrections.present')) {
+            $correction = Correction::findOrFail($request->input('corrections.data.id'));
+            $correction->submission()->associate($submission);
+            $correction->save();
+        }
+        if ($request->input('missing_i_and_e.present')) {
+            $missingIAndE = MissingIncomeAndExpenditure::findOrFail($request->input('missing_i_and_e.data.id'));
+            $missingIAndE->submission()->associate($submission);
+            $missingIAndE->save();
+        }
+        if ($request->input('outstanding_invoices.present')) {
+            foreach ($request->input('outstanding_invoices.data') as $invoiceId) {
+                $invoice = OutstandingInvoice::findOrFail($invoiceId);
+                $invoice->submission()->associate($submission);
+                $invoice->save();
+            }
+        }
+        if ($request->input('unauthorized_expense_claims.present')) {
+            foreach ($request->input('unauthorized_expense_claims.data') as $claimId) {
+                $claim = UnauthorizedExpenseClaim::findOrFail($claimId);
+                $claim->submission()->associate($submission);
+                $claim->save();
+            }
+        }
+
+        return $this->submissionWithRelationships($submission);
+    }
 
     public function postNote(Request $request, $id)
     {
@@ -55,7 +197,7 @@ class ExitingTreasurerController extends Controller
 
         // Save
         $note = new Note();
-        $note->note = $request->get('note');
+        $note->note = $request->input('note');
         $note->user_id = Auth::user()->id;
         $note->group_id = getGroupID();
         $note->position_id = (Auth::user()->getCurrentRole()->position->id === 'admin' ? null : Auth::user()->getCurrentRole()->position->id);
@@ -67,9 +209,6 @@ class ExitingTreasurerController extends Controller
         }
         return response(['note' => 'Could not save the note'], 500);
     }
-
-
-
 
     public function adminCreateNoteTemplate(Request $request)
     {
@@ -132,30 +271,6 @@ class ExitingTreasurerController extends Controller
         return NoteTemplate::all();
     }
 
-
-
-    private function getDocumentWithRelations($id = null)
-    {
-        $with = [
-            'user:id,forename,surname,email',
-            'notes',
-            'notes.user:id,forename,surname,email',
-        ];
-        if ($id === null) {
-            $documents = Document::with($with)->get();
-            return $documents->map(function ($document) {
-                $document->group = Group::find($document->group_id)->toArray();
-                return $document;
-            });
-        } else {
-
-            $document = Document::with($with)->findOrFail($id);
-            $document->group = Group::find($document->group_id)->toArray();
-            return $document;
-        }
-    }
-
-
     public function adminPostNote(Request $request, $id)
     {
         $this->authorize('exitingtreasurer.post-note-admin');
@@ -167,7 +282,7 @@ class ExitingTreasurerController extends Controller
 
         // Save
         $note = new Note();
-        $note->note = $request->get('note');
+        $note->note = $request->input('note');
         $note->user_id = Auth::user()->id;
         $note->group_id = null;
         $note->position_id = null;
@@ -191,7 +306,7 @@ class ExitingTreasurerController extends Controller
 
         if ($path = Storage::cloud()->put('exitingtreasurer-document-uploads', $request->file('document'))) {
 
-            $documentModel->title = $request->get('title');
+            $documentModel->title = $request->input('title');
             $documentModel->filename = $document->getClientOriginalName();
             $documentModel->mime = $document->getClientMimeType();
             $documentModel->path = $path;

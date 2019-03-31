@@ -15,9 +15,11 @@ class CreateExitingtreasurerOutstandingInvoicesTable extends Migration
     {
         Schema::create('exitingtreasurer_outstanding_invoices', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('title');
             $table->unsignedInteger('invoice_id');
-            $table->unsignedInteger('submission_id');
+            $table->unsignedInteger('submission_id')->nullable();
             $table->text('note')->nullable();
+            $table->boolean('authorized');
             $table->timestamps();
         });
     }

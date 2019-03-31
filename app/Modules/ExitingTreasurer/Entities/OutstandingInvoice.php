@@ -6,11 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class OutstandingInvoice extends Model
 {
-    protected $table = 'exitingtreasurer_outstanding_invoice';
+    protected $table = 'exitingtreasurer_outstanding_invoices';
 
     protected $fillable = [
         'invoice_id',
-        'note'
+        'note',
+        'title',
+        'authorized'
+    ];
+
+    protected $casts = [
+        'authorize' => 'boolean'
     ];
     
     public function invoice()
@@ -26,7 +32,9 @@ class OutstandingInvoice extends Model
         return $this->belongsToMany(TreasurerSignOffDocument::class,
             'exitingtreasurer_outstanding_invoices_tres_documents',
             'outstanding_invoice_id',
-            'treasurer_sign_off_document_id'
+            'treasurer_sign_off_document_id',
+            'id',
+            'id'
         );
     }
 

@@ -16,7 +16,7 @@ class CreateExitingtreasurerMissingIncomeAndExpendituresTable extends Migration
         Schema::create('exitingtreasurer_missing_income_and_expenditures', function (Blueprint $table) {
             $table->increments('id');
             $table->text('note')->nullable();
-            $table->unsignedInteger('submission_id');
+            $table->unsignedInteger('submission_id')->nullable();
             $table->timestamps();
         });
     }

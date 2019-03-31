@@ -1,0 +1,61 @@
+<?php
+
+
+namespace App\Modules\ExitingTreasurer\Http\Controllers\Api;
+
+
+use App\Http\Controllers\Controller;
+use App\Modules\ExitingTreasurer\Entities\MissingIncomeAndExpenditure;
+use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
+
+class ExitingTreasurerMissingIAndEController extends Controller
+{
+
+    public function get(MissingIncomeAndExpenditure $missingIncomeAndExpenditure)
+    {
+        $this->authorize('exitingtreasurer.get-missing-i-and-e');
+
+        return $missingIncomeAndExpenditure->loadMissing(['treasurerSignOffDocuments']);
+    }
+
+    public function create(Request $request)
+    {
+        $this->authorize('exitingtreasurer.create-missing-i-and-e');
+
+        $request->validate([
+            'note' => 'required',
+            'documents.*' => 'mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
+        ]);
+
+        $missingIAndE = new MissingIncomeAndExpenditure([
+            'note' => $request->input('note'),
+        ]);
+
+        $missingIAndE->save();
+
+        $documents = new Collection();
+        collect($request->file('documents'))->each(function($document) use (&$documents, $request) {
+            $treasurerDocument = new TreasurerSignOffDocument();
+            $documents->push($treasurerDocument->uploadFile($document, 'Missing Income and Expenditure: '.getReaffiliationYear()));
+        });
+
+        $missingIAndE->treasurerSignOffDocuments()->saveMany($documents);
+
+        return $missingIAndE->loadMissing(['treasurerSignOffDocuments']);
+
+//        return response('Could not create expense claim', 500);
+    }
+
+    public function delete(MissingIncomeAndExpenditure $missingIncomeAndExpenditure)
+    {
+        $this->authorize('exitingtreasurer.delete-missing-i-and-e');
+
+        if(!$missingIncomeAndExpenditure->delete()){
+            return response('Could not delete income and expenditure comments', 500);
+        }
+    }
+}

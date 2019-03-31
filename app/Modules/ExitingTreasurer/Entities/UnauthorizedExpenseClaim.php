@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnauthorizedExpenseClaim extends Model
 {
-    protected $table = 'exitingtreasurer_unauthorized_exponse_claim';
+    protected $table = 'exitingtreasurer_unauthorized_expense_claims';
 
     protected $fillable = [
         'pqu_number',

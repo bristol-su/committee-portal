@@ -3,6 +3,9 @@
 namespace App\Modules\ExitingTreasurer\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Storage;
 
 class TreasurerSignOffDocument extends Model
 {
@@ -42,5 +45,27 @@ class TreasurerSignOffDocument extends Model
             'treasurer_sign_off_document_id',
             'outstanding_invoice_id'
         );
+    }
+
+    public function uploadFile($document, $title)
+    {
+        if($this->filename === null) {
+
+            if ($path = Storage::cloud()->put('exitingtreasurer-treasurer-sign-off', $document)) {
+
+                $this->title = $title;
+                $this->filename = $document->getClientOriginalName();
+                $this->mime = $document->getClientMimeType();
+                $this->path = $path;
+                $this->size = $document->getSize();
+
+                if ($this->save()) {
+                    return $this;
+                }
+
+            }
+        }
+
+        return false;
     }
 }

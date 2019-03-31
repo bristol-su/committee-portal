@@ -16,7 +16,7 @@ class CreateExitingtreasurerCorrectionsTable extends Migration
         Schema::create('exitingtreasurer_corrections', function (Blueprint $table) {
             $table->increments('id');
             $table->text('note')->nullable();
-            $table->unsignedInteger('submission_id');
+            $table->unsignedInteger('submission_id')->nullable();
             $table->timestamps();
         });
     }

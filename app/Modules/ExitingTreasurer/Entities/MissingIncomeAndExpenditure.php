@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MissingIncomeAndExpenditure extends Model
 {
 
-    protected $table = 'exitingtreasurer_missing_income_and_expenditure';
+    protected $table = 'exitingtreasurer_missing_income_and_expenditures';
 
     protected $fillable = [
         'note',
@@ -18,7 +18,7 @@ class MissingIncomeAndExpenditure extends Model
     {
         return $this->belongsToMany(TreasurerSignOffDocument::class,
             'exitingtreasurer_missing_iandes_treasurer_sign_off_documents',
-            'missing_income_and_expenditure_id',
+            'missing_iande_id',
             'treasurer_sign_off_document_id'
         );
     }

@@ -13,10 +13,10 @@ class CreateExitingtreasurerUnauthorizedExpenseClaimTable extends Migration
      */
     public function up()
     {
-        Schema::create('exitingtreasurer_unauthorized_expense_claim', function (Blueprint $table) {
+        Schema::create('exitingtreasurer_unauthorized_expense_claims', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pqu_number');
-            $table->unsignedInteger('submission_id');
+            $table->unsignedInteger('submission_id')->nullable();
             $table->text('note');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateExitingtreasurerUnauthorizedExpenseClaimTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exitingtreasurer_unauthorized_expense_claim');
+        Schema::dropIfExists('exitingtreasurer_unauthorized_expense_claims');
     }
 }

@@ -43,8 +43,8 @@
                 </td>
                 <td>
                     <a v-if="document.uploaded" :href="downloadUrl(document.id)">Download&nbsp;|&nbsp;</a>
-                    <a @click="showNotes(document)" href="#">Notes ({{document.notes.length}})&nbsp;|&nbsp;</a>
-                    <a v-if="!document.uploaded" @click="showUploadForm(document)" href="#">Upload</a>
+                    <a v-if="!document.uploaded" @click="showUploadForm(document)" href="#">Upload&nbsp;|&nbsp;</a>
+                    <a @click="showNotes(document)" href="#">Notes ({{document.notes.length}})</a>
                 </td>
             </tr>
 

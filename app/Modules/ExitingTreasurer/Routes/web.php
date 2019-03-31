@@ -16,9 +16,40 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.active:exitingtreasurer', 'module.maintenance:exitingtreasurer'])->group(function() {
 
     Route::get('/', 'ExitingTreasurerController@showUserPage');
+    Route::get('/complete', 'ExitingTreasurerController@isComplete');
+    Route::get('/submissions', 'ExitingTreasurerController@submissions');
+
+
+    Route::post('/', 'ExitingTreasurerController@newSubmission');
 
     Route::post('post-note/{id}', 'ExitingTreasurerController@postNote');
 
+
+    Route::prefix('api')->namespace('Api')->group(function() {
+        Route::prefix('expense-claims')->group(function() {
+            Route::get('/{exitingtreasurer_expense_claim}', 'ExitingTreasurerExpenseClaimController@get');
+            Route::post('/', 'ExitingTreasurerExpenseClaimController@create');
+            Route::delete('/{exitingtreasurer_expense_claim}', 'ExitingTreasurerExpenseClaimController@delete');
+        });
+
+        Route::prefix('invoices')->group(function() {
+            Route::get('/{exitingtreasurer_invoice}', 'ExitingTreasurerInvoiceController@get');
+            Route::post('/', 'ExitingTreasurerInvoiceController@create');
+            Route::delete('/{exitingtreasurer_invoice}', 'ExitingTreasurerInvoiceController@delete');
+        });
+
+        Route::prefix('missing-i-and-e')->group(function() {
+            Route::get('/{exitingtreasurer_missing_i_and_e}', 'ExitingTreasurerMissingIAndEController@get');
+            Route::post('/', 'ExitingTreasurerMissingIAndEController@create');
+            Route::delete('/{exitingtreasurer_missing_i_and_e}', 'ExitingTreasurerMissingIAndEController@delete');
+        });
+
+        Route::prefix('correction')->group(function() {
+            Route::get('/{exitingtreasurer_correction}', 'ExitingTreasurerCorrectionController@get');
+            Route::post('/', 'ExitingTreasurerCorrectionController@create');
+            Route::delete('/{exitingtreasurer_correction}', 'ExitingTreasurerCorrectionController@delete');
+        });
+    });
 });
 
 Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.active:exitingtreasurer', 'module.maintenance:exitingtreasurer'])->group(function() {
@@ -30,6 +61,9 @@ Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.
     Route::get('retrieve-documents', 'ExitingTreasurerController@getDocuments');
 
     Route::post('post-note/{id}', 'ExitingTreasurerController@adminPostNote');
+
+    Route::get('/submissions', 'ExitingTreasurerController@allSubmissions');
+
 
     /* Note template routes */
 

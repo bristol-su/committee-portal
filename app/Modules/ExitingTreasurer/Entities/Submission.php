@@ -17,7 +17,11 @@ class Submission extends Model
         'user_id',
         'group_id',
         'position_id',
-        'year'
+        'year',
+        'has_unauthorized_expense_claims',
+        'has_outstanding_invoices',
+        'has_missing_income_and_expenditure',
+        'has_corrections',
     ];
 
     public function user()
@@ -64,7 +68,7 @@ class Submission extends Model
 
     public function unauthorizedExpenseClaim()
     {
-        return $this->hasMany(OutstandingInvoice::class);
+        return $this->hasMany(UnauthorizedExpenseClaim::class);
 
     }
 }
