@@ -152,6 +152,7 @@ abstract class FileUploadController extends Controller
 
     public function downloadAll($year)
     {
+        // TODO Implement
         $files = $this->fileModel::where([
             'year' => $year,
             'status' => 'approved'
