@@ -39,7 +39,7 @@ class ExitingTreasurerInvoiceController extends Controller
         // Create invoice row
         $invoice = new OutstandingInvoice([
             'title' => $request->input('title'),
-            'note' => $request->input('note'),
+            'note' => ($request->input('note') === 'null' ? null : $request->input('note')),
             'authorized' => ($request->input('authorized') === 'true' ? true : false),
             'invoice_id' => $invoiceDocument->id
         ]);

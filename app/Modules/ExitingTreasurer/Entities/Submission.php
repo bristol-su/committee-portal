@@ -12,6 +12,12 @@ class Submission extends Model
 {
     protected $table = 'exitingtreasurer_submissions';
 
+    protected $casts = [
+        'has_missing_income_and_expenditure' => 'boolean',
+        'has_outstanding_invoices' => 'boolean',
+        'has_unauthorized_expense_claims' => 'boolean',
+        'has_corrections' => 'boolean',
+    ];
 
     protected $fillable = [
         'user_id',

@@ -1,46 +1,51 @@
 <template>
     <div class="container">
-        <table class="table table-hover table-responsive table-striped table-condensed"
-               style="margin: auto; display: table;">
-            <thead>
-            <tr>
-                <th>Group</th>
-                <th>User</th>
-                <th>Position</th>
-                <th>Year</th>
-                <th>Unauthorized Expense Claims</th>
-                <th>Outstanding Invoices</th>
-                <th>Missing Income & Expenditure</th>
-                <th>Corrections</th>
 
-                <th>Submitted At</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="submission in submissions">
-                <td>{{submission.group | group_name}}</td>
-                <td>{{submission.user | user_name}}</td>
-                <td>{{submission.position | position_name}}</td>
-                <td>{{submission.year}}</td>
-                <td @click="showUnauthorizedExpenseClaims(submission)"><span
-                        v-html="boolToFA(submission.has_unauthorized_expense_claims)"></span></td>
+        <preview>
+            <table class="table table-hover table-responsive table-striped table-condensed"
+                   style="margin: auto; display: table;">
+                <thead>
+                <tr>
+                    <th></th>
+                    <!--                <th>Group</th>-->
+                    <th>User</th>
+                    <th>Position</th>
+                    <th>Year</th>
+                    <th>Unauthorized Expense Claims</th>
+                    <th>Outstanding Invoices</th>
+                    <th>Missing Income & Expenditure</th>
+                    <th>Corrections</th>
 
-                <td @click="showOutstandingInvoices(submission)"><span
-                        v-html="boolToFA(submission.has_outstanding_invoices)"></span></td>
+                    <th>Submitted At</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="submission in submissions">
+                    <td>#{{submission.id}}</td>
+                    <!--                <td>{{submission.group | group_name}}</td>-->
+                    <td>{{submission.user | user_name}}</td>
+                    <td>{{submission.position | position_name}}</td>
+                    <td>{{submission.year}}</td>
+                    <td @click="showUnauthorizedExpenseClaims(submission)"><span
+                            v-html="boolToFA(submission.has_unauthorized_expense_claims)"></span></td>
 
-                <td @click="showIncomeAndExpenditure(submission)"><span
-                        v-html="boolToFA(submission.has_missing_income_and_expenditure)"></span></td>
+                    <td @click="showOutstandingInvoices(submission)"><span
+                            v-html="boolToFA(submission.has_outstanding_invoices)"></span></td>
 
-                <td @click="showCorrections(submission)"><span v-html="boolToFA(submission.has_corrections)"></span>
-                </td>
-                <td>
-                    <date-viewer
-                            :date="submission.created_at"></date-viewer>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                    <td @click="showIncomeAndExpenditure(submission)"><span
+                            v-html="boolToFA(submission.has_missing_income_and_expenditure)"></span></td>
 
+                    <td @click="showCorrections(submission)"><span v-html="boolToFA(submission.has_corrections)"></span>
+                    </td>
+                    <td>
+                        <date-viewer
+                                :date="submission.created_at"></date-viewer>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </preview>
 
         <modal height="auto" name="expense-claims">
             <unauthorized-expense-claim
@@ -82,6 +87,7 @@
     import MissingIncomeAndExpenditure from './MissingIncomeAndExpenditure';
     import OutstandingInvoice from './OutstandingInvoice';
     import Corrections from './Corrections';
+    import Preview from "../../../../../../../../resources/js/components/Preview";
 
     export default {
         components: {
@@ -89,22 +95,24 @@
             UnauthorizedExpenseClaim,
             MissingIncomeAndExpenditure,
             OutstandingInvoice,
-            Corrections
+            Corrections,
+            Preview
         },
+
+        props: {
+            submissions: {
+                required: true,
+                type: Array
+            }
+        },
+
         data() {
             return {
-                submissions: [],
                 editingSubmission: null
             }
         },
 
-        created() {
-            this.$http.get('/exitingtreasurer/submissions')
-                .then(response => this.submissions = response.data)
-                .catch(error => this.$notify.alert('Could not find previous submissions: ' + error.message));
-        },
-
-        filters: {
+            filters: {
             group_name(group) {
                 return group.name;
             },

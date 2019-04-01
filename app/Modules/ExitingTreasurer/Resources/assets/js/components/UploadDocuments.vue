@@ -108,7 +108,7 @@
             },
 
             downloadUrl(id) {
-                return '/admin/exitingtreasurer/download-documents/' + id;
+                return '/admin/exitingtreasurer/download-report/' + id;
             },
 
             showNotes(document) {

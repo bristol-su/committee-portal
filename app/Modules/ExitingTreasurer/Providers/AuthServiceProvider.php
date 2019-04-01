@@ -2,7 +2,9 @@
 
 namespace App\Modules\ExitingTreasurer\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
+use App\Modules\ExitingTreasurer\Policies\TreasurerSignOffDocumentPolicy;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {

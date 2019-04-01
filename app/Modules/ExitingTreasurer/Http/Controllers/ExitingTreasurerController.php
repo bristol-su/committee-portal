@@ -10,6 +10,7 @@ use App\Modules\ExitingTreasurer\Entities\Note;
 use App\Modules\ExitingTreasurer\Entities\NoteTemplate;
 use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
 use App\Modules\ExitingTreasurer\Entities\Submission;
+use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
 use App\Modules\ExitingTreasurer\Entities\UnauthorizedExpenseClaim;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
@@ -22,6 +23,50 @@ use Illuminate\Validation\ValidationException;
 
 class ExitingTreasurerController extends Controller
 {
+
+    public function downloadTreasurerDocument($id)
+    {
+        $this->authorize('exitingtreasurer.download-treasurer-document');
+
+        // TODO Route Model Bind
+        $file = TreasurerSignOffDocument::findOrFail($id);
+
+        abort_if(getGroupID() !== $file->group()->id, 403, 'Please log in as a member of this society.');
+
+        return Storage::cloud()->download($file->path, $file->getSafeFileName());
+    }
+
+    public function adminDownloadTreasurerDocument($id)
+    {
+        $this->authorize('exitingtreasurer.download-treasurer-document');
+
+        // TODO Route Model Bind
+        $file = TreasurerSignOffDocument::findOrFail($id);
+
+        return Storage::cloud()->download($file->path, $file->group()->name.'_'.$file->getSafeFileName());
+    }
+
+    public function downloadReport($id)
+    {
+        $this->authorize('exitingtreasurer.download-report');
+
+        // TODO Route Model Bind
+        $file = Document::findOrFail($id);
+
+        abort_if(getGroupID() !== $file->group_id, 403, 'Please log in as a member of this society.');
+
+        return Storage::cloud()->download($file->path, $file->getSafeFileName());
+    }
+
+    public function adminDownloadReport($id)
+    {
+        $this->authorize('exitingtreasurer.download-report');
+
+        // TODO Route Model Bind
+        $file = Document::findOrFail($id);
+
+        return Storage::cloud()->download($file->path, $file->group()->name.'_'.$file->getSafeFileName());
+    }
 
     public function showUserPage()
     {
@@ -54,7 +99,9 @@ class ExitingTreasurerController extends Controller
         ])->get();
 
         if(count($submissions) > 0) {
-            return $this->submissionWithRelationships($submissions->first());
+            return $submissions->map(function($submission) {
+                return $this->submissionWithRelationships($submission);
+            });
         }
 
         return response('No submissions found', 400);
@@ -65,8 +112,12 @@ class ExitingTreasurerController extends Controller
         $submission->load([
             'user',
             'correction',
+            'correction.treasurerSignOffDocuments',
             'missingIncomeAndExpenditure',
+            'missingIncomeAndExpenditure.treasurerSignOffDocuments',
             'outstandingInvoice',
+            'outstandingInvoice.invoice',
+            'outstandingInvoice.treasurerSignOffDocuments',
             'unauthorizedExpenseClaim',
         ]);
         $submission->group = $submission->group()->toArray();

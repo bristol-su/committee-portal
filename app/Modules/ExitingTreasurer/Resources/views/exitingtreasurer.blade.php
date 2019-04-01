@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: left;">
                     <p>There are two reports attached; the Finance Summary report and the Transaction List. The Finance
                         Summary report summarises the group’s income and expenditure in the year and has the opening and
                         closing balances for the group account. This only includes cleared/posted transactions.</p>
@@ -29,7 +29,10 @@
             <!-- Show this if there are reports -->
                 <div class="row">
                     <div class="col-md-12">
-                        Here are your reports
+                        <reports
+                        :reports="{{$documents}}">
+
+                        </reports>
                     </div>
                 </div>
         @else
@@ -54,5 +57,3 @@
 
 
 @endsection
-
-

@@ -32,9 +32,9 @@
                 <div class="col-md-12">
 
                     <preview>
-                        <submissions>
+                        <all-submissions>
 
-                        </submissions>
+                        </all-submissions>
                     </preview>
                 </div>
             </div>

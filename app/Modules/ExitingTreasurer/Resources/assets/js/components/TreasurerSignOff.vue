@@ -1,11 +1,27 @@
 <template>
     <div>
-        <div class="container" v-if="submission !== null">
-            <submissions>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <button
+                            @click="newSubmission"
+                            class="btn btn-info"
+                            v-if="this.submission !== null">New Submission
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <submissions
+                    :submissions="submissions">
 
             </submissions>
         </div>
-        <div class="container" v-else>
+        <!--        <modal height="auto" name="exitingtreasurer-new-submission">-->
+
+        <div class="container" v-if="submissionForm">
             <br/>
             <br/>
             <hr/>
@@ -62,9 +78,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="confirm"> Do you confirm that, other than the corrections that you have notified us
+                        <label for="confirm"> Do you confirm that, other than the corrections that you have notified
+                            us
                             of
-                            above, that the student group balance as shown on the Income and Expenditure Analysis Report
+                            above, that the student group balance as shown on the Income and Expenditure Analysis
+                            Report
                             and
                             Transaction list is correct?</label>
                         <input id="confirm" type="checkbox" v-model="confirmed">
@@ -81,6 +99,9 @@
                 </div>
             </div>
         </div>
+        <!--        </modal>-->
+
+
     </div>
 </template>
 
@@ -109,6 +130,8 @@
                     missing_i_and_e: {},
                     corrections: {}
                 }),
+                submissions: [],
+                // New Submissions
                 submission: null
             }
         },
@@ -116,15 +139,24 @@
         created() {
             this.form.shouldReset = false;
             this.$http.get('/exitingtreasurer/complete')
-                .then(response => this.submission = response.data)
-                .catch(error => {});
+                .then(response => {
+                    this.submissions = response.data;
+                    if (response.data.length > 0) {
+                        this.submission = response.data[0];
+                    }
+                })
+                .catch(error => {
+                });
         },
 
         methods: {
             submit() {
                 if (this.confirmed === true) {
                     this.form.post('/exitingtreasurer')
-                        .then(response => this.submission = response.data)
+                        .then(response => {
+                            this.submissions.push(response);
+                            this.submission = response;
+                        })
                         .catch(error => this.$notify.alert('Error submitting the form: ' + error.message))
                 } else {
                     this.$notify.alert('Please confirm this information is complete');
@@ -145,9 +177,24 @@
 
             updateCorrections(val) {
                 this.form.corrections = val;
-            }
+            },
 
+            newSubmission() {
+                this.form.reset();
+                this.submission = null;
+                // this.$modal.show('exitingtreasurer-new-submission');
+            }
         },
+
+        computed: {
+            viewRecords() {
+                return this.submissions.length > 0;
+            },
+
+            submissionForm() {
+                return this.submission === null;
+            }
+        }
     }
 </script>
 

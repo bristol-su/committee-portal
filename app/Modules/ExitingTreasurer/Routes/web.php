@@ -18,11 +18,12 @@ Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.active:
     Route::get('/', 'ExitingTreasurerController@showUserPage');
     Route::get('/complete', 'ExitingTreasurerController@isComplete');
     Route::get('/submissions', 'ExitingTreasurerController@submissions');
-
+    Route::get('/download-report/{id}', 'ExitingTreasurerController@downloadReport');
 
     Route::post('/', 'ExitingTreasurerController@newSubmission');
 
     Route::post('post-note/{id}', 'ExitingTreasurerController@postNote');
+    Route::get('/download/{id}', 'ExitingTreasurerController@downloadTreasurerDocument');
 
 
     Route::prefix('api')->namespace('Api')->group(function() {
@@ -64,6 +65,9 @@ Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.
 
     Route::get('/submissions', 'ExitingTreasurerController@allSubmissions');
 
+    Route::get('/download/{id}', 'ExitingTreasurerController@adminDownloadTreasurerDocument');
+
+    Route::get('/download-report/{id}', 'ExitingTreasurerController@adminDownloadReport');
 
     /* Note template routes */
 

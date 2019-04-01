@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
+use Exception;
 
 class TreasurerSignOffDocument extends Model
 {
@@ -20,12 +21,54 @@ class TreasurerSignOffDocument extends Model
         'size',
     ];
 
+    public function getSafeFileName()
+    {
+        return mb_convert_encoding(
+                str_replace([
+                    '/', '\\', '%'
+                ],
+                    '_',
+                    $this->title
+                ), 'ASCII').
+            $this->getExtension();
+    }
+
+    public function getExtension()
+    {
+        $extensionArray = explode('.', $this->filename);
+        if(count($extensionArray) <= 1) {
+            return '';
+        }
+        $extension = last($extensionArray);
+        return ('.'.$extension ?: '');
+    }
+
+    public function group()
+    {
+        $missingIncomeAndExpenditure = $this->missingIncomeAndExpenditure;
+        if(count($missingIncomeAndExpenditure) > 0) {
+            return $missingIncomeAndExpenditure->first()->submission->group();
+        }
+
+        $corrections = $this->corrections;
+        if(count($corrections) > 0) {
+            return $corrections->first()->submission->group();
+        }
+
+        $outstandingInvoice = $this->outstandingInvoice->merge($this->outstandingInvoiceInvoice);
+        if(count($outstandingInvoice) > 0) {
+            return $outstandingInvoice->first()->submission->group();
+        }
+
+        throw new Exception('Group not found', 500);
+    }
+
     public function missingIncomeAndExpenditure()
     {
         return $this->belongsToMany(MissingIncomeAndExpenditure::class,
             'exitingtreasurer_missing_iandes_treasurer_sign_off_documents',
             'treasurer_sign_off_document_id',
-            'missing_income_and_expenditure_id'
+            'missing_iande_id'
         );
     }
 
@@ -36,6 +79,14 @@ class TreasurerSignOffDocument extends Model
             'treasurer_sign_off_document_id',
             'correction_id'
         );
+    }
+
+    public function outstandingInvoiceInvoice()
+    {
+        return $this->hasMany(OutstandingInvoice::class,
+            'invoice_id',
+            'id'
+            );
     }
 
     public function outstandingInvoice()
