@@ -22,7 +22,7 @@ class ExternalAccount extends BaseQuestion
 
     public $identity = 'external_account';
 
-    public $helpText = 'Does your society own an external (non-SU) bank account?';
+    public $helpText = 'Does your group own an external (non-SU) bank account?';
 
     public $type = 'radio';
 

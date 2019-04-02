@@ -22,7 +22,7 @@ class AssociateMembers extends BaseQuestion
 
     public $identity = 'associate_members';
 
-    public $helpText = 'Do you currently have, or is your society interested in attracting non-student (associate) members to your group?';
+    public $helpText = 'Do you currently have, or is your group interested in attracting non-student (associate) members to your group?';
 
     public $type = 'radio';
 
