@@ -38,7 +38,7 @@ class ExitingTreasurerController extends Controller
 
     public function adminDownloadTreasurerDocument($id)
     {
-        $this->authorize('exitingtreasurer.download-treasurer-document');
+        $this->authorize('exitingtreasurer.download-treasurer-document-admin');
 
         // TODO Route Model Bind
         $file = TreasurerSignOffDocument::findOrFail($id);
@@ -60,7 +60,7 @@ class ExitingTreasurerController extends Controller
 
     public function adminDownloadReport($id)
     {
-        $this->authorize('exitingtreasurer.download-report');
+        $this->authorize('exitingtreasurer.download-report-admin');
 
         // TODO Route Model Bind
         $file = Document::findOrFail($id);
@@ -348,6 +348,8 @@ class ExitingTreasurerController extends Controller
 
     public function uploadDocument(Request $request, Document $documentModel)
     {
+
+        $this->authorize('exitingtreasurer.upload-document');
         $request->validate([
             'document' => 'required|mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
             'title' => 'required|min:3|max:255'

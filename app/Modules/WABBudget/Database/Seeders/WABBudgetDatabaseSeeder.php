@@ -16,7 +16,7 @@ class WABBudgetDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
         // $this->call("OthersTableSeeder");
     }
 }
