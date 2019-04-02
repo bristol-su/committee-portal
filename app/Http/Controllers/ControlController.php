@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
+use App\Packages\ControlDB\Models\GroupTag;
 use App\Packages\ControlDB\Models\Position;
 use App\Packages\ControlDB\Models\Student;
 use Illuminate\Support\Facades\Auth;
@@ -59,9 +60,14 @@ class ControlController extends Controller
 
     public function getAllGroups()
     {
-        return Group::all()->sortBy(function ($group) {
+        $groups = Group::all()->sortBy(function ($group) {
             return $group->name;
+        })->filter(function($group) {
+            $groupType = $group->getGroupType();
+            return Auth::user()->can('view-as-student-'.$groupType);
         })->values();
+
+        return $groups;
     }
 }
 

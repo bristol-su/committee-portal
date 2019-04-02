@@ -5,15 +5,24 @@
             {{currentGroup.name}} <span class="caret"></span>
         </a>
 
-        <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right">
+        <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right group-select-dropdown" >
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="search-icon">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </div>
+                <input aria-describedby="search-icon" class="form-control" style="margin: auto; padding: 2px"
+                       type="text" v-model="searchData"/>
+            </div>
             <a @click.prevent="logout" class="dropdown-item" href="#" v-if="groupId !== null">
-                <button type="button" class="btn btn-outline-danger group-select-dropdown-button">Logout</button>
+                <button class="btn btn-outline-danger group-select-dropdown-button" type="button">Logout</button>
             </a>
             <a class="dropdown-item" href="/portal" v-if="groupId !== null">
-                <button type="button" class="btn btn-outline-success group-select-dropdown-button">Go to portal</button>
+                <button class="btn btn-outline-success group-select-dropdown-button" type="button">Go to portal</button>
             </a>
 
-            <a :id="group.id" @click.prevent="login" class="dropdown-item" href="#" v-for="group in groups"
+            <a :id="group.id" @click.prevent="login" class="dropdown-item" href="#" v-for="group in filteredGroups"
                v-if="group.id !== currentGroup.id">
                 {{group.name}}
             </a>
@@ -32,7 +41,8 @@
 
         data() {
             return {
-                groups: []
+                groups: [],
+                searchData: ''
             }
         },
 
@@ -48,13 +58,23 @@
                 }
 
                 return group[0];
+            },
+
+            filteredGroups() {
+                return this.groups.filter(group => {
+                    if (!new RegExp(this.searchData, 'i').test(group.name)) {
+                        return false;
+                    }
+
+                    return true;
+                });
             }
         },
 
         created() {
             this.$http.get('/control-database/api/groups')
                 .then(response => {
-                    this.groups = response.data ;
+                    this.groups = response.data;
                 })
                 .catch(error => {
                     this.$notify.alert('Sorry, we could not find groups to view as.');
@@ -84,6 +104,11 @@
 
     .group-select-dropdown-button {
         width: 100%
+    }
+
+    .group-select-dropdown {
+        overflow-y: scroll;
+        height: 50vh;
     }
 
 </style>
