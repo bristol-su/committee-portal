@@ -22,7 +22,7 @@ class VolunteeringActivity extends BaseQuestion
 
     public $identity = 'volunteering_activity';
 
-    public $helpText = 'Does your society take part in volunteering activity?';
+    public $helpText = 'Does your group take part in volunteering activity (such as community service or outreach)?';
 
     public $type = 'radio';
 

@@ -22,7 +22,7 @@ class Affiliations extends BaseQuestion
 
     public $identity = 'affiliations';
 
-    public $helpText = 'Does your society have affiliations to other organisations (e.g. governing bodies, another SU)?';
+    public $helpText = 'Does your group have affiliations to other organisations (e.g. governing bodies, another SU)?';
 
     public $type = 'radio';
 
@@ -34,7 +34,7 @@ class Affiliations extends BaseQuestion
         'yes' => [
             'text' => 'Yes',
             'textbox' => [ // When this option is selected, show a text box called identity_data
-                'placeholder' => 'Name of the affiliations'
+                'placeholder' => 'Full name of organisation'
             ]
         ],
         'no' => [

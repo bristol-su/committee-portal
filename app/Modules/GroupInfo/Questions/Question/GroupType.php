@@ -20,7 +20,7 @@ class GroupType extends BaseQuestion
 
     public $identity = 'group_type';
 
-    public $helpText = 'Which of these best describes your society?';
+    public $helpText = 'Which of these best describes your group?';
 
     public $type = 'select';
 

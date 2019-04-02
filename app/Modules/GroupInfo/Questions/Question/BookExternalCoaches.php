@@ -18,11 +18,11 @@ class BookExternalCoaches extends BaseQuestion
 
     use CanSeeGroupTags;
 
-    public $name = 'Book External Coaches';
+    public $name = 'Book External Coaches/Instructors';
 
     public $identity = 'external_coaches';
 
-    public $helpText = 'Does your society book external coaches or instructors for your regular activity?';
+    public $helpText = 'Does your group book non-student coaches or instructors for your regular activity?';
 
     public $type = 'radio';
 

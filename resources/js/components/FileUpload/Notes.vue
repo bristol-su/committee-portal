@@ -10,7 +10,10 @@
 
             <div class="actionBox">
                 <div v-if="sortedNotes.length === 0">
-                    No notes have been posted yet!
+                    <p>No notes have been posted yet!</p>
+                    <p>Notes are the way our staff members will contact you concerning documents. If a document is
+                    rejected, a note will be left to explain what needs changing. By using notes, future committee
+                    members can see the development of a document and have a history of communication concerning documents.</p>
                 </div>
                 <ul class="noteList">
                     <li v-for="note in sortedNotes" v-if="sortedNotes.length > 0">
@@ -24,22 +27,18 @@
 
                         </div>
                     </li>
-                    <li v-else>
-                        No notes...
-                    </li>
-
                 </ul>
-                <form @submit.prevent="postNote" class="form-inline" role="form">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Leave a note..." type="text" v-model="note"/>
-                        <small><span @keyup="this.submitErrors.clear('note')" v-show="this.submitErrors.has('note')">{{this.submitErrors.get('note')}}</span>
-                        </small>
+<!--                <form @submit.prevent="postNote" class="form-inline" role="form">-->
+<!--                    <div class="form-group">-->
+<!--                        <input class="form-control" placeholder="Leave a note..." type="text" v-model="note"/>-->
+<!--                        <small><span @keyup="this.submitErrors.clear('note')" v-show="this.submitErrors.has('note')">{{this.submitErrors.get('note')}}</span>-->
+<!--                        </small>-->
 
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-default">Add</button>
-                    </div>
-                </form>
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <button class="btn btn-default">Add</button>-->
+<!--                    </div>-->
+<!--                </form>-->
             </div>
         </div>
 
