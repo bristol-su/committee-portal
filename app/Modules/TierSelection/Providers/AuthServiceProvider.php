@@ -2,13 +2,12 @@
 
 namespace App\Modules\TierSelection\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use App\Modules\TierSelection\Entities\Submission;
-use App\Modules\TierSelection\Entities\Tier;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -24,23 +23,18 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        // Is the module visible?
-        Gate::define('tierselection.module.isVisible', function(User $user) {
-            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
         });
 
-        // Is the module active?
-        Gate::define('tierselection.module.isActive', function(User $user) {
-            return $user->can('tierselection.module.isVisible');
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
         });
 
-        Gate::define('tierselection.view', function(User $user) {
-            return $user->can('tierselection.module.isVisible');
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
         });
 
-        Gate::define('tierselection.submit', function(User $user) {
-            return Submission::getSubmissions(getGroupID())->count() === 0;
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
         });
 
     }

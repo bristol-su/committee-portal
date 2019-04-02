@@ -2,10 +2,15 @@
 
 namespace App\Modules\NGB\Providers;
 
+
+use App\Traits\AuthorizesUsers;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +25,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        });
+
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        });
     }
 
     /**

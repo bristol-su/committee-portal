@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesIncomingTreasurer extends \App\Packages\Permissions
         'incomingtreasurer.view' => ['title'=> 'View Page', 'description' => 'Allows a user to view the incoming treasurer training', 'group' => 'Incoming Treasurer', 'subgroup' => 'Module'],
         'incomingtreasurer.view-admin' => ['title'=> 'View Admin', 'description' => 'Allows a user to view the admin side of this module', 'group' => 'Incoming Treasurer', 'subgroup' => 'Module'],
         'incomingtreasurer.submit' => ['title'=> 'Submit', 'description' => 'Allows a user to submit the treasurer training form', 'group' => 'Incoming Treasurer', 'subgroup' => 'Module'],
+        'incomingtreasurer.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Incoming Treasurer', 'subgroup' => 'Module'],
     ];
 }

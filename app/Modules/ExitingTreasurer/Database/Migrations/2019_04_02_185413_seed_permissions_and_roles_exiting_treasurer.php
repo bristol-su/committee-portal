@@ -38,5 +38,6 @@ class SeedPermissionsAndRolesExitingTreasurer extends \App\Packages\Permissions\
         'exitingtreasurer.view-note-templates' => ['title'=> 'Use', 'description' => 'Allows a user to use note templates within the notes section', 'group' => 'Exiting Treasurer', 'subgroup' => 'Note Template'],
         'exitingtreasurer.post-note-admin' => ['title'=> 'Post Admin', 'description' => 'Allows a user to post a note on any financial document belonging to any group', 'group' => 'Exiting Treasurer', 'subgroup' => 'Note'],
         'exitingtreasurer.upload-document' => ['title'=> 'Upload', 'description' => 'Allows a user to upload a financial document', 'group' => 'Exiting Treasurer', 'subgroup' => 'Financial Document'],
+        'exitingtreasurer.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Exiting Treasurer', 'subgroup' => 'Module'],
     ];
 }

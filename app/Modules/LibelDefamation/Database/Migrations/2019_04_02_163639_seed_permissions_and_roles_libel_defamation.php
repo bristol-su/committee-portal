@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesLibelDefamation extends \App\Packages\Permissions\B
         'libeldefamation.submit' => ['description' => 'Allows a user to submit the libel and defamation form', 'title' => 'Submit', 'group' => 'Libel Defamation', 'subgroup' => 'Module'],
         'libeldefamation.view' => ['description' => 'Allows a user to view the libel and defamation page', 'title' => 'View', 'group' => 'Libel Defamation', 'subgroup' => 'Module'],
         'libeldefamation.view-admin' => ['description' => 'Allows a user to view the libel and defamation admin page', 'title' => 'View Admin', 'group' => 'Libel Defamation', 'subgroup' => 'Module'],
+        'libeldefamation.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Libel Defamation', 'subgroup' => 'Module'],
     ];
 }

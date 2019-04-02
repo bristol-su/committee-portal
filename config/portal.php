@@ -65,6 +65,11 @@ return [
     // TODO Is there another way?
     'exec_committee' => [
         5,22,23
+    ],
+
+    'position_grouping' => [
+        'presidents' => [5,22,23],
+        'treasurers' => [6]
     ]
 
 ];

@@ -2,6 +2,8 @@
 
 namespace App\Modules\MainContacts\Providers;
 
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,7 +22,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        });
+
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        });
     }
 
     /**

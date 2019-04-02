@@ -2,13 +2,13 @@
 
 namespace App\Modules\PresidentHandover\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -24,27 +24,18 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        // Is the module visible?
-        Gate::define('presidenthandover.module.isVisible', function (User $user) {
+        Gate::define('.module.isVisible', function(User $user) {
             return true;
         });
 
-        // Is the module active?
-        Gate::define('presidenthandover.module.isActive', function (User $user) {
-            return $user->can('presidenthandover.module.isVisible');
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
         });
 
-        Gate::define('presidenthandover.view', function (User $user) {
-            return $user->can('presentation.module.isVisible');
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
         });
 
-        Gate::define('presidenthandover.view-admin', function (User $user) {
-            return $user->can('presentation.module.isVisible');
-        });
-
-        // Can a president be submitted?
-        Gate::define('presidenthandover.submit', function (User $user) {
-
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
         });
 
     }

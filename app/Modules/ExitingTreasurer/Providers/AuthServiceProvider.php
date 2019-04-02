@@ -2,11 +2,11 @@
 
 namespace App\Modules\ExitingTreasurer\Providers;
 
-use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
-use App\Modules\ExitingTreasurer\Policies\TreasurerSignOffDocumentPolicy;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 
-class AuthServiceProvider extends ServiceProvider
+class AuthServiceProvider extends BaseAuthServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -22,7 +22,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        });
+
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        });
     }
 
     /**

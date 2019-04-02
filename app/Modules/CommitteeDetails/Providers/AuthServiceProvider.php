@@ -2,10 +2,15 @@
 
 namespace App\Modules\CommitteeDetails\Providers;
 
+use App\Traits\AuthorizesUsers;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +25,24 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('budget.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('budget.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('budget.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'financial_risk', 'high');
+        });
+
+        Gate::define('budget.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasTreasurerPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+//        Gate::define(budget.)
     }
 
     /**

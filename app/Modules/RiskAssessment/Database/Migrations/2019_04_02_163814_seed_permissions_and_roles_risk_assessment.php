@@ -23,5 +23,6 @@ class SeedPermissionsAndRolesRiskAssessment extends \App\Packages\Permissions\Ba
         'riskassessment.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
         'riskassessment.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
         'riskassessment.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
     ];
 }

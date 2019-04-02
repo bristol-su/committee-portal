@@ -24,5 +24,6 @@ class SeedPermissionsAndRolesWABBudget extends \App\Packages\Permissions\BasePer
         'wabbudget.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
         'wabbudget.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
         'wabbudget.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
     ];
 }

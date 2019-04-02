@@ -23,5 +23,6 @@ class SeedPermissionsAndRolesStrategicPlan extends \App\Packages\Permissions\Bas
         'strategicplan.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
         'strategicplan.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
         'strategicplan.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
     ];
 }

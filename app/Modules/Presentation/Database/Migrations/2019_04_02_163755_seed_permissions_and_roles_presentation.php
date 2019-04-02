@@ -23,5 +23,6 @@ class SeedPermissionsAndRolesPresentation extends \App\Packages\Permissions\Base
         'presentation.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Presentation', 'subgroup' => 'Module'],
         'presentation.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Presentation', 'subgroup' => 'Note Template'],
         'presentation.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Presentation', 'subgroup' => 'Note Template'],
+        'presentation.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Presentation', 'subgroup' => 'Module'],
     ];
 }

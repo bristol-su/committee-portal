@@ -14,5 +14,6 @@ class SeedPermissionsAndRolesTierSelection extends \App\Packages\Permissions\Bas
         'tierselection.submit' => ['description' => 'Allows a user to confirm the tier selection', 'title' => 'Submit', 'group' => 'Tier Selection', 'subgroup' => 'Module'],
         'tierselection.view' => ['description' => 'Allows a user to view the tier selection page', 'title' => 'View', 'group' => 'Tier Selection', 'subgroup' => 'Module'],
         'tierselection.view-admin' => ['description' => 'Allows a user to view the admin tier selection page', 'title' => 'View Admin', 'group' => 'Tier Selection', 'subgroup' => 'Module'],
+        'tierselection.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Tier Selection', 'subgroup' => 'Module'],
     ];
 }

@@ -2,13 +2,16 @@
 
 namespace App\Modules\ExecutiveSummary\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -28,40 +31,19 @@ class AuthServiceProvider extends BaseAuthServiceProvider
 
     public function boot()
     {
-        // Is the module visible?
-        Gate::define('executivesummary.module.isVisible', function(User $user) {
-            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
         });
 
-        // Is the module active?
-        Gate::define('executivesummary.module.isActive', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
-
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
         });
 
-        // Who can upload an exec summary
-        Gate::define('executivesummary.upload', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->hasPresidentialPosition();
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
         });
 
-        // Who can view the exec summary lists
-        Gate::define('executivesummary.view', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
         });
-
-        // Who can download an exec summary
-        Gate::define('executivesummary.download', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->can('executivesummary.module.isVisible');
-        });
-
-        // Who can post a note
-        Gate::define('executivesummary.post-note', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
-        });
-
 
     }
 

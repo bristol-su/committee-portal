@@ -6,7 +6,9 @@
     <div class="py-5">
         <div class="container">
             <h2 style="text-align: center">Committee Portal</h2>
-            <h4 style="text-align: center"><small>Choose a task below to get started! </small></h4>
+            <h4 style="text-align: center">
+                <small>Choose a task below to get started!</small>
+            </h4>
             @foreach($modules->pluck('header')->unique() as $header)
                 {{--// TODO Headers may be empty if user not authorised to view any of them--}}
 
@@ -31,9 +33,10 @@
                                                 <a href="{{url($module['user_url'])}}">
                                                     <button
                                                             type="button"
-                                                            class="module_button {{config('portal.reaffiliation_status.'.$module['reaffiliation_status'])}}"
-                                                            @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
-                                                    >
+                                                            class="module-button
+                                                            @cannot($module['rawModule']->alias.'.module.isActive') module-button-inactive @endcannot
+                                                            @cannot($module['rawModule']->alias.'.reaffiliation.isResponsible') module-button-responsible @endcannot
+                                                                    ">
                                                         {{$module['button_title']}}
                                                     </button>
                                                 </a>
