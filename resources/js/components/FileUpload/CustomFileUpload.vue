@@ -16,6 +16,11 @@
             >
 
             </file-table>
+            <div>
+                <button class="btn btn-outline-info btn-lg" @click="submitAllAvailable" v-if="filePendingUpload">
+                    Confirm and Upload
+                </button>
+            </div>
         </div>
      <hr/><br/>
         <fieldset class="scheduler-border">
@@ -32,7 +37,7 @@
 
             <!-- File Upload -->
 
-            <div class="form-group">
+            <div class="form-group" v-if="!filePendingUpload">
                 <label for="documentFileInput">Document(s)</label>
                 <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
                 <div class="large-12 medium-12 small-12 filezone" id="documentFileInput">
@@ -123,6 +128,12 @@
                 this.errors.clear();
             },
 
+            submitAllAvailable() {
+                this.files.forEach((file, key) => {
+                    this.submitFile(key);
+                });
+            },
+
             submitFile(key) {
                 if (this.files[key] instanceof File && this.uploading.indexOf(key) === -1) {
                     this.uploading.push(key);
@@ -152,6 +163,14 @@
             },
 
 
+        },
+
+        computed: {
+            filePendingUpload() {
+                return this.files.filter((file, key) => {
+                    return file instanceof File && this.uploading.indexOf(key) === -1;
+                }).length > 0;
+            }
         }
 
     }
