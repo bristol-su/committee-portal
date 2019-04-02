@@ -4,7 +4,7 @@
         "utf8": "✓",
         "widgetType": "popup",
         "buttonType": "text",
-        "buttonText": "Feedback?",
+        "buttonText": "Feedback",
         "buttonColor": "white",
         "buttonBg": "#2452a1",
         "alignment": "3",

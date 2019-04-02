@@ -5,6 +5,7 @@
                 :options="options"
                 label="name"
                 v-model="selectedOption"
+                :searchable="false"
         >
         </v-select>
 
