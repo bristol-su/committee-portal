@@ -22,6 +22,9 @@ class IncomingTreasurerQuestionController extends Controller
 
     public function verify(Request $request)
     {
+
+        $this->authorize('incomingtreasurer.submit');
+
         $questions = $this->get();
         $answers = $questions->map(function($question) {
             return $question->answers;

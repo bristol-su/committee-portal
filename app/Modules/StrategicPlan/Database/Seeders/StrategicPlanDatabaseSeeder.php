@@ -15,7 +15,7 @@ class StrategicPlanDatabaseSeeder extends Seeder
     public function run()
     {
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }
