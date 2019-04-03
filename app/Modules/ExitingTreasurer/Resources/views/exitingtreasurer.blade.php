@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Exiting Treasurer</h2>
+                    <h2 class="">Outgoing Treasurer Sign-off</h2>
                 </div>
             </div>
             <div class="row">
@@ -20,37 +20,46 @@
                         will be posted to the account soon (marked with an asterisk) and also expense claims which
                         haven’t been approved yet (as well as being marked with an asterisk, these also have a reference
                         number beginning PQU).</p>
+                    <br/>
                     <p>Please would you review the reports and answer the following:</p>
 
                 </div>
             </div>
 
-        @if(count($documents) > 0)
-            <!-- Show this if there are reports -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <reports
-                        :reports="{{$documents}}">
+            <div style="margin-top: 10px;" class="row">
+                <div class="col-md-12">
+                @if(count($documents) > 0)
+                    <!-- Show this if there are reports -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <reports
+                                        :reports="{{$documents}}">
 
-                        </reports>
-                    </div>
+                                </reports>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-md-12" style="text-align: left;">
+                                Previous Sign Offs:
+                            </div>
+                            <div class="col-md-12">
+                                <treasurer-sign-off>
+
+                                </treasurer-sign-off>
+                            </div>
+                        </div>
+                @else
+                    <!-- Show this if there are no reports -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                No reports have yet been uploaded.
+                            </div>
+                        </div>
+                    @endif
                 </div>
-        @else
-            <!-- Show this if there are no reports -->
-                <div class="row">
-                    <div class="col-md-12">
-                        No reports have yet been uploaded.
-                    </div>
-                </div>
-        @endif
-
-        <div class="row">
-            <div class="col-md-12">
-                <treasurer-sign-off>
-
-                </treasurer-sign-off>
             </div>
-        </div>
+
 
         </div>
     </div>

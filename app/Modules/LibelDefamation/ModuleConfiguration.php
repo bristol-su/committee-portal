@@ -14,7 +14,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Libel & Defamation';
+        return 'Libel Awareness';
     }
 
     public function getHeaderKey()

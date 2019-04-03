@@ -8,7 +8,7 @@
         <div class="container" style="text-align: center">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Treasurer Training</h2>
+                    <h2 class="">Incoming Treasurer Training</h2>
                 </div>
                 <div class="col-md-12">
                     <p>Congratulations on becoming treasurer! Your first task to affiliate as treasurer is to complete

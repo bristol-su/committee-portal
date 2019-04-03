@@ -8,7 +8,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Strategic Plan</h2>
-                    <p></p>
+                    <p>We would love to have your stratgeic plan on file, as knowing what you aim to achieve will help
+                        us plan our student group services and training to meet your needs. We have produced two
+                        different strategic plan templates, on for clubs and societies and another for volunteering
+                        projects, we are also happy to accept plans in other formats if you have your own. </p>
                 </div>
             </div>
             <div class="row">

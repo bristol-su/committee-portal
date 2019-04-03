@@ -9,8 +9,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Committee Details</h2>
-                    <p class="">Put your committee in below.</p>
+                    <h2 class="">Committee</h2>
+                    <p class="">We need to know who is on your committee so that we can make sure they receive
+                        information relevant to their role. This is also an important step for you, and once you've
+                        declared who is on your committee you unlock a module whereby you can begin to delgate a number
+                        of the reaffiliation tasks that need to be completed. </p>
                 </div>
             </div>
         </div>

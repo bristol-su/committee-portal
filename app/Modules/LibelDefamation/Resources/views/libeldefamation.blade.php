@@ -9,15 +9,18 @@
         <div class="container">
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
-                    <h2 class="">Libel & Defamation</h2>
-                    <p class="">Read the below and tick to confirm you've read it</p>
+                    <h2 class="">Libel Awareness</h2>
+                    <p class="">All student groups producing media content need to be aware of the risks of committing
+                        libel or defamation. Please read the following statement and tick to confirm you understand,
+                        agree and will take responsibility to ensure relevant members of your committee are briefed on
+                        their responsibilities.</p>
                 </div>
             </div>
             <br/>
 
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
-                    <p class="">Here's some information </p>
+                    <p class=""></p>
                 </div>
             </div>
             <div class="libeldefamation-root">

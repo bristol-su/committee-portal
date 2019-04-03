@@ -11,7 +11,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Main Contacts';
+        return 'Notification';
     }
 
     public function getHeaderKey()

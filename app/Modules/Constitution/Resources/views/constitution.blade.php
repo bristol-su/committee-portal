@@ -8,6 +8,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Constitution</h2>
+                    <p>Your constitution sets out how your group operates, and what your members can expect from your
+                        committee. We need to keep an updated constitution on file for every student group, please
+                        submit yours below.</p>
                 </div>
             </div>
         </div>

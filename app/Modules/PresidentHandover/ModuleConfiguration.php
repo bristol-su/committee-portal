@@ -16,7 +16,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'President Handover';
+        return 'Your Successor';
     }
 
     public function getHeaderKey()
