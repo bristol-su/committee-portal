@@ -4,6 +4,7 @@ namespace App\Modules\MainContacts\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\MainContacts\Entities\Contact;
+use App\Modules\MainContacts\Entities\Submission;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsValidControlID;
 use Illuminate\Http\Request;
@@ -50,6 +51,12 @@ class MainContactsController extends Controller
             $group = Auth::user()->getCurrentRole()->group;
             $contact->updateInControl($student, $group);
         });
+
+        Submission::create([
+            'user_id' => Auth::user()->id,
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'year' => getReaffiliationYear()
+        ]);
 
     }
 

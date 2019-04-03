@@ -3,6 +3,7 @@
 namespace App\Modules\TaskAllocation\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\TaskAllocation\Entities\Submission;
 use App\Modules\TaskAllocation\Entities\Task;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsValidControlID;
@@ -53,6 +54,12 @@ class TaskAllocationController extends Controller
             $group = Auth::user()->getCurrentRole()->group;
             $task->updateInControl($student, $group);
         });
+
+        Submission::create([
+            'user_id' => Auth::user()->id,
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'year' => getReaffiliationYear()
+        ]);
 
     }
 
