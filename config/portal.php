@@ -20,6 +20,11 @@ return [
             'subtitle' => 'We are Bristol Registration Modules'
         ],
 
+        'complete' => [
+            'header' => 'Complete',
+            'subtitle' => 'These are tasks you\'ve finished!'
+        ],
+
         // Admin Headers
         'financial' => [
             'header' => 'Finance',
@@ -48,13 +53,13 @@ return [
 
     ],
 
-    'reaffiliation_status' => [
-        'incomplete' => 'btn btn-outline-danger',
-
-        'complete' => 'btn btn-outline-success',
-
-        'admin' => 'btn btn-outline-info'
-    ],
+//    'reaffiliation_status' => [
+//        'incomplete' => 'btn btn-outline-danger',
+//
+//        'complete' => 'btn btn-outline-success',
+//
+//        'admin' => 'btn btn-outline-info'
+//    ],
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
 
@@ -64,7 +69,40 @@ return [
 
     // TODO Is there another way?
     'exec_committee' => [
-        5,22,23
+        5, 22, 23
+    ],
+
+    'position_grouping' => [
+        'presidents' => [5, 22, 23],
+        'treasurers' => [6]
+    ],
+
+
+    'module_order' => [
+        'PresidentHandover',
+        'ExitingTreasurer',
+        'GroupInfo',
+        'CommitteeDetails',
+        'MainContacts',
+        'TaskAllocation',
+        'Constitution',
+        'RiskAssessment',
+        'EquipmentList',
+        'IncomingTreasurer',
+        'ExternalAccounts',
+        'Safeguarding',
+        'NGB',
+        'CharitableGiving',
+        'LibelDefamation',
+        'PoliticalActivity',
+        'StrategicPlan',
+        'Budget',
+        'TierSelection',
+        'FurtherInformation',
+        'ExecutiveSummary',
+        'WABBudget',
+        'WABStrategicPlan',
+        'Presentation'
     ]
 
 ];

@@ -23,5 +23,6 @@ class SeedPermissionsAndRolesExecutiveSummary extends \App\Packages\Permissions\
         'executivesummary.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Executive Summary', 'subgroup' => 'Module'],
         'executivesummary.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Executive Summary', 'subgroup' => 'Note Template'],
         'executivesummary.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Executive Summary', 'subgroup' => 'Note Template'],
+        'executivesummary.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Executive Summary', 'subgroup' => 'Module'],
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Modules\StrategicPlan;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\StrategicPlan\Entities\File;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -27,20 +28,14 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/strategicplan';
     }
 
-    public function getVisibility()
-    {
-        return true;
-    }
 
-    public function isActive()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        return File::where([
+            'year' => getReaffiliationYear(),
+            'status' => 'approved',
+            'group_id' => getGroupID()
+        ])->count() > 0;
     }
 
     public function getDescription()

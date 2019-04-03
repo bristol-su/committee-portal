@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesPoliticalActivity extends \App\Packages\Permissions
         'politicalactivity.submit' => ['description' => 'Allows a user to submit the political activity form', 'title' => 'Submit', 'group' => 'Political Activity', 'subgroup' => 'Module'],
         'politicalactivity.view' => ['description' => 'Allows a user to view the political activity form', 'title' => 'View', 'group' => 'Political Activity', 'subgroup' => 'Module'],
         'politicalactivity.view-admin' => ['description' => 'Allows a user to view the admin political activity module', 'title' => 'View Admin', 'group' => 'Political Activity', 'subgroup' => 'Module'],
+        'politicalactivity.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Political Activity', 'subgroup' => 'Module'],
     ];
 }

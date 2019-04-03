@@ -2,13 +2,15 @@
 
 namespace App\Modules\WABBudget\Providers;
 
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -23,36 +25,37 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        // Is the module visible?
         Gate::define('wabbudget.module.isVisible', function(User $user) {
-            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-            || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
-        // Is the module active?
         Gate::define('wabbudget.module.isActive', function(User $user) {
-            return $user->can('wabbudget.module.isVisible');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
+        });
+
+        Gate::define('wabbudget.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('wabbudget.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('wabbudget.upload', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('wabbudget.download', function(User $user) {
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
         Gate::define('wabbudget.view', function(User $user) {
-            return $user->can('wabbudget.module.isVisible');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
-        // Who can upload an exec summary
-        Gate::define('wabbudget.upload', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->hasPresidentialPosition();
-        });
 
-        // Who can upload an exec summary
-        Gate::define('wabbudget.download', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->can('wabbudget.module.isVisible');
-        });
-
-        Gate::define('wabbudget.post-note', function(User $user) {
-            return $user->can('wabbudget.module.isVisible');
-        });
     }
 
     /**

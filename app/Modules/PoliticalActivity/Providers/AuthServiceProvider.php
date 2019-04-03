@@ -2,13 +2,16 @@
 
 namespace App\Modules\PoliticalActivity\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -23,7 +26,36 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
+        Gate::define('politicalactivity.module.isVisible', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'political_activity_awareness');
+        });
 
+        Gate::define('politicalactivity.module.isActive', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'political_activity_awareness');
+            return true;
+        });
+
+        Gate::define('politicalactivity.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'political_activity_awareness');
+
+        });
+
+        Gate::define('politicalactivity.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('politicalactivity.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('politicalactivity.view', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'political_activity_awareness');
+        });
     }
 
     /**

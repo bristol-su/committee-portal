@@ -3,6 +3,8 @@
 namespace App\Modules\ExitingTreasurer;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\ExitingTreasurer\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -29,10 +31,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/exitingtreasurer';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()

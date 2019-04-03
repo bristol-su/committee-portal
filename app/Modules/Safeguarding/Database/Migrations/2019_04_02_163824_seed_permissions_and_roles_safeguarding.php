@@ -12,5 +12,7 @@ class SeedPermissionsAndRolesSafeguarding extends \App\Packages\Permissions\Base
         'safeguarding.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Safeguarding', 'subgroup' => 'Module'],
         'safeguarding.view' => ['description' => 'Allows a user to view the safeguarding page', 'title' => 'View', 'group' => 'Safeguarding', 'subgroup' => 'Module'],
         'safeguarding.view-admin' => ['description' => 'Allows a user to view the admin side of the safeguarding module', 'title' => 'View Admin', 'group' => 'Safeguarding', 'subgroup' => 'Module'],
+        'safeguarding.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Safeguarding', 'subgroup' => 'Module'],
+        'safeguarding.submit' => ['title'=> 'Submit', 'description' => 'Allows a user to submit the safeguarding quiz for the group', 'group' => 'Safeguarding', 'subgroup' => 'Module'],
     ];
 }

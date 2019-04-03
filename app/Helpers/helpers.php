@@ -27,6 +27,15 @@ if (!function_exists('getModuleConfiguration')) {
     {
         $rawModules = collect(\Nwidart\Modules\Facades\Module::getOrdered())->filter(function($module) {
             return $module->active === 1;
+        })->sort(function($mod1, $mod2) {
+            if(!in_array($mod1->name, config('portal.module_order'))) {
+                return -1;
+            }
+            if(!in_array($mod2->name, config('portal.module_order'))) {
+                return 1;
+            }
+            return array_search($mod1->name, config('portal.module_order'))
+                - array_search($mod2->name, config('portal.module_order'));
         });
         $configuration = new \Illuminate\Support\Collection();
         foreach ($rawModules as $rawModule) {

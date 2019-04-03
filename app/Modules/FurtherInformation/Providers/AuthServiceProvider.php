@@ -2,12 +2,15 @@
 
 namespace App\Modules\FurtherInformation\Providers;
 
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -22,21 +25,25 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        // Is the module visible?
         Gate::define('furtherinformation.module.isVisible', function(User $user) {
-            // TODO Will this work next year with the same tags?
-            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
-
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
-        // Is the module active?
         Gate::define('furtherinformation.module.isActive', function(User $user) {
-            return $user->can('furtherinformation.module.isVisible');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
+        });
+
+        Gate::define('furtherinformation.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('furtherinformation.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
         });
 
         Gate::define('furtherinformation.view', function(User $user) {
-            return $user->can('furtherinformation.module.isVisible');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
     }
 

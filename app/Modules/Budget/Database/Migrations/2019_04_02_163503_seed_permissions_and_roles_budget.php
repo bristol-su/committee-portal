@@ -24,5 +24,6 @@ class SeedPermissionsAndRolesBudget extends \App\Packages\Permissions\BasePermis
         'budget.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Budget', 'subgroup' => 'Module'],
         'budget.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Budget', 'subgroup' => 'Note Template'],
         'budget.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a task or not', 'group' => 'Budget', 'subgroup' => 'Module'],
     ];
 }

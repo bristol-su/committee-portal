@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesPresidentHandover extends \App\Packages\Permissions
         'presidenthandover.submit' => ['description' => 'Allows a user to give a new initital president', 'title' => 'Submit', 'group' => 'President Handover', 'subgroup' => 'Module'],
         'presidenthandover.view' => ['description' => 'Allows a user to view the president handover form', 'title' => 'View', 'group' => 'President Handover', 'subgroup' => 'Module'],
         'presidenthandover.view-admin' => ['description' => 'Allows a user to view the admin side of the president handover', 'title' => 'View Admin', 'group' => 'President Handover', 'subgroup' => 'Module'],
+        'presidenthandover.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'President Handover', 'subgroup' => 'Module'],
     ];
 }

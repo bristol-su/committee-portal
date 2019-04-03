@@ -2,9 +2,12 @@
 
 namespace App\Modules\IncomingTreasurer\Providers;
 
-use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\User;
+use Illuminate\Support\Facades\Gate;
+
+class AuthServiceProvider extends BaseAuthServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -20,7 +23,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        });
+
+        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        });
     }
 
     /**

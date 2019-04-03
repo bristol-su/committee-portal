@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 1,
-    "order": 3,
+    "order": 4,
     "providers": [
         "App\\Modules\\MainContacts\\Providers\\MainContactsServiceProvider"
     ],

@@ -3,6 +3,7 @@
 namespace App\Modules\PoliticalActivity;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\PoliticalActivity\Entities\Submission;
 use App\Modules\Presentation\Entities\File;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,10 +32,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/politicalactivity';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()

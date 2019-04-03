@@ -25,7 +25,7 @@
                                                 <a href="{{url($module['admin_url'])}}">
                                                     <button
                                                             type="button"
-                                                            class="module_button {{config('portal.reaffiliation_status.admin')}}"
+                                                            class="module-button {{config('portal.reaffiliation_status.admin')}}"
                                                             @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
                                                     >
                                                         {{$module['button_title']}}

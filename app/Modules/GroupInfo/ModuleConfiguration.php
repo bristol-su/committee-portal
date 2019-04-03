@@ -31,16 +31,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/groupinfo';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        if(Submission::where([
-                'year' => getReaffiliationYear(),
-                'group_id' => Auth::user()->getCurrentRole()->group->id
-            ])->count() > 0) {
-            return 'complete';
-        }
-        return 'incomplete';
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()

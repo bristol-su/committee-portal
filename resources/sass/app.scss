@@ -20,11 +20,25 @@
 @import './notification';
 
 /* Module button styling */
-.module_button {
+.module-button {
   width: 90%;
   margin-left: 5%;
-  margin-right: 5%
+  margin-right: 5%;
+  background-color: #2452a1;
+  color: white;
+  border-radius: 50px;
 }
+
+.module-button-inactive {
+
+}
+
+.module-button-responsible {
+  color: black;
+  background-color: #FFA91B;
+}
+
+
 
 /* Centralise everything by default */
 .container {

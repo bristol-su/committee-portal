@@ -31,19 +31,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/executivesummary';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-
-        if (File::where([
+        return File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',
             'group_id' => getGroupID()
-        ])->count() === 0) {
-
-            return 'incomplete';
-        }
-        return 'complete';
+        ])->count() > 0;
     }
 
     public function getDescription()

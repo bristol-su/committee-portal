@@ -15,5 +15,6 @@ class SeedPermissionsAndRolesCommitteeDetails extends \App\Packages\Permissions\
         'committeedetails.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Committee Details', 'subgroup' => 'Module'],
         'committeedetails.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Committee Details', 'subgroup' => 'Module'],
         'committeedetails.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Committee Details', 'subgroup' => 'Module'],
-    ];
+        'committeedetails.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Budget', 'subgroup' => 'Module'],
+        ];
 }

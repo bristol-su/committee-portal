@@ -4,6 +4,7 @@ namespace App\Modules\Budget;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\Budget\Entities\File;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -18,6 +19,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getHeaderKey()
     {
+        if($this->isComplete()) { return 'complete'; }
         return 'reaffiliation-optional';
     }
 
@@ -31,18 +33,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/budget';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        if (File::where([
-                'year' => getReaffiliationYear(),
-                'status' => 'approved',
-                'group_id' => getGroupID()
-            ])->count() === 0) {
-
-            return 'incomplete';
-        }
-        return 'complete';
+        return File::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'status' => 'approved'
+        ])->count() > 0;
     }
 
     public function getDescription()

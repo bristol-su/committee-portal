@@ -2,10 +2,15 @@
 
 namespace App\Modules\CommitteeDetails\Providers;
 
+use App\Traits\AuthorizesUsers;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +25,44 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('committeedetails.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('committeedetails.module.isActive', function(User $user) {
+            // TODO GATE BEFORE Group Info
+            return true;
+        });
+
+        Gate::define('committeedetails.reaffiliation.isMandatory', function(User $user) {
+            return true;
+        });
+
+        Gate::define('committeedetails.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('committeedetails.add-committee-member', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('committeedetails.delete-committee-member', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('committeedetails.update-committee-member', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('committeedetails.view', function(User $user) {
+            return true;
+        });
+
+
     }
 
     /**

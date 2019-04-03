@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesTaskAllocation extends \App\Packages\Permissions\Ba
         'taskallocation.submit' => ['description' => 'Allows a user to submit the task allocation form', 'title' => 'Submit', 'group' => 'Task Allocation', 'subgroup' => 'Module'],
         'taskallocation.view' => ['description' => 'Allows a user to view the task allocation page', 'title' => 'View', 'group' => 'Task Allocation', 'subgroup' => 'Module'],
         'taskallocation.view-admin' => ['description' => 'Allows a user to view the admin side of the task allocation page', 'title' => 'View Admin', 'group' => 'Task Allocation', 'subgroup' => 'Module'],
+        'taskallocation.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Task Allocation', 'subgroup' => 'Module'],
     ];
 }

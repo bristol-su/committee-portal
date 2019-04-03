@@ -2,13 +2,15 @@
 
 namespace App\Modules\StrategicPlan\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -21,39 +23,39 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      *
      * @return void
      */
-    // TODO GATE Strategic Plan
     public function register()
     {
-        // Is the module visible?
         Gate::define('strategicplan.module.isVisible', function(User $user) {
-            return ($this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->usersCurrentGroupHasTag($user, 'we_are_bristol', 'applied');
+            return true;
         });
 
-        // Is the module active?
         Gate::define('strategicplan.module.isActive', function(User $user) {
-            return $user->can('strategicplan.module.isVisible');
+            return true;
+        });
+
+        Gate::define('strategicplan.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('strategicplan.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('strategicplan.download', function(User $user) {
+            return true;
+        });
+
+        Gate::define('strategicplan.upload', function(User $user) {
+            // TODO GATE BEFORE TaskAllocation
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
         });
 
         Gate::define('strategicplan.view', function(User $user) {
-            return $user->can('strategicplan.module.isVisible');
+            return true;
         });
 
-        // Who can upload an exec summary
-        Gate::define('strategicplan.upload', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->hasPresidentialPosition();
-        });
-
-        // Who can upload an exec summary
-        Gate::define('strategicplan.download', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->can('strategicplan.module.isVisible');
-        });
-
-        Gate::define('strategicplan.post-note', function(User $user) {
-            return $user->can('strategicplan.module.isVisible');
-        });
     }
 
     /**

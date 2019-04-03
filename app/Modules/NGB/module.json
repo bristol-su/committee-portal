@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 0,
-    "order": 9,
+    "order": 12,
     "providers": [
         "App\\Modules\\NGB\\Providers\\NGBServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\NGB\\ModuleConfiguration",
-    "in_development": false
+    "in_development": true
 }

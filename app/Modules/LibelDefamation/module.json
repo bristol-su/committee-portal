@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 1,
-    "order": 0,
+    "order": 14,
     "providers": [
         "App\\Modules\\LibelDefamation\\Providers\\LibelDefamationServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\LibelDefamation\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }

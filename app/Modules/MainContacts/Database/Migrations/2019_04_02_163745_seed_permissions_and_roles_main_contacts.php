@@ -13,5 +13,6 @@ class SeedPermissionsAndRolesMainContacts extends \App\Packages\Permissions\Base
         'maincontacts.submit' => ['description' => 'Allows a user to submit the main contacts form', 'title' => 'Submit', 'group' => 'Main Contacts', 'subgroup' => 'Module'],
         'maincontacts.view' => ['description' => 'Allows a user to view the main contacts form ', 'title' => 'View', 'group' => 'Main Contacts', 'subgroup' => 'Module'],
         'maincontacts.view-admin' => ['description' => 'Allows a user to view the admin side of the main contacts form', 'title' => 'View Admin', 'group' => 'Main Contacts', 'subgroup' => 'Module'],
+        'maincontacts.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Main Contacts', 'subgroup' => 'Module'],
     ];
 }

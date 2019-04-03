@@ -2,13 +2,14 @@
     <li class="nav-item dropdown">
         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
            id="committeeSelect" role="button">
-            {{currentRole.group.name}} - {{currentRole.position.name}} <span class="caret"></span>
+            {{currentRole.group.name}} - {{currentRole.position.name}}
+            <span v-if="currentRole.hasOwnProperty('committee_year')">({{currentRole.committee_year | reaffiliation_year}})</span> <span class="caret"></span>
         </a>
 
         <div aria-labelledby="committeeSelect" class="dropdown-menu dropdown-menu-right">
             <a :id="role.id" @click.prevent="login" class="dropdown-item" href="#" v-for="role in roles"
                v-if="role.id !== currentRole.id">
-                {{role.group.name}} - {{role.position.name}}
+                {{role.group.name}} - {{role.position.name}} ({{role.committee_year | reaffiliation_year}})
             </a>
         </div>
     </li>
@@ -66,6 +67,13 @@
                         this.$notify.alert('There was an error logging you in');
                     })
             }
+        },
+
+        filters: {
+            reaffiliation_year(year) {
+
+                return year.toString() + '/' + (year + 1).toString().slice(2);
+            },
         }
     }
 </script>

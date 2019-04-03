@@ -3,6 +3,10 @@
 namespace App\Modules\CommitteeDetails;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\PositionSetting;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -29,10 +33,23 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/committeedetails';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        $group = Auth::user()->getCurrentRole()->group;
+        $positionSetting = PositionSetting::where('tag_reference', $group->getGroupType())->get()->first();
+        $positions = CommitteeRole::allThrough($group)->filter(function($role) {
+            return $role->committee_year === getReaffiliationYear();
+        });
+        $positions = $positions->map(function($role) {
+            return $role->position->id;
+        });
+        foreach($positionSetting->required_positions as $position) {
+            if(!in_array($position, $positions->toArray())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function getDescription()
