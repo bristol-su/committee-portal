@@ -6,7 +6,6 @@ import CustomFileUpload from './components/FileUpload/CustomFileUpload';
 import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
 import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
 import DateViewer from './components/DateViewer';
-
 import AWN from 'awesome-notifications';
 import axios from 'axios';
 
@@ -16,7 +15,6 @@ import PortalVue from 'portal-vue'
 
 // Define an event instance in which global events may be fired
 window.Event = new Vue();
-
 // Extend Vue
 // Vue.use(Notifications)wir;
 Vue.use(VModal);
@@ -58,3 +56,6 @@ window.serveStaticContent = function (filename) {
         + process.env.MIX_AWS_STATIC_FOLDER + '/'
         + filename
 };
+
+
+// Cookies

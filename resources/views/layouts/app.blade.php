@@ -25,13 +25,37 @@
 
 <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
-
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#237afc"
+                    },
+                    "button": {
+                        "background": "#fff",
+                        "text": "#237afc"
+                    }
+                },
+                "theme": "edgeless",
+                "content": {
+                    "message": "We use cookies to ensure that we give you the best experience on our website."
+                },
+                "cookie": {
+                    "domain": "{{config('app.url')}}"
+                }
+            })});
+    </script>
 </head>
 
 <body style="height: 100%; min-height: 100%;">
     @include('templates.header')
     <script src="{{ mix('js/app.js') }}"></script>
-<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+
+    <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+
     @include('templates.freshdesk')
     @if (session('status'))
         <div class="alert alert-success" role="alert">
