@@ -29,20 +29,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/taskallocation';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        // TODO
+        return false;
     }
 
     public function getDescription()

@@ -2,12 +2,12 @@
 
 namespace App\Modules\EquipmentList\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
 
     use AuthorizesUsers;
@@ -38,6 +38,8 @@ class AuthServiceProvider extends BaseAuthServiceProvider
 
         Gate::define('.reaffiliation.isResponsible', function(User $user) {
         });
+
+
     }
 
     /**

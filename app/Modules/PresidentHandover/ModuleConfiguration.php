@@ -4,6 +4,9 @@ namespace App\Modules\PresidentHandover;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\Presentation\Entities\File;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\PositionSetting;
 use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
@@ -31,11 +34,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/presidenthandover';
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
+        $group = Auth::user()->getCurrentRole()->group;
+        return CommitteeRole::allThrough($group)->filter(function($role) {
+            return $role->committee_year === getReaffiliationYear()
+                && in_array($role->position->id, config('portal.position_grouping.presidents'));
+        })->count() > 0;
 
-        return 'incomplete';
+
     }
 
     public function getDescription()

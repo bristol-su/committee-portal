@@ -29,11 +29,9 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/furtherinformation';
     }
 
-
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'complete';
+        return true;
     }
 
     public function getDescription()

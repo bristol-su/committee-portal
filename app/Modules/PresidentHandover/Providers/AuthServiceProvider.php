@@ -4,12 +4,14 @@ namespace App\Modules\PresidentHandover\Providers;
 
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -24,18 +26,33 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
+        Gate::define('presidenthandover.module.isVisible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('presidenthandover.module.isActive', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('presidenthandover.reaffiliation.isMandatory', function(User $user) {
             return true;
         });
 
-        Gate::define('.module.isActive', function(User $user) {
-            return true;
+        Gate::define('presidenthandover.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
         });
 
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        Gate::define('presidenthandover.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
         });
 
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        Gate::define('presidenthandover.view', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
         });
 
     }

@@ -26,18 +26,32 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
+        Gate::define('libeldefamation.module.isVisible', function(User $user) {
+                return $this->groupHasTag($user, 'reaffiliation_tasks', 'libel_defamation_awareness');
+        });
+
+        Gate::define('libeldefamation.module.isActive', function(User $user) {
+            return false;
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'libel_defamation_awareness');
+        });
+
+        Gate::define('libeldefamation.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'libel_defamation_awareness');
+        });
+
+        Gate::define('libeldefamation.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user);
+        });
+
+        Gate::define('libeldefamation.view', function(User $user) {
             return true;
         });
 
-        Gate::define('.module.isActive', function(User $user) {
-            return true;
-        });
-
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
-        });
-
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        Gate::define('libeldefamation.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user);
         });
     }
 

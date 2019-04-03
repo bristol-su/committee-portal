@@ -22,6 +22,9 @@ class SafeguardingQuestionController extends Controller
 
     public function verify(Request $request)
     {
+
+        $this->authorize('safeguarding.submit');
+
         $questions = $this->get();
         $answers = $questions->map(function($question) {
             return $question->answers;

@@ -2,12 +2,12 @@
 
 namespace App\Modules\Constitution\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
 
     use AuthorizesUsers;
@@ -25,21 +25,39 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        Gate::define('budget.module.isVisible', function(User $user) {
+        Gate::define('constitution.module.isVisible', function(User $user) {
             return true;
         });
 
-        Gate::define('budget.module.isActive', function(User $user) {
+        Gate::define('constitution.module.isActive', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
             return true;
         });
 
-        Gate::define('budget.reaffiliation.isMandatory', function(User $user) {
-            return $this->groupHasTag($user, 'financial_risk', 'high');
+        Gate::define('constitution.reaffiliation.isMandatory', function(User $user) {
+            return true;
         });
 
-        Gate::define('budget.reaffiliation.isResponsible', function(User $user) {
-            return $this->studentHasTreasurerPosition($user)
-                && $this->studentIsNewCommittee($user);
+        Gate::define('constitution.reaffiliation.isResponsible', function(User $user) {
+            // TODO GATE BEFORE TaskAllocation
+            return ($this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user));
+        });
+
+        Gate::define('constitution.view', function(User $user) {
+            return true;
+        });
+
+        Gate::define('constitution.upload', function(User $user) {
+            // TODO GATE BEFORE TaskAllocation
+            return ($this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user));
+        });
+
+        Gate::define('constitution.download', function(User $user) {
+            return true;
         });
     }
 

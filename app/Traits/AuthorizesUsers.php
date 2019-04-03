@@ -71,6 +71,11 @@ trait AuthorizesUsers
         return $user->getCurrentRole()->committee_year === getReaffiliationYear();
     }
 
+    public function studentIsOldCommittee(User $user)
+    {
+        return !$this->studentIsNewCommittee($user);
+    }
+
     /**
      * Get a tag from a group
      *

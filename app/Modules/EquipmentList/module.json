@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 0,
-    "order": 6,
+    "order": 8,
     "providers": [
         "App\\Modules\\EquipmentList\\Providers\\EquipmentListServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\EquipmentList\\ModuleConfiguration",
-    "in_development": false
+    "in_development": true
 }

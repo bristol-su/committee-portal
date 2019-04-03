@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 1,
-    "order": 8,
+    "order": 9,
     "providers": [
         "App\\Modules\\IncomingTreasurer\\Providers\\IncomingTreasurerServiceProvider"
     ],
@@ -12,6 +12,6 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\IncomingTreasurer\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 
 }

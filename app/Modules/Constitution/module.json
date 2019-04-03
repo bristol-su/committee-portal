@@ -4,7 +4,7 @@
     "description": "",
     "keywords": [],
     "active": 1,
-    "order": 5,
+    "order": 6,
     "providers": [
         "App\\Modules\\Constitution\\Providers\\ConstitutionServiceProvider"
     ],

@@ -3,6 +3,8 @@
 namespace App\Modules\Safeguarding;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\Safeguarding\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -27,20 +29,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/safeguarding';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ]);
     }
 
     public function getDescription()

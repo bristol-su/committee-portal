@@ -2,12 +2,15 @@
 
 namespace App\Modules\Safeguarding\Providers;
 
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -22,18 +25,36 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
-            return true;
+        Gate::define('safeguarding.module.isVisible', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
         });
 
-        Gate::define('.module.isActive', function(User $user) {
-            return true;
+        Gate::define('safeguarding.module.isActive', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
         });
 
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        Gate::define('safeguarding.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
         });
 
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        Gate::define('safeguarding.reaffiliation.isResponsible', function(User $user) {
+            $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('safeguarding.view', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
+        });
+
+        Gate::define('safeguarding.submit', function(User $user) {
+            $this->studentHasPresidentialPosition($user)
+            && $this->studentIsNewCommittee($user);
         });
     }
 

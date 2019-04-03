@@ -24,7 +24,6 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    // TODO GATE Strategic Plan
     public function register()
     {
         Gate::define('budget.module.isVisible', function(User $user) {
@@ -45,9 +44,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('budget.view', function(User $user) {
-            // TODO GATE BEFORE: GroupInfo
-            // TODO GATE BEFORE: CommitteeDetails
-            // TODO GATE BEFORE: TaskAllocation
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE TaskAllocation
             return true;
         });
 
