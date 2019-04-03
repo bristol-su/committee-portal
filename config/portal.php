@@ -103,6 +103,10 @@ return [
         'WABBudget',
         'WABStrategicPlan',
         'Presentation'
+    ],
+
+    'knowledge_base' => [
+        'url' => 'https://bristolsu.freshdesk.com/support/solutions/'
     ]
 
 ];

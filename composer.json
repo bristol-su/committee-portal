@@ -21,6 +21,7 @@
         "nimbly/activeresource": "^1.1",
         "nwidart/laravel-modules": "^4.0",
         "php-console/php-console": "^3.1",
+        "spatie/laravel-cookie-consent": "^2.8",
         "spatie/laravel-permission": "^2.35",
         "twigger/unioncloud": "dev-master",
         "yoeunes/toastr": "^1.1"
