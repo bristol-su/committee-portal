@@ -14,6 +14,8 @@
                         information relevant to their role. This is also an important step for you, and once you've
                         declared who is on your committee you unlock a module whereby you can begin to delgate a number
                         of the reaffiliation tasks that need to be completed. </p>
+
+                    <p></p>
                 </div>
             </div>
         </div>

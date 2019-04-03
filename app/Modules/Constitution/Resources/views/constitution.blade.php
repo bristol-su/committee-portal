@@ -13,23 +13,16 @@
                         submit yours below.</p>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-    <div class="py-5">
-        <div class="container">
-            <div class="constitution-root">
-
-
-                <upload-file
-                        module="constitution"
-                        default-title="Constitution {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}"
-                >
-                </upload-file>
-
-
+            <div class="row">
+                <div class="col-md-12">
+                    <upload-file
+                            module="constitution"
+                            default-title="Constitution {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}"
+                    >
+                    </upload-file>
+                </div>
             </div>
         </div>
     </div>
+
 @endsection

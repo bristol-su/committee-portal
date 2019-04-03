@@ -28,7 +28,8 @@ class ViewServiceProvider extends ServiceProvider
            return $view->with([
                'forename' => $unioncloudPres->forename,
                'surname' => $unioncloudPres->surname,
-               'position_name' => $pres->position_name
+               'position_name' => $pres->position_name,
+               'group_name' => $group->name
            ]);
        });
    }

@@ -19,7 +19,6 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getHeaderKey()
     {
-        if($this->isComplete()) { return 'complete'; }
         return 'reaffiliation-optional';
     }
 

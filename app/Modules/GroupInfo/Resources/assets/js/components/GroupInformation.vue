@@ -154,7 +154,10 @@
                 this.form.post('/groupinfo')
                     .then(response => this.$notify.success('Group updated'))
                     .catch(error => this.$notify.alert('Group couldn\'t be updated: ' + error.message))
-                    .then(() => this.submitting = false);
+                    .then(() => {
+                        this.submitting = false
+                        window.location.href = process.env.MIX_APP_URL + '/portal'
+                    });
             }
         }
     }

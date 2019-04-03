@@ -1,28 +1,36 @@
 <?php
 
 return [
-
+    /*
+     * During reaffiliation, we show Mandatory, Optional and Complete headers (along with non-reaffiliation ones
+     *      as normal). After reaffiliation, switch to normal headers
+     */
     'headers' => [
         'default' => [
-            'header' => 'Default',
-            'subtitle' => 'These modules aren\'t yet grouped together'
+            'header' => 'Additional Tasks',
+            'subtitle' => 'Some other features to help you run your group',
+            'hide-if-empty' => true,
         ],
         'reaffiliation-mandatory' => [
             'header' => 'Reaffiliation - Mandatory',
-            'subtitle' => 'Mandatory tasks to be completed in order to reaffiliate.'
+            'subtitle' => 'Mandatory reaffiliation tasks to be completed in order to reaffiliate.',
+            'hide-if-empty' => true,
         ],
         'reaffiliation-optional' => [
             'header' => 'Reaffiliation - Optional',
-            'subtitle' => 'Optional tasks to help your group throughout the year.'
+            'subtitle' => 'Optional reaffiliation tasks to help your group throughout the year.',
+            'hide-if-empty' => true,
         ],
         'we-are-bristol' => [
             'header' => '#WeAreBristol',
-            'subtitle' => 'We are Bristol Registration Modules'
+            'subtitle' => 'We are Bristol Registration',
+            'hide-if-empty' => true,
         ],
 
-        'complete' => [
-            'header' => 'Complete',
-            'subtitle' => 'These are tasks you\'ve finished!'
+        'reaffiliation-complete' => [
+            'header' => 'Completed Reaffiliation Tasks',
+            'subtitle' => 'These are all the tasks needed for reaffiliation which you\'ve finished!',
+            'hide-if-empty' => false,
         ],
 
         // Admin Headers
@@ -103,6 +111,10 @@ return [
         'WABBudget',
         'WABStrategicPlan',
         'Presentation'
+    ],
+
+    'knowledge_base' => [
+        'url' => 'https://bristolsu.freshdesk.com/support/solutions/'
     ]
 
 ];

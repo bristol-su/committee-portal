@@ -42,7 +42,7 @@
             updatePresident() {
                 if (this.selected === null) {
                     this.$notify.warning('Please select the new president before submitting.');
-                } else if (confirm('Are you sure you wish to hand over the president position to ' +
+                } else if (confirm('Are you sure you wish to hand over your position to ' +
                     this.selected.forename + ' ' + this.selected.surname + ' (' + this.selected.email + ')?')) {
                         this.$http.post('/presidenthandover', {
                             uid: this.selected.uid

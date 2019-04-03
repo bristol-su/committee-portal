@@ -9,8 +9,8 @@
                 <div class="col-md-12">
                     <h2 class="">Notifications</h2>
                     <p class="">At key points in the year we'll aim to get in touch with your committee about
-                        opportunities relavent to your group. It helps for us to have a primary contact we can go to,
-                        please use the module below to decide who you would like to receive what information.</p>
+                        opportunities relavent to your group. It helps for us to have a primary contact we can go to, so
+                        you can decide here who you would like to receive what information.</p>
 
                 </div>
             </div>

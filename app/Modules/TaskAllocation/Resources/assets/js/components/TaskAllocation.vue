@@ -104,7 +104,8 @@
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your tasks: ' + error.message);
                         this.form.errors.record(error.response.data.errors);
-                    });
+                    })
+                    .then(() => window.location.href = process.env.MIX_APP_URL + '/portal');
             }
         }
     }

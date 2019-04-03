@@ -3,6 +3,8 @@
 namespace App\Modules\MainContacts;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\MainContacts\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -31,9 +33,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
-        // TODO
-        return false;
+    if(!$this->actingAsStudent()) { return false; } ;
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()
