@@ -12,9 +12,9 @@
                     through them at your earliest convenience.
                 </small>
             </h4>
+            {{--            // TODO Convert to Vue--}}
             @foreach($modules->pluck('header')->unique() as $header)
-                {{--// TODO Headers may be empty if user not authorised to view any of them--}}
-                @if(count($modules->filter(function($module) use ($header) { return Auth::user()->can($module['rawModule']->alias.'.module.isActive') && $module['header'] === $header;  } )) > 0)
+                @if(!config('portal.headers.'.$header.'.hide-if-empty') || count($modules->filter(function($module) use ($header) { return Auth::user()->can($module['rawModule']->alias.'.module.isActive') && $module['header'] === $header;  } )) > 0)
                     <div class="row">
                         <div class="col-md-12">
 
@@ -38,7 +38,7 @@
                                                         <button
                                                                 type="button"
                                                                 class="btn btn-info module-button
-                                                                @cannot($module['rawModule']->alias.'.module.isActive') module-button-inactive @endcannot
+                                                        @cannot($module['rawModule']->alias.'.module.isActive') module-button-inactive @endcannot
                                                                 @can($module['rawModule']->alias.'.reaffiliation.isResponsible') module-button-responsible @endcannot
                                                                         "
                                                                 @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
@@ -60,10 +60,9 @@
                         </div>
                     </div>
                 @endif
-
-                <br/><br/>
-
             @endforeach
+
+            <br/><br/>
 
         </div>
     </div>

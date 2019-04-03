@@ -6,8 +6,8 @@
                 <table class="table table-condensed table-striped table-borderless">
                     <thead>
                     <tr>
-                        <th>Contact Situation</th>
-                        <th>Committee member to contact</th>
+                        <th>Notification</th>
+                        <th>Primary Contact</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -104,7 +104,8 @@
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your contacts: ' + error.message);
                         this.form.errors.record(error.response.data.errors);
-                    });
+                    })
+                    .then(() => window.location.href = process.env.MIX_APP_URL + '/portal');
             }
         }
     }

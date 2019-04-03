@@ -31,7 +31,7 @@ abstract class ModuleConfiguration
     {
 
         return [
-            'header' => ($this->isComplete()?'complete':$this->getHeaderKey()), // Header key as defined in config. Will alter where the button is displayed on the page
+            'header' => ($this->isComplete()?'reaffiliation-complete':$this->getHeaderKey()), // Header key as defined in config. Will alter where the button is displayed on the page
             'button_title' => $this->getButtonTitle(), // Title of the button as displayed on the page
             'user_url' => $this->getUserURL(), // URL to direct the user to when clicking this button
             'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?
