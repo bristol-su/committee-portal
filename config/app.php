@@ -234,6 +234,8 @@ return [
     'analytics'=> [
         'UA' => env('GA_UA', ''),
         'enabled' => env('GA_ENABLED', false)
-    ]
+    ],
+
+    'cookie_domain' => env('COOKIE_DOMAIN', '.bristolsu.org.uk')
 
 ];

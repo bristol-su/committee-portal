@@ -44,7 +44,7 @@
                     "message": "We use cookies to ensure that we give you the best experience on our website."
                 },
                 "cookie": {
-                    "domain": "{{config('app.url')}}"
+                    "domain": "{{config('app.cookie_domain')}}"
                 }
             })});
     </script>
