@@ -93,6 +93,7 @@ class ExitingTreasurerController extends Controller
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $submissions = Submission::where([
             'year' => getReaffiliationYear(),
             'group_id' => Auth::user()->getCurrentRole()->group->id

@@ -36,6 +36,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $group = Auth::user()->getCurrentRole()->group;
         return CommitteeRole::allThrough($group)->filter(function($role) {
             return $role->committee_year === getReaffiliationYear()

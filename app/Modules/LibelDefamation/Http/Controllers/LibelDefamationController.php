@@ -49,6 +49,7 @@ class LibelDefamationController extends Controller
      */
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $user = Auth::user();
 
         $count = Submission::where([

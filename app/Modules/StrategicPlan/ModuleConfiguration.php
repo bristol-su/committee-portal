@@ -31,6 +31,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         return File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',

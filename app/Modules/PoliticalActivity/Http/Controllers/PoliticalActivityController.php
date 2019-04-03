@@ -48,6 +48,7 @@ class PoliticalActivityController extends Controller
      */
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $user = Auth::user();
 
         $count = \App\Modules\LibelDefamation\Entities\Submission::where([

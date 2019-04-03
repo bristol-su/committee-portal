@@ -33,6 +33,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
 
         return Submission::countSubmissions(getGroupID()) > 0;
     }

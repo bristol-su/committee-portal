@@ -19,6 +19,7 @@ class IncomingTreasurerController extends Controller
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $count = Submission::where([
             'group_id' => Auth::user()->getCurrentRole()->group->id,
             'year' => getReaffiliationYear(),

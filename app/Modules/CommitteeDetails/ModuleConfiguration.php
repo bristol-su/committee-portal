@@ -35,6 +35,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
+if(!$this->actingAsStudent()) { return false; } ;
         $group = Auth::user()->getCurrentRole()->group;
         $positionSetting = PositionSetting::where('tag_reference', $group->getGroupType())->get()->first();
         $positions = CommitteeRole::allThrough($group)->filter(function($role) {
