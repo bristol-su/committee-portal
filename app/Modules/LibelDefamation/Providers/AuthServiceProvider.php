@@ -31,7 +31,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('libeldefamation.module.isActive', function(User $user) {
-            return false;
             // TODO GATE BEFORE CommitteeDetails
             // TODO GATE BEFORE GroupInfo
             // TODO GATE BEFORE TaskAllocation
