@@ -48,10 +48,9 @@ class PoliticalActivityController extends Controller
      */
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
         $user = Auth::user();
 
-        $count = \App\Modules\LibelDefamation\Entities\Submission::where([
+        $count = Submission::where([
             'year' => getReaffiliationYear(),
             'group_id' => $user->getCurrentRole()->group->id,
         ])->count();
@@ -59,7 +58,7 @@ if(!$this->actingAsStudent()) { return false; } ;
         if($count > 0) {
             return response('', 200);
         }
-        return response('', 503);
+        return response('', 400);
     }
 
     public function getSubmissions()

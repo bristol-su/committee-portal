@@ -5,14 +5,14 @@
 
     <div class="py-5">
         <div class="container">
-            <h2 style="text-align: center">Committee Portal</h2>
+            <h2 style="text-align: center">Committee Portal <small>- {{\Auth::user()->getCurrentRole()->group->name}}</small></h2>
             <h4 style="text-align: center">
                 <small>To make reaffiliating your group as easy as possible, we've put all of the tasks that need
                     completing in one place. Some tasks will only unlock after doing others, so please begin working
                     through them at your earliest convenience.
                 </small>
             </h4>
-            {{--            // TODO Convert to Vue--}}
+            {{-- // TODO Convert to Vue--}}
             @foreach($modules->pluck('header')->unique() as $header)
                 @if(!config('portal.headers.'.$header.'.hide-if-empty') || count($modules->filter(function($module) use ($header) { return Auth::user()->can($module['rawModule']->alias.'.module.isActive') && $module['header'] === $header;  } )) > 0)
                     <div class="row">
@@ -38,11 +38,10 @@
                                                         <button
                                                                 type="button"
                                                                 class="btn btn-info module-button
-                                                        @cannot($module['rawModule']->alias.'.module.isActive') module-button-inactive @endcannot
-                                                                @can($module['rawModule']->alias.'.reaffiliation.isResponsible') module-button-responsible @endcannot
-                                                                        "
-                                                                @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
-                                                        >
+                                                                    @cannot($module['rawModule']->alias.'.module.isActive') module-button-inactive @endcannot
+                                                                    @can($module['rawModule']->alias.'.reaffiliation.isResponsible') module-button-responsible @endcannot
+                                                                "
+                                                                    @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot>
                                                             {{$module['button_title']}}
                                                         </button>
                                                     </a>
