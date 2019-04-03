@@ -7,7 +7,10 @@
         <div class="container">
             <h2 style="text-align: center">Committee Portal</h2>
             <h4 style="text-align: center">
-                <small>Choose a task below to get started!</small>
+                <small>To make reaffiliating your group as easy as possible, we've put all of the tasks that need
+                    completing in one place. Some tasks will only unlock after doing others, so please begin working
+                    through them at your earliest convenience.
+                </small>
             </h4>
             @foreach($modules->pluck('header')->unique() as $header)
                 {{--// TODO Headers may be empty if user not authorised to view any of them--}}

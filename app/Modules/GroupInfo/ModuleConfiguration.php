@@ -13,7 +13,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Group Info';
+        return 'Key Group Info';
     }
 
     public function getHeaderKey()

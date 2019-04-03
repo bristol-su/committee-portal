@@ -7,8 +7,8 @@
         <div class="container">
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
-                    <h2 class="">Group Info</h2>
-                    <p class="">Please check the information we have on your group.</p>
+                    <h2 class="">Group Information</h2>
+                    <p class="">Your responses to these questions will help us to keep our records updated.</p>
                 </div>
             </div>
             <div class="row" style="text-align: center">

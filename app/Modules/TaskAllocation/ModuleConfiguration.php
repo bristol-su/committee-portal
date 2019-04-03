@@ -11,7 +11,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Task Allocation';
+        return 'Reaffiliation Task Allocation';
     }
 
     public function getHeaderKey()

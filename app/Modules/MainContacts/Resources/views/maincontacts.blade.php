@@ -7,8 +7,10 @@
         <div class="container">
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
-                    <h2 class="">Main Contacts</h2>
-                    <p class="">Who should we contact in various situations?</p>
+                    <h2 class="">Notifications</h2>
+                    <p class="">At key points in the year we'll aim to get in touch with your committee about
+                        opportunities relavent to your group. It helps for us to have a primary contact we can go to,
+                        please use the module below to decide who you would like to receive what information.</p>
 
                 </div>
             </div>

@@ -3,12 +3,15 @@
 namespace App\Modules\IncomingTreasurer\Providers;
 
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -23,18 +26,30 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
+        Gate::define('incomingtreasurer.module.isVisible', function(User $user) {
             return true;
         });
 
-        Gate::define('.module.isActive', function(User $user) {
+        Gate::define('incomingtreasurer.module.isActive', function(User $user) {
             return true;
         });
 
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        Gate::define('incomingtreasurer.reaffiliation.isMandatory', function(User $user) {
+            return true;
         });
 
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        Gate::define('incomingtreasurer.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasTreasurerPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('incomingtreasurer.view', function(User $user) {
+            return true;
+        });
+
+        Gate::define('incomingtreasurer.submit', function(User $user) {
+            return $this->studentHasTreasurerPosition($user)
+                && $this->studentIsNewCommittee($user);
         });
     }
 

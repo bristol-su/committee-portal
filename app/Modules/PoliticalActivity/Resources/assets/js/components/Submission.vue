@@ -11,7 +11,7 @@
                 <div class="form-group">
 
                     <input type="checkbox" id="check_confirm_read" v-model="accepted"/>
-                    <label for="check_confirm_read">I confirm ...</label>
+                    <label for="check_confirm_read">I confirm I have read and agree to the above statement</label>
                 </div>
 
                 <button type="submit" class="btn btn-info">Confirm</button>

@@ -11,7 +11,9 @@
                     <h2 class="">Safeguarding</h2>
                 </div>
                 <div class="col-md-12">
-                    Take the quiz below blah blah
+                    When participating in or organising activities for children, young people, or adults at risk, we all
+                    have a responsibility to safeguard those individuals. The following training gives you the basic
+                    information you need to know to carry out your responsibilities.
                 </div>
             </div>
             <div class="row" style="margin-top: 5%;">

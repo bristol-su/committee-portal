@@ -15,7 +15,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Committee Details';
+        return 'Committee';
     }
 
     public function getHeaderKey()
