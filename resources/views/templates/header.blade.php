@@ -6,7 +6,7 @@
             @auth
                 <a class="navbar-brand" href="{{ (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal')  ) }}">
                     <img style="max-height: 40px" src="{{serveStatic('su-logo.jpg')}}"/>
-                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;
                     {{ config('app.name', 'Committee Portal') }}
                 </a>
             @else
