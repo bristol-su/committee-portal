@@ -60,9 +60,9 @@
                     </div>
 
 
-                    <button :disabled="submitting" @click="saveCommitteeMember" class="btn btn-info" type="submit">
-                        Add
-                        Committee Member
+                    <button :disabled="submitting || !allInformationPresent" @click="saveCommitteeMember"
+                            class="btn btn-info" type="submit">
+                        Save committee member
                     </button>
 
                 </div>
@@ -87,7 +87,9 @@
         data() {
             return {
                 form: {},
-                submitting: false
+                submitting: false,
+                selectedStudentForename: '',
+                selectedStudentSurname: ''
             }
         },
 
@@ -106,11 +108,17 @@
             shouldShowPositionName() {
                 return this.form.position_id !== null;
             },
+
+            allInformationPresent() {
+                return this.form.unioncloud_id !== null && this.form.position_id !== null && this.form.position_name !== "";
+            }
         },
 
         methods: {
             updateStudent(student) {
                 this.form.unioncloud_id = (student === null ? null : student.uid);
+                this.selectedStudentForename = student.forename;
+                this.selectedStudentSurname = student.surname;
             },
 
             updatePosition(position) {
@@ -130,19 +138,24 @@
 
             saveCommitteeMember() {
                 // Fire a request to the backend
-                let url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
-                this.submitting = true;
-                this.form.post(url)
-                    .then(response => {
-                        this.$notify.success('Committee member added');
-                        this.$emit('memberAdded', response);
-                        this.submitting = false;
-                    })
-                    .catch(error => {
-                        this.$notify.alert('Committee member couldn\'t be saved.');
-                        this.form.errors.record(error.errors);
-                        this.submitting = false;
-                    });
+                if (confirm('Are you sure you wish to give ' + this.selectedStudentForename+
+                    ' ' + this.selectedStudentSurname + ' the position of ' + this.form.position_name +
+                    '? Clicking OK will update our records and let ' + this.selectedStudentForename + ' know.')) {
+                    let url = '/committeedetails' + (this.committeeMember === null ? '' : '/' + this.committeeMember.id);
+                    this.submitting = true;
+                    this.form.post(url)
+                        .then(response => {
+                            this.$notify.success('Committee member saved');
+                            this.$emit('memberAdded', response);
+                            this.submitting = false;
+                        })
+                        .catch(error => {
+                            this.$notify.alert('Committee member couldn\'t be saved.');
+                            this.form.errors.record(error.errors);
+                            this.submitting = false;
+                        });
+                }
+
             }
 
         },

@@ -20,13 +20,14 @@
                 <td>{{file.name}}</td>
                 <td>{{file.size | bytesToHuman}}</td>
                 <td>{{ currentReaffiliationYear | reaffiliation_year}}</td>
-                <td colspan="2">
-                    <button @click="$emit('upload', index)" class="btn btn-outline-info" style="width: 100%;">
-                        Upload
-                    </button>
+                <td colspan="2" style="color: #E9304A;">
+                    Awaiting Confirmation
+<!--                    <button @click="$emit('upload', index)" class="btn btn-outline-info" style="width: 100%;">-->
+<!--                        Upload-->
+<!--                    </button>-->
                 </td>
                 <td v-if="isUploading(index)"><i class="fa fa-spinner fa-spin"></i> Uploading</td>
-                <td v-else>Please confirm upload</td>
+                <td v-else></td>
             </tr>
 
             <!-- Previously uploaded files -->

@@ -14,6 +14,9 @@
                     <p>Notes are the way our staff members will contact you concerning documents. If a document is
                     rejected, a note will be left to explain what needs changing. By using notes, future committee
                     members can see the development of a document and have a history of communication concerning documents.</p>
+                    <p>
+                        We'll notify the committee member who uploaded the document when a note is posted.
+                    </p>
                 </div>
                 <ul class="noteList">
                     <li v-for="note in sortedNotes" v-if="sortedNotes.length > 0">

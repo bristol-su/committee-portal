@@ -36,6 +36,7 @@
             </div>
 
             <!-- File Upload -->
+            <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
 
             <div class="form-group" v-if="!filePendingUpload">
                 <label for="documentFileInput">Document(s)</label>
@@ -43,7 +44,6 @@
                 <small><span>
                     You may upload most standard files, such as .doc, .xls and .pdf
                 </span></small>
-                <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
                 <div class="large-12 medium-12 small-12 filezone" id="documentFileInput">
                     <input @change="newFile" aria-describedby="fileHelp" id="files" ref="files"
                            type="file"/>
@@ -51,13 +51,13 @@
                         Drop your files here <br>or click to search
                     </p>
                 </div>
-                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose.
-                    The file will appear below - click upload when you're ready!
+                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose a file.
+                    The file will appear above - click upload when you're ready!
                 </small>
             </div>
 
             <div class="float-right">
-                <button @click="resetForm" class="btn btn-sm btn-outline-danger">Reset</button>
+                <button @click="resetForm" v-if="filePendingUpload" class="btn btn-sm btn-outline-danger">Reset</button>
             </div>
         </fieldset>
 
@@ -198,8 +198,9 @@
         background: #ccc;
         color: dimgray;
         padding: 10px 10px;
-        min-height: 200px;
-        position: relative;
+        max-height: 150px;
+        min-height: 70px;
+        /*position: relative;*/
         cursor: pointer;
     }
 
