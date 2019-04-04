@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <h2 class="">Incoming Treasurer Training</h2>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: left;">
                     <p>Congratulations on becoming treasurer! Your first task to affiliate as treasurer is to complete
                         the <a href="{{config('incomingtreasurer.training.link')}}" target="_blank">compulsory online
                             treasurer training</a> which will give you the skills and
