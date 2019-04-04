@@ -21,9 +21,11 @@
     type="text/css">
 
 <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
 
 <!-- Scripts -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
     <script src="{{ mix('js/vendor.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
@@ -50,29 +52,27 @@
     </script>
 </head>
 
-<body style="height: 100%; min-height: 100%;">
-    @include('templates.header')
+<body style="width: 100%; min-width: 100%; height: 100%; min-height: 100%;">
     <script src="{{ mix('js/app.js') }}"></script>
-
-    <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
-
     @include('templates.freshdesk')
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success" role="alert" style="text-align: center">
             {{ session('status') }}
         </div>
     @endif
 
-    @include('toast::messages-jquery')
+    <div>
+        <noscript>
+            @include('templates.noscript')
+        </noscript>
+        @include('templates.header')
 
-    @yield('content')
+        @yield('content')
 
-    @include('templates.footer')
+        @include('templates.footer')
+    </div>
 
     @stack('scripts')
-
-    @include('templates.javascript_injection')
-
 
 </body>
 

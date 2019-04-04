@@ -19,6 +19,21 @@
 
 @import './notification';
 
+/* Div which shows when a users javascript is turned off */
+
+.noscript-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 6px;
+  color: #fff;
+  background: #2452A1;
+  text-align: center;
+  z-index: 300000;
+  margin-bottom: 3em;
+  display: block;
+}
 /* Module button styling */
 .module-button {
   width: 90%;
