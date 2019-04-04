@@ -4,6 +4,8 @@ import axios from 'axios';
 import Vue from 'vue';
 import bootstrap from 'bootstrap';
 import Moment from 'moment';
+import VModal from "vue-js-modal";
+import AWN from "awesome-notifications";
 
 /**
  * Load lodash
@@ -13,7 +15,11 @@ window._ = _;
 window.Vue = Vue;
 
 
-
+Vue.use(VModal);
+Vue.prototype.$http = axios;
+Vue.prototype.$notify = new AWN({
+    position: 'top-right'
+});
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

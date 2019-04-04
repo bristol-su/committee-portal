@@ -26,3 +26,8 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/portal.js') }}"></script>
+
+@endpush

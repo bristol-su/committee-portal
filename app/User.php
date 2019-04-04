@@ -4,8 +4,6 @@ namespace App;
 
 use App\Mail\ResetPasswordMail;
 use App\Mail\VerifyEmailMail;
-use App\Notifications\VerifyEmailNotification;
-use App\Notifications\ResetPasswordNotification;
 use App\Packages\ControlDB\ControlDBInterface;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;

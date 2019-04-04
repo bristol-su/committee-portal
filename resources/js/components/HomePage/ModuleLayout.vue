@@ -5,7 +5,8 @@
                 <module-header
                         v-for="header in headers"
                         :modules="headerModules(header)"
-                        :header="header">
+                        :header="header"
+                        :key="header.index">
 
                 </module-header>
             </div>
