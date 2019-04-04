@@ -62,9 +62,9 @@
 
             filteredGroups() {
                 return this.groups.filter(group => {
-                    if (!new RegExp(this.searchData, 'i').test(group.name)) {
-                        return false;
-                    }
+                    // if (!new RegExp(this.searchData, 'i').test(group.name)) {
+                    //     return false;
+                    // }
 
                     return true;
                 });
