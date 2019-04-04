@@ -1,9 +1,43 @@
 <template>
     <div class="container">
         <!-- New Upload -->
-        <br/>
-<br/>
         <!-- File Table -->
+
+     <hr/>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">New File</legend>
+
+            <!-- Document Title -->
+            <div class="form-group">
+                <label for="documentTitleInput"><small class="form-text text-muted" id="titleHelp"  style="text-align: left;">Enter a title for the new document.</small></label>
+
+                <small><span class="has-error-span" v-show="this.errors.has('title')">{{this.errors.get('title')}}</span></small>
+                <input aria-describedby="titleHelp" class="form-control" id="documentTitleInput" type="text"
+                       v-model="documentTitle">
+            </div>
+
+            <!-- File Upload -->
+            <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
+
+            <div class="form-group" v-if="!filePendingUpload">
+                <br/>
+                <div class="large-12 medium-12 small-12 filezone" id="documentFileInput">
+                    <input @change="newFile" aria-describedby="fileHelp" id="files" ref="files"
+                           type="file"/>
+                    <p>
+                        Drop your files here <br>or click to search
+                    </p>
+                </div>
+                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose a file.
+                    The file will appear above - click upload when you're ready! You may upload most standard files, such as .doc, .xls and .pdf
+                </small>
+            </div>
+
+            <div class="float-right">
+                <button @click="resetForm" v-if="filePendingUpload" class="btn btn-sm btn-outline-danger">Reset</button>
+            </div>
+        </fieldset>
+
         <div style="justify-content: center">
 
             <file-table
@@ -16,51 +50,12 @@
             >
 
             </file-table>
-            <div>
-                <button class="btn btn-outline-info btn-lg" @click="submitAllAvailable" v-if="filePendingUpload">
+            <div v-if="filePendingUpload">
+                <button class="btn btn-outline-info btn-lg" @click="submitAllAvailable" >
                     Confirm and Upload
                 </button>
             </div>
         </div>
-     <hr/><br/>
-        <fieldset class="scheduler-border">
-            <legend class="scheduler-border">New File</legend>
-
-            <!-- Document Title -->
-            <div class="form-group">
-                <label for="documentTitleInput">Title</label>
-                <small><span class="has-error-span" v-show="this.errors.has('title')">{{this.errors.get('title')}}</span></small>
-                <input aria-describedby="titleHelp" class="form-control" id="documentTitleInput" type="text"
-                       v-model="documentTitle">
-                <small class="form-text text-muted" id="titleHelp">Enter a title for the new document.</small>
-            </div>
-
-            <!-- File Upload -->
-            <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
-
-            <div class="form-group" v-if="!filePendingUpload">
-                <label for="documentFileInput">Document(s)</label>
-                <br/>
-                <small><span>
-                    You may upload most standard files, such as .doc, .xls and .pdf
-                </span></small>
-                <div class="large-12 medium-12 small-12 filezone" id="documentFileInput">
-                    <input @change="newFile" aria-describedby="fileHelp" id="files" ref="files"
-                           type="file"/>
-                    <p>
-                        Drop your files here <br>or click to search
-                    </p>
-                </div>
-                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose a file.
-                    The file will appear above - click upload when you're ready!
-                </small>
-            </div>
-
-            <div class="float-right">
-                <button @click="resetForm" v-if="filePendingUpload" class="btn btn-sm btn-outline-danger">Reset</button>
-            </div>
-        </fieldset>
-
 
         <br/><br/>
 
