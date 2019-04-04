@@ -11,6 +11,8 @@
                 <div class="card-body">
 
                     <h5 class="card-title">{{question.name}} <small><sup><a href="#" @click="hint(index)">Hint?</a></sup></small></h5>
+                    <span class="has-error-span" v-if="hasErrors(index)">Incorrect answers</span>
+
 
                     <div class="form-group" style="text-align: left; margin-left: 20%">
                         <div v-for="answer in question.answers">
@@ -89,7 +91,11 @@
                         this.$notify.alert('Some of your answers weren\'t correct!');
                     });
             },
-
+            hasErrors(index) {
+                return this.questions[index].answers.filter(answer => {
+                    return this.form.errors.has('id_' + answer.id);
+                }).length > 0;
+            },
             hint(index) {
                 this.helpText = this.questions[index].helptext;
                 this.$modal.show('question-help-text');

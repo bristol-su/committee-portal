@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
                 && $this->studentIsNewCommittee($user);
         });
 
-        Gate::define('riskassessmentview', function(User $user) {
+        Gate::define('riskassessment.view', function(User $user) {
             return true;
         });
     }
