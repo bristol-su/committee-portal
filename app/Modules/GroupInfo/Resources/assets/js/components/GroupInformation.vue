@@ -76,7 +76,7 @@
                         </div>
 
 
-                        <small><span class="error-span" v-show="form.errors.has(question.identity)"
+                        <small><span class="has-error-span" v-show="form.errors.has(question.identity)"
                                      v-text="form.errors.get(question.identity)">
 
                         </span></small>

@@ -23,7 +23,7 @@
                                 @positionSelected="updatePosition"
                         ></position-select>
 
-                        <small><span class="error-span" v-show="form.errors.has('position_id')">{{form.errors.get('position_id')}}</span>
+                        <small><span class="has-error-span" v-show="form.errors.has('position_id')">{{form.errors.get('position_id')}}</span>
                         </small>
 
                     </div>

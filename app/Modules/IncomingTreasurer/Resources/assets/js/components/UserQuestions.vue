@@ -11,6 +11,7 @@
                 <div class="card-body">
 
                     <h5 class="card-title">{{question.name}}</h5>
+                    <span class="has-error-span" v-if="hasErrors(index)">Incorrect answers</span>
 
                     <div class="form-group" style="text-align: left; margin-left: 20%">
                         <div v-for="answer in question.answers">
@@ -73,17 +74,23 @@
 
         methods: {
             submit() {
+                this.form.errors.clear();
                 this.form.post('/incomingtreasurer/questions')
                     .then(response => {
                         this.completed = true;
                         this.$notify.success('Congratulations, you\'ve passed the treasurer training!');
                     })
                     .catch(error => {
-                        // TODO This notification should only be for a 422 error
                         this.$notify.alert('Some of your answers weren\'t correct!');
+                        this.form.errors.clear();
+                        this.form.errors.record(error.response.data.errors);
                     });
             },
-
+            hasErrors(index) {
+                return this.questions[index].answers.filter(answer => {
+                    return this.form.errors.has('id_' + answer.id);
+                }).length > 0;
+            }
         },
 
         computed: {
