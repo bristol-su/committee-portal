@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+    public function alias()
+    {
+        return 'budget';
+    }
+
     /**
      * @return string
      */
@@ -34,12 +39,14 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
         return File::where([
-            'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id,
-            'status' => 'approved'
-        ])->count() > 0;
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id,
+                'status' => 'approved'
+            ])->count() > 0;
     }
 
     public function getDescription()

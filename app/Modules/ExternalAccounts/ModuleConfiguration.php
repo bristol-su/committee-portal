@@ -7,6 +7,11 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'externalaccounts';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

@@ -8,6 +8,11 @@ use App\Modules\Constitution\Entities\File;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+    public function alias()
+    {
+        return 'constitution';
+    }
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

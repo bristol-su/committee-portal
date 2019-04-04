@@ -22,6 +22,7 @@ if (!function_exists('getGroupType')) {
 
 
 if (!function_exists('getModuleConfiguration')) {
+    // TODO Don't need to load 'raw_module'
 
     function getModuleConfiguration()
     {

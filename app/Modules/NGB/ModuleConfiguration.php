@@ -7,6 +7,11 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'ngb';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
