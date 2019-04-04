@@ -20,6 +20,15 @@
                             services team</a> will be happy to help.</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <upload-file
+                            module="riskassessment"
+                            default-title="Risk Assessment {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}"
+                    >
+                    </upload-file>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -29,11 +38,7 @@
             <div class="riskassessment-root">
 
 
-                <upload-file
-                        module="riskassessment"
-                        default-title="Risk Assessment {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}"
-                >
-                </upload-file>
+
 
 
             </div>

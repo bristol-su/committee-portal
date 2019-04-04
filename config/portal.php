@@ -29,7 +29,7 @@ return [
 
         'reaffiliation-complete' => [
             'header' => 'Completed Reaffiliation Tasks',
-            'subtitle' => 'These are all the tasks needed for reaffiliation which you\'ve finished!',
+            'subtitle' => 'These are all the tasks needed for reaffiliation which your group has finished!',
             'hide-if-empty' => false,
         ],
 

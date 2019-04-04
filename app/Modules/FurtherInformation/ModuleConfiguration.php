@@ -31,7 +31,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+    if(!$this->actingAsStudent()) { return false; } ;
         return true;
     }
 

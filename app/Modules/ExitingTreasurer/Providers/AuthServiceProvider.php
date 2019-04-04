@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('exitingtreasurer.reaffiliation.isResponsible', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 

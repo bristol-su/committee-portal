@@ -6,7 +6,7 @@
         </a>
 
         <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right group-select-dropdown" >
-            <div class="input-group">
+            <div class="input-group sticky-top">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="search-icon">
                         <i class="fa fa-search"></i>
