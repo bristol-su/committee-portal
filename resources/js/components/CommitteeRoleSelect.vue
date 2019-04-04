@@ -8,7 +8,8 @@
 
         <div aria-labelledby="committeeSelect" class="dropdown-menu dropdown-menu-right">
             <a :id="role.id" @click.prevent="login" class="dropdown-item" href="#" v-for="role in roles"
-               v-if="role.id !== currentRole.id">
+<!--               v-if="role.id !== currentRole.id"-->
+            >
                 {{role.group.name}} - {{role.position.name}} ({{role.committee_year | reaffiliation_year}})
             </a>
         </div>
