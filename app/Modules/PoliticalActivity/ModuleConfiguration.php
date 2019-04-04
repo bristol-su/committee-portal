@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'politicalactivity';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

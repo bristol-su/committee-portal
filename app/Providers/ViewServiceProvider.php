@@ -37,8 +37,21 @@ class ViewServiceProvider extends ServiceProvider
 
         // Give the portal access to all modules
         View::composer(['portal', 'dashboard'], function($view) {
-            $configuration = getModuleConfiguration();
-            $view->with('modules', $configuration);
+            $configurations = getModuleConfiguration();
+            $configurations = $configurations->map(function($configuration) {
+                // Add string index to array
+                $index = $configuration['header'];
+                $configuration['header'] = config('portal.headers.'.$index);
+                $configuration['header']['index'] = $index;
+
+                // Load information from gates
+                foreach(config('portal.header_information_gates') as $information) {
+                    $configuration[$information] = Auth::user()->can($configuration['alias'].'.module.is'.ucfirst($information));
+                }
+                return $configuration;
+            });
+
+            $view->with('modules', $configurations);
         });
 
 

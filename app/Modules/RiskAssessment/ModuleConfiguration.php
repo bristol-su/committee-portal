@@ -8,6 +8,11 @@ use App\Modules\RiskAssessment\Entities\File;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'riskassessment';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

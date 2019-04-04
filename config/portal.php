@@ -9,28 +9,24 @@ return [
         'default' => [
             'header' => 'Additional Tasks',
             'subtitle' => 'Some other features to help you run your group',
-            'hide-if-empty' => true,
         ],
         'reaffiliation-mandatory' => [
             'header' => 'Reaffiliation - Mandatory',
             'subtitle' => 'Mandatory reaffiliation tasks to be completed in order to reaffiliate.',
-            'hide-if-empty' => true,
         ],
         'reaffiliation-optional' => [
             'header' => 'Reaffiliation - Optional',
             'subtitle' => 'Optional reaffiliation tasks to help your group throughout the year.',
-            'hide-if-empty' => true,
         ],
         'we-are-bristol' => [
             'header' => '#WeAreBristol',
             'subtitle' => 'We are Bristol Registration',
-            'hide-if-empty' => true,
         ],
 
         'reaffiliation-complete' => [
             'header' => 'Completed Reaffiliation Tasks',
             'subtitle' => 'These are all the tasks needed for reaffiliation which your group has finished!',
-            'hide-if-empty' => false,
+            'always-show' => true,
         ],
 
         // Admin Headers
@@ -61,13 +57,12 @@ return [
 
     ],
 
-//    'reaffiliation_status' => [
-//        'incomplete' => 'btn btn-outline-danger',
-//
-//        'complete' => 'btn btn-outline-success',
-//
-//        'admin' => 'btn btn-outline-info'
-//    ],
+    'header_information_gates' => [
+        'visible',
+        'active',
+        'responsible',
+        'mandatory',
+    ],
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
 
@@ -111,6 +106,13 @@ return [
         'WABBudget',
         'WABStrategicPlan',
         'Presentation'
+    ],
+
+    'header_order' => [
+        'reaffiliation-complete',
+        'reaffiliation-mandatory',
+        'reaffiliation-optional',
+        'we-are-bristol'
     ],
 
     'knowledge_base' => [

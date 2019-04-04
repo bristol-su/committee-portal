@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'groupinfo';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

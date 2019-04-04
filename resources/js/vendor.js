@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import Popper from 'popper.js';
-import jQuery from 'jquery';
 import axios from 'axios';
 import Vue from 'vue';
 import bootstrap from 'bootstrap';
@@ -24,7 +23,6 @@ window.Vue = Vue;
 
 
 window.Popper = Popper.default;
-window.$ = window.jQuery = jQuery;
 
 
 /**

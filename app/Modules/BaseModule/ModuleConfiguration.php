@@ -38,7 +38,8 @@ abstract class ModuleConfiguration
             'description' => $this->getDescription(),
             'admin_header' => $this->getAdminHeaderKey(),
             'admin_url' => $this->getAdminURL(),
-            'complete' => $this->isComplete()
+            'complete' => $this->isComplete(),
+            'alias' => $this->alias()
         ];
     }
 
@@ -50,6 +51,8 @@ abstract class ModuleConfiguration
      * @return string
      */
     abstract public function getHeaderKey();
+
+    abstract public function alias();
 
     /**
      * Get the header key for a module button on the admin side

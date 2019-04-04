@@ -53,15 +53,13 @@
 </head>
 
 <body style="width: 100%; min-width: 100%; height: 100%; min-height: 100%;">
-    <script src="{{ mix('js/app.js') }}"></script>
-    @include('templates.freshdesk')
     @if (session('status'))
         <div class="alert alert-success" role="alert" style="text-align: center">
             {{ session('status') }}
         </div>
     @endif
 
-    <div>
+    <div class="">
         <noscript>
             @include('templates.noscript')
         </noscript>
@@ -72,6 +70,8 @@
         @include('templates.footer')
     </div>
 
+    <script src="{{ mix('js/app.js') }}"></script>
+    @include('templates.freshdesk')
     @stack('scripts')
 
 </body>

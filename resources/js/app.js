@@ -8,8 +8,8 @@ import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNote
 import DateViewer from './components/DateViewer';
 import AWN from 'awesome-notifications';
 import axios from 'axios';
-
-import PortalVue from 'portal-vue'
+// import PortalVue from 'portal-vue'
+import ModuleLayout from "./components/HomePage/ModuleLayout";
 
 // import vueDropzone from 'vue2-dropzone'; // Multi file upload use
 
@@ -18,7 +18,7 @@ window.Event = new Vue();
 // Extend Vue
 // Vue.use(Notifications)wir;
 Vue.use(VModal);
-Vue.use(PortalVue);
+// Vue.use(PortalVue);
 
 // Define http provider for Vue
 Vue.prototype.$http = axios;
@@ -46,6 +46,14 @@ new Vue({
     components: {
         'committee-role-select': CommitteeRoleSelect,
         'group-select': GroupSelect,
+    }
+});
+
+// TODO Move to own file
+new Vue({
+    el: '#committee-portal-portal',
+    components: {
+        'committee-portal': ModuleLayout
     }
 });
 

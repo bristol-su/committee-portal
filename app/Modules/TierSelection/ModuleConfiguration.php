@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'tierselection';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()

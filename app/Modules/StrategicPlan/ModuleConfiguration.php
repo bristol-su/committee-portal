@@ -8,6 +8,11 @@ use App\Modules\StrategicPlan\Entities\File;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'strategicplan';
+}
+
     public function getButtonTitle()
     {
         return 'Strategic Plan';

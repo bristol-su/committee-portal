@@ -11,6 +11,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     protected $mandatoryForReaffiliation = true;
 
+    public function alias()
+    {
+        return 'maincontacts';
+    }
+
     public function getButtonTitle()
     {
         return 'Notification';
@@ -33,11 +38,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-    if(!$this->actingAsStudent()) { return false; } ;
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
         return Submission::where([
-            'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
-        ])->count() > 0;
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id
+            ])->count() > 0;
     }
 
     public function getDescription()
