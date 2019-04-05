@@ -83,11 +83,11 @@ return [
 
     'module_order' => [
         'PresidentHandover',
-        'ExitingTreasurer',
         'GroupInfo',
         'CommitteeDetails',
-        'MainContacts',
         'TaskAllocation',
+        'MainContacts',
+        'ExitingTreasurer',
         'Constitution',
         'RiskAssessment',
         'EquipmentList',

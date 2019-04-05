@@ -71,8 +71,6 @@ class Task extends Model
     public function tag()
     {
         $studentTag = StudentTag::all()->filter(function (StudentTag $studentTag) {
-            Log::info('Testing '.$studentTag->reference.' === '.$this->tag_reference.': '.($studentTag->reference === $this->tag_reference?'true':'false'));
-            Log::info('Testing '.$studentTag->category->reference.' === task_allocations: '.($studentTag->category->reference === 'task_allocations'?'true':'false'));
 
             return
                 $studentTag->reference === $this->tag_reference &&

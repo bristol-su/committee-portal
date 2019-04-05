@@ -100,12 +100,14 @@
             // Update the students assigned to each contact
             updateContacts() {
                 this.form.post('/maincontacts')
-                    .then(response => this.$notify.success('Updated your contact preferences.'))
+                    .then(response => {
+                        this.$notify.success('Updated your contact preferences.')
+                        window.location.href = process.env.MIX_APP_URL + '/portal'
+                    })
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your contacts: ' + error.message);
                         this.form.errors.record(error.response.data.errors);
                     })
-                    .then(() => window.location.href = process.env.MIX_APP_URL + '/portal');
             }
         }
     }

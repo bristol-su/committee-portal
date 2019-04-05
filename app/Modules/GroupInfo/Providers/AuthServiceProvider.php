@@ -4,14 +4,16 @@ namespace App\Modules\GroupInfo\Providers;
 
 use App\Traits\AuthorizesUsers;
 use App\Traits\FiltersPermissions;
+use App\Traits\OverridesGates;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Nwidart\Modules\Facades\Module;
 
 class AuthServiceProvider extends ServiceProvider
 {
 
-    use AuthorizesUsers, FiltersPermissions;
+    use AuthorizesUsers, OverridesGates;
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -25,18 +27,10 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function register()
     {
-        /*
-         * Don't allow access to any modules until this is complete (for anyone in the new committee)
-         */
-        Gate::before(function(User $user, $ability) {
-            // Match any modules which
-            if($this->overrideIsActive($ability, ['groupinfo']) && !$user->isAdmin()) {
-                return false;
-            }
-            return null;
-        });
+        $this->disableExcept('GroupInfo', ['groupinfo', 'presidenthandover', 'exitingtreasurer']);
 
         Gate::define('groupinfo.module.isVisible', function(User $user) {
             return true;

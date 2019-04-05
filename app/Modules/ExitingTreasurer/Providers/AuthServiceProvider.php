@@ -51,67 +51,67 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('exitingtreasurer.create-expenseclaim', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.get-expenseclaim', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.delete-expenseclaim', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.create-invoice', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.get-invoice', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.delete-invoice', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.create-missing-i-and-e', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.get-missing-i-and-e', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.delete-missing-i-and-e', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.create-correction', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.get-correction', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.delete-correction', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 
         Gate::define('exitingtreasurer.approve', function (User $user) {
-            return $this->studentHasPresidentialPosition($user)
+            return $this->studentHasTreasurerPosition($user)
                 && !$this->studentIsNewCommittee($user);
         });
 

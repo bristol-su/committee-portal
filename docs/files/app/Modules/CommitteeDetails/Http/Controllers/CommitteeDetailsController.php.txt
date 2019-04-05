@@ -172,7 +172,6 @@ class CommitteeDetailsController extends Controller
         $committeeRole->position_name = $request->get('position_name');
 
         if (!$committeeRole->save()) {
-            Log::error('Could not save committee role. Code '.$committeeRole->getResponse()->getStatusCode().', Message '.$committeeRole->getResponse()->getStatusPhrase());
             abort(500, 'We could not save your new committee position');
         }
 

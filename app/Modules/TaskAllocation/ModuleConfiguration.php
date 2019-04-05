@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
-public function alias()
-{
-    return 'taskallocation';
-}
-
     protected $mandatoryForReaffiliation = true;
+
+    public function alias()
+    {
+        return 'taskallocation';
+    }
 
     public function getButtonTitle()
     {
@@ -38,11 +38,13 @@ public function alias()
 
     public function isComplete()
     {
-        if(!$this->actingAsStudent()) { return false; } ;
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
         return Submission::where([
-            'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
-        ])->count() > 0;
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id
+            ])->count() > 0;
     }
 
     public function getDescription()

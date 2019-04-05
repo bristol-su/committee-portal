@@ -9,7 +9,7 @@ class SeedPermissionsAndRolesFurtherInformation extends \App\Packages\Permission
     public $permissions = [
         'furtherinformation.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Further Information', 'subgroup' => 'Module'],
         'furtherinformation.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Further Information', 'subgroup' => 'Module'],
-        'furtherinformation.module.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Further Information', 'subgroup' => 'Module'],
+        'furtherinformation.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Further Information', 'subgroup' => 'Module'],
         'furtherinformation.view' => ['description' => 'Allows a user to view the user page', 'title' => 'View', 'group' => 'Further Information', 'subgroup' => 'Module'],
         'furtherinformation.view-admin' => ['description' => 'Allows a user to view the admin page', 'title' => 'View Admin', 'group' => 'Further Information', 'subgroup' => 'Module'],
         'furtherinformation.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Further Information', 'subgroup' => 'Module'],

@@ -152,12 +152,15 @@
             saveInformation() {
                 this.submitting = true;
                 this.form.post('/groupinfo')
-                    .then(response => this.$notify.success('Group updated'))
-                    .catch(error => this.$notify.alert('Group couldn\'t be updated: ' + error.message))
-                    .then(() => {
-                        this.submitting = false
+                    .then(response => {
+                        this.submitting = false;
+                        this.$notify.success('Group updated')
                         window.location.href = process.env.MIX_APP_URL + '/portal'
-                    });
+                    })
+                    .catch(error => {
+                        this.submitting = false;
+                        this.$notify.alert('Group couldn\'t be updated: ' + error.message)
+                    })
             }
         }
     }

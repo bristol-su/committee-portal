@@ -45,7 +45,7 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
 
-            return null;
+
         });
 
         // Override for Spatie permissions
@@ -74,7 +74,6 @@ class AuthServiceProvider extends ServiceProvider
                 return false;
             }
 
-            return null;
         });
     }
 }

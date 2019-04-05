@@ -1,19 +1,17 @@
 <template>
-    <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
-        <div v-if="visible">
-            <a :href="url">
-                <button
-                        :class="{
+    <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;" v-if="visible">
+        <a :href="url">
+            <button
+                    :class="{
                             'module-button-inactive': !active,
                             'module-button-responsible': responsible,
                         }"
-                        :disabled="!active"
-                        class="btn btn-info module-button"
-                        type="button">
-                    {{title}}
-                </button>
-            </a>
-        </div>
+                    :disabled="!active"
+                    class="btn btn-info module-button"
+                    type="button">
+                {{title}}
+            </button>
+        </a>
     </div>
 
 

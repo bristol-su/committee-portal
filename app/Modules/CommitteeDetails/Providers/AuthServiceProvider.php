@@ -3,13 +3,14 @@
 namespace App\Modules\CommitteeDetails\Providers;
 
 use App\Traits\AuthorizesUsers;
+use App\Traits\OverridesGates;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    use AuthorizesUsers;
+    use AuthorizesUsers, OverridesGates;
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->disableExcept('CommitteeDetails', ['groupinfo', 'presidenthandover', 'exitingtreasurer', 'committeedetails']);
+
         Gate::define('committeedetails.module.isVisible', function(User $user) {
             return true;
         });

@@ -83,7 +83,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        Log::info('User '.$this->id.' requested verification email');
         Mail::to($this->email)->send(new VerifyEmailMail($this));
     }
 
