@@ -20,6 +20,7 @@
         "nimbly/activeresource": "^1.1",
         "nwidart/laravel-modules": "^4.0",
         "php-console/php-console": "^3.1",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/laravel-permission": "^2.35",
         "twigger/unioncloud": "dev-master"
     },

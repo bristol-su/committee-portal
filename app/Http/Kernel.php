@@ -11,6 +11,8 @@ use App\Http\Middleware\LoadGroupTagsFromControl;
 use App\Http\Middleware\LoadStudentTagsFromControl;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use RenatoMarinho\LaravelPageSpeed\Middleware\InLinePreviewImages;
+use RenatoMarinho\LaravelPageSpeed\Middleware\MakeGoogleAnalyticsAsync;
 
 class Kernel extends HttpKernel
 {
@@ -27,6 +29,14 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+
+        // Minify HTML
+        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
+        \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
+        \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
+        \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
+//        InLinePreviewImages::class,
+//        MakeGoogleAnalyticsAsync::class,
     ];
 
     /**
