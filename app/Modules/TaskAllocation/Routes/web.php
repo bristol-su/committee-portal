@@ -12,7 +12,7 @@
 */
 
 Route::prefix('taskallocation')->middleware(['user', 'module', 'module.active:taskallocation', 'module.maintenance:taskallocation'])->group(function() {
-    Route::get('/', 'TaskAllocationController@showPage');
+    Route::get('/', 'TaskAllocationController@showPage')->name('taskallocation.user');
 
     Route::get('/tasks', 'TaskAllocationController@getTasks');
     Route::get('/committee', 'TaskAllocationController@getCommittee');
@@ -21,5 +21,5 @@ Route::prefix('taskallocation')->middleware(['user', 'module', 'module.active:ta
 });
 
 Route::prefix('/admin/taskallocation')->middleware(['admin', 'module', 'module.active:taskallocation', 'module.maintenance:taskallocation'])->group(function() {
-    Route::get('/', 'TaskAllocationController@showAdminPage');
+    Route::get('/', 'TaskAllocationController@showAdminPage')->name('taskallocation.admin');
 });

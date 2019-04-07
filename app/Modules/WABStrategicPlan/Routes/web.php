@@ -12,15 +12,15 @@
 */
 
 Route::prefix('wabstrategicplan')->middleware(['user', 'module', 'module.active:wabstrategicplan', 'module.maintenance:wabstrategicplan'])->group(function() {
-    Route::get('/', 'WABStrategicPlanController@showUserPage');
+    Route::get('/', 'WABStrategicPlanController@showUserPage')->name('wabstrategicplan.user');
 
     Route::FileUploads('WABStrategicPlanController');
 });
 
 Route::prefix('admin/wabstrategicplan')->middleware(['admin', 'module', 'module.active:wabstrategicplan', 'module.maintenance:wabstrategicplan'])->group(function() {
-    Route::get('/', 'WABStrategicPlanController@showAdminPage');
+    Route::get('/', 'WABStrategicPlanController@showAdminPage')->name('wabstrategicplan.admin');
 
-    Route::get('/note-templates', 'WABStrategicPlanController@showNoteTemplatePage');
+    Route::get('/note-templates', 'WABStrategicPlanController@showNoteTemplatePage')->name('wabstrategicplan.admin.note-template');
 
     Route::FileUploadsAdmin('WABStrategicPlanController');
 });

@@ -87,3 +87,9 @@ if(!function_exists('getExecutiveCommitteeRoleID')) {
         return array_intersect($requiredPositions, $execPositions)[0];
     }
 }
+
+if(!function_exists('homeURL')) {
+    function homeURL() {
+        return (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal'));
+    }
+}

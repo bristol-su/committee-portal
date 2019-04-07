@@ -12,7 +12,7 @@
 */
 
 Route::prefix('presidenthandover')->middleware(['user', 'module', 'module.active:presidenthandover', 'module.maintenance:presidenthandover'])->group(function() {
-    Route::get('/', 'PresidentHandoverController@showPage');
+    Route::get('/', 'PresidentHandoverController@showPage')->name('presidenthandover.user');
 
     Route::post('/', 'PresidentHandoverController@updatePresident');
 
@@ -20,5 +20,5 @@ Route::prefix('presidenthandover')->middleware(['user', 'module', 'module.active
 
 
 Route::prefix('admin/presidenthandover')->middleware(['admin', 'module', 'module.active:presidenthandover', 'module.maintenance:presidenthandover'])->group(function() {
-    Route::get('/', 'PresidentHandoverController@showAdminPage');
+    Route::get('/', 'PresidentHandoverController@showAdminPage')->name('presidenthandover.admin');
 });

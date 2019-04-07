@@ -1,5 +1,7 @@
 <?php
 
+use \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
+use \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,19 +14,23 @@
 |
 */
 
-
-Route::middleware('user')->group(function () {
-    Route::get('/portal', 'PortalController@index')->name('portal');
+Breadcrumbs::for('portal', function(BreadcrumbsGenerator $trail) {
+    $trail->push('Portal', route('portal'));
 });
 
+Breadcrumbs::for('admin', function(BreadcrumbsGenerator $trail) {
+    $trail->push('Dashboard', route('admin'));
+});
 
-Route::middleware('admin')->prefix('admin')->group(function () {
-
-    Route::get('/', 'AdminController@showAdminDashboard');
-
-    Route::get('/settings', 'AdminSettingsController@showSettingsPage');
-
-    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage');
-
-    Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage');
+Breadcrumbs::for('admin.settings', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin');
+    $trail->push('Settings', route('admin.settings'));
+});
+Breadcrumbs::for('admin.settings.users', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin.settings');
+    $trail->push('Users', route('admin.settings.users'));
+});
+Breadcrumbs::for('admin.settings.roles-permissions', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin.settings');
+    $trail->push('Roles & Permissions', route('admin.settings.roles-permissions'));
 });

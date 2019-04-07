@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.active:exitingtreasurer', 'module.maintenance:exitingtreasurer'])->group(function() {
 
-    Route::get('/', 'ExitingTreasurerController@showUserPage');
+    Route::get('/', 'ExitingTreasurerController@showUserPage')->name('exitingtreasurer.user');
     Route::get('/complete', 'ExitingTreasurerController@isComplete');
     Route::get('/submissions', 'ExitingTreasurerController@submissions');
     Route::get('/download-report/{id}', 'ExitingTreasurerController@downloadReport');
@@ -55,7 +55,7 @@ Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.active:
 
 Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.active:exitingtreasurer', 'module.maintenance:exitingtreasurer'])->group(function() {
 
-    Route::get('/', 'ExitingTreasurerController@showAdminPage');
+    Route::get('/', 'ExitingTreasurerController@showAdminPage')->name('exitingtreasurer.admin');
 
     Route::post('/upload/{exitingtreasurer_document}', 'ExitingTreasurerController@uploadDocument');
 

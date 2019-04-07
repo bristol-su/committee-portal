@@ -12,15 +12,15 @@
 */
 
 Route::prefix('presentation')->middleware(['user', 'module', 'module.active:presentation', 'module.maintenance:presentation'])->group(function() {
-    Route::get('/', 'PresentationController@showUserPage');
+    Route::get('/', 'PresentationController@showUserPage')->name('presentation.user');
 
     Route::FileUploads('PresentationController');
 });
 
 Route::prefix('admin/presentation')->middleware(['admin', 'module', 'module.active:presentation', 'module.maintenance:presentation'])->group(function() {
-    Route::get('/', 'PresentationController@showAdminPage');
+    Route::get('/', 'PresentationController@showAdminPage')->name('presentation.admin');
 
-    Route::get('/note-templates', 'PresentationController@showNoteTemplatePage');
+    Route::get('/note-templates', 'PresentationController@showNoteTemplatePage')->name('presentation.admin.note-template');
 
     Route::FileUploadsAdmin('PresentationController');
 });

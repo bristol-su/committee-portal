@@ -12,7 +12,7 @@
 */
 
 Route::prefix('maincontacts')->middleware(['user', 'module', 'module.active:maincontacts', 'module.maintenance:maincontacts'])->group(function() {
-    Route::get('/', 'MainContactsController@showPage');
+    Route::get('/', 'MainContactsController@showPage')->name('maincontacts.user');
 
     Route::get('/contacts', 'MainContactsController@getContacts');
     Route::get('/committee', 'MainContactsController@getCommittee');
@@ -21,5 +21,5 @@ Route::prefix('maincontacts')->middleware(['user', 'module', 'module.active:main
 });
 
 Route::prefix('/admin/maincontacts')->middleware(['admin', 'module', 'module.active:maincontacts', 'module.maintenance:maincontacts'])->group(function() {
-    Route::get('/', 'MainContactsController@showAdminPage');
+    Route::get('/', 'MainContactsController@showAdminPage')->name('maincontacts.admin');
 });
