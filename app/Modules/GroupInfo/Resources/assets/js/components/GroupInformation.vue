@@ -155,7 +155,7 @@
                     .then(response => {
                         this.submitting = false;
                         this.$notify.success('Group updated')
-                        window.location.href = process.env.MIX_APP_URL + '/portal'
+                        window.location.assign(process.env.MIX_APP_URL + '/portal');
                     })
                     .catch(error => {
                         this.submitting = false;

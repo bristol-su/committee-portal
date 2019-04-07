@@ -14,15 +14,19 @@
                     <tr v-for="contact in contacts">
                         <td>
                             <p>{{contact.title}}</p>
-                            <p><small>{{contact.helptext}}</small></p>
+                            <p>
+                                <small>{{contact.helptext}}</small>
+                            </p>
                         </td>
                         <td style="margin: auto;">
                             <committee-member-select
-                                    v-model="form['id_'+contact.id]"
-                                    :committee_members="committee_members">
+                                    :committee_members="committee_members"
+                                    v-model="form['id_'+contact.id]">
 
                             </committee-member-select>
-                            <small class="has-error-span" v-if="form.errors.has('id_'+contact.id)">{{form.errors.get('id_'+contact.id)}}</small>
+                            <small class="has-error-span" v-if="form.errors.has('id_'+contact.id)">
+                                {{form.errors.get('id_'+contact.id)}}
+                            </small>
                         </td>
                     </tr>
                     </tbody>
@@ -67,9 +71,6 @@
                 .then(res => this.loadContacts());
 
 
-
-
-
         },
 
         methods: {
@@ -87,7 +88,7 @@
                         this.contacts = response.data;
                         let data = {};
                         this.contacts.forEach(contact => {
-                            data['id_'+contact.id] = (contact.answer ? contact.answer: null);
+                            data['id_' + contact.id] = (contact.answer ? contact.answer : null);
                         });
                         this.form = new VueForm(data);
                         this.form.shouldReset = false;
@@ -101,8 +102,8 @@
             updateContacts() {
                 this.form.post('/maincontacts')
                     .then(response => {
-                        this.$notify.success('Updated your contact preferences.')
-                        window.location.href = process.env.MIX_APP_URL + '/portal'
+                        this.$notify.success('Updated your contact preferences.');
+                        window.location.assign(process.env.MIX_APP_URL + '/portal');
                     })
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your contacts: ' + error.message);

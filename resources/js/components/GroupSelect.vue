@@ -5,15 +5,15 @@
             {{currentGroup.name}} <span class="caret"></span>
         </a>
 
-        <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right group-select-dropdown" >
+        <div aria-labelledby="groupSelect" class="dropdown-menu dropdown-menu-right group-select-dropdown">
             <div class="input-group sticky-top">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="search-icon">
                         <i class="fa fa-search"></i>
                     </span>
                 </div>
-                <input aria-describedby="search-icon" class="form-control" style="margin: auto; padding: 2px"
-                       type="text" v-model="searchData"/>
+                <input aria-describedby="search-icon" class="form-control"
+                       style="margin: auto; padding: 2px" type="text" v-model="searchData" autofocus/>
             </div>
             <a @click.prevent="logout" class="dropdown-item" href="#" v-if="groupId !== null">
                 <button class="btn btn-outline-danger group-select-dropdown-button" type="button">Logout</button>
@@ -79,6 +79,7 @@
                 .catch(error => {
                     this.$notify.alert('Sorry, we could not find groups to view as.');
                 })
+
         },
 
         methods: {
@@ -95,9 +96,10 @@
                     .catch(error => {
                         this.$notify.alert('Could not log you out');
                     })
-            }
+            },
         }
     }
+
 </script>
 
 <style>

@@ -5,7 +5,7 @@
         "utf8": "✓",
         "widgetType": "popup",
         "buttonType": "text",
-        "buttonText": "Report a Bug",
+        "buttonText": "Feedback / Report a Bug",
         "buttonColor": "white",
         "buttonBg": "#642F7F",
         "alignment": "4",
