@@ -12,14 +12,14 @@
 */
 
 Route::prefix('incomingtreasurer')->middleware(['user', 'module', 'module.active:incomingtreasurer', 'module.maintenance:incomingtreasurer'])->group(function() {
-    Route::get('/', 'IncomingTreasurerController@showUserPage');
+    Route::get('/', 'IncomingTreasurerController@showUserPage')->name('incomingtreasurer.user');
     Route::get('/questions', 'IncomingTreasurerQuestionController@get');
     Route::post('/questions', 'IncomingTreasurerQuestionController@verify');
     Route::post('/completed', 'IncomingTreasurerController@isComplete');
 });
 
 Route::prefix('admin/incomingtreasurer')->middleware(['admin', 'module', 'module.active:incomingtreasurer', 'module.maintenance:incomingtreasurer'])->group(function() {
-    Route::get('/', 'IncomingTreasurerController@showAdminPage');
+    Route::get('/', 'IncomingTreasurerController@showAdminPage')->name('incomingtreasurer.admin');
     Route::get('/submissions', 'IncomingTreasurerController@getSubmissions');
 
 });

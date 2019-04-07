@@ -12,7 +12,7 @@
 */
 
 Route::prefix('politicalactivity')->middleware(['user', 'module', 'module.active:politicalactivity', 'module.maintenance:politicalactivity'])->group(function() {
-    Route::get('/', 'PoliticalActivityController@showUserPage');
+    Route::get('/', 'PoliticalActivityController@showUserPage')->name('politicalactivity.user');
 
     Route::post('/', 'PoliticalActivityController@confirm');
 
@@ -21,7 +21,7 @@ Route::prefix('politicalactivity')->middleware(['user', 'module', 'module.active
 });
 
 Route::prefix('admin/politicalactivity')->middleware(['admin', 'module', 'module.active:politicalactivity', 'module.maintenance:politicalactivity'])->group(function() {
-    Route::get('/', 'PoliticalActivityController@showAdminPage');
+    Route::get('/', 'PoliticalActivityController@showAdminPage')->name('politicalactivity.admin');
 
     Route::get('/submissions', 'PoliticalActivityController@getSubmissions');
 

@@ -12,15 +12,15 @@
 */
 
 Route::prefix('budget')->middleware(['user', 'module', 'module.active:budget', 'module.maintenance:budget'])->group(function() {
-    Route::get('/', 'BudgetController@showUserPage');
+    Route::get('/', 'BudgetController@showUserPage')->name('budget.user');
 
     Route::FileUploads('BudgetController');
 });
 
 Route::prefix('admin/budget')->middleware(['admin', 'module', 'module.active:budget', 'module.maintenance:budget'])->group(function() {
-    Route::get('/', 'BudgetController@showAdminPage');
+    Route::get('/', 'BudgetController@showAdminPage')->name('budget.admin');
 
-    Route::get('/note-templates', 'BudgetController@showNoteTemplatePage');
+    Route::get('/note-templates', 'BudgetController@showNoteTemplatePage')->name('budget.admin.note-template');
 
     Route::FileUploadsAdmin('BudgetController');
 });

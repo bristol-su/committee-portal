@@ -5,19 +5,33 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+
+
 
 /* Defines the styling for form errors */
 .has-error-span {
   color: red;
 }
 
+
+
+
+
 /* Notification styling */
 
 @import './notification';
+
+
+
+
 
 /* Div which shows when a users javascript is turned off */
 
@@ -34,6 +48,12 @@
   margin-bottom: 3em;
   display: block;
 }
+
+
+
+
+
+
 /* Module button styling */
 .module-button {
   width: 90%;
@@ -54,12 +74,22 @@
 
 
 
+
+
+
+
 /* Centralise everything by default */
 .container {
   text-align: center;
 }
 
+
+
+
+
+
 /* Inline Help css (https://tutorialzine.com/2014/07/css-inline-help-tips) modified */
+/* Controls popups on hover (essentially a custom tooltip) */
 .help-tip{
   margin-left: 5px;
   text-align: center;
@@ -140,56 +170,18 @@
   100% { opacity:100%; }
 }
 
-/* Override Styling by Andy Page */
 
-//
-//.btn-danger {
-//  color: #2452a1;
-//  background-color: #fff;
-//  border-color: #2452a1;
-//}
-//
-//.btn-danger:hover {
-//  color: #fff;
-//  background-color: #2452a1;
-//  border-color: #2452a1;
-//  -webkit-transition: 0.25s ease-in;
-//}
-//
-//.btn-danger:focus,
-//.btn-danger.focus {
-//  box-shadow: 0 0 0 0.2rem rgba(231, 82, 78, 0.5);
-//}
-//
-//.btn-danger.disabled,
-//.btn-danger:disabled {
-//  color: #fff;
-//  background-color: #e3342f;
-//  border-color: #e3342f;
-//}
-//
-//.btn-danger:not(:disabled):not(.disabled):active,
-//.btn-danger:not(:disabled):not(.disabled).active,
-//.show > .btn-danger.dropdown-toggle {
-//  color: #fff;
-//  background-color: #2452a1;
-//  border-color: #2452a1;
-//}
-//
-//.btn-danger:not(:disabled):not(.disabled):active:focus,
-//.btn-danger:not(:disabled):not(.disabled).active:focus,
-//.show > .btn-danger.dropdown-toggle:focus {
-//  box-shadow: 0 0 0 0.2rem #2452a1;
-//}
-//
-//.btn-danger {
-//  color: #2452a1;
-//  background-color: #fff;
-//  border-color: #2452a1;
-//  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); }
-//.btn-danger:hover {
-//  color: #fff;
-//  background-color: #2452a1;
-//  border-color: #2452a1;
-//  -webkit-transition: 0.25s ease-in;
-//}
+
+
+
+
+
+
+
+
+/* Breadcrumbs */
+.breadcrumb {
+  min-width: max-content;
+  margin-right: 15%;
+  margin-left: 15%;
+}

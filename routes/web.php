@@ -32,12 +32,12 @@ Route::middleware('user')->group(function () {
 
 Route::middleware('admin')->prefix('admin')->group(function () {
 
-    Route::get('/', 'AdminController@showAdminDashboard');
+    Route::get('/', 'AdminController@showAdminDashboard')->name('admin');
 
-    Route::get('/settings', 'AdminSettingsController@showSettingsPage');
+    Route::get('/settings', 'AdminSettingsController@showSettingsPage')->name('admin.settings');
 
     // Admin Users routes
-    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage');
+    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage')->name('admin.settings.users');
 
     Route::get('/settings/admin-users/get-users', 'AdminSettingsController@getAdminUsers');
 
@@ -62,7 +62,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::delete('/settings/roles/{role}', 'AdminSettingsController@deleteRole');
 
     // Roles and Permissions
-    Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage');
+    Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage')->name('admin.settings.roles-permissions');
 
     Route::post('/settings/roles-permissions/update/{role}', 'AdminSettingsController@updateRolesAndPermissions');
 

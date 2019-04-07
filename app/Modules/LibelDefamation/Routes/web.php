@@ -12,7 +12,7 @@
 */
 
 Route::prefix('libeldefamation')->middleware(['user', 'module', 'module.active:libeldefamation', 'module.maintenance:libeldefamation'])->group(function() {
-    Route::get('/', 'LibelDefamationController@showUserPage');
+    Route::get('/', 'LibelDefamationController@showUserPage')->name('libeldefamation.user');
 
     Route::post('/', 'LibelDefamationController@confirm');
 
@@ -21,7 +21,7 @@ Route::prefix('libeldefamation')->middleware(['user', 'module', 'module.active:l
 });
 
 Route::prefix('admin/libeldefamation')->middleware(['admin', 'module', 'module.active:libeldefamation', 'module.maintenance:libeldefamation'])->group(function() {
-    Route::get('/', 'LibelDefamationController@showAdminPage');
+    Route::get('/', 'LibelDefamationController@showAdminPage')->name('libeldefamation.admin');
     Route::get('/submissions', 'LibelDefamationController@getSubmissions');
 
 });

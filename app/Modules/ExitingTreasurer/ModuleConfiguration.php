@@ -18,7 +18,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getButtonTitle()
     {
-        return 'Outgoing Treasurer Sign-off';
+        return 'Outgoing Treasurer Sign-Off';
     }
 
     public function getHeaderKey()

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Popper from 'popper.js';
 import axios from 'axios';
 import Vue from 'vue';
+import jQuery from 'jquery';
 import bootstrap from 'bootstrap';
 import Moment from 'moment';
 import VModal from "vue-js-modal";
@@ -13,6 +14,7 @@ import AWN from "awesome-notifications";
 window._ = _;
 
 window.Vue = Vue;
+window.$ = window.jQuery = jQuery;
 
 
 Vue.use(VModal);

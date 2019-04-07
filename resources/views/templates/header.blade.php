@@ -4,7 +4,7 @@
 
             <!-- Left side of the navbar -->
             @auth
-                <a class="navbar-brand" href="{{ (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal')  ) }}">
+                <a class="navbar-brand" href="{{ homeURL() }}">
                     <img style="max-height: 40px" src="{{serveStatic('su-logo.jpg')}}"/>
                         &nbsp;&nbsp;
                     {{ config('app.name', 'Committee Portal') }}
@@ -60,6 +60,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <!-- Home -->
+                                <a class="dropdown-item" href="{{ homeURL() }}">Home</a>
                                 <!-- Settings -->
                                 @can('view-site-settings-page')
                                     <a class="dropdown-item" href="{{ url('/admin/settings') }}">Settings</a>

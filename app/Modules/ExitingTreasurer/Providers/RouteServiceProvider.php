@@ -44,6 +44,9 @@ class RouteServiceProvider extends ServiceProvider
             return Correction::findOrFail($id);
         });
         parent::boot();
+
+        require __DIR__ . '/../Routes/breadcrumbs.php';
+
     }
 
     /**

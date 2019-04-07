@@ -12,16 +12,16 @@
 */
 
 Route::prefix('constitution')->middleware(['user', 'module', 'module.active:constitution', 'module.maintenance:constitution'])->group(function() {
-    Route::get('/', 'ConstitutionController@showUserPage');
+    Route::get('/', 'ConstitutionController@showUserPage')->name('constitution.user');
 
     Route::FileUploads('ConstitutionController');
 
 });
 
 Route::prefix('admin/constitution')->middleware(['admin', 'module', 'module.active:constitution', 'module.maintenance:constitution'])->group(function() {
-    Route::get('/', 'ConstitutionController@showAdminPage');
+    Route::get('/', 'ConstitutionController@showAdminPage')->name('constitution.admin');
 
-    Route::get('/note-templates', 'ConstitutionController@showNoteTemplatePage');
+    Route::get('/note-templates', 'ConstitutionController@showNoteTemplatePage')->name('constitution.admin.note-template');
 
     Route::FileUploadsAdmin('ConstitutionController');
 });
