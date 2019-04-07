@@ -4,24 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "3245ed8c336d05ba3dbf9fa18748ceae",
-=======
-    "content-hash": "f498717ecf9891acceab1469d2a63cb0",
->>>>>>> develop
+    "content-hash": "7ddb4f1af2f238a85055cca0bf4f0b72",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.91.3",
+            "version": "3.91.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "89b07f24f4fab3ea00b1579037ff417ba61b17c9"
+                "reference": "41b67dce3c86da61137b47054d9d52c6ef57b5ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/89b07f24f4fab3ea00b1579037ff417ba61b17c9",
-                "reference": "89b07f24f4fab3ea00b1579037ff417ba61b17c9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/41b67dce3c86da61137b47054d9d52c6ef57b5ec",
+                "reference": "41b67dce3c86da61137b47054d9d52c6ef57b5ec",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +86,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-04-04T18:38:33+00:00"
+            "time": "2019-04-05T18:10:20+00:00"
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
