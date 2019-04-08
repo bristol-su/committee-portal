@@ -2,10 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <input class="form-control" type="text" v-model="claim.pqu_number">
+                <input class="form-control" type="text" v-model="claim.pqu_number" v-if="!exists">
+                <p v-else>{{claim.pqu_number}}</p>
             </div>
             <div class="col-md-5">
-                <input class="form-control" type="text" v-model="claim.note">
+                <input class="form-control" type="text" v-model="claim.note" v-if="!exists">
+                <p v-else>{{claim.note}}</p>
             </div>
             <div class="col-md-2">
                 <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
@@ -54,7 +56,20 @@
                     .catch(error => this.$http.error('Could not find your expense claims: ' + error.message));
             }
         },
-
+        
+        watch: {
+            initial_id(id) {
+                if (id !== null) {
+                    this.$http.get('/exitingtreasurer/api/expense-claims/' + id)
+                        .then(response => {
+                            this.claim = response.data;
+                            this.original_claim = Object.assign({}, this.claim);
+                        })
+                        .catch(error => this.$http.error('Could not find your expense claims: ' + error.message));
+                }
+            }
+        },
+        
         methods: {
             save() {
                 // Save or update

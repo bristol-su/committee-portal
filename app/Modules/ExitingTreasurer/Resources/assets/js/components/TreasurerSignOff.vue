@@ -11,7 +11,7 @@
                     <template v-slot:reports>
                         <div v-if="hasReports">
                             <reports
-                                :reports="yearReports()">
+                                    :reports="yearReports()">
                             </reports>
                         </div>
                         <div v-else>
@@ -22,7 +22,7 @@
                     <template v-slot:allreports>
                         <div v-if="hasOldReports">
                             <reports
-                                :reports="reports">
+                                    :reports="reports">
                             </reports>
                         </div>
                         <div v-else>
@@ -32,7 +32,7 @@
                     <template v-slot:oldsubmissions>
                         <div v-if="hasOldSubmissions">
                             <submissions
-                                :submissions="completeSubmissions">
+                                    :submissions="completeSubmissions">
                             </submissions>
                         </div>
                         <div v-else>
@@ -47,23 +47,26 @@
 
         <div class="row">
             <div class="col-md-12" v-if="!hasSubmitted">
-                <button class="btn btn-info" @click="showSubmissionForm" v-if="hasReports">
+                <button @click="showSubmissionForm" class="btn btn-info" v-if="hasReports">
                     {{(hasCurrentSubmission?'Continue Sign-Off':'Start Sign-Off')}}
                 </button>
             </div>
+            <span style="padding-top: 50px;" v-else>
+                <h3 style=" border: 2px solid #FF6E11; border-radius: 1em; padding: 5px;">You have completed a sign-off this year. Head to "Previous Sign-Off's" to see what you said.</h3>
+            </span>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <modal
-                    height="70%"
-                    width="70%"
-                    name="sign-off-form-modal"
-                    @before-close=""
+                        @before-close=""
+                        height="70%"
+                        name="sign-off-form-modal"
+                        width="70%"
                 >
                     <sign-off-form
                             :current-submission="currentSubmission"
-                            @newSubmission="newSubmission"
                             @close="hideSubmissionForm"
+                            @newSubmission="newSubmission"
                     >
 
                     </sign-off-form>
@@ -129,11 +132,11 @@
             newSubmission(data) {
                 let index = null;
                 this.submissions.filter((submission, submissionIndex) => {
-                    if(submission.id === data.id) {
+                    if (submission.id === data.id) {
                         index = submissionIndex;
                     }
                 });
-                if(index === null) {
+                if (index === null) {
                     this.submissions.push(data);
                 } else {
                     this.submissions.splice(index, 1, data);
@@ -200,7 +203,7 @@
             },
 
             currentSubmission() {
-                if(this.hasCurrentSubmission) {
+                if (this.hasCurrentSubmission) {
                     return this.yearSubmissions().filter(submission => {
                         return submission.complete === false;
                     })[0];

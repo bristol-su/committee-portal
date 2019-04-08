@@ -24,6 +24,19 @@ use Illuminate\Validation\ValidationException;
 class ExitingTreasurerController extends Controller
 {
 
+    public function markAsComplete(Submission $submission)
+    {
+        $this->authorize('exitingtreasurer.approve');
+
+        if($submission->validate()) {
+            $submission->complete = true;
+            $submission->save();
+        } else {
+            return response('Have you completed every section?', 422);
+        }
+        return response($submission, 200);
+    }
+
     public function downloadTreasurerDocument($id)
     {
         $this->authorize('exitingtreasurer.download-treasurer-document');
@@ -131,8 +144,10 @@ class ExitingTreasurerController extends Controller
             'outstandingInvoice.treasurerSignOffDocuments',
             'unauthorizedExpenseClaim',
         ]);
+
         $submission->group = $submission->group()->toArray();
         $submission->position = (($submission->position() instanceof Position)?$submission->position()->toArray():$submission->position());
+
         return $submission;
     }
 
@@ -265,7 +280,11 @@ class ExitingTreasurerController extends Controller
             $submission->unauthorizedExpenseClaim()->delete();
         }
 
-        return $this->submissionWithRelationships($submission);
+        if($id = null) {
+            return response($this->submissionWithRelationships($submission), 201);
+        } else {
+            return response($this->submissionWithRelationships($submission), 200);
+        }
     }
 
     public function postNote(Request $request, $id)

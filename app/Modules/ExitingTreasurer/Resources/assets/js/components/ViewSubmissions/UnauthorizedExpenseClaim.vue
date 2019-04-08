@@ -1,4 +1,4 @@
-<template>
+a<template>
     <div>
         <table class="table table-striped table-condensed table-hover">
             <thead>

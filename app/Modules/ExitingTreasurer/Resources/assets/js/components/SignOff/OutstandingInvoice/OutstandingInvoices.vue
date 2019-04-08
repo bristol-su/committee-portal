@@ -28,7 +28,7 @@
                     </button>
                 </div>
             </div>
-            <div class="row" v-if="payload.data.length > 0">
+            <div class="row" v-if="payload.present && payload.data.length > 0">
                 <div class="col-md-12">
                     <table class="table table-striped table-hover table-condensed ">
                         <thead>

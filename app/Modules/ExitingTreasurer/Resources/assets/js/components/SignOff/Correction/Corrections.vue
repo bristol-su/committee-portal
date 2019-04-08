@@ -43,52 +43,13 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-
-                <yes-no-radio
-                        no="No"
-                        v-model="payload.present"
-                        yes="Yes"
-                ></yes-no-radio>
-
-            </div>
-        </div>
-
-        <div class="row" v-if="payload.present">
-            <div class="col-md-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5">
-                            Note
-                        </div>
-                        <div class="col-md-5">
-                            Documents
-                        </div>
-                        <div class="col-md-2">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <corrections
-                        :initial_id="payload.data.id"
-                        @created="save"
-                        @remove="remove">
-
-                </corrections>
-            </div>
-
-
-        </div>
 
     </div>
+
 </template>
 
 <script>
-import Corrections from './Corrections';
+import CorrectionInformation from './CorrectionInformation';
 import YesNoRadio from "../../YesNoRadio";
 
     export default {
@@ -113,7 +74,7 @@ import YesNoRadio from "../../YesNoRadio";
 
         components: {
             YesNoRadio,
-            Corrections
+            CorrectionInformation
         },
 
         watch: {
@@ -138,6 +99,13 @@ import YesNoRadio from "../../YesNoRadio";
                 if (this.initialPayload.data !== null) {
                     this.payload.id = this.initial_payload.data.id;
                 }
+            }
+        },
+
+        created() {
+            if(this.initialPayload.data !== null) {
+                this.payload.data.id = this.initialPayload.data.id;
+                this.payload.present = this.initialPayload.present;
             }
         }
     }

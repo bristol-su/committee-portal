@@ -6,6 +6,7 @@ use App\Modules\ExitingTreasurer\Entities\Correction;
 use App\Modules\ExitingTreasurer\Entities\Document;
 use App\Modules\ExitingTreasurer\Entities\MissingIncomeAndExpenditure;
 use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\Submission;
 use App\Modules\ExitingTreasurer\Entities\UnauthorizedExpenseClaim;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -42,6 +43,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         Route::bind('exitingtreasurer_correction', function($id) {
             return Correction::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_submission', function($id) {
+            return Submission::findOrFail($id);
         });
         parent::boot();
 
