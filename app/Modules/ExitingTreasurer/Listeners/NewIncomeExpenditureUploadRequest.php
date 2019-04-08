@@ -28,7 +28,7 @@ class NewIncomeExpenditureUploadRequest
     public function handle($group_id, $year)
     {
         $group = Group::find($group_id);
-        $title = $group->name . ' Income and Expenditure Report '.$year.'/'.substr($year+1, 2, 2);
+        $title = $group->name . ' Finance Summary Report '.$year.'/'.substr($year+1, 2, 2);
         Document::create([
             'year' => $year,
             'title' => $title,

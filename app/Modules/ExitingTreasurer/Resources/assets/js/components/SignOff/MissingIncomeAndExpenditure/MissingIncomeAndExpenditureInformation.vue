@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-2">
                 <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
-                <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Save</button>
+                <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Add</button>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             if (this.initial_id !== null) {
                 this.$http.get('/exitingtreasurer/api/missing-i-and-e/' + this.initial_id)
                     .then(response => {
-                        this.missing_i_and_e = response.data;
+                        this.missing_i_and_e.id = response.data.id;
                     })
                     .catch(error => this.$http.error('Could not find your income and expenditures: ' + error.message));
             }
@@ -98,7 +98,7 @@
 
         computed: {
             exists() {
-                return this.initial_id !== null;
+                return this.missing_i_and_e.id !== null;
             },
 
         }

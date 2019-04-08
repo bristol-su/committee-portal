@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import DateViewer from "../../../../../../../resources/js/components/DateViewer";
+    import DateViewer from "../../../../../../../../resources/js/components/DateViewer";
     export default {
         components: {DateViewer},
         props: {
@@ -47,7 +47,7 @@
                 if(type === 'transaction_list') {
                     return 'Transaction List'
                 } else if(type === 'income_expenditure') {
-                    return 'Income Expenditure';
+                    return 'Financial Summary';
                 }
                 return 'N/A';
             },

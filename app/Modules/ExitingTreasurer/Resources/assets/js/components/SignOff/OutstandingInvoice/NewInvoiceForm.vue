@@ -24,9 +24,9 @@
                 <div class="col-md-8">
                     <yes-no-radio
                             id="authorized"
-                            no="No (explain why not below)"
-                            yes="Authorize"
-                    v-model="invoice.authorized">
+                            no="I do not authorise this invoice"
+                            yes="I authorise this invoice"
+                            v-model="invoice.authorized">
 
                     </yes-no-radio>
                 </div>
@@ -35,7 +35,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <label for="notes">Notes</label>
+                        <label for="notes">Reason for no authorisation</label>
                     </div>
                     <div class="col-md-8">
                         <textarea class="form-control" id="notes" rows="5" v-model="invoice.note"></textarea>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <label for="documents">Documents</label>
+                        <label for="documents">Supporting documents (i.e. email chains)</label>
                     </div>
                     <div class="col-md-8">
                         <input class="form-control" id="documents" multiple ref="documents" type="file" @change="documentsSelected">
@@ -54,7 +54,7 @@
 
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button class="btn btn-info" id="submit" style="width: 50%; margin: auto;"  type="submit">Upload</button>
+                    <button class="btn btn-info" id="submit" style="width: 50%; margin: auto;"  type="submit">Record Invoice</button>
                 </div>
             </div>
         </form>

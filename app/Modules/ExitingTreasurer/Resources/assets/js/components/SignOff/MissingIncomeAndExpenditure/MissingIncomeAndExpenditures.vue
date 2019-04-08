@@ -1,14 +1,5 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Missing Income or Expenditure</h3>
-                <h4>
-                    <small>Is there any other income or expenditure missing from the reports?
-                    </small>
-                </h4>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -59,6 +50,14 @@
     import YesNoRadio from "../../YesNoRadio";
 
     export default {
+
+        props:{
+            initialPayload: {
+                required: false,
+                default: null
+            }
+        },
+
         data() {
             return {
                 payload: {
@@ -91,6 +90,13 @@
 
             remove() {
                 this.payload.data.id = null;
+            }
+        },
+
+        created() {
+            if(this.initialPayload.data !== null) {
+                this.payload.data.id = this.initialPayload.data.id;
+                this.payload.present = this.initialPayload.present
             }
         }
     }

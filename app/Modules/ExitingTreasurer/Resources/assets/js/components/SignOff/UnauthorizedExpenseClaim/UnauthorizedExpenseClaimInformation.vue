@@ -9,8 +9,7 @@
             </div>
             <div class="col-md-2">
                 <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
-                <button @click="save" class="btn btn-sm btn-info" v-if="exists && changed">Update</button>
-                <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Save</button>
+                <button @click="save" class="btn btn-sm btn-success" v-else>Add</button>
             </div>
         </div>
     </div>

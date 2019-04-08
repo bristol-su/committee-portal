@@ -91,6 +91,17 @@ class ExitingTreasurerController extends Controller
         return $this->getDocumentWithRelations();
     }
 
+    public function getGroupDocuments()
+    {
+        $this->authorize('exitingtreasurer.view');
+
+        return Document::where([
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->get()->map(function($document) {
+            return $this->getDocumentWithRelations($document->id);
+        });
+    }
+
     public function isComplete()
     {
         $submissions = Submission::where([
@@ -167,38 +178,44 @@ class ExitingTreasurerController extends Controller
         }
     }
 
-    public function newSubmission(Request $request)
+    public function newSubmission(Request $request, $id=null)
     {
         $this->authorize('exitingtreasurer.approve');
 
         $v = Validator::make($request->all(), [
-            'corrections.present' => 'required|boolean',
+            'corrections.present' => 'sometimes',
 
-            'missing_i_and_e.present' => 'required|boolean',
+            'missing_i_and_e.present' => 'sometimes',
 
-            'outstanding_invoices.present' => 'required|boolean',
+            'outstanding_invoices.present' => 'sometimes',
             'outstanding_invoices.data.*' => 'exists:exitingtreasurer_outstanding_invoices,id',
 
-            'unauthorized_expense_claims.present' => 'required|boolean',
+            'unauthorized_expense_claims.present' => 'sometimes ',
             'unauthorized_expense_claims.data.*' => 'exists:exitingtreasurer_unauthorized_expense_claims,id',
         ]);
         $v->sometimes('corrections.data.id', 'exists:exitingtreasurer_corrections,id', function ($input) {
-            return $input->corrections['present'];
+            return isset($input->corrections['present']) && $input->corrections['present'];
         });
         $v->sometimes('missing_i_and_e.data.id', 'exists:exitingtreasurer_missing_income_and_expenditures,id', function ($input) {
-            return $input->missing_i_and_e['present'];
+            return isset($input->missing_i_and_e['present']) && $input->missing_i_and_e['present'];
         });
         $v->sometimes('outstanding_invoices.data', 'array|between:1,100', function ($input) {
-            return $input->outstanding_invoices['present'];
+            return isset($input->outstanding_invoices['present']) && $input->outstanding_invoices['present'];
         });
         $v->sometimes('unauthorized_expense_claims.data', 'array|between:1,100', function ($input) {
-            return $input->unauthorized_expense_claims['present'];
+            return isset($input->unauthorized_expense_claims['present']) && $input->unauthorized_expense_claims['present'];
         });
         if ($v->fails()) {
             throw ValidationException::withMessages($v->errors()->toArray());
         }
 
-        $submission = new Submission([
+        if($id === null) {
+            $submission = new Submission();
+        } else {
+            $submission = Submission::findOrFail($id);
+        }
+
+        $submission->fill([
             'user_id' => Auth::user()->id,
             'group_id' => Auth::user()->getCurrentRole()->group->id,
             'position_id' => Auth::user()->getCurrentRole()->position->id,
@@ -207,32 +224,45 @@ class ExitingTreasurerController extends Controller
             'has_outstanding_invoices' => $request->input('outstanding_invoices.present'),
             'has_missing_income_and_expenditure' => $request->input('missing_i_and_e.present'),
             'has_corrections' => $request->input('corrections.present'),
+            'complete' => false
         ]);
 
         $submission->save();
+
         if ($request->input('corrections.present')) {
             $correction = Correction::findOrFail($request->input('corrections.data.id'));
             $correction->submission()->associate($submission);
             $correction->save();
+        } else {
+            $submission->correction()->delete();
         }
+
         if ($request->input('missing_i_and_e.present')) {
             $missingIAndE = MissingIncomeAndExpenditure::findOrFail($request->input('missing_i_and_e.data.id'));
             $missingIAndE->submission()->associate($submission);
             $missingIAndE->save();
+        } else {
+            $submission->missingIncomeAndExpenditure()->delete();
         }
+
         if ($request->input('outstanding_invoices.present')) {
             foreach ($request->input('outstanding_invoices.data') as $invoiceId) {
                 $invoice = OutstandingInvoice::findOrFail($invoiceId);
                 $invoice->submission()->associate($submission);
                 $invoice->save();
             }
+        } else {
+            $submission->outstandingInvoice()->delete();
         }
+
         if ($request->input('unauthorized_expense_claims.present')) {
             foreach ($request->input('unauthorized_expense_claims.data') as $claimId) {
                 $claim = UnauthorizedExpenseClaim::findOrFail($claimId);
                 $claim->submission()->associate($submission);
                 $claim->save();
             }
+        } else {
+            $submission->unauthorizedExpenseClaim()->delete();
         }
 
         return $this->submissionWithRelationships($submission);

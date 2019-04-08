@@ -98,7 +98,7 @@
 
         computed: {
             exists() {
-                return this.initial_id !== null;
+                return this.correction.id !== null;
             },
 
         }

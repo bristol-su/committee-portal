@@ -62,7 +62,7 @@
             login(event) {
                 this.$http.post('/login/position', {committee_role_id: event.target.id})
                     .then(response => {
-                        window.location.reload();
+                        window.location.href = '/portal';
                     })
                     .catch(error => {
                         this.$notify.alert('There was an error logging you in');
