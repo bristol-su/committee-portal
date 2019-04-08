@@ -180,7 +180,7 @@
 
             document_type(type) {
                 if (type === 'income_expenditure') {
-                    return 'Income & Expenditure';
+                    return 'Finance Summary';
                 } else if (type === 'transaction_list') {
                     return 'Transaction List';
                 }

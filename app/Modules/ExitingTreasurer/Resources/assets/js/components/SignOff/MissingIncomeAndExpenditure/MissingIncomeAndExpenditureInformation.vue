@@ -2,15 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <input class="form-control" type="text" v-model="missing_i_and_e.note">
+                <input class="form-control" type="text" v-model="missing_i_and_e.note" v-if="!exists">
+                <p v-else>{{missing_i_and_e.note}}</p>
             </div>
             <div class="col-md-5">
                 <input @change="documentsSelected" class="form-control" id="documents" multiple ref="documents"
-                       type="file">
+                       type="file" v-if="!exists">
+                <div v-else>
+                    <span v-for="document in missing_i_and_e.documents "
+                          v-html="downloadable(document.id)" style="display: block;"></span>
+                </div>
             </div>
             <div class="col-md-2">
                 <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
-                <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Save</button>
+                <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Add</button>
             </div>
         </div>
     </div>
@@ -43,13 +48,19 @@
             if (this.initial_id !== null) {
                 this.$http.get('/exitingtreasurer/api/missing-i-and-e/' + this.initial_id)
                     .then(response => {
-                        this.missing_i_and_e = response.data;
+                        this.missing_i_and_e.id = response.data.id;
+                        this.missing_i_and_e.documents = response.data.treasurer_sign_off_documents;
+                        this.missing_i_and_e.note = response.data.note;
                     })
                     .catch(error => this.$http.error('Could not find your income and expenditures: ' + error.message));
             }
         },
 
         methods: {
+            downloadable(id) {
+                return '<a href="' + '/exitingtreasurer/download/' + id + '">Download</a>';
+            },
+
             documentsSelected() {
                 this.missing_i_and_e.documents = this.$refs.documents.files;
             },
@@ -65,7 +76,9 @@
                     this.$http.post('/exitingtreasurer/api/missing-i-and-e', formData)
                         .then(response => {
                             this.$notify.success('Missing Income and Expenditure data saved');
-                            this.missing_i_and_e = response.data;
+                            this.missing_i_and_e.id = response.data.id;
+                            this.missing_i_and_e.documents = response.data.treasurer_sign_off_documents;
+                            this.missing_i_and_e.note = response.data.note;
                             this.$emit('created', this.missing_i_and_e.id);
                         })
                         .catch(error => this.$notify.alert('Could not save the missing income and expenditure data: ' + error.message));
@@ -98,7 +111,7 @@
 
         computed: {
             exists() {
-                return this.initial_id !== null;
+                return this.missing_i_and_e.id !== null;
             },
 
         }

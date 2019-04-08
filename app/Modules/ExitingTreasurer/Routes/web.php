@@ -17,11 +17,13 @@ Route::prefix('exitingtreasurer')->middleware(['user', 'module', 'module.active:
 
     Route::get('/', 'ExitingTreasurerController@showUserPage')->name('exitingtreasurer.user');
     Route::get('/complete', 'ExitingTreasurerController@isComplete');
+    Route::post('/complete/{exitingtreasurer_submission}', 'ExitingTreasurerController@markAsComplete');
+
     Route::get('/submissions', 'ExitingTreasurerController@submissions');
     Route::get('/download-report/{id}', 'ExitingTreasurerController@downloadReport');
 
-    Route::post('/', 'ExitingTreasurerController@newSubmission');
-
+    Route::post('/{id?}', 'ExitingTreasurerController@newSubmission');
+    Route::get('/documents', 'ExitingTreasurerController@getGroupDocuments');
     Route::post('post-note/{id}', 'ExitingTreasurerController@postNote');
     Route::get('/download/{id}', 'ExitingTreasurerController@downloadTreasurerDocument');
 

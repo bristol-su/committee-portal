@@ -1,30 +1,14 @@
 <template>
-    <div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h3>Unauthorised Expense Claims</h3>
-                <h4>
-                    <small>If there are any unauthorised expense claims (have a reference number beginning PQU and
-                        marked at
-                        the end of the line with an asterisk) showing on the transaction list that will never be
-                        authorised
-                        because there was a problem with them please let us know, so we can delete them. If there are
-                        any
-                        outstanding claims on the App which you haven’t authorised yet, please authorised them.
-                    </small>
-                </h4>
-            </div>
-        </div>
-
+    <div class="container">
         <div class="row">
             <div class="col-xs-12">
 
                 <yes-no-radio
                         no="Not relevant, no PQU expenses or all the PQU expenses on the transaction
-                            list are valid and will be authorised later by the treasurer/student services."
+                                list are valid and will be authorised later by the treasurer/student services."
                         v-model="payload.present"
                         yes="Please delete the expense claims with the PQU reference numbers as attached/as below as the
-                            expenses are invalid or have already been re-submitted and paid under a different reference."
+                                expenses are invalid or have already been re-submitted and paid under a different reference."
                 ></yes-no-radio>
 
             </div>
@@ -84,12 +68,25 @@
     import YesNoRadio from "../../YesNoRadio";
 
     export default {
+        props: {
+            initialPayload: {
+                required: false,
+                default: null
+            }
+        },
+
         data() {
             return {
                 payload: {
                     present: null,
                     data: []
                 }
+            }
+        },
+
+        created() {
+            if(this.initialPayload !== null) {
+                this.payload = this.initialPayload;
             }
         },
 

@@ -10,11 +10,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="corrections in input">
-                <td>#{{corrections.id}}</td>
-                <td>{{corrections.note}}</td>
+            <tr>
+                <td>#{{input.id}}</td>
+                <td>{{input.note}}</td>
                 <td>
-                    <span v-for="document in corrections.treasurer_sign_off_documents"
+                    <span v-for="document in input.treasurer_sign_off_documents"
                           v-html="downloadable(document.id)" style="display: block;"></span>
                 </td>
             </tr>

@@ -17,6 +17,7 @@ class Submission extends Model
         'has_outstanding_invoices' => 'boolean',
         'has_unauthorized_expense_claims' => 'boolean',
         'has_corrections' => 'boolean',
+        'complete' => 'boolean'
     ];
 
     protected $fillable = [
@@ -28,6 +29,7 @@ class Submission extends Model
         'has_outstanding_invoices',
         'has_missing_income_and_expenditure',
         'has_corrections',
+        'complete'
     ];
 
     public function user()
@@ -58,12 +60,12 @@ class Submission extends Model
 
     public function correction()
     {
-        return $this->hasMany(Correction::class);
+        return $this->hasOne(Correction::class);
     }
 
     public function missingIncomeAndExpenditure()
     {
-        return $this->hasMany(MissingIncomeAndExpenditure::class);
+        return $this->hasOne(MissingIncomeAndExpenditure::class);
     }
 
     public function outstandingInvoice()
@@ -76,5 +78,28 @@ class Submission extends Model
     {
         return $this->hasMany(UnauthorizedExpenseClaim::class);
 
+    }
+
+    public function validate()
+    {
+        // TODO Validate properly
+        /*
+         * To be valid, each bit must either be false, or have a related model
+         */
+        return $this->validateAnswer($this->has_unauthorized_expense_claims, $this->unauthorizedExpenseClaim->first())
+            && $this->validateAnswer($this->has_outstanding_invoices, $this->outstandingInvoice->first())
+            && $this->validateAnswer($this->has_missing_income_and_expenditure, $this->missingIncomeAndExpenditure)
+            && $this->validateAnswer($this->has_corrections, $this->correction);
+
+    }
+
+    protected function validateAnswer($present, $data)
+    {
+        if($present === true) {
+            return $data !== null;
+        } elseif($present === false) {
+            return true;
+        }
+        return false;
     }
 }

@@ -2,18 +2,6 @@
     <div>
         <div class="row">
             <div class="col-xs-12">
-                <h3>Outstanding Invoices</h3>
-                <h4>
-                    <small>Are there any outstanding invoices that you are aware of that are not on the reports? Perhaps
-                        invoices that you are disputing with a supplier, or which your group hasn’t had the funds to
-                        pay?
-                    </small>
-                </h4>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12">
 
                 <yes-no-radio
                         no="No, all the invoices for the year to date are showing on the Trans List."
@@ -24,77 +12,75 @@
 
             </div>
         </div>
+        <br/>
 
-        <div class="row" v-if="payload.present">
-            <div class="col-md-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            Title
-                        </div>
-                        <div class="col-md-2">
-                            Invoice
-                        </div>
-                        <div class="col-md-2">
-                            Authorized
-                        </div>
-                        <div class="col-md-2">
+        <div v-if="showNewForm">
+            <new-invoice-form
+                @submit="newInvoice">
 
-                        </div>
-                        <div class="col-md-2">
-
-                        </div>
-                    </div>
+            </new-invoice-form>
+        </div>
+        <div v-else>
+            <div class="row" v-if="payload.present">
+                <div class="col-md-12">
+                    <button @click="showNewForm = true;" class="btn btn-info" style="margin: auto; width: 40%">
+                        Record Outstanding Invoice
+                    </button>
                 </div>
             </div>
-
-            <div class="col-md-12">
-                <div class="container">
-                    <div class="row" v-for="invoice_id in payload.data">
-                        <div class="col-md-12">
+            <div class="row" v-if="payload.present && payload.data.length > 0">
+                <div class="col-md-12">
+                    <table class="table table-striped table-hover table-condensed ">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Invoice</th>
+                            <th>Authorised</th>
+                            <th>Notes</th>
+                            <th>Documents</th>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody v-for="invoice_id in payload.data">
                             <outstanding-invoice-information
                                     :initial_id="invoice_id"
                                     @remove="remove">
 
                             </outstanding-invoice-information>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
-
-            <div class="col-md-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <outstanding-invoice-information
-                                    @created="save">
-
-                            </outstanding-invoice-information>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-
     </div>
 </template>
 
 <script>
     import OutstandingInvoiceInformation from './OutstandingInvoiceInformation';
     import YesNoRadio from "../../YesNoRadio";
+    import NewInvoiceForm from "./NewInvoiceForm";
 
     export default {
+        props: {
+            initialPayload: {
+                required: false,
+                default: null
+            }
+        },
+
         data() {
             return {
                 payload: {
                     present: null,
                     data: []
-                }
+                },
+                showNewForm: false
             }
         },
 
         components: {
+            NewInvoiceForm,
             YesNoRadio,
             OutstandingInvoiceInformation
         },
@@ -110,6 +96,7 @@
 
         methods: {
             save(id) {
+                console.log('saving id ' + id);
                 this.payload.data.push(id);
             },
 
@@ -117,8 +104,32 @@
                 this.payload.data.splice(this.payload.data.indexOf(id), 1);
             },
 
+            newInvoice(invoice) {
+                console.log(invoice);
+                // Save or update
+                let formData = new FormData();
+                formData.append('invoice', invoice.invoice);
+                for (let i = 0; i < invoice.documents.length; i++) {
+                    formData.append('documents[' + i + ']', invoice.documents[i]);
+                }
+                formData.append('title', invoice.title);
+                formData.append('note', invoice.note);
+                formData.append('authorized', invoice.authorized);
+                this.$http.post('/exitingtreasurer/api/invoices', formData)
+                    .then(response => {
+                        console.log(response);
+                        this.save(response.data.id)
+                    })
+                    .catch(error => this.$notify.alert('Could not save the invoice: ' + error.message))
+                    .then(() => this.showNewForm = false);
+            }
+        },
 
-
+        created() {
+            if(this.initialPayload !== null) {
+                console.log(this.initialPayload);
+                this.payload = this.initialPayload;
+            }
         }
 
     }

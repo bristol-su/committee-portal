@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <date-viewer
-                                :date="submission.created_at"></date-viewer>
+                                :date="submission.updated_at"></date-viewer>
                     </td>
                 </tr>
 

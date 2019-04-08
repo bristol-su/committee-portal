@@ -1,39 +1,17 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    {{invoice.title}}
-                </div>
-                <div class="col-md-2">
-                    <span v-html="invoiceLink"></span>
-                </div>
-                <div class="col-md-2">
-                    <span v-html="boolToFA(invoice.authorized)"></span>
-                </div>
-                <div class="col-md-2">
-                    <button @click="showModal" v-if="!exists" class="btn btn-sm btn-outline-info">New Invoice</button>
-                </div>
-                <div class="col-md-2">
-                    <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
-                    <button @click="save" class="btn btn-sm btn-success" v-if="!exists">Save</button>
-                </div>
-            </div>
-        </div>
+    <tr>
+        <td>{{invoice.title}}</td>
+        <td v-html="invoiceLink"></td>
+        <td v-html="boolToFA(invoice.authorized)"></td>
+        <td>{{invoice.note}}</td>
+        <td>
+            <a v-for="document in invoice.treasurer_sign_off_documents" :href="downloadDocument(document)">Download | </a>
+        </td>
+        <td>
+            <button @click="remove" class="btn btn-sm btn-danger" v-if="exists">Delete</button>
+        </td>
+    </tr>
 
-        <modal
-                height="auto"
-                name="new-outstanding-invoice-form"
-        >
-
-            <new-invoice-form
-                    :initial_invoice="invoice"
-                    @submit="saveDetails"
-                    @close="closeModal"
-            >
-            </new-invoice-form>
-        </modal>
-    </div>
 </template>
 
 <script>
@@ -155,6 +133,9 @@
                 return '<i class="fa fa-times" style="color: red; height: 10px;"></i>';
             },
 
+            downloadDocument(document) {
+                return '/exitingtreasurer/download/'+document.id;
+            }
         },
 
         computed: {

@@ -28,13 +28,6 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        View::composer('exitingtreasurer::exitingtreasurer', function($view) {
-            $documents = Document::where([
-                'year' => getReaffiliationYear(),
-                'group_id' => Auth::user()->getCurrentRole()->group->id
-            ])->get();
-            return $view->with('documents', $documents);
-        });
     }
 
     /**
