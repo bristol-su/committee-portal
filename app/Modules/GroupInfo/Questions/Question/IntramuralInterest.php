@@ -17,11 +17,12 @@ class IntramuralInterest extends BaseQuestion
 {
 
     use CanSeeGroupTags;
-    public $name = 'Intramural Interest';
+    public $name = 'Intramural';
 
     public $identity = 'intramural_interest';
 
-    public $helpText = 'Would you considering entering team(s) into the Bristol SU Intramural Sport League in 2019/20?';
+    public $helpText = 'Anyone can play in the Bristol SU intramural sports league. Would your group be interested in '.
+                        'taking part in one of our <a target="_blank" href="https://www.bristolsu.org.uk/intramural">social sporting leagues</a>?';
 
     public $type = 'radio';
 

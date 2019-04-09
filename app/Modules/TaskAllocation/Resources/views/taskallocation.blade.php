@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
-                    <h2 class="">Reaffiliation Task Allocation</h2>
+                    <h2 class="">Task Allocation</h2>
                     <p class="">The key to great leadership is delegation... This is your chance to allocate a number of
                         specific reaffiliation tasks to members of your committee (although you will have permissions to
                         complete them yourself if you wish). Please use the options below to tell us who on your committee

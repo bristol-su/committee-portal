@@ -14,6 +14,11 @@
                         libel or defamation. Please read the following statement and tick to confirm you understand,
                         agree and will take responsibility to ensure relevant members of your committee are briefed on
                         their responsibilities.</p>
+                    <p>
+                        <statement>
+
+                        </statement>
+                    </p>
                 </div>
             </div>
             <br/>

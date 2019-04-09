@@ -8,9 +8,9 @@
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
                     <h2 class="">Notifications</h2>
-                    <p class="">At key points in the year we'll aim to get in touch with your committee about
-                        opportunities relevant to your group. It helps for us to have a primary contact we can go to, so
-                        you can decide here who you would like to receive what information.</p>
+                    <p class="">At key points in the year we'll aim to get in touch with your group about
+                        opportunities relevant to you. Please let us know who you would like to be the main point of
+                        contact for the following communications.</p>
 
                 </div>
             </div>

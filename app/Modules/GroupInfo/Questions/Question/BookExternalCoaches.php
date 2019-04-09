@@ -18,7 +18,7 @@ class BookExternalCoaches extends BaseQuestion
 
     use CanSeeGroupTags;
 
-    public $name = 'Book External Coaches/Instructors';
+    public $name = 'Non-Student Coaches/Instructors';
 
     public $identity = 'external_coaches';
 

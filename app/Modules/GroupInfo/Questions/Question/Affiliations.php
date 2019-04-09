@@ -22,7 +22,7 @@ class Affiliations extends BaseQuestion
 
     public $identity = 'affiliations';
 
-    public $helpText = 'Does your group have affiliations to other organisations (e.g. governing bodies, another SU)?';
+    public $helpText = 'Is your group a member of any organisations/governing bodies other than Bristol SU? Is your group jointly run by another organisation e.g. UWE?';
 
     public $type = 'radio';
 

@@ -10,18 +10,15 @@
             <div class="row">
                 <div class="col-md-12"><h2>Thank you!</h2></div>
                 <div class="col-md-12" style="text-align: left;">
-                    <p class="">
-                        Thank you- you told us that your new {{strtolower($position_name)}} is {{$forename}} {{$surname}}.
-                        Please note that until the new committee has completed reaffiliation you will still be able to
-                        login to this portal.
-                    </p>
-
                     <p>
-                        We hope you've enjoyed the year as much as we have, and can't thank you enough for all the work
-                        you've put into running {{$group_name}}.
+                        We hope you've enjoyed the year as much as we have, we appreciate all the
+                        work you have put into running {{$group_name}} this year and wish you the very best of luck for
+                        the future. We look forward to working with your new {{strtolower($position_name)}}, {{$forename}} {{$surname}}, but don't forget that you
+                        will continue to have access to the portal until your group has fully affiliated.
                     </p>
 
-                    <p>Very best of luck for the future from all of us at Bristol SU!</p>
+                    <p>Thanks again from all of us at Bristol SU!</p>
+
                 </div>
             </div>
 

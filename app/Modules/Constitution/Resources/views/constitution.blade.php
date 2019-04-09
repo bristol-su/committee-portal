@@ -8,9 +8,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Constitution</h2>
-                    <p>Your constitution sets out how your group operates, and what your members can expect from your
-                        committee. We need to keep an updated constitution on file for every student group, please
-                        submit yours below.</p>
+                    <p>Your group's constitution sets out how you plan to operate, and what your members can expect from
+                        your committee. Please read over your constitution before you upload it to make sure it is still
+                        relevant for your group. If changes need to be made they should be done at a general meeting of
+                        your members with at least 2/3rds present. Minor changes such as removal of out of date policy
+                        and references to old systems (MSL) can be made without a general meeting. </p>
                 </div>
             </div>
             <div class="row">

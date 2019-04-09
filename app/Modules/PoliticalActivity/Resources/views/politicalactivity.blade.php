@@ -10,11 +10,11 @@
             <div class="row" style="text-align: center;">
                 <div class="col-md-12">
                     <h2 class="">Political Activity</h2>
-                    <p class="">All student groups affiliated to Bristol SU (a registered charity) and who have links to
-                        political parties, need to be mindful of what restrictions charity law places on your
-                        activities. Please read the following statement and tick to confirm you understand, agree and
-                        will take responsibility to ensure relevant members of your committee are briefed on their
-                        responsibilities.</p>
+                    <p class="">Bristol SU is a charity and as such Bristol SU and its affiliated student groups must comply with the law’s requirements for charities.</p>
+
+                        <p>Please read the following statement regarding political groups before proceeding.</p>
+
+                    <statement></statement>
                 </div>
             </div>
             <br/>

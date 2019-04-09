@@ -28,6 +28,10 @@ class LoadStudentTagsFromControl
                 $student = Student::find($studentId);
                 $studentTags = StudentTag::allThrough($student);
 
+                if($studentTags === false) {
+                    return Collection::make([]);
+                }
+
                 return $studentTags;
             });
         } else {

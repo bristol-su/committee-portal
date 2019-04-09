@@ -4,7 +4,7 @@
             <div class="card text-black bg-white mb-0">
 
                 <div class="card-header">
-                    <h4 class="m-0">Add a new committee member for your society. Anyone you add must have an account
+                    <h4 class="m-0">Add a new committee member for your group. Anyone you add must have an account
                         on
                         our
                         <a href="https://www.bristolsu.org.uk">website!</a></h4>

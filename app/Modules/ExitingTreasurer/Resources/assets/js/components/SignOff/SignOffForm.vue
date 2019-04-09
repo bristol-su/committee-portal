@@ -5,7 +5,7 @@
                 <div class="card" style="height: 100%">
                     <div class="card-header">
                         <h3 class="card-title">{{content.header}}</h3>
-                        <h5 class="card-subtitle mb-2 text-muted" style="text-align: left;">{{content.subtitle}}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted" style="text-align: left;" v-html="content.subtitle"></h5>
 
                     </div>
                     <div class="card-body">
@@ -113,17 +113,16 @@
                     {
                         id: 'unauthorized-expense-claim',
                         header: 'Unauthorized Expense Claims',
-                        subtitle: 'If there are any unauthorised expense claims (have a reference number beginning PQU' +
-                            ' and  marked at the end of the line with an asterisk) showing on the transaction list that ' +
-                            'will never be authorised because there was a problem with them please let us know, so ' +
-                            'we can delete them. If there are any outstanding claims on the App which you haven’t ' +
-                            'authorised yet, please authorised them.',
+                        subtitle: 'Unauthorised expense claims will appear on your transaction list with a reference number beginning PQU and be marked with an asterisk. ' +
+                            ' <ul><li>If there are any outstanding claims on the App which you haven\'t authorised yet, please do so now</li> ' +
+                            ' <li>If there are claims that will never be authorised because they were made in error or there was a ' +
+                            'problem with the claim please let us know so they can be deleted</li></ul>',
                         shouldSave: true,
                     },
                     {
                         id: 'outstanding-invoice',
                         header: 'Outstanding Invoices',
-                        subtitle: 'Are there any outstanding invoices that you are aware of that are not on the reports? Perhaps invoices that you are disputing with a supplier, or which your group hasn’t had the funds to pay?',
+                        subtitle: 'After viewing your reports are you aware of any invoices that have not yet be processed? This could be because they have just been recieved from your supplier, you don\'t currently have the funds to pay the invoice or perhaps you are disputing the amount with a supplier.',
                         shouldSave: true,
                     },
                     {
@@ -141,7 +140,7 @@
                     {
                         id: 'save',
                         header: 'Review & Submit',
-                        subtitle: '',
+                        subtitle: 'Before you confirm and click save please review all your answers as you will not be able to make changes once you save this page.',
                         shouldSave: false,
                     },
                 ],

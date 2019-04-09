@@ -1,5 +1,6 @@
 import LibelDefamationSubmission from './components/Submission';
 import LibelDefamationSubmissions from './components/Submissions';
+import Statement from './components/Statement';
 
 
 new Vue({
@@ -7,6 +8,7 @@ new Vue({
 
     components: {
         LibelDefamationSubmission,
-        LibelDefamationSubmissions
+        LibelDefamationSubmissions,
+        Statement
     }
 })
