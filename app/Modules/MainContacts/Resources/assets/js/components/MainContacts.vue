@@ -103,7 +103,7 @@
                 this.form.post('/maincontacts')
                     .then(response => {
                         this.$notify.success('Updated your contact preferences.');
-                        window.location.assign(process.env.MIX_APP_URL + '/portal');
+                        window.location.href = process.env.MIX_APP_URL + '/portal';
                     })
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your contacts: ' + error.message);

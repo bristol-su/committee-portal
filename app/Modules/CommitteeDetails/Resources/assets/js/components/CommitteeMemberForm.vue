@@ -151,7 +151,7 @@
                         })
                         .catch(error => {
                             this.$notify.alert('Committee member couldn\'t be saved.');
-                            this.form.errors.record(error.errors);
+                            this.form.errors.record(error.response.data.errors);
                             this.submitting = false;
                         });
                 }

@@ -102,7 +102,7 @@
                 this.form.post('/taskallocation')
                     .then(response => {
                         this.$notify.success('Updated your task preferences.');
-                        window.location.assign(process.env.MIX_APP_URL + '/portal');
+                        window.location.href = process.env.MIX_APP_URL + '/portal';
                     })
                     .catch(error => {
                         this.$notify.alert('Something went wrong updating your tasks: ' + error.message);

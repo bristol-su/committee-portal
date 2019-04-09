@@ -69,7 +69,6 @@
             return {
                 committee_members: [],
                 editingCommitteeMember: null,
-                showForm: false
             }
         },
 
