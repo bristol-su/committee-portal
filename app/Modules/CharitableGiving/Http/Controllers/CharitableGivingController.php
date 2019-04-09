@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Modules\CharitableGiving\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class CharitableGivingController extends Controller
+{
+    public function showUserPage()
+    {
+        $this->authorize('charitablegiving.view');
+
+        return view('charitablegiving::charitablegiving');
+    }
+
+    public function showAdminPage()
+    {
+        $this->authorize('charitablegiving.view-admin');
+
+        return view('charitablegiving::admin');
+    }
+}

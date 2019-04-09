@@ -43,7 +43,11 @@ public function alias()
     {
 if(!$this->actingAsStudent()) { return false; } ;
         $group = Auth::user()->getCurrentRole()->group;
-        return CommitteeRole::allThrough($group)->filter(function($role) {
+        $position = CommitteeRole::allThrough($group);
+        if($position === false) {
+            return false;
+        }
+        return $position->filter(function($role) {
             return $role->committee_year === getReaffiliationYear()
                 && in_array($role->position->id, config('portal.position_grouping.presidents'));
         })->count() > 0;

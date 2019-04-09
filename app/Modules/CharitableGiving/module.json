@@ -1,0 +1,16 @@
+{
+    "name": "CharitableGiving",
+    "alias": "charitablegiving",
+    "description": "",
+    "keywords": [],
+    "active": 0,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\CharitableGiving\\Providers\\CharitableGivingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\CharitableGiving\\ModuleConfiguration",
+    "in_development": true
+}

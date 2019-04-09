@@ -190,5 +190,9 @@
     "/js/exitingtreasurer.31a2cf13b71c78f55430.hot-update.js": "/js/exitingtreasurer.31a2cf13b71c78f55430.hot-update.js",
     "/js/exitingtreasurer.00c20791376e71f1563f.hot-update.js": "/js/exitingtreasurer.00c20791376e71f1563f.hot-update.js",
     "/js/exitingtreasurer.3506aa76ba5074ad9160.hot-update.js": "/js/exitingtreasurer.3506aa76ba5074ad9160.hot-update.js",
-    "/js/portal.js": "/js/portal.js"
+    "/js/portal.js": "/js/portal.js",
+    "/css/charitablegiving.css": "/css/charitablegiving.css",
+    "/css/gdpr.css": "/css/gdpr.css",
+    "/js/charitablegiving.js": "/js/charitablegiving.js",
+    "/js/gdpr.js": "/js/gdpr.js"
 }

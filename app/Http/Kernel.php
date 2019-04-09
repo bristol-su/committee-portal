@@ -115,12 +115,12 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        EnsureEmailIsVerified::class,
-        CheckIfAdmin::class,
         AuthenticateUserGuard::class,
+        CheckIfAdmin::class,
+        EnsureEmailIsVerified::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
         LoadStudentTagsFromControl::class,
         LoadGroupTagsFromControl::class,
-        \Illuminate\Auth\Middleware\Authorize::class,
         CheckModuleDevelopmentStatus::class
     ];
 }

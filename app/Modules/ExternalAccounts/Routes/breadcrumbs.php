@@ -12,3 +12,12 @@ use \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 |
 */
 
+Breadcrumbs::for('externalaccounts.user', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('portal');
+    $trail->push('External Accounts', route('externalaccounts.user'));
+});
+
+Breadcrumbs::for('externalaccounts.admin', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin');
+    $trail->push('External Accounts', route('constitution.externalaccounts'));
+});

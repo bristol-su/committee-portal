@@ -2,11 +2,11 @@
 
 namespace App\Modules\ExternalAccounts\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
