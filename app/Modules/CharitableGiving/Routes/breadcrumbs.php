@@ -19,5 +19,5 @@ Breadcrumbs::for('charitablegiving.user', function(BreadcrumbsGenerator $trail) 
 
 Breadcrumbs::for('charitablegiving.admin', function(BreadcrumbsGenerator $trail) {
     $trail->parent('admin');
-    $trail->push('Charitable Giving', route('constitution.charitablegiving'));
+    $trail->push('Charitable Giving', route('charitablegiving.admin'));
 });

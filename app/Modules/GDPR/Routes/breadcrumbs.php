@@ -19,5 +19,5 @@ Breadcrumbs::for('gdpr.user', function(BreadcrumbsGenerator $trail) {
 
 Breadcrumbs::for('gdpr.admin', function(BreadcrumbsGenerator $trail) {
     $trail->parent('admin');
-    $trail->push('GDPR', route('constitution.gdpr'));
+    $trail->push('GDPR', route('gdpr.admin'));
 });

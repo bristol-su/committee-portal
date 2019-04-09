@@ -2,17 +2,34 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\AuthenticateUserGuard;
 use App\Http\Middleware\CheckAdminCanViewAsStudent;
+use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\CheckIfAdmin;
 use App\Http\Middleware\CheckModuleActive;
 use App\Http\Middleware\CheckModuleDevelopmentStatus;
+use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\LoadGroupTagsFromControl;
 use App\Http\Middleware\LoadStudentTagsFromControl;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\TrimStrings;
+use App\Http\Middleware\TrustProxies;
+use App\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use RenatoMarinho\LaravelPageSpeed\Middleware\InLinePreviewImages;
-use RenatoMarinho\LaravelPageSpeed\Middleware\MakeGoogleAnalyticsAsync;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
+use Illuminate\Http\Middleware\SetCacheHeaders;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Routing\Middleware\ValidateSignature;
+use Illuminate\Session\Middleware\AuthenticateSession;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class Kernel extends HttpKernel
 {
@@ -24,11 +41,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \App\Http\Middleware\CheckForMaintenanceMode::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
+        CheckForMaintenanceMode::class,
+        ValidatePostSize::class,
+        TrimStrings::class,
+        ConvertEmptyStringsToNull::class,
+        TrustProxies::class,
 
         // Minify HTML
 //        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
@@ -47,16 +64,16 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => Authenticate::class,
         'committee-role' => AuthenticateUserGuard::class,
         'is-admin' => CheckIfAdmin::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.basic' => AuthenticateWithBasicAuth::class,
+        'bindings' => SubstituteBindings::class,
+        'cache.headers' => SetCacheHeaders::class,
+        'can' => Authorize::class,
+        'guest' => RedirectIfAuthenticated::class,
+        'signed' => ValidateSignature::class,
+        'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'module.active' => CheckModuleActive::class,
         'module.maintenance' => CheckModuleDevelopmentStatus::class,
@@ -69,13 +86,13 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            ShareErrorsFromSession::class,
+            VerifyCsrfToken::class,
+            SubstituteBindings::class,
         ],
 
         'api' => [
@@ -110,17 +127,76 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewarePriority = [
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-        \App\Http\Middleware\Authenticate::class,
-        \Illuminate\Session\Middleware\AuthenticateSession::class,
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        AuthenticateUserGuard::class,
-        CheckIfAdmin::class,
+        /*
+         * Request Middleware
+         */
+
+        // Start the current session
+        StartSession::class,
+
+        // Share errors from the session
+        ShareErrorsFromSession::class,
+
+        // Load authentication information from the session (?)
+        AuthenticateSession::class,
+
+        // Allow for route model binding
+        SubstituteBindings::class,
+
+        // Validate the request signature (?)
+        ValidateSignature::class,
+
+        // Verify the CSRF token
+        VerifyCsrfToken::class,
+
+        // Throttle requests
+        ThrottleRequests::class,
+
+        // Check the user is logged in
+        Authenticate::class,
+
+        // Check the user is logged in (not used)
+        AuthenticateWithBasicAuth::class,
+
+        // Redirect a logged out user to the login page when authenticated
+        RedirectIfAuthenticated::class,
+
+        // Check a users email is verified
         EnsureEmailIsVerified::class,
-        \Illuminate\Auth\Middleware\Authorize::class,
+
+        // Log into a committee role
+        AuthenticateUserGuard::class,
+
+        // Check if the current user is an admin
+        CheckIfAdmin::class,
+
+        // Authorization middleware for use with can:
+        Authorize::class,
+
+        // Check a module is active when being accessed
+        CheckModuleActive::class,
+
+        // Load all student tags for the current user from control
         LoadStudentTagsFromControl::class,
+
+        // Load all group tags for the current users group from control
         LoadGroupTagsFromControl::class,
-        CheckModuleDevelopmentStatus::class
+
+        // Show maintenance page if a module is down for maintenance
+        CheckModuleDevelopmentStatus::class,
+
+
+        /*
+         * Response Middleware
+         */
+
+        // Set cache headers on the response
+        SetCacheHeaders::class,
+
+        // Add cookies to response
+        AddQueuedCookiesToResponse::class,
+
+        // Encrypt cookies on response
+        EncryptCookies::class,
     ];
 }

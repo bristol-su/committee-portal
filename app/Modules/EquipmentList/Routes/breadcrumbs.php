@@ -19,5 +19,5 @@ Breadcrumbs::for('equipmentlist.user', function(BreadcrumbsGenerator $trail) {
 
 Breadcrumbs::for('equipmentlist.admin', function(BreadcrumbsGenerator $trail) {
     $trail->parent('admin');
-    $trail->push('Equipment List', route('constitution.equipmentlist'));
+    $trail->push('Equipment List', route('equipmentlist.admin'));
 });

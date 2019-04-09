@@ -16,5 +16,5 @@ Route::prefix('gdpr')->middleware(['user', 'module', 'module.active:gdpr', 'modu
 });
 
 Route::prefix('admin/gdpr')->middleware(['admin', 'module', 'module.active:gdpr', 'module.maintenance:gdpr'])->group(function() {
-    Route::get('/', 'GDPRController@showAdminPage')->name('gdpr.user');
+    Route::get('/', 'GDPRController@showAdminPage')->name('gdpr.admin');
 });

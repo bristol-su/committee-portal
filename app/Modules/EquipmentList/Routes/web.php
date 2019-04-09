@@ -16,5 +16,5 @@ Route::prefix('equipmentlist')->middleware(['user', 'module', 'module.active:equ
 });
 
 Route::prefix('admin/equipmentlist')->middleware(['admin', 'module', 'module.active:equipmentlist', 'module.maintenance:equipmentlist'])->group(function() {
-    Route::get('/', 'EquipmentListController@showAdminPage')->name('equipmentlist.user');
+    Route::get('/', 'EquipmentListController@showAdminPage')->name('equipmentlist.admin');
 });

@@ -20,5 +20,6 @@ class GDPRController extends Controller
         $this->authorize('gdpr.view-admin');
 
         return view('gdpr::admin');
+
     }
 }

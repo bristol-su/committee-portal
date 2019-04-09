@@ -1,4 +1,4 @@
-@extends('charitablegiving::layouts.app')
+@extends('layouts.app')
 
 
 @section('content')

@@ -10,6 +10,7 @@ namespace App\Authentication;
 
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 class ViewAsStudent implements Authenticatable
 {
@@ -25,6 +26,7 @@ class ViewAsStudent implements Authenticatable
         ];
 
         $this->group = Group::find($groupID);
+        Log::info($groupID);
     }
 
     public function getAuthIdentifier()

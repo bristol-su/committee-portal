@@ -25,21 +25,25 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
+        Gate::define('equipmentlist.module.isVisible', function(User $user) {
             return true;
         });
 
-        Gate::define('.module.isActive', function(User $user) {
+        Gate::define('equipmentlist.module.isActive', function(User $user) {
             return true;
         });
 
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
+        Gate::define('equipmentlist.reaffiliation.isMandatory', function(User $user) {
+            return true;
         });
 
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
+        Gate::define('equipmentlist.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
         });
 
-
+        Gate::define('equipmentlist.view', function(User $user) {
+            return true;
+        });
     }
 
     /**

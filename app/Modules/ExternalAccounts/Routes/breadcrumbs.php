@@ -19,5 +19,5 @@ Breadcrumbs::for('externalaccounts.user', function(BreadcrumbsGenerator $trail) 
 
 Breadcrumbs::for('externalaccounts.admin', function(BreadcrumbsGenerator $trail) {
     $trail->parent('admin');
-    $trail->push('External Accounts', route('constitution.externalaccounts'));
+    $trail->push('External Accounts', route('externalaccounts.admin'));
 });
