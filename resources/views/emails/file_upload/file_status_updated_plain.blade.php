@@ -1,5 +1,3 @@
-@component('mail::message')
-
 Hi {{$file->user->forename}}!
 
 A file you uploaded to the Committee Portal has been reviewed by our staff and changed to '{{ucwords($file->status)}}'.
@@ -13,6 +11,3 @@ and check out any notes left.
 
 Regards,<br/>
 Bristol SU
-
-
-@endcomponent

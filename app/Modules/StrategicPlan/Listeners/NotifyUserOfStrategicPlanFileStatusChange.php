@@ -2,7 +2,7 @@
 
 namespace App\Modules\StrategicPlan\Listeners;
 
-use App\Mail\DefaultDocumentStatusChanged;
+use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Modules\StrategicPlan\Entities\File;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,6 +29,6 @@ class NotifyUserOfStrategicPlanFileStatusChange implements ShouldQueue
      */
     public function handle($file)
     {
-        Mail::to($file->user->email)->send(new DefaultDocumentStatusChanged($file, 'Strategic Plan Status Updated'));
+        Mail::to($file->user->email)->send(new DocumentStatusChanged($file, 'Strategic Plan Status Updated'));
     }
 }

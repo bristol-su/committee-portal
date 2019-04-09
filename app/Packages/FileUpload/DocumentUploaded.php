@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Mail;
+namespace App\Packages\FileUpload;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DefaultDocumentStatusChanged extends Mailable implements ShouldQueue
+class DocumentUploaded extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -35,6 +35,7 @@ class DefaultDocumentStatusChanged extends Mailable implements ShouldQueue
     {
         return $this
             ->subject($this->subject)
-            ->markdown('emails.default_file_status_updated');
+            ->markdown('emails.file_upload.file_uploaded')
+            ->text('emails.file_upload.file_uploaded_plain');
     }
 }

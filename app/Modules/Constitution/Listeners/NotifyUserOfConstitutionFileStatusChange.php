@@ -2,7 +2,7 @@
 
 namespace App\Modules\Constitution\Listeners;
 
-use App\Mail\DefaultDocumentStatusChanged;
+use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Modules\Constitution\Entities\File;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
@@ -27,6 +27,6 @@ class NotifyUserOfConstitutionFileStatusChange implements ShouldQueue
      */
     public function handle($file)
     {
-        Mail::to($file->user->email)->send(new DefaultDocumentStatusChanged($file, 'Constitution Status Updated'));
+        Mail::to($file->user->email)->send(new DocumentStatusChanged($file, 'Constitution Status Updated'));
     }
 }
