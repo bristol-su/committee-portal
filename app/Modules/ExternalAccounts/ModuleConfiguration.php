@@ -36,13 +36,13 @@ public function alias()
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        if(!$this->actingAsStudent()) { return false; } ;
         return false;
     }
 
     public function getDescription()
     {
-        return 'This is the external accounts module';
+        return 'This page captures details about your external bank account. This is where you will submit details of your externally audited accounts.';
     }
 
     public function getAdminHeaderKey()

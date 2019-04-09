@@ -43,7 +43,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
 if(!$this->actingAsStudent()) { return false; } ;
         $group = Auth::user()->getCurrentRole()->group;
         $positionSetting = PositionSetting::where('tag_reference', $group->getGroupType())->get()->first();
-        $positions = CommitteeRole::allThrough($group)->filter(function($role) {
+        if(($positions = CommitteeRole::allThrough($group)) === false) {
+            return false;
+        }
+        $positions = $positions->filter(function($role) {
             return $role->committee_year === getReaffiliationYear();
         });
         $positions = $positions->map(function($role) {

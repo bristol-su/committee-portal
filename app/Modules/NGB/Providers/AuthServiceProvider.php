@@ -25,19 +25,26 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Gate::define('.module.isVisible', function(User $user) {
+        Gate::define('ngb.module.isVisible', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'ngb_safety_statement');
+        });
+
+        Gate::define('ngb.module.isActive', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'ngb_safety_statement');
+        });
+
+        Gate::define('ngb.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'ngb_safety_statement');
+        });
+
+        Gate::define('ngb.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('ngb.view', function(User $user) {
             return true;
         });
 
-        Gate::define('.module.isActive', function(User $user) {
-            return true;
-        });
-
-        Gate::define('.reaffiliation.isMandatory', function(User $user) {
-        });
-
-        Gate::define('.reaffiliation.isResponsible', function(User $user) {
-        });
     }
 
     /**

@@ -36,13 +36,13 @@ public function alias()
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        if(!$this->actingAsStudent()) { return false; } ;
         return false;
     }
 
     public function getDescription()
     {
-        return 'This is the ngb module';
+        return 'This page allows us to understand how you comply with your governing body\'s safety standards.';
     }
 
     public function getAdminHeaderKey()

@@ -1,0 +1,25 @@
+{
+    "name": "bristol-su/gdpr",
+    "description": "",
+    "authors": [
+        {
+            "name": "Toby Twigger",
+            "email": "tt15951@bristol.ac.uk"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "App\\Modules\\GDPR\\Providers\\GDPRServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\Modules\\GDPR\\": ""
+        }
+    }
+}

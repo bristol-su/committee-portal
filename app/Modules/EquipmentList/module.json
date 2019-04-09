@@ -3,7 +3,7 @@
     "alias": "equipmentlist",
     "description": "",
     "keywords": [],
-    "active": 0,
+    "active": 1,
     "order": 8,
     "providers": [
         "App\\Modules\\EquipmentList\\Providers\\EquipmentListServiceProvider"

@@ -19,7 +19,6 @@ class CheckIfAdmin
         if (!Auth::user()->isAdmin()) {
             abort(403, 'You are not an administrator.');
         }
-
         return $next($request);
     }
 }

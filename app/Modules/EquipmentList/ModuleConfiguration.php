@@ -7,12 +7,12 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+    protected $mandatoryForReaffiliation = true;
+
     public function alias()
     {
         return 'equipmentlist';
     }
-
-    protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
     {
@@ -36,13 +36,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
         return false;
     }
 
     public function getDescription()
     {
-        return 'This is the equipment list module';
+        return 'This page allows you to track the equipment that [student group name] owns. It also allows Bristol SU to log any items with a value of over £500 for auditing purposes.';
     }
 
     public function getAdminHeaderKey()

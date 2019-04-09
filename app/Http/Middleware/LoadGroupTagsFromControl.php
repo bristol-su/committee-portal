@@ -21,16 +21,19 @@ class LoadGroupTagsFromControl
      */
     public function handle($request, Closure $next)
     {
-        $groupId = getGroupID();
-        $groupTags = Cache::remember('Middleware.LoadGroupTagsFromControl.'.$groupId, 200, function() use ($groupId){
-
-            $group = Group::find($groupId);
-            $groupTags = GroupTag::allThrough($group);
-            if($groupTags === false) {
-                return Collection::make([]);
-            }
-            return $groupTags;
-        });
+        if(!Auth::user()->isAdmin()) {
+            $groupId = getGroupID();
+            $groupTags = Cache::remember('Middleware.LoadGroupTagsFromControl.'.$groupId, 200, function() use ($groupId){
+                $group = Group::find($groupId);
+                $groupTags = GroupTag::allThrough($group);
+                if($groupTags === false) {
+                    return Collection::make([]);
+                }
+                return $groupTags;
+            });
+        } else {
+            $groupTags = new Collection();
+        }
 
         $request->attributes->add(['auth_group_tags' => $groupTags]);
         return $next($request);
