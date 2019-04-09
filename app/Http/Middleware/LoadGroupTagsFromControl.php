@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\GroupTag;
 use Closure;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +26,9 @@ class LoadGroupTagsFromControl
 
             $group = Group::find($groupId);
             $groupTags = GroupTag::allThrough($group);
-
+            if($groupTags === false) {
+                return Collection::make([]);
+            }
             return $groupTags;
         });
 

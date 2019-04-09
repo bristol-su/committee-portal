@@ -4,11 +4,11 @@
             <div class="col-xs-12">
 
                 <yes-no-radio
-                        no="Not relevant, no PQU expenses or all the PQU expenses on the transaction
-                                list are valid and will be authorised later by the treasurer/student services."
+                        no="We have no unauthorised expenses or all unauthorised expenses are valid and will be
+                        authorised asap by the treasurer and student services"
                         v-model="payload.present"
-                        yes="Please delete the expense claims with the PQU reference numbers as attached/as below as the
-                                expenses are invalid or have already been re-submitted and paid under a different reference."
+                        yes="We have unauthorised expenses that need to be deleted from our transaction list.
+                        Once clicked you will be able to identify the transactions using the PQU reference and add evidence in the notes section."
                 ></yes-no-radio>
 
             </div>
@@ -85,7 +85,7 @@
         },
 
         created() {
-            if(this.initialPayload !== null) {
+            if (this.initialPayload !== null) {
                 this.payload = this.initialPayload;
             }
         },

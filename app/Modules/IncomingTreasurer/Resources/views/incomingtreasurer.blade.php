@@ -11,17 +11,15 @@
                     <h2 class="">Incoming Treasurer Training</h2>
                 </div>
                 <div class="col-md-12" style="text-align: left;">
-                    <p>Congratulations on becoming treasurer! Your first task to affiliate as treasurer is to complete
-                        the <a href="{{config('incomingtreasurer.training.link')}}" target="_blank">compulsory online
-                            treasurer training</a> which will give you the skills and
-                        knowledge you need to manage the group's finances, and explain BSU's processes for income and
-                        expenditure.</p>
-                    <p>Please go through the training materials, answer the questions below and then tick to confirm
-                        you agree with the statements at the end of the page. We will then contact you once the outgoing
-                        Treasurer has completed their Reaffiliation tasks. At this point you will be confirmed as the
-                        new Treasurer and will be responsible for authorising all expenses and invoice payments.
+                    <p>Congratulations! Before you become the official treasurer of your group we need you to complete our
+                        <a href="{{config('incomingtreasurer.training.link')}}" target="_blank">compulsory treasurer training</a>, without this training you will not be able to manage your groups
+                    finances and the old treasurer will not be released of their duties.</p>
 
-                    </p>
+                    <p>Our online treasurer training will give you the skills and knowledge needed to manage your groups
+                    finances, whilst also explaining Bristol SU's processes for income and expenditure (including
+                    invoices and expenses claims). Once you have finished the online training please answer the below
+                    questions. This will then allow us to upload your groups end of year Financial Statement and
+                    Transaction List for both you and the outgoing treasurer to sign off.</p>
 
                 </div>
             </div>

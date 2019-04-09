@@ -16,11 +16,13 @@ class Email extends BaseQuestion
 {
 
 
-    public $name = 'Email';
+    public $name = 'Generic Email';
 
     public $identity = 'email';
 
-    public $helpText = 'Does your sociey have a general or public facing email address?';
+    public $helpText = 'Does your group have a generic committee email that you can all check? For example, '.
+                        'bristol-su@bristol.ac.uk. Bristol SU will not share this information without permission unless '.
+                        'you have already made it publicly available via our website.';
 
     public $type = 'text';
 

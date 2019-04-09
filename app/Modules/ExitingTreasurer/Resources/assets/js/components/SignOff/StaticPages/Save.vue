@@ -81,9 +81,7 @@
                 <div class="form-check">
                     <input v-model="confirmed" class="form-check-input" id="confirmation"
                            type="checkbox">
-                    <label class="form-check-label" for="confirmation">Tick here to confirm that, other than the
-                        corrections that you have notified us of, the student group balance as shown on the Financial Summary and
-                        Transaction list is correct?</label>
+                    <label class="form-check-label" for="confirmation">Tick here to confirm that, other than the corrections you have notified us of above, your groups balance as shown on the Financial Summary and Transaction list is correct</label>
                 </div>
             </div>
         </div>

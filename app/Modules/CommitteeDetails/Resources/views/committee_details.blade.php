@@ -10,10 +10,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Committee</h2>
-                    <p class="">We need to know who is on your committee so that we can make sure they receive
-                        information relevant to their role. This is also an important step for you, and once you've
-                        declared who is on your committee you unlock a module whereby you can begin to delgate a number
-                        of the reaffiliation tasks that need to be completed. </p>
+                    <p class="">Tell us who's on your committee and we will email them with all the relevant information
+                        regarding their roles so you don't have to. By telling us whose on your committee you will
+                        unlock the ability to assign these members reaffiliation tasks so you don't have to do all the
+                        work yourself.
+                    </p>
 
                     <p></p>
                 </div>

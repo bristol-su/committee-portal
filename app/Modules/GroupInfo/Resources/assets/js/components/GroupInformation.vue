@@ -83,7 +83,7 @@
 
                         <span :id="question.identity + 'HelpBlock'"
                               class="form-text text-muted"
-                              style="text-align: left;">{{question.helpText}}</span>
+                              style="text-align: left;" v-html="question.helpText"></span>
                     </div>
                 </div>
                 <hr/>

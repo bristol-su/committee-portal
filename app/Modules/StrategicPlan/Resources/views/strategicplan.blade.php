@@ -8,10 +8,25 @@
             <div class="row">
                 <div class="col-md-12" style="text-align: left;">
                     <h2 class="">Strategic Plan</h2>
-                    <p>We would love to have your strategic plan on file, as knowing what you aim to achieve will help
-                        us plan our student group services and training to meet your needs. We have produced two
-                        different strategic plan templates, one for clubs and societies and another for volunteering
-                        projects. We are also happy to accept plans in other formats if you have your own. </p>
+                    <p>Help us to support you better by uploading a copy of your strategic plan. By sharing your
+                        aspirations with us you will be helping to plan our future services and enabling us to tailor
+                        your development meetings so you get the most out of your time with us. We have a couple of
+                        planning templates you can use below, however if you already have a plan written we can accept
+                        it in other formats.</p>
+                    <p>
+                    <ul>
+                        <li>
+                            <a href="{{serveStatic('bristol-su-strategic-planning-toolkit.docx')}}">
+                                General template
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{serveStatic('strategic-plan-template-volunteering-groups.docx')}}">
+                                Template for volunteering groups
+                            </a>
+                        </li>
+                    </ul>
+                    </p>
                 </div>
             </div>
             <div class="row">

@@ -18,11 +18,11 @@ class AssociateMembers extends BaseQuestion
 
     use CanSeeGroupTags;
 
-    public $name = 'Associate Members';
+    public $name = 'Non-Student Members';
 
     public $identity = 'associate_members';
 
-    public $helpText = 'Do you currently have, or is your group interested in attracting non-student (associate) members to your group?';
+    public $helpText = 'Do you currently have non-student (associate) members as part of your group?';
 
     public $type = 'radio';
 
@@ -79,11 +79,11 @@ class AssociateMembers extends BaseQuestion
 
     public function getAnswer(Group $group)
     {
-        if($this->groupHasTag($group, 'group_information', 'associate_members_yes')) {
+        if ($this->groupHasTag($group, 'group_information', 'associate_members_yes')) {
             return ['associate_members' => 'yes'];
-        } elseif($this->groupHasTag($group, 'group_information', 'associate_members_no')) {
+        } elseif ($this->groupHasTag($group, 'group_information', 'associate_members_no')) {
             return ['associate_members' => 'no'];
-        } elseif($this->groupHasTag($group, 'group_information', 'associate_members_unsure')) {
+        } elseif ($this->groupHasTag($group, 'group_information', 'associate_members_unsure')) {
             return ['associate_members' => 'unsure'];
         }
 

@@ -13,12 +13,15 @@
 
             <div class="row">
                 <div class="col-md-12" style="text-align: left;">
-                    <p></p>
-                    <p>Your groups
+                    <p>
+                        Once the incoming treasurer has completed the online treasurer training we will be able to
+                        upload your groups
+
                         <span class="bsu-tooltip">Finance Summary report
                             <span class="bsu-tooltiptext">
                                 The Finance Summary report summarises the group’s income and expenditure in the year and has the opening and closing balances for the                                    group account. This only includes cleared/posted transactions.</span>
                         </span>
+
                         and
                         <span class="bsu-tooltip">
                             Transaction List
@@ -31,8 +34,13 @@
                         a reference number beginning PQU).
                             </span>
                         </span>
-                        are fundamental tools in controlling your groups finance. We need to ensure our reports match your records. Once you have read these reports, start the
-                        sign-off below by clicking 'Sign-Off'.</p>
+
+                        to this page. We will email you
+                        when these documents are ready fo you to review and sign off. Once available you will be able to
+                        begin your task by clicking 'Sign-Off'.
+
+                    </p>
+
                     <br/>
 
                 </div>

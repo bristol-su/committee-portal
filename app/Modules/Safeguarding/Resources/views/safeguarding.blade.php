@@ -11,11 +11,27 @@
                     <h2 class="">Safeguarding</h2>
                 </div>
                 <div class="col-md-12">
-                    When participating in or organising activities for children, young people, or adults at risk, we all
-                    have a responsibility to safeguard those individuals. The following training gives you the basic
-                    information you need to know to carry out your responsibilities.
+                    As your group supports children, young people and/or adults at risk you are required to complete our
+                    compulsory safeguarding training before your
+                    group can reaffiliate. Our online safeguarding training will give you the skills and knowledge
+                    needed to support your members, whilst also explaining Bristol SU's process for reporting
+                    safeguarding issues. Once you have finished the online training please answer the below questions.
+
+
+                </div>
+
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <a target="_blank" href="https://xerte.bris.ac.uk/play.php?template_id=3184">
+                        <button class="btn btn-info btn-lg">
+                            Safeguarding Training
+                        </button>
+                    </a>
                 </div>
             </div>
+
             <div class="row" style="margin-top: 5%;">
                 <div class="col-md-12">
                     <user-questions>
