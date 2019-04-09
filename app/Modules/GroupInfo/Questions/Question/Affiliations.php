@@ -28,7 +28,7 @@ class Affiliations extends BaseQuestion
 
     public $required = true;
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\Affiliations::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\Affiliations::class;
 
     public $configuration = [
         'yes' => [

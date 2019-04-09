@@ -6,7 +6,7 @@
  * Time: 14:38
  */
 
-namespace App\Modules\GroupInfo\Jobs\Job\Base;
+namespace App\Modules\GroupInfo\Questions\Jobs\Base;
 
 
 use Illuminate\Bus\Queueable;

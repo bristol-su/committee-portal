@@ -26,7 +26,7 @@ class BookExternalCoaches extends BaseQuestion
 
     public $type = 'radio';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\BookExternalCoaches::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\BookExternalCoaches::class;
 
     public $required = true;
 

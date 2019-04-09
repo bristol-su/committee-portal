@@ -26,7 +26,7 @@ class ExternalAccount extends BaseQuestion
 
     public $type = 'radio';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\ExternalAccount::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\ExternalAccount::class;
 
     public $required = true;
 

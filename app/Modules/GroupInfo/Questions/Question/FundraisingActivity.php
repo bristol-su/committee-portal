@@ -13,20 +13,20 @@ use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
 use App\Packages\ControlDB\Models\Group;
 use App\Traits\CanSeeGroupTags;
 
-class IntramuralInterest extends BaseQuestion
+class FundraisingActivity extends BaseQuestion
 {
 
     use CanSeeGroupTags;
-    public $name = 'Intramural';
 
-    public $identity = 'intramural_interest';
+    public $name = 'Fundraising Activity';
 
-    public $helpText = 'Anyone can play in the Bristol SU intramural sports league. Would your group be interested in '.
-                        'taking part in one of our <a target="_blank" href="https://www.bristolsu.org.uk/intramural">social sporting leagues</a>?';
+    public $identity = 'fundraising_activity';
+
+    public $helpText = 'Are you aware of Bristol RAG and how they can support you to raise money for good causes?';
 
     public $type = 'radio';
 
-    public $job = \App\Modules\GroupInfo\Questions\Jobs\IntramuralInterest::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\FundraisingActivity::class;
 
     public $required = true;
 
@@ -35,7 +35,7 @@ class IntramuralInterest extends BaseQuestion
             'text' => 'Yes',
         ],
         'no' => [
-            'text' => 'No',
+            'text' => 'Tell me more',
         ],
     ];
 
@@ -76,13 +76,14 @@ class IntramuralInterest extends BaseQuestion
 
     public function getAnswer(Group $group)
     {
-        if($this->groupHasTag($group, 'group_information', 'intramural_interest_yes')) {
-            return ['intramural_interest' => 'yes'];
-        } elseif($this->groupHasTag($group, 'group_information', 'intramural_interest_no')) {
-            return ['intramural_interest' => 'no'];
+        if($this->groupHasTag($group, 'group_information', 'fundraising_activity_yes')) {
+            return ['fundraising_activity' => 'yes'];
+        } elseif($this->groupHasTag($group, 'group_information', 'fundraising_activity_no')) {
+            return ['fundraising_activity' => 'no'];
         }
 
         return [];
+
     }
 
 }

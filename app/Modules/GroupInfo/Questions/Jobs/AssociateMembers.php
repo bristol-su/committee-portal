@@ -6,10 +6,10 @@
  * Time: 15:10
  */
 
-namespace App\Modules\GroupInfo\Jobs\Job;
+namespace App\Modules\GroupInfo\Questions\Jobs;
 
 
-use App\Modules\GroupInfo\Jobs\Job\Base\BaseJob;
+use App\Modules\GroupInfo\Questions\Jobs\Base\BaseJob;
 use App\Traits\CanTagGroups;
 
 class AssociateMembers extends BaseJob
@@ -21,16 +21,16 @@ class AssociateMembers extends BaseJob
     {
         if($this->data['associate_members'] === 'yes') {
             $this->addOrUpdateTag($this->group, 'group_information', 'associate_members_yes');
+            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_no_interested');
             $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_no');
-            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_unsure');
+        } elseif($this->data['associate_members'] === 'no_interested') {
+            $this->addOrUpdateTag($this->group, 'group_information', 'associate_members_no_interested');
+            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_yes');
+            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_no');
         } elseif($this->data['associate_members'] === 'no') {
             $this->addOrUpdateTag($this->group, 'group_information', 'associate_members_no');
             $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_yes');
-            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_unsure');
-        } elseif($this->data['associate_members'] === 'unsure') {
-            $this->addOrUpdateTag($this->group, 'group_information', 'associate_members_unsure');
-            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_yes');
-            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_no');
+            $this->removeTagIfOwned($this->group, 'group_information', 'associate_members_no_interested');
         }
     }
 
