@@ -41,6 +41,7 @@
         <modal
                 name="committee-member-form"
                 height="auto"
+                :resizable="true"
         >
 
             <committee-member-form
@@ -69,7 +70,6 @@
             return {
                 committee_members: [],
                 editingCommitteeMember: null,
-                showForm: false
             }
         },
 

@@ -59,9 +59,10 @@
             <div class="col-md-12">
                 <modal
                         @before-close=""
-                        height="70%"
+                        height="auto"
                         name="sign-off-form-modal"
                         width="70%"
+                        :scrollable="true"
                 >
                     <sign-off-form
                             :current-submission="currentSubmission"

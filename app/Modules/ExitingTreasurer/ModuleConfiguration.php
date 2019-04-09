@@ -38,10 +38,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function isComplete()
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        if(!$this->actingAsStudent()) { return false; } ;
         return Submission::where([
             'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'complete' => true
         ])->count() > 0;
     }
 

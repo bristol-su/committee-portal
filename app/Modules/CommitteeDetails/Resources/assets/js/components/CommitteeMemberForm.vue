@@ -10,7 +10,24 @@
                         <a href="https://www.bristolsu.org.uk">website!</a></h4>
                 </div>
 
+
                 <div class="card-body">
+
+                    <div class="form-group">
+
+                        <div>
+                            <small>Committee Member (Search by Email or Student ID)</small>
+                        </div>
+
+                        <user-select
+                                :initialUid="form.unioncloud_id"
+                                @studentSelected="updateStudent"
+                        ></user-select>
+
+                        <small><span class="error-span" v-show="form.errors.has('unioncloud_id')">{{form.errors.get('unioncloud_id')}}</span>
+                        </small>
+
+                    </div>
 
                     <div class="form-group">
 
@@ -43,23 +60,9 @@
                     </div>
 
 
-                    <div class="form-group">
-
-                        <div>
-                            <small>Search by Email or Student ID</small>
-                        </div>
-
-                        <user-select
-                                :initialUid="form.unioncloud_id"
-                                @studentSelected="updateStudent"
-                        ></user-select>
-
-                        <small><span class="error-span" v-show="form.errors.has('unioncloud_id')">{{form.errors.get('unioncloud_id')}}</span>
-                        </small>
-
-                    </div>
 
 
+                    <br/><br/>
                     <button :disabled="submitting || !allInformationPresent" @click="saveCommitteeMember"
                             class="btn btn-info" type="submit">
                         Save committee member
@@ -117,8 +120,8 @@
         methods: {
             updateStudent(student) {
                 this.form.unioncloud_id = (student === null ? null : student.uid);
-                this.selectedStudentForename = student.forename;
-                this.selectedStudentSurname = student.surname;
+                this.selectedStudentForename = (student === null ? '' : student.forename);
+                this.selectedStudentSurname = (student === null ? '' : student.surname);
             },
 
             updatePosition(position) {
@@ -151,7 +154,7 @@
                         })
                         .catch(error => {
                             this.$notify.alert('Committee member couldn\'t be saved.');
-                            this.form.errors.record(error.errors);
+                            this.form.errors.record(error.response.data.errors);
                             this.submitting = false;
                         });
                 }

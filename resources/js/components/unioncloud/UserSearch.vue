@@ -7,6 +7,7 @@
                 @search="onSearch"
                 v-model="selectedOption"
                 :loading="loading"
+                maxHeight="200px"
         >
         </v-select>
         
@@ -103,3 +104,9 @@
     }
 
 </script>
+
+<style>
+    .v-select ul {
+        z-index: 10000;
+    }
+</style>
