@@ -17,6 +17,7 @@ use App\Packages\ControlDB\Models\Student;
 use App\Rules\UnionCloudUIDExists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 
 class CommitteeDetailsController extends Controller
@@ -84,7 +85,10 @@ class CommitteeDetailsController extends Controller
         $this->validateRequest($request);
 
         // Create a new committee role, populate and save it
-        return $this->updateCommitteeRole($request, new CommitteeRole());
+        $committeeRole = $this->updateCommitteeRole($request, new CommitteeRole());
+        if($committeeRole !== false) {
+            Event::dispatch('committeedetails.added', $committeeRole);
+        }
 
     }
 

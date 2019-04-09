@@ -35,7 +35,6 @@ class DocumentUploaded extends Mailable implements ShouldQueue
     {
         return $this
             ->subject($this->subject)
-            ->markdown('emails.file_upload.file_uploaded')
-            ->text('emails.file_upload.file_uploaded_plain');
+            ->markdown('emails.file_upload.file_uploaded');
     }
 }

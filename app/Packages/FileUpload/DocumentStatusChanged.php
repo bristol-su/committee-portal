@@ -35,7 +35,6 @@ class DocumentStatusChanged extends Mailable implements ShouldQueue
     {
         return $this
             ->subject($this->subject)
-            ->markdown('emails.file_upload.file_status_updated')
-            ->text('emails.file_upload.file_status_updated_plain');
+            ->markdown('emails.file_upload.file_status_updated');
     }
 }

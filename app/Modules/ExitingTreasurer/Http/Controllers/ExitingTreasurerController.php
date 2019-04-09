@@ -31,6 +31,7 @@ class ExitingTreasurerController extends Controller
         if($submission->validate()) {
             $submission->complete = true;
             $submission->save();
+            Event::dispatch('exitingtreasurer.signOffComplete', $submission);
         } else {
             return response('Have you completed every section?', 422);
         }
@@ -417,7 +418,7 @@ class ExitingTreasurerController extends Controller
             $documentModel->uploaded_by = Auth::user()->id;
 
             if ($documentModel->save()) {
-                Event::dispatch('exitingtreasurer.documentUploadedForReview', $documentModel);
+                Event::dispatch('exitingtreasurer.documentUploaded', $documentModel);
                 return $this->getDocumentWithRelations($documentModel->id);
             }
 

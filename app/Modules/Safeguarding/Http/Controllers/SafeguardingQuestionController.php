@@ -42,12 +42,14 @@ class SafeguardingQuestionController extends Controller
         $user = Auth::user();
         // TODO Change all user IDs to be like this p urgently!!!
 
-        $submission = Submission::create([
+        if($submission = Submission::create([
             'group_id' => $user->getCurrentRole()->group->id,
             'user_id' => $user->id,
             'position_id' => $user->getCurrentRole()->position->id,
             'year' => getReaffiliationYear()
-        ]);
+        ])) {
+            Event::dispatch('safeguarding.submitted', $submission);
+        }
 
     }
 }

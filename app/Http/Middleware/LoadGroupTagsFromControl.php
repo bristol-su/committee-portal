@@ -21,7 +21,7 @@ class LoadGroupTagsFromControl
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::user()->isAdmin()) {
+        if($this->actingAsStudent()) {
             $groupId = getGroupID();
             $groupTags = Cache::remember('Middleware.LoadGroupTagsFromControl.'.$groupId, 200, function() use ($groupId){
                 $group = Group::find($groupId);
@@ -37,5 +37,18 @@ class LoadGroupTagsFromControl
 
         $request->attributes->add(['auth_group_tags' => $groupTags]);
         return $next($request);
+    }
+
+    protected function actingAsStudent()
+    {
+        try {
+            if (Auth::user()->getCurrentRole() === null) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }

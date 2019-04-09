@@ -8,6 +8,7 @@ use App\Packages\ControlDB\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class LibelDefamationController extends Controller
 {
@@ -33,12 +34,14 @@ class LibelDefamationController extends Controller
 
         $user = Auth::user();
 
-        Submission::create([
+        if($submission = Submission::create([
             'group_id' => $user->getCurrentRole()->group->id,
             'user_id' => $user->id,
             'position_id' => $user->getCurrentRole()->position->id,
             'year' => getReaffiliationYear()
-        ]);
+        ])){
+            Event::dispatch('libeldefamation.submitted', $submission);
+        };
 
     }
 
