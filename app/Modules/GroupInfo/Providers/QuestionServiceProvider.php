@@ -7,6 +7,7 @@ use App\Modules\GroupInfo\Questions\Question\AssociateMembers;
 use App\Modules\GroupInfo\Questions\Question\BookExternalCoaches;
 use App\Modules\GroupInfo\Questions\Question\Email;
 use App\Modules\GroupInfo\Questions\Question\ExternalAccount;
+use App\Modules\GroupInfo\Questions\Question\FundraisingActivity;
 use App\Modules\GroupInfo\Questions\Question\GroupType;
 use App\Modules\GroupInfo\Questions\Question\IntramuralInterest;
 use App\Modules\GroupInfo\Questions\Question\VolunteeringActivity;
@@ -25,7 +26,8 @@ class QuestionServiceProvider extends ServiceProvider
         BookExternalCoaches::class,
         IntramuralInterest::class,
         AssociateMembers::class,
-        VolunteeringActivity::class
+        VolunteeringActivity::class,
+        FundraisingActivity::class
     ];
 
     /**

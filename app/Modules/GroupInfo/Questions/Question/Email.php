@@ -26,7 +26,7 @@ class Email extends BaseQuestion
 
     public $type = 'text';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\Email::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\Email::class;
 
     public $required = false;
 

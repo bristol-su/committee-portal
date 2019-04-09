@@ -24,7 +24,7 @@ class GroupType extends BaseQuestion
 
     public $type = 'select';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\GroupType::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\GroupType::class;
 
     public $required = true;
 

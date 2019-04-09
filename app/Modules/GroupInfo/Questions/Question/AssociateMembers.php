@@ -26,7 +26,7 @@ class AssociateMembers extends BaseQuestion
 
     public $type = 'radio';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\AssociateMembers::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\AssociateMembers::class;
 
     public $required = true;
 
@@ -34,11 +34,11 @@ class AssociateMembers extends BaseQuestion
         'yes' => [
             'text' => 'Yes',
         ],
-        'no' => [
-            'text' => 'No',
+        'no_interested' => [
+            'text' => 'No - But we\'re interested in attracting them',
         ],
-        'unsure' => [
-            'text' => 'Unsure',
+        'no' => [
+            'text' => 'No - We want to stay with student members',
         ]
     ];
 
@@ -81,10 +81,10 @@ class AssociateMembers extends BaseQuestion
     {
         if ($this->groupHasTag($group, 'group_information', 'associate_members_yes')) {
             return ['associate_members' => 'yes'];
+        } elseif ($this->groupHasTag($group, 'group_information', 'associate_members_no_interested')) {
+            return ['associate_members' => 'no_interested'];
         } elseif ($this->groupHasTag($group, 'group_information', 'associate_members_no')) {
             return ['associate_members' => 'no'];
-        } elseif ($this->groupHasTag($group, 'group_information', 'associate_members_unsure')) {
-            return ['associate_members' => 'unsure'];
         }
 
         return [];

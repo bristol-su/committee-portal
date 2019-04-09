@@ -27,7 +27,7 @@ class VolunteeringActivity extends BaseQuestion
 
     public $type = 'radio';
 
-    public $job = \App\Modules\GroupInfo\Jobs\Job\VolunteeringActivity::class;
+    public $job = \App\Modules\GroupInfo\Questions\Jobs\VolunteeringActivity::class;
     public $required = true;
 
     public $configuration = [

@@ -6,10 +6,10 @@
  * Time: 15:10
  */
 
-namespace App\Modules\GroupInfo\Jobs\Job;
+namespace App\Modules\GroupInfo\Questions\Jobs;
 
 
-use App\Modules\GroupInfo\Jobs\Job\Base\BaseJob;
+use App\Modules\GroupInfo\Questions\Jobs\Base\BaseJob;
 use App\Traits\CanTagGroups;
 
 class Email extends BaseJob
