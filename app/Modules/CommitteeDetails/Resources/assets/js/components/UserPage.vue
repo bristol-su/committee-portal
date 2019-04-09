@@ -41,6 +41,7 @@
         <modal
                 name="committee-member-form"
                 height="auto"
+                :resizable="true"
         >
 
             <committee-member-form
