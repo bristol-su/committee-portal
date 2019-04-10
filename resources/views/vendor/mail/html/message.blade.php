@@ -28,7 +28,7 @@
 {{-- Footer --}}
 @slot('footer')
     @component('mail::footer')
-        Charity #1139656  Company #6977417
+        © University of Bristol Students' Union 2016. Charity #1139656 Company #6977417
     @endcomponent
 @endslot
 @endcomponent
