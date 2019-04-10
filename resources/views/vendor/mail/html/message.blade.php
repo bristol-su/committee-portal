@@ -28,7 +28,7 @@
 {{-- Footer --}}
 @slot('footer')
     @component('mail::footer')
-        © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+        Charity #1139656  Company #6977417
     @endcomponent
 @endslot
 @endcomponent

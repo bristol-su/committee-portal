@@ -8,7 +8,6 @@
                 <img src="{{serveStatic('bristol-su-awards-banner.jpeg')}}">
                 <div><span style="font-family: arial, helvetica, sans-serif;">University of Bristol Students' Union</span><span style="color: #000000; font-family: 'Times New Roman';">,&nbsp;</span></div>
                 <div>The Richmond Building, 105 Queens Road,&nbsp;<br />Clifton, Bristol BS8 1LN</div>
-                <div>Charity #1139656  Company #6977417</div>
 
             </div>
     </td>
