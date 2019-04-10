@@ -35,7 +35,7 @@ class EquipmentController extends Controller
             'bought_at' => $request->input('bought_at'),
             'notes' => $request->input('notes', null)
         ])) {
-            return $equipment;
+            return response($equipment, 200);
         }
 
         return response('', 500);

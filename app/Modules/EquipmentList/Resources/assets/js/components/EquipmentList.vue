@@ -8,9 +8,12 @@
         <button @click="newEquipment" class="btn btn-info">
             Add Equipment
         </button>
+        <button @click="completeEquipmentList" class="btn btn-info">
+            Finalise Equipment List
+        </button>
 
 
-        <table v-if="equipment_list.length > 0" class="table table-hover table-striped">
+        <table class="table table-hover table-striped" v-if="equipment_list.length > 0">
             <thead>
             <tr>
                 <th>Name</th>
@@ -24,7 +27,7 @@
 
             <tbody v-for="category in categories">
             <tr>
-                <td colspan="6" class="category">
+                <td class="category" colspan="6">
                     {{category}}
                 </td>
             </tr>
@@ -48,8 +51,8 @@
                 name="equipmentlist-form-modal"
         >
             <equipment-list-form
-                    @close="closeNewEquipment"
                     :categories="categories"
+                    @close="closeNewEquipment"
                     @newEquipment="saveNewEquipment">
 
             </equipment-list-form>
@@ -95,11 +98,30 @@
             },
 
             deleteEquipment(equipment) {
-                alert('deleting equipment ' + equipment.id);
+                let deleted_reason = prompt('Please give us a reason for deleting this equipment. This could be because it\'s broken, has been lost etc.');
+                this.$http.delete('/equipmentlist/equipment/' + equipment.id, {
+                    params: {
+                        deleted_reason: deleted_reason
+                    }
+                })
+                    .then(response => {
+                        this.$notify.success('Equipment "' + equipment.name + "' deleted!");
+                        this.equipment_list.splice(this.equipment_list.indexOf(equipment), 1);
+                    })
+                    .catch(error => this.$notify.alert('Equipment couldn\'t be deleted: ' + error.message));
             },
 
             equipmentByCategory(category) {
                 return this.equipment_list.filter(equipment => equipment.category === category);
+            },
+
+            completeEquipmentList() {
+                this.$http.post('/equipmentlist/submit')
+                    .then(response => {
+                        this.$notify.success('Your equipment list has been finalised and submitted to us.');
+                        this.completed = true;
+                    })
+                    .catch(error => this.$notify.alert('Your equipment list could not be finalised or submitted'));
             }
         },
 
@@ -107,11 +129,10 @@
             categories() {
                 let categories = [];
                 this.equipment_list.filter(equipment => {
-                    if(categories.indexOf(equipment.category) === -1) {
+                    if (categories.indexOf(equipment.category) === -1) {
                         categories.push(equipment.category);
                     }
                 });
-                console.log(categories);
                 return categories;
             }
         }

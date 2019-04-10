@@ -16,7 +16,7 @@
                             </label>
                             <input class="form-control" id="name" type="text" v-model="form.name">
                         </div>
-                        <small><span class="error-span"
+                        <small><span class="has-error-span"
                                      v-show="form.errors.has('name')">{{form.errors.get('name')}}</span></small>
                     </div>
 
@@ -28,7 +28,7 @@
                             <textarea class="form-control" id="description" v-model="form.description">
                             </textarea>
                         </div>
-                        <small><span class="error-span" v-show="form.errors.has('description')">{{form.errors.get('description')}}</span>
+                        <small><span class="has-error-span" v-show="form.errors.has('description')">{{form.errors.get('description')}}</span>
                         </small>
                     </div>
 
@@ -47,7 +47,7 @@
 
 
                         </div>
-                        <small><span class="error-span" v-show="form.errors.has('category')">{{form.errors.get('category')}}</span>
+                        <small><span class="has-error-span" v-show="form.errors.has('category')">{{form.errors.get('category')}}</span>
                         </small>
                     </div>
 
@@ -61,10 +61,10 @@
                                 <span class="input-group-text">£</span>
                             </div>
                             <input class="form-control" id="price" type="text" v-model="form.price">
-                            <div>
-                                <small><span class="error-span" v-show="form.errors.has('price')">{{form.errors.get('price')}}</span>
-                                </small>
-                            </div>
+                        </div>
+                        <div>
+                            <small><span class="has-error-span" v-show="form.errors.has('price')">{{form.errors.get('price')}}</span>
+                            </small>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                             <textarea class="form-control" id="notes" v-model="form.notes">
                             </textarea>
                         </div>
-                        <small><span class="error-span"
+                        <small><span class="has-error-span"
                                      v-show="form.errors.has('notes')">{{form.errors.get('notes')}}</span>
                         </small>
                     </div>
@@ -88,7 +88,7 @@
                             </label>
                             <input class="form-control" id="bought_at" type="date" v-model="form.bought_at">
                         </div>
-                        <small><span class="error-span" v-show="form.errors.has('bought_at')">{{form.errors.get('bought_at')}}</span>
+                        <small><span class="has-error-span" v-show="form.errors.has('bought_at')">{{form.errors.get('bought_at')}}</span>
                         </small>
                     </div>
 
@@ -138,10 +138,13 @@
                 this.form.post('/equipmentlist/equipment')
                     .then(response => {
                         this.$notify.success('Equipment Saved');
-                        this.$emit('newEquipment', response.data);
+                        this.$emit('newEquipment', response);
                         this.$emit('close')
                     })
-                    .catch(error => this.$notify.alert('Could not save the equipment: ' + error.message))
+                    .catch(error => {
+                        this.$notify.alert('Could not save the equipment: ' + error.message);
+                        this.form.errors.record(error.response.data.errors);
+                    })
                     .then(() => this.submitting = false);
             }
         },
