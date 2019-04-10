@@ -23,7 +23,7 @@ class VolunteeringActivity extends BaseQuestion
     public $identity = 'volunteering_activity';
 
     public $helpText = 'Are you planning to take part in any volunteering activities next year (e.g. supporting charities '.
-                        'such as Bristol Hub/Mind, schools and community groups with your time and skills)';
+                        'such as Bristol Hub/Mind, schools and community groups)';
 
     public $type = 'radio';
 
