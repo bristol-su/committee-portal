@@ -2,7 +2,7 @@
 
 namespace App\Modules\RiskAssessment\Listeners;
 
-use App\Mail\DefaultDocumentStatusChanged;
+use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Modules\RiskAssessment\Entities\File;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -28,6 +28,6 @@ class NotifyUserOfRiskAssessmentFileStatusChange implements ShouldQueue
      */
     public function handle($file)
     {
-        Mail::to($file->user->email)->send(new DefaultDocumentStatusChanged($file, 'Risk Assessment Status Updated'));
+        Mail::to($file->user->email)->send(new DocumentStatusChanged($file, 'Risk Assessment Status Updated'));
     }
 }

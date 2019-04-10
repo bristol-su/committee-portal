@@ -14,6 +14,7 @@ use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 // TODO tidy
@@ -96,7 +97,9 @@ abstract class FileUploadController extends Controller
             $fileModel->group_id = getGroupID();
             $fileModel->position_id = (Auth::user()->getCurrentRole()->position->id !== 'admin' ? Auth::user()->getCurrentRole()->position->id : null);
             if ($fileModel->save()) {
-                return $this->getFileWithRelations($fileModel->id);
+                $fileWithRelations = $this->getFileWithRelations($fileModel->id);
+                Event::dispatch($this->getModuleName().'.fileUploaded', ['file' => $fileWithRelations]);
+                return $fileWithRelations;
             }
 
         }

@@ -26,7 +26,6 @@ class ViewAsStudent implements Authenticatable
         ];
 
         $this->group = Group::find($groupID);
-        Log::info($groupID);
     }
 
     public function getAuthIdentifier()

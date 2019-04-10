@@ -10,6 +10,7 @@ use App\Rules\IsValidControlID;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -52,11 +53,13 @@ class MainContactsController extends Controller
             $contact->updateInControl($student, $group);
         });
 
-        Submission::create([
+        if($submission = Submission::create([
             'user_id' => Auth::user()->id,
             'group_id' => Auth::user()->getCurrentRole()->group->id,
             'year' => getReaffiliationYear()
-        ]);
+        ])) {
+            Event::dispatch('maincontacts.submitted', $submission);
+        }
 
     }
 

@@ -10,6 +10,7 @@ use App\Traits\EditsControlPositions;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 
 class PresidentHandoverController extends Controller
@@ -20,7 +21,6 @@ class PresidentHandoverController extends Controller
     public function showPage()
     {
         $this->authorize('presidenthandover.view');
-
         if($this->presidentHasBeenSubmitted()) {
             return view('presidenthandover::presidenthandover_complete');
         }
@@ -49,7 +49,7 @@ class PresidentHandoverController extends Controller
             Log::error('Could not save committee role. Code '.$committeeRole->getResponse()->getStatusCode().', Message '.$committeeRole->getResponse()->getStatusPhrase());
             abort(500, 'We could not save your new committee position');
         }
-
+        Event::dispatch('presidenthandover.submitted', $committeeRole);
         return CommitteeRole::find($committeeRole->id);
 
     }
@@ -66,7 +66,6 @@ class PresidentHandoverController extends Controller
         $group = Group::find(getGroupID());
         $committee = CommitteeRole::allThrough($group);
         $positionId = getExecutiveCommitteeRoleID();
-
         return $committee->filter(function ($committeeMember) use ($positionId) {
                 return $committeeMember->position_id === $positionId
                     && $committeeMember->committee_year === getReaffiliationYear();

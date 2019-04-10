@@ -10,6 +10,7 @@ use App\Traits\CanTagStudents;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 
 class Contact extends Model
@@ -49,6 +50,7 @@ class Contact extends Model
             $this->tagStudent($student, $studentTag, [
                 'group_id' => $group->id
             ]);
+            Event::dispatch('maincontacts.userAssigned', [$student, $group, $studentTag]);
         }
     }
 

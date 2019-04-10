@@ -37,6 +37,5 @@ abstract class BaseJob implements ShouldQueue
 
     public function handle()
     {
-        Log::info(json_encode($this->data));
     }
 }
