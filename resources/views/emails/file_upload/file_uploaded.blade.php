@@ -12,9 +12,5 @@ Head to the <a href="{{config('app.url')}}">Committee Portal</a> to check out th
     and check out any notes left.
 @endif
 
-Regards,<br/>
-Bristol SU
-
-
 @endcomponent
 

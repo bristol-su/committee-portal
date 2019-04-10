@@ -99,7 +99,3 @@ Route::middleware('user')->prefix('/unioncloud/api')->group(function () {
 
 });
 
-Route::get('/gg', function() {
-    $m = new \App\Packages\FileUpload\DocumentUploaded(\App\Modules\Budget\Entities\File::first(), 'Subject here');
-    return $m;
-});
