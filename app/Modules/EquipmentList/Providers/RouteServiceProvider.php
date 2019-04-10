@@ -2,6 +2,7 @@
 
 namespace App\Modules\EquipmentList\Providers;
 
+use App\Modules\EquipmentList\Entities\Equipment;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,6 +24,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        Route::bind('equipmentlist_equipment', function($id) {
+            return Equipment::findOrFail($id);
+        });
         parent::boot();
 
         require __DIR__ . '/../Routes/breadcrumbs.php';

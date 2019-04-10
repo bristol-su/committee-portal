@@ -10,6 +10,25 @@
                     <h2 class="">Equipment List</h2>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    It's important to keep a register of all equipment owned by your groups so that you can keep track
+                    of your assets. It's also something we need to keep on file for financial auditing purposes. This
+                    page can be used to declare any equipment you own valued at £500 or more (you can declare items
+                    worth less if you like, but this isn't a requirement).
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <equipment-list>
+
+                    </equipment-list>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

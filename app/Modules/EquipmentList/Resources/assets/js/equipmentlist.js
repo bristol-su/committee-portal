@@ -1,3 +1,9 @@
+import EquipmentList from './components/EquipmentList';
+
 new Vue({
-    el: '#equipmentlist-root'
-})
+    el: '#equipmentlist-root',
+
+    components: {
+        EquipmentList
+    }
+});
