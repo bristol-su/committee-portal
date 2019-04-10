@@ -2,7 +2,7 @@
 
 namespace App\Modules\Constitution\Providers;
 
-use App\Modules\Budget\Entities\File;
+use App\Modules\Constitution\Entities\File;
 use App\Modules\Constitution\Listeners\NotifyUserOfConstitutionFileStatusChange;
 use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Packages\FileUpload\DocumentUploaded;

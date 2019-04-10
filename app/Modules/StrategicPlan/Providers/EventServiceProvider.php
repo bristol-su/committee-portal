@@ -2,7 +2,7 @@
 
 namespace App\Modules\StrategicPlan\Providers;
 
-use App\Modules\Budget\Entities\File;
+use App\Modules\StrategicPlan\Entities\File;
 use App\Modules\StrategicPlan\Listeners\NotifyUserOfStrategicPlanFileStatusChange;
 use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Packages\FileUpload\DocumentUploaded;

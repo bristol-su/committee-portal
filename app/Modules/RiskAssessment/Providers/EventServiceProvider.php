@@ -2,7 +2,7 @@
 
 namespace App\Modules\RiskAssessment\Providers;
 
-use App\Modules\Budget\Entities\File;
+use App\Modules\RiskAssessment\Entities\File;
 use App\Modules\RiskAssessment\Listeners\NotifyUserOfRiskAssessmentFileStatusChange;
 use App\Packages\FileUpload\DocumentStatusChanged;
 use App\Packages\FileUpload\DocumentUploaded;
