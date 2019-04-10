@@ -8,8 +8,9 @@
         <button @click="newEquipment" class="btn btn-info">
             Add Equipment
         </button>
-        <button @click="completeEquipmentList" class="btn btn-info">
-            Finalise Equipment List
+        <button @click="completeEquipmentList" v-if="completed === false" class="btn btn-info">
+            <span v-if="equipment_list.length > 0">Finalise Equipment List</span>
+            <span v-else>We have no equipment</span>
         </button>
 
 
@@ -99,16 +100,20 @@
 
             deleteEquipment(equipment) {
                 let deleted_reason = prompt('Please give us a reason for deleting this equipment. This could be because it\'s broken, has been lost etc.');
-                this.$http.delete('/equipmentlist/equipment/' + equipment.id, {
-                    params: {
-                        deleted_reason: deleted_reason
-                    }
-                })
-                    .then(response => {
-                        this.$notify.success('Equipment "' + equipment.name + "' deleted!");
-                        this.equipment_list.splice(this.equipment_list.indexOf(equipment), 1);
+                if(deleted_reason !== null) {
+                    this.$http.delete('/equipmentlist/equipment/' + equipment.id, {
+                        params: {
+                            deleted_reason: deleted_reason
+                        }
                     })
-                    .catch(error => this.$notify.alert('Equipment couldn\'t be deleted: ' + error.message));
+                        .then(response => {
+                            this.$notify.success('Equipment "' + equipment.name + "' deleted!");
+                            this.equipment_list.splice(this.equipment_list.indexOf(equipment), 1);
+                        })
+                        .catch(error => this.$notify.alert('Equipment couldn\'t be deleted: ' + error.message));
+                } else {
+                    this.$notify.info('Equipment not deleted');
+                }
             },
 
             equipmentByCategory(category) {
@@ -116,12 +121,17 @@
             },
 
             completeEquipmentList() {
-                this.$http.post('/equipmentlist/submit')
-                    .then(response => {
-                        this.$notify.success('Your equipment list has been finalised and submitted to us.');
-                        this.completed = true;
-                    })
-                    .catch(error => this.$notify.alert('Your equipment list could not be finalised or submitted'));
+                let confirmation_message = (this.equipment_list.length > 0 ?
+                    'By pressing OK, you are confirming the equipment specified below is correct to the best of your knowledge.' :
+                    'By pressing OK, you are confirming your group owns no equipment above £500');
+                if(confirm(confirmation_message)) {
+                    this.$http.post('/equipmentlist/submit')
+                        .then(response => {
+                            this.$notify.success('Your equipment list has been finalised and submitted to us.');
+                            this.completed = true;
+                        })
+                        .catch(error => this.$notify.alert('Your equipment list could not be finalised or submitted'));
+                }
             }
         },
 

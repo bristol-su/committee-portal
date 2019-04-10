@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <div>
                             <label for="description">
-                                <small>Description</small>
+                                <small>Equipment Description</small>
                             </label>
                             <textarea class="form-control" id="description" v-model="form.description">
                             </textarea>
@@ -35,13 +35,15 @@
                     <div class="form-group">
                         <div>
                             <label for="category">
-                                <small>Equipment Category</small>
+                                <small>Equipment Category (Type to create a new category)</small>
                             </label>
 
                             <v-select
                             :options="categories"
                             :taggable="true"
-                            v-model="form.category">
+                            v-model="form.category"
+                            >
+                                <span slot="no-options">Start typing to create a new category.</span>
 
                             </v-select>
 
@@ -71,7 +73,7 @@
                     <div class="form-group">
                         <div>
                             <label for="notes">
-                                <small>Notes (location, condition etc)</small>
+                                <small>Notes (i.e. location, condition, other information)</small>
                             </label>
                             <textarea class="form-control" id="notes" v-model="form.notes">
                             </textarea>
