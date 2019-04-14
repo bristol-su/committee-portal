@@ -98,8 +98,3 @@ Route::middleware('user')->prefix('/unioncloud/api')->group(function () {
     Route::get('user/multisearch', 'UnionCloudController@searchOneTerm');
 
 });
-
-
-Route::prefix('mail')->group(function() {
-
-});
