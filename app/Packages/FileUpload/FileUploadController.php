@@ -255,7 +255,8 @@ abstract class FileUploadController extends Controller
         if ($file->status !== $status) {
             $file->status = $status;
             if ($file->save()) {
-                Event::dispatch($this->getModuleName().'.fileStatusChanged', ['file' => $this->getFileWithRelations($file->id)]);
+
+                Event::dispatch($this->getModuleName().'.fileStatusChanged.'.$file->status, ['file' => $this->getFileWithRelations($file->id)]);
             }
         }
 

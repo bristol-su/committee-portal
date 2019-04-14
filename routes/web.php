@@ -100,3 +100,6 @@ Route::middleware('user')->prefix('/unioncloud/api')->group(function () {
 });
 
 
+Route::prefix('mail')->group(function() {
+
+});

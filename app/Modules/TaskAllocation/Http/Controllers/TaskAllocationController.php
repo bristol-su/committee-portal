@@ -5,6 +5,8 @@ namespace App\Modules\TaskAllocation\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\TaskAllocation\Entities\Submission;
 use App\Modules\TaskAllocation\Entities\Task;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsValidControlID;
 use App\Traits\CanTagStudents;
@@ -56,6 +58,18 @@ class TaskAllocationController extends Controller
             $task->updateInControl($student, $group);
         });
 
+        $groupedTasks = $tasks->groupBy(function($task) use ($request) {
+            return $request->input('id_'.$task->id);
+        });
+
+        $committee = CommitteeRole::allThrough(Group::find(Auth::user()->getCurrentRole()->group->id));
+
+        foreach($groupedTasks as $studentId => $tasks) {
+            $committeeRole = $committee->filter(function($committee) use ($studentId) {
+                return $committee->student->id === $studentId;
+            })->first();
+            Event::dispatch('taskallocation.responsible', [$committeeRole, $tasks]);
+        }
         if($submission = Submission::create([
             'user_id' => Auth::user()->id,
             'group_id' => Auth::user()->getCurrentRole()->group->id,

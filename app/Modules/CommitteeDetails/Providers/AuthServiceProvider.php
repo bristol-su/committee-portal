@@ -33,7 +33,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('committeedetails.module.isActive', function(User $user) {
-            // TODO GATE BEFORE Group Info
             return true;
         });
 

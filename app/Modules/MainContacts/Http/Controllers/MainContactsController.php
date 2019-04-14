@@ -5,6 +5,8 @@ namespace App\Modules\MainContacts\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\MainContacts\Entities\Contact;
 use App\Modules\MainContacts\Entities\Submission;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Student;
 use App\Rules\IsValidControlID;
 use Illuminate\Http\Request;
@@ -52,6 +54,19 @@ class MainContactsController extends Controller
             $group = Auth::user()->getCurrentRole()->group;
             $contact->updateInControl($student, $group);
         });
+
+        $groupedContacts = $contacts->groupBy(function($contact) use ($request) {
+            return $request->input('id_'.$contact->id);
+        });
+
+        $committee = CommitteeRole::allThrough(Group::find(Auth::user()->getCurrentRole()->group->id));
+
+        foreach($groupedContacts as $studentId => $contacts) {
+            $committeeRole = $committee->filter(function($committee) use ($studentId) {
+                return $committee->student->id === $studentId;
+            })->first();
+            Event::dispatch('maincontacts.responsible', [$committeeRole, $contacts]);
+        }
 
         if($submission = Submission::create([
             'user_id' => Auth::user()->id,

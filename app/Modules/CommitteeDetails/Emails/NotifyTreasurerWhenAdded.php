@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Modules\CommitteeDetails\Emails;
+
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\FindsUnionCloudUserByRoleName;
+use App\Traits\MailsStudents;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class NotifyTreasurerWhenAdded extends Mailable implements ShouldQueue
+{
+    use Queueable, SerializesModels, FindsUnionCloudUserByRoleName;
+
+    public $role;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param $user
+     * @param Group $group
+     * @return void
+     */
+    public function __construct(CommitteeRole $role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return NotifyTreasurerWhenAdded
+     * @throws \Exception
+     */
+    public function build()
+    {
+        return $this
+            ->subject('Treasurer Training')
+            ->markdown('committeedetails::emails.incoming_treasurer_added')
+            ->with([
+                'unionCloudStudent' => $this->getStudentByCommitteeRole($this->role),
+                'group' => $this->role->group
+            ]);
+    }
+}

@@ -4,7 +4,8 @@ namespace App\Modules\Constitution\Providers;
 
 use App\Modules\Constitution\Entities\File;
 use App\Modules\Constitution\Listeners\NotifyUserOfConstitutionFileStatusChange;
-use App\Packages\FileUpload\DocumentStatusChanged;
+use App\Packages\FileUpload\DocumentStatusChangedApproved;
+use App\Packages\FileUpload\DocumentStatusChangedRejected;
 use App\Packages\FileUpload\DocumentUploaded;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -14,8 +15,12 @@ class EventServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Event::listen('constitution.fileStatusChanged', function (File $file) {
-            Mail::to($file->user->email)->send(new DocumentStatusChanged($file, 'Constitution Status Updated'));
+        Event::listen('constitution.fileStatusChanged.approved', function (File $file) {
+            Mail::to($file->user->email)->send(new DocumentStatusChangedApproved($file, 'Constitution'));
+        });
+
+        Event::listen('constitution.fileStatusChanged.approved', function (File $file) {
+            Mail::to($file->user->email)->send(new DocumentStatusChangedRejected($file, 'Constitution'));
         });
 
         Event::listen('constitution.fileUploaded', function (File $file) {

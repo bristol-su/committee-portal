@@ -24,7 +24,6 @@ class UnionCloud implements UnionCloudInterface
     public function getStudentByUID($uid)
     {
         return Cache::remember('unioncloud_package_student_'.$uid, 60, function() use ($uid){
-            /** @var \Twigger\UnionCloud\API\UnionCloud $unioncloud */
             $student = $this->unioncloud->users()->getByUID($uid)->first();
             return $student;
         });
