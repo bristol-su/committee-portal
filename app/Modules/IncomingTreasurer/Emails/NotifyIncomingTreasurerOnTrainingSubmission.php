@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NotifyIncomingTreasurerOnTrainingSubmission extends Mailable
+class NotifyIncomingTreasurerOnTrainingSubmission extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
