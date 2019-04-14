@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NotifySubmitterOnSubmission extends Mailable
+class NotifySubmitterOnSubmission extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
