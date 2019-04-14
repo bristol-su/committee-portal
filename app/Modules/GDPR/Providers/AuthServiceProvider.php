@@ -19,15 +19,15 @@ class AuthServiceProvider extends ServiceProvider
 
 
         Gate::define('gdpr.module.isVisible', function(User $user) {
-            return $this->groupHasTag($user, 'reaffiliation_tasks', 'gdpr');
+            return true;
         });
 
         Gate::define('gdpr.module.isActive', function(User $user) {
-            return $this->groupHasTag($user, 'reaffiliation_tasks', 'gdpr');
+            return true;
         });
 
         Gate::define('gdpr.reaffiliation.isMandatory', function(User $user) {
-            return $this->groupHasTag($user, 'reaffiliation_tasks', 'gdpr');
+            return true;
         });
 
         Gate::define('gdpr.reaffiliation.isResponsible', function(User $user) {
