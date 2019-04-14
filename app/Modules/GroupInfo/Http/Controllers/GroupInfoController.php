@@ -3,11 +3,13 @@
 namespace App\Modules\GroupInfo\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\GroupInfo\Entities\Submission;
 use App\Modules\GroupInfo\Events\GroupInformationUpdated;
 use App\Modules\GroupInfo\Questions\Question\Base\BaseQuestion;
 use App\Modules\GroupInfo\Questions\QuestionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class GroupInfoController extends Controller
 {
@@ -39,10 +41,16 @@ class GroupInfoController extends Controller
             $job = $question->dispatchJob($data);
         });
 
-        event(new GroupInformationUpdated(
-            Auth::user(),
-            Auth::user()->getCurrentRole()->group
-        ));
+        $submission = new Submission();
+        $submission->user_id = Auth::user()->id;
+        $submission->group_id = Auth::user()->getCurrentRole()->group->id;
+        $submission->year = getReaffiliationYear();
+
+        if(!$submission->save()) {
+            throw new \Exception('Could not save your group', 500);
+        }
+
+        Event::dispatch('groupinfo.submitted', $submission);
 
     }
 

@@ -77,11 +77,11 @@ class Contact extends Model
         $studentTag = StudentTag::all()->filter(function (StudentTag $studentTag) {
             return
                 $studentTag->reference === $this->tag_reference &&
-                $studentTag->category->reference === 'main_contacts';
+                $studentTag->category->reference === 'notifications_contact';
         });
 
         if ($studentTag === false) {
-            throw new \Exception('Could not find a tag: main_contacts.' . $this->tagReference, 500);
+            throw new \Exception('Could not find a tag: notifications_contact.' . $this->tagReference, 500);
         }
 
         return $studentTag->first();

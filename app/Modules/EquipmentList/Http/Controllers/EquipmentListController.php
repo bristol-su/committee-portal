@@ -8,6 +8,7 @@ use App\Modules\EquipmentList\Entities\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class EquipmentListController extends Controller
 {
@@ -47,12 +48,13 @@ class EquipmentListController extends Controller
     {
         $this->authorize('equipmentlist.submit');
 
-        if(Submission::create([
+        if($submission = Submission::create([
             'group_id' => Auth::user()->getCurrentRole()->group->id,
             'user_id' => Auth::user()->id,
             'position_id' => Auth::user()->getCurrentRole()->position->id,
             'year' => getReaffiliationYear()
         ])) {
+            Event::dispatch('equipmentlist.submitted', $submission);
             return response('', 200);
         }
 

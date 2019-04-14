@@ -3,6 +3,7 @@
 namespace App\Modules\ExitingTreasurer\Listeners;
 
 use App\Modules\ExitingTreasurer\Entities\Document;
+use App\Modules\IncomingTreasurer\Entities\Submission;
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,16 +26,16 @@ class NewTransactionListUploadRequest
      * @param  object  $event
      * @return void
      */
-    public function handle($group_id, $year)
+    public function handle(Submission $submission)
     {
-        $group = Group::find($group_id);
-        $title = $group->name . ' Transaction List '.$year.'/'.substr($year+1, 2, 2);
+        $group = $submission->group();
+        $title = $group->name . ' Transaction List '.$submission->year.'/'.substr($submission->year+1, 2, 2);
         Document::create([
-            'year' => $year,
+            'year' => $submission->year,
             'title' => $title,
             'uploaded' => false,
             'type' => 'transaction_list',
-            'group_id' => $group_id
+            'group_id' => $group->id
         ]);
     }
 }

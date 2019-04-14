@@ -44,9 +44,6 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('budget.view', function(User $user) {
-            // TODO GATE BEFORE GroupInfo
-            // TODO GATE BEFORE CommitteeDetails
-            // TODO GATE BEFORE TaskAllocation
             return true;
         });
 
@@ -54,7 +51,7 @@ class AuthServiceProvider extends ServiceProvider
             return $file->group_id === $user->getCurrentRole()->group->id && $user->can('budget.module.isVisible');
         });
 
-        // Who can upload an exec summary
+        // Who can upload a budget
         Gate::define('budget.upload', function(User $user) {
            $this->studentHasTreasurerPosition($user)
                && $this->studentIsNewCommittee($user);

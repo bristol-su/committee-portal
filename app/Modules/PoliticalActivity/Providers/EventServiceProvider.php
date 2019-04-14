@@ -3,9 +3,11 @@
 
 namespace App\Modules\PoliticalActivity\Providers;
 
+use App\Modules\PoliticalActivity\Emails\NotifySubmitterOnSubmission;
 use App\Modules\PoliticalActivity\Entities\Submission;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class EventServiceProvider extends ServiceProvider
     {
 
          Event::listen('politicalactivity.submitted', function(Submission $submission) {
-            // Notify submitter
+            Mail::to($submission->user->email)->send(new NotifySubmitterOnSubmission($submission));
          });
     }
 }

@@ -3,16 +3,34 @@
 
 namespace App\Modules\CommitteeDetails\Providers;
 
+use App\Modules\CommitteeDetails\Emails\NotifyCommitteeMemberWhenAdded;
+use App\Modules\CommitteeDetails\Emails\NotifyTreasurerWhenAdded;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Traits\FindsUnionCloudUserByRoleName;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class EventServiceProvider extends ServiceProvider
 {
 
-    public function boot() {
-        Event::listen('committeedetails.added', function() {
-            // Send treasurer email from google
-            // Send email to any new committee member
+    use FindsUnionCloudUserByRoleName;
+
+    public function boot()
+    {
+        Event::listen('committeedetails.added', function (CommitteeRole $committeeRole) {
+            if ($this->studentIsNewCommittee($committeeRole) && $this->studentHasTreasurerPosition($committeeRole)) {
+                // If the student is a new treasurer
+                Mail::to($this->getStudentByCommitteeRole($committeeRole)->email)->send(
+                    new NotifyTreasurerWhenAdded($committeeRole)
+                );
+
+            } else {
+                // Otherwise
+                Mail::to($this->getStudentByCommitteeRole($committeeRole)->email)->send(
+                    new NotifyCommitteeMemberWhenAdded($committeeRole)
+                );
+            }
         });
     }
 }

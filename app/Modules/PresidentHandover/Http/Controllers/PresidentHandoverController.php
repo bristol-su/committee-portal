@@ -49,6 +49,11 @@ class PresidentHandoverController extends Controller
             Log::error('Could not save committee role. Code '.$committeeRole->getResponse()->getStatusCode().', Message '.$committeeRole->getResponse()->getStatusPhrase());
             abort(500, 'We could not save your new committee position');
         }
+
+        // Fetch the full committee role
+        $committeeRole = CommitteeRole::find($committeeRole->id);
+
+
         Event::dispatch('presidenthandover.submitted', $committeeRole);
         return CommitteeRole::find($committeeRole->id);
 

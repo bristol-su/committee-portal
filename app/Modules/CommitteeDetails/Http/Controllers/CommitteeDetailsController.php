@@ -86,10 +86,12 @@ class CommitteeDetailsController extends Controller
 
         // Create a new committee role, populate and save it
         $committeeRole = $this->updateCommitteeRole($request, new CommitteeRole());
+
         if($committeeRole !== false) {
             Event::dispatch('committeedetails.added', $committeeRole);
         }
 
+        return $committeeRole;
     }
 
     /**
@@ -113,7 +115,12 @@ class CommitteeDetailsController extends Controller
         abort_if($committeeRole === false, 404, 'Couldn\'t find your role ID');
 
         // Update and save the committee role
-        return $this->updateCommitteeRole($request, $committeeRole);
+        $committeeRole = $this->updateCommitteeRole($request, $committeeRole);
+        if($committeeRole !== false) {
+            Event::dispatch('committeedetails.added', $committeeRole);
+        }
+
+        return $committeeRole;
     }
 
     /**

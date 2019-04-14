@@ -3,9 +3,11 @@
 
 namespace App\Modules\LibelDefamation\Providers;
 
+use App\Modules\LibelDefamation\Emails\NotifySubmitterOnSubmission;
 use App\Modules\LibelDefamation\Entities\Submission;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class EventServiceProvider extends ServiceProvider
     {
 
          Event::listen('libeldefamation.submitted', function(Submission $submission) {
-            // Notify submitter it was received
+            Mail::to($submission->user->email)->send(new NotifySubmitterOnSubmission($submission));
          });
     }
 }

@@ -9,7 +9,7 @@
 namespace App\Modules\ExecutiveSummary\Listeners;
 
 
-use App\Packages\FileUpload\DocumentStatusChanged;
+use App\Packages\FileUpload\DocumentStatusChangedApproved;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,7 +32,7 @@ class NotifyUserOfExecutiveSummaryFileStatusChange implements ShouldQueue
      */
     public function handle($file)
     {
-        Mail::to($file->user->email)->send(new DocumentStatusChanged($file, '#WeAreBristol Executive Summary Status Updated'));
+        Mail::to($file->user->email)->send(new DocumentStatusChangedApproved($file, '#WeAreBristol Executive Summary Status Updated'));
     }
 
 }

@@ -7,74 +7,60 @@ namespace App\Traits;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\GroupTag;
 use App\Packages\ControlDB\Models\Position;
+use App\Packages\ControlDB\Models\Student;
 use App\Packages\ControlDB\Models\StudentTag;
 use App\User;
+use Illuminate\Support\Collection;
 
+/*
+ * You may pass anything you want to $user (i.e. \App\User or \App\Packages\ControlDB\Models\Student
+ *
+ * Define a role() method which will accept the $user variable and return the corresponding
+ * data. The default requires \App\User
+ */
 trait AuthorizesUsers
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tags
+    |--------------------------------------------------------------------------
+    |
+    | Methods for checking if tags are applied to entities
+    |
+    */
+
 
     /**
      * Check if a group has a tag
      *
-     * @param User $user
+     * @param mixed $role
      * @param string $category
      * @param string $tag
      *
      * @return boolean
      */
-    public function groupHasTag($user, $category, $tag)
+    public function groupHasTag($role, $category, $tag)
     {
-        return $this->getTagFromGroup($this->group($user), $category, $tag) !== null;
+        return $this->getTagFromGroup($this->role($role)->group, $category, $tag) !== null;
     }
 
     /**
      * Check if a student has a tag
      *
-     * @param User $user
+     * @param mixed $role
      * @param string $category
      * @param string $tag
      * @param array|null $data Data to apply when searching for a tag
      *
      * @return boolean
      */
-    public function studentHasTag($user, $category, $tag, $data = null)
+    public function studentHasTag($role, $category, $tag, $data = null)
     {
-        return $this->getTagFromStudent($this->group($user), $category, $tag, $data) !== null;
+        return $this->getTagFromStudent($this->role($role)->student, $category, $tag, $data) !== null;
     }
 
-    /**
-     * Check if a student has a presidential position
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function studentHasPresidentialPosition($user)
-    {
-        return in_array($this->position($user)->id, config('portal.position_grouping.presidents'));
-    }
 
-    /**
-     * Check if a student has a treasurer position
-     *
-     * @param User $user
-     *
-     * @return boolean
-     */
-    public function studentHasTreasurerPosition($user)
-    {
-        return in_array($this->position($user)->id, config('portal.position_grouping.treasurers'));
-    }
-
-    public function studentIsNewCommittee(User $user)
-    {
-        return $user->getCurrentRole()->committee_year === getReaffiliationYear();
-    }
-
-    public function studentIsOldCommittee(User $user)
-    {
-        return !$this->studentIsNewCommittee($user);
-    }
 
     /**
      * Get a tag from a group
@@ -88,6 +74,9 @@ trait AuthorizesUsers
     public function getTagFromGroup($group, $categoryReference, $tagReference)
     {
         $groupTags = GroupTag::allThrough($group);
+        if($groupTags === false) {
+            return null;
+        }
         $groupTags = $groupTags->filter(function ($groupTag) use ($categoryReference, $tagReference) {
             return $groupTag->reference === $tagReference && $groupTag->category->reference === $categoryReference;
         });
@@ -98,15 +87,18 @@ trait AuthorizesUsers
     /**
      * Get a tag from a student
      *
-     * @param Group $group
+     * @param Student $user
      * @param string $categoryReference
      * @param string $tagReference
      *
-     * @return GroupTag|null
+     * @return StudentTag|null
      */
     public function getTagFromStudent($user, $categoryReference, $tagReference, $data)
     {
         $studentTags = StudentTag::allThrough($user);
+        if($studentTags === false) {
+            return null;
+        }
         $studentTags = $studentTags->filter(function ($studentTag) use ($categoryReference, $tagReference, $data) {
             return $studentTag->reference === $tagReference &&
                 $studentTag->category->reference === $categoryReference &&
@@ -115,28 +107,82 @@ trait AuthorizesUsers
         return $studentTags->first();
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Positions
+    |--------------------------------------------------------------------------
+    |
+    | Methods for determining if students have positions
+    |
+    */
+
     /**
-     * Get a group from a user
+     * Check if a student has a presidential position
      *
-     * @param User $user
+     * @param mixed $user
      *
-     * @return Group
+     * @return boolean
      */
-    private function group($user)
+    public function studentHasPresidentialPosition($role)
     {
-        return $user->getCurrentRole()->group;
+        return in_array($this->role($role)->position->id, config('portal.position_grouping.presidents'));
     }
 
     /**
-     * Get a position from a user
+     * Check if a student has a treasurer position
      *
-     * @param User $user
+     * @param mixed $user
      *
-     * @return Position
+     * @return boolean
      */
-    private function position($user)
+    public function studentHasTreasurerPosition($role)
     {
-        return $user->getCurrentRole()->position;
+        return in_array($this->role($role)->position->id, config('portal.position_grouping.treasurers'));
     }
+
+    /**
+     * Check if the user is new committee
+     *
+     * @param mixed $user
+     *
+     * @return bool
+     */
+    public function studentIsNewCommittee($role)
+    {
+        return $this->role($role)->committee_year === getReaffiliationYear();
+    }
+
+    /**
+     * Check if the user is new committee
+     *
+     * @param mixed $user
+     *
+     * @return bool
+     */
+    public function studentIsOldCommittee($role)
+    {
+        return !$this->studentIsNewCommittee($role);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Functions to be overriden if not using \App\User
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Get the committee role of the student
+     *
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function role($role)
+    {
+        return $role->getCurrentRole();
+    }
+
 
 }

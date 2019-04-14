@@ -40,7 +40,7 @@ class PoliticalActivityController extends Controller
             'position_id' => $user->getCurrentRole()->position->id,
             'year' => getReaffiliationYear()
         ])) {
-            Event::dispatch('politicalactivity.submit', $submission);
+            Event::dispatch('politicalactivity.submitted', $submission);
         }
     }
 
