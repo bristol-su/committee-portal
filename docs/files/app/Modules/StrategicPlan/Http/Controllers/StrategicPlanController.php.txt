@@ -6,9 +6,6 @@ use App\Modules\StrategicPlan\Entities\File;
 use App\Modules\StrategicPlan\Entities\Note;
 use App\Modules\StrategicPlan\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
 class StrategicPlanController extends FileUploadController
 {

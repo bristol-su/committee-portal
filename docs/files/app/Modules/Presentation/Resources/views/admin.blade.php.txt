@@ -1,5 +1,7 @@
 @extends('presentation::layouts.app')
 
+@section('title', 'Presentation')
+
 @section('module-content')
     <div class="py-5">
         <div class="container">

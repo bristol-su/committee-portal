@@ -13,16 +13,16 @@
 
 Route::prefix('executivesummary')->middleware(['user', 'module', 'module.active:executivesummary', 'module.maintenance:executivesummary'])->group(function() {
 
-    Route::get('/', 'ExecutiveSummaryController@showUserPage');
+    Route::get('/', 'ExecutiveSummaryController@showUserPage')->name('executivesummary.user');
 
     Route::FileUploads('ExecutiveSummaryController');
 
 });
 
 Route::prefix('admin/executivesummary')->middleware(['admin', 'module', 'module.active:executivesummary', 'module.maintenance:executivesummary'])->group(function() {
-    Route::get('/', 'ExecutiveSummaryController@showAdminPage');
+    Route::get('/', 'ExecutiveSummaryController@showAdminPage')->name('executivesummary.admin');
 
-    Route::get('/note-templates', 'ExecutiveSummaryController@showNoteTemplatePage');
+    Route::get('/note-templates', 'ExecutiveSummaryController@showNoteTemplatePage')->name('executivesummary.admin.note-template');
 
     Route::FileUploadsAdmin('ExecutiveSummaryController');
 });

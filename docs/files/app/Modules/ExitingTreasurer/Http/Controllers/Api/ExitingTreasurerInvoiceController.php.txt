@@ -1,0 +1,70 @@
+<?php
+
+
+namespace App\Modules\ExitingTreasurer\Http\Controllers\Api;
+
+
+use App\Http\Controllers\Controller;
+use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
+
+class ExitingTreasurerInvoiceController extends Controller
+{
+
+    public function get(OutstandingInvoice $invoice)
+    {
+        $this->authorize('exitingtreasurer.get-invoice');
+
+        return $invoice->loadMissing(['treasurerSignOffDocuments', 'invoice']);
+    }
+
+    public function create(Request $request)
+    {
+        $this->authorize('exitingtreasurer.create-invoice');
+
+        $request->validate([
+            'title' => 'required',
+            'invoice' => 'required|mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
+            'note' => 'sometimes',
+            'documents.*' => 'mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
+            'authorized' => ['required', Rule::in(['true', 'false'])]
+        ]);
+
+        $invoiceDocument = new TreasurerSignOffDocument();
+        $invoiceDocument = $invoiceDocument->uploadFile($request->file('invoice'), $request->get('title'));
+
+        // Create invoice row
+        $invoice = new OutstandingInvoice([
+            'title' => $request->input('title'),
+            'note' => ($request->input('note') === 'null' ? null : $request->input('note')),
+            'authorized' => ($request->input('authorized') === 'true' ? true : false),
+            'invoice_id' => $invoiceDocument->id
+        ]);
+
+        $invoice->save();
+
+        $documents = new Collection();
+        collect($request->file('documents'))->each(function($document) use (&$documents, $request) {
+            $treasurerDocument = new TreasurerSignOffDocument();
+            $documents->push($treasurerDocument->uploadFile($document, $request->get('title')));
+        });
+
+        $invoice->treasurerSignOffDocuments()->saveMany($documents);
+
+        return $invoice->loadMissing(['treasurerSignOffDocuments', 'invoice']);
+
+//        return response('Could not create expense claim', 500);
+    }
+
+    public function delete(OutstandingInvoice $invoice)
+    {
+        $this->authorize('exitingtreasurer.delete-invoice');
+
+        if(!$invoice->delete()){
+            return response('Could not delete claim', 500);
+        }
+    }
+}

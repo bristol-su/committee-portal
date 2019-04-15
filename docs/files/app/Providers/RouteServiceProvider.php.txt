@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -29,6 +30,12 @@ class RouteServiceProvider extends ServiceProvider
             $position = Position::find($id);
             abort_if(!$position, 404);
             return $position;
+        });
+
+        Route::bind('controlgroup', function($id) {
+            $group = Group::find($id);
+            abort_if(!$group, 404);
+            return $group;
         });
         parent::boot();
     }

@@ -3,16 +3,23 @@
 namespace App\Modules\Budget;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\Budget\Entities\File;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
+
+    public function alias()
+    {
+        return 'budget';
+    }
 
     /**
      * @return string
      */
     public function getButtonTitle()
     {
-        return 'Budget';
+        return 'Annual Budget';
     }
 
     public function getHeaderKey()
@@ -30,20 +37,16 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/budget';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
+        return File::where([
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id,
+                'status' => 'approved'
+            ])->count() > 0;
     }
 
     public function getDescription()

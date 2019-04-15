@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'tierselection';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
@@ -31,26 +36,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/tierselection';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
+if(!$this->actingAsStudent()) { return false; } ;
 
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-
-        if (Submission::countSubmissions(getGroupID()) > 0)
-        {
-            return 'complete';
-        } else {
-            return 'incomplete';
-        }
+        return Submission::countSubmissions(getGroupID()) > 0;
     }
 
     public function getDescription()

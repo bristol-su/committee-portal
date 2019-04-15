@@ -4,9 +4,9 @@ namespace App;
 
 use App\Mail\ResetPasswordMail;
 use App\Mail\VerifyEmailMail;
-use App\Notifications\VerifyEmailNotification;
-use App\Notifications\ResetPasswordNotification;
 use App\Packages\ControlDB\ControlDBInterface;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Student;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,6 +58,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasPermissionTo('act-as-admin') || $this->hasPermissionTo('act-as-super-admin');
     }
 
+    /**
+     * @return CommitteeRole
+     */
     public function getCurrentRole()
     {
         if ($this->isAdmin()) {
@@ -80,7 +83,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        Log::info('User '.$this->id.' requested verification email');
         Mail::to($this->email)->send(new VerifyEmailMail($this));
     }
 

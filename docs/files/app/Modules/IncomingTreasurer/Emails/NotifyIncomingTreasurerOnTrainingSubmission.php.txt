@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Modules\IncomingTreasurer\Emails;
+
+use App\Modules\IncomingTreasurer\Entities\Submission;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class NotifyIncomingTreasurerOnTrainingSubmission extends Mailable implements ShouldQueue
+{
+    use Queueable, SerializesModels;
+
+    public $submission;
+
+    public $oldTreasurer;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct(Submission $submission, $oldTreasurer)
+    {
+        $this->submission = $submission;
+
+        $this->oldTreasurer = $oldTreasurer;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this
+            ->subject('Treasurer Training Complete')
+            ->markdown('incomingtreasurer::emails.submitted');
+    }
+}
+

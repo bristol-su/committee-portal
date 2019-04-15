@@ -24,6 +24,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        require __DIR__ . '/../Routes/breadcrumbs.php';
+
     }
 
     /**

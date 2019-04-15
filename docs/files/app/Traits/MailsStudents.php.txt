@@ -1,0 +1,43 @@
+<?php
+
+
+namespace App\Traits;
+
+
+use App\Packages\ControlDB\Models\CommitteeRole;
+
+trait MailsStudents
+{
+    use FindsUnionCloudUserByRoleName;
+
+    public $unionCloudStudent;
+
+    public $group;
+
+    public $position;
+
+    public $controlStudent;
+
+    public $newPresident;
+
+    public function shareCommitteeRoleData(CommitteeRole $role)
+    {
+        $this->unionCloudStudent = $this->getStudentByCommitteeRole($role);
+        $this->group = $role->group;
+        $this->position = $role->position;
+        $this->controlStudent = $role->student;
+        $this->newPresident = $this->newPresident($role->group);
+    }
+
+    public function committeeRoleData(CommitteeRole $role)
+    {
+        return [
+            'unionCloudStudent' => $this->unionCloudStudent,
+            'group' => $this->group,
+            'position' => $this->position,
+            'controlStudent' => $this->controlStudent,
+            'newPresident' => $this->newPresident
+        ];
+    }
+
+}

@@ -98,18 +98,20 @@ class RegisterController extends Controller
             ->first())
             ->isAdmin()
         ) {
-            $user->password = Hash::make($request->input('password'));
-            $user->email_verified_at = null;
-            try {
+            if($user->password === null) {
+                $user->password = Hash::make($request->input('password'));
+                $user->email_verified_at = null;
+                try {
 
-                $user->save();
-            } catch (\Exception $e) {
-                throw new \Exception('Could not register your password on our systems.');
+                    $user->save();
+                } catch (\Exception $e) {
+                    throw new \Exception('Could not register your password on our systems.');
+                }
+                return $user;
             }
-            return $user;
         }
 
-        throw new \Exception('You have already registered', 400);
+        throw new \Exception('You have already registered. Try resetting your password!', 400);
     }
 
     /**

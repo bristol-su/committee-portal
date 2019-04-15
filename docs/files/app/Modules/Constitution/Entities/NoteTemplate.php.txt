@@ -8,7 +8,7 @@ class NoteTemplate extends NoteTemplateModel
 {
     public function getModuleName(): string
     {
-        return 'budget';
+        return 'constitution';
     }
 
     public function getModelNamespace(): string

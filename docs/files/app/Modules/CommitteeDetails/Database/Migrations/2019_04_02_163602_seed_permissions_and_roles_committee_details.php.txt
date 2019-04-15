@@ -1,0 +1,21 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesCommitteeDetails extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+    public $permissions = [
+        'committeedetails.add-committee-member' => ['description' => 'Allows a user to add a committee member', 'title' => 'Add Committee Member', 'group' => 'Committee Details', 'subgroup' => 'Committee Member'],
+        'committeedetails.delete-committee-member' => ['description' => 'Allows a user to delete a committee member', 'title' => 'Delete Committee Member', 'group' => 'Committee Details', 'subgroup' => 'Committee Member'],
+        'committeedetails.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View', 'group' => 'Committee Details', 'subgroup' => 'Module'],
+        'committeedetails.update-committee-member' => ['description' => 'Allows a user to update a committee member', 'title' => 'Update Committee Member', 'group' => 'Committee Details', 'subgroup' => 'Committee Member'],
+        'committeedetails.view' => ['description' => 'Allows a user to view the committee members', 'title' => 'View', 'group' => 'Committee Details', 'subgroup' => 'Module'],
+        'committeedetails.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Committee Details', 'subgroup' => 'Module'],
+        'committeedetails.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Committee Details', 'subgroup' => 'Module'],
+        'committeedetails.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Committee Details', 'subgroup' => 'Module'],
+        'committeedetails.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Budget', 'subgroup' => 'Module'],
+        ];
+}
+
