@@ -122,6 +122,9 @@ abstract class FileUploadController extends Controller
         if ($id === null) {
             $files = $this->fileModel::with($with)->get();
             return $files->map(function($file) {
+                if(Group::find($file->group_id) === false) {
+                    dd($file);
+                }
                 $file->group = Group::find($file->group_id)->toArray();
                 return $file;
             });
@@ -137,9 +140,9 @@ abstract class FileUploadController extends Controller
     {
         $this->authorizeModuleAction('view');
 
-        $files = $this->getFileWithRelations();
-        $files = $files->filter(function($file) {
-            return $file->group_id === getGroupID();
+        $files = $this->fileModel::where('group_id', getGroupID())->get();
+        $files = $files->map(function($file) {
+            return $this->getFileWithRelations($file->id);
         });
         return $files->values();
     }
