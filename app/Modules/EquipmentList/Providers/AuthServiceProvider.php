@@ -44,6 +44,18 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('equipmentlist.view', function(User $user) {
             return true;
         });
+
+        Gate::define('equipmentlist.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('equipmentlist.create-equipment', function(User $user) {
+            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('equipmentlist.delete-equipment', function(User $user) {
+            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
+        });
     }
 
     /**

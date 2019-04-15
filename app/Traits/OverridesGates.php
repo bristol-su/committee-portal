@@ -48,4 +48,5 @@ trait OverridesGates
         $configuration = new $configString;
         return $configuration->isComplete();
     }
+
 }
