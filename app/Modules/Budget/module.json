@@ -3,7 +3,7 @@
     "alias": "budget",
     "description": "",
     "keywords": [],
-    "active": 0,
+    "active": 1,
     "order": 11,
     "providers": [
         "App\\Modules\\Budget\\Providers\\BudgetServiceProvider"
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\Budget\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }

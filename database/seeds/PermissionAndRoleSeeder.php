@@ -1,6 +1,6 @@
 <?php
 
-class PermissionAndRoleSeeder extends BasePermissionAndRoleSeeder
+class PermissionAndRoleSeeder extends \App\Packages\Permissions\BasePermissionsSeederMigration
 {
 
     /**

@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="">Strategicplan</h2>
-                    <p class="">Uploaded strategicplans</p>
+                    <h2 class="">#WeAreBristol Strategic Plans</h2>
+                    <p class="">Uploaded strategic plans</p>
                 </div>
             </div>
         </div>
@@ -26,5 +26,6 @@
         </div>
     </div>
 @endsection
+
 
 

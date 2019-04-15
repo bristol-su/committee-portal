@@ -12,5 +12,9 @@
 */
 
 Route::prefix('externalaccounts')->middleware(['user', 'module', 'module.active:externalaccounts', 'module.maintenance:externalaccounts'])->group(function() {
-    Route::get('/', 'ExternalAccountsController@index');
+    Route::get('/', 'ExternalAccountsController@showUserPage')->name('externalaccounts.user');
+});
+
+Route::prefix('admin/externalaccounts')->middleware(['admin', 'module', 'module.active:externalaccounts', 'module.maintenance:externalaccounts'])->group(function() {
+    Route::get('/', 'ExternalAccountsController@showAdminPage')->name('externalaccounts.admin');
 });

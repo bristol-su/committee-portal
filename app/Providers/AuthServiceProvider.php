@@ -45,10 +45,10 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
 
-            return null;
+
         });
 
-        // Override user gates for Spatie permissions
+        // Override for Spatie permissions
         Gate::before(function(User $user, $ability) {
 
             // Override what individuals may do on the site
@@ -56,7 +56,7 @@ class AuthServiceProvider extends ServiceProvider
             // We don't need to check if user is an admin,
             // since then users may own a permission to override their default.
             // Eg: A user may have the 'module.submit' permission to allow them to submit a document even if
-            // they shouldn't be able to normally. Eg the pres may not be able to access the portal
+            // they shouldn't be able to normally, such as if the pres may not be able to access the portal
 
             try {
                 // Use hasPermissionTo so we don't get stuck in a can loop
@@ -69,12 +69,11 @@ class AuthServiceProvider extends ServiceProvider
                 // unless they have permission to be here.
             }
 
-            // Don't let admins into the user permissions
+            // Don't let admins into the user permissions. They must be seperately given their permissions.
             if ($user->isAdmin()) {
                 return false;
             }
 
-            return null;
         });
     }
 }

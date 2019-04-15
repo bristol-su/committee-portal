@@ -1,0 +1,12 @@
+@component('mail::message')
+
+Hi {{$user->forename}}!
+
+We have just uploaded a financial document for {{$group->name}} to the Committee Portal.
+
+Please login to review the document in 'Outgoing Treasurer Sign-Off'. Once both the Financial Summary report and Transaction
+List have been uploaded, you will be able to provide your sign-off, and complete the task.
+
+If you can only see one of the two documents, please be patient, we will upload the other one within 3 working days.
+
+@endcomponent

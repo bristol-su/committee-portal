@@ -16,7 +16,7 @@ class MainContactsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

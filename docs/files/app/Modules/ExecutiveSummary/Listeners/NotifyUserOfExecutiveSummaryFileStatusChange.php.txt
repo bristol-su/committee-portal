@@ -9,7 +9,7 @@
 namespace App\Modules\ExecutiveSummary\Listeners;
 
 
-use App\Mail\DefaultDocumentStatusChanged;
+use App\Packages\FileUpload\DefaultDocumentStatusChanged;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 

@@ -20,9 +20,7 @@ class CheckModuleActive
     {
         /** @var User $user */
         $user = Auth::user();
-
         abort_if(!$user->can($module.'.module.isActive'), 403, 'This module is currently disabled. If you believe you should have access, please contact us.');
-
         return $next($request);
     }
 }

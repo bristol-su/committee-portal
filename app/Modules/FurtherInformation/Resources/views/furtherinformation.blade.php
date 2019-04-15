@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: left;">
                     <ul>
                         <li><a href="{{serveStatic('wearebristol-club-information-pack-dates.pdf')}}" target="_blank">#WeAreBristol Club Information Pack - Dates</a></li>
                         <li><a href="{{serveStatic('wearebristol-club-criteria.pdf')}}" target="_blank">#WeAreBristol Club Criteria</a></li>

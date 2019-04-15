@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -49,9 +50,15 @@ class PortalController extends Controller
     public function logIntoGroup(Request $request)
     {
 
+        $this->authorize('view-as-student');
+
         $request->validate([
             'group_id' => 'required'
         ]);
+
+        $group = Group::find($request->input('group_id'));
+
+        $this->authorize('view-as-student-'.$group->getGroupType());
 
         if (\Auth::guard('view-as-student')->attempt([
             'group_id' => $request->input('group_id')

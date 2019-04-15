@@ -2,6 +2,12 @@
 
 namespace App\Modules\ExitingTreasurer\Providers;
 
+use App\Modules\ExitingTreasurer\Entities\Correction;
+use App\Modules\ExitingTreasurer\Entities\Document;
+use App\Modules\ExitingTreasurer\Entities\MissingIncomeAndExpenditure;
+use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\Submission;
+use App\Modules\ExitingTreasurer\Entities\UnauthorizedExpenseClaim;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +29,28 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::bind('exitingtreasurer_document', function($id) {
+            return Document::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_expense_claim', function($id) {
+            return UnauthorizedExpenseClaim::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_invoice', function($id) {
+            return OutstandingInvoice::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_missing_i_and_e', function($id) {
+            return MissingIncomeAndExpenditure::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_correction', function($id) {
+            return Correction::findOrFail($id);
+        });
+        Route::bind('exitingtreasurer_submission', function($id) {
+            return Submission::findOrFail($id);
+        });
         parent::boot();
+
+        require __DIR__ . '/../Routes/breadcrumbs.php';
+
     }
 
     /**

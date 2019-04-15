@@ -4,57 +4,32 @@
 @section('content')
 
     <div class="py-5">
-        <div class="container">
-            <h2 style="text-align: center">Committee Portal</h2>
-            <h4 style="text-align: center"><small>Choose a task below to get started! </small></h4>
-            @foreach($modules->pluck('header')->unique() as $header)
-                {{--// TODO Headers may be empty if user not authorised to view any of them--}}
+        <div class="container" id="committee-portal-portal">
+            <h2 style="text-align: center">Committee Portal
+                <small>- {{Auth::user()->getCurrentRole()->group->name}}</small>
+            </h2>
+            <h4 style="text-align: center">
+                <small>To make reaffiliating your group as easy as possible, we've put all of the tasks that need
+                    completing in one place. Some tasks will only unlock after doing others, so please begin working
+                    through them at your earliest convenience.
+                </small>
+            </h4>
+            <br/>
 
-                <div class="row">
-                    <div class="col-md-12">
+            <committee-portal
+                    :modules="{{$modules}}"
+                    :order="{{json_encode(config('portal.header_order'))}}"
+            >
 
-                        <div class="card">
+            </committee-portal>
 
-
-                            <div class="card-body">
-
-                                <h5 class="card-title"><b>{{config('portal.headers.'.$header.'.header', $header)}}</b>
-                                </h5>
-
-                                <h6 class="card-subtitle my-2 text-muted">{{config('portal.headers.'.$header.'.subtitle', $header)}}</h6>
-
-                                <div class="row">
-                                    @foreach($modules->where('header', $header) as $module)
-                                        @can($module['rawModule']->alias.'.module.isVisible')
-
-                                            <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
-                                                <a href="{{url($module['user_url'])}}">
-                                                    <button
-                                                            type="button"
-                                                            class="module_button {{config('portal.reaffiliation_status.'.$module['reaffiliation_status'])}}"
-                                                            @cannot($module['rawModule']->alias.'.module.isActive') disabled @endcannot
-                                                    >
-                                                        {{$module['button_title']}}
-                                                    </button>
-                                                </a>
-                                            </div>
-
-                                        @endcan
-
-                                    @endforeach
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <br/><br/>
-
-            @endforeach
+            <br/><br/>
 
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/portal.js') }}"></script>
+
+@endpush

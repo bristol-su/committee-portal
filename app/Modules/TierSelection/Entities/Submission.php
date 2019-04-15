@@ -2,10 +2,11 @@
 
 namespace App\Modules\TierSelection\Entities;
 
+use App\Packages\ControlDB\Models\Group;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
@@ -55,6 +56,15 @@ class Submission extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function group()
+    {
+        $group = Group::find($this->group_id);
+        if ($group === false) {
+            throw new Exception('Group not found', 500);
+        }
+        return $group;
     }
 }
 

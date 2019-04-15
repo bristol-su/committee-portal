@@ -7,8 +7,8 @@
                 <th>Filename</th>
                 <th>Size</th>
                 <th>Year</th>
-                <th>Uploaded By</th>
                 <th>Uploaded</th>
+                <th>By</th>
                 <th>Status</th>
             </tr>
             </thead>
@@ -20,13 +20,14 @@
                 <td>{{file.name}}</td>
                 <td>{{file.size | bytesToHuman}}</td>
                 <td>{{ currentReaffiliationYear | reaffiliation_year}}</td>
-                <td colspan="2">
-                    <button @click="$emit('upload', index)" class="btn btn-outline-info" style="width: 100%;">
-                        Upload
-                    </button>
+                <td colspan="2" style="color: #E9304A;">
+                    Awaiting Confirmation
+<!--                    <button @click="$emit('upload', index)" class="btn btn-outline-info" style="width: 100%;">-->
+<!--                        Upload-->
+<!--                    </button>-->
                 </td>
                 <td v-if="isUploading(index)"><i class="fa fa-spinner fa-spin"></i> Uploading</td>
-                <td v-else>Please confirm upload</td>
+                <td v-else></td>
             </tr>
 
             <!-- Previously uploaded files -->
@@ -35,7 +36,6 @@
                 <td>{{file.filename}}</td>
                 <td>{{file.size | bytesToHuman}}</td>
                 <td>{{file.year | reaffiliation_year}}</td>
-                <td>{{file.user | username }}</td>
                 <td @click="toggleDate(index)" class="clickable">
                     <span v-if="fullDate.indexOf(index) === -1">
                         {{file.created_at | timeToHuman}}
@@ -44,6 +44,8 @@
                         {{file.created_at | date_format}}
                     </span>
                 </td>
+                <td>{{file.user | username }}</td>
+
                 <td v-if="file.status === 'awaiting approval'"><i class="fa fa-hourglass"></i> Awaiting Approval</td>
                 <td v-else-if="file.status === 'approved'"><i class="fa fa-check"></i> Approved</td>
                 <td v-else-if="file.status === 'rejected'"><i class="fa fa-times"></i> Rejected</td>

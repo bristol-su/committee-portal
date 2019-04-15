@@ -3,15 +3,23 @@
 namespace App\Modules\IncomingTreasurer;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\IncomingTreasurer\Entities\Submission;
+use App\Packages\ControlDB\Models\Group;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
+
+public function alias()
+{
+    return 'incomingtreasurer';
+}
 
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
     {
-        return 'Incoming Treasurer';
+        return 'Incoming Treasurer Training';
     }
 
     public function getHeaderKey()
@@ -29,20 +37,13 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/incomingtreasurer';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if(!$this->actingAsStudent()) { return false; } ;
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()

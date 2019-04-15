@@ -10,6 +10,7 @@ namespace App\Authentication;
 
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 class ViewAsStudent implements Authenticatable
 {

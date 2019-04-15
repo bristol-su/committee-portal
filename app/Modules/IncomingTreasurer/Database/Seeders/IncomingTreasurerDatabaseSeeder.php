@@ -16,7 +16,7 @@ class IncomingTreasurerDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

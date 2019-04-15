@@ -8,7 +8,6 @@ use App\Modules\Presentation\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
 class PresentationController extends FileUploadController
 {
