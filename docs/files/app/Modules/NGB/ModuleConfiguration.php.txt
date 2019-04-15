@@ -7,6 +7,11 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'ngb';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
@@ -29,25 +34,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/ngb';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if(!$this->actingAsStudent()) { return false; } ;
+        return false;
     }
 
     public function getDescription()
     {
-        return 'This is the ngb module';
+        return 'This page allows us to understand how you comply with your governing body\'s safety standards.';
     }
 
     public function getAdminHeaderKey()

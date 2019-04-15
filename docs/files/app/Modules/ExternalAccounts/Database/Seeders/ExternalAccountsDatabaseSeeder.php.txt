@@ -16,7 +16,7 @@ class ExternalAccountsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

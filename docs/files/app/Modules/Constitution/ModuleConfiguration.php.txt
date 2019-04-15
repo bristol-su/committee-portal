@@ -3,9 +3,15 @@
 namespace App\Modules\Constitution;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\Constitution\Entities\File;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
+
+    public function alias()
+    {
+        return 'constitution';
+    }
 
     protected $mandatoryForReaffiliation = true;
 
@@ -29,20 +35,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/constitution';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
+if(!$this->actingAsStudent()) { return false; } ;
+        return File::where([
+            'year' => getReaffiliationYear(),
+            'status' => 'approved',
+            'group_id' => getGroupID()
+        ])->count() > 0;
 
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
     }
 
     public function getDescription()

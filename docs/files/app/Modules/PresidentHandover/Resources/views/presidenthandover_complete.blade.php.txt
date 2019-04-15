@@ -1,0 +1,32 @@
+@extends('presidenthandover::layouts.app')
+
+@section('title', 'President Handover')
+
+@section('module-content')
+
+    <!-- Title and description -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h2>Thank you!</h2></div>
+                <div class="col-md-12" style="text-align: left;">
+                    <p>
+                        We hope you've enjoyed the year as much as we have, we appreciate all the
+                        work you have put into running {{$group_name}} this year and wish you the very best of luck for
+                        the future. We look forward to working with your new {{strtolower($position_name)}}, {{$forename}} {{$surname}}, but don't forget that you
+                        will continue to have access to the portal until your group has fully affiliated.
+                    </p>
+
+                    <p>Thanks again from all of us at Bristol SU!</p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+@endsection
+
