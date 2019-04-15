@@ -1,0 +1,62 @@
+<?php
+
+
+namespace App\Modules\ExitingTreasurer\Http\Controllers\Api;
+
+
+use App\Http\Controllers\Controller;
+use App\Modules\ExitingTreasurer\Entities\Correction;
+use App\Modules\ExitingTreasurer\Entities\MissingIncomeAndExpenditure;
+use App\Modules\ExitingTreasurer\Entities\OutstandingInvoice;
+use App\Modules\ExitingTreasurer\Entities\TreasurerSignOffDocument;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
+
+class ExitingTreasurerCorrectionController extends Controller
+{
+
+    public function get(Correction $correction)
+    {
+        $this->authorize('exitingtreasurer.get-correction');
+
+        return $correction->loadMissing(['treasurerSignOffDocuments']);
+    }
+
+    public function create(Request $request)
+    {
+        $this->authorize('exitingtreasurer.create-correction');
+
+        $request->validate([
+            'note' => 'required',
+            'documents.*' => 'mimes:bin,pdf,doc,dotm,dotx,zip,docx,pptx,ppt,odt,txt,xlsx,xls,csv,ods,otp',
+        ]);
+
+        $correction = new Correction([
+            'note' => $request->input('note'),
+        ]);
+
+        $correction->save();
+
+        $documents = new Collection();
+        collect($request->file('documents'))->each(function($document) use (&$documents, $request) {
+            $treasurerDocument = new TreasurerSignOffDocument();
+            $documents->push($treasurerDocument->uploadFile($document, 'Corrections: '.getReaffiliationYear()));
+        });
+
+        $correction->treasurerSignOffDocuments()->saveMany($documents);
+
+        return $correction->loadMissing(['treasurerSignOffDocuments']);
+
+//        return response('Could not create expense claim', 500);
+    }
+
+    public function delete(Correction $correction)
+    {
+        $this->authorize('exitingtreasurer.delete-correction');
+
+        if(!$correction->delete()){
+            return response('Could not delete correction', 500);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Modules\PresidentHandover\Providers;
+
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use Twigger\UnionCloud\API\UnionCloud;
+
+class ViewServiceProvider extends ServiceProvider
+{
+   public function boot(UnionCloud $unionCloud)
+   {
+       // Supply the new president to the pres handover complete page
+       View::composer('presidenthandover::presidenthandover_complete', function($view) use ($unionCloud) {
+           $group = Group::find(getGroupID());
+           $committee = CommitteeRole::allThrough($group);
+           $positionId = getExecutiveCommitteeRoleID();
+           $pres = $committee->filter(function($committeeMember) use ($positionId) {
+               return $committeeMember->position_id === $positionId
+                   && $committeeMember->committee_year === getReaffiliationYear();
+           })->first();
+
+           $unioncloudPres = $unionCloud->users()->getByUID($pres->student->uc_uid)->get()->first();
+
+           return $view->with([
+               'forename' => $unioncloudPres->forename,
+               'surname' => $unioncloudPres->surname,
+               'position_name' => $pres->position_name,
+               'group_name' => $group->name
+           ]);
+       });
+   }
+}

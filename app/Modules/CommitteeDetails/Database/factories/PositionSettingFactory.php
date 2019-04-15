@@ -1,7 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\PositionSetting;
 use Faker\Generator as Faker;
 
 $factory->define(PositionSetting::class, function(Faker $faker) {

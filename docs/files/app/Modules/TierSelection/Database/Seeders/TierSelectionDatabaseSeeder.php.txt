@@ -31,7 +31,7 @@ class TierSelectionDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PermissionAndRoleSeeder::class);
+
         // Seed initial tier data. This functionality is replaced with a tier submission settings page
         // TODO
 

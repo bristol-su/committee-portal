@@ -9,6 +9,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     protected $mandatoryForReaffiliation = true;
 
+    public function alias()
+    {
+        return 'equipmentlist';
+    }
+
     public function getButtonTitle()
     {
         return 'Equipment List';
@@ -29,25 +34,17 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/equipmentlist';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
+        return false;
     }
 
     public function getDescription()
     {
-        return 'This is the equipment list module';
+        return 'This page allows you to track the equipment that [student group name] owns. It also allows Bristol SU to log any items with a value of over £500 for auditing purposes.';
     }
 
     public function getAdminHeaderKey()

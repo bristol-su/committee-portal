@@ -1,0 +1,16 @@
+{
+    "name": "GDPR",
+    "alias": "gdpr",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "App\\Modules\\GDPR\\Providers\\GDPRServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\GDPR\\ModuleConfiguration",
+    "in_development": true
+}

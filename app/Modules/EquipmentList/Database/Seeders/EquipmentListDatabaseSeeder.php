@@ -16,6 +16,6 @@ class EquipmentListDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
     }
 }

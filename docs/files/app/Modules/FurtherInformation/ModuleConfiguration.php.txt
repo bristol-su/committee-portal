@@ -7,6 +7,11 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'furtherinformation';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
@@ -29,11 +34,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/furtherinformation';
     }
 
-
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'complete';
+    if(!$this->actingAsStudent()) { return false; } ;
+        return true;
     }
 
     public function getDescription()

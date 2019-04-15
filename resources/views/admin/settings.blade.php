@@ -19,7 +19,7 @@
                                         <a href="{{ url('/admin/settings/admin-users') }}">
                                             <button
                                                     type="button"
-                                                    class="module_button btn btn-outline-info"
+                                                    class="module-button btn btn-outline-info"
                                             >
                                                 Users
                                             </button>
@@ -32,7 +32,7 @@
                                         <a href="{{ url('/admin/settings/roles-permissions') }}">
                                             <button
                                                     type="button"
-                                                    class="module_button btn btn-outline-info"
+                                                    class="module-button btn btn-outline-info"
                                             >
                                                 Roles & Permissions
                                             </button>

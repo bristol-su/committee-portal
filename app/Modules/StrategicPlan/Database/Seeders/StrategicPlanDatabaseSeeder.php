@@ -14,9 +14,8 @@ class StrategicPlanDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

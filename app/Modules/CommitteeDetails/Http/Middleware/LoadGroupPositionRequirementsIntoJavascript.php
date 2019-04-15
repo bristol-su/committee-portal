@@ -2,7 +2,7 @@
 
 namespace App\Modules\CommitteeDetails\Http\Middleware;
 
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\PositionSetting;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

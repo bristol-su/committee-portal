@@ -13,6 +13,3 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/budget', function(Request $request) {
-    return $request->user();
-});

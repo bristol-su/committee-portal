@@ -16,7 +16,7 @@ class RiskAssessmentDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

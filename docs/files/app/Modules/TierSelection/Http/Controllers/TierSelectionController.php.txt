@@ -9,6 +9,7 @@ use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class TierSelectionController extends Controller
 {
@@ -55,6 +56,9 @@ class TierSelectionController extends Controller
         ]);
 
         abort_unless($submission->save(), 500, 'We were unable to save your selection.');
+
+        Event::dispatch('tierselection.submitted', $submission);
+
         return $submission;
     }
 

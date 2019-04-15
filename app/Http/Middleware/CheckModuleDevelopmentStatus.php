@@ -19,9 +19,9 @@ class CheckModuleDevelopmentStatus
      */
     public function handle(Request $request, Closure $next, $moduleName)
     {
+
         // Find the module
         $module = Module::find($moduleName);
-
         // If the module is in development status and we are not a developer
         if ($module->json()->in_development && !Auth::user()->can('bypass-maintenance') && !app()->isLocal()) {
 
@@ -33,6 +33,7 @@ class CheckModuleDevelopmentStatus
             return response(view('modules.in_development')->with($data));
         };
         return $next($request);
+
     }
 
 }

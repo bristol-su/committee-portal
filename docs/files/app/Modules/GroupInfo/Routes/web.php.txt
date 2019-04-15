@@ -12,5 +12,11 @@
 */
 
 Route::prefix('groupinfo')->middleware(['user', 'module', 'module.active:groupinfo', 'module.maintenance:groupinfo'])->group(function() {
-    Route::get('/', 'GroupInfoController@index');
+    Route::get('/', 'GroupInfoController@showPage')->name('groupinfo.user');
+    Route::post('/', 'GroupInfoController@changeInformation');
+    Route::get('/questions', 'GroupInfoController@getQuestions');
+});
+
+Route::prefix('admin/groupinfo')->middleware(['admin', 'module', 'module.active:groupinfo', 'module.maintenance:groupinfo'])->group(function() {
+    Route::get('/', 'GroupInfoController@showAdminPage')->name('groupinfo.admin');
 });
