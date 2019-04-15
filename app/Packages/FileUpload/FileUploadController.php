@@ -123,7 +123,7 @@ abstract class FileUploadController extends Controller
             $files = $this->fileModel::with($with)->get();
             return $files->map(function($file) {
                 if(Group::find($file->group_id) === false) {
-                    dd($file);
+                    throw new \Exception('Group not found', 404);
                 }
                 $file->group = Group::find($file->group_id)->toArray();
                 return $file;
