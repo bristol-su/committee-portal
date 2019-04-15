@@ -13,7 +13,7 @@
                     <tbody>
                     <tr v-for="contact in contacts">
                         <td>
-                            <p>{{contact.title}}</p>
+                            <p>{{contact.title}} <span v-if="contact.required" style="color: red;"> *</span></p>
                             <p>
                                 <small>{{contact.helptext}}</small>
                             </p>
@@ -85,7 +85,14 @@
                 // Load the contacts
                 this.$http.get('/maincontacts/contacts')
                     .then(response => {
-                        this.contacts = response.data;
+                        this.contacts = response.data.sort((el1, el2) => {
+                            if(el1.required === true && el2.required === false) {
+                                return -1;
+                            } else if(el2.required === true && el1.required === false) {
+                                return 1;
+                            }
+                            return 0;
+                        });
                         let data = {};
                         this.contacts.forEach(contact => {
                             data['id_' + contact.id] = (contact.answer ? contact.answer : null);

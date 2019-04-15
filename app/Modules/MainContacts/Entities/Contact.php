@@ -17,7 +17,14 @@ class Contact extends Model
 {
     use SoftDeletes, CanTagStudents;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'required'
+    ];
+
+
+    protected $casts = [
+        'required' => 'boolean'
+    ];
 
     protected $table = 'maincontacts_subjects';
 
