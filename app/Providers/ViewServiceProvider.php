@@ -45,8 +45,8 @@ class ViewServiceProvider extends ServiceProvider
                 $configuration['header']['index'] = $index;
 
                 // Load information from gates
-                foreach(config('portal.header_information_gates') as $information) {
-                    $configuration[$information] = Auth::user()->can($configuration['alias'].'.module.is'.ucfirst($information));
+                foreach(config('portal.header_information_gates') as $key => $information) {
+                    $configuration[$key] = Auth::user()->can($configuration['alias'].'.'.$information);
                 }
                 return $configuration;
             });

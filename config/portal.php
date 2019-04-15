@@ -58,10 +58,10 @@ return [
     ],
 
     'header_information_gates' => [
-        'visible',
-        'active',
-        'responsible',
-        'mandatory',
+        'visible' => 'module.isVisible',
+        'active' => 'module.isActive',
+        'responsible' => 'reaffiliation.isResponsible',
+        'mandatory' => 'reaffiliation.isMandatory',
     ],
 
     'reaffiliation_year' => (int)env('REAFFILIATION_YEAR', 2017),
