@@ -59,7 +59,7 @@
                 .then(response => this.student = response.data)
                 .catch(error => {
                     this.studentFailed = true;
-                    this.$notify.alert('Sorry, something went wrong.');
+                    this.$notify.alert('Couldn\'t find a committee member #(' + this.committeemember.student.id + ') in our systems.');
                 });
         },
 

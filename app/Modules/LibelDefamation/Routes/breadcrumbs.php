@@ -1,0 +1,23 @@
+<?php
+
+use \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
+use \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+
+/*
+|--------------------------------------------------------------------------
+| Breadcrumbs
+|--------------------------------------------------------------------------
+|
+| Registration for breadcrumbs may occur in here
+|
+*/
+
+Breadcrumbs::for('libeldefamation.user', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('portal');
+    $trail->push('Libel Awareness', route('libeldefamation.user'));
+});
+
+Breadcrumbs::for('libeldefamation.admin', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin');
+    $trail->push('Libel Awareness', route('libeldefamation.admin'));
+});

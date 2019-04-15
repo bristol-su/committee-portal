@@ -25,6 +25,5 @@ class LogEmailVerificationRequested
      */
     public function handle()
     {
-        Log::info('User requested verification');
     }
 }

@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesEquipmentList extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+    public $permissions = [
+        'equipmentlist.module.isVisible' => ['title'=> 'Module Visible', 'description' => 'Makes the module visible', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.module.isActive' => ['title'=> 'Module Active', 'description' => 'Makes the module active (i.e. not disabled)', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.reaffiliation.isMandatory' => ['title'=> 'Module Mandatory for Reaffiliation', 'description' => 'Makes the module mandatory for reaffiliation', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Makes a user responsible for this module', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.view' => ['title'=> 'View', 'description' => 'Allows a user to view the module', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.view-admin' => ['title'=> 'View Admin', 'description' => 'Allows a user to view the admin side of the module', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.submit' => ['title'=> 'Submit', 'description' => 'Allows a user to finalise the equipment list and submit it to reaffiliation', 'group' => 'Equipment List', 'subgroup' => 'Module'],
+        'equipmentlist.create-equipment' => ['title'=> 'Create', 'description' => 'Allows a user to save a piece of equipment', 'group' => 'Equipment List', 'subgroup' => 'Equipment'],
+        'equipmentlist.delete-equipment' => ['title'=> 'Delete', 'description' => 'Allows a user to delete a piece of equipment', 'group' => 'Equipment List', 'subgroup' => 'Equipment'],
+    ];
+}

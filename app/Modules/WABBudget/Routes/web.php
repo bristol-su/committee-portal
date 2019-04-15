@@ -12,15 +12,15 @@
 */
 
 Route::prefix('wabbudget')->middleware(['user', 'module', 'module.active:wabbudget', 'module.maintenance:wabbudget'])->group(function() {
-    Route::get('/', 'WABBudgetController@showUserPage');
+    Route::get('/', 'WABBudgetController@showUserPage')->name('wabbudget.user');
 
     Route::FileUploads('WABBudgetController');
 });
 
 Route::prefix('admin/wabbudget')->middleware(['admin', 'module', 'module.active:wabbudget', 'module.maintenance:wabbudget'])->group(function() {
-    Route::get('/', 'WABBudgetController@showAdminPage');
+    Route::get('/', 'WABBudgetController@showAdminPage')->name('wabbudget.admin');
 
-    Route::get('/note-templates', 'WABBudgetController@showNoteTemplatePage');
+    Route::get('/note-templates', 'WABBudgetController@showNoteTemplatePage')->name('wabbudget.admin.note-template');
 
     Route::FileUploadsAdmin('WABBudgetController');
 });

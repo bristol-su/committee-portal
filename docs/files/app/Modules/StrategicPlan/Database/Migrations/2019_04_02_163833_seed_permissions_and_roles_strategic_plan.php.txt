@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesStrategicPlan extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+    public $permissions = [
+        'strategicplan.change-status' => ['description' => 'Allows a user to change the status of any document', 'title' => 'Change Document Status', 'group' => 'Strategic Plan', 'subgroup' => 'Document'],
+        'strategicplan.create-note-template' => ['description' => 'Allows a user to create a note template', 'title' => 'Create Note Template', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.delete-note-template' => ['description' => 'Allows a user to delete a note template', 'title' => 'Delete Note Template', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.download' => ['description' => 'Allows a user to download a document belonging to their group', 'title' => 'Download Document', 'group' => 'Strategic Plan', 'subgroup' => 'Document'],
+        'strategicplan.download-admin' => ['description' => 'Allows a user to download any document', 'title' => 'Admin: Download Documents', 'group' => 'Strategic Plan', 'subgroup' => 'Document'],
+        'strategicplan.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+        'strategicplan.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+        'strategicplan.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+        'strategicplan.post-note' => ['description' => 'Allows a user to post a note on a document belonging to their group', 'title' => 'Post Note', 'group' => 'Strategic Plan', 'subgroup' => 'Note'],
+        'strategicplan.post-note-admin' => ['description' => 'Allows a user to post a note on any document belonging to any group', 'title' => 'Post Admin Note', 'group' => 'Strategic Plan', 'subgroup' => 'Note'],
+        'strategicplan.update-note-template' => ['description' => 'Allows a user to update a note template', 'title' => 'Update Note Template', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.upload' => ['description' => 'Allows a user to upload a document', 'title' => 'Upload Document', 'group' => 'Strategic Plan', 'subgroup' => 'Document'],
+        'strategicplan.view' => ['description' => 'Allows a user to view the module', 'title' => 'View Documents', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+        'strategicplan.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+        'strategicplan.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Strategic Plan', 'subgroup' => 'Note Template'],
+        'strategicplan.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Strategic Plan', 'subgroup' => 'Module'],
+    ];
+}
+

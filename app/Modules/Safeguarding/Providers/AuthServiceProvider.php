@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Modules\Safeguarding\Providers;
+
+use App\Traits\AuthorizesUsers;
+use App\User;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    use AuthorizesUsers;
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        Gate::define('safeguarding.module.isVisible', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
+        });
+
+        Gate::define('safeguarding.module.isActive', function(User $user) {
+            // TODO GATE BEFORE CommitteeDetails
+            // TODO GATE BEFORE GroupInfo
+            // TODO GATE BEFORE TaskAllocation
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
+        });
+
+        Gate::define('safeguarding.reaffiliation.isMandatory', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
+        });
+
+        Gate::define('safeguarding.reaffiliation.isResponsible', function(User $user) {
+            $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('safeguarding.view', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'safeguarding_awareness');
+        });
+
+        Gate::define('safeguarding.submit', function(User $user) {
+            $this->studentHasPresidentialPosition($user)
+            && $this->studentIsNewCommittee($user);
+        });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
+}

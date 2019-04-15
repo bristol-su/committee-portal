@@ -12,7 +12,7 @@
 */
 
 Route::prefix('tierselection')->middleware(['user', 'module', 'module.active:tierselection', 'module.maintenance:tierselection'])->group(function() {
-    Route::get('/', 'TierSelectionController@showTierSelectionUserPage');
+    Route::get('/', 'TierSelectionController@showTierSelectionUserPage')->name('tierselection.user');
     Route::post('/', 'TierSelectionController@submitTier');
 });
 
@@ -21,6 +21,6 @@ Route::prefix('tierselection/api')->middleware(['user', 'module', 'module.active
 });
 
 Route::prefix('admin/tierselection')->middleware(['admin', 'module', 'module.active:tierselection', 'module.maintenance:tierselection'])->group(function() {
-    Route::get('/', 'TierSelectionController@showTierAdminPage');
+    Route::get('/', 'TierSelectionController@showTierAdminPage')->name('tierselection.admin');
     Route::get('/selections', 'TierSelectionController@getAllSelections');
 });

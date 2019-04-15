@@ -3,9 +3,15 @@
 namespace App\Modules\RiskAssessment;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\RiskAssessment\Entities\File;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
+
+public function alias()
+{
+    return 'riskassessment';
+}
 
     protected $mandatoryForReaffiliation = true;
 
@@ -29,20 +35,14 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/riskassessment';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+if(!$this->actingAsStudent()) { return false; } ;
+    return File::where([
+            'year' => getReaffiliationYear(),
+            'status' => 'approved',
+            'group_id' => getGroupID()
+        ])->count() > 0;
     }
 
     public function getDescription()

@@ -14,8 +14,8 @@ class AddTitleAndDescriptionColumnsToPermissionsTable extends Migration
     public function up()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->string('title')->after('name');
-            $table->text('description')->after('name');
+            $table->string('title')->after('name')->nullable();
+            $table->text('description')->after('name')->nullable();
         });
     }
 

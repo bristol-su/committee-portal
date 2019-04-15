@@ -8,11 +8,13 @@
                 <div class="col-md-9">
                     <h1>Bristol SU Committee Portal</h1>
                     <p class="lead text-muted">
-                        Welcome to your committee portal! This is where you upload all the relevant information to
-                        ensure a smooth transition of information from the existing and new committee.
+                        Hello! The Bristol SU Committee Portal is here to support a smooth handover between your
+                        outgoing committee members and the new committee. This is where you can check all the relevant
+                        information about your group is correct and upload any new information, meaning nothing should
+                        get lost in emails and your new committee can hit the ground running ready for Welcome Week.
                     </p>
-                    <a href="{{url('/login')}}" class="btn btn-primary m-2">Login</a>
-                    <a href="{{url('/register')}}" class="btn btn-secondary m-2">Register</a>
+                    {{--                    <a href="{{url('/login')}}" class="btn btn-primary m-2">Login</a>--}}
+                    <a href="{{url('/register')}}" class="btn btn-lg btn-secondary m-1">Register</a>
                 </div>
             </div>
         </div>

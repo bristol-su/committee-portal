@@ -3,8 +3,8 @@
     "alias": "maincontacts",
     "description": "",
     "keywords": [],
-    "active": 0,
-    "order": 3,
+    "active": 1,
+    "order": 4,
     "providers": [
         "App\\Modules\\MainContacts\\Providers\\MainContactsServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\MainContacts\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }

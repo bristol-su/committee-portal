@@ -1,0 +1,45 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: toby
+ * Date: 22/03/19
+ * Time: 21:19
+ */
+
+namespace App\Traits;
+
+
+use ActiveResource\ConnectionManager;
+use App\Packages\ControlDB\Models\Student;
+
+trait EditsControlPositions
+{
+    /**
+     * Get the Control ID of a student by their UnionCloud ID
+     *
+     * @param $uid
+     * @return mixed|null
+     */
+    public function getStudentControlID($uid)
+    {
+        // Search for a student by Student ID
+
+        // Create an empty student model
+        $student = new Student();
+
+        // Send request
+        $connection = ConnectionManager::get('control');
+        $request = $connection->buildRequest('post', 'students/search', ['uc_uid' => $uid]);
+        $response = $connection->send($request);
+
+        // Parse the response by hydrating the model
+        if ($response->isSuccessful()) {
+            $student->hydrate($response->getPayload()[0]);
+        } else {
+            $student->uc_uid = $uid;
+            abort_if(!$student->save(), 500, 'We couldn\'t save you in our system.');
+        }
+
+        return $student->id;
+    }
+}

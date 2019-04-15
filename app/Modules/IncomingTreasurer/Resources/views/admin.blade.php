@@ -1,0 +1,32 @@
+@extends('incomingtreasurer::layouts.app')
+
+@section('title', 'Incoming Treasurer')
+
+
+@section('module-content')
+    <div class="py-5">
+        <div class="container" style="text-align: center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="">Incoming Treasurer</h2>
+                </div>
+                <div class="col-md-12">
+                    All completed trainings are shown below.
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5%;">
+                <div class="col-md-12">
+                    <submissions>
+
+                    </submissions>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
+
+
+
+
+

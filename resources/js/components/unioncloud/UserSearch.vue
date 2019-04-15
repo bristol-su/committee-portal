@@ -7,6 +7,7 @@
                 @search="onSearch"
                 v-model="selectedOption"
                 :loading="loading"
+                maxHeight="200px"
         >
         </v-select>
         
@@ -76,7 +77,6 @@
             },
 
             search: _.debounce((loading, search, vm) => {
-                // TODO Change from axios
                 axios.get('/unioncloud/api/user/multisearch',
                     {
                         params: {search: search},
@@ -104,3 +104,9 @@
     }
 
 </script>
+
+<style>
+    .v-select ul {
+        z-index: 10000;
+    }
+</style>

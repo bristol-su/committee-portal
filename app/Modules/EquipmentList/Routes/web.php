@@ -12,5 +12,19 @@
 */
 
 Route::prefix('equipmentlist')->middleware(['user', 'module', 'module.active:equipmentlist', 'module.maintenance:equipmentlist'])->group(function() {
-    Route::get('/', 'EquipmentListController@index');
+    Route::get('/', 'EquipmentListController@showUserPage')->name('equipmentlist.user');
+
+    Route::get('/complete', 'EquipmentListController@isComplete');
+
+    Route::post('/submit', 'EquipmentListController@createSubmission');
+
+    // Equipment Routes
+    Route::prefix('equipment')->group(function() {
+        Route::post('/', 'EquipmentController@create');
+        Route::delete('/{equipmentlist_equipment}', 'EquipmentController@delete');
+    });
+});
+
+Route::prefix('admin/equipmentlist')->middleware(['admin', 'module', 'module.active:equipmentlist', 'module.maintenance:equipmentlist'])->group(function() {
+    Route::get('/', 'EquipmentListController@showAdminPage')->name('equipmentlist.admin');
 });

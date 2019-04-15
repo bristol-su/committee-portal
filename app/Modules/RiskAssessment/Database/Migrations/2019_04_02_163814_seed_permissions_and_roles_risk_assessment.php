@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesRiskAssessment extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+    public $permissions = [
+        'riskassessment.change-status' => ['description' => 'Allows a user to change the status of any document', 'title' => 'Change Document Status', 'group' => 'Risk Assessment', 'subgroup' => 'Document'],
+        'riskassessment.create-note-template' => ['description' => 'Allows a user to create a note template', 'title' => 'Create Note Template', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.delete-note-template' => ['description' => 'Allows a user to delete a note template', 'title' => 'Delete Note Template', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.download' => ['description' => 'Allows a user to download a document belonging to their group', 'title' => 'Download Document', 'group' => 'Risk Assessment', 'subgroup' => 'Document'],
+        'riskassessment.download-admin' => ['description' => 'Allows a user to download any document', 'title' => 'Admin: Download Documents', 'group' => 'Risk Assessment', 'subgroup' => 'Document'],
+        'riskassessment.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+        'riskassessment.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+        'riskassessment.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+        'riskassessment.post-note' => ['description' => 'Allows a user to post a note on a document belonging to their group', 'title' => 'Post Note', 'group' => 'Risk Assessment', 'subgroup' => 'Note'],
+        'riskassessment.post-note-admin' => ['description' => 'Allows a user to post a note on any document belonging to any group', 'title' => 'Post Admin Note', 'group' => 'Risk Assessment', 'subgroup' => 'Note'],
+        'riskassessment.update-note-template' => ['description' => 'Allows a user to update a note template', 'title' => 'Update Note Template', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.upload' => ['description' => 'Allows a user to upload a document', 'title' => 'Upload Document', 'group' => 'Risk Assessment', 'subgroup' => 'Document'],
+        'riskassessment.view' => ['description' => 'Allows a user to view the module', 'title' => 'View Documents', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+        'riskassessment.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+        'riskassessment.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Risk Assessment', 'subgroup' => 'Note Template'],
+        'riskassessment.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'Risk Assessment', 'subgroup' => 'Module'],
+    ];
+}

@@ -2,13 +2,16 @@
 
 namespace App\Modules\ExecutiveSummary\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -23,44 +26,42 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        //
+
+        Gate::define('executivesummary.module.isVisible', function(User $user) {
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
+        });
+
+        Gate::define('executivesummary.module.isActive', function(User $user) {
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
+        });
+
+        Gate::define('executivesummary.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('executivesummary.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('executivesummary.download', function(User $user) {
+            return true;
+        });
+
+        Gate::define('executivesummary.upload', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('executivesummary.view', function(User $user) {
+            return true;
+        });
     }
 
     public function boot()
     {
-        // Is the module visible?
-        Gate::define('executivesummary.module.isVisible', function(User $user) {
-            return ($this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->groupHasTag($user, 'we_are_bristol', 'applied');
-        });
 
-        // Is the module active?
-        Gate::define('executivesummary.module.isActive', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
 
-        });
-
-        // Who can upload an exec summary
-        Gate::define('executivesummary.upload', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->hasPresidentialPosition();
-        });
-
-        // Who can view the exec summary lists
-        Gate::define('executivesummary.view', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
-        });
-
-        // Who can download an exec summary
-        Gate::define('executivesummary.download', function(User $user) {
-            // TODO Old committee over changeover period is hard
-            return $user->can('executivesummary.module.isVisible');
-        });
-
-        // Who can post a note
-        Gate::define('executivesummary.post-note', function(User $user) {
-            return $user->can('executivesummary.module.isVisible');
-        });
 
 
     }

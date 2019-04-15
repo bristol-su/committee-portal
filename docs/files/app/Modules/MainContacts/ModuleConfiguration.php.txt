@@ -3,15 +3,22 @@
 namespace App\Modules\MainContacts;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\MainContacts\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
     protected $mandatoryForReaffiliation = true;
 
+    public function alias()
+    {
+        return 'maincontacts';
+    }
+
     public function getButtonTitle()
     {
-        return 'Main Contacts';
+        return 'Notification';
     }
 
     public function getHeaderKey()
@@ -29,20 +36,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/maincontacts';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if (!$this->actingAsStudent()) {
+            return false;
+        };
+        return Submission::where([
+                'year' => getReaffiliationYear(),
+                'group_id' => Auth::user()->getCurrentRole()->group->id
+            ])->count() > 0;
     }
 
     public function getDescription()

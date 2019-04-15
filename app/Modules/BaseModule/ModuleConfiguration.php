@@ -2,6 +2,7 @@
 
 namespace App\Modules\BaseModule;
 
+use App\Packages\ControlDB\Models\Group;
 use Illuminate\Support\Facades\Auth;
 
 abstract class ModuleConfiguration
@@ -30,14 +31,15 @@ abstract class ModuleConfiguration
     {
 
         return [
-            'header' => $this->getHeaderKey(), // Header key as defined in config. Will alter where the button is displayed on the page
+            'header' => ($this->isComplete()?'reaffiliation-complete':$this->getHeaderKey()), // Header key as defined in config. Will alter where the button is displayed on the page
             'button_title' => $this->getButtonTitle(), // Title of the button as displayed on the page
             'user_url' => $this->getUserURL(), // URL to direct the user to when clicking this button
             'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?
-            'reaffiliation_status' => $this->getReaffiliationStatus(), // What status is this module? Use config keys
             'description' => $this->getDescription(),
             'admin_header' => $this->getAdminHeaderKey(),
-            'admin_url' => $this->getAdminURL()
+            'admin_url' => $this->getAdminURL(),
+            'complete' => $this->isComplete(),
+            'alias' => $this->alias()
         ];
     }
 
@@ -49,6 +51,8 @@ abstract class ModuleConfiguration
      * @return string
      */
     abstract public function getHeaderKey();
+
+    abstract public function alias();
 
     /**
      * Get the header key for a module button on the admin side
@@ -89,6 +93,7 @@ abstract class ModuleConfiguration
      */
     abstract public function getAdminURL();
 
+    abstract public function isComplete();
 
     /**
      * Defines if the module is mandatory for reaffiliation or not
@@ -101,6 +106,7 @@ abstract class ModuleConfiguration
 
         return false;
     }
+
 
     /**
      * Get the reaffiliation status. If this is a module for reaffiliation, make sure

@@ -1,61 +1,85 @@
 <template>
     <div class="container">
         <!-- New Upload -->
-        <br/>
-<br/>
         <!-- File Table -->
-        <div style="justify-content: center">
 
-            <file-table
-                    :files="files"
-                    :uploading="uploading"
-                    :module="module"
-                    :uploadingDocumentTitle="documentTitle"
-                    @upload="submitFile"
-                    @updatedfile="retrieveFiles"
-            >
-
-            </file-table>
-        </div>
-     <hr/><br/>
+        <hr/>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">New File</legend>
 
             <!-- Document Title -->
             <div class="form-group">
-                <label for="documentTitleInput">Title</label>
-                <small><span class="has-error-span" v-show="this.errors.has('title')">{{this.errors.get('title')}}</span></small>
+                <label for="documentTitleInput">
+                    <small class="form-text text-muted" id="titleHelp" style="text-align: left;">Enter a title for the
+                        new document.
+                    </small>
+                </label>
+
+                <small><span class="has-error-span"
+                             v-show="this.errors.has('title')">{{this.errors.get('title')}}</span></small>
                 <input aria-describedby="titleHelp" class="form-control" id="documentTitleInput" type="text"
                        v-model="documentTitle">
-                <small class="form-text text-muted" id="titleHelp">Enter a title for the new document.</small>
             </div>
 
             <!-- File Upload -->
+            <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span>
+            </small>
 
-            <div class="form-group">
-                <label for="documentFileInput">Document(s)</label>
-                <small><span class="has-error-span" v-show="this.errors.has('file')">{{this.errors.get('file')}}</span></small>
+            <div class="form-group" v-if="!isFilePending">
+                <br/>
                 <div class="large-12 medium-12 small-12 filezone" id="documentFileInput">
                     <input @change="newFile" aria-describedby="fileHelp" id="files" ref="files"
                            type="file"/>
-                    <p>
+                    <p class="filezone-p">
                         Drop your files here <br>or click to search
                     </p>
                 </div>
-                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose.
-                    The file will appear below - click upload when you're ready!
+                <small class="form-text text-muted" id="fileHelp">Drag and drop a new file above, or click to choose a
+                    file.
+                    The file will appear below - click upload when you're ready! You may upload most standard files,
+                    such as .doc, .xls and .pdf
                 </small>
             </div>
-
-            <div class="float-right">
-                <button @click="resetForm" class="btn btn-sm btn-outline-danger">Reset</button>
+            <div style="text-align: left;" v-else>
+                <ol style="list-style: none;">
+                    <li v-for="file in filesPendingUpload">
+                        {{file.name}}
+                    </li>
+                </ol>
             </div>
+
+            <div class="row">
+                <div class="col-md-12" v-if="isFilePending">
+                    <button @click="submitAllAvailable" class="btn btn-outline-info btn-lg">
+                        Confirm and Upload
+                    </button>
+
+                    <div class="float-right">
+                        <button @click="resetForm" class="btn btn-sm btn-outline-danger">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </fieldset>
 
+        <div style="justify-content: center">
+
+            <file-table
+                    :files="files"
+                    :module="module"
+                    :uploading="uploading"
+                    :uploadingDocumentTitle="documentTitle"
+                    @updatedfile="retrieveFiles"
+                    @upload="submitFile"
+            >
+
+            </file-table>
+
+        </div>
 
         <br/><br/>
-
-
 
 
     </div>
@@ -123,6 +147,12 @@
                 this.errors.clear();
             },
 
+            submitAllAvailable() {
+                this.files.forEach((file, key) => {
+                    this.submitFile(key);
+                });
+            },
+
             submitFile(key) {
                 if (this.files[key] instanceof File && this.uploading.indexOf(key) === -1) {
                     this.uploading.push(key);
@@ -152,6 +182,18 @@
             },
 
 
+        },
+
+        computed: {
+            isFilePending() {
+                return this.filesPendingUpload.length > 0;
+            },
+
+            filesPendingUpload() {
+                return this.files.filter((file, key) => {
+                    return file instanceof File && this.uploading.indexOf(key) === -1;
+                });
+            }
         }
 
     }
@@ -164,9 +206,11 @@
     input[type="file"] {
         opacity: 0;
         width: 100%;
-        height: 200px;
+        max-height: 150px;
+        min-height: 130px;
         position: absolute;
         cursor: pointer;
+        box-sizing: border-box;
     }
 
     .filezone {
@@ -174,10 +218,17 @@
         outline-offset: -10px;
         background: #ccc;
         color: dimgray;
+        display: flex;
+        box-sizing: border-box;
         padding: 10px 10px;
-        min-height: 200px;
-        position: relative;
+        max-height: 150px;
+        min-height: 70px;
+        /*min-height: 200px;*/
         cursor: pointer;
+    }
+
+    .filezone-p {
+        width: 100%;
     }
 
     .filezone:hover {

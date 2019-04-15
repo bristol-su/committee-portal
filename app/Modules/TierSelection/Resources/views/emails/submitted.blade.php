@@ -1,0 +1,9 @@
+@component('mail::message')
+
+Hi {{$submission->user->forename}}!
+
+Thank you! We've received {{$submission->group()->name}}'s tier selection for #WeAreBristol. You told us your club is interested in competing in the
+{{$submission->tier->name}} tier.
+
+
+@endcomponent
