@@ -42,8 +42,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('presentation.upload', function(User $user) {
-            return $this->studentHasPresidentialPosition($user)
-                && $this->studentIsOldCommittee($user);
+            return $this->studentHasPresidentialPosition($user);
         });
 
         Gate::define('presentation.download', function(User $user) {
