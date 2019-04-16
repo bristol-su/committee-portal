@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->disableExcept('CommitteeDetails', ['groupinfo', 'presidenthandover', 'exitingtreasurer', 'committeedetails']);
+        $this->disableExcept('CommitteeDetails', ['groupinfo', 'presidenthandover', 'exitingtreasurer', 'committeedetails', 'presentation', 'furtherinformation', 'tierselection', 'wabbudget', 'wabstrategicplan', 'executivesummary']);
 
         Gate::define('committeedetails.module.isVisible', function(User $user) {
             return true;
