@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->disableExcept('GroupInfo', ['groupinfo', 'presidenthandover', 'exitingtreasurer']);
+        $this->disableExcept('GroupInfo', ['groupinfo', 'presidenthandover', 'exitingtreasurer', 'presentation', 'furtherinformation', 'tierselection', 'wabbudget', 'wabstrategicplan', 'executivesummary']);
 
         Gate::define('groupinfo.module.isVisible', function(User $user) {
             return true;

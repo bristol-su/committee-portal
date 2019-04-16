@@ -53,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->disableExcept('TaskAllocation', ['groupinfo', 'committeedetails', 'incomingtreasurer', 'budget', 'taskallocation', 'presidenthandover', 'exitingtreasurer', 'committeedetails']);
+        $this->disableExcept('TaskAllocation', ['groupinfo', 'committeedetails', 'incomingtreasurer', 'budget', 'taskallocation', 'presidenthandover', 'exitingtreasurer', 'committeedetails', 'presentation', 'furtherinformation', 'tierselection', 'wabbudget', 'wabstrategicplan', 'executivesummary']);
 
         // Override permissions if the user is responsible for something
         Gate::before(function(User $user, $ability) {
