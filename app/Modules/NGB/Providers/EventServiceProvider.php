@@ -16,7 +16,7 @@ class EventServiceProvider extends ServiceProvider
     {
 
 
-        Event::listen('politicalactivity.submitted', function (Submission $submission) {
+        Event::listen('ngb.submitted', function (Submission $submission) {
             Mail::to($submission->user->email)->send(new NotifySubmitterOnSubmission($submission));
         });
     }
