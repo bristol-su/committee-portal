@@ -36,6 +36,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('charitablegiving.view', function (User $user) {
             return true;
         });
+
+        Gate::define('charitablegiving.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
     }
 
 }

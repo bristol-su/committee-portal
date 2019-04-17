@@ -13,8 +13,12 @@
 
 Route::prefix('gdpr')->middleware(['user', 'module', 'module.active:gdpr', 'module.maintenance:gdpr'])->group(function() {
     Route::get('/', 'GDPRController@showUserPage')->name('gdpr.user');
+    Route::post('/', 'GDPRController@confirm');
+    Route::get('/complete', 'GDPRController@isComplete');
 });
 
 Route::prefix('admin/gdpr')->middleware(['admin', 'module', 'module.active:gdpr', 'module.maintenance:gdpr'])->group(function() {
     Route::get('/', 'GDPRController@showAdminPage')->name('gdpr.admin');
+    Route::get('/submissions', 'GDPRController@getSubmissions');
+
 });
