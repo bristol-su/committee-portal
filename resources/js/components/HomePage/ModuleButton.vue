@@ -3,8 +3,8 @@
         <a :href="url">
             <button
                     :class="{
-                            'module-button-inactive': !active,
                             'module-button-responsible': responsible,
+                            'module-button-inactive': !active,
                         }"
                     :disabled="!active"
                     class="btn btn-info module-button"
