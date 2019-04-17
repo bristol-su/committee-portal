@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\PoliticalActivity\Emails;
+namespace App\Modules\CharitableGiving\Emails;
 
-use App\Modules\PoliticalActivity\Entities\Submission;
+use App\Modules\CharitableGiving\Entities\Submission;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifySubmitterOnSubmission extends Mailable implements ShouldQueue
 {
@@ -32,7 +32,7 @@ class NotifySubmitterOnSubmission extends Mailable implements ShouldQueue
     public function build()
     {
         return $this
-                ->subject('Political Activity Statement Confirmed')
-                ->markdown('politicalactivity::emails.submitted');
+            ->subject('Charitable Giving Statement Confirmed')
+            ->markdown('charitablegiving::emails.submitted');
     }
 }

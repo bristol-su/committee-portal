@@ -18,6 +18,12 @@ class AuthServiceProvider extends ServiceProvider
     public function register() {
 
 
+
+        Gate::define('gdpr.view', function(User $user) {
+            return $this->groupHasTag($user, 'reaffiliation_tasks', 'political_activity_awareness');
+        });
+
+
         Gate::define('gdpr.module.isVisible', function(User $user) {
             return true;
         });
@@ -36,6 +42,11 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('gdpr.view', function(User $user) {
             return true;
+        });
+
+        Gate::define('gdpr.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
         });
 
     }

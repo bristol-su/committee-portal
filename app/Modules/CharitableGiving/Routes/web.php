@@ -13,8 +13,12 @@
 
 Route::prefix('charitablegiving')->middleware(['user', 'module', 'module.active:charitablegiving', 'module.maintenance:charitablegiving'])->group(function() {
     Route::get('/', 'CharitableGivingController@showUserPage')->name('charitablegiving.user');
+    Route::post('/', 'CharitableGivingController@confirm');
+    Route::get('/complete', 'CharitableGivingController@isComplete');
 });
 
 Route::prefix('admin/charitablegiving')->middleware(['admin', 'module', 'module.active:charitablegiving', 'module.maintenance:charitablegiving'])->group(function() {
     Route::get('/', 'CharitableGivingController@showAdminPage')->name('charitablegiving.admin');
+    Route::get('/submissions', 'CharitableGivingController@getSubmissions');
+
 });
