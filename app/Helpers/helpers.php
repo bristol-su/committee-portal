@@ -1,5 +1,6 @@
 <?php
 
+
 if (!function_exists('getReaffiliationYear')) {
     function getReaffiliationYear()
     {
@@ -10,8 +11,8 @@ if (!function_exists('getReaffiliationYear')) {
 if (!function_exists('getGroupType')) {
     function getGroupType()
     {
-        abort_if(request()->get('auth_group_tags') === null, 403, 'Could not find your group tag.');
-        $groupTags = request()->get('auth_group_tags');
+        $group = \Illuminate\Support\Facades\Auth::user()->getCurrentRole()->group;
+        $groupTags = App\Packages\ControlDB\Models\GroupTag::allThrough($group);
         $groupTags = $groupTags->filter(function($groupTag) {
             return $groupTag->category->reference === config('control.group_type_tag_category_reference');
         });
