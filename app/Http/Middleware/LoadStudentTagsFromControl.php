@@ -20,7 +20,7 @@ class LoadStudentTagsFromControl
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::user()->isAdmin()) {
+        if (Auth::guard('committee-role')->check()) {
 //            dd(Auth::user()->getCurrentRole());
             $studentId = Auth::user()->getCurrentRole()->student_id;
 

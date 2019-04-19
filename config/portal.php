@@ -94,6 +94,7 @@ return [
         'IncomingTreasurer',
         'ExternalAccounts',
         'Safeguarding',
+        'GDPR',
         'NGB',
         'CharitableGiving',
         'LibelDefamation',

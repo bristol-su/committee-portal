@@ -3,8 +3,8 @@
         <a :href="url">
             <button
                     :class="{
-                            'module-button-inactive': !active,
                             'module-button-responsible': responsible,
+                            'module-button-inactive': !active,
                         }"
                     :disabled="!active"
                     class="btn btn-info module-button"
@@ -75,6 +75,18 @@
   -webkit-transition: ease-in-out 0.5s;
 }
 
+.module-button-responsible {
+    color: #ff2353;
+    background-color: #fff;
+    border-color: #ff2353;
+}
+
+.module-button-responsible:hover {
+    color:#fff;
+    background-color:#ff2353;
+    -webkit-transition: ease-in-out 0.5s;
+}
+
 .module-button-inactive {
   color:#000;
   background: #d1d1d1;
@@ -87,17 +99,7 @@
   border-color: #d1d1d1;
 }
 
-.module-button-responsible {
-  color: #ff2353;
-  background-color: #fff;
-  border-color: #ff2353;
-}
 
-.module-button-responsible:hover {
-  color:#fff;
-  background-color:#ff2353;
-  -webkit-transition: ease-in-out 0.5s;
-}
 
 module-button-completed {
   color:#46a05a;

@@ -11,6 +11,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="charitablegiving-root">
+
+                    <submissions>
+                    </submissions>
+
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

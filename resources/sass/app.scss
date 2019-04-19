@@ -55,26 +55,22 @@
 
 
 /* Module button styling */
-.module-button {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+.module-button-admin {
+  height: 60px;
+  width: 80%;
+  background-color: #fff;
+  color: #2452A1;
+  border-color: #2452A1;
+  border-radius: 15px;
+  border-width: 1px;
+  margin-top: 5px;
+}
+
+.module-button-admin:hover {
   background-color: #2452a1;
-  color: white;
-  border-radius: 50px;
+  color: #fff;
+  -webkit-transition: ease-in-out 0.5s;
 }
-
-.module-button-inactive {
-
-}
-
-.module-button-responsible {
-  border: 3px solid #16B5CA
-}
-
-
-
-
 
 
 
@@ -85,7 +81,10 @@
 
 
 
-
+/* Back to portal button on every user page */
+.back-to-portal-btn {
+  width: 30%;
+}
 
 
 /* Inline Help css (https://tutorialzine.com/2014/07/css-inline-help-tips) modified */

@@ -60,6 +60,8 @@ To setup a module as a file upload:
 
         @yield('module-content')
 
+@include('templates.back_to_portal_button')
+
     </div>
 
 @endsection
