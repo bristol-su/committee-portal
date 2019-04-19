@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use ActiveResource\ConnectionManager;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\GroupTag;

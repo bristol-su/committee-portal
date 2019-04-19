@@ -12,7 +12,7 @@
         <div v-else>
                 <div class="form-group">
 
-                    <textarea class="form-control-lg" style="width: 80%;" rows="5" v-model="form.statement">
+                    <textarea class="form-control" style="width: 80%; margin: auto;" rows="5" v-model="form.statement">
 
                     </textarea>
 
