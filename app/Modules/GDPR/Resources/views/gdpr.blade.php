@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <a href="{{serveStatic('data-protection-gdpr-guidance-for-student-leaders.docx')}}">
                         <button class="btn btn-outline-info btn-lg" style="margin-top: 10px">
-                            GDPR for student leaders
+                            Click to read guidance
                         </button>
                     </a>
                 </div>

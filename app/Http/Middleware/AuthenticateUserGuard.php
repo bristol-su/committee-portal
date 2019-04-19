@@ -34,6 +34,8 @@ class AuthenticateUserGuard
             }
         }
 
+
+
         return $next($request);
     }
 }

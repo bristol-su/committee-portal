@@ -1,9 +1,9 @@
 <template>
     <div>
         <button @click="$modal.show('statement')" class="btn btn-outline-info btn-lg">
-            Charitable Giving Guidance
+            Click to read statement
         </button>
-
+        <br/>
         <modal
                 height="auto"
                 name="statement">
