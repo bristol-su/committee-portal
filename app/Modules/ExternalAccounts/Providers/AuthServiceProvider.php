@@ -37,11 +37,51 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('externalaccounts.reaffiliation.isResponsible', function(User $user) {
-            return $this->studentHasPresidentialPosition($user) && $this->studentIsNewCommittee($user);
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
         });
 
         Gate::define('externalaccounts.view', function(User $user) {
             return true;
+        });
+
+        Gate::define('externalaccounts.account.create', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.closure.create', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.eoy.create', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.submission.create', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.statement.create', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.account.get', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.closure.get', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.eoy.get', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.submission.get', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('externalaccounts.statement.get', function(User $user) {
+            return $this->studentHasTreasurerPosition($user) && $this->studentIsOldCommittee($user);
         });
     }
 
