@@ -7,17 +7,21 @@ import bootstrap from 'bootstrap';
 import Moment from 'moment';
 import VModal from "vue-js-modal";
 import AWN from "awesome-notifications";
+import Vuex from "vuex";
+import {Spinner} from 'spin.js';
+import 'spin.js/spin.css';
 
 /**
  * Load lodash
  */
 window._ = _;
-
 window.Vue = Vue;
 window.$ = window.jQuery = jQuery;
 
 
 Vue.use(VModal);
+Vue.use(Vuex);
+
 Vue.prototype.$http = axios;
 Vue.prototype.$notify = new AWN({
     position: 'top-right'
@@ -56,4 +60,5 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
 

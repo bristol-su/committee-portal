@@ -72,6 +72,7 @@
         {{\DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render()}}
     @endif
 
+    <div class="spinner-target"></div>
     @yield('content')
 
     @include('templates.footer')

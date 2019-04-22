@@ -56,6 +56,7 @@
 
     import UpdateRolePermissions from './UpdateRolePermissions';
     import NewRole from './NewRole';
+    import Form from './../../../utilities/Form';
 
     export default {
         components: {
@@ -73,8 +74,10 @@
 
         created() {
 
-            this.$http.get('/admin/settings/roles/get')
-                .then(response => this.roles = response.data)
+            new Form({}).get('/admin/settings/roles/get')
+                .then(data => {
+                    this.roles = data;
+                })
                 .catch(error => this.$notify.alert(error.message));
         },
 
