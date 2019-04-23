@@ -81,7 +81,11 @@
                         this.$notify.success('Congratulations, you\'ve passed the treasurer training!');
                     })
                     .catch(error => {
-                        this.$notify.alert('Some of your answers weren\'t correct!');
+                        if(error.response.status === 422) {
+                            this.$notify.alert('Some of your answers weren\'t correct!');
+                        } else {
+                            this.$notify.alert('Something went wrong checking your answers. Please refresh the page.');
+                        }
                         this.form.errors.clear();
                         this.form.errors.record(error.response.data.errors);
                     });

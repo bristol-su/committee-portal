@@ -20,7 +20,7 @@ Route::prefix('equipmentlist')->middleware(['user', 'module', 'module.active:equ
 
     // Equipment Routes
     Route::prefix('equipment')->group(function() {
-        Route::post('/', 'EquipmentController@create');
+        Route::post('/', 'EquipmentController@create')->middleware('can:equipmentlist.create-equipment');
         Route::delete('/{equipmentlist_equipment}', 'EquipmentController@delete');
     });
 });
