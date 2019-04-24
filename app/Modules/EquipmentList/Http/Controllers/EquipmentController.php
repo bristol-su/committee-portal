@@ -6,25 +6,15 @@ namespace App\Modules\EquipmentList\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\EquipmentList\Entities\Equipment;
+use App\Modules\EquipmentList\Http\Requests\CreateEquipmentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EquipmentController extends Controller
 {
 
-    public function create(Request $request)
+    public function create(CreateEquipmentRequest $request)
     {
-        $this->authorize('equipmentlist.create-equipment');
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'sometimes|string|nullable',
-            'category' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'bought_at' => 'required|date',
-            'notes' => 'sometimes|string|nullable'
-        ]);
-
         if($equipment = Equipment::create([
             'user_id' => Auth::user()->id,
             'group_id' => Auth::user()->getCurrentRole()->group->id,

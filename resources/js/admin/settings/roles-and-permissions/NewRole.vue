@@ -15,8 +15,8 @@
         <div class="form-group">
             <div class="col-md-12">
                 Role Name:
-                <input class="form-control input-md" id="rolename" name="rolename" placeholder="Forename" required=""
-                       type="text" v-model="roleName">
+                <input class="form-control input-md" id="rolename" name="rolename" placeholder="Role Name" required=""
+                       type="text" v-model="form.name">
 
             </div>
         </div>
@@ -36,13 +36,15 @@
 
         data() {
             return {
-                roleName: ''
+                form: new VueForm({
+                    name: ''
+                })
             }
         },
 
         created() {
             if(this.role !== null) {
-                this.roleName = this.role.name
+                this.form.name = this.role.name
             }
         },
 
@@ -54,9 +56,7 @@
             },
 
             save() {
-                this.$http.post('/admin/settings/roles/update' + (this.role === null?'':'/'+this.role.id), {
-                    name: this.roleName
-                })
+                this.form.post('/admin/settings/roles/update' + (this.role === null?'':'/'+this.role.id))
                     .then(response => {
                         this.$notify.success('Role Saved');
                         this.$emit('roleUpdated', response.data);

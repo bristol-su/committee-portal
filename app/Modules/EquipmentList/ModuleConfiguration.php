@@ -3,6 +3,8 @@
 namespace App\Modules\EquipmentList;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\EquipmentList\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -39,7 +41,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         if (!$this->actingAsStudent()) {
             return false;
         };
-        return false;
+        return Submission::where([
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'year' => getReaffiliationYear()
+        ]);
     }
 
     public function getDescription()
