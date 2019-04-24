@@ -6,13 +6,14 @@ use App\Authentication\ViewAsStudent;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, DatabaseTransactions;
 
     public function signInAsSuperAdminActingAsStudent()
     {
@@ -58,5 +59,16 @@ abstract class TestCase extends BaseTestCase
         $viewAsStudent = new ViewAsStudent(1);
         $this->be($viewAsStudent, 'view-as-student');
         return $viewAsStudent;
+    }
+
+    /**
+     * @return User
+     */
+    public function beAdmin()
+    {
+        $user = factory(User::class)->create();
+        $user->givePermissionTo('act-as-admin');
+        $this->be($user);
+        return $user;
     }
 }
