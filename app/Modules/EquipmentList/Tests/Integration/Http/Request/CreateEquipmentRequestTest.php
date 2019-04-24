@@ -16,7 +16,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_not_returned_if_valid_data_is_given()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem()
             ->assertSessionHasNoErrors();
     }
@@ -25,7 +26,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_name_is_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['name' => ''])
             ->assertSessionHasErrors('name');
 
@@ -34,7 +36,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_name_is_not_a_string()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['name' => false])
             ->assertSessionHasErrors('name');
     }
@@ -42,7 +45,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_not_returned_if_the_description_is_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['description' => ''])
             ->assertSessionHasNoErrors();
     }
@@ -50,7 +54,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_description_is_not_a_string()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['description' => false])
             ->assertSessionHasErrors('description');
     }
@@ -58,7 +63,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_category_is_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['category' => ''])
             ->assertSessionHasErrors('category');
 
@@ -67,7 +73,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_category_is_not_a_string()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['category' => false])
             ->assertSessionHasErrors('category');
     }
@@ -75,7 +82,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_price_is_negative()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['price' => -1])
             ->assertSessionHasErrors('price');
     }
@@ -83,7 +91,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_price_is_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['price' => ''])
             ->assertSessionHasErrors('price');
     }
@@ -91,7 +100,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_not_returned_if_the_price_is_a_string()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['price' => '44'])
             ->assertSessionHasNoErrors();
     }
@@ -99,7 +109,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_bought_at_date_is_in_the_future()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['bought_at' => Carbon::now()->addMinute(20)])
             ->assertSessionHasErrors('bought_at');
     }
@@ -107,7 +118,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_bought_at_date_is_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['bought_at' => ''])
             ->assertSessionHasErrors('bought_at');
     }
@@ -115,7 +127,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_bought_at_date_is_not_a_date()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['bought_at' => 'thisisnotadate'])
             ->assertSessionHasErrors('bought_at');
     }
@@ -123,7 +136,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_not_returned_if_the_notes_are_empty()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['notes' => ''])
             ->assertSessionHasNoErrors();
     }
@@ -131,7 +145,8 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function an_error_is_returned_if_the_notes_are_not_a_string()
     {
-        $this->signInAsSuperAdminActingAsStudent()
+        $this->beSuperAdmin()
+            ->viewingAsStudent()
             ->createEquipmentItem(['notes' => false])
             ->assertSessionHasErrors('notes');
     }
@@ -139,18 +154,16 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function a_user_without_the_create_equipment_permission_cannot_create_an_equipment_item()
     {
-        $this->beStudent();
-        $this->createEquipmentItem( )
+        $this->beStudent()
+            ->createEquipmentItem( )
             ->assertStatus(403);
     }
 
     /** @test */
-    public function a_user_with_the_create_equipment_permission_can_create_an_equipment_item()
+    public function a_user_with_the_create_equipment_permission_is_not_given_a_403_error()
     {
-        $user = $this->beStudent()
-            ->givePermissionTo('equipmentlist.create-equipment')
-            ->givePermissionTo('equipmentlist.module.isActive');
-        dd($this->createEquipmentItem());
+        $this->beStudent()
+            ->allowedTo(['equipmentlist.create-equipment', 'equipmentlist.module.isActive']);
         $this->assertNotEquals(403, $this->createEquipmentItem()->status());
     }
 
