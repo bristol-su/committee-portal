@@ -1,0 +1,23 @@
+<?php
+
+use \DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
+use \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+
+/*
+|--------------------------------------------------------------------------
+| Breadcrumbs
+|--------------------------------------------------------------------------
+|
+| Registration for breadcrumbs may occur in here
+|
+*/
+
+Breadcrumbs::for('externalaccounts.user', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('portal');
+    $trail->push('External Accounts', route('externalaccounts.user'));
+});
+
+Breadcrumbs::for('externalaccounts.admin', function(BreadcrumbsGenerator $trail) {
+    $trail->parent('admin');
+    $trail->push('External Accounts', route('externalaccounts.admin'));
+});

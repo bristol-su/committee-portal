@@ -16,7 +16,7 @@ class PresentationDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PermissionAndRoleSeeder::class);
+
 
     }
 }

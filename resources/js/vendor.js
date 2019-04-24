@@ -1,20 +1,31 @@
 import _ from 'lodash';
 import Popper from 'popper.js';
-import jQuery from 'jquery';
 import axios from 'axios';
 import Vue from 'vue';
+import jQuery from 'jquery';
 import bootstrap from 'bootstrap';
 import Moment from 'moment';
+import VModal from "vue-js-modal";
+import AWN from "awesome-notifications";
+import Vuex from "vuex";
+import {Spinner} from 'spin.js';
+import 'spin.js/spin.css';
 
 /**
  * Load lodash
  */
 window._ = _;
-
 window.Vue = Vue;
+window.$ = window.jQuery = jQuery;
 
 
+Vue.use(VModal);
+Vue.use(Vuex);
 
+Vue.prototype.$http = axios;
+Vue.prototype.$notify = new AWN({
+    position: 'top-right'
+});
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -24,7 +35,6 @@ window.Vue = Vue;
 
 
 window.Popper = Popper.default;
-window.$ = window.jQuery = jQuery;
 
 
 /**
@@ -50,4 +60,5 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
 

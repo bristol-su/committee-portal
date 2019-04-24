@@ -6,9 +6,6 @@ use App\Modules\WABStrategicPlan\Entities\File;
 use App\Modules\WABStrategicPlan\Entities\Note;
 use App\Modules\WABStrategicPlan\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
 class WABStrategicPlanController extends FileUploadController
 {

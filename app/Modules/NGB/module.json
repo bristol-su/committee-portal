@@ -3,8 +3,8 @@
     "alias": "ngb",
     "description": "",
     "keywords": [],
-    "active": 0,
-    "order": 9,
+    "active": 1,
+    "order": 12,
     "providers": [
         "App\\Modules\\NGB\\Providers\\NGBServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\NGB\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }

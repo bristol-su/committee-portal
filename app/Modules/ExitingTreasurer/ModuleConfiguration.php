@@ -3,15 +3,22 @@
 namespace App\Modules\ExitingTreasurer;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\ExitingTreasurer\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
+
+    public function alias()
+    {
+        return 'exitingtreasurer';
+    }
 
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
     {
-        return 'Exiting Treasurer';
+        return 'Outgoing Treasurer Sign-Off';
     }
 
     public function getHeaderKey()
@@ -29,20 +36,14 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/exitingtreasurer';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if(!$this->actingAsStudent()) { return false; } ;
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'complete' => true
+        ])->count() > 0;
     }
 
     public function getDescription()

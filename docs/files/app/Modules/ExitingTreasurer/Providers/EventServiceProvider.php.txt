@@ -1,0 +1,54 @@
+<?php
+
+
+namespace App\Modules\ExitingTreasurer\Providers;
+
+use App\Modules\ExitingTreasurer\Emails\NotifyExitingTreasurerWhenDocumentReadyForReview;
+use App\Modules\ExitingTreasurer\Emails\NotifyExitingTreasurerWhenIncomingTreasurerTrained;
+use App\Modules\ExitingTreasurer\Emails\NotifyExitingTreasurerWhenSignOffComplete;
+use App\Modules\ExitingTreasurer\Emails\NotifyIncomingTreasurerWhenSignOffComplete;
+use App\Modules\ExitingTreasurer\Entities\Document;
+use App\Modules\ExitingTreasurer\Entities\Submission;
+use App\Modules\ExitingTreasurer\Listeners\NewIncomeExpenditureUploadRequest;
+use App\Modules\ExitingTreasurer\Listeners\NewTransactionListUploadRequest;
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\FindsUnionCloudUserByRoleName;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+
+class EventServiceProvider extends ServiceProvider
+{
+    use FindsUnionCloudUserByRoleName;
+
+    public function boot() {
+
+        Event::listen('incomingtreasurer.training_completed', function(\App\Modules\IncomingTreasurer\Entities\Submission $submission) {
+            $group = $submission->group();
+            $oldTreasurer = $this->oldTreasurer($group);
+            Mail::to($oldTreasurer->email)->send(new NotifyExitingTreasurerWhenIncomingTreasurerTrained($group, $oldTreasurer));
+
+        });
+
+        Event::listen('incomingtreasurer.training_completed', NewTransactionListUploadRequest::class);
+
+        Event::listen('incomingtreasurer.training_completed', NewIncomeExpenditureUploadRequest::class);
+
+
+        Event::listen('exitingtreasurer.documentUploaded', function(Document $document) {
+            $group = $document->group();
+            $oldTreasurer = $this->oldTreasurer($group);
+            Mail::to($oldTreasurer->email)->send(new NotifyExitingTreasurerWhenDocumentReadyForReview($oldTreasurer, $group));
+        });
+
+        Event::listen('exitingtreasurer.signOffComplete', function(Submission $submission) {
+            $group = $submission->group();
+            $oldTreasurer = $this->oldTreasurer($group);
+            $newTreasurer = $this->newTreasurer($group);
+
+            Mail::to($newTreasurer->email)->send(new NotifyIncomingTreasurerWhenSignOffComplete($newTreasurer));
+            Mail::to($newTreasurer->email)->send(new NotifyExitingTreasurerWhenSignOffComplete($oldTreasurer, $group));
+
+        });
+    }
+}

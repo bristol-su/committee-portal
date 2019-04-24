@@ -14,6 +14,7 @@ use App\Packages\ControlDB\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 // TODO tidy
@@ -96,7 +97,9 @@ abstract class FileUploadController extends Controller
             $fileModel->group_id = getGroupID();
             $fileModel->position_id = (Auth::user()->getCurrentRole()->position->id !== 'admin' ? Auth::user()->getCurrentRole()->position->id : null);
             if ($fileModel->save()) {
-                return $this->getFileWithRelations($fileModel->id);
+                $fileWithRelations = $this->getFileWithRelations($fileModel->id);
+                Event::dispatch($this->getModuleName().'.fileUploaded', ['file' => $fileWithRelations]);
+                return $fileWithRelations;
             }
 
         }
@@ -119,6 +122,9 @@ abstract class FileUploadController extends Controller
         if ($id === null) {
             $files = $this->fileModel::with($with)->get();
             return $files->map(function($file) {
+                if(Group::find($file->group_id) === false) {
+                    throw new \Exception('Group not found', 404);
+                }
                 $file->group = Group::find($file->group_id)->toArray();
                 return $file;
             });
@@ -134,9 +140,9 @@ abstract class FileUploadController extends Controller
     {
         $this->authorizeModuleAction('view');
 
-        $files = $this->getFileWithRelations();
-        $files = $files->filter(function($file) {
-            return $file->group_id === getGroupID();
+        $files = $this->fileModel::where('group_id', getGroupID())->get();
+        $files = $files->map(function($file) {
+            return $this->getFileWithRelations($file->id);
         });
         return $files->values();
     }
@@ -152,6 +158,7 @@ abstract class FileUploadController extends Controller
 
     public function downloadAll($year)
     {
+        // TODO Implement
         $files = $this->fileModel::where([
             'year' => $year,
             'status' => 'approved'
@@ -251,7 +258,8 @@ abstract class FileUploadController extends Controller
         if ($file->status !== $status) {
             $file->status = $status;
             if ($file->save()) {
-                Event::dispatch($this->getModuleName().'.fileStatusChanged', ['file' => $this->getFileWithRelations($file->id)]);
+
+                Event::dispatch($this->getModuleName().'.fileStatusChanged.'.$file->status, ['file' => $this->getFileWithRelations($file->id)]);
             }
         }
 

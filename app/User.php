@@ -4,14 +4,11 @@ namespace App;
 
 use App\Mail\ResetPasswordMail;
 use App\Mail\VerifyEmailMail;
-use App\Notifications\VerifyEmailNotification;
-use App\Notifications\ResetPasswordNotification;
-use App\Packages\ControlDB\ControlDBInterface;
-use Illuminate\Notifications\Notifiable;
+use App\Packages\ControlDB\Models\CommitteeRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -53,11 +50,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return true;
     }
 
-    public function isAdmin()
-    {
-        return $this->hasPermissionTo('act-as-admin') || $this->hasPermissionTo('act-as-super-admin');
-    }
 
+    /**
+     * @return CommitteeRole
+     */
     public function getCurrentRole()
     {
         if ($this->isAdmin()) {
@@ -66,6 +62,12 @@ class User extends Authenticatable implements MustVerifyEmail
             return Auth::guard('committee-role')->user();
         }
         abort(403, 'Could not authenticate you.');
+    }
+
+    // TODO isAdmin method calls should be replaced with a call to check the permission of act-as-admin. Make sure to use can() or hasPermissionTo() in the right places.
+    public function isAdmin()
+    {
+        return $this->hasPermissionTo('act-as-admin') || $this->hasPermissionTo('act-as-super-admin');
     }
 
     public function sendPasswordResetNotification($token)
@@ -80,18 +82,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        Log::info('User '.$this->id.' requested verification email');
         Mail::to($this->email)->send(new VerifyEmailMail($this));
     }
-
-    public function hasPresidentialPosition()
-    {
-        return in_array($this->getCurrentRole()->position->id, config('portal.exec_committee'));
-    }
-
-    public function isOldCommittee()
-    {
-        return $this->getCurrentRole()->committee_year === (config('portal.reaffiliation_year') - 1);
-    }
-
 }

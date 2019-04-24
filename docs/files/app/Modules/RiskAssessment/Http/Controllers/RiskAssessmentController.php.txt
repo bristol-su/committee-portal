@@ -6,9 +6,6 @@ use App\Modules\RiskAssessment\Entities\File;
 use App\Modules\RiskAssessment\Entities\Note;
 use App\Modules\RiskAssessment\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 
 class RiskAssessmentController extends FileUploadController
 {

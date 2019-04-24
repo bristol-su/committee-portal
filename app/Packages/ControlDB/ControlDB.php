@@ -66,7 +66,6 @@ class ControlDB implements ControlDBInterface
 //        }
 
         $authToken = $this->getAuthToken();
-        Log::info("Queuing $url @ ".(new Carbon())->format('Y-m-d H:i:s'));
 //            $response = $this->client->request(
 //                $method,
 //                config('control.base_uri').'/api/'.$url,

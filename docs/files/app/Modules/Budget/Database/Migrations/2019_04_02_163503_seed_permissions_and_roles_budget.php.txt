@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesBudget extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+
+    public $permissions = [
+        'budget.change-status' => ['description' => 'Allows a user to change the status of any document', 'title' => 'Change Document Status', 'group' => 'Budget', 'subgroup' => 'Document'],
+        'budget.create-note-template' => ['description' => 'Allows a user to create a note template', 'title' => 'Create Note Template', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.delete-note-template' => ['description' => 'Allows a user to delete a note template', 'title' => 'Delete Note Template', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.download' => ['description' => 'Allows a user to download a document belonging to their group', 'title' => 'Download Document', 'group' => 'Budget', 'subgroup' => 'Document'],
+        'budget.download-admin' => ['description' => 'Allows a user to download any document', 'title' => 'Admin: Download Documents', 'group' => 'Budget', 'subgroup' => 'Document'],
+        'budget.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'Budget', 'subgroup' => 'Module'],
+        'budget.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'Budget', 'subgroup' => 'Module'],
+        'budget.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'Budget', 'subgroup' => 'Module'],
+        'budget.post-note' => ['description' => 'Allows a user to post a note on a document belonging to their group', 'title' => 'Post Note', 'group' => 'Budget', 'subgroup' => 'Note'],
+        'budget.post-note-admin' => ['description' => 'Allows a user to post a note on any document belonging to any group', 'title' => 'Post Admin Note', 'group' => 'Budget', 'subgroup' => 'Note'],
+        'budget.update-note-template' => ['description' => 'Allows a user to update a note template', 'title' => 'Update Note Template', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.upload' => ['description' => 'Allows a user to upload a document', 'title' => 'Upload Document', 'group' => 'Budget', 'subgroup' => 'Document'],
+        'budget.view' => ['description' => 'Allows a user to view the module', 'title' => 'View Documents', 'group' => 'Budget', 'subgroup' => 'Module'],
+        'budget.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'Budget', 'subgroup' => 'Module'],
+        'budget.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'Budget', 'subgroup' => 'Note Template'],
+        'budget.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a task or not', 'group' => 'Budget', 'subgroup' => 'Module'],
+    ];
+}
+

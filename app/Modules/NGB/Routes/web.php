@@ -12,5 +12,13 @@
 */
 
 Route::prefix('ngb')->middleware(['user', 'module', 'module.active:ngb', 'module.maintenance:ngb'])->group(function() {
-    Route::get('/', 'NGBController@index');
+    Route::get('/', 'NGBController@showUserPage')->name('ngb.user');
+    Route::post('/', 'NGBController@confirm');
+
+    Route::get('/complete', 'NGBController@isComplete');
+});
+
+Route::prefix('admin/ngb')->middleware(['admin', 'module', 'module.active:ngb', 'module.maintenance:ngb'])->group(function() {
+    Route::get('/', 'NGBController@showAdminPage')->name('ngb.admin');
+    Route::get('/submissions', 'NGBController@getSubmissions');
 });

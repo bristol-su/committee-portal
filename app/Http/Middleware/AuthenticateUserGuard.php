@@ -18,7 +18,6 @@ class AuthenticateUserGuard
      */
     public function handle($request, Closure $next)
     {
-
         // If they're an admin who has access, that's fine
         if (Auth::user()->can('view-as-student')) {
             abort_if(!Auth::guard('view-as-student')->check(), 403, 'Could not log you into the group');
@@ -34,6 +33,8 @@ class AuthenticateUserGuard
                 abort(403, 'Sorry, we were unable to log you into your committee role.');
             }
         }
+
+
 
         return $next($request);
     }

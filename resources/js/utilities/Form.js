@@ -1,12 +1,16 @@
 import Errors from './Errors';
 
 export default class Form {
+
+
     /**
      * Create a new Form instance.
      *
      * @param {object} data
      */
     constructor(data) {
+        this.shouldReset = true;
+
         this.originalData = data;
 
         for (let field in data) {
@@ -20,7 +24,7 @@ export default class Form {
     /**
      * Fetch all relevant data for the form.
      */
-        data() {
+    data() {
         let data = {};
 
         for (let property in this.originalData) {
@@ -29,7 +33,6 @@ export default class Form {
 
         return data;
     }
-
 
     /**
      * Reset the form fields.
@@ -52,6 +55,14 @@ export default class Form {
         return this.submit('post', url);
     }
 
+    /**
+     * Send a GET request to the given URL.
+     * .
+     * @param {string} url
+     */
+    get(url) {
+        return this.submit('get', url);
+    }
 
     /**
      * Send a PUT request to the given URL.
@@ -90,17 +101,19 @@ export default class Form {
      * @param {string} url
      */
     submit(requestType, url) {
+        window.spinner.spin(document.getElementsByClassName('spinner-target')[0]);
         return new Promise((resolve, reject) => {
             axios[requestType](url, this.data())
                 .then(response => {
                     this.onSuccess(response.data);
-
+                    this.cleanUp();
                     resolve(response.data);
                 })
                 .catch(error => {
                     this.onFail(error.response.data);
+                    this.cleanUp();
                     reject(error);
-                });
+                })
         });
     }
 
@@ -111,8 +124,10 @@ export default class Form {
      * @param {object} data
      */
     onSuccess(data) {
-
-        this.reset();
+        this.errors.clear();
+        if (this.shouldReset) {
+            this.reset();
+        }
     }
 
 
@@ -123,5 +138,9 @@ export default class Form {
      */
     onFail(errors) {
         this.errors.record(errors);
+    }
+
+    cleanUp() {
+        window.spinner.stop();
     }
 }

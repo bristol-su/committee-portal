@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Modules\PresidentHandover\Providers;
+
+use App\Modules\PresidentHandover\Emails\NotifyNewPresWhenElected;
+use App\Modules\PresidentHandover\Emails\NotifyOldPresWhenNewElected;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\Packages\ControlDB\Models\Position;
+use App\Packages\ControlDB\Models\Student;
+use App\Traits\FindsUnionCloudUserByRoleName;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Mail;
+
+class EventServiceProvider extends ServiceProvider
+{
+    use FindsUnionCloudUserByRoleName;
+
+    public function boot() {
+        Event::listen('presidenthandover.submitted', function(CommitteeRole $committeeRole) {
+            $newPresident = $this->getStudentByCommitteeRole($committeeRole);
+            $group = Group::find($committeeRole->group_id);
+            abort_if($group === false, 404, 'Could not find your group');
+            $oldPresident = $this->oldPresident($group);
+            Mail::to($newPresident->email)->send(new NotifyNewPresWhenElected($newPresident, $committeeRole, $group));
+            Mail::to($oldPresident->email)->send(new NotifyOldPresWhenNewElected($newPresident, $oldPresident, $committeeRole, $group));
+        });
+
+    }
+}

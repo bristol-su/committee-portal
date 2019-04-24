@@ -7,6 +7,11 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'externalaccounts';
+}
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
@@ -29,25 +34,15 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/externalaccounts';
     }
 
-    public function getVisibility()
+    public function isComplete()
     {
-        return true;
-    }
-
-    public function isActive()
-    {
-        return true;
-    }
-
-    public function reaffiliationStatus()
-    {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        return 'incomplete';
+        if(!$this->actingAsStudent()) { return false; } ;
+        return false;
     }
 
     public function getDescription()
     {
-        return 'This is the external accounts module';
+        return 'This page captures details about your external bank account. This is where you will submit details of your externally audited accounts.';
     }
 
     public function getAdminHeaderKey()

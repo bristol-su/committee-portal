@@ -24,6 +24,9 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        require __DIR__ . '/../Routes/breadcrumbs.php';
+
     }
 
     /**
@@ -66,4 +69,5 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(__DIR__.'/../Routes/api.php');
     }
+
 }

@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Modules\PresidentHandover;
+
+use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\Presentation\Entities\File;
+use App\Packages\ControlDB\Models\CommitteeRole;
+use App\Packages\ControlDB\Models\Group;
+use App\PositionSetting;
+use Illuminate\Support\Facades\Auth;
+
+class ModuleConfiguration extends BaseModuleConfiguration
+{
+
+public function alias()
+{
+    return 'presidenthandover';
+}
+
+    protected $mandatoryForReaffiliation = true;
+
+    public function getButtonTitle()
+    {
+        return 'Your Successor';
+    }
+
+    public function getHeaderKey()
+    {
+        return 'reaffiliation-mandatory';
+    }
+
+    public function getUserURL()
+    {
+        return '/presidenthandover';
+    }
+
+    public function getAdminURL()
+    {
+        return '/admin/presidenthandover';
+    }
+
+    public function isComplete()
+    {
+if(!$this->actingAsStudent()) { return false; } ;
+        $group = Auth::user()->getCurrentRole()->group;
+        $position = CommitteeRole::allThrough($group);
+        if($position === false) {
+            return false;
+        }
+        return $position->filter(function($role) {
+            return $role->committee_year === getReaffiliationYear()
+                && in_array($role->position->id, config('portal.position_grouping.presidents'));
+        })->count() > 0;
+
+
+    }
+
+    public function getDescription()
+    {
+        return 'This is the president handover module';
+    }
+
+    public function getAdminHeaderKey()
+    {
+        return 'committee-details';
+    }
+}

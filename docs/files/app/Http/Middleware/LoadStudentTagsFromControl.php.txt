@@ -21,22 +21,28 @@ class LoadStudentTagsFromControl
     public function handle($request, Closure $next)
     {
         if (!Auth::user()->isAdmin()) {
-            $studentId = Auth::guard('committee-role')->user()->student_id;
+//            dd(Auth::user()->getCurrentRole());
+            $studentId = Auth::user()->getCurrentRole()->student_id;
 
             $studentTags = Cache::remember('Middleware.LoadStudentTagsFromControl.'.$studentId, 200, function() use ($studentId) {
 
                 $student = Student::find($studentId);
                 $studentTags = StudentTag::allThrough($student);
 
+                if($studentTags === false) {
+                    return Collection::make([]);
+                }
+
                 return $studentTags;
             });
+
         } else {
             $studentTags = new Collection();
         }
 
 
         $request->attributes->add(['auth_student_tags' => $studentTags]);
-        
+
         return $next($request);
     }
 }

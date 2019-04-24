@@ -3,8 +3,8 @@
     "alias": "committeedetails",
     "description": "",
     "keywords": [],
-    "active": 0,
-    "order": 1,
+    "active": 1,
+    "order": 3,
     "providers": [
         "App\\Modules\\CommitteeDetails\\Providers\\CommitteeDetailsServiceProvider"
     ],
@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\CommitteeDetails\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }

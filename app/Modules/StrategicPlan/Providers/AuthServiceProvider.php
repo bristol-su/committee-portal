@@ -2,10 +2,15 @@
 
 namespace App\Modules\StrategicPlan\Providers;
 
+use App\Traits\AuthorizesUsers;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +25,37 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Gate::define('strategicplan.module.isVisible', function(User $user) {
+            return true;
+        });
+
+        Gate::define('strategicplan.module.isActive', function(User $user) {
+            return true;
+        });
+
+        Gate::define('strategicplan.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('strategicplan.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('strategicplan.download', function(User $user) {
+            return true;
+        });
+
+        Gate::define('strategicplan.upload', function(User $user) {
+            // TODO GATE BEFORE TaskAllocation
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
+        Gate::define('strategicplan.view', function(User $user) {
+            return true;
+        });
+
     }
 
     /**

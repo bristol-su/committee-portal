@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SeedPermissionsAndRolesWABBudget extends \App\Packages\Permissions\BasePermissionsSeederMigration
+{
+
+    public $permissions = [
+        'wabbudget.change-status' => ['description' => 'Allows a user to change the status of any document', 'title' => 'Change Document Status', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Document'],
+        'wabbudget.create-note-template' => ['description' => 'Allows a user to create a note template', 'title' => 'Create Note Template', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.delete-note-template' => ['description' => 'Allows a user to delete a note template', 'title' => 'Delete Note Template', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.download' => ['description' => 'Allows a user to download a document belonging to their group', 'title' => 'Download Document', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Document'],
+        'wabbudget.download-admin' => ['description' => 'Allows a user to download any document', 'title' => 'Admin: Download Documents', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Document'],
+        'wabbudget.module.isActive' => ['description' => 'Makes the module active (i.e. not disabled)', 'title' => 'Module Active', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+        'wabbudget.module.isVisible' => ['description' => 'Makes the module visible', 'title' => 'Module Visible', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+        'wabbudget.reaffiliation.isMandatory' => ['description' => 'Makes the module mandatory for reaffiliation', 'title' => 'Module Mandatory for Reaffiliation', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+        'wabbudget.post-note' => ['description' => 'Allows a user to post a note on a document belonging to their group', 'title' => 'Post Note', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note'],
+        'wabbudget.post-note-admin' => ['description' => 'Allows a user to post a note on any document belonging to any group', 'title' => 'Post Admin Note', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note'],
+        'wabbudget.update-note-template' => ['description' => 'Allows a user to update a note template', 'title' => 'Update Note Template', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.upload' => ['description' => 'Allows a user to upload a document', 'title' => 'Upload Document', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Document'],
+        'wabbudget.view' => ['description' => 'Allows a user to view the module', 'title' => 'View Documents', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+        'wabbudget.view-admin' => ['description' => 'Allows a user to view the admin side of the module', 'title' => 'Admin: View Documents', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+        'wabbudget.view-note-template' => ['description' => 'Allows a user to use note templates within the notes section', 'title' => 'View Note Templates', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.view-note-template-page' => ['description' => 'Allows a user to view the note template management page', 'title' => 'View Note Template Page', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Note Template'],
+        'wabbudget.reaffiliation.isResponsible' => ['title'=> 'Responsible', 'description' => 'Determines if a user is responsible for a module or not', 'group' => 'WeAreBristol Budget', 'subgroup' => 'Module'],
+    ];
+}

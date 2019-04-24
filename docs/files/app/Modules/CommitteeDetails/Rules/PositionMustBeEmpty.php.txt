@@ -2,7 +2,7 @@
 
 namespace App\Modules\CommitteeDetails\Rules;
 
-use App\Modules\CommitteeDetails\Entities\PositionSetting;
+use App\PositionSetting;
 use App\Modules\CommitteeDetails\Traits\ValidatesCommitteeRole;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;

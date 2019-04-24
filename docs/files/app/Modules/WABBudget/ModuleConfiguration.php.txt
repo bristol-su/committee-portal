@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
+public function alias()
+{
+    return 'wabbudget';
+}
+
     /**
      * @return string
      */
@@ -42,18 +47,14 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return true;
     }
 
-    public function reaffiliationStatus()
+    public function isComplete()
     {
-        if (!$this->actingAsStudent()) { return 'admin'; }
-        if (File::where([
-                'year' => getReaffiliationYear(),
-                'status' => 'approved',
-                'group_id' => getGroupID()
-            ])->count() === 0) {
-
-            return 'incomplete';
-        }
-        return 'complete';
+if(!$this->actingAsStudent()) { return false; } ;
+        return File::where([
+            'year' => getReaffiliationYear(),
+            'status' => 'approved',
+            'group_id' => getGroupID()
+        ])->count() > 0;
     }
 
     public function getDescription()

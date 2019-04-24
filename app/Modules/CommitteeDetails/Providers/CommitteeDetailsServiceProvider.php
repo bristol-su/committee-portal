@@ -40,6 +40,9 @@ class CommitteeDetailsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(AuthServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
+
     }
 
     /**

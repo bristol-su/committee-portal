@@ -2,14 +2,15 @@
 
 namespace App\Modules\TierSelection\Providers;
 
-use App\Modules\BaseModule\Providers\BaseAuthServiceProvider;
-use App\Modules\TierSelection\Entities\Submission;
-use App\Modules\TierSelection\Entities\Tier;
+use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends BaseAuthServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
+    use AuthorizesUsers;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -24,23 +25,30 @@ class AuthServiceProvider extends BaseAuthServiceProvider
      */
     public function register()
     {
-        // Is the module visible?
         Gate::define('tierselection.module.isVisible', function(User $user) {
-            return ($this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register') && config('portal.we_are_bristol.enabled'))
-                || $this->groupHasTag($user, 'we_are_bristol', 'applied');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
-        // Is the module active?
         Gate::define('tierselection.module.isActive', function(User $user) {
-            return $user->can('tierselection.module.isVisible');
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
-        Gate::define('tierselection.view', function(User $user) {
-            return $user->can('tierselection.module.isVisible');
+        Gate::define('tierselection.reaffiliation.isMandatory', function(User $user) {
+            return false;
+        });
+
+        Gate::define('tierselection.reaffiliation.isResponsible', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
         });
 
         Gate::define('tierselection.submit', function(User $user) {
-            return Submission::getSubmissions(getGroupID())->count() === 0;
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsOldCommittee($user);
+        });
+
+        Gate::define('tierselection.view', function(User $user) {
+            return $this->groupHasTag($user, 'we_are_bristol', 'allowed_to_register');
         });
 
     }
