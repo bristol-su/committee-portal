@@ -7,6 +7,8 @@
 
         @yield('module-content')
 
+        @include('templates.back_to_portal_button')
+
     </div>
 
 @endsection

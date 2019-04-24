@@ -54,7 +54,7 @@
                     this.roles = response.data;
                 })
                 .catch(error => {
-                    this.$notify.alert('Sorry, something went wrong.');
+                    this.$notify.alert('Sorry, something went wrong retrieving your committee roles.');
                 })
         },
 

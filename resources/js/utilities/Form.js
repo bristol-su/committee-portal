@@ -55,6 +55,14 @@ export default class Form {
         return this.submit('post', url);
     }
 
+    /**
+     * Send a GET request to the given URL.
+     * .
+     * @param {string} url
+     */
+    get(url) {
+        return this.submit('get', url);
+    }
 
     /**
      * Send a PUT request to the given URL.
@@ -93,17 +101,19 @@ export default class Form {
      * @param {string} url
      */
     submit(requestType, url) {
+        window.spinner.spin(document.getElementsByClassName('spinner-target')[0]);
         return new Promise((resolve, reject) => {
             axios[requestType](url, this.data())
                 .then(response => {
                     this.onSuccess(response.data);
-
+                    this.cleanUp();
                     resolve(response.data);
                 })
                 .catch(error => {
                     this.onFail(error.response.data);
+                    this.cleanUp();
                     reject(error);
-                });
+                })
         });
     }
 
@@ -128,5 +138,9 @@ export default class Form {
      */
     onFail(errors) {
         this.errors.record(errors);
+    }
+
+    cleanUp() {
+        window.spinner.stop();
     }
 }

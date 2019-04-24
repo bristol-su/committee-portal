@@ -45,6 +45,11 @@ class AuthServiceProvider extends ServiceProvider
             return true;
         });
 
+        Gate::define('ngb.submit', function(User $user) {
+            return $this->studentHasPresidentialPosition($user)
+                && $this->studentIsNewCommittee($user);
+        });
+
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Modules\PoliticalActivity\Emails;
 
 use App\Modules\PoliticalActivity\Entities\Submission;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 

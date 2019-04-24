@@ -6,7 +6,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="">Political Activity</h2>
-                        <p>Blah blah</p>
                 </div>
             </div>
 

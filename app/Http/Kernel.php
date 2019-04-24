@@ -104,8 +104,8 @@ class Kernel extends HttpKernel
             'auth:web',
             'committee-role',
             'verified',
-            LoadGroupTagsFromControl::class,
-            LoadStudentTagsFromControl::class
+//            LoadGroupTagsFromControl::class,
+//            LoadStudentTagsFromControl::class
         ],
 
         'admin' => [
