@@ -44,7 +44,7 @@ class ModuleConfiguration extends BaseModuleConfiguration
         };
         return File::where([
                 'year' => getReaffiliationYear(),
-                'group_id' => $group->id,
+                'group_id' => Auth::user()->getCurrentRole()->group->id,
                 'status' => 'approved'
             ])->count() > 0;
     }
