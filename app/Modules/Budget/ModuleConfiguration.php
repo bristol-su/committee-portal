@@ -37,11 +37,8 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/budget';
     }
 
-    public function isComplete($group=null)
+    public function isComplete()
     {
-        if($group === null) {
-            $group = Auth::user()->getCurrentRole()->group;
-        }
         if (!$this->actingAsStudent()) {
             return false;
         };
