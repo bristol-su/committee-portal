@@ -18,12 +18,6 @@ class UserTest extends TestCase
      */
     protected $user;
 
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-
-    }
 
 
 
