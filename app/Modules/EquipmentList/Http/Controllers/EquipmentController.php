@@ -19,7 +19,7 @@ class EquipmentController extends Controller
             'user_id' => Auth::user()->id,
             'group_id' => Auth::user()->getCurrentRole()->group->id,
             'name' => $request->input('name'),
-            'description' => $request->input('name', null),
+            'description' => $request->input('description', null),
             'category' => $request->input('category'),
             'price' => $request->input('price'),
             'bought_at' => $request->input('bought_at'),

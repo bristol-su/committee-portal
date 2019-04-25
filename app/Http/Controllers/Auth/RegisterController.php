@@ -149,6 +149,7 @@ class RegisterController extends Controller
                     return $user;
                 }
             } catch (\Exception $e) {
+		Log::warning($e);
                 throw new \Exception('Could not register you on our systems.');
 
             }
