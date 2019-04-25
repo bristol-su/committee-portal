@@ -130,9 +130,9 @@ class RegisterController extends Controller
         // Get a unioncloud user ID
         $unionCloudUser = $this->getUnionCloudUser($searchTerm, $request);
         $uid = $unionCloudUser->uid;
-
+		
         // Get a control database student
-        $controlUser = $this->getStudentByUid($uid);
+        $controlUser = $this->getOrCreateStudentByUid($uid);
 
         // Create a user
         if ($controlUser !== false && $this->userHasCommitteeRole($controlUser)) {
