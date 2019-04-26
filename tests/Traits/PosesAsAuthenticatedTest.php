@@ -99,4 +99,17 @@ class PosesAsAuthenticatedTest extends TestCase
         $this->assertTrue($this->identity()->can('bypass-maintenance'));
         $this->assertTrue($this->identity()->can('view-site-settings-page'));
     }
+
+    /** @test */
+    public function it_can_assign_a_single_permission_after_multiple_chained_methods(){
+        $this->beStudent()->withRole()->allowedTo('bypass-maintenance');
+        $this->assertTrue($this->identity()->can('bypass-maintenance'));
+    }
+
+    /** @test */
+    public function it_can_assign_multiple_permissions_after_multiple_chained_methods(){
+        $this->beStudent()->withRole()->allowedTo(['bypass-maintenance', 'view-site-settings-page']);
+        $this->assertTrue($this->identity()->can('bypass-maintenance'));
+        $this->assertTrue($this->identity()->can('view-site-settings-page'));
+    }
 }

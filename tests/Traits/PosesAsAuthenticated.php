@@ -35,7 +35,7 @@ trait PosesAsAuthenticated
     public function beStudent()
     {
         $this->user = factory(User::class)->create();
-        $this->be($this->user);
+        $this->be($this->user, 'web');
         return $this;
     }
 
@@ -46,9 +46,10 @@ trait PosesAsAuthenticated
      */
     public function withRole()
     {
-        $role = CommitteeRole::find(558);
-        $this->be($role, 'committee-role');
-        $this->role = $role;
+        /** @var CommitteeRole $role */
+        $this->role = CommitteeRole::find(558);
+        $this->be($this->role, 'committee-role');
+        Auth::shouldUse('web');
         return $this;
     }
 
@@ -60,7 +61,7 @@ trait PosesAsAuthenticated
     public function beSuperAdmin()
     {
         $this->user = factory(User::class)->create()->givePermissionTo('act-as-super-admin');
-        $this->be($this->user);
+        $this->be($this->user, 'web');
         return $this;
     }
 
@@ -73,6 +74,7 @@ trait PosesAsAuthenticated
     {
         $this->role = new ViewAsStudent(1);
         $this->be($this->role, 'view-as-student');
+        Auth::shouldUse('web');
         return $this;
     }
 
@@ -84,7 +86,7 @@ trait PosesAsAuthenticated
     public function beAdmin()
     {
         $this->user = factory(User::class)->create()->givePermissionTo('act-as-admin');
-        $this->be($this->user);
+        $this->be($this->user, 'web');
         return $this;
     }
 
@@ -127,7 +129,7 @@ trait PosesAsAuthenticated
      *
      * @return User
      */
-    public function identity()
+    public function identity() : User
     {
         return $this->user;
     }
