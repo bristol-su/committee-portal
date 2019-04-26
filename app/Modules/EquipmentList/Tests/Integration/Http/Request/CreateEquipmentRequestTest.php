@@ -5,6 +5,7 @@ namespace App\Modules\EquipmentList\Tests\Integration\Http\Request;
 use App\Modules\EquipmentList\Http\Requests\CreateEquipmentRequest;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -155,6 +156,7 @@ class CreateEquipmentRequestTest extends TestCase
     public function a_user_without_the_create_equipment_permission_cannot_create_an_equipment_item()
     {
         $this->beStudent()
+            ->withRole()
             ->createEquipmentItem( )
             ->assertStatus(403);
     }
@@ -162,8 +164,10 @@ class CreateEquipmentRequestTest extends TestCase
     /** @test */
     public function a_user_with_the_create_equipment_permission_is_not_given_a_403_error()
     {
-        $this->beStudent()
-            ->allowedTo(['equipmentlist.create-equipment', 'equipmentlist.module.isActive']);
+        $this->beStudent()->withRole()->allowedTo(['equipmentlist.create-equipment', 'equipmentlist.module.isActive']);
+        dd(app(Gate::class)->forUser($this->identity())->check('equipmentlist.module.isActive', []));
+        dd($this->identity()->can('equipmentlist.module.isActive'));
+        dd($this->createEquipmentItem());
         $this->assertNotEquals(403, $this->createEquipmentItem()->status());
     }
 
