@@ -72,7 +72,7 @@
             }
         },
 
-        created() {
+        mounted() {
 
             new Form({}).get('/admin/settings/roles/get')
                 .then(data => {
