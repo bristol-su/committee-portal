@@ -26,11 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         Gate::define('exitingtreasurer.module.isVisible', function (User $user) {
-            return true;
+            return !$this->groupHasTag($user, 'group_type', 'volunteering');
         });
 
         Gate::define('exitingtreasurer.module.isActive', function (User $user) {
-            return true;
+            return !$this->groupHasTag($user, 'group_type', 'volunteering');
         });
 
         Gate::define('exitingtreasurer.reaffiliation.isMandatory', function (User $user) {

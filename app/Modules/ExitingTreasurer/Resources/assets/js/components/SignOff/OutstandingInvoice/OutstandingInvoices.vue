@@ -4,9 +4,9 @@
             <div class="col-xs-12">
 
                 <yes-no-radio
-                        no="No, all the invoices for the year to date are showing on the Trans List."
+                        no="No, all the invoices for the year to date are showing on the transaction list."
                         v-model="payload.present"
-                        yes="Yes, there are unpaid invoices which are not showing on the Trans List.">
+                        yes="Yes, there are unpaid invoices which are not showing on the transaction list.">
 
                 </yes-no-radio>
 

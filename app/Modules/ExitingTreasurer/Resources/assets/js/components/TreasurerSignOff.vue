@@ -195,7 +195,7 @@
 
             // Has the reports needed to sign off
             hasReports() {
-                return this.yearReports().length > 1;
+                return this.yearReports().filter(report => report.uploaded).length > 1;
             },
 
             // Any reports were found
