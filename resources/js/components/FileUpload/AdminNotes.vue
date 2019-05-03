@@ -15,7 +15,7 @@
                 <ul class="noteList">
                     <li v-for="note in sortedNotes" v-if="sortedNotes.length > 0">
                         <div class="noteerImage">
-                            <img :src="window.serveStaticContent('document-note-avatar.png')"/>
+                            <img :src="avatar"/>
                         </div>
                         <div class="noteText">
                             <span class="noterName">{{ note.user | username }}</span> <span
@@ -134,6 +134,10 @@
                     let bsort = moment(b.created_at).unix();
                     return (asort - bsort);
                 });
+            },
+
+            avatar() {
+                return window.serveStaticContent('document-note-avatar.png')
             }
         },
 
