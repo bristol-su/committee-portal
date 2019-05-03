@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" style="margin: 2px">
         <div class="card-body">
             <h5 class="card-title">
                 <b>{{header.header}}</b>
