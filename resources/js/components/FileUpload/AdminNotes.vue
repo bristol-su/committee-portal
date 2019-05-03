@@ -15,7 +15,7 @@
                 <ul class="noteList">
                     <li v-for="note in sortedNotes" v-if="sortedNotes.length > 0">
                         <div class="noteerImage">
-                            <img src="/images/avatar.png"/>
+                            <img :src="window.serveStaticContent('document-note-avatar.png')"/>
                         </div>
                         <div class="noteText">
                             <span class="noterName">{{ note.user | username }}</span> <span
