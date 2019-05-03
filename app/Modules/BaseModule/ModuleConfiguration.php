@@ -31,16 +31,30 @@ abstract class ModuleConfiguration
     {
 
         return [
-            'header' => ($this->isComplete()?'reaffiliation-complete':$this->getHeaderKey()), // Header key as defined in config. Will alter where the button is displayed on the page
+            'header' => $this->header(), // Header key as defined in config. Will alter where the button is displayed on the page
             'button_title' => $this->getButtonTitle(), // Title of the button as displayed on the page
             'user_url' => $this->getUserURL(), // URL to direct the user to when clicking this button
-            'reaffiliation_mandatory' => $this->isMandatoryForReaffiliation(), // Is this module part of reaffiliation?
+            'reaffiliation_mandatory' => $this->isMandatory(), // Is this module part of reaffiliation?
             'description' => $this->getDescription(),
             'admin_header' => $this->getAdminHeaderKey(),
             'admin_url' => $this->getAdminURL(),
             'complete' => $this->isComplete(),
             'alias' => $this->alias()
         ];
+    }
+
+    public function header()
+    {
+        $header = $this->getHeaderKey();
+        if(strpos($header, 'reaffiliation-') !== false) {
+            // Chain of Responsibility
+            if($this->isComplete()) {
+                return 'reaffiliation-complete';
+            } elseif($this->isMandatory()) {
+                return 'reaffiliation-mandatory';
+            }
+            return 'reaffiliation-optional';
+        }
     }
 
     /**
@@ -107,6 +121,10 @@ abstract class ModuleConfiguration
         return false;
     }
 
+    public function isMandatory()
+    {
+        return Auth::user()->can($this->alias().'.reaffiliation.isMandatory');
+    }
 
     /**
      * Get the reaffiliation status. If this is a module for reaffiliation, make sure
