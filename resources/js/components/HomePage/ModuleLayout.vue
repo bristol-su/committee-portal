@@ -2,8 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <reaffiliation-progress
+                :modules="modules"
+                :text-inside="true">
+
+                </reaffiliation-progress>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <module-header
-                        v-for="header in headers"
+                        v-for="header in notEmpty(headers)"
                         :modules="headerModules(header)"
                         :header="header"
                         :key="header.index">
@@ -16,6 +25,7 @@
 
 <script>
     import ModuleHeader from './ModuleHeader';
+    import ProgressBar from './ProgressBar';
 
     export default {
         name: 'ModuleLayout',
@@ -32,12 +42,17 @@
         },
 
         components: {
-            ModuleHeader,
+            'module-header': ModuleHeader,
+            'reaffiliation-progress': ProgressBar
         },
 
         methods: {
             headerModules(header) {
                 return this.modules.filter(module => module.header.index === header.index);
+            },
+
+            notEmpty(headers) {
+                return headers.filter(header => this.headerModules(header).filter(module => module.visible).length > 0);
             }
         },
 

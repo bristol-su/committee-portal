@@ -6,6 +6,7 @@ use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Modules\Facades\Module;
@@ -46,6 +47,7 @@ class ViewServiceProvider extends ServiceProvider
 
                 // Load information from gates
                 foreach(config('portal.header_information_gates') as $key => $information) {
+                    Log::info('Result of '.$configuration['alias'].'.'.$information.': '.(Auth::user()->can($configuration['alias'].'.'.$information?'true':'false')).'. Saved to '.$key);
                     $configuration[$key] = Auth::user()->can($configuration['alias'].'.'.$information);
                 }
                 return $configuration;

@@ -3,6 +3,8 @@
 namespace App\Modules\CharitableGiving;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
+use App\Modules\CharitableGiving\Entities\Submission;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
@@ -39,7 +41,10 @@ class ModuleConfiguration extends BaseModuleConfiguration
         if (!$this->actingAsStudent()) {
             return false;
         };
-        return false;
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => Auth::user()->getCurrentRole()->group->id
+        ])->count() > 0;
     }
 
     public function getDescription()
