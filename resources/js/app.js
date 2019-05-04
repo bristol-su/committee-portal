@@ -45,7 +45,7 @@ new Vue({
 });
 
 
-window.serveStaticContent = function (filename) {
+ window.serveStaticContent = function (filename) {
     return 'https://'
         + process.env.MIX_AWS_STATIC_URL + '/'
         + process.env.MIX_AWS_STATIC_BUCKET + '/'

@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\TaskAllocation\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -36,15 +38,17 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/taskallocation';
     }
 
-    public function isComplete()
+    public function isMandatoryForGroup(Group $group)
     {
-        if (!$this->actingAsStudent()) {
-            return false;
-        };
+        return true;
+    }
+
+    public function isComplete(Group $group)
+    {
         return Submission::where([
-                'year' => getReaffiliationYear(),
-                'group_id' => Auth::user()->getCurrentRole()->group->id
-            ])->count() > 0;
+            'year' => getReaffiliationYear(),
+            'group_id' => $group->id
+        ])->count() > 0;
     }
 
     public function getDescription()

@@ -6,10 +6,17 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\CharitableGiving\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
     protected $mandatoryForReaffiliation = true;
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return $this->groupHasTag($group, 'reaffiliation_tasks', 'charitable_giving_awareness');
+    }
 
     public function alias()
     {
@@ -36,14 +43,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/charitablegiving';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if (!$this->actingAsStudent()) {
-            return false;
-        };
         return Submission::where([
             'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
+            'group_id' => $group->id
         ])->count() > 0;
     }
 

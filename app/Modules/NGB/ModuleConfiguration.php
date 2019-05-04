@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\NGB\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -31,17 +33,21 @@ public function alias()
         return '/ngb';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return $this->groupHasTag($group, 'reaffiliation_tasks', 'ngb_safety_statement');
+    }
+
     public function getAdminURL()
     {
         return '/admin/ngb';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if(!$this->actingAsStudent()) { return false; } ;
         return Submission::where([
             'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
+            'group_id' => $group->id
         ])->count() > 0;
     }
 
