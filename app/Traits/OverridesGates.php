@@ -5,6 +5,7 @@ namespace App\Traits;
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Nwidart\Modules\Facades\Module;
 
@@ -46,7 +47,7 @@ trait OverridesGates
     {
         $configString = Module::find($module)->get('dynamic_configuration');
         $configuration = new $configString;
-        return $configuration->isComplete();
+        return $configuration->isComplete(Auth::user()->getCurrentRole()->group);
     }
 
 }

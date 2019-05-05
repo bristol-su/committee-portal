@@ -45,10 +45,10 @@ public function alias()
 
     public function isComplete(Group $group)
     {
-            return Submission::where([
-                'year' => getReaffiliationYear(),
-                'group_id' => $group->id
-            ])->count() > 0;
+        return Submission::where([
+            'year' => getReaffiliationYear(),
+            'group_id' => $group->id
+        ])->count() > 0;
     }
 
     public function getDescription()
