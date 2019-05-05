@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\MainContacts\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -31,19 +33,21 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/maincontacts';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
+    }
+
     public function getAdminURL()
     {
         return '/admin/maincontacts';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if (!$this->actingAsStudent()) {
-            return false;
-        };
         return Submission::where([
                 'year' => getReaffiliationYear(),
-                'group_id' => Auth::user()->getCurrentRole()->group->id
+                'group_id' => $group->id
             ])->count() > 0;
     }
 

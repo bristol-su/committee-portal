@@ -3,6 +3,7 @@
 namespace App\Modules\Budget\Providers;
 
 use App\Modules\Budget\Entities\File;
+use App\Packages\ControlDB\Models\Group;
 use App\Traits\AuthorizesUsers;
 use App\User;
 use Illuminate\Support\Facades\Gate;

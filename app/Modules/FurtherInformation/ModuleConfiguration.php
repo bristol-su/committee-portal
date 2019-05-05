@@ -4,6 +4,8 @@ namespace App\Modules\FurtherInformation;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -17,6 +19,11 @@ public function alias()
     public function getButtonTitle()
     {
         return 'Further Information';
+    }
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return false;
     }
 
     public function getHeaderKey()
@@ -34,9 +41,8 @@ public function alias()
         return '/admin/furtherinformation';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-    if(!$this->actingAsStudent()) { return false; } ;
         return true;
     }
 

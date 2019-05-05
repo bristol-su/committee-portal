@@ -47,7 +47,6 @@ class ViewServiceProvider extends ServiceProvider
 
                 // Load information from gates
                 foreach(config('portal.header_information_gates') as $key => $information) {
-                    Log::info('Result of '.$configuration['alias'].'.'.$information.': '.(Auth::user()->can($configuration['alias'].'.'.$information?'true':'false')).'. Saved to '.$key);
                     $configuration[$key] = Auth::user()->can($configuration['alias'].'.'.$information);
                 }
                 return $configuration;

@@ -34,6 +34,8 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::get('/', 'AdminController@showAdminDashboard')->name('admin');
 
+    Route::get('/stats', 'AdminController@getStats');
+
     Route::get('/settings', 'AdminSettingsController@showSettingsPage')->name('admin.settings');
 
     // Admin Users routes

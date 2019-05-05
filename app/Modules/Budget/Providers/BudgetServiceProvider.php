@@ -2,11 +2,16 @@
 
 namespace App\Modules\Budget\Providers;
 
+use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
 class BudgetServiceProvider extends ServiceProvider
 {
+    use CanSeeGroupTags;
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -38,6 +43,7 @@ class BudgetServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
+
     }
 
     /**

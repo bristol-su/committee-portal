@@ -5,6 +5,8 @@ namespace App\Modules\StrategicPlan;
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\StrategicPlan\Entities\File;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -33,14 +35,18 @@ public function alias()
         return '/admin/strategicplan';
     }
 
-
-    public function isComplete()
+    public function isMandatoryForGroup(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        return false;
+    }
+
+
+    public function isComplete(Group $group)
+    {
         return File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',
-            'group_id' => getGroupID()
+            'group_id' => $group->id
         ])->count() > 0;
     }
 

@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\EquipmentList\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -14,6 +16,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function alias()
     {
         return 'equipmentlist';
+    }
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
     }
 
     public function getButtonTitle()
@@ -36,15 +43,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/equipmentlist';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if (!$this->actingAsStudent()) {
-            return false;
-        };
         return Submission::where([
-            'group_id' => Auth::user()->getCurrentRole()->group->id,
+            'group_id' => $group->id,
             'year' => getReaffiliationYear()
-        ]);
+        ])->count() > 0;
     }
 
     public function getDescription()
