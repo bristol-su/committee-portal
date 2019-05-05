@@ -3,10 +3,20 @@
 namespace App\Modules\BaseModule;
 
 use App\Packages\ControlDB\Models\Group;
+use App\Traits\CanSeeGroupTags;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 abstract class ModuleConfiguration
 {
+    use CanSeeGroupTags;
+
+    public $group;
+
+
+    public function setGroup($group) {
+        $this->group = $group;
+    }
 
     /**
      * @return bool
@@ -24,11 +34,14 @@ abstract class ModuleConfiguration
         return true;
     }
 
+    abstract public function isMandatoryForGroup(Group $group);
+
     /**
      * Gets the configuration of this module
      */
     public function getConfiguration()
     {
+        $group = $this->getGroup();
 
         return [
             'header' => $this->header(), // Header key as defined in config. Will alter where the button is displayed on the page
@@ -38,7 +51,7 @@ abstract class ModuleConfiguration
             'description' => $this->getDescription(),
             'admin_header' => $this->getAdminHeaderKey(),
             'admin_url' => $this->getAdminURL(),
-            'complete' => $this->isComplete(),
+            'complete' => ($group === null ? false : $this->isComplete($group)),
             'alias' => $this->alias()
         ];
     }
@@ -46,9 +59,11 @@ abstract class ModuleConfiguration
     public function header()
     {
         $header = $this->getHeaderKey();
+        $group = $this->getGroup();
+
         if(strpos($header, 'reaffiliation-') !== false) {
             // Chain of Responsibility
-            if($this->isComplete()) {
+            if($group === null ? false : $this->isComplete($group)) {
                 return 'reaffiliation-complete';
             } elseif($this->isMandatory()) {
                 return 'reaffiliation-mandatory';
@@ -107,7 +122,23 @@ abstract class ModuleConfiguration
      */
     abstract public function getAdminURL();
 
-    abstract public function isComplete();
+    /**
+     * @return Group
+     */
+    public function getGroup()
+    {
+        if($this->actingAsStudent()) {
+            return Auth::user()->getCurrentRole()->group;
+        }
+
+        if($this->group instanceof Group) {
+            return $this->group;
+        }
+
+        return null;
+    }
+
+    abstract public function isComplete(Group $group);
 
     /**
      * Defines if the module is mandatory for reaffiliation or not

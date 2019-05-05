@@ -4,14 +4,21 @@ namespace App\Modules\Budget;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\Budget\Entities\File;
+use App\Traits\CanSeeGroupTags;
 use Illuminate\Support\Facades\Auth;
+
+use App\Packages\ControlDB\Models\Group;
 
 class ModuleConfiguration extends BaseModuleConfiguration
 {
-
     public function alias()
     {
         return 'budget';
+    }
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return $this->groupHasTag($group, 'financial_risk', 'high');
     }
 
     /**
@@ -37,14 +44,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/budget';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if (!$this->actingAsStudent()) {
-            return false;
-        };
         return File::where([
                 'year' => getReaffiliationYear(),
-                'group_id' => Auth::user()->getCurrentRole()->group->id,
+                'group_id' => $group->id,
                 'status' => 'approved'
             ])->count() > 0;
     }
@@ -57,6 +61,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function getAdminHeaderKey()
     {
         return 'financial';
+    }
+
+    public function isMandatory()
+    {
+        // TODO Refactor this ASAP
     }
 
 }

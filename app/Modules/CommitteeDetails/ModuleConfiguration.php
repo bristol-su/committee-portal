@@ -16,6 +16,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return 'committeedetails';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
+    }
+
     protected $mandatoryForReaffiliation = true;
 
     public function getButtonTitle()
@@ -38,10 +43,8 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/committeedetails';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
-        $group = Auth::user()->getCurrentRole()->group;
         $positionSetting = PositionSetting::where('tag_reference', $group->getGroupType())->get()->first();
         if(($positions = CommitteeRole::allThrough($group)) === false) {
             return false;

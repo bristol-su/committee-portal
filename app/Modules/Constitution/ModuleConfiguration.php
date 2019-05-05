@@ -5,6 +5,8 @@ namespace App\Modules\Constitution;
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\Constitution\Entities\File;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -18,6 +20,11 @@ class ModuleConfiguration extends BaseModuleConfiguration
     public function getButtonTitle()
     {
         return 'Constitution';
+    }
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
     }
 
     public function getHeaderKey()
@@ -35,13 +42,12 @@ class ModuleConfiguration extends BaseModuleConfiguration
         return '/admin/constitution';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
         return File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',
-            'group_id' => getGroupID()
+            'group_id' => $group->id
         ])->count() > 0;
 
     }

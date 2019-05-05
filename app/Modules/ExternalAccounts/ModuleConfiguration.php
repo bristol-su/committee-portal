@@ -4,6 +4,8 @@ namespace App\Modules\ExternalAccounts;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -17,6 +19,11 @@ public function alias()
     public function getButtonTitle()
     {
         return 'External Accounts';
+    }
+
+    public function isMandatoryForGroup(Group $group)
+    {
+        return $this->groupHasTag($group, 'bank', 'external_account');
     }
 
     public function getHeaderKey()
@@ -34,9 +41,8 @@ public function alias()
         return '/admin/externalaccounts';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if(!$this->actingAsStudent()) { return false; } ;
         return false;
     }
 

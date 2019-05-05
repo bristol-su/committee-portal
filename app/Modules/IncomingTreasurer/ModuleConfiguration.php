@@ -27,6 +27,11 @@ public function alias()
         return 'reaffiliation-mandatory';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
+    }
+
     public function getUserURL()
     {
         return '/incomingtreasurer';
@@ -37,12 +42,11 @@ public function alias()
         return '/admin/incomingtreasurer';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-        if(!$this->actingAsStudent()) { return false; } ;
         return Submission::where([
             'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
+            'group_id' => $group->id
         ])->count() > 0;
     }
 

@@ -6,9 +6,16 @@
 
     @php $modules = getModuleConfiguration(); @endphp
 
-    <div class="py-5">
+    <div class="py-5" id="committee-portal-admin">
         <div class="container">
             <h2 style="text-align: center">Administrator Dashboard</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <progress-layout>
+
+                        </progress-layout>
+                    </div>
+                </div>
             @foreach($modules->pluck('admin_header')->unique() as $header)
                 <div class="row">
                     <div class="col-md-12">
@@ -45,3 +52,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/admin.js') }}"></script>
+@endpush

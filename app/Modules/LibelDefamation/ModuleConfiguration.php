@@ -7,6 +7,8 @@ use App\Modules\LibelDefamation\Entities\Submission;
 use App\Modules\Presentation\Entities\File;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -27,6 +29,11 @@ public function alias()
         return 'reaffiliation-mandatory';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return $this->groupHasTag($group, 'reaffiliation_tasks', 'libel_defamation_awareness');
+    }
+
     public function getUserURL()
     {
         return '/libeldefamation';
@@ -37,12 +44,11 @@ public function alias()
         return '/admin/libeldefamation';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
         return Submission::where([
             'year' => getReaffiliationYear(),
-            'group_id' => Auth::user()->getCurrentRole()->group->id
+            'group_id' => $group->id
         ])->count() > 0;
     }
 
