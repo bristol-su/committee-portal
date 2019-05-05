@@ -29,6 +29,11 @@ public function alias()
         return 'reaffiliation-mandatory';
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return true;
+    }
+
     public function getUserURL()
     {
         return '/presidenthandover';
@@ -39,10 +44,8 @@ public function alias()
         return '/admin/presidenthandover';
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
-        $group = Auth::user()->getCurrentRole()->group;
         $position = CommitteeRole::allThrough($group);
         if($position === false) {
             return false;

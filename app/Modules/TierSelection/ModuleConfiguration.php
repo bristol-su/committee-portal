@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\TierSelection\Entities\Submission;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -36,11 +38,14 @@ public function alias()
         return '/admin/tierselection';
     }
 
-    public function isComplete()
+    public function isMandatoryForGroup(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
+        return false;
+    }
 
-        return Submission::countSubmissions(getGroupID()) > 0;
+    public function isComplete(Group $group)
+    {
+        return Submission::countSubmissions($group->id) > 0;
     }
 
     public function getDescription()

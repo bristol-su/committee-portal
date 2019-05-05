@@ -6,6 +6,8 @@ use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 use App\Modules\WABBudget\Entities\File;
 use Illuminate\Support\Facades\Auth;
 
+use App\Packages\ControlDB\Models\Group;
+
 class ModuleConfiguration extends BaseModuleConfiguration
 {
 
@@ -42,18 +44,22 @@ public function alias()
         return true;
     }
 
+    public function isMandatoryForGroup(Group $group)
+    {
+        return false;
+    }
+
     public function isActive()
     {
         return true;
     }
 
-    public function isComplete()
+    public function isComplete(Group $group)
     {
-if(!$this->actingAsStudent()) { return false; } ;
         return File::where([
             'year' => getReaffiliationYear(),
             'status' => 'approved',
-            'group_id' => getGroupID()
+            'group_id' => $group->id
         ])->count() > 0;
     }
 
