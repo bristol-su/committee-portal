@@ -3,11 +3,11 @@
 Hi {{$user->forename}}!
 
 The outgoing treasurer has completed their review of last year's finances. You can review the reports for last year and
-their answers here, this gives you an overview of your group's recent financial activity.
+their answers on the <a href="{{config('app.url')}}">Committee Portal</a>. Please review the information they've submitted
+to get an up to date picture of the group's financial position at handover.
 
-Now that that the outgoing treasurer has completed their tasks, We now consider you to be responsible for the finances of your group.
-Over the coming days we will allocate you permissions so that you can use the Expense365 app,
-please see the Finance page on the <a href="https://www.bristolsu.org.uk/tools-to-run-your-group/finances-grants">Tools to Run Your Group</a>
-section of the SU website for our Treasurer userguides.
+In a few days you will gain access to the eXpense365 allowing you to review and approve members expenses as well
+as view income and expenditure reports. Please take some time to read the
+<a href="{{serveStatic('How_to_use_eXpense365.pdf')}}">How to Guide</a> before you download and begin using the app.
 
 @endcomponent
