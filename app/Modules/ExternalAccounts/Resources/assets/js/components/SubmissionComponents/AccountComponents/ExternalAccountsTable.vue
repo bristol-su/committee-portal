@@ -10,7 +10,7 @@
                 <th>Account Number</th>
                 <th>Bank Name</th>
                 <th>Account Name</th>
-                <th>Account Purpose</th>
+<!--                <th>Account Purpose</th>-->
                 <th></th>
             </tr>
             </thead>
@@ -21,7 +21,7 @@
                 <td>{{account.account_number}}</td>
                 <td>{{account.bank_name}}</td>
                 <td>{{account.account_name}}</td>
-                <td>{{account.purpose}}</td>
+<!--                <td>{{account.purpose}}</td>-->
                 <td v-if="account.closure_id === null">
                     <button class="btn btn-sm btn-danger" @click="$emit('closeAccount', account)">Close Account</button>
                     <div v-if="account.end_of_year_statements.length === 0">
