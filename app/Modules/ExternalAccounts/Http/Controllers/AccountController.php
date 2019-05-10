@@ -19,7 +19,7 @@ class AccountController extends Controller
             'account_number' => 'required',
             'bank_name' => 'required|string',
             'account_name' => 'required|string',
-            'purpose' => 'required|string|min:3|max:65535',
+//            'purpose' => 'required|string|min:3|max:65535',
         ]);
         if($account = Account::create([
             'group_id' => Auth::user()->getCurrentRole()->group->id,
@@ -27,9 +27,9 @@ class AccountController extends Controller
             'account_number' => $request->input('account_number'),
             'bank_name' => $request->input('bank_name'),
             'account_name' => $request->input('account_name'),
-            'purpose' => $request->input('purpose')
+//            'purpose' => $request->input('purpose')
         ])) {
-            return $account;
+            return $account->fresh(['endOfYearStatements']);
         }
 
         return response('Could not create the account', 500);

@@ -75,7 +75,7 @@
                 <li>Signed statement from the auditor/independent examiner</li>
             </ol>
 
-            <p>See <a :href="documents.audited | static">here</a> for an example document that covers the above.</p>
+            <p>See <a :href="documents.audited | static" target="_blank">here</a> for an example document that covers the above.</p>
 
             <statements @input="val => form.statements = val"></statements>
 
@@ -84,7 +84,7 @@
             <div style="text-align: center; margin-top: 60px;">
 
                 <button @click="submit" class="btn btn-lg btn-outline-info" type="button">
-                    Submit your External Account Audit
+                    Submit all answers
                 </button>
             </div>
         </div>
