@@ -18,7 +18,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-5">
-                            Note
+                            More Information
                         </div>
                         <div class="col-md-5">
                             Documents

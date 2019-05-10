@@ -145,7 +145,8 @@
             },
 
             changeStatus(event, file) {
-                if(confirm('Are you sure you wish to change the status of '+file.title+' for group '+file.group.name+' to '+event.target.value+'?')) {
+                if(confirm('Are you sure you wish to change the status of '+file.group.name+'\'s document \'' + file.title + '\' to \' ' + event.target.value + '\'?'))
+                {
                     this.$http.post('/admin/' + this.module + '/change-file-status/' + file.id, {
                         status: event.target.value
                     })
@@ -157,7 +158,11 @@
                             this.$notify.alert('Sorry, something went wrong.');
                             this.$notify.alert('Status not updated')
                         });
+                } else {
+                    this.$notify.info('Status not updated');
                 }
+
+
             }
         },
 

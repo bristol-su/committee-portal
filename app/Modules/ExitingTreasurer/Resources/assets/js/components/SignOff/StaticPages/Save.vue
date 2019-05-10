@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <table class="table">
                     <tr>
-                        <td>Unauthorized Expense Claims</td>
+                        <td>Unauthorized Expense Claims for deletion</td>
                         <td>
                             <div v-if="submission.has_unauthorized_expense_claims === true && submission.unauthorized_expense_claim.length > 0">
                                 <span style="display: block;" v-for="claim in submission.unauthorized_expense_claim">

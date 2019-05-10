@@ -4,6 +4,7 @@ namespace App\Modules\ExitingTreasurer\Listeners;
 
 use App\Modules\ExitingTreasurer\Entities\Document;
 use App\Modules\IncomingTreasurer\Entities\Submission;
+use App\Packages\ControlDB\Models\Account;
 use App\Packages\ControlDB\Models\Group;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,13 +30,16 @@ class NewIncomeExpenditureUploadRequest
     public function handle(Submission $submission)
     {
         $group = $submission->group();
-        $title = $group->name. ' Finance Summary Report '.$submission->year.'/'.substr($submission->year+1, 2, 2);
-        Document::create([
-            'year' => $submission->year,
-            'title' => $title,
-            'uploaded' => false,
-            'type' => 'income_expenditure',
-            'group_id' => $group->id
-        ]);
+        $accounts = Account::allThrough($group);
+        foreach($accounts as $account) {
+            $title = $group->name. ' ('.$account->code.') Finance Summary Report '.($submission->year-1).'/'.substr($submission->year, 2, 2);
+            Document::create([
+                'year' => $submission->year,
+                'title' => $title,
+                'uploaded' => false,
+                'type' => 'income_expenditure',
+                'group_id' => $group->id
+            ]);
+        }
     }
 }
