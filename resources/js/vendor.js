@@ -2,6 +2,8 @@ import _ from 'lodash';
 import Popper from 'popper.js';
 import axios from 'axios';
 import Vue from 'vue';
+// import Vuetify from 'vuetify';
+// import 'vuetify/dist/vuetify.min.css';
 import jQuery from 'jquery';
 import bootstrap from 'bootstrap';
 import Moment from 'moment';
@@ -11,6 +13,8 @@ import Vuex from "vuex";
 import {Spinner} from 'spin.js';
 import 'spin.js/spin.css';
 
+
+
 /**
  * Load lodash
  */
@@ -18,7 +22,7 @@ window._ = _;
 window.Vue = Vue;
 window.$ = window.jQuery = jQuery;
 
-
+// Vue.use(Vuetify);
 Vue.use(VModal);
 Vue.use(Vuex);
 

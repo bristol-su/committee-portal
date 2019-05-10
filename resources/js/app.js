@@ -6,8 +6,7 @@ import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
 import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
 import DateViewer from './components/DateViewer';
 import {Spinner} from "spin.js";
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+
 
 // import PortalVue from 'portal-vue'
 
@@ -22,7 +21,6 @@ window.Event = new Vue();
 
 // Define http provider for Vue
 
-Vue.use(Vuetify);
 
 // Default modal settings for the VModal
 window.$defaultModalSettings = {adaptive: true, height: 'auto', scrollable: true};
