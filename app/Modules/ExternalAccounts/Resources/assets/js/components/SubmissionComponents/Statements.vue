@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="text-align: left;">
-                Statements from people and stuff
             </div>
         </div>
         <div class="row">

@@ -134,7 +134,7 @@
                 return (this.editingSubmission === null ? null : this.editingSubmission[index]);
             },
             boolToFA(check) {
-                if (check) {
+                if (!check) {
                     return '<i class="fa fa-check" style="color: green; height: 10px;"></i>';
                 }
                 return '<i class="fa fa-times" style="color: red; height: 10px;"></i>';
