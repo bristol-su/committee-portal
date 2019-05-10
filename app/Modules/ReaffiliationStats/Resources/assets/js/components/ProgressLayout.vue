@@ -85,15 +85,19 @@
         },
 
         created() {
-            this.loadStats();
+            this.loadStats(true);
         },
 
         methods: {
-            loadStats() {
+            loadStats(loop) {
                 this.$http.get('/admin/reaffiliation-stats/stats')
                     .then(response => this.modules = response.data)
                     .catch(error => {
-                        this.$notify.alert('Could not load group statistics, please reload the page. ' + error.message)
+                        if(loop) {
+                            this.loadStats(true);
+                        } else {
+                            this.$notify.alert('Could not load group statistics, please reload the page. ' + error.message)
+                        }
                     });
             },
 
