@@ -165,7 +165,7 @@ class ExitingTreasurerController extends Controller
     public function allSubmissions() {
         $this->authorize('exitingtreasurer.view-admin');
 
-        return Submission::all()->map(function($submission) {
+        return Submission::where(['complete' => true])->get()->map(function($submission) {
             return $this->submissionWithRelationships($submission);
         });
     }

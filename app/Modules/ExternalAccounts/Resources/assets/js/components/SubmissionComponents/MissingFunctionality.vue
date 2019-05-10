@@ -2,7 +2,7 @@
     <div>
         <div class="form-check-inline">
             <input type="checkbox" v-model="checked" id="checked-missing-functionality" @input="$emit('input', null)">
-            <label for="checked-missing-functionality">We require functionality beyond what the main Bristol SU account is able to offer</label>
+            <label for="checked-missing-functionality">We require functionality that the main Bristol SU account can’t provide</label>
         </div>
         <input class="form-control" placeholder="Please explain what functionality we aren't able to provide"
                type="text" v-if="checked" @input="$emit('input', $event.target.value)" :value="value">

@@ -37,13 +37,13 @@
             </div>
         </div>
 
-        <div class="row form-group">
-            <label class="col-md-4 control-label" for="purpose">Account Purpose</label>
-            <div class="col-md-8">
-                <input class="form-control input-md" id="purpose" placeholder="" type="text" v-model="form.purpose">
-                <span class="has-error-span" v-if="form.errors.has('purpose')">{{form.errors.get('purpose')}}</span>
-            </div>
-        </div>
+<!--        <div class="row form-group">-->
+<!--            <label class="col-md-4 control-label" for="purpose">Account Purpose</label>-->
+<!--            <div class="col-md-8">-->
+<!--                <input class="form-control input-md" id="purpose" placeholder="" type="text" v-model="form.purpose">-->
+<!--                <span class="has-error-span" v-if="form.errors.has('purpose')">{{form.errors.get('purpose')}}</span>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <button @click="addAccount" class="btn btn-info" type="button">Create New Account</button>
     </div>
@@ -63,7 +63,7 @@
                     account_number: null,
                     bank_name: null,
                     account_name: null,
-                    purpose: null
+                    // purpose: null
                 })
             }
         },
