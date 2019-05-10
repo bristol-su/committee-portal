@@ -23,4 +23,8 @@ class Equipment extends Model
         'bought_at',
         'deleted_reason',
     ];
+
+    protected $dates = [
+        'bought_at'
+    ];
 }

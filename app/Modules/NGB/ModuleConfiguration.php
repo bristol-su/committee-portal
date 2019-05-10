@@ -58,6 +58,6 @@ public function alias()
 
     public function getAdminHeaderKey()
     {
-        return 'ngb';
+        return 'statements';
     }
 }

@@ -194,5 +194,7 @@
     "/css/charitablegiving.css": "/css/charitablegiving.css",
     "/css/gdpr.css": "/css/gdpr.css",
     "/js/charitablegiving.js": "/js/charitablegiving.js",
-    "/js/gdpr.js": "/js/gdpr.js"
+    "/js/gdpr.js": "/js/gdpr.js",
+    "/css/reaffiliationstats.css": "/css/reaffiliationstats.css",
+    "/js/reaffiliationstats.js": "/js/reaffiliationstats.js"
 }

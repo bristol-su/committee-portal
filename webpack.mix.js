@@ -31,7 +31,6 @@ mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/vendor.js', 'public/js')
     .js('resources/js/sitesettings.js', 'public/js')
     .js('resources/js/portal.js', 'public/js')
-    .js('resources/js/admin.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .mergeManifest();
 

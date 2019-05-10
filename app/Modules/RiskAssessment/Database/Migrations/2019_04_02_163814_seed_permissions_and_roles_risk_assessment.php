@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+use App\Packages\Permissions\BasePermissionsSeederMigration;
 
-class SeedPermissionsAndRolesRiskAssessment extends \App\Packages\Permissions\BasePermissionsSeederMigration
+class SeedPermissionsAndRolesRiskAssessment extends BasePermissionsSeederMigration
 {
     public $permissions = [
         'riskassessment.change-status' => ['description' => 'Allows a user to change the status of any document', 'title' => 'Change Document Status', 'group' => 'Risk Assessment', 'subgroup' => 'Document'],
