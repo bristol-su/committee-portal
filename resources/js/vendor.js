@@ -2,16 +2,17 @@ import _ from 'lodash';
 import Popper from 'popper.js';
 import axios from 'axios';
 import Vue from 'vue';
-// import Vuetify from 'vuetify';
-// import 'vuetify/dist/vuetify.min.css';
+import BootstrapVue from 'bootstrap-vue'
 import jQuery from 'jquery';
-import bootstrap from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Moment from 'moment';
 import VModal from "vue-js-modal";
 import AWN from "awesome-notifications";
 import Vuex from "vuex";
 import {Spinner} from 'spin.js';
 import 'spin.js/spin.css';
+import PortalVue from 'portal-vue';
 
 
 
@@ -22,7 +23,8 @@ window._ = _;
 window.Vue = Vue;
 window.$ = window.jQuery = jQuery;
 
-// Vue.use(Vuetify);
+Vue.use(PortalVue);
+Vue.use(BootstrapVue);
 Vue.use(VModal);
 Vue.use(Vuex);
 

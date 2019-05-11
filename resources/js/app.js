@@ -7,7 +7,6 @@ import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNote
 import DateViewer from './components/DateViewer';
 import {Spinner} from "spin.js";
 
-
 // import PortalVue from 'portal-vue'
 
 // import vueDropzone from 'vue2-dropzone'; // Multi file upload use
@@ -16,7 +15,6 @@ import {Spinner} from "spin.js";
 window.Event = new Vue();
 // Extend Vue
 // Vue.use(Notifications)wir;
-// Vue.use(PortalVue);
 
 
 // Define http provider for Vue

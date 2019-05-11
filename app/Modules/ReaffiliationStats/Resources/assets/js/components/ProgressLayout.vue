@@ -33,16 +33,36 @@
 
 
                         <div v-else>
-                            Module completion statistics are being calculated. If they have not been found in a minute,
-                            please refresh the page.
+                            Module completion statistics are being calculated. This may take a few minutes.
                         </div>
                     </template>
 
-                    <template v-slot:individualreports>
-<!--                        <group-progress-->
-<!--                        :modules="modules">-->
+                    <template v-slot:individualgroup>
 
-<!--                        </group-progress>-->
+                        <div v-if="modules.length > 0">
+
+                            <div style="text-align: center;">
+                                Completed Reaffiliation
+                            </div>
+                            <div style="text-align: center;">
+                                {{completedReaffiliation}} / {{totalReaffiliating}} ({{percentage}}%)
+                            </div>
+
+
+                            <group-progress
+                                :modules="modules.filter(module => hasMandatoryGroups(module))">
+
+                            </group-progress>
+
+
+                        </div>
+
+
+                        <div v-else>
+                            Module completion statistics are being calculated. This may take a few minutes.
+                        </div>
+
+
                     </template>
                 </tabs>
             </div>
@@ -63,7 +83,8 @@
 
         components: {
             ProgressBar,
-            Tabs
+            Tabs,
+            GroupProgress
         },
 
         data() {
