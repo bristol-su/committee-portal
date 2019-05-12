@@ -28,10 +28,10 @@ if(modules && modules.length > 0) {
 
 
 mix.js('resources/js/app.js', 'public/js')
-   .js('resources/js/vendor.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .js('resources/js/vendor.js', 'public/js')
     .js('resources/js/sitesettings.js', 'public/js')
     .js('resources/js/portal.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
     .mergeManifest();
 
 // if (mix.inProduction()) {

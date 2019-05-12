@@ -1,16 +1,13 @@
 import _ from 'lodash';
+import jQuery from 'jquery';
 import Popper from 'popper.js';
+import 'bootstrap';
 import axios from 'axios';
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue'
-import jQuery from 'jquery';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import Moment from 'moment';
 import VModal from "vue-js-modal";
 import AWN from "awesome-notifications";
 import Vuex from "vuex";
-import {Spinner} from 'spin.js';
 import 'spin.js/spin.css';
 import PortalVue from 'portal-vue';
 
@@ -66,5 +63,4 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 
