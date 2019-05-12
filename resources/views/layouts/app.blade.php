@@ -22,11 +22,11 @@
 
     <!-- Styles -->
 
-
-    <!-- Scripts -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
+
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>

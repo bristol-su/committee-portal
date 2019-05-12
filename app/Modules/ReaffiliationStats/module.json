@@ -1,0 +1,16 @@
+{
+    "name": "ReaffiliationStats",
+    "alias": "reaffiliationstats",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "App\\Modules\\ReaffiliationStats\\Providers\\ReaffiliationStatsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "dynamic_configuration": "App\\Modules\\ReaffiliationStats\\ModuleConfiguration",
+    "in_development": true
+}

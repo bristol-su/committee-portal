@@ -59,6 +59,6 @@ public function alias()
 
     public function getAdminHeaderKey()
     {
-        return 'documents';
+        return 'statements';
     }
 }

@@ -58,6 +58,6 @@ class ModuleConfiguration extends BaseModuleConfiguration
 
     public function getAdminHeaderKey()
     {
-        return 'assets';
+        return 'statements';
     }
 }

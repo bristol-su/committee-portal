@@ -26,7 +26,8 @@
             return {
                 accepted: false,
                 completed: false,
-                loading: true
+                loading: true,
+                form: new VueForm({})
             }
         },
 
@@ -39,7 +40,7 @@
         methods: {
             confirm_read() {
                 if(this.accepted) {
-                    this.$http.post('/gdpr')
+                    this.form.post('/gdpr')
                         .then(response => {
                             this.$notify.success('Confirmed!');
                             this.completed = true;
