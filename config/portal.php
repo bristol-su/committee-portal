@@ -32,28 +32,32 @@ return [
         // Admin Headers
         'financial' => [
             'header' => 'Finance',
-            'subtitle' => 'Financial Tasks.'
+            'subtitle' => 'Financial Information'
         ],
         'committee-details' => [
-            'header' => 'Committee Details',
-            'subtitle' => 'Information about the committee in a group.'
+            'header' => 'Committee',
+            'subtitle' => 'Committee information'
         ],
         'documents' => [
             'header' => 'Documents',
-            'subtitle' => 'Documents submitted by committees.'
+            'subtitle' => 'Documents requiring approval.'
+        ],
+        'statements' => [
+            'header' => 'Statements',
+            'subtitle' => 'Statements from groups.'
         ],
         'assets' => [
             'header' => 'Assets',
             'subtitle' => 'Information about assets of groups.'
         ],
         'group-info' => [
-            'header' => 'Group Information',
-            'subtitle' => 'Information about groups.'
+            'header' => 'Groups',
+            'subtitle' => 'Group Information'
         ],
-        'ngb' => [
-            'header' => 'NGB',
-            'subtitle' => 'Still can\'t remember what this is....'
-        ],
+        'stats' => [
+            'header' => 'Reaffiliation Progress',
+            'subtitle' => 'Track group progress through reaffiliation'
+        ]
 
     ],
 

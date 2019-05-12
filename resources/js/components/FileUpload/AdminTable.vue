@@ -145,18 +145,23 @@
             },
 
             changeStatus(event, file) {
-
-                this.$http.post('/admin/' + this.module + '/change-file-status/' + file.id, {
-                    status: event.target.value
-                })
-                    .then(response => {
-                        this.retrieveFiles();
-                        this.$notify.success('Updated status')
+                if(confirm('Are you sure you wish to change the status of '+file.group.name+'\'s document \'' + file.title + '\' to \' ' + event.target.value + '\'?'))
+                {
+                    this.$http.post('/admin/' + this.module + '/change-file-status/' + file.id, {
+                        status: event.target.value
                     })
-                    .catch(error => {
-                        this.$notify.alert('Sorry, something went wrong.');
-                        this.$notify.alert('Status not updated')
-                    });
+                        .then(response => {
+                            this.retrieveFiles();
+                            this.$notify.success('Updated status')
+                        })
+                        .catch(error => {
+                            this.$notify.alert('Sorry, something went wrong.');
+                            this.$notify.alert('Status not updated')
+                        });
+                } else {
+                    this.$notify.info('Status not updated');
+                }
+
 
             }
         },

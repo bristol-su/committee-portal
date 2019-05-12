@@ -125,6 +125,10 @@
                 return user.forename + ' ' + user.surname;
             },
 
+            static(filename) {
+                return window.serveStaticContent(filename);
+            }
+
         },
 
         computed: {
