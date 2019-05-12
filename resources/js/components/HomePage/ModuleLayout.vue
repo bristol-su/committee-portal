@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row" v-if="progress">
             <div class="col-md-12">
                 <reaffiliation-progress
                 :modules="modules"
@@ -38,6 +38,10 @@
             order: {
                 required: true,
                 type: Array
+            },
+            progress: {
+                required: true,
+                type: Boolean
             }
         },
 

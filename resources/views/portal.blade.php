@@ -19,6 +19,7 @@
             <committee-portal
                     :modules="{{$modules}}"
                     :order="{{json_encode(config('portal.header_order'))}}"
+                    :progress="{{(\Illuminate\Support\Facades\Auth::guard('committee-role')->check()?'true':'false')}}"
             >
 
             </committee-portal>

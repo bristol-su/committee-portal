@@ -15,11 +15,9 @@ import {Spinner} from "spin.js";
 window.Event = new Vue();
 // Extend Vue
 // Vue.use(Notifications)wir;
-// Vue.use(PortalVue);
 
 
 // Define http provider for Vue
-
 
 
 // Default modal settings for the VModal
