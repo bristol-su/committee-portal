@@ -108,7 +108,6 @@
                         label: 'Progress Breakdown'
                     }
                 ],
-                totalRows: 1,
                 currentPage: 1,
                 perPage: 50,
                 pageOptions: [50, 100, 150, 200, 500],
@@ -149,6 +148,10 @@
         },
 
         computed: {
+            totalRows() {
+                return this.dataTableItems.length;
+            },
+            
             dataTableItems() {
                 return this.completionData.map(group => {
                     return {
