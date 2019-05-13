@@ -12,5 +12,5 @@
     "files": [],
     "requires": [],
     "dynamic_configuration": "App\\Modules\\ReaffiliationStats\\ModuleConfiguration",
-    "in_development": true
+    "in_development": false
 }
