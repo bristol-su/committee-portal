@@ -61,6 +61,8 @@ Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.
 
     Route::post('/upload/{exitingtreasurer_document}', 'ExitingTreasurerController@uploadDocument');
 
+    Route::delete('/documents/{exitingtreasurer_document}', 'ExitingTreasurerController@deleteDocument');
+
     Route::get('retrieve-documents', 'ExitingTreasurerController@getDocuments');
 
     Route::post('post-note/{id}', 'ExitingTreasurerController@adminPostNote');
@@ -80,4 +82,13 @@ Route::prefix('admin/exitingtreasurer')->middleware(['admin', 'module', 'module.
     Route::post('/update-note-tempate/{id}', 'ExitingTreasurerController@adminUpdateNoteTemplate');
 
     Route::delete('/note-template/{id}', 'ExitingTreasurerController@adminDeleteNoteTemplate');
+
+
+    /* Upload Request Routes */
+
+    Route::prefix('upload-request')->group(function() {
+        Route::get('groups', 'UploadRequestController@groups');
+        Route::post('/', 'UploadRequestController@createRequest');
+    });
+
 });

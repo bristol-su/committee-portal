@@ -16,7 +16,18 @@
                     Here you may upload documents and see all submissions from exiting treasurers
                 </div>
             </div>
+            <hr/>
             @can('exitingtreasurer.view-upload-documents')
+                <div class="row">
+                    <div class="col-md-8" style="text-align: right">
+                        <h3>Financial Documents to Upload</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <upload-request>
+
+                        </upload-request>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
 
@@ -28,7 +39,9 @@
                     </div>
                 </div>
             @endcan
+            <hr/>
             <div class="row">
+                <div class="col-md-12"><h3>Sign Off Responses</h3></div>
                 <div class="col-md-12">
 
                     <preview>
