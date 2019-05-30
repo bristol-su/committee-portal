@@ -24,6 +24,11 @@ use Illuminate\Validation\ValidationException;
 class ExitingTreasurerController extends Controller
 {
 
+    public function deleteDocument(Document $document)
+    {
+        $document->delete();
+    }
+
     public function markAsComplete(Submission $submission)
     {
         $this->authorize('exitingtreasurer.approve');

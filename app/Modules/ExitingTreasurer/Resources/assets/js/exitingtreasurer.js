@@ -1,6 +1,7 @@
 import UploadDocuments from './components/UploadDocuments';
 import TreasurerSignOff from './components/TreasurerSignOff';
 import AllSubmissions from './components/ViewSubmissions/AllSubmissions.vue';
+import UploadRequest from './components/UploadRequest';
 
 new Vue({
     el: '#exitingtreasurer-root',
@@ -9,6 +10,7 @@ new Vue({
         AllSubmissions,
         UploadDocuments,
         TreasurerSignOff,
+        UploadRequest
     }
 });
 

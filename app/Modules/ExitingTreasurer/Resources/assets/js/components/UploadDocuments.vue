@@ -8,7 +8,7 @@
             <tr>
                 <th>Group</th>
                 <th>Title</th>
-                <th>Year</th>
+                <th>Year of Sign Off</th>
                 <th>Type</th>
                 <th>Uploaded?</th>
                 <th>Uploaded By</th>
@@ -45,6 +45,7 @@
                     <a v-if="document.uploaded" :href="downloadUrl(document.id)">Download&nbsp;|&nbsp;</a>
                     <a v-if="!document.uploaded" @click="showUploadForm(document)" href="#">Upload&nbsp;|&nbsp;</a>
                     <a @click="showNotes(document)" href="#">Notes ({{document.notes.length}})</a>
+                    <a @click="deleteDocument(document)" href="#">Delete</a>
                 </td>
             </tr>
 
@@ -102,6 +103,19 @@
         },
 
         methods: {
+
+            deleteDocument(document) {
+
+
+                if(confirm('Are you sure you wish to delete the document \''+document.title+'\'?')) {
+                    this.$http.delete('/admin/exitingtreasurer/documents/'+document.id)
+                        .then(response => {
+                            this.$notify.success('Document deleted!');
+                            this.documents.splice(this.documents.indexOf(this.document), 1);
+                        })
+                        .catch(error => this.$notify.alert('Could not delete document: '+error.message));
+                }
+            },
 
             toggleAllDocuments() {
                 this.allDocuments = !this.allDocuments;
