@@ -27,7 +27,7 @@ class SafeguardingController extends Controller
         if($count > 0) {
             return response('' ,200);
         }
-        return response('', 403);
+        return response('', 400);
     }
 
     public function showAdminPage()
