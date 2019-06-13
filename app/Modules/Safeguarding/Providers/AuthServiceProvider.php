@@ -53,7 +53,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('safeguarding.submit', function(User $user) {
-            $this->studentHasPresidentialPosition($user)
+            return $this->studentHasPresidentialPosition($user)
             && $this->studentIsNewCommittee($user);
         });
     }
