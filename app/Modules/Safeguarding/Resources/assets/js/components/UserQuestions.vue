@@ -87,8 +87,11 @@
                         this.$notify.success('Congratulations, you\'ve passed the safeguarding training!');
                     })
                     .catch(error => {
-                        // TODO This notification should only be for a 422 error
-                        this.$notify.alert('Some of your answers weren\'t correct!');
+                        if(error.response.status === 422) {
+                            this.$notify.alert('Some of your answers weren\'t correct!');
+                        } else {
+                            this.$notify.alert('Something went wrong checking your answers. Please refresh the page.');
+                        }
                     });
             },
             hasErrors(index) {
