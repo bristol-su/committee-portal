@@ -12,7 +12,7 @@
             <!--</button>-->
         <!--</a>-->
         <!--// TODO Make filterable-->
-        <table class="table table-striped table-responsive table-condensed table-hover" v-if="files.length > 0">
+        <table class="table table-responsive table-condensed table-hover" v-if="files.length > 0">
             <thead>
             <tr>
                 <th>Group</th>
@@ -27,7 +27,7 @@
             </thead>
             <tbody v-for="(file, index) in sortedFiles">
 
-            <tr>
+            <tr :class="classOnStatus(file.status)">
                 <td>{{file.group.name}}</td>
                 <td>{{file.title}}</td>
                 <td>{{file.filename}}</td>
@@ -111,6 +111,18 @@
         },
 
         methods: {
+
+            classOnStatus(status) {
+                if(status === 'rejected') {
+                    return 'rejected-tr'
+                }
+                if(status === 'approved') {
+                    return 'approved-tr';
+                }
+                if(status === 'awaiting approval') {
+                    return 'awaiting-approval-tr';
+                }
+            },
 
             toggleDate(fileIndex) {
                 let index = this.fullDate.indexOf(fileIndex);
@@ -224,6 +236,18 @@
 
     .clickable {
         cursor: pointer;
+    }
+
+    .rejected-tr {
+        background-color: lightcoral;
+    }
+
+    .approved-tr {
+        background-color: limegreen;
+    }
+
+    .awaiting-approval-tr {
+        background-color: darkorange;
     }
 
 </style>
