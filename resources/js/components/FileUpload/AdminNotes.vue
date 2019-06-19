@@ -4,7 +4,7 @@
         <!-- Notes Box -->
         <div class="detailBox">
             <div class="titleBox">
-                <label>Notes on '{{file.title}}'</label>
+                <label>Notes on '{{file.title}}' for '{{file.group.name}}'</label>
                 <button @click="$emit('close')" aria-hidden="true" class="close" type="button">&times;</button>
             </div>
 
