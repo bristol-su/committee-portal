@@ -23,10 +23,5 @@ at the very latest! If you need any help at all, please don’t hesitate to cont
 <a href="https://bristolsu.freshdesk.com">bristolsu.freshdesk.com</a> and selecting ‘New Support Ticket’,
 or by getting in touch with the SU on <a href="mailto:bristol-su@bristol.ac.uk">bristol-su@bristol.ac.uk</a>.
 
-Please also make sure to sign up for the summer event of the year,
-<a href="https://www.bristolsu.org.uk/events/committee-fest-2019">Committee Fest</a>, which will be taking place
-on Monday 10th & Tuesday 11th June! We strongly encourage your committee to attend, in particular yourselves,
-treasurers and secretaries, as this will provide vital training to help you run {{$group->name}} effectively.
-
 But for now, happy reaffiliating!
 @endcomponent
