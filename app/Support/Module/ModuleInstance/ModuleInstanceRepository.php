@@ -15,18 +15,9 @@ class ModuleInstanceRepository implements ModuleInstanceRepositoryContract
         return ModuleInstance::findOrFail($id);
     }
 
-    public function create($alias, $eventId, $name, $description, $active, $visible, $mandatory, $complete) : ModuleInstanceContract
+    public function create(array $attributes) : ModuleInstanceContract
     {
-        return ModuleInstance::create([
-            'alias' => $alias,
-            'event_id' => $eventId,
-            'name' => $name,
-            'description' => $description,
-            'active' => $active,
-            'visible' => $visible,
-            'mandatory' => $mandatory,
-            'complete' => $complete
-        ]);
+        return ModuleInstance::create($attributes);
     }
 
 }

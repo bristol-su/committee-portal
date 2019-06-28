@@ -39,6 +39,17 @@
                                         </a>
                                     </div>
                                 @endcan
+
+                                    <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 2px;">
+                                        <a href="{{ url('/admin/settings/events') }}">
+                                            <button
+                                                    type="button"
+                                                    class="module-button btn btn-outline-info"
+                                            >
+                                                Events
+                                            </button>
+                                        </a>
+                                    </div>
                             </div>
                         </div>
                     </div>

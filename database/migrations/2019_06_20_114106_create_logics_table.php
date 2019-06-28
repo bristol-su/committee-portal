@@ -17,6 +17,7 @@ class CreateLogicsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->enum('for', ['group', 'student']);
             $table->json('all_true')->nullable();
             $table->json('any_true')->nullable();
             $table->json('all_false')->nullable();

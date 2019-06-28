@@ -17,8 +17,8 @@ class LogicTesterTest extends TestCase
 
     /** @test */
     public function it_returns_true_when_all_fields_match_what_they_should_do(){
-        // Create some logic row
-        $logic = Logic::create([
+
+        $logic = factory(Logic::class, [
             'name' => 'Logic Name',
             'description' => 'Description',
             'all_true' => [
@@ -37,7 +37,7 @@ class LogicTesterTest extends TestCase
                 ['class' => GroupTagged::class, 'setting' => 'reference.true'],
                 ['class' => GroupTagged::class, 'setting' => 'reference.false']
             ],
-        ]);
+        ])->create()->first();
 
         $authentication = $this->prophesize(AuthenticationContract::class);
         $group = $this->prophesize(Group::class);
@@ -59,7 +59,7 @@ class LogicTesterTest extends TestCase
 
     /** @test */
     public function it_returns_true_when_an_any_field_is_empty_array(){
-        $logic = Logic::create([
+        $logic = factory(Logic::class, [
             'name' => 'Logic Name',
             'description' => 'Description',
             'all_true' => [
@@ -75,7 +75,7 @@ class LogicTesterTest extends TestCase
                 ['class' => GroupTagged::class, 'setting' => 'reference.true'],
                 ['class' => GroupTagged::class, 'setting' => 'reference.false']
             ],
-        ]);
+        ])->create()->first();
 
         $authentication = $this->prophesize(AuthenticationContract::class);
         $group = $this->prophesize(Group::class);
@@ -97,7 +97,7 @@ class LogicTesterTest extends TestCase
 
     /** @test */
     public function it_returns_true_when_an_all_field_is_empty_array(){
-        $logic = Logic::create([
+        $logic = factory(Logic::class, [
             'name' => 'Logic Name',
             'description' => 'Description',
             'all_true' => [],
@@ -113,7 +113,7 @@ class LogicTesterTest extends TestCase
                 ['class' => GroupTagged::class, 'setting' => 'reference.true'],
                 ['class' => GroupTagged::class, 'setting' => 'reference.false']
             ],
-        ]);
+        ])->create()->first();
 
         $authentication = $this->prophesize(AuthenticationContract::class);
         $group = $this->prophesize(Group::class);
@@ -135,14 +135,14 @@ class LogicTesterTest extends TestCase
 
     /** @test */
     public function it_returns_true_when_all_fields_empty_array(){
-        $logic = Logic::create([
+        $logic = factory(Logic::class, [
             'name' => 'Logic Name',
             'description' => 'Description',
             'all_true' => [],
             'any_true' => [],
             'all_false' => [],
             'any_false' => [],
-        ]);
+        ])->create()->first();
 
         $authentication = $this->prophesize(AuthenticationContract::class);
         $group = $this->prophesize(Group::class);

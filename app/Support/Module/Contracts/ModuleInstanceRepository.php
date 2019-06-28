@@ -6,6 +6,6 @@ interface ModuleInstanceRepository
 {
     public function getById(int $id) : ModuleInstance;
 
-    public function create($alias, $eventId, $name, $description, $active, $visible, $mandatory, $complete) : ModuleInstance;
+    public function create(array $attributes) : ModuleInstance;
 
 }

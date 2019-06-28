@@ -12,6 +12,8 @@
 */
 
 // Authentication Routes
+use Illuminate\Support\Facades\Route;
+
 Auth::routes(['verify' => true]);
 
 // Welcome Route
@@ -67,6 +69,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage')->name('admin.settings.roles-permissions');
 
     Route::post('/settings/roles-permissions/update/{role}', 'AdminSettingsController@updateRolesAndPermissions');
+
+    Route::prefix('settings')->group(function() {
+        Route::resource('events', 'Settings\EventSettingsController');
+    });
+
 
     // View as Student routes
     Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');

@@ -9,6 +9,7 @@ class Logic extends Model
     protected $fillable = [
         'name',
         'description',
+        'for',
         'all_true',
         'any_true',
         'all_false',
@@ -21,4 +22,14 @@ class Logic extends Model
         'all_false' => 'array',
         'any_false' => 'array'
     ];
+    
+    public function scopeGroups($query)
+    {
+        return $query->where('for', 'group');
+    }
+
+    public function scopeStudents($query)
+    {
+        return $query->where('for', 'student');
+    }
 }

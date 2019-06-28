@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
+use App\Support\Event\Event;
+use App\Support\Logic\Logic;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -55,7 +57,16 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('modules', $configurations);
         });
 
+        View::composer(['admin.settings.events.sidebar'], function($view) {
+            $view->with('events', Event::all());
+        });
 
+        View::composer(['admin.settings.events.create'], function($view) {
+            $view->with([
+                'groupLogic' => Logic::groups()->get(),
+                'studentLogic' => Logic::students()->get()
+            ]);
+        });
     }
 
 }
