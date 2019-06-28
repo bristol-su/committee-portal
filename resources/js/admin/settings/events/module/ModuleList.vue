@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import AddModule from "./AddModule/AddModule";
+    import AddModule from "./AddModule";
     export default {
         name: "ModuleList",
         components: {AddModule},

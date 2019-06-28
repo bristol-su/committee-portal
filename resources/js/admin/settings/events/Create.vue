@@ -34,8 +34,8 @@
             </b-form-group>
 
             <b-form-group label="Who is this event for?">
-                <b-form-radio name="for" v-model="form.for" value="group">Groups</b-form-radio>
-                <b-form-radio name="for" v-model="form.for" value="student">Students</b-form-radio>
+                <b-form-radio name="for" v-model="form.for" value="group" @input="form.for_logic = null">Groups</b-form-radio>
+                <b-form-radio name="for" v-model="form.for" value="student" @input="form.for_logic = null">Students</b-form-radio>
                 <b-form-select v-model="form.for_logic" :options="(form.for==='group'?groupLogicOptions:studentLogicOptions)"></b-form-select>
             </b-form-group>
 
@@ -58,7 +58,7 @@
 <script>
 
     import ActiveRange from "./ActiveRange";
-    import ModuleList from "./ModuleList";
+    import ModuleList from "./module/ModuleList";
 
     export default {
         name: "Create.vue",
