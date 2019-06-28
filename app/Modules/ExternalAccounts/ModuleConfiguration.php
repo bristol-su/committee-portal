@@ -4,6 +4,7 @@ namespace App\Modules\ExternalAccounts;
 
 use App\Modules\BaseModule\ModuleConfiguration as BaseModuleConfiguration;
 
+use App\Modules\ExternalAccounts\Entities\Submission;
 use App\Packages\ControlDB\Models\Group;
 
 class ModuleConfiguration extends BaseModuleConfiguration
@@ -43,7 +44,10 @@ public function alias()
 
     public function isComplete(Group $group)
     {
-        return false;
+        return Submission::where([
+                'year' => getReaffiliationYear(),
+                'group_id' => $group->id
+            ])->count() > 0;
     }
 
     public function getDescription()
