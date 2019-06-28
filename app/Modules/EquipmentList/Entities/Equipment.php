@@ -24,7 +24,7 @@ class Equipment extends Model
         'deleted_reason',
     ];
 
-    protected $dates = [
-        'bought_at'
+    protected $casts = [
+        'bought_at' => 'date'
     ];
 }
