@@ -20,7 +20,9 @@ class EventServiceProvider extends ServiceProvider
 
          Event::listen('incomingtreasurer.training_completed', function(Submission $submission) {
             $group = $submission->group();
-            Mail::to($this->newTreasurer($group))->send(new NotifyIncomingTreasurerOnTrainingSubmission($submission, $this->oldTreasurer($group)));
+            if($oldTreasurer = $this->oldTreasurer($group)) {
+                Mail::to($this->newTreasurer($group))->send(new NotifyIncomingTreasurerOnTrainingSubmission($submission, $oldTreasurer));
+            }
          });
     }
 }
