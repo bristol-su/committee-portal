@@ -21,7 +21,7 @@ class PortalController extends Controller
 
     public function guestView()
     {
-        return view('welcome');
+        return view('portal.welcome');
     }
 
     /**
@@ -31,7 +31,7 @@ class PortalController extends Controller
      */
     public function index()
     {
-        return view('portal');
+        return view('portal.portal');
     }
 
     public function logIntoCommitteeRole(Request $request)

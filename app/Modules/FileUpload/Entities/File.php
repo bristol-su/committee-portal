@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Modules\StrategicPlan\Entities;
+
+use App\Packages\FileUpload\FileModel;
+
+class File extends FileModel
+{
+    public function getModuleName(): string
+    {
+        return 'strategicplan';
+    }
+
+    public function getModelNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
+}

@@ -1,0 +1,310 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "location": "OnFatalError",
+    "filename": "report.20190709.160603.21229.001.json",
+    "dumpEventTime": "2019-07-09T16:06:03Z",
+    "dumpEventTimeStamp": "1562684763199",
+    "processId": 21229,
+    "commandLine": [
+      "/usr/local/bin/node",
+      "/home/toby/.PhpStorm2019.1/config/plugins/ImportCost/lib/node_modules/worker-farm/lib/child/index.js",
+      "/usr/local/bin/node",
+      "/snap/phpstorm/104/plugins/JavaScriptLanguage/jsLanguageServicesImpl/js-language-service.js",
+      "-id=1562684593231"
+    ],
+    "nodejsVersion": "v11.10.0",
+    "glibcVersionRuntime": "2.29",
+    "glibcVersionCompiler": "2.12",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "11.10.0",
+      "v8": "7.0.276.38-node.17",
+      "uv": "1.26.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "67",
+      "nghttp2": "1.34.0",
+      "napi": "4",
+      "llhttp": "1.1.1",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1a",
+      "cldr": "34.0",
+      "icu": "63.1",
+      "tz": "2018e",
+      "unicode": "11.0"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v11.10.0/node-v11.10.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v11.10.0/node-v11.10.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "5.0.0-20-generic",
+    "osVersion": "#21-Ubuntu SMP Mon Jun 24 09:32:09 UTC 2019",
+    "osMachine": "x86_64",
+    "host": "laptop"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000a683e8",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string, v8::Local<v8::String>) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x00000000009548de",
+      "symbol": "node::OnFatalError(char const*, char const*) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000b32bee",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000b32e24",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f32452",
+      "symbol": " [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f32558",
+      "symbol": "v8::internal::Heap::CheckIneffectiveMarkCompact(unsigned long, double) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f3ec78",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f3f78b",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f424c1",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x0000000000f0c6f4",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x00000000011c2b3e",
+      "symbol": "v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [/usr/local/bin/node]"
+    },
+    {
+      "pc": "0x000017cde334fc5d",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 1509736448,
+    "totalCommittedMemory": 1505792864,
+    "usedMemory": 1356519000,
+    "availableMemory": 36658728,
+    "memoryLimit": 1526909922,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 524288,
+        "committedMemory": 42224,
+        "capacity": 515584,
+        "used": 33520,
+        "available": 482064
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 32007640,
+        "capacity": 16498688,
+        "used": 1337288,
+        "available": 15161400
+      },
+      "old_space": {
+        "memorySize": 1401098240,
+        "committedMemory": 1399975048,
+        "capacity": 1288344192,
+        "used": 1284310432,
+        "available": 4033760
+      },
+      "code_space": {
+        "memorySize": 5242880,
+        "committedMemory": 4681568,
+        "capacity": 3856256,
+        "used": 3856256,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 2633728,
+        "committedMemory": 2403504,
+        "capacity": 1746720,
+        "used": 1746720,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 66682880,
+        "committedMemory": 66682880,
+        "capacity": 82216288,
+        "used": 65234784,
+        "available": 16981504
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 0,
+        "used": 0,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 234.731,
+    "kernelCpuSeconds": 234.731,
+    "cpuConsumptionPercent": 3.0042e-05,
+    "maxRss": 1602162688,
+    "pageFaults": {
+      "IORequired": 166,
+      "IONotRequired": 697236
+    },
+    "fsActivity": {
+      "reads": 49768,
+      "writes": 8
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 85.8446,
+    "kernelCpuSeconds": 85.8446,
+    "cpuConsumptionPercent": 1.09868e-05,
+    "fsActivity": {
+      "reads": 48896,
+      "writes": 8
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "PATH": "/home/toby/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+    "XAUTHORITY": "/run/user/1000/gdm/Xauthority",
+    "XMODIFIERS": "@im=ibus",
+    "XDG_DATA_DIRS": "/usr/share/ubuntu:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
+    "GDMSESSION": "ubuntu",
+    "MANDATORY_PATH": "/usr/share/gconf/ubuntu.mandatory.path",
+    "SNAP_COMMON": "/var/snap/phpstorm/common",
+    "GTK_IM_MODULE": "ibus",
+    "SNAP_INSTANCE_KEY": "",
+    "SNAP_USER_COMMON": "/home/toby/snap/phpstorm/common",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:path=/run/user/1000/bus",
+    "DEFAULTS_PATH": "/usr/share/gconf/ubuntu.default.path",
+    "SNAP_REVISION": "104",
+    "XDG_CURRENT_DESKTOP": "ubuntu:GNOME",
+    "SSH_AGENT_PID": "3923",
+    "QT4_IM_MODULE": "xim",
+    "SESSION_MANAGER": "local/laptop:@/tmp/.ICE-unix/3459,unix/laptop:/tmp/.ICE-unix/3459",
+    "USERNAME": "toby",
+    "LOGNAME": "toby",
+    "PWD": "/home/toby/development/bristolsu/committee-portal/committee-portal",
+    "IM_CONFIG_PHASE": "2",
+    "LANGUAGE": "en_GB:en",
+    "GJS_DEBUG_TOPICS": "JS ERROR;JS LOG",
+    "SHELL": "/bin/bash",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/var/lib/snapd/desktop/applications/phpstorm_phpstorm.desktop",
+    "OLDPWD": "/snap/phpstorm/104/bin",
+    "BAMF_DESKTOP_FILE_HINT": "/var/lib/snapd/desktop/applications/phpstorm_phpstorm.desktop",
+    "GNOME_DESKTOP_SESSION_ID": "this-is-deprecated",
+    "GTK_MODULES": "gail:atk-bridge",
+    "CLUTTER_IM_MODULE": "xim",
+    "SNAP_ARCH": "amd64",
+    "XDG_SESSION_DESKTOP": "ubuntu",
+    "SNAP_LIBRARY_PATH": "/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void",
+    "SHLVL": "0",
+    "SNAP_NAME": "phpstorm",
+    "QT_IM_MODULE": "ibus",
+    "XDG_CONFIG_DIRS": "/etc/xdg/xdg-ubuntu:/etc/xdg",
+    "LANG": "en_GB.UTF-8",
+    "SNAP_INSTANCE_NAME": "phpstorm",
+    "XDG_SESSION_ID": "2",
+    "XDG_SESSION_TYPE": "x11",
+    "SNAP_USER_DATA": "/home/toby/snap/phpstorm/104",
+    "DISPLAY": ":0",
+    "SNAP_REEXEC": "",
+    "SNAP_VERSION": "2019.1.3",
+    "XDG_SESSION_CLASS": "user",
+    "SNAP_DATA": "/var/snap/phpstorm/104",
+    "GPG_AGENT_INFO": "/run/user/1000/gnupg/S.gpg-agent:0:1",
+    "DESKTOP_SESSION": "ubuntu",
+    "SNAP": "/snap/phpstorm/104",
+    "USER": "toby",
+    "XDG_MENU_PREFIX": "gnome-",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "31290",
+    "QT_ACCESSIBILITY": "1",
+    "WINDOWPATH": "2",
+    "GJS_DEBUG_OUTPUT": "stderr",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "XDG_SEAT": "seat0",
+    "GNOME_SHELL_SESSION_MODE": "ubuntu",
+    "SNAP_CONTEXT": "bSQwX0P1p57SX8hVHq1msGXnmq8GDPXcd378HL2rcX7L",
+    "XDG_VTNR": "2",
+    "XDG_RUNTIME_DIR": "/run/user/1000/snap.phpstorm",
+    "SNAP_COOKIE": "bSQwX0P1p57SX8hVHq1msGXnmq8GDPXcd378HL2rcX7L",
+    "HOME": "/home/toby"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 67108864,
+      "hard": 67108864
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 30598,
+      "hard": 30598
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "linux-vdso.so.1",
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/lib/x86_64-linux-gnu/librt.so.1",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2"
+  ]
+}

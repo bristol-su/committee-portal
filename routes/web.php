@@ -71,9 +71,14 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/settings/roles-permissions/update/{role}', 'AdminSettingsController@updateRolesAndPermissions');
 
     Route::prefix('settings')->group(function() {
-        Route::resource('events', 'Settings\EventSettingsController');
-        Route::resource('modules', 'Settings\ModuleController', ['index']);
-
+        Route::resource('events', 'Settings\EventController');
+        Route::get('/events/{event}/moduleinstance', 'Settings\EventController@moduleInstances');
+        Route::get('modules', 'Settings\ModuleController@index');
+        Route::get('modules/{module}/settings', 'Settings\ModuleController@settings');
+        Route::get('modules/{module}/permissions', 'Settings\ModuleController@permissions');
+        Route::resource('moduleinstance', 'Settings\ModuleInstanceController');
+        Route::resource('moduleinstance/{module_instance}/settings', 'Settings\ModuleInstanceSettingsController');
+        Route::resource('moduleinstance/{module_instance}/permissions', 'Settings\ModuleInstancePermissionsController');
     });
 
 

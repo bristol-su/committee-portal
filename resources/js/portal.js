@@ -1,8 +1,8 @@
-import ModuleLayout from "./components/HomePage/ModuleLayout";
+import Portal from './portal/portal';
 
 new Vue({
-    el: '#committee-portal-portal',
+    el: '#portal',
     components: {
-        'committee-portal': ModuleLayout
+        Portal
     }
 });

@@ -6,22 +6,20 @@ namespace Tests\Integration\Support\Module\ModuleInstance;
 
 use App\Support\Event\Event;
 use App\Support\Module\ModuleInstance\ModuleInstance;
-use App\Support\Module\Registration\OverrideAttribute;
+use App\Support\Module\Settings\ModuleInstanceSettings;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class ModuleInstanceTest extends TestCase
 {
 
     /** @test */
-    public function it_has_a_relationship_with_an_override_attribute_table(){
-        $moduleInstance = factory(ModuleInstance::class)->create();
-        $overrideAttribute = factory(OverrideAttribute::class)->create([
-            'module_instance_id' => $moduleInstance->id
+    public function it_has_a_relationship_with_a_module_instance_settings_table(){
+        $settings = factory(ModuleInstanceSettings::class)->create();
+        $moduleInstance = factory(ModuleInstance::class)->create([
+            'module_instance_settings_id' => $settings->id
         ]);
-
-        $this->assertTrue($overrideAttribute->is(
-            $moduleInstance->overrideAttribute
-        ));
+        $this->assertModelEquals($settings, $moduleInstance->moduleInstanceSettings);
     }
 
     /** @test */

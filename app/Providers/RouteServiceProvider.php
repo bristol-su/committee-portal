@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
+use App\Support\Module\Contracts\ModuleRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -36,6 +37,10 @@ class RouteServiceProvider extends ServiceProvider
             $group = Group::find($id);
             abort_if(!$group, 404);
             return $group;
+        });
+
+        Route::bind('module', function($alias) {
+            return $this->app[ModuleRepository::class]->findByAlias($alias);
         });
         parent::boot();
     }

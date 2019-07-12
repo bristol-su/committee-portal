@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="py-5">
+    <div class="py-5 root-site-settings">
         <div class="container">
             <h3 style="text-align: center">Site Settings</h3>
             <div class="row">

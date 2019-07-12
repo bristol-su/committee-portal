@@ -1,7 +1,7 @@
 <template>
     <div style="text-align: left">
 
-        <b-form @reset="onReset" @submit.prevent="onSubmit">
+        <b-form @submit.prevent="onSubmit">
             <b-form-group
                     description="A name for the event"
                     id="name-group"
@@ -46,10 +46,11 @@
 
             </active-range>
 
-            <module-list></module-list>
+<!--            <module-list-->
+<!--            :logic="(form.for==='group'?groupLogicOptions:studentLogicOptions)"-->
+<!--            ></module-list>-->
 
             <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
     </div>
 
@@ -88,11 +89,12 @@
 
         methods: {
             onSubmit() {
-
-            },
-
-            onReset() {
-
+                this.$http.post('/admin/settings/events', this.form)
+                    .then(response => {
+                        this.$notify.success('Event created!');
+                        location.reload();
+                    })
+                    .catch(error => this.$notify.alert('There was an error: '+error.message));
             },
 
             updateStartDate(date) {
@@ -119,7 +121,6 @@
         },
 
         components: {
-            ModuleList,
             ActiveRange
         }
     }

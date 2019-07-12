@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
-use Illuminate\Http\Request;
-use Nwidart\Modules\Facades\Module;
+use App\Support\Module\Module\Module;
 
 class ModuleController extends Controller
 {
@@ -22,6 +21,27 @@ class ModuleController extends Controller
 
     public function index()
     {
-        return $this->moduleRepository->all();
+        $modules = collect($this->moduleRepository->all());
+
+        // TODO Clean up
+
+        $modules = $modules->map(function(Module $module) {
+            $module->completion = config($module->alias().'.completion');
+            return $module;
+        });
+        return $modules;
     }
+
+    public function settings(Module $module)
+    {
+        return config($module->alias().'.settings');
+        // get settings from alias
+    }
+
+    public function permissions(Module $module)
+    {
+        return config($module->alias().'.permissions');
+        // get settings from alias
+    }
+
 }

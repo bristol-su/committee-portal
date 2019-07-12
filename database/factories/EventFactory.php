@@ -20,6 +20,9 @@ $factory->define(Event::class, function (Faker $faker) {
         'name' => $faker->word,
         'description' => $faker->text,
         'for' => $faker->randomElement(['group', 'student']),
+        'for_logic' => function () {
+            return factory(Logic::class)->create()->id;
+        },
         'start_date' => $faker->dateTime,
         'end_date' => $faker->dateTime,
     ];

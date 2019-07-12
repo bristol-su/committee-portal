@@ -20,16 +20,5 @@ class ModuleControllerTest extends TestCase
         $controller->index();
     }
 
-    /** @test */
-    public function it_returns_the_return_value_of_the_repository(){
-        $returnValue = '{"test": "ok"}';
-        $moduleRepository = $this->prophesize(ModuleRepositoryContract::class);
-        $moduleRepository->all()->shouldBeCalled()->willReturn($returnValue);
-
-        $controller = new ModuleController($moduleRepository->reveal());
-        $response = $controller->index();
-
-        $this->assertEquals($returnValue, $response);
-    }
 
 }

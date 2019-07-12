@@ -179,6 +179,7 @@ return [
         \App\Providers\APIActiveRecordServiceProvider::class,
         \App\Providers\GoogleDriveServiceProvider::class,
         \App\Providers\FileUploadServiceProvider::class,
+        \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class
     ],
 
     /*
@@ -236,6 +237,9 @@ return [
         'enabled' => env('GA_ENABLED', false)
     ],
 
-    'cookie_domain' => env('COOKIE_DOMAIN', '.bristolsu.org.uk')
+    'cookie_domain' => env('COOKIE_DOMAIN', '.bristolsu.org.uk'),
 
+    'module' => [
+        'path' => __DIR__.'/../app/Modules'
+    ],
 ];

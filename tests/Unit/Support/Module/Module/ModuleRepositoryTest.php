@@ -5,6 +5,7 @@ namespace Tests\Unit\Support\Module\Module;
 
 
 use App\Support\Module\Module\ModuleRepository;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Nwidart\Modules\Contracts\RepositoryInterface;
 use Nwidart\Modules\Json;
@@ -15,31 +16,26 @@ class ModuleRepositoryTest extends TestCase
 {
 
     /** @test */
-    public function it_returns_a_collection()
-    {
-        $repository = new ModuleRepository;
+    public function it_scans_for_alias_json_files_in_the_given_path(){
+        $filesystem = $this->prophesize(Filesystem::class);
+        $filesystem->glob(config('app.module.path').'/*/alias.json')->shouldBeCalled()->willReturn([]);
 
-        $this->assertInstanceOf(Collection::class, $repository->all());
-
+        $repository = new ModuleRepository($filesystem->reveal());
+        $repository->scan();
     }
 
     /** @test */
-    public function it_gets_the_json_for_each_module()
-    {
-        $nwidartRepo = $this->prophesize(RepositoryInterface::class);
-        $modules = [];
-        $json = $this->prophesize(Json::class);
-        for ($i = 0; $i < 10; $i++) {
-            $module = $this->prophesize(Module::class);
-            $module->json()->shouldBeCalled()->willReturn($json->reveal());
-            $modules[] = $module->reveal();
-        }
-        $nwidartRepo->all()->willReturn($modules);
+    public function it_gets_the_contents_of_each_alias_json_file(){
+        $filesystem = $this->prophesize(Filesystem::class);
+        $filesystem->glob(config('app.module.path').'/*/alias.json')->shouldBeCalled()->willReturn(['one', 'two']);
+        $filesystem->get('one')->shouldBeCalled()->willReturn(json_encode(['alias' => 'aliasone']));
+        $filesystem->get('two')->shouldBeCalled()->willReturn(json_encode(['alias' => 'aliastwo']));
 
-        $this->instance('modules', $nwidartRepo->reveal());
+        $repository = new ModuleRepository($filesystem->reveal());
+        $modules = $repository->scan();
 
-        $moduleRepository = new ModuleRepository;
-        $moduleRepository->all();
+        $this->assertArrayHasKey('aliasone', $modules);
+        $this->assertArrayHasKey('aliastwo', $modules);
     }
 
 }

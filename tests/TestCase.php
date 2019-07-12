@@ -6,6 +6,7 @@ use App\Authentication\ViewAsStudent;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Group;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Collection;
@@ -22,4 +23,10 @@ abstract class TestCase extends BaseTestCase
 
         return $this;
     }
+
+    public function assertModelEquals(Model $expected, Model $actual)
+    {
+        $this->assertTrue($expected->is($actual), 'Models are not equal');
+    }
+
 }

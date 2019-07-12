@@ -6,7 +6,8 @@ import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
 import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
 import DateViewer from './components/DateViewer';
 import {Spinner} from "spin.js";
-
+import VueFormGenerator from 'vue-form-generator'
+import 'vue-form-generator/dist/vfg.css'
 // import PortalVue from 'portal-vue'
 
 // import vueDropzone from 'vue2-dropzone'; // Multi file upload use
@@ -19,6 +20,9 @@ window.Event = new Vue();
 
 // Define http provider for Vue
 
+
+
+Vue.use(VueFormGenerator);
 
 // Default modal settings for the VModal
 window.$defaultModalSettings = {adaptive: true, height: 'auto', scrollable: true};
