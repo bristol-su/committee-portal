@@ -6,6 +6,10 @@ use App\Packages\ControlDB\ControlDB;
 use App\Packages\ControlDB\ControlDBInterface;
 use App\Packages\UnionCloud\UnionCloud;
 use App\Packages\UnionCloud\UnionCloudInterface;
+use App\Support\Control\Models\Contracts\GroupTag as GroupTagModelContract;
+use App\Support\Control\Models\GroupTag as GroupTagModel;
+use App\Support\Control\Repositories\Contracts\GroupTag as GroupTagRepositoryContract;
+use App\Support\Control\Repositories\GroupTag as GroupTagRepository;
 use App\Support\Module\Contracts\ModuleInstanceRepository as ModuleInstanceRepositoryContract;
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
 use App\Support\Module\Module\ModuleRepository;
@@ -27,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UnionCloudInterface::class, UnionCloud::class);
         $this->app->bind(ModuleRepositoryContract::class, ModuleRepository::class);
         $this->app->bind(ModuleInstanceRepositoryContract::class, ModuleInstanceRepository::class);
+
+        $this->app->bind(GroupTagModelContract::class, GroupTagModel::class);
+        $this->app->bind(GroupTagRepositoryContract::class, GroupTagRepository::class);
     }
 
     /**

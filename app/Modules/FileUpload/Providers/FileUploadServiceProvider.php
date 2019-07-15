@@ -2,17 +2,14 @@
 
 namespace App\Modules\FileUpload\Providers;
 
+use App\Support\Module\ModuleServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class FileUploadServiceProvider extends ServiceProvider
+class FileUploadServiceProvider extends ModuleServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+
 
     /**
      * Boot the application events.
@@ -21,11 +18,14 @@ class FileUploadServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->mapWebRoutes(__DIR__.'/../Routes/web.php');
+        $this->mapApiRoutes(__DIR__.'/../Routes/api.php');
     }
 
 
@@ -82,7 +82,7 @@ class FileUploadServiceProvider extends ServiceProvider
 
     /**
      * Register an additional directory of factories.
-     * 
+     *
      * @return void
      */
     public function registerFactories()
@@ -90,15 +90,5 @@ class FileUploadServiceProvider extends ServiceProvider
         if (!app()->environment('production')) {
             app(Factory::class)->load(__DIR__.'/../Database/factories');
         }
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 }

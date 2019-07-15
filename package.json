@@ -12,11 +12,11 @@
   "devDependencies": {
     "axios": "^0.18.1",
     "cross-env": "^5.1",
-    "laravel-mix": "^4.0.15",
+    "laravel-mix": "^4.1.2",
     "laravel-mix-merge-manifest": "^0.1.2",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.14",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.20.1",
+    "sass": "^1.22.4",
     "sass-loader": "^7.1.0",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10"
@@ -24,11 +24,11 @@
   "dependencies": {
     "awesome-notifications": "^2.2.9",
     "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.21",
+    "bootstrap-vue": "^2.0.0-rc.26",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "popper.js": "^1.15.0",
-    "portal-vue": "^2.1.4",
+    "portal-vue": "^2.1.5",
     "restful-model": "^0.1.8",
     "spin.js": "^4.0.0",
     "uk-modulus-checking": "^0.1.1",
@@ -39,9 +39,9 @@
     "vue-multiple-progress": "^1.6.0",
     "vue-notification": "^1.3.16",
     "vue-select": "^2.6.4",
-    "vue-sidebar-menu": "^3.9.0",
-    "vue2-dropzone": "^3.5.9",
-    "vuetify": "^1.5.14",
+    "vue-sidebar-menu": "^3.11.3",
+    "vue2-dropzone": "^3.6.0",
+    "vuetify": "^1.5.16",
     "vuex": "^3.1.1"
   }
 }

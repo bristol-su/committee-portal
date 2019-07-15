@@ -72,6 +72,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     Route::prefix('settings')->group(function() {
         Route::resource('events', 'Settings\EventController');
+        Route::resource('logic', 'Settings\LogicController');
         Route::get('/events/{event}/moduleinstance', 'Settings\EventController@moduleInstances');
         Route::get('modules', 'Settings\ModuleController@index');
         Route::get('modules/{module}/settings', 'Settings\ModuleController@settings');

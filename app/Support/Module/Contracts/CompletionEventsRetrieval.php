@@ -4,7 +4,7 @@
 namespace App\Support\Module\Contracts;
 
 
-interface CompletionEvents
+interface CompletionEventsRetrieval
 {
 
     public function exists($event): bool;

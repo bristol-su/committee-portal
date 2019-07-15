@@ -2,10 +2,10 @@
 
 namespace App\Support\Module\Completion;
 
-use App\Support\Module\Contracts\CompletionEvents;
+use App\Support\Module\Contracts\CompletionEventsRetrieval;
 use App\Support\Module\Contracts\ModuleRepository;
 
-class ConfigCompletionEvents implements CompletionEvents
+class ConfigCompletionEventsRetrieval implements CompletionEventsRetrieval
 {
     /**
      * @var ModuleRepository
@@ -14,7 +14,6 @@ class ConfigCompletionEvents implements CompletionEvents
 
     public function __construct(ModuleRepository $moduleRepository)
     {
-
         $this->moduleRepository = $moduleRepository;
     }
 

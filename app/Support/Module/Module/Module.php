@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Support\Module\Module;
-
 
 use Illuminate\Contracts\Support\Arrayable;
 

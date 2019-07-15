@@ -83,11 +83,31 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('events', Event::all());
         });
 
+        View::composer(['admin.settings.logic.sidebar'], function($view) {
+            $view->with('logics', Logic::all());
+        });
+
         View::composer(['admin.settings.events.create'], function($view) {
             $view->with([
                 'groupLogic' => Logic::groups()->get(),
                 'studentLogic' => Logic::students()->get()
             ]);
+        });
+
+        View::composer(['admin.settings.logic.create'], function($view) {
+            $filterClasses = config('app.filters');
+            $filters = [];
+            foreach($filterClasses as $id=>$filterClass) {
+                $instanciated = resolve($filterClass);
+                $filters[] = [
+                    'id' => $id,
+                    'name' => $filterClass::name(),
+                    'description' => $filterClass::description(),
+                    'validFor' => $instanciated->validFor(),
+                    'options' => $instanciated->options()
+                ];
+            }
+            $view->with('filters', $filters);
         });
     }
 

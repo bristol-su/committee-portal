@@ -242,4 +242,8 @@ return [
     'module' => [
         'path' => __DIR__.'/../app/Modules'
     ],
+
+    'filters' => [
+        'group_tagged' => \App\Support\Logic\Filters\GroupTagged::class
+    ]
 ];
