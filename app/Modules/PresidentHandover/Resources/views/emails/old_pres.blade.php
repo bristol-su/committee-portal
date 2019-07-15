@@ -1,8 +1,0 @@
-@component('mail::message')
-Hi {{$oldPresident->forename}}!
-
-This is just a quick thank you! You have informed us that {{$newPresident->forename}} {{$newPresident->surname}}
-is the new {{$committeeRole->position_name}} of {{$group->name}} for {{getReaffiliationYear()}}/{{substr(getReaffiliationYear()+1, 2, 2)}}.
-
-Thank you for all of your hard work this year!
-@endcomponent
