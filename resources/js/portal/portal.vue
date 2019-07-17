@@ -1,34 +1,11 @@
 <template>
     <div>
-        <div class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 style="text-align: center">{{event.name}}</h2>
-                    </div>
-                </div>
-                <hr/>
-                <div class="row">
-                    <div class="col-md-3">
-                        <b-list-group>
-                            <b-list-group-item
-                            v-for="loopEvent in events"
-                            :key="loopEvent.id"
-                            @click="event = loopEvent">
-                                {{loopEvent.name}}
-                            </b-list-group-item>
-                        </b-list-group>
-                    </div>
-                    <div class="col-md-9">
-                        <div v-for="moduleInstance in event.module_instances">
-                            <b-button variant="primary">
-                                {{moduleInstance.name}}
-                            </b-button>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-            </div>
+        <div v-for="moduleInstance in event.module_instances">
+            <a :href="url(event, moduleInstance)">
+                <b-button variant="primary">
+                    {{moduleInstance.name}}
+                </b-button>
+            </a>
         </div>
     </div>
 </template>
@@ -37,20 +14,23 @@
     export default {
         name: "portal",
         props: {
-            events: {
+            event: {
                 required: true,
-                type: Array
+                type: Object,
+            },
+            admin: {
+                required: true,
+                type: Boolean
             }
         },
-
-        data() {
-            return {
-                event: null
+        methods: {
+            url(event, moduleInstance) {
+                return '/'
+                    + event.slug
+                    + '/'
+                    + moduleInstance.slug
+                    + (this.admin?'/admin':'');
             }
-        },
-
-        created() {
-            this.event = this.events[0];
         }
     }
 </script>

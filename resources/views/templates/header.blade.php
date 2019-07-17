@@ -41,12 +41,12 @@
                         {{--This will give admins access to logging in as groups--}}
                         @if(\Auth::user()->can('view-as-student') && \Auth::user()->hasVerifiedEmail())
                             <group-select
-                                    @if(\Auth::guard('view-as-student')->check()) :group-id="{{\getGroupID()}}"  @endif >
+                                    @if(\Auth::guard('group')->check()) :group-id="{{\getGroupID()}}"  @endif >
 
                             </group-select>
 
                             {{--This grants access to logging in as another role owned by a student--}}
-                        @elseif(\Auth::guard('committee-role')->check())
+                        @elseif(\Auth::guard('role')->check())
                             <committee-role-select
                                     :role-id="{{ \Auth::user()->getCurrentRole()->id }}">
                             </committee-role-select>

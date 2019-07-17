@@ -26,7 +26,7 @@ class ModuleInstanceControllerTest extends TestCase
             'active' => factory(Logic::class)->create()->id,
             'visible' => factory(Logic::class)->create()->id,
             'mandatory' => factory(Logic::class)->create()->id,
-            'complete' => config('fileupload.completion')[0]
+            'complete' => config('fileupload.completion')[0]['event']
         ], $parameters);
 
         return $this->post('/admin/settings/moduleinstance', $parameters);
@@ -119,10 +119,9 @@ class ModuleInstanceControllerTest extends TestCase
     /** @test */
     public function it_returns_201_if_module_instance_created(){
         $response = $this->storeModuleInstance();
-        $response->assertStatus(201);
-
         $id = json_decode($response->content(), true)['id'];
         $this->assertDatabaseHas('module_instances', ['id' => $id]);
+        $response->assertStatus(201);
     }
 
 }

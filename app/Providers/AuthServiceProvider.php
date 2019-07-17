@@ -2,12 +2,22 @@
 
 namespace App\Providers;
 
-use App\Authentication\CommitteeRoleProvider;
-use App\Authentication\ViewAsStudentProvider;
+use App\Authentication\RoleProvider;
+use App\Authentication\GroupProvider;
+use App\Support\Authentication\LaravelAuthentication;
+use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
+use App\Support\Control\Repositories\Contracts\Group as GroupRepositoryContract;
+use App\Support\Control\Repositories\Contracts\Role as RoleRepositoryContract;
+use App\Support\Module\Module\Permissions\ModuleInstancePermissions;
+use App\Support\Module\Permissions\SitewidePermission;
+use App\Support\Module\Permissions\StaticPermissionOverride;
 use App\User;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 
 class AuthServiceProvider extends ServiceProvider
@@ -18,7 +28,6 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -30,50 +39,28 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Auth::provider('committee-role-provider', function($app, array $config) {
-            return new CommitteeRoleProvider();
+        Auth::provider('role-provider', function(Container $app, array $config) {
+            return new RoleProvider($app->make(RoleRepositoryContract::class));
         });
 
-        Auth::provider('view-as-student-provider', function($app, array $config) {
-            return new ViewAsStudentProvider();
+        Auth::provider('group-provider', function(Container $app, array $config) {
+            return new GroupProvider($app->make(GroupRepositoryContract::class));
         });
 
-        // Override gates for super admins
+
+        $this->app->bind(AuthenticationContract::class, LaravelAuthentication::class);
+
         Gate::before(function(User $user, $ability) {
-            // Allow super admins through everything
-            if ($user->hasPermissionTo('act-as-super-admin')) {
-                return true;
-            }
-
-
+            return StaticPermissionOverride::passes($user, $ability);
         });
 
-        // Override for Spatie permissions
         Gate::before(function(User $user, $ability) {
-
-            // Override what individuals may do on the site
-
-            // We don't need to check if user is an admin,
-            // since then users may own a permission to override their default.
-            // Eg: A user may have the 'module.submit' permission to allow them to submit a document even if
-            // they shouldn't be able to normally, such as if the pres may not be able to access the portal
-
-            try {
-                // Use hasPermissionTo so we don't get stuck in a can loop
-                if ($user->hasPermissionTo($ability)) {
-                    return true;
-                }
-            } catch (PermissionDoesNotExist $e) {
-                // Let them pass since it may be a user specific position
-                // or a pre-migrated position. They won't pass all gates
-                // unless they have permission to be here.
-            }
-
-            // Don't let admins into the user permissions. They must be seperately given their permissions.
-            if ($user->isAdmin()) {
-                return false;
-            }
-
+            return SitewidePermission::passes($user, $ability);
         });
+
+        Gate::before(function(User $user, $ability) {
+            return ModuleInstancePermissions::passes($user, $ability);
+        });
+
     }
 }

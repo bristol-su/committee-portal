@@ -8,42 +8,45 @@
 
 namespace App\Authentication;
 
-
-use App\Authentication\ViewAsStudent;
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Group;
-use App\Packages\ControlDB\Models\Student;
+use App\Support\Control\Repositories\Contracts\Role as RoleContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Support\Facades\Auth;
 
-class ViewAsStudentProvider implements UserProvider
+class RoleProvider implements UserProvider
 {
 
     /**
-     * Return a ViewAsStudent instance
-     * @param mixed $identifier
-     * @return Authenticatable|null
+     * @var RoleContract
      */
+    private $role;
+
+    public function __construct(RoleContract $role)
+    {
+        $this->role = $role;
+    }
+
     public function retrieveById($identifier)
     {
-        return new ViewAsStudent($identifier);
+        return $this->role->getById($identifier);
+
     }
 
     public function retrieveByToken($identifier, $token)
     {
+
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
     {
+
     }
 
     public function retrieveByCredentials(array $credentials)
     {
-        if (isset($credentials['group_id'])) {
-            return $this->retrieveById($credentials['group_id']);
+        if (isset($credentials['committee_role_id'])) {
+            return $this->retrieveById($credentials['committee_role_id']);
         }
-        return null;
+        return false;
     }
 
     /**
@@ -55,10 +58,10 @@ class ViewAsStudentProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if (isset($credentials['group_id'])) {
+        if (isset($credentials['student_control_id']) && isset($credentials['committee_role_id'])) {
             // Ensure the user owns the position
-            $group = $this->retrieveById($credentials['group_id']);
-            if ($group !== false) {
+            $role = $this->retrieveById($credentials['committee_role_id']);
+            if ($role !== false && $role->student_id === (int) $credentials['student_control_id']) {
                 return true;
             }
         }

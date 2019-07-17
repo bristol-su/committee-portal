@@ -39,6 +39,10 @@
                 <b-form-select v-model="form.for_logic" :options="(form.for==='group'?groupLogicOptions:studentLogicOptions)"></b-form-select>
             </b-form-group>
 
+            <b-form-group label="Who should be the admins of this event?">
+                <b-form-select v-model="form.admin_logic" :options="studentLogicOptions"></b-form-select>
+            </b-form-group>
+
             <active-range
                 @startDateUpdated="updateStartDate"
                 @endDateUpdated="updateEndDate"
@@ -81,6 +85,7 @@
                     description: '',
                     for: 'group',
                     for_logic: null,
+                    admin_logic: null,
                     start_date: null,
                     end_date: null
                 }

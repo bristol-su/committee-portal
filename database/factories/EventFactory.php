@@ -23,6 +23,9 @@ $factory->define(Event::class, function (Faker $faker) {
         'for_logic' => function () {
             return factory(Logic::class)->create()->id;
         },
+        'admin_logic' => function() {
+            return factory(Logic::class)->create()->id;
+        },
         'start_date' => $faker->dateTime,
         'end_date' => $faker->dateTime,
     ];

@@ -2,14 +2,36 @@
 
 namespace App\Modules\FileUpload\Providers;
 
-use App\Support\Module\ModuleServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class FileUploadServiceProvider extends ModuleServiceProvider
+class FileUploadServiceProvider extends ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
+    protected $namespace = 'App\Modules\FileUpload\Http\Controllers';
+
+    public function mapWebRoutes()
+    {
+        Route::prefix('{event_slug}/{module_instance_slug}')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/web.php');
+    }
+
+    public function mapApiRoutes()
+    {
+        Route::prefix('{event_slug}/{module_instance_slug}')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/api.php');
+    }
 
     /**
      * Boot the application events.
@@ -18,16 +40,19 @@ class FileUploadServiceProvider extends ModuleServiceProvider
      */
     public function boot()
     {
-        parent::boot();
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
-        $this->mapWebRoutes(__DIR__.'/../Routes/web.php');
-        $this->mapApiRoutes(__DIR__.'/../Routes/api.php');
+        $this->mapWebRoutes();
+        $this->mapApiRoutes();
     }
 
+    public function register()
+    {
+
+    }
 
     /**
      * Register config.

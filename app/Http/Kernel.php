@@ -3,7 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\AuthenticateUserGuard;
+use App\Http\Middleware\LogIntoRole;
 use App\Http\Middleware\CheckAdminCanViewAsStudent;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\CheckIfAdmin;
@@ -47,13 +47,6 @@ class Kernel extends HttpKernel
         ConvertEmptyStringsToNull::class,
         TrustProxies::class,
 
-        // Minify HTML
-//        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
-//        \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
-//        \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
-//        \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
-//        InLinePreviewImages::class,
-//        MakeGoogleAnalyticsAsync::class,
     ];
 
     /**
@@ -65,8 +58,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
-        'committee-role' => AuthenticateUserGuard::class,
-        'is-admin' => CheckIfAdmin::class,
+        'role' => LogIntoRole::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
@@ -102,16 +94,10 @@ class Kernel extends HttpKernel
 
         'user' => [
             'auth:web',
-            'committee-role',
+            'role',
             'verified',
 //            LoadGroupTagsFromControl::class,
 //            LoadStudentTagsFromControl::class
-        ],
-
-        'admin' => [
-            'auth:web',
-            'is-admin',
-            'verified',
         ],
 
         'module' => [
@@ -165,22 +151,13 @@ class Kernel extends HttpKernel
         EnsureEmailIsVerified::class,
 
         // Log into a committee role
-        AuthenticateUserGuard::class,
-
-        // Check if the current user is an admin
-        CheckIfAdmin::class,
+        LogIntoRole::class,
 
         // Authorization middleware for use with can:
         Authorize::class,
 
         // Check a module is active when being accessed
         CheckModuleActive::class,
-
-        // Load all student tags for the current user from control
-        LoadStudentTagsFromControl::class,
-
-        // Load all group tags for the current users group from control
-        LoadGroupTagsFromControl::class,
 
         // Show maintenance page if a module is down for maintenance
         CheckModuleDevelopmentStatus::class,

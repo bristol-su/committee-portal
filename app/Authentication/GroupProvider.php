@@ -8,32 +8,30 @@
 
 namespace App\Authentication;
 
-
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Student;
+use App\Support\Control\Repositories\Contracts\Group as GroupRepositoryContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Support\Facades\Auth;
 
-class CommitteeRoleProvider implements UserProvider
+class GroupProvider implements UserProvider
 {
 
-    protected $controlDB;
+    /**
+     * @var GroupRepositoryContract
+     */
+    private $groups;
 
-    public function __construct()
+    public function __construct(GroupRepositoryContract $groups)
     {
-        $this->controlDB = resolve('App\Packages\ControlDB\ControlDBInterface');
+        $this->groups = $groups;
     }
 
     public function retrieveById($identifier)
     {
-        return CommitteeRole::find($identifier);
-
+        return $this->groups->getById($identifier);
     }
 
     public function retrieveByToken($identifier, $token)
     {
-
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
@@ -42,10 +40,10 @@ class CommitteeRoleProvider implements UserProvider
 
     public function retrieveByCredentials(array $credentials)
     {
-        if (isset($credentials['committee_role_id'])) {
-            return $this->retrieveById($credentials['committee_role_id']);
+        if (isset($credentials['group_id'])) {
+            return $this->retrieveById($credentials['group_id']);
         }
-        return false;
+        return null;
     }
 
     /**
@@ -57,10 +55,9 @@ class CommitteeRoleProvider implements UserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        if (isset($credentials['student_control_id']) && isset($credentials['committee_role_id'])) {
-            // Ensure the user owns the position
-            $role = $this->retrieveById($credentials['committee_role_id']);
-            if ($role !== false && $role->student_id === (int) $credentials['student_control_id']) {
+        if (isset($credentials['group_id'])) {
+            $group = $this->retrieveById($credentials['group_id']);
+            if ($group !== false) {
                 return true;
             }
         }

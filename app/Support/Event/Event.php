@@ -7,6 +7,7 @@ use App\Support\Module\ModuleInstance\ModuleInstance;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Event extends Model
 {
@@ -15,6 +16,7 @@ class Event extends Model
         'description',
         'for',
         'for_logic',
+        'admin_logic',
         'start_date',
         'end_date'
     ];
@@ -24,14 +26,29 @@ class Event extends Model
         'end_date' => 'datetime'
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::creating(function($model) {
+            if($model->slug === null) {
+                $model->slug = Str::slug($model->name);
+            }
+        });
+    }
+
     public function moduleInstances()
     {
         return $this->hasMany(ModuleInstance::class);
     }
 
-    public function logic()
+    public function forLogic()
     {
         return $this->belongsTo(Logic::class, 'for_logic');
+    }
+
+    public function adminLogic()
+    {
+        return $this->belongsTo(Logic::class, 'admin_logic');
     }
 
     public function scopeActive(Builder $query) {

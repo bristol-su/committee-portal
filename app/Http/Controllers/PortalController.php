@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Packages\ControlDB\Models\Group;
+use App\Support\Event\Event;
+use App\Support\Logic\Facade\LogicTester;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 
 class PortalController extends Controller
 {
@@ -24,15 +28,95 @@ class PortalController extends Controller
         return view('portal.welcome');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function default()
     {
-        return view('portal.portal');
+        // Go to default event or show error page
+        $allEvents = Event::active()->with([
+            'moduleInstances',
+            'forLogic',
+            'adminLogic',
+            'moduleInstances.activeLogic',
+            'moduleInstances.visibleLogic',
+            'moduleInstances.mandatoryLogic',
+        ])->get();
+
+        $events = new Collection([
+            'participant' => new Collection,
+            'administrator' => new Collection
+        ]);
+
+        foreach ($allEvents as $event) {
+            if (LogicTester::evaluate($event->forLogic)) {
+                $events['participant']->push($event);
+            }
+
+            if (LogicTester::evaluate($event->adminLogic)) {
+                $events['administrator']->push($event);
+            }
+        }
+        // TODO Tidy above and merge with view composer
+
+        if($events['participant']->count() > 0) {
+            return Response::redirectTo($events['participant']->first()->slug);
+        } elseif($events['administrator']->count() > 0) {
+            return Response::redirectTo($events['administrator']->first()->slug);
+        }
+        abort(499, 'You have no activities!');
     }
+
+    public function admin(Event $event)
+    {
+        $event->load([
+            'moduleInstances',
+            'forLogic',
+            'adminLogic',
+            'moduleInstances.activeLogic',
+            'moduleInstances.visibleLogic',
+            'moduleInstances.mandatoryLogic',
+        ]);
+        if (LogicTester::evaluate($event->adminLogic)) {
+            $event->module_instances = $event->moduleInstances->map(function ($moduleInstance) {
+                $moduleInstance->active = true;
+                $moduleInstance->visible = true;
+                $moduleInstance->mandatory = false;
+                return $moduleInstance;
+            });
+            return view('portal.portalcontent')->with(['event'=>$event, 'admin' => true]);
+        }
+
+        abort(499, 'Not found!');
+    }
+
+    public function index(Request $request, Event $event)
+    {
+        $event->load([
+            'moduleInstances',
+            'forLogic',
+            'adminLogic',
+            'moduleInstances.activeLogic',
+            'moduleInstances.visibleLogic',
+            'moduleInstances.mandatoryLogic',
+        ]);
+        if (LogicTester::evaluate($event->forLogic)) {
+            $event->module_instances = $event->moduleInstances->map(function ($moduleInstance) {
+                $moduleInstance->active = LogicTester::evaluate($moduleInstance->activeLogic);
+                $moduleInstance->visible = LogicTester::evaluate($moduleInstance->visibleLogic);
+                $moduleInstance->mandatory = LogicTester::evaluate($moduleInstance->mandatoryLogic);
+                return $moduleInstance;
+            });
+            return view('portal.portalcontent')->with(['event'=>$event, 'admin' => false]);
+        }
+        abort(499, 'Not found!');
+    }
+
+
+
+
+
+
+
+
+
 
     public function logIntoCommitteeRole(Request $request)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\StrategicPlan\Http\Controllers;
+namespace App\Modules\FileUpload\Http\Controllers;
 
 use App\Modules\StrategicPlan\Entities\File;
 use App\Modules\StrategicPlan\Entities\Note;
@@ -11,17 +11,17 @@ class StrategicPlanController extends FileUploadController
 {
 
     public function showUserPage() {
-        return view('strategicplan::strategicplan');
+        return view('fileupload::strategicplan');
     }
 
     public function showAdminPage()
     {
-        return view('strategicplan::admin');
+        return view('fileupload::admin');
     }
 
     public function showNoteTemplatePage()
     {
-        return view('strategicplan::note_template');
+        return view('fileupload::note_template');
     }
 
     protected function templateModel(): string

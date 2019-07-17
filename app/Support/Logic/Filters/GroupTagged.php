@@ -56,7 +56,6 @@ class GroupTagged implements Filter
     public function evaluate($model, $settings) : bool
     {
         $tags = $this->groupTagRepository->allThroughGroup($model);
-
         foreach($tags as $tag) {
             if($tag->fullReference() === $settings) {
                 return true;

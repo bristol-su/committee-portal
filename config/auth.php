@@ -46,14 +46,14 @@ return [
             'provider' => 'users',
         ],
 
-        'committee-role' => [
+        'role' => [
             'driver' => 'session',
-            'provider' => 'committee-roles'
+            'provider' => 'roles'
         ],
 
-        'view-as-student' => [
+        'group' => [
             'driver' => 'session',
-            'provider' => 'view-as-students'
+            'provider' => 'groups'
         ]
     ],
 
@@ -80,14 +80,14 @@ return [
             'model' => App\User::class,
         ],
 
-        'committee-roles' => [
-            'driver' => 'committee-role-provider',
-            'model' => \App\Packages\ControlDB\Models\CommitteeRole::class
+        'roles' => [
+            'driver' => 'role-provider',
+            'model' => \App\Support\Control\Models\Role::class
         ],
 
-        'view-as-students' => [
-            'driver' => 'view-as-student-provider',
-            'model' => \App\Authentication\ViewAsStudent::class
+        'groups' => [
+            'driver' => 'group-provider',
+            'model' => \App\Support\Control\Models\Group::class
         ],
 
     ],

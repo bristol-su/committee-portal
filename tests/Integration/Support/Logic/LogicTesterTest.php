@@ -22,20 +22,20 @@ class LogicTesterTest extends TestCase
             'name' => 'Logic Name',
             'description' => 'Description',
             'all_true' => [
-                ['class' => GroupTagged::class, 'setting' => 'reference.true'],
-                ['class' => GroupTagged::class, 'setting' => 'reference.true']
+                ['class' => 'group_tagged', 'setting' => 'reference.true'],
+                ['class' => 'group_tagged', 'setting' => 'reference.true']
             ],
             'any_true' => [
-                ['class' => GroupTagged::class, 'setting' => 'reference.true'],
-                ['class' => GroupTagged::class, 'setting' => 'reference.false']
+                ['class' => 'group_tagged', 'setting' => 'reference.true'],
+                ['class' => 'group_tagged', 'setting' => 'reference.false']
             ],
             'all_false' => [
-                ['class' => GroupTagged::class, 'setting' => 'reference.false'],
-                ['class' => GroupTagged::class, 'setting' => 'reference.false']
+                ['class' => 'group_tagged', 'setting' => 'reference.false'],
+                ['class' => 'group_tagged', 'setting' => 'reference.false']
             ],
             'any_false' => [
-                ['class' => GroupTagged::class, 'setting' => 'reference.true'],
-                ['class' => GroupTagged::class, 'setting' => 'reference.false']
+                ['class' => 'group_tagged', 'setting' => 'reference.true'],
+                ['class' => 'group_tagged', 'setting' => 'reference.false']
             ],
         ])->create()->first();
 

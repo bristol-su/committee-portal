@@ -35,33 +35,11 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * Get the control database ID
-     *
-     * @return int
-     */
-    public function getControlID()
-    {
-        return $this->control_id;
-    }
-
-    public function isNewCommittee()
-    {
-        // TODO Populate is new committee Method
-        return true;
-    }
-
-
-    /**
      * @return CommitteeRole
      */
     public function getCurrentRole()
     {
-        if ($this->isAdmin()) {
-            return Auth::guard('view-as-student')->user();
-        } elseif (Auth::guard('committee-role')->check()) {
-            return Auth::guard('committee-role')->user();
-        }
-        abort(403, 'Could not authenticate you.');
+        return Auth::guard('role')->user();
     }
 
     // TODO isAdmin method calls should be replaced with a call to check the permission of act-as-admin. Make sure to use can() or hasPermissionTo() in the right places.

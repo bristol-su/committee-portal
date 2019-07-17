@@ -29,12 +29,6 @@ class LogViewerTest extends TestCase
     }
 
     /** @test */
-    public function it_denies_access_to_a_student_with_the_view_php_logs_permission(){
-        $this->beStudent()->allowedTo('view-php-logs');
-        $this->get('php-logs')->assertStatus(403);
-    }
-
-    /** @test */
     public function it_is_accessible_at_the_given_url(){
         $this->beAdmin()->allowedTo('view-php-logs');
 

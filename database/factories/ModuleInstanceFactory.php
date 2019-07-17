@@ -2,7 +2,9 @@
 
 use App\Support\Event\Event;
 use App\Support\Logic\Logic;
+use App\Support\Module\Module\Permissions\ModuleInstancePermissions;
 use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\Module\Settings\ModuleInstanceSettings;
 use Faker\Generator as Faker;
 
 /*
@@ -35,7 +37,10 @@ $factory->define(ModuleInstance::class, function (Faker $faker) {
         },
         'complete' => $faker->word,
         'module_instance_settings_id' => function() {
-            return factory(\App\Support\Module\Settings\ModuleInstanceSettings::class)->create()->id;
+            return factory(ModuleInstanceSettings::class)->create()->id;
+        },
+        'module_instance_permissions_id' => function() {
+            return factory(ModuleInstancePermissions::class)->create()->id;
         }
     ];
 });

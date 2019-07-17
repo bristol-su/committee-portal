@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Support\Control\Models\Contracts;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 
-interface Group
+interface Group extends Authenticatable
 {
 
 }

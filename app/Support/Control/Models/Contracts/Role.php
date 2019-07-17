@@ -4,7 +4,9 @@
 namespace App\Support\Control\Models\Contracts;
 
 
-interface Role
+use Illuminate\Contracts\Auth\Authenticatable;
+
+interface Role extends Authenticatable
 {
 
 }

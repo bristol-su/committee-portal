@@ -188,11 +188,7 @@ class RegisterController extends Controller
      */
     public function redirectTo()
     {
-        if (Auth::user()->isAdmin()) {
-            return '/admin';
-        } else {
-            return '/portal';
-        }
+        return '/';
     }
 
 

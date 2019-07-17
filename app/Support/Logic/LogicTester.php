@@ -61,6 +61,7 @@ class LogicTester implements LogicTesterContract
             $anyFalse[] = new FilterFalseSpecification($filter, $model, $filterInformation['setting']);
         }
 
+
         return (new AndSpecification(
             new AndSpecification(...$allTrue),
             new OrSpecification(...$anyTrue),

@@ -26,6 +26,9 @@ class FilterFalseSpecification
 
     public function isSatisfied()
     {
+        if($this->model === null) {
+            return false;
+        }
         return $this->filter->evaluate($this->model, $this->setting) === false;
     }
 

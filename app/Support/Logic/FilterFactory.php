@@ -10,7 +10,8 @@ class FilterFactory implements FilterFactoryContract
 
     public function create(string $filter): Filter
     {
-        return resolve($filter);
+        $class = config('app.filters.'.$filter);
+        return resolve($class);
     }
 
 }

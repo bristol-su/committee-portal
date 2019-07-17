@@ -26,6 +26,9 @@ class FilterTrueSpecification
 
     public function isSatisfied()
     {
+        if($this->model === null) {
+            return false;
+        }
         return $this->filter->evaluate($this->model, $this->setting) === true;
     }
 

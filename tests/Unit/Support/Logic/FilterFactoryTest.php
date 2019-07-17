@@ -16,11 +16,11 @@ class FilterFactoryTest extends TestCase
 {
     /** @test */
     public function it_creates_a_new_instance_of_a_class(){
-        $className = GroupTagged::class;
+        $className = 'group_tagged';
         $this->instance(GroupTagRepository::class, $this->prophesize(GroupTagRepository::class)->reveal());
 
         $filterFactory = new FilterFactory;
-        $this->assertInstanceOf($className, $filterFactory->create($className));
+        $this->assertInstanceOf(GroupTagged::class, $filterFactory->create($className));
 
     }
 }

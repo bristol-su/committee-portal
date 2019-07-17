@@ -15,16 +15,18 @@
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
+Route::middleware(['auth:web', 'verified'])
+    ->get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
 
 // Welcome Route
 Route::middleware('guest')->get('/', 'PortalController@guestView');
 
-Route::middleware(['auth:web', 'verified'])
-    ->get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
 
 Route::middleware('user')->group(function () {
     // Portal Dashboard Route
-    Route::get('/portal', 'PortalController@index')->name('portal');
+    Route::get('/portal', 'PortalController@default')->name('portal');
+    Route::get('/{event_slug}', 'PortalController@index');
+    Route::get('/admin/{event_slug}', 'PortalController@admin');
 
     Route::post('/login/position', 'PortalController@logIntoCommitteeRole');
 
@@ -32,45 +34,11 @@ Route::middleware('user')->group(function () {
 });
 
 
-Route::middleware('admin')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
 
-    Route::get('/', 'AdminController@showAdminDashboard')->name('admin');
-
-    Route::get('/stats', 'AdminController@getStats');
-
-    Route::get('/settings', 'AdminSettingsController@showSettingsPage')->name('admin.settings');
-
-    // Admin Users routes
-    Route::get('/settings/admin-users', 'AdminSettingsController@showAdminUsersPage')->name('admin.settings.users');
-
-    Route::get('/settings/admin-users/get-users', 'AdminSettingsController@getAdminUsers');
-
-    Route::delete('/settings/admin-users/{user}/delete-user', 'AdminSettingsController@deleteAdminUsers');
-
-    Route::post('/settings/admin-users/update/{user}', 'AdminSettingsController@updateUser');
-
-    Route::post('/settings/admin-users/update', 'AdminSettingsController@createUser');
-
-    Route::post('/settings/permissions/update/{user}', 'AdminSettingsController@updateAdminUserRolesAndPermissions');
-
-    // Role and permission Routes
-
-    Route::get('/settings/permissions/get', 'AdminSettingsController@getPermissions');
-
-    Route::get('/settings/roles/get', 'AdminSettingsController@getRoles');
-
-    Route::post('/settings/roles/update/{role}', 'AdminSettingsController@updateRole');
-
-    Route::post('/settings/roles/update', 'AdminSettingsController@createRole');
-
-    Route::delete('/settings/roles/{role}', 'AdminSettingsController@deleteRole');
-
-    // Roles and Permissions
-    Route::get('/settings/roles-permissions', 'AdminSettingsController@showRolesAndPermissionsPage')->name('admin.settings.roles-permissions');
-
-    Route::post('/settings/roles-permissions/update/{role}', 'AdminSettingsController@updateRolesAndPermissions');
 
     Route::prefix('settings')->group(function() {
+        Route::get('/', 'AdminSettingsController@showSettingsPage')->name('admin.settings');
         Route::resource('events', 'Settings\EventController');
         Route::resource('logic', 'Settings\LogicController');
         Route::get('/events/{event}/moduleinstance', 'Settings\EventController@moduleInstances');
@@ -102,13 +70,13 @@ Route::middleware('user')->prefix('/control-database/api')->group(function () {
 
 });
 
-Route::middleware('admin')->prefix('/control-database/api')->group(function() {
+Route::prefix('/control-database/api')->group(function() {
     Route::get('groups', 'ControlController@getAllGroups');
 });
 
 # UnionCloud Routes
 
-Route::middleware('user')->prefix('/unioncloud/api')->group(function () {
+Route::prefix('/unioncloud/api')->group(function () {
 
     Route::get('/user', 'UnionCloudController@getUserByUID');
 

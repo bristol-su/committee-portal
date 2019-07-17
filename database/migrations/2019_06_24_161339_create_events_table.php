@@ -17,8 +17,10 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->string('slug');
             $table->enum('for', ['group', 'student']);
             $table->unsignedInteger('for_logic');
+            $table->unsignedInteger('admin_logic');
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
             $table->timestamps();

@@ -12,6 +12,7 @@ class ModuleInstancePermissionsController extends Controller
 
     public function store(Request $request, ModuleInstance $moduleInstance)
     {
+        // TODO Needs to accept admin and user permissions
         $permissions = new ModuleInstancePermissions(
             ['permissions' => $request->input('permissions')
         ]);

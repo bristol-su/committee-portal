@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/', 'StrategicPlanController@showUserPage');
+Route::get('/admin', 'StrategicPlanController@showAdminPage');
+
 Route::prefix('strategicplan')->middleware(['user', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
     Route::get('/', 'StrategicPlanController@showUserPage')->name('strategicplan.user');
 
@@ -18,7 +21,7 @@ Route::prefix('strategicplan')->middleware(['user', 'module', 'module.active:str
 
 });
 
-Route::prefix('admin/strategicplan')->middleware(['admin', 'module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
+Route::prefix('admin/strategicplan')->middleware(['module', 'module.active:strategicplan', 'module.maintenance:strategicplan'])->group(function() {
     Route::get('/', 'StrategicPlanController@showAdminPage')->name('strategicplan.admin');
 
     Route::get('/note-templates', 'StrategicPlanController@showNoteTemplatePage')->name('strategicplan.admin.note-template');

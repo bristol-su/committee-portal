@@ -3,37 +3,36 @@
 @section('title', 'Portal Home')
 @section('content')
     <div id="portal">
-        <portal
-                :events="{{$events}}">
+        <div class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 style="text-align: center">@yield('header-name', 'Your Portal')</h2>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <portal-sidebar
+                                :participant="{{$events['participant']}}"
+                                :administrator="{{$events['administrator']}}"
+                                :current-event="{{$event}}"
+                                :admin="{{($admin?'true':'false')}}">
 
-        </portal>
+                        </portal-sidebar>
+
+                    </div>
+                    <div class="col-md-9">
+                        @yield('portal-content')
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
     </div>
 
-{{--    <div class="py-5">--}}
-{{--        <div class="container" id="committee-portal-portal">--}}
-{{--            <h2 style="text-align: center">Committee Portal--}}
-{{--                <small>- {{Auth::user()->getCurrentRole()->group->name}}</small>--}}
-{{--            </h2>--}}
-{{--            <h4 style="text-align: center">--}}
-{{--                <small>To make reaffiliating your group as easy as possible, we've put all of the tasks that need--}}
-{{--                    completing in one place. Some tasks will only unlock after doing others, so please begin working--}}
-{{--                    through them at your earliest convenience.--}}
-{{--                </small>--}}
-{{--            </h4>--}}
-{{--            <br/>--}}
 
-{{--            <committee-portal--}}
-{{--                    :modules="{{$modules}}"--}}
-{{--                    :order="{{json_encode(config('portal.header_order'))}}"--}}
-{{--                    :progress="{{(\Illuminate\Support\Facades\Auth::guard('committee-role')->check()?'true':'false')}}"--}}
-{{--            >--}}
 
-{{--            </committee-portal>--}}
-
-{{--            <br/><br/>--}}
-
-{{--        </div>--}}
-{{--    </div>--}}
 @endsection
 
 @push('scripts')

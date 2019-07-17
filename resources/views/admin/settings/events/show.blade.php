@@ -10,7 +10,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">Applies to: {{$event->logic->name}} ({{$event->for}})</div>
+            <div class="col-md-12">Applies to: {{$event->forLogic->name}} ({{$event->for}})</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">Administrators: {{$event->adminLogic->name}}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">Slug: {{$event->slug}}</div>
         </div>
         <div class="row">
             @if($event->end_date === null || $event->start_date === null)

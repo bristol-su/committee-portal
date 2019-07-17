@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
+use App\Support\Event\Event;
 use App\Support\Module\Contracts\ModuleRepository;
+use App\Support\Module\ModuleInstance\ModuleInstance;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -41,6 +43,19 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('module', function($alias) {
             return $this->app[ModuleRepository::class]->findByAlias($alias);
+        });
+
+        Route::bind('event_slug', function($slug) {
+            return Event::where(['slug' => $slug])->firstOrFail();
+        });
+
+        Route::bind('module_instance_slug', function($slug, $route) {
+            $event = $route->parameter('event_slug');
+            return ModuleInstance::where('slug', $slug)
+                ->whereHas('event', function($query) use ($event){
+                    $query->where('slug', $event->slug);
+                })
+                ->firstOrFail();
         });
         parent::boot();
     }
