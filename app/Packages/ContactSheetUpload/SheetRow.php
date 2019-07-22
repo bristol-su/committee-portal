@@ -119,11 +119,11 @@ class SheetRow extends BaseSheetRow
             'surname' => $this->unionCloudStudent->surname,
             'student_id' => $this->unionCloudStudent->id,
             'email' => $this->unionCloudStudent->email,
-            'financialdocsuploaded' => (Document::where([
+            'financialdocsuploaded' => ((Document::where([
                 'group_id' => $this->group->id,
                 'uploaded' => true,
                 'year' => getReaffiliationYear()
-            ])->count() >= 2),
+            ])->count() >= 2)?'Uploaded':'Not Uploaded'),
         ], $progress);
         return true;
     }
