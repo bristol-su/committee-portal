@@ -8,7 +8,6 @@
 
 namespace App\Packages\ControlDB\Models;
 
-
 use ActiveResource\Model;
 use Illuminate\Contracts\Support\Jsonable;
 
