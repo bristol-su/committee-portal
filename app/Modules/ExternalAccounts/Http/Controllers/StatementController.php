@@ -5,6 +5,7 @@ namespace App\Modules\ExternalAccounts\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\ExternalAccounts\Entities\Account;
 use App\Modules\ExternalAccounts\Entities\Document;
+use App\Modules\ExternalAccounts\Entities\EndOfYearAccount;
 use App\Modules\ExternalAccounts\Entities\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -43,5 +44,6 @@ class StatementController extends Controller
 
         return $statements;
     }
+
 
 }

@@ -10,6 +10,14 @@
                     <h2 class="">External Accounts</h2>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <external-accounts-admin
+                    :submissions="{{$submissions}}">
+
+                    </external-accounts-admin>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

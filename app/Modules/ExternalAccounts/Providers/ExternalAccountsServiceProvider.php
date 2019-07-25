@@ -38,7 +38,7 @@ class ExternalAccountsServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
-
+        $this->app->register(ViewServiceProvider::class);
     }
 
     /**

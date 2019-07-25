@@ -4,6 +4,7 @@ namespace App\Modules\ExternalAccounts\Providers;
 
 use App\Modules\ExternalAccounts\Entities\Account;
 use App\Modules\ExternalAccounts\Entities\AccountClosure;
+use App\Modules\ExternalAccounts\Entities\Document;
 use App\Modules\ExternalAccounts\Entities\EndOfYearAccount;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -38,6 +39,10 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('externalaccounts_account', function($id) {
             return Account::findOrFail($id);
+        });
+
+        Route::bind('externalaccounts_document', function($id) {
+            return Document::findOrFail($id);
         });
 
         require __DIR__ . '/../Routes/breadcrumbs.php';
