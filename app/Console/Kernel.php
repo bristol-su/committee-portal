@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(GenerateProgressSheet::class)
-            ->hourly()
+            ->everyThirtyMinutes()
             ->evenInMaintenanceMode()
             ->environments(['production']);
 //        $schedule->command('telescope:prune')->daily();

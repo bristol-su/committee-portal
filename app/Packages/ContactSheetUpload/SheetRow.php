@@ -73,7 +73,7 @@ class SheetRow extends BaseSheetRow
             return false;
         }
 
-        $progress = Cache::remember('GenerateProgressSheet.groupprogress.'.$this->group->id, 45, function() {
+        $progress = Cache::remember('GenerateProgressSheet.groupprogress.'.$this->group->id, 15, function() {
             $rawModules = collect(\Nwidart\Modules\Facades\Module::getOrdered())->filter(function($module) {
                 return $module->active === 1;
             });
