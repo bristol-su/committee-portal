@@ -1,5 +1,6 @@
 <template>
-    <div class="progress">
+    <div style="display: flex;">
+    <div class="progress" style="width: 100%;">
         <div
             class="progress-bar bg-success"
             role="progressbar"
@@ -10,7 +11,8 @@
                 {{module}}: {{complete}} / {{mandatoryTotal}} ({{percentage}}%)
             </div>
     </div>
-
+    <div><i class="fa fa-refresh" @click="$emit('refresh')"></i></div>
+    </div>
 </template>
 
 <script>

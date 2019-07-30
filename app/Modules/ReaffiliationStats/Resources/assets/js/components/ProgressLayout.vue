@@ -25,7 +25,8 @@
                                     :module="module.name"
                                     class="progress-bar-admin"
                                     v-for="module in modules"
-                                    v-if="hasMandatoryGroups(module) && modules.length > 0">
+                                    v-if="hasMandatoryGroups(module) && modules.length > 0"
+                                    @refresh="refresh(module.alias)">
 
                             </progress-bar>
 
@@ -124,6 +125,14 @@
 
             hasMandatoryGroups(module) {
                 return module.groups.filter(group => group.mandatory).length > 0;
+            },
+
+            refresh(alias) {
+                this.$http.post('/admin/stats/reset', {
+                    module: alias
+                })
+                    .then(response => window.location.reload())
+                    .catch(error => this.$notify.alert('Something went wrong'));
             }
         },
 

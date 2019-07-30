@@ -51,4 +51,10 @@ class AdminController extends Controller
         });
     }
 
+    public function resetStats(Request $request)
+    {
+        $this->authorize('reset-stats');
+        Cache::forget('AdminController.getStats.module:'.$request->input('module'));
+    }
+
 }
