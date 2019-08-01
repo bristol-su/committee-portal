@@ -74,8 +74,6 @@ class SheetRow extends BaseSheetRow
             return false;
         }
 
-        Cache::forget('GenerateProgressSheet.groupprogress.'.$this->group->id);
-        $reaffiliated = [];
         $progress = Cache::remember('GenerateProgressSheet.groupprogress.'.$this->group->id, 15, function() use (&$reaffiliated) {
             $rawModules = collect(\Nwidart\Modules\Facades\Module::getOrdered())->filter(function($module) {
                 return $module->active === 1;
