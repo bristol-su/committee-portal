@@ -37,7 +37,6 @@ class SheetRow extends BaseSheetRow
             'Student ID',
             'Email',
             'Financial Documents Uploaded',
-            'Reaffiliated',
             '(Irrelevant) #WeAreBristol Strategic Plan',
             'Charitable Giving',
             '(Irrelevant) #WeAreBristol Budget',
@@ -73,7 +72,6 @@ class SheetRow extends BaseSheetRow
         if ($unionCloudStudent === false) {
             return false;
         }
-
         $progress = Cache::remember('GenerateProgressSheet.groupprogress.'.$this->group->id, 15, function() use (&$reaffiliated) {
             $rawModules = collect(\Nwidart\Modules\Facades\Module::getOrdered())->filter(function($module) {
                 return $module->active === 1;
@@ -91,15 +89,6 @@ class SheetRow extends BaseSheetRow
             }
 
             $progress = [];
-            $progress['reaffiliated'] = ($configurations->filter(function($configuration) {
-                    /** @var ModuleConfiguration $config */
-
-                    $config = new $configuration['rawModule']->dynamic_configuration;
-                    $config->setGroup($this->group);
-                    return !$config->isMandatoryForGroup($this->group) || (
-                        $config->isMandatoryForGroup($this->group) && $config->isComplete($config->getGroup())
-                        );
-            })->count() === 0 ? 'Reaffiliated' : 'Not Reaffiliated');
             $configurations->each(function($configuration) use (&$progress){
 
                 /** @var ModuleConfiguration $config */
@@ -107,8 +96,8 @@ class SheetRow extends BaseSheetRow
 
                 $config->setGroup($this->group);
                 $completed = $config->isComplete($config->getGroup());
-
-                $progress[$config->alias()] = ($completed?'Complete':'Incomplete');
+                $mandatory = $config->isMandatoryForGroup($this->group);
+                $progress[$config->alias()] = ($completed?'Complete':'Incomplete') . ' ' . ($mandatory ? '(Mandatory)' : '(Optional)');
             });
 
             return $progress;
