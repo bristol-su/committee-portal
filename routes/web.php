@@ -1,19 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Authentication Routes
 use Illuminate\Support\Facades\Route;
 
+// Authentication Routes
 Auth::routes(['verify' => true]);
 Route::middleware(['auth:web', 'verified'])
     ->get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
@@ -21,44 +10,44 @@ Route::middleware(['auth:web', 'verified'])
 // Welcome Route
 Route::middleware('guest')->get('/', 'PortalController@guestView');
 
+// Settings routes
+Route::prefix('settings')->namespace('Settings')->group(function () {
+    Route::get('/', 'SettingsController@index')->name('settings');
+    Route::resource('activity', 'ActivityController');
+    Route::prefix('/activity/{activity}')->group(function() {
+        Route::resource('module_instance', 'ModuleInstanceController');
+    });
+    Route::resource('logic', 'LogicController');
 
-Route::middleware('user')->group(function () {
-    // Portal Dashboard Route
-    Route::get('/portal', 'PortalController@default')->name('portal');
-    Route::get('/{event_slug}', 'PortalController@index');
-    Route::get('/admin/{event_slug}', 'PortalController@admin');
-
-    Route::post('/login/position', 'PortalController@logIntoCommitteeRole');
-
-
+//
+//
+//    Route::resource('logic', 'Settings\LogicController');
+//    Route::get('/activities/{activity}/moduleinstance', 'Settings\ActivityController@moduleInstances');
+//    Route::get('modules', 'Settings\ModuleController@index');
+//    Route::get('modules/{module}/settings', 'Settings\ModuleController@settings');
+//    Route::get('modules/{module}/permissions', 'Settings\ModuleController@permissions');
+//    Route::resource('moduleinstance', 'Settings\ModuleInstanceController');
+//    Route::resource('moduleinstance/{module_instance}/settings', 'Settings\ModuleInstanceSettingsController');
+//    Route::resource('moduleinstance/{module_instance}/permissions', 'Settings\ModuleInstancePermissionsController');
 });
 
-
-Route::prefix('admin')->group(function () {
-
-
-    Route::prefix('settings')->group(function() {
-        Route::get('/', 'AdminSettingsController@showSettingsPage')->name('admin.settings');
-        Route::resource('events', 'Settings\EventController');
-        Route::resource('logic', 'Settings\LogicController');
-        Route::get('/events/{event}/moduleinstance', 'Settings\EventController@moduleInstances');
-        Route::get('modules', 'Settings\ModuleController@index');
-        Route::get('modules/{module}/settings', 'Settings\ModuleController@settings');
-        Route::get('modules/{module}/permissions', 'Settings\ModuleController@permissions');
-        Route::resource('moduleinstance', 'Settings\ModuleInstanceController');
-        Route::resource('moduleinstance/{module_instance}/settings', 'Settings\ModuleInstanceSettingsController');
-        Route::resource('moduleinstance/{module_instance}/permissions', 'Settings\ModuleInstancePermissionsController');
+// Portal Routes
+Route::middleware('portal')
+    ->namespace('Pages')
+    ->group(function () {
+        Route::get('/portal', 'PortalController@portal')->name('portal');
+        Route::get('/{activity_slug}', 'ActivityController@participant');
+        Route::get('/admin/{activity_slug}', 'ActivityController@administrator');
     });
 
 
-    // View as Student routes
-    Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
 
-    Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
-});
+
+
+
 
 # Control DB Internal API Routes
-Route::middleware('user')->prefix('/control-database/api')->group(function () {
+Route::middleware('portal')->prefix('/control-database/api')->group(function () {
 
     Route::get('available_committee_roles', 'ControlController@getAvailableCommitteeRoles');
 
@@ -70,7 +59,7 @@ Route::middleware('user')->prefix('/control-database/api')->group(function () {
 
 });
 
-Route::prefix('/control-database/api')->group(function() {
+Route::prefix('/control-database/api')->group(function () {
     Route::get('groups', 'ControlController@getAllGroups');
 });
 
@@ -82,4 +71,18 @@ Route::prefix('/unioncloud/api')->group(function () {
 
     Route::get('user/multisearch', 'UnionCloudController@searchOneTerm');
 
+});
+
+
+// Routes to replace
+
+Route::middleware('portal')->group(function () {
+    Route::post('/login/position', 'PortalController@logIntoCommitteeRole');
+});
+
+Route::prefix('admin')->group(function () {
+    // View as Student routes
+    Route::middleware('can:view-as-student')->post('/login/group', 'PortalController@logIntoGroup');
+
+    Route::middleware('can:view-as-student')->post('/logout/group', 'PortalController@logoutOfGroup');
 });

@@ -6,18 +6,8 @@ use App\Packages\ControlDB\ControlDB;
 use App\Packages\ControlDB\ControlDBInterface;
 use App\Packages\UnionCloud\UnionCloud;
 use App\Packages\UnionCloud\UnionCloudInterface;
-use App\Support\Control\Models\Contracts\Group as GroupModelContract;
-use App\Support\Control\Models\Contracts\GroupTag as GroupTagModelContract;
-use App\Support\Control\Models\Contracts\Role as RoleModelContract;
-use App\Support\Control\Models\Group as GroupModel;
-use App\Support\Control\Models\GroupTag as GroupTagModel;
-use App\Support\Control\Models\Role as RoleModel;
-use App\Support\Control\Repositories\Contracts\Group as GroupRepositoryContract;
-use App\Support\Control\Repositories\Contracts\GroupTag as GroupTagRepositoryContract;
-use App\Support\Control\Repositories\Contracts\Role as RoleRepositoryContract;
-use App\Support\Control\Repositories\Group as GroupRepository;
-use App\Support\Control\Repositories\GroupTag as GroupTagRepository;
-use App\Support\Control\Repositories\Role as RoleRepository;
+use App\Support\Activity\Contracts\Repository as ActivityRepositoryContract;
+use App\Support\Activity\Repository as ActivityRepository;
 use App\Support\Logic\AuthenticationModelFactory;
 use App\Support\Logic\Contracts\AuthenticationModelFactory as AuthenticationModelFactoryContract;
 use App\Support\Logic\Contracts\FilterFactory as FilterFactoryContract;
@@ -27,10 +17,17 @@ use App\Support\Logic\LogicTester;
 use App\Support\Module\Contracts\ModuleInstanceRepository as ModuleInstanceRepositoryContract;
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
 use App\Support\Module\Module\ModuleRepository;
-use App\Support\Module\ModuleInstance\ModuleInstanceRepository;
+use App\Support\ModuleInstance\Contracts\Evaluator\ActivityEvaluator as ActivityEvaluatorContract;
+use App\Support\ModuleInstance\Contracts\Evaluator\Evaluation as EvaluationContract;
+use App\Support\ModuleInstance\Contracts\Evaluator\ModuleInstanceEvaluator as ModuleInstanceEvaluatorContract;
+use App\Support\ModuleInstance\Evaluator\ActivityEvaluator;
+use App\Support\ModuleInstance\Evaluator\Evaluation;
+use App\Support\ModuleInstance\Evaluator\ModuleInstanceEvaluator;
+use App\Support\ModuleInstance\ModuleInstanceRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,21 +38,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(ControlDBInterface::class, ControlDB::class);
-        $this->app->bind(UnionCloudInterface::class, UnionCloud::class);
-        $this->app->bind(ModuleRepositoryContract::class, ModuleRepository::class);
-        $this->app->bind(ModuleInstanceRepositoryContract::class, ModuleInstanceRepository::class);
-        $this->app->bind(LogicTesterContract::class, LogicTester::class);
-        $this->app->bind(FilterFactoryContract::class, FilterFactory::class);
-        $this->app->bind(AuthenticationModelFactoryContract::class, AuthenticationModelFactory::class);
+        Passport::withoutCookieSerialization();
 
-        $this->app->bind(GroupTagModelContract::class, GroupTagModel::class);
-        $this->app->bind(GroupModelContract::class, GroupModel::class);
-        $this->app->bind(RoleModelContract::class, RoleModel::class);
-
-        $this->app->bind(GroupTagRepositoryContract::class, GroupTagRepository::class);
-        $this->app->bind(GroupRepositoryContract::class, GroupRepository::class);
-        $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
     }
 
     /**
@@ -65,6 +49,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(ControlDBInterface::class, ControlDB::class);
+        $this->app->bind(UnionCloudInterface::class, UnionCloud::class);
+        $this->app->bind(ModuleRepositoryContract::class, ModuleRepository::class);
+        $this->app->bind(ModuleInstanceRepositoryContract::class, ModuleInstanceRepository::class);
 
+        // Logic
+        $this->app->bind(LogicTesterContract::class, LogicTester::class);
+
+
+        // Activities
+        $this->app->bind(ActivityRepositoryContract::class, ActivityRepository::class);
+
+        // Module Instances
+        $this->app->bind(ActivityEvaluatorContract::class, ActivityEvaluator::class);
+        $this->app->bind(ModuleInstanceEvaluatorContract::class, ModuleInstanceEvaluator::class);
+        $this->app->bind(EvaluationContract::class, Evaluation::class);
     }
 }

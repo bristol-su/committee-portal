@@ -4,32 +4,30 @@
 namespace App\Support\Logic\Specification;
 
 
-use App\Support\Logic\Contracts\Filter as FilterContract;
+use App\Support\Filters\Contracts\FilterInstance;
+use App\Support\Filters\Contracts\FilterTester;
+use App\Support\Logic\Contracts\Specification;
 
-class FilterFalseSpecification
+class FilterFalseSpecification implements Specification
 {
-
     /**
-     * @var FilterContract
+     * @var FilterInstance
      */
     private $filter;
-    private $model;
-    private $setting;
+    /**
+     * @var FilterTester
+     */
+    private $filterTester;
 
-    public function __construct(FilterContract $filter, $model, $setting)
+    public function __construct(FilterInstance $filter, FilterTester $filterTester)
     {
-
         $this->filter = $filter;
-        $this->model = $model;
-        $this->setting = $setting;
+        $this->filterTester = $filterTester;
     }
 
-    public function isSatisfied()
+    public function isSatisfied(): bool
     {
-        if($this->model === null) {
-            return false;
-        }
-        return $this->filter->evaluate($this->model, $this->setting) === false;
+        return $this->filterTester->evaluate($this->filter) === false;
     }
 
 }

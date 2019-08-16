@@ -3,7 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Model;
-use App\Support\Module\Permissions\StaticPermissionOverride as StaticPermissionOverrideAlias;
+use App\Support\Permissions\StaticPermissionOverride as StaticPermissionOverrideAlias;
 use Faker\Generator as Faker;
 
 $factory->define(StaticPermissionOverrideAlias::class, function (Faker $faker) {

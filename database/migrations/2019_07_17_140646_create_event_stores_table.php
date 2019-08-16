@@ -16,7 +16,7 @@ class CreateEventStoresTable extends Migration
         Schema::create('event_stores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('module_instance_id');
-            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('activity_id');
             $table->string('event');
             $table->json('keywords');
             $table->unsignedInteger('user_id');

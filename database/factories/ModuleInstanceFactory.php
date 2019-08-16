@@ -1,9 +1,9 @@
 <?php
 
-use App\Support\Event\Event;
+use App\Support\Activity\Activity;
 use App\Support\Logic\Logic;
-use App\Support\Module\Module\Permissions\ModuleInstancePermissions;
-use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\ModuleInstance\ModuleInstance;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use Faker\Generator as Faker;
 
@@ -21,8 +21,8 @@ use Faker\Generator as Faker;
 $factory->define(ModuleInstance::class, function (Faker $faker) {
     return [
         'alias' => $faker->word,
-        'event_id' => function () {
-            return factory(Event::class)->create()->id;
+        'activity_id' => function () {
+            return factory(Activity::class)->create()->id;
         },
         'name' => $faker->word,
         'description' => $faker->text,

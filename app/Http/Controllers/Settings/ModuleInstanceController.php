@@ -3,29 +3,25 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Requests\Settings\ModuleInstanceController\StoreModuleInstanceRequest;
-use App\Support\Module\Contracts\ModuleInstanceRepository;
 use App\Http\Controllers\Controller;
+use App\Support\Activity\Activity;
+use App\Support\ModuleInstance\Contracts\ModuleInstanceRepository;
+use App\Support\ModuleInstance\ModuleInstance;
 
 class ModuleInstanceController extends Controller
 {
-    /**
-     * @var ModuleInstanceRepository
-     */
-    private $moduleInstanceRepository;
 
-    public function __construct(ModuleInstanceRepository $moduleInstanceRepository)
+    public function show(Activity $activity, ModuleInstance $moduleInstance)
     {
-
-        $this->moduleInstanceRepository = $moduleInstanceRepository;
+        if($moduleInstance->activity_id !== $activity->id) {
+            abort(404);
+        }
+        return view('settings.module_instances.show')->with('moduleInstance', $moduleInstance);
     }
 
-    public function store(StoreModuleInstanceRequest $request)
+    public function create(Activity $activity)
     {
-        return $this->moduleInstanceRepository->create(
-            $request->all()
-        );
-
+        return view('settings.module_instances.create')->with(['activity' => $activity]);
     }
-
 
 }

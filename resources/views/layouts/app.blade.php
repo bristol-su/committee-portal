@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Analytics -->
-@if(config('app.analytics.enabled'))
-    @include('templates.analytics')
-@endif
-<!-- CSRF Token -->
+    @if(config('app.analytics.enabled'))
+        @include('templates.analytics')
+    @endif
+
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{config('app.name', 'Committee Portal')}} | @yield('title')</title>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,32 +27,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/vendor.js') }}"></script>
 
-    <link rel="stylesheet" type="text/css"
-          href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
-    <script>
-        window.addEventListener("load", function () {
-            window.cookieconsent.initialise({
-                "palette": {
-                    "popup": {
-                        "background": "#237afc"
-                    },
-                    "button": {
-                        "background": "#fff",
-                        "text": "#237afc"
-                    }
-                },
-                "theme": "edgeless",
-                "content": {
-                    "message": "We use cookies to ensure that we give you the best experience on our website. If you continue we'll assume that you are happy to receive all cookies on our website.",
-                    "href": "https://www.bristolsu.org.uk/get_cookie_policy_details"
-                },
-                "cookie": {
-                    "domain": "{{config('app.cookie_domain')}}"
-                }
-            })
-        });
-    </script>
+    @include('templates.cookies')
 </head>
 
 <body style="width: 100%; min-width: 100%; height: 100%; min-height: 100%;">

@@ -112,7 +112,7 @@ return [
             'views' => ['path' => 'Resources/views', 'generate' => true],
             'test' => ['path' => 'Tests', 'generate' => true],
             'repository' => ['path' => 'Repositories', 'generate' => false],
-            'event' => ['path' => 'Events', 'generate' => false],
+            'event' => ['path' => 'Completion', 'generate' => false],
             'listener' => ['path' => 'Listeners', 'generate' => false],
             'policies' => ['path' => 'Policies', 'generate' => false],
             'rules' => ['path' => 'Rules', 'generate' => false],

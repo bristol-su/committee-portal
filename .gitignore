@@ -16,3 +16,4 @@ public/css/*
 .idea/*
 .output
 public/mix-manifest.json
+report.*

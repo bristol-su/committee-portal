@@ -22,7 +22,7 @@ class APIActiveRecordServiceProvider extends ServiceProvider
     /**
      * Bootstrap services.
      *
-     * @return void
+     * @return voidt
      */
     public function boot()
     {

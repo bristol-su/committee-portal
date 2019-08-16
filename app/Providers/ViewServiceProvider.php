@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Support\Event\Event;
+use App\Http\View\Composers\DashboardComposer;
+use App\Support\Activity\Activity;
 use App\Support\Logic\Facade\LogicTester;
 use App\Support\Logic\Logic;
 use Illuminate\Support\Collection;
@@ -24,45 +25,17 @@ class ViewServiceProvider extends ServiceProvider
     private function bootViewComposers()
     {
 
-        // Give the portal access to all events
-        View::composer(['portal.portal'], function ($view) {
+        View::composer(['portal.portal'], DashboardComposer::class);
 
-            $allEvents = Event::active()->with([
-                'moduleInstances',
-                'forLogic',
-                'adminLogic',
-                'moduleInstances.activeLogic',
-                'moduleInstances.visibleLogic',
-                'moduleInstances.mandatoryLogic',
-            ])->get();
-
-            $events = new Collection([
-                'participant' => new Collection,
-                'administrator' => new Collection
-            ]);
-
-            foreach ($allEvents as $event) {
-                if (LogicTester::evaluate($event->forLogic)) {
-                    $events['participant']->push($event);
-                }
-
-                if (LogicTester::evaluate($event->adminLogic)) {
-                    $events['administrator']->push($event);
-                }
-            }
-            $view->with('events', $events);
-
-        });
-
-        View::composer(['admin.settings.events.sidebar'], function ($view) {
-            $view->with('events', Event::all());
+        View::composer(['admin.settings.activities.sidebar'], function ($view) {
+            $view->with('events', Activity::all());
         });
 
         View::composer(['admin.settings.logic.sidebar'], function ($view) {
             $view->with('logics', Logic::all());
         });
 
-        View::composer(['admin.settings.events.create'], function ($view) {
+        View::composer(['admin.settings.activities.create'], function ($view) {
             $view->with([
                 'groupLogic' => Logic::groups()->get(),
                 'studentLogic' => Logic::students()->get()

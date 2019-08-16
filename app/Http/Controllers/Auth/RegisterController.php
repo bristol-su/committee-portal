@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
-use App\Traits\GetsControlStudentByUnionCloudID;
+use App\Support\Control\Repositories\Contracts\User as ControlUserContract;
+use App\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class RegisterController extends Controller
 {
 
 
-    use RegistersUsers, GetsControlStudentByUnionCloudID;
+    use RegistersUsers;
 
     /**
      * Create a new controller instance.
@@ -34,7 +35,7 @@ class RegisterController extends Controller
     /**
      * Register the user
      */
-    public function register(Request $request)
+    public function register(Request $request, DataPlatformUserContract $dataPlatformUserRepository, ControlUserContract $controlUserRepository)
     {
 
         $request->validate([
@@ -42,143 +43,37 @@ class RegisterController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
+        // Get a user from the data platform
         try {
-            if ($user = $this->getUser($request)) {
-
-                event(new UserVerificationRequestGenerated($user));
-
-                $this->guard()->login($user);
-            } else {
-                return back()
-                    ->withErrors(['identity' => 'Error registering you on our systems. Please contact us for help!'])
-                    ->withInput();
-            }
+            $dataUser = $dataPlatformUserRepository->getByIdentity($request->input('identity'));
         } catch (\Exception $e) {
             return back()
-                ->withErrors(['identity' => $e->getMessage()])
+                ->withErrors(['identity' => 'Could not find your account on our website'])
                 ->withInput();
         }
 
+        // Create them on control
+        $controlUser = $controlUserRepository->findOrCreate($dataUser->id());
+
+        // Create user
+        $user = User::create([
+            'forename' => $dataUser->forename(),
+            'surname' => $dataUser->surname(),
+            'email' => $dataUser->email(),
+            'student_id' => $dataUser->studentId(),
+            'control_id' => $controlUser->id()
+        ]);
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        event(new UserVerificationRequestGenerated($user));
+
+        $this->guard()->login($user);
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
 
-    }
-
-    /**
-     * @param Request $request
-     * @return User|bool
-     * @throws \Exception
-     */
-    public function getUser(Request $request)
-    {
-        if (User::where('email', $request->input('identity'))
-                ->orWhere('student_id', $request->input('identity'))
-                ->count() === 0) {
-
-            $user = $this->createUser($request);
-            if (!$user) {
-                throw new \Exception('Could not register you on our systems.');
-            }
-
-            $user->password = Hash::make($request->input('password'));
-            try {
-
-                $user->save();
-            } catch (\Exception $e) {
-                throw new \Exception('Could not register your password on our systems.');
-            }
-
-            return $user;
-        }
-
-        if (($user = User
-            ::where('email', $request->input('identity'))
-            ->orWhere('student_id', $request->input('identity'))
-            ->first())
-            ->isAdmin()
-        ) {
-            if($user->password === null) {
-                $user->password = Hash::make($request->input('password'));
-                $user->email_verified_at = null;
-                try {
-
-                    $user->save();
-                } catch (\Exception $e) {
-                    throw new \Exception('Could not register your password on our systems.');
-                }
-                return $user;
-            }
-        }
-
-        throw new \Exception('You have already registered. Try resetting your password!', 400);
-    }
-
-    /**
-     * Create a user in the control database
-     *
-     * @param Request $request
-     * @return User|bool
-     * @throws \Exception
-     */
-    private function createUser(Request $request)
-    {
-        // Extract data from the request
-        $searchTerm = $request->input('identity');
-        $request->merge(['search' => $request->input('identity')]);
-
-        // Get a unioncloud user ID
-        $unionCloudUser = $this->getUnionCloudUser($searchTerm, $request);
-        $uid = $unionCloudUser->uid;
-
-        // Get a control database student
-        $controlUser = $this->getStudentByUid($uid);
-
-        // Create a user
-        if ($controlUser !== false && $this->userHasCommitteeRole($controlUser)) {
-            $user = new User([
-                'forename' => $unionCloudUser->forename,
-                'surname' => $unionCloudUser->surname,
-                'student_id' => $unionCloudUser->id,
-                'email' => $unionCloudUser->email,
-                'control_id' => $controlUser->id,
-            ]);
-            try {
-
-                if ($user->save()) {
-                    return $user;
-                }
-            } catch (\Exception $e) {
-		Log::warning($e);
-                throw new \Exception('Could not register you on our systems.');
-
-            }
-
-        }
-
-        throw new \Exception('Could not find your committee role.');
-
-    }
-
-    private function getUnionCloudUser($searchTerm, Request $request)
-    {
-        $unionCloudController = new UnionCloudController();
-        $errorMessage = 'We couldn\'t find you on the Bristol SU website (http://bristolsu.org.uk). Please ensure you are using the same email as the one in your account page on the SU website.';
-
-        try {
-
-            $unionCloudUsers = json_decode($unionCloudController->searchOneTerm($request, resolve('Twigger\UnionCloud\API\UnionCloud')));
-        } catch (\Exception $e) {
-            // We want to throw a more descriptive error than the one the controller gives
-            throw new \Exception($errorMessage, 404);
-        }
-        abort_if(count($unionCloudUsers) === 0, 404, $errorMessage);
-        return $unionCloudUsers[0];
-    }
-
-    private function userHasCommitteeRole(Student $controlUser)
-    {
-        return count(CommitteeRole::allThrough($controlUser)) > 0;
     }
 
     /**

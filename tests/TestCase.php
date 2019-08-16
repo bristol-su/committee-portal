@@ -2,20 +2,16 @@
 
 namespace Tests;
 
-use App\Authentication\ViewAsStudent;
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Group;
-use App\User;
+use App\Support\Logic\Contracts\LogicTester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-use Tests\Traits\PosesAsAuthenticated;
+use Illuminate\Support\Arr;
+use Prophecy\Argument;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseTransactions, PosesAsAuthenticated;
+    use CreatesApplication, DatabaseTransactions;
 
     public function assertNotAuthenticated($guard = 'web')
     {
@@ -27,6 +23,24 @@ abstract class TestCase extends BaseTestCase
     public function assertModelEquals(Model $expected, Model $actual)
     {
         $this->assertTrue($expected->is($actual), 'Models are not equal');
+    }
+
+    public function createLogicTester($true=[], $false=[]   )
+    {
+        $logicTester = $this->prophesize(LogicTester::class);
+        foreach(Arr::wrap($true) as $logic) {
+            $logicTester->evaluate(Argument::that(function($arg) use ($logic) {
+                return $arg->id === $logic->id;
+            }))->willReturn(true);
+        }
+
+        foreach(Arr::wrap($false) as $logic) {
+            $logicTester->evaluate(Argument::that(function($arg) use ($logic) {
+                return $arg->id === $logic->id;
+            }))->willReturn(false);
+        }
+
+        $this->instance(LogicTester::class, $logicTester->reveal());
     }
 
 }

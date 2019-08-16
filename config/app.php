@@ -169,16 +169,16 @@ return [
         /*
          * Application Service Providers...
          */
+        \App\Providers\APIActiveRecordServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        \App\Providers\ControlProvider::class,
         App\Providers\EventServiceProvider::class,
-//        App\Providers\TelescopeServiceProvider::class,
+        \App\Providers\FilterProvider::class,
+        \App\Providers\GoogleDriveServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        \App\Providers\APIActiveRecordServiceProvider::class,
-        \App\Providers\GoogleDriveServiceProvider::class,
-        \App\Providers\FileUploadServiceProvider::class,
+        \App\Providers\UnionCloudServiceProvider::class,
         \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class
     ],
 

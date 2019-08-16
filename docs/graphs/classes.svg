@@ -5641,19 +5641,19 @@
 <path fill="none" stroke="#000000" stroke-dasharray="1,5" d="M1593.9803,-5146.3768C1543.8732,-5150.4094 1481.9317,-5145.2991 1445.6909,-5105.1422 1274.9736,-4915.9774 1545.7645,-707.0741 1373.6909,-519.1422 1330.7245,-472.216 1256.7609,-468.6811 1198.7923,-475.0352"/>
 <polygon fill="none" stroke="#000000" points="1198.0397,-471.6007 1188.5339,-476.2794 1198.8826,-478.5498 1198.0397,-471.6007"/>
 </g>
-<!-- \\App\\Events\\UserVerificationRequestGenerated -->
+<!-- \\App\\Completion\\UserVerificationRequestGenerated -->
 <g id="node367" class="node">
 <title>\\App\\Events\\UserVerificationRequestGenerated</title>
 <polygon fill="none" stroke="#000000" points="1789.6909,-4720.1422 1556.6909,-4720.1422 1556.6909,-4684.1422 1789.6909,-4684.1422 1789.6909,-4720.1422"/>
 <text text-anchor="middle" x="1673.1909" y="-4699.3422" font-family="Courier,monospace" font-size="11.00" fill="#000000">UserVerificationRequestGenerated</text>
 </g>
-<!-- \\Illuminate\\Auth\\Events\\Registered -->
+<!-- \\Illuminate\\Auth\\Completion\\Registered -->
 <g id="node467" class="node">
 <title>\\Illuminate\\Auth\\Events\\Registered</title>
 <ellipse fill="none" stroke="#000000" cx="1114.3639" cy="-222.1422" rx="135.6761" ry="18"/>
 <text text-anchor="middle" x="1114.3639" y="-218.4422" font-family="Times,serif" font-size="14.00" fill="#c0c0c0">\Illuminate\Auth\Events\Registered</text>
 </g>
-<!-- \\App\\Events\\UserVerificationRequestGenerated&#45;&gt;\\Illuminate\\Auth\\Events\\Registered -->
+<!-- \\App\\Completion\\UserVerificationRequestGenerated&#45;&gt;\\Illuminate\\Auth\\Completion\\Registered -->
 <g id="edge90" class="edge">
 <title>\\App\\Events\\UserVerificationRequestGenerated&#45;&gt;\\Illuminate\\Auth\\Events\\Registered</title>
 <path fill="none" stroke="#000000" d="M1556.6836,-4715.6712C1515.7682,-4713.7707 1473.192,-4702.9976 1445.6909,-4672.1422 1282.1746,-4488.6815 1539.7024,-430.3481 1373.6909,-249.1422 1329.827,-201.2637 1253.6935,-198.5652 1195.2286,-205.4468"/>

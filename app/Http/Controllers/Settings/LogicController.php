@@ -10,14 +10,14 @@ class LogicController extends Controller
 {
     public function index()
     {
-        return view('admin.settings.logic.index')->with([
+        return view('settings.logic.index')->with([
             'logics' => Logic::all()
         ]);
     }
 
     public function create()
     {
-        return view('admin.settings.logic.create');
+        return view('settings.logic.create');
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class LogicController extends Controller
 
     public function show(Logic $logic)
     {
-        return view('admin.settings.logic.show')->with(['logic' => $logic]);
+        return view('settings.logic.show')->with(['logic' => $logic]);
     }
 
     public function edit()

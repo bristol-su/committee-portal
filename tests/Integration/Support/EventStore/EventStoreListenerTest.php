@@ -2,12 +2,10 @@
 
 namespace Tests\Integration\Support\EventStore;
 
-use App\Support\EventStore\EventStore;
-use App\Support\EventStore\EventStoreListener;
-use App\Support\EventStore\StoreEvent;
-use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\Completion\EventStoreListener;
+use App\Support\Completion\Contracts\StoreEvent;
+use App\Support\ModuleInstance\ModuleInstance;
 use Illuminate\Events\CallQueuedListener;
-use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
@@ -36,7 +34,7 @@ class EventStoreListenerTest extends TestCase
 
         $this->assertDatabaseHas('event_stores', [
             'module_instance_id' => $moduleInstance->id,
-            'event_id' => $moduleInstance->event->id,
+            'activity_id' => $moduleInstance->activity->id,
             'event' => DummyEvent::class,
             'keywords' => json_encode(['foo' => 'bar']),
             'user_id' => 1,
@@ -55,7 +53,7 @@ class EventStoreListenerTest extends TestCase
 
         $this->assertDatabaseHas('event_stores', [
             'module_instance_id' => $moduleInstance->id,
-            'event_id' => $moduleInstance->event->id,
+            'activity_id' => $moduleInstance->activity->id,
             'event' => DummyEvent::class,
             'keywords' => json_encode(['foo' => 'bar']),
             'user_id' => 1,
@@ -90,7 +88,7 @@ class DummyEvent implements StoreEvent {
         $this->roleId = $roleId;
     }
 
-    public function moduleInstance(): \App\Support\Module\Contracts\ModuleInstance
+    public function moduleInstance(): \App\Support\ModuleInstance\Contracts\ModuleInstance
     {
         return $this->moduleInstance;
     }

@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Packages\ControlDB\Models\Group;
 use App\Packages\ControlDB\Models\Position;
-use App\Support\Event\Event;
+use App\Support\Activity\Activity;
 use App\Support\Module\Contracts\ModuleRepository;
-use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\Module\Settings\ModuleInstanceSettings;
+use App\Support\ModuleInstance\ModuleInstance;
+use App\Support\Permissions\ModuleInstancePermissions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -41,19 +43,27 @@ class RouteServiceProvider extends ServiceProvider
             return $group;
         });
 
+        Route::bind('module_instance_setting', function($id) {
+            return ModuleInstanceSettings::findOrFail($id);
+        });
+
+        Route::bind('module_instance_permission', function($id) {
+            return ModuleInstancePermissions::findOrFail($id);
+        });
+
         Route::bind('module', function($alias) {
             return $this->app[ModuleRepository::class]->findByAlias($alias);
         });
 
-        Route::bind('event_slug', function($slug) {
-            return Event::where(['slug' => $slug])->firstOrFail();
+        Route::bind('activity_slug', function($slug) {
+            return Activity::where(['slug' => $slug])->firstOrFail();
         });
 
         Route::bind('module_instance_slug', function($slug, $route) {
-            $event = $route->parameter('event_slug');
+            $activity = $route->parameter('activity_slug');
             return ModuleInstance::where('slug', $slug)
-                ->whereHas('event', function($query) use ($event){
-                    $query->where('slug', $event->slug);
+                ->whereHas('activity', function($query) use ($activity){
+                    $query->where('slug', $activity->slug);
                 })
                 ->firstOrFail();
         });
@@ -71,7 +81,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapPassportRoutes();
     }
 
     /**
@@ -88,6 +98,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
     }
 
+    protected function mapPassportRoutes()
+    {
+        Route::prefix('oauth')
+            ->namespace('\Laravel\Passport\Http\Controllers')
+            ->group(base_path('routes/passport.php'));
+    }
+
     /**
      * Define the "api" routes for the application.
      *
@@ -99,7 +116,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
                 ->middleware('api')
-                ->namespace($this->namespace)
+                ->namespace($this->namespace . '\Api')
                 ->group(base_path('routes/api.php'));
     }
 }

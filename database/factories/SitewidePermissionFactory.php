@@ -3,7 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Support\Logic\Logic;
-use App\Support\Module\Permissions\SitewidePermission;
+use App\Support\Permissions\SitewidePermission;
 use Faker\Generator as Faker;
 
 $factory->define(SitewidePermission::class, function (Faker $faker) {

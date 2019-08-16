@@ -15,39 +15,16 @@ class LogicRepositoryTest extends TestCase
     {
         $logicRepository = new LogicRepository;
 
-        $allTrue = [[
-            'class' => GroupTagged::class,
-            'setting' => 'reference.ref1'
-        ]];
-        $anyFalse = [[
-            'class' => GroupTagged::class,
-            'setting' => 'reference.ref2'
-        ], [
-            'class' => GroupTagged::class,
-            'setting' => 'reference.ref3'
-        ]];
-        
         $logic = $logicRepository->create([
             'name' => 'LogicName',
             'description' => 'LogicDescription',
             'for' => 'group',
-            'all_true' => $allTrue,
-            'any_true' => [],
-            'all_false' => [],
-            'any_false' => $anyFalse
         ]);
 
         $this->assertDatabaseHas('logics', [
             'name' => 'LogicName',
             'description' => 'LogicDescription',
             'for' => 'group',
-            'all_true' => json_encode([['class' => GroupTagged::class,'setting' => 'reference.ref1']]),
-            'any_true' => json_encode([]),
-            'all_false' => json_encode([]),
-            'any_false' => json_encode([
-                ['class' => GroupTagged::class, 'setting' => 'reference.ref2'],
-                ['class' => GroupTagged::class, 'setting' => 'reference.ref3']
-            ])
         ]);
     }
 

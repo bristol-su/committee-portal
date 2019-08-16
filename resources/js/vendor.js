@@ -10,6 +10,7 @@ import AWN from "awesome-notifications";
 import Vuex from "vuex";
 import 'spin.js/spin.css';
 import PortalVue from 'portal-vue';
+import api from "./utilities/api/api";
 
 
 
@@ -19,6 +20,7 @@ import PortalVue from 'portal-vue';
 window._ = _;
 window.Vue = Vue;
 window.$ = window.jQuery = jQuery;
+window.axios = axios;
 
 Vue.use(PortalVue);
 Vue.use(BootstrapVue);
@@ -29,6 +31,7 @@ Vue.prototype.$http = axios;
 Vue.prototype.$notify = new AWN({
     position: 'top-right'
 });
+Vue.prototype.$api = new api('http://portal.local/api');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -49,12 +52,6 @@ window.Popper = Popper.default;
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 

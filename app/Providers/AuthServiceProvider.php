@@ -2,23 +2,20 @@
 
 namespace App\Providers;
 
-use App\Authentication\RoleProvider;
-use App\Authentication\GroupProvider;
+use App\Support\Authentication\AuthenticationProvider\GroupProvider;
+use App\Support\Authentication\AuthenticationProvider\RoleProvider;
 use App\Support\Authentication\LaravelAuthentication;
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
 use App\Support\Control\Repositories\Contracts\Group as GroupRepositoryContract;
 use App\Support\Control\Repositories\Contracts\Role as RoleRepositoryContract;
-use App\Support\Module\Module\Permissions\ModuleInstancePermissions;
-use App\Support\Module\Permissions\SitewidePermission;
-use App\Support\Module\Permissions\StaticPermissionOverride;
+use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\SitewidePermission;
+use App\Support\Permissions\StaticPermissionOverride;
 use App\User;
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
-use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 
 class AuthServiceProvider extends ServiceProvider
 {

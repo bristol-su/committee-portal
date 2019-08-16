@@ -4,17 +4,21 @@
 namespace Tests\Integration\Http\Controllers\Settings;
 
 
-use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\ModuleInstance\ModuleInstance;
 use App\Support\Module\Settings\ModuleInstanceSettings;
+use App\User;
 use Tests\TestCase;
 
 class ModuleInstanceSettingsControllerTest extends TestCase
 {
 
+    private $user;
+
     public function setUp(): void
     {
         parent::setUp();
-        $this->beSuperAdmin();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user);
     }
 
     /** @test */

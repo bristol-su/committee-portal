@@ -3,6 +3,7 @@
 namespace App\Support\Logic;
 
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
+use App\Support\Filters\Contracts\FilterTester;
 use App\Support\Logic\Contracts\AuthenticationModelFactory as AuthenticationModelFactoryContract;
 use App\Support\Logic\Contracts\Filter as FilterContract;
 use App\Support\Logic\Contracts\FilterFactory as FilterFactoryContract;
@@ -16,18 +17,13 @@ class LogicTester implements LogicTesterContract
 {
 
     /**
-     * @var FilterFactoryContract
+     * @var FilterTester
      */
-    private $filterFactory;
-    /**
-     * @var AuthenticationModelFactoryContract
-     */
-    private $authenticationModelFactory;
+    private $filterTester;
 
-    public function __construct(FilterFactoryContract $filterFactory, AuthenticationModelFactoryContract $authenticationModelFactory)
+    public function __construct(FilterTester $filterTester)
     {
-        $this->filterFactory = $filterFactory;
-        $this->authenticationModelFactory = $authenticationModelFactory;
+        $this->filterTester = $filterTester;
     }
 
     public function evaluate(Logic $logic)
@@ -37,28 +33,20 @@ class LogicTester implements LogicTesterContract
         $allFalse = [];
         $anyFalse = [];
 
-        foreach($logic->all_true as $filterInformation) {
-            $filter = $this->filterFactory->create($filterInformation['class']);
-            $model = $this->authenticationModelFactory->createFromString($filter->validFor());
-            $allTrue[] = new FilterTrueSpecification($filter, $model, $filterInformation['setting']);
+        foreach($logic->allTrueFilters as $filter) {
+            $allTrue[] = new FilterTrueSpecification($filter, $this->filterTester);
         }
 
-        foreach($logic->any_true as $filterInformation) {
-            $filter = $this->filterFactory->create($filterInformation['class']);
-            $model = $this->authenticationModelFactory->createFromString($filter->validFor());
-            $anyTrue[] = new FilterTrueSpecification($filter, $model, $filterInformation['setting']);
+        foreach($logic->anyTrueFilters as $filter) {
+            $anyTrue[] = new FilterTrueSpecification($filter, $this->filterTester);
         }
 
-        foreach($logic->all_false as $filterInformation) {
-            $filter = $this->filterFactory->create($filterInformation['class']);
-            $model = $this->authenticationModelFactory->createFromString($filter->validFor());
-            $allFalse[] = new FilterFalseSpecification($filter, $model, $filterInformation['setting']);
+        foreach($logic->allFalseFilters as $filter) {
+            $allFalse[] = new FilterFalseSpecification($filter, $this->filterTester);
         }
 
-        foreach($logic->any_false as $filterInformation) {
-            $filter = $this->filterFactory->create($filterInformation['class']);
-            $model = $this->authenticationModelFactory->createFromString($filter->validFor());
-            $anyFalse[] = new FilterFalseSpecification($filter, $model, $filterInformation['setting']);
+        foreach($logic->anyFalseFilters as $filter) {
+            $anyFalse[] = new FilterFalseSpecification($filter, $this->filterTester);
         }
 
 
@@ -68,9 +56,6 @@ class LogicTester implements LogicTesterContract
             new AndSpecification(...$allFalse),
             new OrSpecification(...$anyFalse)
         ))->isSatisfied();
-
-
-
     }
 
 }

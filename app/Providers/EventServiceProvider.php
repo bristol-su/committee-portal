@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\Events\UserVerificationRequestGenerated;
-use App\Support\EventStore\EventStoreListener;
-use App\Support\EventStore\StoreEvent;
+use App\Support\Completion\EventStoreListener;
+use App\Support\Completion\Contracts\StoreEvent;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

@@ -17,6 +17,7 @@
         "itsgoingd/clockwork": "^3.1",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "^5.8.0",
+        "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nao-pon/flysystem-google-drive": "^1.1",

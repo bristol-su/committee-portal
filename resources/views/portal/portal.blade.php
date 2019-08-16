@@ -14,9 +14,9 @@
                 <div class="row">
                     <div class="col-md-3">
                         <portal-sidebar
-                                :participant="{{$events['participant']}}"
-                                :administrator="{{$events['administrator']}}"
-                                :current-event="{{$event}}"
+                                :participant="{{$participantActivities}}"
+                                :administrator="{{$administratorActivities}}"
+                                :current-event="{{$activity}}"
                                 :admin="{{($admin?'true':'false')}}">
 
                         </portal-sidebar>

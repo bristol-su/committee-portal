@@ -1,6 +1,6 @@
 <?php
 
-use App\Support\Module\Module\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\ModuleInstancePermissions;
 use Faker\Generator as Faker;
 
 $factory->define(ModuleInstancePermissions::class, function (Faker $faker) {

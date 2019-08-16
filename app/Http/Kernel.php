@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\LoadAvailableModuleInstances;
 use App\Http\Middleware\LogIntoRole;
 use App\Http\Middleware\CheckAdminCanViewAsStudent;
 use App\Http\Middleware\CheckForMaintenanceMode;
@@ -30,6 +31,7 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
 
 class Kernel extends HttpKernel
 {
@@ -67,8 +69,6 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
-        'module.active' => CheckModuleActive::class,
-        'module.maintenance' => CheckModuleDevelopmentStatus::class,
     ];
 
     /**
@@ -79,6 +79,7 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             EncryptCookies::class,
+            CreateFreshApiToken::class,
             AddQueuedCookiesToResponse::class,
             StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -92,7 +93,7 @@ class Kernel extends HttpKernel
             'bindings',
         ],
 
-        'user' => [
+        'portal' => [
             'auth:web',
             'role',
             'verified',
@@ -155,13 +156,6 @@ class Kernel extends HttpKernel
 
         // Authorization middleware for use with can:
         Authorize::class,
-
-        // Check a module is active when being accessed
-        CheckModuleActive::class,
-
-        // Show maintenance page if a module is down for maintenance
-        CheckModuleDevelopmentStatus::class,
-
 
         /*
          * Response Middleware

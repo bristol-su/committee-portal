@@ -2,6 +2,7 @@
 
 namespace App\Support\Logic;
 
+use App\Support\Filters\FilterInstance;
 use Illuminate\Database\Eloquent\Model;
 
 class Logic extends Model
@@ -10,19 +11,8 @@ class Logic extends Model
         'name',
         'description',
         'for',
-        'all_true',
-        'any_true',
-        'all_false',
-        'any_false'
     ];
 
-    protected $casts = [
-        'all_true' => 'array',
-        'any_true' => 'array',
-        'all_false' => 'array',
-        'any_false' => 'array'
-    ];
-    
     public function scopeGroups($query)
     {
         return $query->where('for', 'group');
@@ -31,5 +21,28 @@ class Logic extends Model
     public function scopeStudents($query)
     {
         return $query->where('for', 'student');
+    }
+
+    public function filters()
+    {
+        return $this->hasMany(FilterInstance::class);
+    }
+
+
+    public function allTrueFilters()
+    {
+        return $this->hasMany(FilterInstance::class)->where('filter_instances.logic_type', '=', 'all_true');
+    }
+    public function allFalseFilters()
+    {
+        return $this->hasMany(FilterInstance::class)->where('filter_instances.logic_type', '=', 'all_false');
+    }
+    public function anyTrueFilters()
+    {
+        return $this->hasMany(FilterInstance::class)->where('filter_instances.logic_type', '=', 'any_true');
+    }
+    public function anyFalseFilters()
+    {
+        return $this->hasMany(FilterInstance::class)->where('filter_instances.logic_type', '=', 'any_false');
     }
 }

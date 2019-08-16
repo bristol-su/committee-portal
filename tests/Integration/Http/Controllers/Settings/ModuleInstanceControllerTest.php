@@ -2,17 +2,21 @@
 
 namespace Tests\Integration\Http\Controllers\Settings;
 
-use App\Support\Event\Event;
+use App\Support\Activity\Activity;
 use App\Support\Logic\Logic;
+use App\User;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class ModuleInstanceControllerTest extends TestCase
 {
+    private $user;
+
     public function setUp(): void
     {
         parent::setUp();
-        $this->beSuperAdmin();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user);
     }
 
     public function storeModuleInstance($parameters=[])
@@ -20,7 +24,7 @@ class ModuleInstanceControllerTest extends TestCase
 
         $parameters = array_merge([
             'alias' => 'fileupload',
-            'event_id' => factory(Event::class)->create()->id,
+            'activity_id' => factory(Activity::class)->create()->id,
             'name' => 'somedefaultname',
             'description' => 'Some default description',
             'active' => factory(Logic::class)->create()->id,
@@ -45,15 +49,15 @@ class ModuleInstanceControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_a_validation_error_if_the_event_id_is_null(){
-        $response = $this->storeModuleInstance(['event_id' => null]);
-        $response->assertSessionHasErrors('event_id');
+    public function it_returns_a_validation_error_if_the_activity_id_is_null(){
+        $response = $this->storeModuleInstance(['activity_id' => null]);
+        $response->assertSessionHasErrors('activity_id');
     }
 
     /** @test */
-    public function it_returns_a_validation_error_if_the_event_id_is_not_found(){
-        $response = $this->storeModuleInstance(['event_id' => 1000000]);
-        $response->assertSessionHasErrors('event_id');
+    public function it_returns_a_validation_error_if_the_activity_id_is_not_found(){
+        $response = $this->storeModuleInstance(['activity_id' => 1000000]);
+        $response->assertSessionHasErrors('activity_id');
     }
 
     /** @test */
@@ -106,7 +110,7 @@ class ModuleInstanceControllerTest extends TestCase
 
     /** @test */
     public function it_returns_a_validation_error_if_the_complete_is_not_registered(){
-        $response = $this->storeModuleInstance(['complete'=>'notanevent']);
+        $response = $this->storeModuleInstance(['complete'=>'notanactivity']);
         $response->assertSessionHasErrors('complete');
     }
 

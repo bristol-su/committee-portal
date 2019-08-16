@@ -1,12 +1,12 @@
 @extends('portal.portal')
 
 @section('header-name')
-    {{$event->name}} @if($admin)- Admin @endif
+    {{$activity->name}} @if($admin)- Admin @endif
 @endsection
 
 @section('portal-content')
     <portal
-    :event="{{$event}}"
+    :event="{{$activity}}"
     :admin="{{($admin?'true':'false')}}">
 
     </portal>

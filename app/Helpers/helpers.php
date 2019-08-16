@@ -90,6 +90,7 @@ if(!function_exists('getExecutiveCommitteeRoleID')) {
 
 if(!function_exists('homeURL')) {
     function homeURL() {
-        return (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal'));
+        return '/portal';
+//        return (\Auth::user()->isAdmin() && \Request::is('*admin*') ? url('/admin') : url('/portal'));
     }
 }

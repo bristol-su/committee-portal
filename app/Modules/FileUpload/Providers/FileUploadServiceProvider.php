@@ -19,7 +19,7 @@ class FileUploadServiceProvider extends ServiceProvider
 
     public function mapWebRoutes()
     {
-        Route::prefix('{event_slug}/{module_instance_slug}')
+        Route::prefix('{activity_slug}/{module_instance_slug}')
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/web.php');
@@ -27,7 +27,7 @@ class FileUploadServiceProvider extends ServiceProvider
 
     public function mapApiRoutes()
     {
-        Route::prefix('{event_slug}/{module_instance_slug}')
+        Route::prefix('{activity_slug}/{module_instance_slug}')
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/api.php');

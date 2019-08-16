@@ -28,7 +28,7 @@ class StoreModuleInstanceRequest extends FormRequest
     {
         return [
             'alias' => [app(ModuleAlias::class), 'required'],
-            'event_id' => ['exists:events,id'],
+            'activity_id' => ['exists:activities,id'],
             'name' => 'required|string',
             'description' => 'required|string',
             'active' => 'required|exists:logics,id',

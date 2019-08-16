@@ -39,18 +39,18 @@
                     @else
 
                         {{--This will give admins access to logging in as groups--}}
-                        @if(\Auth::user()->can('view-as-student') && \Auth::user()->hasVerifiedEmail())
-                            <group-select
-                                    @if(\Auth::guard('group')->check()) :group-id="{{\getGroupID()}}"  @endif >
-
-                            </group-select>
-
+{{--                        @if(\Auth::user()->can('view-as-student') && \Auth::user()->hasVerifiedEmail())--}}
+{{--                            <group-select--}}
+{{--                                    @if(\Auth::guard('group')->check()) :group-id="{{\getGroupID()}}"  @endif >--}}
+{{----}}
+{{--                            </group-select>--}}
+{{----}}
                             {{--This grants access to logging in as another role owned by a student--}}
-                        @elseif(\Auth::guard('role')->check())
-                            <committee-role-select
-                                    :role-id="{{ \Auth::user()->getCurrentRole()->id }}">
-                            </committee-role-select>
-                        @endif
+{{--                        @elseif(\Auth::guard('role')->check())--}}
+{{--                            <committee-role-select--}}
+{{--                                    :role-id="{{ \Auth::user()->getCurrentRole()->id }}">--}}
+{{--                            </committee-role-select>--}}
+{{--                        @endif--}}
 
                     <!-- Account Management -->
                         <li class="nav-item dropdown">
@@ -63,9 +63,9 @@
                                 <!-- Home -->
                                 <a class="dropdown-item" href="{{ homeURL() }}">Home</a>
                                 <!-- Settings -->
-                                @can('view-site-settings-page')
-                                    <a class="dropdown-item" href="{{ url('/admin/settings') }}">Settings</a>
-                                @endcan
+{{--                                @can('view-site-settings-page')--}}
+                                    <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
+{{--                                @endcan--}}
                                 <!-- Logout -->
                                 <a class="dropdown-item" href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

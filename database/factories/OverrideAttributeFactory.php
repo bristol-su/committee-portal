@@ -1,7 +1,7 @@
 <?php
 
 use App\Support\Logic\Logic;
-use App\Support\Module\ModuleInstance\ModuleInstance;
+use App\Support\ModuleInstance\ModuleInstance;
 use App\Support\Module\Registration\OverrideAttribute;
 use Faker\Generator as Faker;
 
