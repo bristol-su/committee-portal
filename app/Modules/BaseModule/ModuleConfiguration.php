@@ -24,7 +24,7 @@ abstract class ModuleConfiguration
     protected function actingAsStudent()
     {
         try {
-            if (Auth::user()->getCurrentRole() === null) {
+            if (!Auth::check() || Auth::user()->getCurrentRole() === null) {
                 return false;
             }
         } catch (\Exception $e) {
@@ -154,6 +154,9 @@ abstract class ModuleConfiguration
 
     public function isMandatory()
     {
+        if(!Auth::check()) {
+            return false;
+        }
         return Auth::user()->can($this->alias().'.reaffiliation.isMandatory');
     }
 

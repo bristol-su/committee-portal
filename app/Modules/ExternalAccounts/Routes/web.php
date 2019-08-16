@@ -22,7 +22,6 @@ Route::prefix('externalaccounts')->middleware(['user', 'module', 'module.active:
     Route::prefix('statement')->group(function() {
         Route::post('/', 'StatementController@create');
         Route::get('/', 'StatementController@get');
-
     });
 
     Route::prefix('account')->group(function() {
@@ -49,4 +48,7 @@ Route::prefix('externalaccounts')->middleware(['user', 'module', 'module.active:
 
 Route::prefix('admin/externalaccounts')->middleware(['admin', 'module', 'module.active:externalaccounts', 'module.maintenance:externalaccounts'])->group(function() {
     Route::get('/', 'ExternalAccountsController@showAdminPage')->name('externalaccounts.admin');
+
+    Route::get('/document/{externalaccounts_document}', 'DocumentController@download');
+
 });

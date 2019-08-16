@@ -18,6 +18,7 @@
         "laracasts/utilities": "^3.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "league/csv": "^9.2",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nao-pon/flysystem-google-drive": "^1.1",
         "nelexa/zip": "^3.1",

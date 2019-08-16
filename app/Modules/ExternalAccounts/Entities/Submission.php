@@ -2,6 +2,8 @@
 
 namespace App\Modules\ExternalAccounts\Entities;
 
+use App\Packages\ControlDB\Models\Group;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Submission extends Model
@@ -25,4 +27,11 @@ class Submission extends Model
         'accounts' => 'array',
         'statements' => 'array'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }

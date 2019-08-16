@@ -18,7 +18,7 @@ These may include:
 - Finance documents (for completion by your elected treasurer)
 
 As you complete each stage you'll notice the buttons jump to the 'Completed' section. You're aiming to get all mandatory buttons to this section!
-The deadline for reaffiliating will be 1st July 2019, so make sure you’ve completed all the stages by this date
+The deadline for reaffiliating will be 31st July 2019, so make sure you’ve completed all the stages by this date
 at the very latest! If you need any help at all, please don’t hesitate to contact the helpdesk by going to
 <a href="https://bristolsu.freshdesk.com">bristolsu.freshdesk.com</a> and selecting ‘New Support Ticket’,
 or by getting in touch with the SU on <a href="mailto:bristol-su@bristol.ac.uk">bristol-su@bristol.ac.uk</a>.

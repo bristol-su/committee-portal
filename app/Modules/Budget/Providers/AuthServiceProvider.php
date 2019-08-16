@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Who can upload a budget
         Gate::define('budget.upload', function(User $user) {
-           $this->studentHasTreasurerPosition($user)
+           return $this->studentHasTreasurerPosition($user)
                && $this->studentIsNewCommittee($user);
         });
 
