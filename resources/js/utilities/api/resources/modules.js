@@ -6,4 +6,8 @@ export default class extends BaseResource{
         return this.request('get', '/activity/' + id + '/module_instances');
     }
 
+    all() {
+        return this.request('get', '/module');
+    }
+
 }

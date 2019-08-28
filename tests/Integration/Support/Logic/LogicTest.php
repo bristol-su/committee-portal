@@ -12,7 +12,7 @@ class LogicTest extends TestCase
 {
 
     /** @test */
-    public function it_has_all_true_filters(){
+    public function all_true_filters_returns_all_true_filters(){
         $logic = factory(Logic::class)->create();
         $filterInstance = factory(FilterInstance::class)->create([
             'logic_id' => $logic->id,
@@ -58,6 +58,16 @@ class LogicTest extends TestCase
         $this->assertModelEquals($filterInstance, $logic->allFalseFilters->first());
     }
 
+
+    /** @test */
+    public function all_false_filters_returns_an_empty_array_if_no_all_false_filters(){
+
+    }
+    /** @test */
+    public function all_false_filters_returns_only_all_false_filters(){
+
+    }
+
     /** @test */
     public function it_has_any_true_filters(){
         $logic = factory(Logic::class)->create();
@@ -71,6 +81,15 @@ class LogicTest extends TestCase
     }
 
     /** @test */
+    public function any_true_filters_returns_an_empty_array_if_no_any_true_filters(){
+
+    }
+    /** @test */
+    public function any_true_filters_returns_only_any_true_filters(){
+
+    }
+
+    /** @test */
     public function it_has_any_false_filters(){
         $logic = factory(Logic::class)->create();
         $filterInstance = factory(FilterInstance::class)->create([
@@ -80,6 +99,20 @@ class LogicTest extends TestCase
 
         $this->assertCount(1, $logic->anyFalseFilters);
         $this->assertModelEquals($filterInstance, $logic->anyFalseFilters->first());
+    }
+
+    /** @test */
+    public function any_false_filters_returns_an_empty_array_if_no_any_false_filters(){
+
+    }
+    /** @test */
+    public function any_false_filters_returns_only_any_false_filters(){
+
+    }
+
+    /** @test */
+    public function filters_can_retrieve_all_filters(){
+
     }
 
 }

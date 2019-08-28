@@ -2,8 +2,8 @@
 
 namespace App\Support\Control\Models;
 
-use App\Support\Control\Models\Contracts\Group as GroupContract;
-use App\Support\Control\Models\Contracts\Role as RoleContract;
+use App\Support\Control\Contracts\Models\Group as GroupContract;
+use App\Support\Control\Contracts\Models\Role as RoleContract;
 
 class Role extends Model implements RoleContract
 {

@@ -8,7 +8,7 @@
 
 namespace App\Support\Authentication\AuthenticationProvider;
 
-use App\Support\Control\Repositories\Contracts\Group as GroupRepositoryContract;
+use App\Support\Control\Contracts\Repositories\Group as GroupRepositoryContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 

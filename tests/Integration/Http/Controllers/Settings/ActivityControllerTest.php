@@ -46,4 +46,8 @@ class ActivityControllerTest extends TestCase
         $this->assertModelEquals($activity, $response->original->gatherData()['activity']);
     }
 
+    /** @test */
+    public function create_returns_the_correct_view(){
+
+    }
 }

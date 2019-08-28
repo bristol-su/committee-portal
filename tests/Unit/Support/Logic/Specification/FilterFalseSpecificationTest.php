@@ -4,7 +4,7 @@ namespace Tests\Unit\Support\Logic\Specification;
 
 use App\Support\Filters\Contracts\FilterInstance;
 use App\Support\Filters\Contracts\FilterTester;
-use App\Support\Logic\Specification\FilterTrueSpecification;
+use App\Support\Logic\Specification\FilterFalseSpecification;
 use Tests\TestCase;
 
 class FilterFalseSpecificationTest extends TestCase
@@ -16,7 +16,7 @@ class FilterFalseSpecificationTest extends TestCase
         $filterTester = $this->prophesize(FilterTester::class);
         $filterTester->evaluate($filter->reveal())->shouldBeCalled()->willReturn(false);
 
-        $spec = new FilterTrueSpecification($filter->reveal(), $filterTester->reveal());
+        $spec = new FilterFalseSpecification($filter->reveal(), $filterTester->reveal());
 
         $this->assertTrue(
             $spec->isSatisfied()
@@ -29,7 +29,7 @@ class FilterFalseSpecificationTest extends TestCase
         $filterTester = $this->prophesize(FilterTester::class);
         $filterTester->evaluate($filter->reveal())->shouldBeCalled()->willReturn(true);
 
-        $spec = new FilterTrueSpecification($filter->reveal(), $filterTester->reveal());
+        $spec = new FilterFalseSpecification($filter->reveal(), $filterTester->reveal());
 
         $this->assertFalse(
             $spec->isSatisfied()

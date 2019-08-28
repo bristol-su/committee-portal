@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Support\Permissions\ModuleInstancePermissions;
+use Illuminate\Http\Request;
 
 class ModuleInstancePermissionController extends Controller
 {
@@ -14,4 +15,19 @@ class ModuleInstancePermissionController extends Controller
         return $moduleInstancePermissions;
     }
 
+    public function store(Request $request)
+    {
+        return ModuleInstancePermissions::create([
+            'participant_permissions' => $request->input('participant_permissions'),
+            'admin_permissions' => $request->input('admin_permissions')
+        ]);
+    }
+
+    public function update(ModuleInstancePermissions $permissions, Request $request)
+    {
+        $permissions->participant_permissions = $request->input('participant_permissions', $permissions->participant_permissions);
+        $permissions->admin_permissions = $request->input('admin_permissions', $permissions->admin_permissions);
+        $permissions->save();
+        return $permissions;
+    }
 }

@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Support\Control\Repositories\Contracts;
+namespace App\Support\Control\Contracts\Repositories;
 
 
-use App\Support\Control\Models\Contracts\User as UserModelContract;
+use App\Support\Control\Contracts\Models\User as UserModelContract;
 
 interface User
 {
 
-    public function findOrCreate($dataPlatformId) : UserModelContract;
+    public function findOrCreateByDataId($dataPlatformId) : UserModelContract;
 
 }

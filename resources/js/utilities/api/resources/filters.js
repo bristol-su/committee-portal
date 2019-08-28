@@ -6,5 +6,9 @@ export default class extends BaseResource{
         return this.request('get', '/logic/' + id + '/filters');
     }
 
+    getAll() {
+        return this.request('get', '/filter');
+    }
+
 
 }

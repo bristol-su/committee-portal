@@ -12,7 +12,9 @@ use Tests\TestCase;
 class ActivityTest extends TestCase
 {
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_has_many_module_instances()
     {
         $activity = factory(Activity::class)->create();
@@ -27,8 +29,10 @@ class ActivityTest extends TestCase
         }
     }
 
-    /** @test */
-    public function it_retrieves_always_active_events()
+    /**
+     * @test
+     */
+    public function active_retrieves_always_active_events()
     {
         $activity = factory(Activity::class)->create([
             'start_date' => null, 'end_date' => null
@@ -38,8 +42,10 @@ class ActivityTest extends TestCase
         $this->assertModelEquals($activity, $retrieved->first());
     }
 
-    /** @test */
-    public function it_retrieves_an_active_activity_in_a_date_range()
+    /**
+     * @test
+     */
+    public function active_retrieves_an_active_activity_in_a_date_range()
     {
         $activity = factory(Activity::class)->create([
             'start_date' => Carbon::now()->subDays(5), 'end_date' => Carbon::now()->addDays(5)
@@ -50,8 +56,10 @@ class ActivityTest extends TestCase
         $this->assertModelEquals($activity, $retrieved->first());
     }
 
-    /** @test */
-    public function it_does_not_retrieve_an_activity_if_the_activity_is_not_in_the_date_range()
+    /**
+     * @test
+     */
+    public function active_does_not_retrieve_an_activity_if_the_activity_is_not_in_the_date_range()
     {
         $activity = factory(Activity::class)->create([
             'start_date' => Carbon::now()->subDays(5), 'end_date' => Carbon::now()->subdays(1)
@@ -61,5 +69,15 @@ class ActivityTest extends TestCase
         $this->assertCount(0, $retrieved);
     }
 
+
+    /** @test */
+    public function it_has_a_for_logic(){
+
+    }
+
+    /** @test */
+    public function it_has_an_admin_logic(){
+
+    }
 
 }

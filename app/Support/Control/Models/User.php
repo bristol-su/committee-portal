@@ -4,7 +4,7 @@
 namespace App\Support\Control\Models;
 
 
-use App\Support\Control\Models\Contracts\User as UserContract;
+use App\Support\Control\Contracts\Models\User as UserContract;
 
 class User extends Model implements UserContract
 {

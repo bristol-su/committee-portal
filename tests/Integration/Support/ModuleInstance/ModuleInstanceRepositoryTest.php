@@ -23,6 +23,11 @@ class ModuleInstanceRepositoryTest extends TestCase
     }
 
     /** @test */
+    public function it_throws_an_exception_if_module_instance_not_found(){
+
+    }
+
+    /** @test */
     public function it_creates_a_module_instance(){
         $repository = new ModuleInstanceRepository;
         $activity = factory(Activity::class)->create();

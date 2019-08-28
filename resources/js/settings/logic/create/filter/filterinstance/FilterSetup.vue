@@ -22,12 +22,22 @@
                     :key="key"
                     :label="key"
                     :label-for="key">
-                    <b-form-select
-                        :id="key"
-                        v-model="settings[key]"
-                        :options="filter.options[key]">
+                    <span v-if="filter.options[key] && typeof filter.options[key] === 'object' && filter.options[key].constructor === Object">
+                        <b-form-select
+                            :id="key"
+                            v-model="settings[key]"
+                            :options="filter.options[key]">
 
-                    </b-form-select>
+                        </b-form-select>
+                    </span>
+                    <span v-else-if="filter.options[key] === ''">
+                        <b-form-input
+                            type="text"
+                            v-model="settings[key]">
+
+                        </b-form-input>
+                    </span>
+
                 </b-form-group>
 
 

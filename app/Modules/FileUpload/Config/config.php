@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'name' => 'File Upload',
+    'description' => 'Allows uploading of a file or multiple files with approval',
     'completion' => [
         [
             'name' => 'Document Approved',

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Support\Control\Contracts\Client\Client;
 use App\Support\Logic\Contracts\LogicTester;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -12,6 +13,11 @@ use Prophecy\Argument;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseTransactions;
+
+    /**
+     * @var \Prophecy\Prophecy\ObjectProphecy
+     */
+    protected $controlClient = null;
 
     public function assertNotAuthenticated($guard = 'web')
     {
@@ -40,7 +46,15 @@ abstract class TestCase extends BaseTestCase
             }))->willReturn(false);
         }
 
+        $logicTester->evaluate(Argument::any())->willReturn(false);
         $this->instance(LogicTester::class, $logicTester->reveal());
+    }
+
+    public function mockControl($method, $uri, $response) {
+        if($this->controlClient === null) {
+            $this->controlClient = $this->prophesize(Client::class);
+        }
+        $this->controlClient->request($method, $uri, Argument::any())->shouldBeCalled()->willReturn($response);
     }
 
 }

@@ -17,6 +17,11 @@
             value: {
                 required: false,
                 default: null
+            },
+            activityFor: {
+                required: false,
+                type: String,
+                default: null
             }
         },
 
@@ -43,12 +48,16 @@
 
         computed: {
             options() {
-                return this.logic.map(logic => {
-                    return {
-                        text: logic.name,
-                        value: logic.id
-                    }
-                })
+                return this.logic.filter(logic => {
+                    return (this.activityFor === 'user' && (logic.for === 'user' || logic.for === 'role'))
+                        || this.activityFor === 'group'
+                        || this.activityFor === null;
+                }).map(logic => {
+                        return {
+                            text: logic.name,
+                            value: logic.id
+                        }
+                });
             }
         }
     }

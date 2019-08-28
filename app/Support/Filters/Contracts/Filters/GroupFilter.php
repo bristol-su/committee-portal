@@ -5,7 +5,7 @@ namespace App\Support\Filters\Contracts\Filters;
 
 use App\Support\Authentication\Contracts\Authentication;
 
-abstract class GroupFilter implements Filter
+abstract class GroupFilter extends Filter
 {
 
 
@@ -24,5 +24,12 @@ abstract class GroupFilter implements Filter
         // TODO Test if null
         return $this->authentication->getGroup();
     }
+
+    public function for()
+    {
+        return 'group';
+    }
+
+
 
 }

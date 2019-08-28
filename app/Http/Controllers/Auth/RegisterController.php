@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
-use App\Support\Control\Repositories\Contracts\User as ControlUserContract;
+use App\Support\Control\Contracts\Repositories\User as ControlUserContract;
 use App\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -37,7 +37,6 @@ class RegisterController extends Controller
      */
     public function register(Request $request, DataPlatformUserContract $dataPlatformUserRepository, ControlUserContract $controlUserRepository)
     {
-
         $request->validate([
             'identity' => ['required', 'string'],
             'password' => 'required|confirmed|min:6'
@@ -53,7 +52,7 @@ class RegisterController extends Controller
         }
 
         // Create them on control
-        $controlUser = $controlUserRepository->findOrCreate($dataUser->id());
+        $controlUser = $controlUserRepository->findOrCreateByDataId($dataUser->id());
 
         // Create user
         $user = User::create([

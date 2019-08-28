@@ -5,9 +5,9 @@ namespace Tests\Unit\Support\Filters\Filters;
 
 
 use App\Support\Authentication\Contracts\Authentication;
-use App\Support\Control\Models\Contracts\Group;
-use App\Support\Control\Models\Contracts\GroupTag as GroupTagModelContract;
-use App\Support\Control\Repositories\Contracts\GroupTag as GroupTagRepositoryContract;
+use App\Support\Control\Contracts\Models\Group;
+use App\Support\Control\Contracts\Models\GroupTag as GroupTagModelContract;
+use App\Support\Control\Contracts\Repositories\GroupTag as GroupTagRepositoryContract;
 use App\Support\Filters\Filters\GroupTagged;
 use Tests\TestCase;
 
@@ -15,7 +15,7 @@ class GroupTaggedTest extends TestCase
 {
 
     /** @test */
-    public function it_returns_a_list_of_options(){
+    public function it_returns_a_list_of_possible_tags(){
         $groupTagRepository = $this->prophesize(GroupTagRepositoryContract::class);
         $authentication = $this->prophesize(Authentication::class);
 

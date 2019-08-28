@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Support\Control\Repositories\Contracts;
+namespace App\Support\Control\Contracts\Repositories;
 
 
 use Illuminate\Support\Collection;

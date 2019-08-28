@@ -13,16 +13,6 @@ class Logic extends Model
         'for',
     ];
 
-    public function scopeGroups($query)
-    {
-        return $query->where('for', 'group');
-    }
-
-    public function scopeStudents($query)
-    {
-        return $query->where('for', 'student');
-    }
-
     public function filters()
     {
         return $this->hasMany(FilterInstance::class);

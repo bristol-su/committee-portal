@@ -11,7 +11,7 @@ class LogicRepositoryTest extends TestCase
 {
 
     /** @test */
-    public function it_creates_a_logic_model_row()
+    public function it_creates_a_logic_model()
     {
         $logicRepository = new LogicRepository;
 

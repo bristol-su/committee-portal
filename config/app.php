@@ -169,7 +169,6 @@ return [
         /*
          * Application Service Providers...
          */
-        \App\Providers\APIActiveRecordServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         \App\Providers\ControlProvider::class,
@@ -243,7 +242,4 @@ return [
         'path' => __DIR__.'/../app/Modules'
     ],
 
-    'filters' => [
-        'group_tagged' => \App\Support\Logic\Filters\GroupTagged::class
-    ]
 ];

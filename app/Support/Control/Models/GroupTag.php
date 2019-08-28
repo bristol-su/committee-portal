@@ -2,7 +2,7 @@
 
 namespace App\Support\Control\Models;
 
-use App\Support\Control\Models\Contracts\GroupTag as GroupTagContract;
+use App\Support\Control\Contracts\Models\GroupTag as GroupTagContract;
 
 class GroupTag extends Model implements GroupTagContract
 {

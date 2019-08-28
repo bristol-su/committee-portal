@@ -1,17 +1,17 @@
 <template>
     <div>
         <b-form-group label="Active for?">
-            <logic-select v-model="active">
+            <logic-select :for-logic="forLogic" v-model="active">
 
             </logic-select>
         </b-form-group>
         <b-form-group label="Visible for?">
-            <logic-select v-model="visible">
+            <logic-select :for-logic="forLogic" v-model="visible">
 
             </logic-select>
         </b-form-group>
         <b-form-group label="Mandatory for?">
-            <logic-select v-model="mandatory">
+            <logic-select :for-logic="forLogic" v-model="mandatory">
 
             </logic-select>
         </b-form-group>
@@ -24,6 +24,13 @@
     export default {
         name: "Behaviour",
         components: {LogicSelect},
+
+        props: {
+            forLogic: {
+                required: true,
+                type: String
+            }
+        },
 
         data() {
             return {

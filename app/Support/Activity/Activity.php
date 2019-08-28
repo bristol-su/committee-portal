@@ -14,7 +14,7 @@ class Activity extends Model
     protected $fillable = [
         'name',
         'description',
-        'for',
+        'activity_for',
         'for_logic',
         'admin_logic',
         'start_date',

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Http\Requests\Settings\ModuleInstanceController\StoreModuleInstanceRequest;
 use App\Http\Controllers\Controller;
 use App\Support\Activity\Activity;
-use App\Support\ModuleInstance\Contracts\ModuleInstanceRepository;
 use App\Support\ModuleInstance\ModuleInstance;
 
 class ModuleInstanceController extends Controller

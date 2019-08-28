@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('logic', 'LogicController');
-Route::apiResource('module_instance_setting', 'ModuleInstanceSettingController');
-Route::apiResource('module_instance_permission', 'ModuleInstancePermissionController');
-Route::apiResource('activity', 'ActivityController');
-Route::apiResource('filter_instances', 'FilterInstanceController');
+Route::apiResource('activity', 'ActivityController')->only(['store']);
+Route::apiResource('filter', 'FilterController')->only(['index']);
+Route::apiResource('filter_instances', 'FilterInstanceController')->only(['store']);
+Route::apiResource('logic', 'LogicController')->only(['index', 'show', 'store']);
+Route::apiResource('module', 'ModuleController')->only(['index']);
+Route::apiResource('module_instance_permission', 'ModuleInstancePermissionController')->only(['show', 'store', 'update']);
+Route::apiResource('module_instance_setting', 'ModuleInstanceSettingController')->only(['show', 'store', 'update']);
+
 Route::namespace('Relationships')->group(function() {
     Route::get('/activity/{activity}/module_instances', 'ActivityModuleInstancesController@index');
 

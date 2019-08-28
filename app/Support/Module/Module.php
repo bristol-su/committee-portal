@@ -13,7 +13,6 @@ class Module implements Arrayable
 
     public function __construct($alias)
     {
-
         $this->alias = $alias;
     }
 
@@ -24,10 +23,11 @@ class Module implements Arrayable
 
     public function toArray()
     {
-        return [
+        // TODO Refactor config out
+
+        return array_merge([
             'alias' => $this->alias,
-            'completion' => $this->completion
-        ];
+        ], config($this->alias));
     }
 
 }

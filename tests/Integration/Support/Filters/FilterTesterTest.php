@@ -5,9 +5,9 @@ namespace Tests\Integration\Support\Filters;
 
 
 use App\Support\Authentication\Contracts\Authentication;
-use App\Support\Control\Models\Contracts\Group;
-use App\Support\Control\Models\Contracts\GroupTag as GroupTagModelContract;
-use App\Support\Control\Repositories\Contracts\GroupTag as GroupTagRepositoryContract;
+use App\Support\Control\Contracts\Models\Group;
+use App\Support\Control\Contracts\Models\GroupTag as GroupTagModelContract;
+use App\Support\Control\Contracts\Repositories\GroupTag as GroupTagRepositoryContract;
 use App\Support\Filters\Contracts\FilterTester as FilterTesterContract;
 use App\Support\Filters\FilterInstance;
 use App\Support\Filters\FilterTester;
@@ -43,5 +43,10 @@ class FilterTesterTest extends TestCase
         $this->assertTrue(
             $filterTester->evaluate($filterInstance)
         );
+    }
+
+    /** @test */
+    public function it_returns_false_if_the_filter_is_false(){
+
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Support\Control\Models\Contracts;
+namespace App\Support\Control\Contracts\Models;
 
 
 use Illuminate\Contracts\Auth\Authenticatable;

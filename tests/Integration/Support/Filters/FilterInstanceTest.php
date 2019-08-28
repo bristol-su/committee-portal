@@ -21,4 +21,19 @@ class FilterInstanceTest extends TestCase
         $this->assertModelEquals($logic, $filterInstance->logic);
     }
 
+    /** @test */
+    public function name_returns_the_filter_instance_name(){
+
+    }
+
+    /** @test */
+    public function alias_returns_the_filter_alias(){
+
+    }
+
+    /** @test */
+    public function settings_returns_the_filter_instance_settings(){
+
+    }
+
 }

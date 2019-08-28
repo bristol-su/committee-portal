@@ -33,4 +33,15 @@ class ConfigFilterRepository implements FilterRepositoryContract
 
         return $this->filterFactory->createFilterFromClassName($class);
     }
+
+    public function getAll()
+    {
+        $classes = $this->config->get('filters');
+
+        $filters = [];
+        foreach($classes as $class) {
+            $filters[] = $this->filterFactory->createFilterFromClassName($class);
+        }
+        return $filters;
+    }
 }

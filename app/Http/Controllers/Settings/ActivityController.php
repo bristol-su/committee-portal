@@ -22,29 +22,9 @@ class ActivityController extends Controller
         return view('settings.activity.create');
     }
 
-    public function store(Request $request)
-    {
-        return Activity::create($request->all());
-    }
-
     public function show(Activity $activity)
     {
         return view('settings.activity.show')->with(['activity' => $activity]);
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function delete()
-    {
-
     }
 
     public function moduleInstances(Activity $activity)

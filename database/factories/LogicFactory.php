@@ -18,6 +18,6 @@ $factory->define(Logic::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->text,
-        'for' => $faker->randomElement(['group', 'student']),
+        'for' => $faker->randomElement(['group', 'user', 'role']),
     ];
 });

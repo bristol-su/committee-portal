@@ -8,7 +8,7 @@
 
 namespace App\Support\Authentication\AuthenticationProvider;
 
-use App\Support\Control\Repositories\Contracts\Role as RoleContract;
+use App\Support\Control\Contracts\Repositories\Role as RoleContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 

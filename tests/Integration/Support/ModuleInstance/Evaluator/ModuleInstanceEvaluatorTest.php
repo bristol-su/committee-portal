@@ -57,5 +57,4 @@ class ModuleInstanceEvaluatorTest extends TestCase
         $moduleInstanceEvaluator = new ModuleInstanceEvaluator($evaluation->reveal());
         $moduleInstanceEvaluator->evaluateParticipant($moduleInstance);
     }
-
 }

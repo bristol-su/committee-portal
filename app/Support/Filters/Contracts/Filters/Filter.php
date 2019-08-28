@@ -4,7 +4,9 @@
 namespace App\Support\Filters\Contracts\Filters;
 
 
-interface Filter
+use Illuminate\Contracts\Support\Arrayable;
+
+abstract class Filter implements Arrayable
 {
 
     /**
@@ -12,7 +14,7 @@ interface Filter
      *
      * @return array
      */
-    public function options(): array;
+    abstract public function options(): array;
 
     /**
      * Test if the filter passes
@@ -22,12 +24,26 @@ interface Filter
      *
      * @return bool
      */
-    public function evaluate($settings): bool;
+    abstract public function evaluate($settings): bool;
 
-    public function name();
+    abstract public function name();
 
-    public function description();
+    abstract public function description();
 
-    public function for();
+    abstract public function for();
+
+    abstract public function alias();
+
+    public function toArray()
+    {
+        return [
+            'alias' => $this->alias(),
+            'name' => $this->name(),
+            'description' => $this->description(),
+            'for' => $this->for(),
+            'options' => $this->options()
+        ];
+    }
+
 
 }

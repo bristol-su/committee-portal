@@ -43,10 +43,6 @@
     </noscript>
     @include('templates.header')
 
-    @if(request()->route()->getName() !== null && \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::exists(request()->route()->getName()))
-        {{\DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render()}}
-    @endif
-
     <div class="spinner-target"></div>
     @yield('content')
 

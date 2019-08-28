@@ -19,6 +19,7 @@ $factory->define(Activity::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->text,
+        'activity_for' => 'user',
         'for_logic' => function () {
             return factory(Logic::class)->create()->id;
         },
@@ -29,3 +30,6 @@ $factory->define(Activity::class, function (Faker $faker) {
         'end_date' => $faker->dateTimeInInterval('+5 days', '+1 year'),
     ];
 });
+
+$factory->state(Activity::class, 'user', ['activity_for' => 'user']);
+$factory->state(Activity::class, 'group', ['activity_for' => 'group']);

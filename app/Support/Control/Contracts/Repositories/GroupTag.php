@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Support\Control\Repositories\Contracts;
+namespace App\Support\Control\Contracts\Repositories;
 
-use App\Support\Control\Models\Contracts\Group as GroupContract;
+use App\Support\Control\Contracts\Models\Group as GroupContract;
 
 interface GroupTag
 {

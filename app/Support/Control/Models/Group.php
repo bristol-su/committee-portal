@@ -2,7 +2,7 @@
 
 namespace App\Support\Control\Models;
 
-use App\Support\Control\Models\Contracts\Group as GroupContract;
+use App\Support\Control\Contracts\Models\Group as GroupContract;
 
 class Group extends Model implements GroupContract
 {

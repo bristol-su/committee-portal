@@ -43,7 +43,6 @@ class ActivityControllerTest extends TestCase
     public function admin_returns_the_correct_view(){
         $activity = factory(Activity::class)->create();
         $response = $this->loadActivity($activity, true);
-
         $response->assertViewIs('portal.portalcontent');
     }
 
@@ -105,13 +104,12 @@ class ActivityControllerTest extends TestCase
     /** @test */
     public function participant_evaluates_activities_correctly(){
         $activity = factory(Activity::class)->create();
-        $moduleInstance1 = factory(ModuleInstance::class)->create();
-        $moduleInstance2 = factory(ModuleInstance::class)->create();
+        $moduleInstance1 = factory(ModuleInstance::class)->make();
+        $moduleInstance2 = factory(ModuleInstance::class)->make();
         $activity->moduleInstances()->saveMany([$moduleInstance1, $moduleInstance2]);
-
         $this->createLogicTester(
-            [$moduleInstance1->activeLogic, $moduleInstance1->visibleLogic, $moduleInstance2->activeLogic],
-            [$moduleInstance1->mandatoryLogic, $moduleInstance2->visibleLogic, $moduleInstance2->mandatoryLogic]
+            [$activity->forLogic, $moduleInstance1->activeLogic, $moduleInstance1->visibleLogic, $moduleInstance2->activeLogic],
+            [$activity->adminLogic, $moduleInstance1->mandatoryLogic, $moduleInstance2->visibleLogic, $moduleInstance2->mandatoryLogic]
         );
 
         $response = $this->loadActivity($activity, false);

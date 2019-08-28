@@ -32,8 +32,16 @@
 
             <slug v-model="slug"></slug>
 
+            <b-form-group
+                label="Which type of resource is this activity for?"
+                description="Do groups of people need to complete this activity together, or do individuals complete it for themselves?"
+                >
+                <b-form-radio v-model="activity_for" name="some-radios" value="group">Group</b-form-radio>
+                <b-form-radio v-model="activity_for" name="some-radios" value="user">User</b-form-radio>
+            </b-form-group>
+
             <b-form-group label="Who is this activity for?">
-                <logic-select v-model="for_logic">
+                <logic-select v-model="for_logic" :activity-for="activity_for">
 
                 </logic-select>
             </b-form-group>
@@ -69,6 +77,7 @@
                 name: '',
                 description: '',
                 slug: '',
+                activity_for: 'user',
                 for_logic: null,
                 admin_logic: null,
                 start_date: null,
@@ -107,6 +116,7 @@
                     name: this.name,
                     description: this.description,
                     slug: this.slug,
+                    activity_for: this.activity_for,
                     for_logic: this.for_logic,
                     admin_logic: this.admin_logic,
                     start_date: this.start_date,

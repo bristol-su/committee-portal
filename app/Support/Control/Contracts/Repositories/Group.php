@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Control\Repositories\Contracts;
+namespace App\Support\Control\Contracts\Repositories;
 
 interface Group
 {

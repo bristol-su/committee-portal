@@ -5,7 +5,9 @@
 @section('settings-content')
 
     <module-instance-create
-        :activity-id="{{$activity->id}}">
+        :activity-id="{{$activity->id}}"
+        for-logic="{{$activity->forLogic->for}}"
+        admin-logic="{{$activity->adminLogic->for}}">
 
     </module-instance-create>
 

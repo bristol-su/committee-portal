@@ -5,7 +5,7 @@ namespace App\Support\Filters\Filters;
 
 
 use App\Support\Authentication\Contracts\Authentication;
-use App\Support\Control\Repositories\Contracts\GroupTag as GroupTagRepositoryContract;
+use App\Support\Control\Contracts\Repositories\GroupTag as GroupTagRepositoryContract;
 use App\Support\Filters\Contracts\Filters\GroupFilter;
 
 class GroupTagged extends GroupFilter
@@ -42,5 +42,23 @@ class GroupTagged extends GroupFilter
         }
         return $options;
     }
+
+    public function name()
+    {
+        return 'Group Tagged';
+    }
+
+    public function description()
+    {
+        return 'Returns true if a group is tagged';
+    }
+
+    public function alias()
+    {
+        return 'group_tagged';
+    }
+
+
+
 
 }

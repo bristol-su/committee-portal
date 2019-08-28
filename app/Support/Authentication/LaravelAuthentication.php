@@ -7,29 +7,30 @@ namespace App\Support\Authentication;
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
 use App\Support\Control\Models\Group;
 use Illuminate\Auth\AuthManager;
+use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Illuminate\Support\Facades\Auth;
 
 class LaravelAuthentication implements AuthenticationContract
 {
 
     /**
-     * @var AuthManager
+     * @var AuthFactory
      */
     private $auth;
 
-    public function __construct()
+    public function __construct(AuthFactory $auth)
     {
-        $this->auth = resolve('auth');
+        $this->auth = $auth;
     }
 
     public function getGroup()
     {
-        if(Auth::guard('role')->check()) {
-            return new Group(Auth::guard('role')->user()->group);
+        if($this->auth->guard('role')->check()) {
+            return new Group($this->auth->guard('role')->user()->group);
         }
 
-        if(Auth::guard('group')->check()) {
-            return Auth::guard('group')->user();
+        if($this->auth->guard('group')->check()) {
+            return $this->auth->guard('group')->user();
         }
 
         return null;
@@ -37,8 +38,8 @@ class LaravelAuthentication implements AuthenticationContract
 
     public function getRole()
     {
-        if(Auth::guard('role')->check()) {
-            return Auth::guard('role')->user();
+        if($this->auth->guard('role')->check()) {
+            return $this->auth->guard('role')->user();
         }
 
         return null;
@@ -46,8 +47,8 @@ class LaravelAuthentication implements AuthenticationContract
 
     public function getUser()
     {
-        if(Auth::guard('web')->check()) {
-            return Auth::guard('web')->user();
+        if($this->auth->guard('web')->check()) {
+            return $this->auth->guard('web')->user();
         }
     }
 

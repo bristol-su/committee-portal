@@ -14,7 +14,7 @@ class ConfigFilterRepositoryTest extends TestCase
 {
 
     /** @test */
-    public function it_retrieves_the_class_name_from_configuration_and_passes_it_to_a_factory(){
+    public function get_by_alias_gets_a_filter_by_alias(){
         $config = $this->prophesize(ConfigRepository::class);
         $config->get('filters.alias')->shouldBeCalled()->willReturn('FilterClassName');
 
@@ -24,6 +24,21 @@ class ConfigFilterRepositoryTest extends TestCase
 
         $repository = new ConfigFilterRepository($config->reveal(), $factory->reveal());
         $this->assertEquals($filter->reveal(), $repository->getByAlias('alias'));
+    }
+
+    /** @test */
+    public function get_by_alias_throws_an_exception_if_filter_not_found(){
+
+    }
+
+    /** @test */
+    public function get_all_returns_all_filters_by_alias(){
+
+    }
+
+    /** @test */
+    public function get_all_returns_an_empty_array_if_no_filters_found(){
+
     }
 
 }

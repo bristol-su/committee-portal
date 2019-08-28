@@ -55,6 +55,15 @@
                 if(this.slugify(oldVal) === this.slug) {
                     this.slug = this.slugify(newVal);
                 }
+                this.$emit('name', newVal);
+            },
+
+            description(newVal) {
+                this.$emit('description', newVal);
+            },
+
+            slug(newVal) {
+                this.$emit('slug', newVal);
             }
         },
 

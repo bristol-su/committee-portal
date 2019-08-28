@@ -3,7 +3,11 @@
 namespace Tests\Integration\Http\Controllers\Auth;
 
 use App\Events\UserVerificationRequestGenerated;
+use App\Support\Control\Models\User as ControlUser;
+use App\Support\Control\Contracts\Repositories\User as ControlUserContract;
 use App\Support\DataPlatform\Contracts\Repositories\User;
+use App\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
+use App\Support\DataPlatform\Models\User as DataUser;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Auth;
 use Prophecy\Argument;
@@ -11,6 +15,18 @@ use Tests\TestCase;
 
 class RegisterControllerTest extends TestCase
 {
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $dataPlatform = $this->prophesize(DataPlatformUserContract::class);
+        $dataPlatform->getByIdentity(Argument::any())->willReturn(new DataUser);
+        $this->instance(DataPlatformUserContract::class, $dataPlatform->reveal());
+
+        $controlUserRepository = $this->prophesize(ControlUserContract::class);
+        $controlUserRepository->findOrCreateByDataId(Argument::any())->willReturn(new ControlUser());
+        $this->instance(ControlUserContract::class, $controlUserRepository->reveal());
+    }
 
     public function register($attributes = [])
     {
@@ -83,10 +99,10 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(1)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUser = $this->prophesize(ControlUser::class);
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(1)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
         $response = $this->register(['identity' => 'tt15951']);
     }
 
@@ -103,12 +119,12 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
+        $controlUser = $this->prophesize(ControlUser::class);
         $controlUser->id()->willReturn(2886);
         $controlUser->dataPlatformId()->willReturn(100);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(100)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(100)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
         $response = $this->register(['identity' => 'tt15951']);
 
         $this->assertDatabaseHas('users', [
@@ -133,12 +149,12 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
+        $controlUser = $this->prophesize(ControlUser::class);
         $controlUser->id()->willReturn(2886);
         $controlUser->dataPlatformId()->willReturn(100);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(100)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(100)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
 
         $hash = $this->prophesize(Hasher::class);
         $hash->make('secret123', Argument::any())->shouldBeCalled()->willReturn('secret123-hashed');
@@ -169,12 +185,12 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
+        $controlUser = $this->prophesize(ControlUser::class);
         $controlUser->id()->willReturn(2886);
         $controlUser->dataPlatformId()->willReturn(100);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(100)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(100)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
 
         $this->expectsEvents(UserVerificationRequestGenerated::class);
 
@@ -195,12 +211,12 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
+        $controlUser = $this->prophesize(ControlUser::class);
         $controlUser->id()->willReturn(2886);
         $controlUser->dataPlatformId()->willReturn(100);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(100)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(100)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
 
         $response = $this->register(['identity' => 'tt15951']);
 
@@ -220,12 +236,12 @@ class RegisterControllerTest extends TestCase
         $this->instance(User::class, $userRepository->reveal());
 
 
-        $controlUser = $this->prophesize(\App\Support\Control\Models\User::class);
+        $controlUser = $this->prophesize(ControlUser::class);
         $controlUser->id()->willReturn(2886);
         $controlUser->dataPlatformId()->willReturn(100);
-        $controlUserRepo = $this->prophesize(\App\Support\Control\Repositories\Contracts\User::class);
-        $controlUserRepo->findOrCreate(100)->shouldBeCalled()->willReturn($controlUser->reveal());
-        $this->instance(\App\Support\Control\Repositories\Contracts\User::class, $controlUserRepo->reveal());
+        $controlUserRepo = $this->prophesize(\App\Support\Control\Contracts\Repositories\User::class);
+        $controlUserRepo->findOrCreateByDataId(100)->shouldBeCalled()->willReturn($controlUser->reveal());
+        $this->instance(\App\Support\Control\Contracts\Repositories\User::class, $controlUserRepo->reveal());
 
         $response = $this->register(['identity' => 'tt15951']);
 

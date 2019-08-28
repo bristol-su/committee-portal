@@ -2,10 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Student;
 use App\Support\Authentication\Contracts\Authentication;
-use App\Support\Control\Repositories\Contracts\Role;
+use App\Support\Control\Contracts\Repositories\Role;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +37,7 @@ class LogIntoRole
     public function handle($request, Closure $next)
     {
         // If they have a committee role, log them in
-        if ($this->authentication->getRole() === null) {
+        if ($this->authentication->getRole() === null && $this->authentication->getUser()->control_id !== null) {
             $roles = $this->roleRepository->allFromStudentControlID(
                 $this->authentication->getUser()->control_id
             );

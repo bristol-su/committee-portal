@@ -17,4 +17,5 @@ interface FilterRepository
      */
     public function getByAlias($alias);
 
+    public function getAll();
 }

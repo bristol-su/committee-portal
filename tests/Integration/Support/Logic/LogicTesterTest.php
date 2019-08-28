@@ -3,7 +3,7 @@
 namespace Tests\Integration\Support\Logic;
 
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
-use App\Support\Control\Models\Contracts\Group;
+use App\Support\Control\Contracts\Models\Group;
 use App\Support\Filters\Contracts\FilterTester;
 use App\Support\Filters\FilterInstance;
 use App\Support\Logic\AuthenticationModelFactory;
@@ -211,5 +211,7 @@ class LogicTesterTest extends TestCase
             \App\Support\Logic\Facade\LogicTester::evaluate($logic)
         );
     }
+
+    // TODO Filters should be evaluated to false if model is null
 
 }

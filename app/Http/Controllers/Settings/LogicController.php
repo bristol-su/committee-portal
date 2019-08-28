@@ -20,29 +20,9 @@ class LogicController extends Controller
         return view('settings.logic.create');
     }
 
-    public function store(Request $request)
-    {
-        return Logic::create($request->all());
-    }
-
     public function show(Logic $logic)
     {
         return view('settings.logic.show')->with(['logic' => $logic]);
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function delete()
-    {
-
     }
 
 }

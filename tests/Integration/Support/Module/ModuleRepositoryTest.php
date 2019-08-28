@@ -12,9 +12,9 @@ use Tests\TestCase;
 class ModuleRepositoryTest extends TestCase
 {
 
-
     /** @test */
     public function it_gets_a_module_by_alias(){
+        // TODO Test the correct module is returned
         $moduleRepository = new ModuleRepository(new Filesystem);
 
         $module = $moduleRepository->findByAlias('fileupload');
