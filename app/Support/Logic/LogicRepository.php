@@ -14,4 +14,8 @@ class LogicRepository implements LogicRepositoryContract
         return Logic::create($attributes);
     }
 
+    public function all()
+    {
+        return Logic::all();
+    }
 }

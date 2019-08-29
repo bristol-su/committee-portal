@@ -12,9 +12,10 @@ use Tests\TestCase;
 class StoreModuleInstanceControllerTest extends TestCase
 {
 
+    // TODO
     /** @test */
     public function needs_testing(){
-
+        $this->assertTrue(true);
     }
 //
 //    private $user;

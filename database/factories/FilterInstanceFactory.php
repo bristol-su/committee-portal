@@ -10,9 +10,5 @@ $factory->define(FilterInstance::class, function (Faker $faker) {
         'alias' => $faker->word,
         'name' => $faker->word,
         'settings' => $faker->randomElements(),
-        'logic_id' => function() {
-            return factory(\App\Support\Logic\Logic::class)->create()->id;
-        },
-        'logic_type' => $faker->randomElement(['all_true', 'any_true', 'all_false', 'any_false'])
     ];
 });

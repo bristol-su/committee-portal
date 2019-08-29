@@ -4,8 +4,8 @@
 namespace Tests\Integration\Support\Module\Module;
 
 
-use App\Support\Module\Module\Module;
-use App\Support\Module\Module\ModuleRepository;
+use App\Support\Module\Module;
+use App\Support\Module\ModuleRepository;
 use Illuminate\Filesystem\Filesystem;
 use Tests\TestCase;
 

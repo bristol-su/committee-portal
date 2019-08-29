@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a938d0ad2ffa65a9e0859623403d75a",
+    "content-hash": "af9d31b460fd8dd776c92653600cce1e",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -130,16 +130,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.110.4",
+            "version": "3.110.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "784750852cb940e44de46b748d528123729edf99"
+                "reference": "e0c217851369efd42382c44b8c003db0b58abbdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/784750852cb940e44de46b748d528123729edf99",
-                "reference": "784750852cb940e44de46b748d528123729edf99",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e0c217851369efd42382c44b8c003db0b58abbdd",
+                "reference": "e0c217851369efd42382c44b8c003db0b58abbdd",
                 "shasum": ""
             },
             "require": {
@@ -209,7 +209,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-08-27T18:10:37+00:00"
+            "time": "2019-08-28T18:33:29+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -4977,16 +4977,16 @@
         },
         {
             "name": "twigger/unioncloud",
-            "version": "dev-master",
+            "version": "v1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/nus-unioncloud-api-wrapper.git",
-                "reference": "6918b05216c33e59743a37f312509a9459a630f4"
+                "reference": "52e474552fdc7a60f65887b7a150103d8be3dfe1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/nus-unioncloud-api-wrapper/zipball/6918b05216c33e59743a37f312509a9459a630f4",
-                "reference": "6918b05216c33e59743a37f312509a9459a630f4",
+                "url": "https://api.github.com/repos/bristol-su/nus-unioncloud-api-wrapper/zipball/52e474552fdc7a60f65887b7a150103d8be3dfe1",
+                "reference": "52e474552fdc7a60f65887b7a150103d8be3dfe1",
                 "shasum": ""
             },
             "require": {
@@ -5022,7 +5022,7 @@
                 }
             ],
             "description": "An API Wrapper for the NUS UnionCloud platform",
-            "time": "2019-08-15T11:45:21+00:00"
+            "time": "2019-08-29T10:04:32+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -7900,9 +7900,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "twigger/unioncloud": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

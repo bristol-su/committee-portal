@@ -5,6 +5,7 @@ namespace Tests\Integration\Support\Activity;
 
 
 use App\Support\Activity\Activity;
+use App\Support\Logic\Logic;
 use App\Support\ModuleInstance\ModuleInstance;
 use Carbon\Carbon;
 use Tests\TestCase;
@@ -72,12 +73,16 @@ class ActivityTest extends TestCase
 
     /** @test */
     public function it_has_a_for_logic(){
-
+        $activity = factory(Activity::class)->create();
+        $this->assertInstanceOf(Logic::class, $activity->forLogic);
+        $this->assertEquals($activity->for_logic, $activity->forLogic->id);
     }
 
     /** @test */
     public function it_has_an_admin_logic(){
-
+        $activity = factory(Activity::class)->create();
+        $this->assertInstanceOf(Logic::class, $activity->adminLogic);
+        $this->assertEquals($activity->admin_logic, $activity->adminLogic->id);
     }
 
 }

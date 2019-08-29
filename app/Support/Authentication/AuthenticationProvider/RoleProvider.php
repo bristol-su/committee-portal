@@ -46,7 +46,7 @@ class RoleProvider implements UserProvider
         if (isset($credentials['committee_role_id'])) {
             return $this->retrieveById($credentials['committee_role_id']);
         }
-        return false;
+        return null;
     }
 
     /**
@@ -59,9 +59,12 @@ class RoleProvider implements UserProvider
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         if (isset($credentials['student_control_id']) && isset($credentials['committee_role_id'])) {
-            // Ensure the user owns the position
-            $role = $this->retrieveById($credentials['committee_role_id']);
-            if ($role !== false && $role->student_id === (int) $credentials['student_control_id']) {
+            try {
+                $role = $this->retrieveById($credentials['committee_role_id']);
+            } catch (\Exception $e) {
+                return false;
+            }
+            if ($role->student_id === (int) $credentials['student_control_id']) {
                 return true;
             }
         }

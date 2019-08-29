@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Support\Filters\Contracts\Filters\Filter;
 use App\Support\Module\Contracts\ModuleRepository;
-use App\Support\Module\Module\Module;
+use App\Support\Module\Module;
 
 class ModuleController
 {

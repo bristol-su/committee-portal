@@ -4,7 +4,7 @@
 namespace Tests\Unit\Support\Module;
 
 
-use App\Support\Module\Module\ModuleRepository;
+use App\Support\Module\ModuleRepository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Nwidart\Modules\Contracts\RepositoryInterface;

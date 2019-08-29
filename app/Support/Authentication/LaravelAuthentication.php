@@ -5,7 +5,6 @@ namespace App\Support\Authentication;
 
 
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
-use App\Support\Control\Models\Group;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +25,7 @@ class LaravelAuthentication implements AuthenticationContract
     public function getGroup()
     {
         if($this->auth->guard('role')->check()) {
-            return new Group($this->auth->guard('role')->user()->group);
+            return $this->auth->guard('role')->user()->group;
         }
 
         if($this->auth->guard('group')->check()) {

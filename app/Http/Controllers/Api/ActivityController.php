@@ -20,8 +20,8 @@ class ActivityController extends Controller
             'activity_for' => $request->input('activity_for'),
             'for_logic' => $request->input('for_logic'),
             'admin_logic' => $request->input('admin_logic'),
-            'start_date' => ($request->input('start_date')?$request->input('start_date'.':00'):null),
-            'end_date' => ($request->input('end_date')?$request->input('end_date'.':00'):null)
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date')
         ]);
     }
 }

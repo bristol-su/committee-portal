@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Support\Filters\FilterInstance;
+use App\Support\Logic\Contracts\LogicRepository;
 use App\Support\Logic\Logic;
 use Illuminate\Http\Request;
 
@@ -22,10 +23,10 @@ class LogicController extends Controller
         return Logic::all();
     }
 
-    public function store(Request $request)
+    public function store(Request $request, LogicRepository $repository)
     {
         /** @var Logic $logic */
-        $logic = Logic::create([
+        $logic = $repository->create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'for' => $request->input('for')

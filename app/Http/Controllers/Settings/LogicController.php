@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Support\Logic\Contracts\LogicRepository;
 use App\Support\Logic\Logic;
 use Illuminate\Http\Request;
 
 class LogicController extends Controller
 {
-    public function index()
+    public function index(LogicRepository $logicRepository)
     {
         return view('settings.logic.index')->with([
-            'logics' => Logic::all()
+            'logics' => $logicRepository->all()
         ]);
     }
 

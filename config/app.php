@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\LogicServiceProvider;
+
 return [
 
     /*
@@ -173,7 +175,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         \App\Providers\ControlProvider::class,
         App\Providers\EventServiceProvider::class,
-        \App\Providers\FilterProvider::class,
+        \App\Providers\FilterServiceProvider::class,
+        LogicServiceProvider::class,
         \App\Providers\GoogleDriveServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,

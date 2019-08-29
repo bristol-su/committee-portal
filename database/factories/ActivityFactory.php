@@ -33,3 +33,10 @@ $factory->define(Activity::class, function (Faker $faker) {
 
 $factory->state(Activity::class, 'user', ['activity_for' => 'user']);
 $factory->state(Activity::class, 'group', ['activity_for' => 'group']);
+$factory->state(Activity::class, 'always_active', ['start_date' => null, 'end_date' => null]);
+$factory->state(Activity::class, 'inactive', function (Faker $faker) {
+    return [
+        'start_date' => $faker->dateTimeInInterval('-30 days', '-3 days'),
+        'end_date' => $faker->dateTimeInInterval('-3 days', '-1 day')
+    ];
+});

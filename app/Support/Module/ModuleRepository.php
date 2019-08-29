@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Module\Module;
+namespace App\Support\Module;
 
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
 use Illuminate\Filesystem\Filesystem;
@@ -36,7 +36,7 @@ class ModuleRepository implements ModuleRepositoryContract
         $moduleJsons = $this->filesystem->glob(config('app.module.path').'/*/alias.json');
         foreach ($moduleJsons as $json) {
             $alias = json_decode($this->filesystem->get($json))->alias;
-            $modules[$alias] = new \App\Support\Module\Module\Module($alias);
+            $modules[$alias] = new \App\Support\Module\Module($alias, config());
         }
 
         return $modules;

@@ -9,9 +9,11 @@ use App\Support\Filters\Contracts\FilterRepository as FilterRepositoryContract;
 use App\Support\Filters\Contracts\FilterTester as FilterTesterContract;
 use App\Support\Filters\FilterInstance;
 use App\Support\Filters\FilterTester;
+use App\Support\Logic\Contracts\LogicRepository as LogicRepositoryContract;
+use App\Support\Logic\LogicRepository;
 use Illuminate\Support\ServiceProvider;
 
-class FilterProvider extends ServiceProvider
+class LogicServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -20,10 +22,7 @@ class FilterProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(FilterRepositoryContract::class, ConfigFilterRepository::class);
-        $this->app->bind(FilterFactoryContract::class, \App\Support\Filters\FilterFactory::class);
-        $this->app->bind(FilterTesterContract::class, FilterTester::class);
-        $this->app->bind(FilterInstanceContract::class, FilterInstance::class);
+        $this->app->bind(LogicRepositoryContract::class, LogicRepository::class);
     }
 
     /**

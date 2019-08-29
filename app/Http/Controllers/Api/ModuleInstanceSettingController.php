@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Support\Module\Module\Module;
+use App\Support\Module\Module;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use Illuminate\Http\Request;
 

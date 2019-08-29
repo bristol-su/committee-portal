@@ -6,6 +6,7 @@ namespace Tests\Integration\Support\Activity;
 
 use App\Support\Activity\Activity;
 use App\Support\Activity\Repository as ActivityRepository;
+use App\Support\Logic\Logic;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
@@ -97,12 +98,31 @@ class RepositoryTest extends TestCase
 
     /** @test */
     public function all_retrieves_all_activities(){
-
+        $activities = factory(Activity::class, 10)->create();
+        $activities->push(factory(Activity::class)->state('always_active')->create());
+        $activities->push(factory(Activity::class)->state('inactive')->create());
+        $repository = new ActivityRepository();
+        $allActivities = $repository->all();
+        foreach($activities as $activity) {
+            $this->assertModelEquals($activity, $allActivities->shift());
+        }
     }
 
     /** @test */
     public function create_creates_an_activity(){
+        $attributes = [
+            'name' => 'activity name',
+            'description' => 'This is some activity here',
+            'activity_for' => 'user',
+            'for_logic' => factory(Logic::class)->create()->id,
+            'admin_logic' => factory(Logic::class)->create()->id,
+            'start_date' => Carbon::now()->subDay()->toDateTimeString(),
+            'end_date' => Carbon::now()->addDay()->toDateTimeString(),
+        ];
 
+        $repository = new ActivityRepository;
+        $repository->create($attributes);
+        $this->assertDatabaseHas('activities', $attributes);
     }
 
 }

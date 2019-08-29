@@ -56,9 +56,10 @@ class GroupProvider implements UserProvider
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
         if (isset($credentials['group_id'])) {
-            $group = $this->retrieveById($credentials['group_id']);
-            if ($group !== false) {
+            try {
+                $group = $this->retrieveById($credentials['group_id']);
                 return true;
+            } catch (\Exception $e) {
             }
         }
         return false;

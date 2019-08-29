@@ -16,7 +16,7 @@ use App\Support\Logic\FilterFactory;
 use App\Support\Logic\LogicTester;
 use App\Support\Module\Contracts\ModuleInstanceRepository as ModuleInstanceRepositoryContract;
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
-use App\Support\Module\Module\ModuleRepository;
+use App\Support\Module\ModuleRepository;
 use App\Support\ModuleInstance\Contracts\Evaluator\ActivityEvaluator as ActivityEvaluatorContract;
 use App\Support\ModuleInstance\Contracts\Evaluator\Evaluation as EvaluationContract;
 use App\Support\ModuleInstance\Contracts\Evaluator\ModuleInstanceEvaluator as ModuleInstanceEvaluatorContract;

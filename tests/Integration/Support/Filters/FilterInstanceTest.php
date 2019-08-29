@@ -23,17 +23,20 @@ class FilterInstanceTest extends TestCase
 
     /** @test */
     public function name_returns_the_filter_instance_name(){
-
+        $filterInstance = factory(FilterInstance::class)->create(['name' => 'A name']);
+        $this->assertEquals('A name', $filterInstance->name());
     }
 
     /** @test */
     public function alias_returns_the_filter_alias(){
-
+        $filterInstance = factory(FilterInstance::class)->create(['alias' => 'alias1']);
+        $this->assertEquals('alias1', $filterInstance->alias());
     }
 
     /** @test */
     public function settings_returns_the_filter_instance_settings(){
-
+        $filterInstance = factory(FilterInstance::class)->create(['settings' => ['setting1' => 'A Value']]);
+        $this->assertEquals(['setting1' => 'A Value'], $filterInstance->settings());
     }
 
 }

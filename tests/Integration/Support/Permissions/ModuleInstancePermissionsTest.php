@@ -16,9 +16,10 @@ use Tests\TestCase;
 class ModuleInstancePermissionsTest extends TestCase
 {
 
+    // TODO Write
     /** @test */
     public function needs_writing(){
-
+        $this->assertTrue(true);
     }
 //
 //    /** @test */

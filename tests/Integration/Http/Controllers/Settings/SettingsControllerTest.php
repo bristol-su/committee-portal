@@ -15,7 +15,8 @@ class SettingsControllerTest extends TestCase
 
     /** @test */
     public function index_returns_the_correct_view(){
-
+        $response = $this->get('/settings');
+        $response->assertViewIs('settings.settings');
     }
 
 }

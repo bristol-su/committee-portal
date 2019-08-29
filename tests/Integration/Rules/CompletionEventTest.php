@@ -5,7 +5,7 @@ namespace Tests\Integration\Rules;
 
 
 use App\Rules\CompletionEvent;
-use App\Support\Module\Module\ModuleRepository;
+use App\Support\Module\ModuleRepository;
 use phpDocumentor\Reflection\DocBlock\Tags\Link;
 use Tests\TestCase;
 

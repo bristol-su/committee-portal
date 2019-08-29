@@ -21,4 +21,7 @@ interface User
      */
     public function getByIdentity($identity) : UserModelContract;
 
+    public function getByEmail($email) : UserModelContract;
+
+    public function getByStudentID($studentId) : UserModelContract;
 }

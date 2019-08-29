@@ -13,9 +13,10 @@ use Tests\TestCase;
 
 class SitewidePermissionTest extends TestCase
 {
+    // TODO Write
     /** @test */
     public function needs_writing(){
-
+        $this->assertTrue(true);
     }
 
 //

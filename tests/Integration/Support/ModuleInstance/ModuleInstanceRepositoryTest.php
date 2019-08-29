@@ -4,6 +4,7 @@ namespace Tests\Integration\Support\Module;
 
 use App\Support\Activity\Activity;
 use App\Support\ModuleInstance\ModuleInstance;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use App\Support\ModuleInstance\ModuleInstanceRepository;
 
@@ -24,7 +25,10 @@ class ModuleInstanceRepositoryTest extends TestCase
 
     /** @test */
     public function it_throws_an_exception_if_module_instance_not_found(){
+        $this->expectException(ModelNotFoundException::class);
 
+        $repository = new ModuleInstanceRepository;
+        $repository->getById(10);
     }
 
     /** @test */

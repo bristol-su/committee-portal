@@ -11,8 +11,8 @@ class ModuleInstanceController extends Controller
 
     public function show(Activity $activity, ModuleInstance $moduleInstance)
     {
-        if($moduleInstance->activity_id !== $activity->id) {
-            abort(404);
+        if(!$activity->is($moduleInstance->activity)) {
+            abort(404, 'The module instance does not belong to the activity');
         }
         return view('settings.module_instances.show')->with('moduleInstance', $moduleInstance);
     }

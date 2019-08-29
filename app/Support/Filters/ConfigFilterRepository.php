@@ -30,7 +30,9 @@ class ConfigFilterRepository implements FilterRepositoryContract
     public function getByAlias($alias)
     {
         $class = $this->config->get('filters.' . $alias);
-
+        if($class === null) {
+            throw new \Exception('Alias not found');
+        }
         return $this->filterFactory->createFilterFromClassName($class);
     }
 

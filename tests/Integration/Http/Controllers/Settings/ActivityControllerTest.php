@@ -48,6 +48,7 @@ class ActivityControllerTest extends TestCase
 
     /** @test */
     public function create_returns_the_correct_view(){
-
+        $response = $this->get('/settings/activity/create');
+        $response->assertViewIs('settings.activity.create');
     }
 }

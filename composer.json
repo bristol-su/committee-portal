@@ -24,7 +24,7 @@
         "nwidart/laravel-modules": "^4.0",
         "php-console/php-console": "^3.1",
         "spatie/laravel-permission": "^2.35",
-        "twigger/unioncloud": "dev-master"
+        "twigger/unioncloud": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
