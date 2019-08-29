@@ -7,7 +7,6 @@ export default class extends BaseResource{
     }
 
     create(attributes) {
-        console.log(attributes);
         return this.request('post', '/module_instance_setting', attributes);
     }
 

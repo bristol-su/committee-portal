@@ -2,7 +2,8 @@
     <div>
         <form-wizard
             title="Create a new module"
-            subtitle="">
+            subtitle=""
+            @on-complete="saveActivity">
             <tab-content title="Module Type">
                 <module-type v-model="form.alias" @module="selectedModule = $event">
 
@@ -18,7 +19,8 @@
             </tab-content>
             <tab-content title="Behaviour">
                 <behaviour
-                    :for-logic="forLogic">
+                    :for-logic="forLogic"
+                    @update="updateBehaviour">
 
                 </behaviour>
             </tab-content>
@@ -32,8 +34,7 @@
             <tab-content title="Permissions">
                 <permissions
                     :permissions="selectedModule.permissions"
-                    v-model="form.module_instance_permissions"
-                    :for-logic="forLogic">
+                    v-model="form.module_instance_permissions">
 
                 </permissions>
             </tab-content>
@@ -67,9 +68,9 @@
                 required: true,
                 type: String
             },
-            adminLogic: {
+            activityId: {
                 required: true,
-                type: String
+                type: Number
             }
         },
 
@@ -80,10 +81,39 @@
                     name: '',
                     description: '',
                     slug: '',
+                    active: null,
+                    visible: null,
+                    mandatory: null,
+                    complete: '',
                     module_instance_settings: null,
                     module_instance_permissions: null
                 },
                 selectedModule: {}
+            }
+        },
+
+        methods: {
+            updateBehaviour(type, value) {
+                this.form[type] = value;
+            },
+
+            saveActivity() {
+                this.$api.moduleInstances().create({
+                    'alias': this.form.alias,
+                    'activity_id': this.activityId,
+                    'name': this.form.name,
+                    'description': this.form.description,
+                    'slug': this.form.slug,
+                    'active': this.form.active,
+                    'visible':  this.form.visible,
+                    'mandatory': this.form.mandatory,
+                    'complete': this.form.complete,
+                    'module_instance_settings_id': this.form.module_instance_settings,
+                    'module_instance_permissions_id': this.form.module_instance_permissions
+                })
+                    .then(response => console.log(response))
+                    .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
+
             }
         }
     }

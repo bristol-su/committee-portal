@@ -5,7 +5,9 @@ import Settings from './resources/settings';
 import Permissions from './resources/permissions'
 import Filters from './resources/filters';
 import FilterInstances from './resources/filterinstances';
+import ModuleInstances from './resources/moduleinstances';
 
+// TODO Implement Cache
 export default class {
     constructor(baseUrl) {
         this._http = axios.create({
@@ -43,5 +45,9 @@ export default class {
 
     filterInstance() {
         return new FilterInstances(this._http);
+    }
+
+    moduleInstances() {
+        return new ModuleInstances(this._http);
     }
 }

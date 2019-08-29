@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Support\Control\Models;
 
+use Illuminate\Contracts\Support\Arrayable;
 
-class Model
+class Model implements Arrayable
 {
     protected $attributes;
 
@@ -15,11 +15,19 @@ class Model
 
     public function __get($name)
     {
+        if(!is_array($this->attributes)) {
+            dd($this->attributes, $name);
+        }
         if(isset($this->attributes[$name])) {
             return $this->attributes[$name];
         }
 
         return null;
+    }
+
+    public function toArray()
+    {
+        return $this->attributes;
     }
 
 }

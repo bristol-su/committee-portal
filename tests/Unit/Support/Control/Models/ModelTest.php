@@ -22,4 +22,13 @@ class ModelTest extends TestCase
         $this->assertNull($model->anotherAttr);
     }
 
+    /** @test */
+    public function it_returns_all_attributes_as_an_array(){
+        $parameters = [
+            'foo' => 'bar',
+            'baz' => 'qui'
+        ];
+        $model = new Model($parameters);
+        $this->assertEquals($parameters, $model->toArray());
+    }
 }

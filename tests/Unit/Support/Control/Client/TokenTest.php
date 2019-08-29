@@ -35,11 +35,5 @@ class TokenTest extends TestCase
         $this->assertEquals('SecretToken', $accessToken);
     }
 
-    /** @test */
-    public function it_actually_makes_a_request_Env_vars_must_be_set(){
-
-        $token = new Token(new Client);
-        $this->assertGreaterThan(20, strlen($token->token()));
-    }
 
 }

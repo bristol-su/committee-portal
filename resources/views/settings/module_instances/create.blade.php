@@ -6,8 +6,7 @@
 
     <module-instance-create
         :activity-id="{{$activity->id}}"
-        for-logic="{{$activity->forLogic->for}}"
-        admin-logic="{{$activity->adminLogic->for}}">
+        for-logic="{{$activity->activity_for}}">
 
     </module-instance-create>
 

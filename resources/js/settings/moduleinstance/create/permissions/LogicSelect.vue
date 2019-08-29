@@ -17,10 +17,6 @@
             value: {
                 required: false,
                 default: null
-            },
-            forLogic: {
-                required: true,
-                type: String
             }
         },
 
@@ -47,15 +43,11 @@
 
         computed: {
             options() {
-                return this.logic.filter(logic => {
-                    return (this.forLogic === 'role'
-                        || (this.forLogic === 'group' && logic.for !== 'role')
-                        || (this.forLogic === 'user' && logic.for === 'user'));
-                }).map(logic => {
-                        return {
-                            text: logic.name,
-                            value: logic.id
-                        }
+                return this.logic.map(logic => {
+                    return {
+                        text: logic.name,
+                        value: logic.id
+                    }
                 });
             }
         }

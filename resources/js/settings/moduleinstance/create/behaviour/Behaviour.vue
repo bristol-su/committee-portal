@@ -15,7 +15,9 @@
 
             </logic-select>
         </b-form-group>
-        Complete
+        <b-form-group label="Complete (todo)?">
+            <b-input type="text" v-model="complete"></b-input>
+        </b-form-group>
     </div>
 </template>
 
@@ -36,8 +38,24 @@
             return {
                 active: null,
                 visible: null,
-                mandatory: null
+                mandatory: null,
+                complete: ''
             }
+        },
+
+        watch: {
+            active() {
+                this.$emit('update', 'active', this.active);
+            },
+            visible() {
+                this.$emit('update', 'visible', this.visible);
+            },
+            mandatory() {
+                this.$emit('update', 'mandatory', this.mandatory);
+            },
+            complete() {
+                this.$emit('update', 'complete', this.complete);
+            },
         }
     }
 </script>

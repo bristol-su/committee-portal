@@ -8,6 +8,7 @@ use App\Support\Authentication\LaravelAuthentication;
 use App\Support\Control\Models\Group;
 use App\Support\Control\Models\Role;
 use App\User;
+use Prophecy\Argument;
 use Tests\TestCase;
 
 class LaravelAuthenticationTest extends TestCase
@@ -33,9 +34,10 @@ class LaravelAuthenticationTest extends TestCase
                 'id' => 2
             ])
         ]);
-        $this->be($role, 'role');
-
-        $this->assertEquals(2, $this->authentication->getGroup()->id);
+        $this->beRole($role);
+        $group = $this->authentication->getGroup();
+        $this->assertInstanceOf(Group::class, $group);
+        $this->assertEquals(2, $group->id);
     }
 
     /** @test */
@@ -44,7 +46,7 @@ class LaravelAuthenticationTest extends TestCase
         $group = new Group([
             'id' => 2
         ]);
-        $this->be($group, 'group');
+        $this->beGroup($group);
 
         $this->assertEquals(2, $this->authentication->getGroup()->id);
     }
@@ -52,6 +54,7 @@ class LaravelAuthenticationTest extends TestCase
     /** @test */
     public function get_group_returns_null_if_not_logged_into_a_group_or_role()
     {
+        $this->stubControl();
         $this->assertNull($this->authentication->getGroup());
     }
 
@@ -59,7 +62,7 @@ class LaravelAuthenticationTest extends TestCase
     public function get_role_gets_role_if_logged_in()
     {
         $role = new Role(['id' => 2]);
-        $this->be($role, 'role');
+        $this->beRole($role);
 
         $this->assertEquals(2, $this->authentication->getRole()->id);
     }
@@ -67,6 +70,7 @@ class LaravelAuthenticationTest extends TestCase
     /** @test */
     public function get_role_returns_null_if_not_logged_into_role()
     {
+        $this->stubControl();
         $this->assertNull($this->authentication->getRole());
     }
 

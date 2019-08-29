@@ -4,8 +4,6 @@
 namespace App\Support\Control\Repositories;
 
 
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Student;
 use App\Support\Control\Contracts\Client\Client as ControlClient;
 use App\Support\Control\Contracts\Repositories\Role as RoleContract;
 use Illuminate\Support\Collection;

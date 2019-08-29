@@ -60,7 +60,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
-        'role' => LogIntoRole::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
@@ -95,10 +94,7 @@ class Kernel extends HttpKernel
 
         'portal' => [
             'auth:web',
-            'role',
             'verified',
-//            LoadGroupTagsFromControl::class,
-//            LoadStudentTagsFromControl::class
         ],
 
         'module' => [
@@ -150,9 +146,6 @@ class Kernel extends HttpKernel
 
         // Check a users email is verified
         EnsureEmailIsVerified::class,
-
-        // Log into a committee role
-        LogIntoRole::class,
 
         // Authorization middleware for use with can:
         Authorize::class,

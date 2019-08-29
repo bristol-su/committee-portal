@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\ControlClientServiceProvider;
 use App\Providers\LogicServiceProvider;
 
 return [
@@ -173,7 +174,8 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        \App\Providers\ControlProvider::class,
+        ControlClientServiceProvider::class,
+        \App\Providers\ControlServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         \App\Providers\FilterServiceProvider::class,
         LogicServiceProvider::class,

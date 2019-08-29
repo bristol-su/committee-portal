@@ -10,10 +10,8 @@
                 :label-for="permission.permission"
                 v-for="permission in permissions"
             >
-                <logic-select :for-logic="forLogic" v-model="form[permission.permission]"></logic-select>
+                <logic-select v-model="form[permission.permission]"></logic-select>
             </b-form-group>
-
-            <b-button type="submit" variant="primary">Save Permissions</b-button>
         </div>
     </div>
 </template>
@@ -25,49 +23,48 @@
         components: {LogicSelect},
         props: {
             permissions: {
-                required: true,
-                type: Object
-            },
-            forLogic: {
-                required: true,
-                type: String
+                required: false,
+                default: function() {
+                    return []
+                }
             }
         },
 
         data() {
             return {
-                permissions: [],
                 form: {},
+                id: null
             }
         },
 
-        created() {
-            this.getModulePermissions();
-            this.form = (this.permissions.permissions === undefined ? {} : this.permissions.permissions);
+        watch: {
+            form: {
+                deep: true,
+                handler: _.debounce(function() {
+                    if(this.id === null) {
+                        this.createPermissions();
+                    } else {
+                        this.updatePermissions();
+                    }
+                }, 1000)
+            }
         },
 
         methods: {
 
-            onSubmit() {
-                this.$http.post('/admin/settings/moduleinstance/' + this.moduleInstance.id + '/permissions', {permissions: this.form})
-                    .then(response => {
-                        this.$notify.success('Permissions Saved');
-                        this.$emit('saved', response.data);
-                    })
-                    .catch(error => this.$notify.alert('Permissions not saved: ' + error.message));
-            }
-        },
+            createPermissions() {
+                this.$api.permissions().create({participant_permissions: this.form, admin_permissions: {}})
+                    .then(response => this.id = response.data.id)
+                    .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
+                    .then(() => this.$emit('input', this.id));
+            },
 
-        computed: {
-            logicOptions() {
-                return this.studentLogic.map(logic => {
-                    return {
-                        value: logic.id,
-                        text: logic.name
-                    };
-                })
-            }
-        }
+            updatePermissions() {
+                this.$api.permissions().update(this.id, {participant_permissions: this.form, admin_permissions: {}})
+                    .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
+                    .then(() => this.$emit('input', this.id));
+            },
+        },
     }
 </script>
 

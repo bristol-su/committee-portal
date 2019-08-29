@@ -17,11 +17,14 @@ class ModuleInstance extends Model implements ModuleInstanceContract
         'alias',
         'activity_id',
         'name',
+        'slug',
         'description',
         'active',
         'visible',
         'mandatory',
-        'complete'
+        'complete',
+        'module_instance_settings_id',
+        'module_instance_permissions_id'
     ];
 
     public function __construct(array $attributes = [])

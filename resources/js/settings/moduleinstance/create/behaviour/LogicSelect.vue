@@ -48,8 +48,7 @@
         computed: {
             options() {
                 return this.logic.filter(logic => {
-                    return (this.forLogic === 'role'
-                        || (this.forLogic === 'group' && logic.for !== 'role')
+                    return ((this.forLogic === 'group' && logic.for !== 'role')
                         || (this.forLogic === 'user' && logic.for === 'user'));
                 }).map(logic => {
                         return {

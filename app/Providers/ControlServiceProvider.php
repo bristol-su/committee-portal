@@ -30,7 +30,7 @@ use GuzzleHttp\ClientInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class ControlProvider extends ServiceProvider implements DeferrableProvider
+class ControlServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -40,7 +40,6 @@ class ControlProvider extends ServiceProvider implements DeferrableProvider
     public function register()
     {
         // Client
-        $this->app->singleton(ClientContract::class, GuzzleClient::class);
         $this->app->bind(ClientInterface::class, Client::class);
         $this->app->bind(TokenContract::class, Token::class);
 
@@ -65,25 +64,6 @@ class ControlProvider extends ServiceProvider implements DeferrableProvider
     public function boot()
     {
         //
-    }
-
-    public function provides()
-    {
-        return [
-            ClientContract::class,
-            ClientInterface::class,
-            TokenContract::class,
-
-            GroupTagModel::class,
-            GroupModelContract::class,
-            RoleModelContract::class,
-            UserContract::class,
-
-            GroupRepositoryContract::class,
-            GroupTagRepositoryContract::class,
-            RoleRepositoryContract::class,
-            UserRepositoryContract::class
-        ];
     }
 
 }
