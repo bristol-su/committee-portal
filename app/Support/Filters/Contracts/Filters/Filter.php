@@ -16,6 +16,7 @@ abstract class Filter implements Arrayable
      */
     abstract public function options(): array;
 
+    abstract public function hasModel(): bool;
     /**
      * Test if the filter passes
      *

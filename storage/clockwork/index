@@ -301,3 +301,17 @@
 1567162417-4368-647043333,1567162417.327,GET,/api/logic,"App\Http\Controllers\Api\LogicController@index",200,112.68520355225
 1567162417-4572-966907062,1567162417.393,GET,/js/vue-sidebar-menu.js.map,"App\Modules\FileUpload\Http\Controllers\StrategicPlanController@showUserPage",404,66.89715385437
 1567162417-5444-300560263,1567162417.442,GET,/api/logic,"App\Http\Controllers\Api\LogicController@index",200,106.95910453796
+1567165066-9086-476590870,1567165066.848,GET,/,"App\Http\Controllers\PortalController@guestView",302,63.70997428894
+1567165067-0998-1331736905,1567165066.919,GET,/portal,"App\Http\Controllers\Pages\PortalController@portal",302,183.12811851501
+1567165067-6039-924618078,1567165067.107,GET,/welcome-fair,"App\Http\Controllers\Pages\ActivityController@participant",200,499.91178512573
+1567165071-5378-1892220647,1567165071.464,GET,/settings,"App\Http\Controllers\Settings\SettingsController@index",200,76.824903488159
+1567165092-8701-535067172,1567165092.796,GET,/settings/activity/create,"App\Http\Controllers\Settings\ActivityController@create",200,79.097986221313
+1567165093-3304-1664506171,1567165093.245,GET,/api/logic,"App\Http\Controllers\Api\LogicController@index",200,88.172197341919
+1567165093-4046-1812585921,1567165093.335,GET,/api/logic,"App\Http\Controllers\Api\LogicController@index",200,73.055982589722
+1567165391-7910-580472672,1567165391.722,GET,/settings/activity,"App\Http\Controllers\Settings\ActivityController@index",200,72.351217269897
+1567165393-6073-1118444597,1567165393.477,GET,/settings/activity/1,"App\Http\Controllers\Settings\ActivityController@show",200,133.10408592224
+1567165393-9849-394642398,1567165393.917,GET,/api/activity/1/module_instances,"App\Http\Controllers\Api\Relationships\ActivityModuleInstancesController@index",200,70.932865142822
+1567165393-9907-1922523232,1567165393.915,GET,/api/logic/2,"App\Http\Controllers\Api\LogicController@show",200,79.975128173828
+1567165394-0074-1610453541,1567165393.916,GET,/api/logic/3,"App\Http\Controllers\Api\LogicController@show",200,95.600128173828
+1567165395-3461-911427817,1567165395.105,GET,/portal,"App\Http\Controllers\Pages\PortalController@portal",302,244.81391906738
+1567165395-5632-150769767,1567165395.356,GET,/welcome-fair-applications,"App\Http\Controllers\Pages\ActivityController@participant",200,210.54100990295

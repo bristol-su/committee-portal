@@ -19,9 +19,13 @@ abstract class UserFilter extends Filter
         $this->authentication = $authentication;
     }
 
+    public function hasModel(): bool
+    {
+        return $this->authentication->getUser() !== null;
+    }
+
     public function model()
     {
-        // TODO Test if null
         return $this->authentication->getUser();
     }
 

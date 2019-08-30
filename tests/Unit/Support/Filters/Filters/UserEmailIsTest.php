@@ -5,6 +5,7 @@ namespace Tests\Unit\Support\Filters\Filters;
 
 
 use App\Support\Authentication\Contracts\Authentication;
+use App\Support\Control\Contracts\Repositories\GroupTag as GroupTagRepositoryContract;
 use App\Support\Filters\Filters\UserEmailIs;
 use App\User;
 use Tests\TestCase;
@@ -60,6 +61,25 @@ class UserEmailIsTest extends TestCase
         $filter = new UserEmailIs($authentication->reveal());
 
         $this->assertEquals('user_email', $filter->alias());
+    }
+
+    /** @test */
+    public function has_model_returns_true_if_get_user_not_null(){
+        $auth = $this->prophesize(Authentication::class);
+        $auth->getUser()->shouldBeCalled()->willReturn(new \App\Support\Control\Models\User);
+
+        $userEmailFilter = new UserEmailIs($auth->reveal());
+        $this->assertTrue($userEmailFilter->hasModel());
+    }
+
+
+    /** @test */
+    public function has_model_returns_false_if_get_user_null(){
+        $auth = $this->prophesize(Authentication::class);
+        $auth->getUser()->shouldBeCalled()->willReturn(null);
+
+        $userEmailFilter = new UserEmailIs($auth->reveal());
+        $this->assertFalse($userEmailFilter->hasModel());
     }
 
 }

@@ -24,6 +24,9 @@ class FilterTester implements FilterTesterContract
     public function evaluate(FilterInstance $filterInstance): bool
     {
         $filter = $this->repository->getByAlias($filterInstance->alias());
+        if(!$filter->hasModel()) {
+            return false;
+        }
         return $filter->evaluate($filterInstance->settings());
     }
 

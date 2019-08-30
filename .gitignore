@@ -18,3 +18,4 @@ public/css/*
 .output
 public/mix-manifest.json
 report.*
+/coverage

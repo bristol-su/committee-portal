@@ -89,4 +89,23 @@ class GroupTaggedTest extends TestCase
 
         $this->assertFalse($groupTagFilter->evaluate(['tag' => 'reference.ref3']));
     }
+
+    /** @test */
+    public function has_model_returns_true_if_get_group_not_null(){
+        $auth = $this->prophesize(Authentication::class);
+        $auth->getGroup()->shouldBeCalled()->willReturn(new \App\Support\Control\Models\Group);
+
+        $groupTaggedFilter = new GroupTagged($auth->reveal(), $this->prophesize(GroupTagRepositoryContract::class)->reveal());
+        $this->assertTrue($groupTaggedFilter->hasModel());
+    }
+
+
+    /** @test */
+    public function has_model_returns_false_if_get_group_null(){
+        $auth = $this->prophesize(Authentication::class);
+        $auth->getGroup()->shouldBeCalled()->willReturn(null);
+
+        $groupTaggedFilter = new GroupTagged($auth->reveal(), $this->prophesize(GroupTagRepositoryContract::class)->reveal());
+        $this->assertFalse($groupTaggedFilter->hasModel());
+    }
 }

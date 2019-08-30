@@ -19,9 +19,13 @@ abstract class GroupFilter extends Filter
         $this->authentication = $authentication;
     }
 
+    public function hasModel(): bool
+    {
+        return $this->authentication->getGroup() !== null;
+    }
+
     public function model()
     {
-        // TODO Test if null
         return $this->authentication->getGroup();
     }
 

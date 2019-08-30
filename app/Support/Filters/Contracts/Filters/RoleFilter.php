@@ -19,9 +19,13 @@ abstract class RoleFilter extends Filter
         $this->authentication = $authentication;
     }
 
+    public function hasModel(): bool
+    {
+        return $this->authentication->getRole() !== null;
+    }
+
     public function model()
     {
-        // TODO Test if null
         return $this->authentication->getRole();
     }
 
@@ -29,7 +33,6 @@ abstract class RoleFilter extends Filter
     {
         return 'role';
     }
-
 
 
 }
