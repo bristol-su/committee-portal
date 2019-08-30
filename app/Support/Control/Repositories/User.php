@@ -27,6 +27,7 @@ class User implements UserContract
             $user = $this->client->request('post', 'students/search', [
                 'form_params' => ['uc_uid' => $dataPlatformId]
             ]);
+            $user = $user[0];
         } catch (\Exception $e) {
             $user = $this->client->request('post', 'students', [
                 'form_params' => ['uc_uid' => $dataPlatformId]

@@ -36,7 +36,7 @@ class UserTest extends TestCase
 
     /** @test */
     public function student_id_returns_the_student_id_of_the_user(){
-        $user = new User(['studentId' => 'tt15951']);
+        $user = new User(['id' => 'tt15951']);
         $this->assertEquals('tt15951', $user->studentId());
     }
 }

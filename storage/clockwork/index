@@ -256,3 +256,13 @@
 1567106088-6256-938275895,1567106088.003,GET,/welcome-fair,"App\Http\Controllers\Pages\ActivityController@participant",200,625.54597854614
 1567106088-9354-2084250940,1567106088.867,GET,/js/lib.esm.js.map,"App\Modules\FileUpload\Http\Controllers\StrategicPlanController@showUserPage",404,73.534965515137
 1567106093-1511-1407492443,1567106092.507,GET,/test-activity,"App\Http\Controllers\Pages\ActivityController@participant",200,647.51791954041
+1567120568-5375-1396026892,1567120568.03,OPTIONS,/api/logic,Closure,200,555.7689666748
+1567120568-5370-109683752,1567120568.03,OPTIONS,/api/logic,Closure,200,555.80306053162
+1567160648-5544-2088712653,1567160648.145,GET,/,"App\Http\Controllers\PortalController@guestView",200,437.63709068298
+1567160650-4585-1023070656,1567160650.365,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,96.762895584106
+1567160761-8890-1324740206,1567160761.821,GET,/,"App\Http\Controllers\PortalController@guestView",200,71.261882781982
+1567160766-4245-888058776,1567160766.363,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,64.525127410889
+1567160803-9545-886956828,1567160803.873,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,84.668159484863
+1567160928-1854-1490505687,1567160928.118,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,71.12193107605
+1567160977-8104-587475415,1567160975.381,POST,/register,"App\Http\Controllers\Auth\RegisterController@register",302,2433.2308769226
+1567161013-6941-117372061,1567161013.591,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,107.04183578491

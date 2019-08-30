@@ -31,7 +31,7 @@ class User extends Model implements UserContract
 
     public function studentId()
     {
-        return $this->studentId;
+        return $this->id;
     }
 
 
