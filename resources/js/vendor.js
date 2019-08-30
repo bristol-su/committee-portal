@@ -13,7 +13,6 @@ import PortalVue from 'portal-vue';
 import api from "./utilities/api/api";
 
 
-
 /**
  * Load lodash
  */
@@ -31,7 +30,8 @@ Vue.prototype.$http = axios;
 Vue.prototype.$notify = new AWN({
     position: 'top-right'
 });
-Vue.prototype.$api = new api('http://portal.local/api');
+
+Vue.prototype.$api = new api(portal.API_URL);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

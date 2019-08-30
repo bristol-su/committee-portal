@@ -8,6 +8,7 @@ import DateViewer from './components/DateViewer';
 import {Spinner} from "spin.js";
 import VueFormGenerator from 'vue-form-generator'
 import 'vue-form-generator/dist/vfg.css'
+
 // import PortalVue from 'portal-vue'
 
 // import vueDropzone from 'vue2-dropzone'; // Multi file upload use

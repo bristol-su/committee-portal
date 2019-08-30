@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\View\Composers\DashboardComposer;
+use App\Http\View\Composers\JavascriptComposer;
 use App\Support\Activity\Activity;
 use App\Support\Logic\Facade\LogicTester;
 use App\Support\Logic\Logic;
@@ -26,6 +27,7 @@ class ViewServiceProvider extends ServiceProvider
     {
 
         View::composer(['portal.portal'], DashboardComposer::class);
+        View::composer(['layouts.app'], JavascriptComposer::class);
 
         View::composer(['admin.settings.activities.sidebar'], function ($view) {
             $view->with('events', Activity::all());

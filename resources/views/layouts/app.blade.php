@@ -21,6 +21,7 @@
           type="text/css">
 
     <!-- Styles -->
+    @include('templates.javascript_injection')
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
