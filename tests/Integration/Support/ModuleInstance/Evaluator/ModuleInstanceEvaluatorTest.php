@@ -4,10 +4,12 @@
 namespace Tests\Integration\Support\ModuleInstance\Evaluator;
 
 
+use App\Support\Completion\Contracts\CompletionTester;
 use App\Support\Logic\Facade\LogicTester;
 use App\Support\ModuleInstance\Contracts\Evaluator\Evaluation;
 use App\Support\ModuleInstance\Evaluator\ModuleInstanceEvaluator;
 use App\Support\ModuleInstance\ModuleInstance;
+use Prophecy\Argument;
 use Tests\TestCase;
 
 class ModuleInstanceEvaluatorTest extends TestCase
@@ -40,6 +42,7 @@ class ModuleInstanceEvaluatorTest extends TestCase
         $evaluation->setVisible(true)->shouldBeCalled();
         $evaluation->setMandatory(false)->shouldBeCalled();
         $evaluation->setActive(true)->shouldBeCalled();
+        $evaluation->setComplete(false)->shouldBeCalled();
 
         $moduleInstanceEvaluator = new ModuleInstanceEvaluator($evaluation->reveal());
         $moduleInstanceEvaluator->evaluateAdministrator($moduleInstance);
@@ -52,8 +55,14 @@ class ModuleInstanceEvaluatorTest extends TestCase
         $evaluation->setVisible(true)->shouldBeCalled();
         $evaluation->setMandatory(true)->shouldBeCalled();
         $evaluation->setActive(false)->shouldBeCalled();
+        $evaluation->setComplete(false)->shouldBeCalled();
 
         $this->createLogicTester([$moduleInstance->visibleLogic, $moduleInstance->mandatoryLogic], $moduleInstance->activeLogic);
+        $completionTester = $this->prophesize(CompletionTester::class);
+        $completionTester->evaluate(Argument::that(function($moduleInstanceArg) use ($moduleInstance) {
+            return $moduleInstanceArg->id === $moduleInstance->id;
+        }))->shouldBeCalled()->willReturn(false);
+        $this->instance(CompletionTester::class, $completionTester->reveal());
         $moduleInstanceEvaluator = new ModuleInstanceEvaluator($evaluation->reveal());
         $moduleInstanceEvaluator->evaluateParticipant($moduleInstance);
     }

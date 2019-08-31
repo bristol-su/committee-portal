@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use App\Events\UserVerificationRequestGenerated;
-use App\Support\Completion\EventStoreListener;
-use App\Support\Completion\Contracts\StoreEvent;
+use App\Modules\FileUpload\Events\DocumentSubmitted;
+use App\Support\EventStore\Contracts\StorableEvent;
+use App\Support\EventStore\EventStoreListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -20,9 +21,9 @@ class EventServiceProvider extends ServiceProvider
         UserVerificationRequestGenerated::class => [
             SendEmailVerificationNotification::class,
         ],
-        StoreEvent::class => [
+        StorableEvent::class => [
             EventStoreListener::class
-        ]
+        ],
     ];
 
     /**

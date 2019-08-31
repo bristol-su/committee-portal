@@ -4,6 +4,7 @@
             <a :href="url(event, moduleInstance)">
                 <b-button variant="primary">
                     {{moduleInstance.name}}
+                    <small>{{evaluationObject(moduleInstance.id)}}</small>
                 </b-button>
             </a>
         </div>
@@ -21,9 +22,26 @@
             admin: {
                 required: true,
                 type: Boolean
+            },
+            evaluation: {
+                required: false,
+                default() {
+                    []
+                }
             }
         },
         methods: {
+            evaluationObject(id) {
+                return (this.evaluation[id] !== undefined
+                    ? this.evaluation[id]
+                    : {
+                        active: false,
+                        visible: false,
+                        mandatory: false,
+                        complete: false
+                    });
+            },
+
             url(event, moduleInstance) {
                 return '/'
                     + event.slug

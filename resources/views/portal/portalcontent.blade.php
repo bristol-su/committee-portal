@@ -7,7 +7,8 @@
 @section('portal-content')
     <portal
     :event="{{$activity}}"
-    :admin="{{($admin?'true':'false')}}">
+    :admin="{{($admin?'true':'false')}}"
+    :evaluation="{{$evaluation}}">
 
     </portal>
 

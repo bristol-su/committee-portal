@@ -1,20 +1,18 @@
 <?php
 
 
-namespace App\Support\Completion\Contracts;
+namespace App\Support\EventStore\Contracts;
 
 
 use App\Support\ModuleInstance\Contracts\ModuleInstance;
 
-interface StoreEvent
+interface StorableEvent
 {
 
     /**
-     * Gets the current module instance
-     *
-     * @return ModuleInstance
+     * Gets the current module instance id
      */
-    public function moduleInstance(): ModuleInstance;
+    public function moduleInstanceId(): int;
 
     public function keywords(): array;
 

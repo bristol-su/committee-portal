@@ -15,8 +15,8 @@
 
             </logic-select>
         </b-form-group>
-        <b-form-group label="Complete (todo)?">
-            <b-input type="text" v-model="complete"></b-input>
+        <b-form-group label="Complete on?">
+            <b-form-select v-model="complete" :options="completionOptions"></b-form-select>
         </b-form-group>
     </div>
 </template>
@@ -31,6 +31,12 @@
             forLogic: {
                 required: true,
                 type: String
+            },
+            completion: {
+                required: false,
+                default: function() {
+                    return [];
+                }
             }
         },
 
@@ -56,6 +62,17 @@
             complete() {
                 this.$emit('update', 'complete', this.complete);
             },
+        },
+
+        computed: {
+            completionOptions() {
+                return this.completion.map(option => {
+                    return {
+                        value: option.event,
+                        text: option.name + ' (' + option.description + ')'
+                    }
+                })
+            }
         }
     }
 </script>

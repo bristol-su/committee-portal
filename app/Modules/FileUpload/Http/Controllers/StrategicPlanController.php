@@ -7,7 +7,7 @@ use App\Modules\StrategicPlan\Entities\Note;
 use App\Modules\StrategicPlan\Entities\NoteTemplate;
 use App\Packages\FileUpload\FileUploadController;
 
-class StrategicPlanController extends FileUploadController
+class StrategicPlanController
 {
 
     public function showUserPage() {
@@ -19,28 +19,4 @@ class StrategicPlanController extends FileUploadController
         return view('fileupload::admin');
     }
 
-    public function showNoteTemplatePage()
-    {
-        return view('fileupload::note_template');
-    }
-
-    protected function templateModel(): string
-    {
-        return NoteTemplate::class;
-    }
-
-    protected function noteModel(): string
-    {
-        return Note::class;
-    }
-
-    protected function fileModel(): string
-    {
-        return File::class;
-    }
-
-    protected function getModuleName() : string
-    {
-        return 'strategicplan';
-    }
 }

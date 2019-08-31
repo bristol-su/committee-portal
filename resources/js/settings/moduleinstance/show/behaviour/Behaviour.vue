@@ -9,7 +9,7 @@
         <data-item title="Mandatory For">
             <logic-preview :logic-id="mandatoryId"></logic-preview>
         </data-item>
-        <data-item title="complete">
+        <data-item title="Complete On">
             <complete :event="completeEvent"></complete>
         </data-item>
     </div>

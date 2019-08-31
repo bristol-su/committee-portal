@@ -16,7 +16,7 @@ class ActivityController extends Controller
         return view('portal.portalcontent')->with([
             'activity' => $activity,
             'admin' => true,
-            'evaluation' => $activityEvaluator->evaluateAdministrator($activity)
+            'evaluation' => collect($activityEvaluator->evaluateAdministrator($activity))
         ]);
     }
 
@@ -25,7 +25,7 @@ class ActivityController extends Controller
         return view('portal.portalcontent')->with([
             'activity' => $activity,
             'admin' => false,
-            'evaluation' => $activityEvaluator->evaluateParticipant($activity)
+            'evaluation' => collect($activityEvaluator->evaluateParticipant($activity))
         ]);
     }
 

@@ -1,17 +1,20 @@
 <?php
 
+use App\Modules\FileUpload\Events\DocumentApproved;
+use App\Modules\FileUpload\Events\DocumentSubmitted;
+
 return [
     'name' => 'File Upload',
     'description' => 'Allows uploading of a file or multiple files with approval',
     'completion' => [
         [
             'name' => 'Document Approved',
-            'event' => 'documentapproved',
+            'event' => DocumentApproved::class,
             'description' => 'Document is approved by a member of staff'
         ],
         [
             'name' => 'Document Submitted',
-            'event' => 'documentsubmitted',
+            'event' => DocumentSubmitted::class,
             'description' => 'Document is submitted by a student'
         ]
     ],

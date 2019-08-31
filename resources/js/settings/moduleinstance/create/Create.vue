@@ -20,7 +20,8 @@
             <tab-content title="Behaviour">
                 <behaviour
                     :for-logic="forLogic"
-                    @update="updateBehaviour">
+                    @update="updateBehaviour"
+                    :completion = selectedModule.completion>
 
                 </behaviour>
             </tab-content>
@@ -111,7 +112,10 @@
                     'module_instance_settings_id': this.form.module_instance_settings,
                     'module_instance_permissions_id': this.form.module_instance_permissions
                 })
-                    .then(response => console.log(response))
+                    .then(response => {
+                        this.$notify.success('Module Instance ' + this.form.name + ' created!');
+                        window.setTimeout(() => {window.location.href = '/settings/activity/' + this.activityId + '/module_instance/' + response.data.id}, 3000);
+                    })
                     .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
 
             }

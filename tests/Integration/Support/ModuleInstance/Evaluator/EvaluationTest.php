@@ -41,11 +41,22 @@ class EvaluationTest extends TestCase
     }
 
     /** @test */
+    public function the_complete_status_can_be_set(){
+        $evaluation = new Evaluation;
+        $evaluation->setComplete(true);
+        $this->assertTrue($evaluation->complete());
+
+        $evaluation->setComplete(false);
+        $this->assertFalse($evaluation->complete());
+    }
+
+    /** @test */
     public function all_properties_are_false_by_default(){
         $evaluation = new Evaluation;
         $this->assertFalse($evaluation->active());
         $this->assertFalse($evaluation->visible());
         $this->assertFalse($evaluation->mandatory());
+        $this->assertFalse($evaluation->complete());
     }
 
 

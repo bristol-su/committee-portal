@@ -11,5 +11,6 @@ interface ModuleInstance
 
     public function alias();
 
+    public function complete();
 
 }

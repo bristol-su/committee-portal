@@ -1,6 +1,8 @@
 <?php
 
+use App\Providers\CompletionServiceProvider;
 use App\Providers\ControlClientServiceProvider;
+use App\Providers\EventStoreServiceProvider;
 use App\Providers\LogicServiceProvider;
 
 return [
@@ -185,7 +187,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         \App\Providers\UnionCloudServiceProvider::class,
-        \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class
+        EventStoreServiceProvider::class,
+        \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class,
+        CompletionServiceProvider::class
     ],
 
     /*
@@ -234,7 +238,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Toast' => \Grimthorr\LaravelToast\Facade::class
 
     ],
 

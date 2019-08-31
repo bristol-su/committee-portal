@@ -3,7 +3,9 @@
 namespace Tests\Integration\Support\Module;
 
 use App\Support\Activity\Activity;
+use App\Support\Module\Settings\ModuleInstanceSettings;
 use App\Support\ModuleInstance\ModuleInstance;
+use App\Support\Permissions\ModuleInstancePermissions;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use App\Support\ModuleInstance\ModuleInstanceRepository;
@@ -33,6 +35,8 @@ class ModuleInstanceRepositoryTest extends TestCase
 
     /** @test */
     public function it_creates_a_module_instance(){
+        $moduleInstanceSettings = factory(ModuleInstanceSettings::class)->create();
+        $moduleInstancePermissions = factory(ModuleInstancePermissions::class)->create();
         $repository = new ModuleInstanceRepository;
         $activity = factory(Activity::class)->create();
         $instance = $repository->create([
@@ -43,7 +47,9 @@ class ModuleInstanceRepositoryTest extends TestCase
             'active' => 1,
             'visible' => 2,
             'mandatory' => 3,
-            'complete' => 'complete'
+            'complete' => 'complete',
+            'module_instance_settings_id' => $moduleInstanceSettings->id,
+            'module_instance_permissions_id' => $moduleInstancePermissions->id
         ]);
 
         $this->assertDatabaseHas('module_instances', [
@@ -54,7 +60,9 @@ class ModuleInstanceRepositoryTest extends TestCase
             'active' => 1,
             'visible' => 2,
             'mandatory' => 3,
-            'complete' => 'complete'
+            'complete' => 'complete',
+            'module_instance_settings_id' => $moduleInstanceSettings->id,
+            'module_instance_permissions_id' => $moduleInstancePermissions->id
         ]);
     }
 

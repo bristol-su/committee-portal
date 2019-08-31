@@ -96,6 +96,13 @@ class ModuleInstanceTest extends TestCase
     }
 
     /** @test */
+    public function complete_returns_the_completion_event()
+    {
+        $moduleInstance = factory(ModuleInstance::class)->create();
+        $this->assertEquals($moduleInstance->complete, $moduleInstance->complete());
+    }
+
+    /** @test */
     public function it_creates_a_slug_when_being_created()
     {
         $moduleInstance = factory(ModuleInstance::class)->make(['name' => 'A Sluggable Name']);

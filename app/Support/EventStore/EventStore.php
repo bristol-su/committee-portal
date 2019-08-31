@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Completion;
+namespace App\Support\EventStore;
 
 use App\Support\Activity\Activity;
 use App\Support\ModuleInstance\ModuleInstance;
@@ -15,7 +15,6 @@ class EventStore extends Model
 
     protected $fillable = [
         'module_instance_id',
-        'activity_id',
         'event',
         'keywords',
         'user_id',
@@ -26,10 +25,5 @@ class EventStore extends Model
     public function moduleInstance()
     {
         return $this->belongsTo(ModuleInstance::class);
-    }
-
-    public function activity()
-    {
-        return $this->belongsTo(Activity::class);
     }
 }

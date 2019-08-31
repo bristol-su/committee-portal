@@ -1,6 +1,16 @@
 <?php
 
-
+if(!function_exists('moduleUrl')) {
+    function moduleUrl($path, $admin=false) {
+        return url(
+            request('activity_slug')->slug .
+            '/' .
+            request('module_instance_slug')->slug .
+            ($admin?'/admin/':'/') .
+            $path
+        );
+    }
+}
 if (!function_exists('getReaffiliationYear')) {
     function getReaffiliationYear()
     {

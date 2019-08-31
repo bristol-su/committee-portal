@@ -47,6 +47,11 @@ class ModuleInstance extends Model implements ModuleInstanceContract
         return $this->id;
     }
 
+    public function complete()
+    {
+        return $this->complete;
+    }
+
     public function activity()
     {
         return $this->belongsTo(Activity::class);
