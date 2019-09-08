@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Packages\ControlDB\Models\Group;
-use App\Packages\ControlDB\Models\Position;
 use App\Support\Activity\Activity;
 use App\Support\Module\Contracts\ModuleRepository;
 use App\Support\Module\Settings\ModuleInstanceSettings;

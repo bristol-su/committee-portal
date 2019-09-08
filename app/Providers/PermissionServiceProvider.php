@@ -17,8 +17,8 @@ use App\Support\Permissions\PermissionStore;
 use App\Support\Permissions\PermissionTester;
 use App\Support\Permissions\Testers\SystemUserPermission;
 use App\User;
-use Arcanedev\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
 
 class PermissionServiceProvider extends ServiceProvider
 {
