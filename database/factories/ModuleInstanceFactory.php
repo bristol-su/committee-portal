@@ -2,7 +2,7 @@
 
 use App\Support\Activity\Activity;
 use App\Support\Logic\Logic;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use App\Support\ModuleInstance\ModuleInstance;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use Faker\Generator as Faker;

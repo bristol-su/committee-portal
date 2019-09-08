@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSitewidePermissionsTable extends Migration
+class CreateModelPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSitewidePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sitewide_permissions', function (Blueprint $table) {
+        Schema::create('model_permissions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('user_id');
-            $table->string('permission');
-            $table->unsignedInteger('logic_id');
+            $table->string('ability');
+            $table->string('model');
+            $table->unsignedInteger('model_id');
+            $table->boolean('result');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSitewidePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sitewide_permissions');
+        Schema::dropIfExists('model_permissions');
     }
 }

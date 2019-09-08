@@ -8,7 +8,7 @@ use App\Support\Activity\Activity;
 use App\Support\Module\Contracts\ModuleRepository;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use App\Support\ModuleInstance\ModuleInstance;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

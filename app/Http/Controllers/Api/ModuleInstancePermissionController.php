@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use Illuminate\Http\Request;
 
 class ModuleInstancePermissionController extends Controller

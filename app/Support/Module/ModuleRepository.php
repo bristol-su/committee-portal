@@ -5,6 +5,7 @@ namespace App\Support\Module;
 use App\Support\Completion\ConfigCompletionEventRepository;
 use App\Support\Completion\Contracts\CompletionEventRepository;
 use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
+use App\Support\Permissions\Contracts\PermissionRepository;
 use Illuminate\Filesystem\Filesystem;
 
 class ModuleRepository implements ModuleRepositoryContract
@@ -38,7 +39,7 @@ class ModuleRepository implements ModuleRepositoryContract
         $moduleJsons = $this->filesystem->glob(config('app.module.path').'/*/alias.json');
         foreach ($moduleJsons as $json) {
             $alias = json_decode($this->filesystem->get($json))->alias;
-            $modules[$alias] = new \App\Support\Module\Module($alias, config(), resolve(CompletionEventRepository::class));
+            $modules[$alias] = new \App\Support\Module\Module($alias, config(), resolve(CompletionEventRepository::class), resolve(PermissionRepository::class));
         }
 
         return $modules;

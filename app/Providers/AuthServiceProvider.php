@@ -8,9 +8,9 @@ use App\Support\Authentication\LaravelAuthentication;
 use App\Support\Authentication\Contracts\Authentication as AuthenticationContract;
 use App\Support\Control\Contracts\Repositories\Group as GroupRepositoryContract;
 use App\Support\Control\Contracts\Repositories\Role as RoleRepositoryContract;
-use App\Support\Permissions\ModuleInstancePermissions;
-use App\Support\Permissions\SitewidePermission;
-use App\Support\Permissions\StaticPermissionOverride;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
+use App\Support\Permissions\Models\SitewidePermission;
+use App\Support\Permissions\Models\StaticPermissionOverride;
 use App\User;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Facades\Auth;
@@ -46,18 +46,5 @@ class AuthServiceProvider extends ServiceProvider
 
 
         $this->app->bind(AuthenticationContract::class, LaravelAuthentication::class);
-
-        Gate::before(function(User $user, $ability) {
-            return StaticPermissionOverride::passes($user, $ability);
-        });
-
-        Gate::before(function(User $user, $ability) {
-            return SitewidePermission::passes($user, $ability);
-        });
-
-        Gate::before(function(User $user, $ability) {
-            return ModuleInstancePermissions::passes($user, $ability);
-        });
-
     }
 }

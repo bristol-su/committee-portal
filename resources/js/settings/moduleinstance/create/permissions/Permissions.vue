@@ -1,16 +1,27 @@
 <template>
     <div>
         <div class="panel-body">
-
             <b-form-group
                 :description="permission.description"
-                :id="permission.permission + '-label'"
-                :key="permission.permission"
+                :id="permission.ability + '-label'"
+                :key="permission.ability"
                 :label="permission.name"
-                :label-for="permission.permission"
-                v-for="permission in permissions"
+                :label-for="permission.ability"
+                v-for="permission in participantPermissions"
             >
-                <logic-select v-model="form[permission.permission]"></logic-select>
+                <logic-select v-model="participant[permission.ability]"></logic-select>
+            </b-form-group>
+
+            <br/><hr/><br/>
+            <b-form-group
+                :description="permission.description"
+                :id="permission.ability + '-label'"
+                :key="permission.ability"
+                :label="permission.name"
+                :label-for="permission.ability"
+                v-for="permission in adminPermissions"
+            >
+                <logic-select v-model="admin[permission.ability]"></logic-select>
             </b-form-group>
         </div>
     </div>
@@ -32,13 +43,14 @@
 
         data() {
             return {
-                form: {},
+                participant: {},
+                admin: {},
                 id: null
             }
         },
 
         watch: {
-            form: {
+            formattedForm: {
                 deep: true,
                 handler: _.debounce(function() {
                     if(this.id === null) {
@@ -53,18 +65,35 @@
         methods: {
 
             createPermissions() {
-                this.$api.permissions().create({participant_permissions: this.form, admin_permissions: {}})
+                this.$api.permissions().create(this.formattedForm)
                     .then(response => this.id = response.data.id)
                     .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
                     .then(() => this.$emit('input', this.id));
             },
 
             updatePermissions() {
-                this.$api.permissions().update(this.id, {participant_permissions: this.form, admin_permissions: {}})
+                this.$api.permissions().update(this.id, this.formattedForm)
                     .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
                     .then(() => this.$emit('input', this.id));
             },
         },
+
+        computed: {
+            participantPermissions() {
+                return this.permissions.filter(permission => permission.module_type === 'participant');
+            },
+            adminPermissions() {
+                return this.permissions.filter(permission => permission.module_type === 'administrator');
+            },
+
+            formattedForm() {
+                return {
+                    participant_permissions: this.participant,
+                    admin_permissions: this.admin
+                }
+            }
+
+        }
     }
 </script>
 

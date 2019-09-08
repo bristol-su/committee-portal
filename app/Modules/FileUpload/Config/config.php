@@ -69,16 +69,16 @@ return [
             'validateDebounceTime' => 0
         ]
     ],
-    'permissions' => [
-        [
-            'permission' => 'upload',
-            'name' => 'Upload Document',
-            'description' => 'Allow a user to upload a document'
-        ],
-        [
-            'permission' => 'delete',
-            'name' => 'Delete Document',
-            'description' => 'Allow a user to delete a document'
-        ]
-    ]
+//    'permissions' => [
+//        [
+//            'permission' => 'upload',
+//            'name' => 'Upload Document',
+//            'description' => 'Allow a user to upload a document'
+//        ],
+//        [
+//            'permission' => 'delete',
+//            'name' => 'Delete Document',
+//            'description' => 'Allow a user to delete a document'
+//        ]
+//    ]
 ];

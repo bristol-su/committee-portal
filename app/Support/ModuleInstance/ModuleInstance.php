@@ -5,7 +5,7 @@ namespace App\Support\ModuleInstance;
 use App\Support\Activity\Activity;
 use App\Support\Logic\Logic;
 use App\Support\ModuleInstance\Contracts\ModuleInstance as ModuleInstanceContract;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;

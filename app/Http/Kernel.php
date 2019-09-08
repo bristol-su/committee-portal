@@ -3,20 +3,14 @@
 namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\LoadAvailableModuleInstances;
-use App\Http\Middleware\LogIntoRole;
-use App\Http\Middleware\CheckAdminCanViewAsStudent;
 use App\Http\Middleware\CheckForMaintenanceMode;
-use App\Http\Middleware\CheckIfAdmin;
-use App\Http\Middleware\CheckModuleActive;
-use App\Http\Middleware\CheckModuleDevelopmentStatus;
 use App\Http\Middleware\EncryptCookies;
-use App\Http\Middleware\LoadGroupTagsFromControl;
-use App\Http\Middleware\LoadStudentTagsFromControl;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Support\Activity\Middleware\InjectActivityInstance;
+use App\Support\ModuleInstance\Middleware\InjectModuleInstance;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -98,7 +92,8 @@ class Kernel extends HttpKernel
         ],
 
         'module' => [
-
+            InjectModuleInstance::class,
+            InjectActivityInstance::class
         ]
     ];
 

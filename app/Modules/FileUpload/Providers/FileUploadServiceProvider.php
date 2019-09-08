@@ -2,6 +2,7 @@
 
 namespace App\Modules\FileUpload\Providers;
 
+use App\Support\Permissions\Facade\Permission;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
@@ -20,7 +21,7 @@ class FileUploadServiceProvider extends ServiceProvider
     public function mapWebRoutes()
     {
         Route::prefix('{activity_slug}/{module_instance_slug}')
-            ->middleware('web')
+            ->middleware(['web', 'module'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/web.php');
     }
@@ -28,7 +29,7 @@ class FileUploadServiceProvider extends ServiceProvider
     public function mapApiRoutes()
     {
         Route::prefix('{activity_slug}/{module_instance_slug}')
-            ->middleware('api')
+            ->middleware(['api', 'module'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/api.php');
     }
@@ -47,6 +48,26 @@ class FileUploadServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->mapWebRoutes();
         $this->mapApiRoutes();
+
+        Permission::register(
+            'delete',
+            'Delete Document',
+            'Allow the user to delete a document',
+            'fileupload'
+        );
+        Permission::register(
+            'upload',
+            'Upload Document',
+            'Allow the user to upload a document',
+            'fileupload'
+        );
+        Permission::register(
+            'approve',
+            'Approve Document',
+            'Allow the user to approve a document',
+            'fileupload',
+            true
+        );
     }
 
     public function register()

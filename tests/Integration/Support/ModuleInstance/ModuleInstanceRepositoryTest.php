@@ -5,7 +5,7 @@ namespace Tests\Integration\Support\Module;
 use App\Support\Activity\Activity;
 use App\Support\Module\Settings\ModuleInstanceSettings;
 use App\Support\ModuleInstance\ModuleInstance;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use App\Support\ModuleInstance\ModuleInstanceRepository;

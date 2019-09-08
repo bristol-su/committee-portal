@@ -7,7 +7,7 @@ namespace Tests\Integration\Http\Controllers\Api;
 use App\Support\Activity\Activity;
 use App\Support\Logic\Logic;
 use App\Support\Module\Settings\ModuleInstanceSettings;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use Tests\TestCase;
 
 class ModuleInstanceControllerTest extends TestCase

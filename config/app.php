@@ -4,6 +4,7 @@ use App\Providers\CompletionServiceProvider;
 use App\Providers\ControlClientServiceProvider;
 use App\Providers\EventStoreServiceProvider;
 use App\Providers\LogicServiceProvider;
+use App\Providers\PermissionServiceProvider;
 
 return [
 
@@ -189,7 +190,8 @@ return [
         \App\Providers\UnionCloudServiceProvider::class,
         EventStoreServiceProvider::class,
         \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class,
-        CompletionServiceProvider::class
+        CompletionServiceProvider::class,
+        PermissionServiceProvider::class
     ],
 
     /*

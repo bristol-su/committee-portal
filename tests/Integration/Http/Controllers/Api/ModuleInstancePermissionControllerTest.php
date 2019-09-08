@@ -5,7 +5,7 @@ namespace Tests\Integration\Http\Controllers\Api;
 
 
 use App\Support\Logic\Logic;
-use App\Support\Permissions\ModuleInstancePermissions;
+use App\Support\Permissions\Models\ModuleInstancePermissions;
 use Tests\TestCase;
 
 class ModuleInstancePermissionControllerTest extends TestCase

@@ -39,6 +39,7 @@
 
                 </permissions>
             </tab-content>
+
         </form-wizard>
     </div>
 </template>
