@@ -4,9 +4,9 @@
 namespace Tests\Integration\Http\Requests\Api\ModuleInstanceController;
 
 
-use App\Support\Activity\Activity;
-use App\Support\Logic\Logic;
-use App\User;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class StoreModuleInstanceControllerTest extends TestCase
@@ -31,14 +31,14 @@ class StoreModuleInstanceControllerTest extends TestCase
 //    {
 //
 //        $parameters = array_merge([
-//            'alias' => 'fileupload',
+//            'alias' => 'alias1',
 //            'activity_id' => factory(Activity::class)->create()->id,
 //            'name' => 'somedefaultname',
 //            'description' => 'Some default description',
 //            'active' => factory(Logic::class)->create()->id,
 //            'visible' => factory(Logic::class)->create()->id,
 //            'mandatory' => factory(Logic::class)->create()->id,
-//            'complete' => config('fileupload.completion')[0]['event']
+//            'complete' => config('alias1.completion')[0]['event']
 //        ], $parameters);
 //
 //        return $this->post('/admin/settings/moduleinstance', $parameters);

@@ -4,14 +4,22 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Filters\Contracts\FilterRepository;
-use App\Support\Filters\Contracts\Filters\Filter;
+use BristolSU\Support\Filters\Contracts\FilterRepository;
+use BristolSU\Support\Filters\Contracts\Filters\Filter;
+use BristolSU\Support\User\User;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class FilterControllerTest extends TestCase
 {
+    private $user;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function index_calls_get_all_from_the_filter_repository(){
         $filters = [];

@@ -4,9 +4,9 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\Support\Filters\Contracts\Filters\Filter;
-use App\Support\Module\Contracts\ModuleRepository;
-use App\Support\Module\Module;
+use BristolSU\Support\Filters\Contracts\Filters\Filter;
+use BristolSU\Support\Module\Contracts\ModuleRepository;
+use BristolSU\Support\Module\Module;
 
 class ModuleController
 {

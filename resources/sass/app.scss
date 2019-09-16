@@ -20,7 +20,12 @@
   color: red;
 }
 
-
+/* Footer */
+@media only screen and (max-height: 500px) {
+    footer{
+        display: none;
+    }
+}
 
 
 

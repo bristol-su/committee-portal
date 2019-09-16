@@ -4,8 +4,8 @@
 namespace Tests\Integration\Http\Controllers\Settings;
 
 
-use App\Support\Logic\Contracts\LogicRepository;
-use App\Support\Logic\Logic;
+use BristolSU\Support\Logic\Contracts\LogicRepository;
+use BristolSU\Support\Logic\Logic;
 use Tests\TestCase;
 
 class LogicControllerTest extends TestCase

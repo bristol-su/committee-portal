@@ -2,19 +2,24 @@
 
 namespace App\Rules;
 
-use App\User;
+use BristolSU\Support\User\Contracts\UserRepository;
 use Illuminate\Contracts\Validation\Rule;
 
 class ExistsInUsersTable implements Rule
 {
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
      * Create a new rule instance.
      *
-     * @return void
+     * @param UserRepository $userRepository
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
-        //
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -26,9 +31,7 @@ class ExistsInUsersTable implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('email', $value)
-            ->orWhere('student_id', $value)
-            ->count() === 1;
+        return $this->userRepository->getWhereIdentity($value) !== null;
     }
 
     /**

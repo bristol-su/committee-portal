@@ -2,7 +2,7 @@
 
 namespace Tests\Integration\Http\Controllers\Auth;
 
-use App\User;
+use BristolSU\Support\User\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;

@@ -4,13 +4,23 @@
 namespace Tests\Integration\Http\Controllers\Api\Relationships;
 
 
-use App\Support\Filters\FilterInstance;
-use App\Support\Logic\Logic;
-use App\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\Filters\FilterInstance;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class LogicFiltersControllerTest extends TestCase
 {
+
+    private $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
 
     /** @test */
     public function index_returns_404_if_logic_not_found(){

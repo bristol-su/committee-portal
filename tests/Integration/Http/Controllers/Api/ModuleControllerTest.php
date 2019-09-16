@@ -4,14 +4,22 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Module\Contracts\ModuleRepository;
-use App\Support\Module\Module;
+use BristolSU\Support\Module\Contracts\ModuleRepository;
+use BristolSU\Support\Module\Module;
+use BristolSU\Support\User\User;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 class ModuleControllerTest extends TestCase
 {
+    private $user;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function index_calls_get_all_from_the_module_repository(){
         $modules = [];

@@ -4,9 +4,9 @@
 namespace Tests\Integration\Http\Controllers\Settings;
 
 
-use App\Support\Activity\Activity;
-use App\Support\Activity\Contracts\Repository as ActivityRepositoryContract;
-use App\Support\Activity\Repository;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Activity\Contracts\Repository as ActivityRepositoryContract;
+use BristolSU\Support\Activity\Repository;
 use Tests\TestCase;
 
 class ActivityControllerTest extends TestCase

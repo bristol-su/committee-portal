@@ -43,7 +43,7 @@
             },
 
             url(event, moduleInstance) {
-                return '/'
+                return '/a/'
                     + event.slug
                     + '/'
                     + moduleInstance.slug

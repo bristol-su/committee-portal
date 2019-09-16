@@ -7,12 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UnionCloudController;
 use App\Packages\ControlDB\Models\CommitteeRole;
 use App\Packages\ControlDB\Models\Student;
-use App\Support\Control\Contracts\Repositories\User as ControlUserContract;
-use App\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
-use App\User;
+use BristolSU\Support\Control\Contracts\Repositories\User as ControlUserContract;
+use BristolSU\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
+use BristolSU\Support\User\Contracts\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -21,19 +20,28 @@ class RegisterController extends Controller
 
 
     use RegistersUsers;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware('guest');
+        $this->userRepository = $userRepository;
     }
 
     /**
      * Register the user
+     * @param Request $request
+     * @param DataPlatformUserContract $dataPlatformUserRepository
+     * @param ControlUserContract $controlUserRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function register(Request $request, DataPlatformUserContract $dataPlatformUserRepository, ControlUserContract $controlUserRepository)
     {
@@ -55,7 +63,7 @@ class RegisterController extends Controller
         $controlUser = $controlUserRepository->findOrCreateByDataId($dataUser->id());
 
         // Create user
-        $user = User::create([
+        $user = $this->userRepository->create([
             'forename' => $dataUser->forename(),
             'surname' => $dataUser->surname(),
             'email' => $dataUser->email(),
@@ -82,7 +90,7 @@ class RegisterController extends Controller
      */
     public function redirectTo()
     {
-        return '/';
+        return 'portal';
     }
 
 

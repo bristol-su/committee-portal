@@ -37,20 +37,11 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @else
-
-                        {{--This will give admins access to logging in as groups--}}
-{{--                        @if(\Auth::user()->can('view-as-student') && \Auth::user()->hasVerifiedEmail())--}}
-{{--                            <group-select--}}
-{{--                                    @if(\Auth::guard('group')->check()) :group-id="{{\getGroupID()}}"  @endif >--}}
-{{----}}
-{{--                            </group-select>--}}
-{{----}}
-                            {{--This grants access to logging in as another role owned by a student--}}
-{{--                        @elseif(\Auth::guard('role')->check())--}}
-{{--                            <committee-role-select--}}
-{{--                                    :role-id="{{ \Auth::user()->getCurrentRole()->id }}">--}}
-{{--                            </committee-role-select>--}}
-{{--                        @endif--}}
+                        @if($currentRole === null)
+                            <log-into-role></log-into-role>
+                        @else
+                            <log-into-role :current-role="{{$currentRole}}"></log-into-role>
+                        @endif
 
                     <!-- Account Management -->
                         <li class="nav-item dropdown">

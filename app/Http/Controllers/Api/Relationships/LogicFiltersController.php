@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Api\Relationships;
 
 
-use App\Support\Logic\Logic;
+use BristolSU\Support\Logic\Logic;
 
 class LogicFiltersController
 {

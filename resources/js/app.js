@@ -1,49 +1,21 @@
-import Form from './utilities/Form';
-import CommitteeRoleSelect from "./components/CommitteeRoleSelect";
-import GroupSelect from './components/GroupSelect';
-import CustomFileUpload from './components/FileUpload/CustomFileUpload';
-import CustomFileUploadAdminFileTable from './components/FileUpload/AdminTable';
-import CustomFileUploadAdminNoteTemplate from './components/FileUpload/AdminNoteTemplate';
-import DateViewer from './components/DateViewer';
+import LogIntoRole from './components/login/LogIntoRole';
 import {Spinner} from "spin.js";
 import VueFormGenerator from 'vue-form-generator'
 import 'vue-form-generator/dist/vfg.css'
 
-// import PortalVue from 'portal-vue'
-
-// import vueDropzone from 'vue2-dropzone'; // Multi file upload use
-
-// Define an event instance in which global events may be fired
 window.Event = new Vue();
-// Extend Vue
-// Vue.use(Notifications)wir;
-
-
-// Define http provider for Vue
-
-
 
 Vue.use(VueFormGenerator);
 
 // Default modal settings for the VModal
 window.$defaultModalSettings = {adaptive: true, height: 'auto', scrollable: true};
 
-window.currentReaffiliationYear = process.env.MIX_REAFFILIATION_YEAR;
-
-// Form helper class
-window.VueForm = Form;
-window.DateViewer = DateViewer;
-window.CustomFileUpload = CustomFileUpload;
-window.CustomFileUploadAdminFileTable = CustomFileUploadAdminFileTable;
-window.CustomFileUploadAdminNoteTemplate = CustomFileUploadAdminNoteTemplate;
-
 // Main Vue Instance
 new Vue({
     el: '#committee-portal-header-root',
 
     components: {
-        'committee-role-select': CommitteeRoleSelect,
-        'group-select': GroupSelect,
+        LogIntoRole,
     }
 });
 

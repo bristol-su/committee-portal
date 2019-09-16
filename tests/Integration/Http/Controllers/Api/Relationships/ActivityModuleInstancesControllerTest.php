@@ -4,12 +4,21 @@
 namespace Tests\Integration\Http\Controllers\Api\Relationships;
 
 
-use App\Support\Activity\Activity;
-use App\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ActivityModuleInstancesControllerTest extends TestCase
 {
+    private $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
 
     /** @test */
     public function index_returns_404_if_activity_not_found(){

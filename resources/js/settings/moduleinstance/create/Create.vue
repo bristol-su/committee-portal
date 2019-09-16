@@ -21,7 +21,7 @@
                 <behaviour
                     :for-logic="forLogic"
                     @update="updateBehaviour"
-                    :completion = selectedModule.completion>
+                    :completionEvents = selectedModule.completionEvents>
 
                 </behaviour>
             </tab-content>

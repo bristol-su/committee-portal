@@ -40,7 +40,7 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        return '/';
+        return 'portal';
     }
 
     public function username() {

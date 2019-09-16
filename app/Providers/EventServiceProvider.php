@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use App\Events\UserVerificationRequestGenerated;
-use App\Modules\FileUpload\Events\DocumentSubmitted;
-use App\Support\EventStore\Contracts\StorableEvent;
-use App\Support\EventStore\EventStoreListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -20,10 +17,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         UserVerificationRequestGenerated::class => [
             SendEmailVerificationNotification::class,
-        ],
-        StorableEvent::class => [
-            EventStoreListener::class
-        ],
+        ]
     ];
 
     /**

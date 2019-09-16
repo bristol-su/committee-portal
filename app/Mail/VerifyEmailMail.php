@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\User;
+use BristolSU\Support\User\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

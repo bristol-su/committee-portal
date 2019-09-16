@@ -15,17 +15,17 @@ require('laravel-mix-merge-manifest');
 // mix.mergeManifest();
 mix.setPublicPath('./public');
 
-let fs = require('fs-extra');
-let modules = fs.readdirSync('app/Modules');
+// let fs = require('fs-extra');
+// let modules = fs.readdirSync('app/Modules');
 
-if(modules && modules.length > 0) {
-    modules.forEach((module) => {
-        let path = `./app/Modules/${module}/webpack.mix.js`;
-        if (fs.existsSync(path)) {
-            require(path);
-        }
-    });
-}
+// if(modules && modules.length > 0) {
+//     modules.forEach((module) => {
+//         let path = `./app/Modules/${module}/webpack.mix.js`;
+//         if (fs.existsSync(path)) {
+//             require(path);
+//         }
+//     });
+// }
 
 
 mix.js('resources/js/app.js', 'public/js')

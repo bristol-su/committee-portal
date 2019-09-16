@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Rules\ExistsInUsersTable;
 use App\Rules\IsValidPassword;
-use App\User;
+use BristolSU\Support\User\Contracts\UserRepository;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +28,10 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
 
     /**
@@ -35,9 +39,10 @@ class ResetPasswordController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware('guest');
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -47,7 +52,7 @@ class ResetPasswordController extends Controller
      */
     public function redirectTo()
     {
-        return '/';
+        return 'portal';
     }
 
     /**
@@ -55,17 +60,15 @@ class ResetPasswordController extends Controller
      *
      * Overriden to allow us to ensure the email is sent into the broker.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param UserRepository $userRepository
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function reset(Request $request)
     {
         $request->validate($this->rules(), $this->validationErrorMessages());
 
-        // Changes:
-        $user = User::where('email', $request->input('identity'))
-            ->orWhere('student_id', $request->input('identity'))
-            ->first();
+        $user = $this->userRepository->getWhereIdentity($request->input('identity'));
 
         $request->merge(['email' => $user->email]);
 

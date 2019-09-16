@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Events\Dispatchable;
 

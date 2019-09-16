@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use App\Http\View\Composers\DashboardComposer;
-use App\Http\View\Composers\JavascriptComposer;
-use App\Support\Activity\Activity;
-use App\Support\Logic\Facade\LogicTester;
-use App\Support\Logic\Logic;
+use App\Http\View\Header\CurrentRoleComposer;
+use App\Http\View\Portal\DashboardComposer;
+use App\Http\View\Utilities\JavascriptComposer;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Logic\Facade\LogicTester;
+use BristolSU\Support\Logic\Logic;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -25,10 +26,11 @@ class ViewServiceProvider extends ServiceProvider
 
     private function bootViewComposers()
     {
+        // TODO Replace with repositories
 
         View::composer(['portal.portal'], DashboardComposer::class);
         View::composer(['layouts.app'], JavascriptComposer::class);
-
+        View::composer(['templates.header'], CurrentRoleComposer::class);
         View::composer(['admin.settings.activities.sidebar'], function ($view) {
             $view->with('events', Activity::all());
         });

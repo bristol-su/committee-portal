@@ -4,11 +4,3 @@
         <p style="">© University of Bristol Students' Union 2019. Charity #1139656 Company #6977417</p>
     </div>
 </footer>
-
-<style>
-     @media only screen and (max-height: 500px) {
-         footer{
-             display: none;
-         }
-    }
-</style>

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Rules\ExistsInUsersTable;
-use App\Traits\SetsPassword;
-use App\User;
+use BristolSU\Support\User\Contracts\UserRepository;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -24,15 +23,19 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param UserRepository $userRepository
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
-
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -44,12 +47,10 @@ class ForgotPasswordController extends Controller
     protected function validateEmail(Request $request)
     {
         $request->validate([
-            'identity' => [new ExistsInUsersTable]
+            'identity' => [new ExistsInUsersTable($this->userRepository)]
         ]);
 
-        $user = User::where('email', $request->input('identity'))
-            ->orWhere('student_id', $request->input('identity'))
-            ->first();
+        $user = $this->userRepository->getWhereIdentity($request->input('identity'));
 
         $request->merge(['email' => $user->email]);
     }

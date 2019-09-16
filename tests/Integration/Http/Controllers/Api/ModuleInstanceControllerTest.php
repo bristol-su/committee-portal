@@ -4,19 +4,27 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Activity\Activity;
-use App\Support\Logic\Logic;
-use App\Support\Module\Settings\ModuleInstanceSettings;
-use App\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSettings;
+use BristolSU\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ModuleInstanceControllerTest extends TestCase
 {
+    private $user;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function store_creates_a_module_instance_in_the_database(){
         $attributes = [
-            'alias' => 'fileupload',
+            'alias' => 'alias1',
             'activity_id' => factory(Activity::class)->create()->id,
             'name' => 'Some Module',
             'slug' => 'a-module',
@@ -36,7 +44,7 @@ class ModuleInstanceControllerTest extends TestCase
     /** @test */
     public function store_returns_a_module_instance(){
         $attributes = [
-            'alias' => 'fileupload',
+            'alias' => 'alias1',
             'activity_id' => factory(Activity::class)->create()->id,
             'name' => 'Some Module',
             'slug' => 'a-module',

@@ -4,13 +4,21 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Filters\FilterInstance;
-use App\Support\Logic\Logic;
+use BristolSU\Support\Filters\FilterInstance;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class LogicControllerTest extends TestCase
 {
+    private $user;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function show_returns_the_logic()
     {

@@ -4,8 +4,8 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\Support\Filters\Contracts\FilterInstanceRepository;
-use App\Support\Filters\FilterInstance;
+use BristolSU\Support\Filters\Contracts\FilterInstanceRepository;
+use BristolSU\Support\Filters\FilterInstance;
 use Illuminate\Http\Request;
 
 class FilterInstanceController

@@ -4,9 +4,9 @@
 namespace Tests\Integration\Http\Controllers\Settings;
 
 
-use App\Support\ModuleInstance\ModuleInstance;
-use App\Support\Module\Settings\ModuleInstanceSettings;
-use App\User;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSettings;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class SettingsControllerTest extends TestCase

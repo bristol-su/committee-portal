@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Support\Activity\Contracts\Repository;
+use BristolSU\Support\Activity\Contracts\Repository;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller

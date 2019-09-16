@@ -3,11 +3,11 @@
 namespace Tests\Integration\Http\Controllers\Pages;
 
 use App\Http\Controllers\Pages\PortalController;
-use App\Support\Activity\Activity;
-use App\Support\Activity\Contracts\Repository as ActivityRepository;
-use App\Support\Logic\Contracts\LogicTester;
-use App\Support\Logic\Logic;
-use App\User;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Activity\Contracts\Repository as ActivityRepository;
+use BristolSU\Support\Logic\Contracts\LogicTester;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Prophecy\Argument;

@@ -4,12 +4,21 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Logic\Logic;
-use App\Support\Module\Settings\ModuleInstanceSettings;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSettings;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ModuleInstanceSettingControllerTest extends TestCase
 {
+    private $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function show_returns_404_if_setting_not_found(){
         $response = $this->json('get', '/api/module_instance_setting/1');

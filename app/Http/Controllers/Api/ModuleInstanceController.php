@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Support\Activity\Activity;
-use App\Support\Activity\Contracts\Repository;
-use App\Support\ModuleInstance\Contracts\ModuleInstanceRepository;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Activity\Contracts\Repository;
+use BristolSU\Support\ModuleInstance\Contracts\ModuleInstanceRepository;
 use Illuminate\Http\Request;
 
 class ModuleInstanceController extends Controller

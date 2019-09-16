@@ -4,7 +4,7 @@
 namespace Tests\Integration\Http\Controllers\Auth;
 
 
-use App\User;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ForgotPasswordControllerTest extends TestCase

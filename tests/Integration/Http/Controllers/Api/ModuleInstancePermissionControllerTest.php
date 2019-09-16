@@ -4,13 +4,21 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Logic\Logic;
-use App\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ModuleInstancePermissionControllerTest extends TestCase
 {
+    private $user;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
     /** @test */
     public function show_returns_404_if_permission_not_found(){
         $response = $this->json('get', '/api/module_instance_permission/1');

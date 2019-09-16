@@ -4,13 +4,23 @@
 namespace Tests\Integration\Http\Controllers\Api;
 
 
-use App\Support\Activity\Activity;
-use App\Support\Activity\Contracts\Repository;
-use App\Support\Logic\Logic;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Activity\Contracts\Repository;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\User\User;
 use Tests\TestCase;
 
 class ActivityControllerTest extends TestCase
 {
+
+    private $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory(User::class)->create();
+        $this->be($this->user, 'api');
+    }
 
     /** @test */
     public function store_calls_create_on_the_activity_repository(){

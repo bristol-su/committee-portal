@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
-use App\Support\Activity\Activity;
-use App\Support\ModuleInstance\Contracts\Evaluator\ActivityEvaluator as ActivityEvaluatorContract;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\ModuleInstance\Contracts\Evaluator\ActivityEvaluator as ActivityEvaluatorContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 

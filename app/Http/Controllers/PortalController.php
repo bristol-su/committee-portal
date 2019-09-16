@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Packages\ControlDB\Models\Group;
-use App\Support\Activity\Activity;
-use App\Support\Logic\Facade\LogicTester;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Logic\Facade\LogicTester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

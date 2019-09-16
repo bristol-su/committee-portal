@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+use BristolSU\Support\User\User;
 
 class DatabaseSeeder extends Seeder
 {

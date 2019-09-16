@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Support\Activity\Activity;
-use App\Support\Activity\Contracts\Repository as ActivityRepository;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Activity\Contracts\Repository as ActivityRepository;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller

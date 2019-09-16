@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Support\Filters\FilterInstance;
-use App\Support\Logic\Contracts\LogicRepository;
-use App\Support\Logic\Logic;
+use BristolSU\Support\Filters\FilterInstance;
+use BristolSU\Support\Logic\Contracts\LogicRepository;
+use BristolSU\Support\Logic\Logic;
 use Illuminate\Http\Request;
 
 class LogicController extends Controller

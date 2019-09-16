@@ -34,7 +34,7 @@ class StoreModuleInstanceRequest extends FormRequest
             'active' => 'required|exists:logics,id',
             'visible' => 'required|exists:logics,id',
             'mandatory' => 'required|exists:logics,id',
-            'complete' => ['sometimes', 'nullable', 'string', new CompletionEvent($this->input('alias'))]
+            'complete' => ['sometimes', 'nullable', 'string']
         ];
     }
 }

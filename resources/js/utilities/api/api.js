@@ -6,6 +6,7 @@ import Permissions from './resources/permissions'
 import Filters from './resources/filters';
 import FilterInstances from './resources/filterinstances';
 import ModuleInstances from './resources/moduleinstances';
+import Me from './resources/me';
 
 // TODO Implement Cache
 export default class {
@@ -49,5 +50,9 @@ export default class {
 
     moduleInstances() {
         return new ModuleInstances(this._http);
+    }
+
+    me() {
+        return new Me(this._http);
     }
 }

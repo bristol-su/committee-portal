@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Support\Activity\Activity;
-use App\Support\Module\Contracts\ModuleRepository;
-use App\Support\Module\Settings\ModuleInstanceSettings;
-use App\Support\ModuleInstance\ModuleInstance;
-use App\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Module\Contracts\ModuleRepository;
+use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSettings;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\Permissions\Models\ModuleInstancePermissions;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -20,53 +20,6 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
-
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-        Route::bind('controlposition', function($id) {
-            $position = Position::find($id);
-            abort_if(!$position, 404);
-            return $position;
-        });
-
-        Route::bind('controlgroup', function($id) {
-            $group = Group::find($id);
-            abort_if(!$group, 404);
-            return $group;
-        });
-
-        Route::bind('module_instance_setting', function($id) {
-            return ModuleInstanceSettings::findOrFail($id);
-        });
-
-        Route::bind('module_instance_permission', function($id) {
-            return ModuleInstancePermissions::findOrFail($id);
-        });
-
-        Route::bind('module', function($alias) {
-            return $this->app[ModuleRepository::class]->findByAlias($alias);
-        });
-
-        Route::bind('activity_slug', function($slug) {
-            return Activity::where(['slug' => $slug])->firstOrFail();
-        });
-
-        Route::bind('module_instance_slug', function($slug, $route) {
-            $activity = $route->parameter('activity_slug');
-            return ModuleInstance::where('slug', $slug)
-                ->whereHas('activity', function($query) use ($activity){
-                    $query->where('slug', $activity->slug);
-                })
-                ->firstOrFail();
-        });
-        parent::boot();
-    }
 
     /**
      * Define the routes for the application.

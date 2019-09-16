@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Support\Logic\Contracts\LogicRepository;
-use App\Support\Logic\Logic;
+use BristolSU\Support\Logic\Contracts\LogicRepository;
+use BristolSU\Support\Logic\Logic;
 use Illuminate\Http\Request;
 
 class LogicController extends Controller

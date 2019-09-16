@@ -44,7 +44,6 @@
     </noscript>
     @include('templates.header')
 
-    <div class="spinner-target"></div>
     @yield('content')
 
     @include('templates.footer')

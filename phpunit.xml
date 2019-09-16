@@ -18,29 +18,10 @@
             <directory suffix="Test.php">./tests/Integration</directory>
         </testsuite>
 
-        <testsuite name="System">
-            <directory suffix="Test.php">./tests/System</directory>
-        </testsuite>
-
-        <testsuite name="ModuleUnit">
-            <directory suffix="Test.php">../app/Modules/**/Tests/Unit</directory>
-        </testsuite>
-
-        <testsuite name="ModuleIntegration">
-            <directory suffix="Test.php">./app/Modules/**/Tests/Integration</directory>
-        </testsuite>
-
-        <testsuite name="ModuleSystem">
-            <directory suffix="Test.php">./app/Modules/**/Tests/System</directory>
-        </testsuite>
-
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
-            <exclude>
-                <directory>./app/Modules</directory>
-            </exclude>
         </whitelist>
     </filter>
     <php>

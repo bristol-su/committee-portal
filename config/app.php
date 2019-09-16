@@ -179,19 +179,9 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        ControlClientServiceProvider::class,
-        \App\Providers\ControlServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        \App\Providers\FilterServiceProvider::class,
-        LogicServiceProvider::class,
-        \App\Providers\GoogleDriveServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        \App\Providers\UnionCloudServiceProvider::class,
-        EventStoreServiceProvider::class,
-        \App\Modules\FileUpload\Providers\FileUploadServiceProvider::class,
-        CompletionServiceProvider::class,
-        PermissionServiceProvider::class
     ],
 
     /*

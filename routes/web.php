@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 Route::middleware(['auth:web', 'verified'])
     ->get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
+Route::middleware(['auth:web', 'verified'])
+    ->post('/login/role', 'Auth\LogIntoRoleController@login');
 
 // Welcome Route
 Route::middleware('guest')->get('/', 'PortalController@guestView');
@@ -23,10 +25,10 @@ Route::prefix('settings')->namespace('Settings')->group(function () {
 });
 
 // Portal Routes
-Route::middleware('portal')
-    ->namespace('Pages')
-    ->group(function () {
+Route::middleware('portal')->namespace('Pages')->group(function () {
         Route::get('/portal', 'PortalController@portal')->name('portal');
-        Route::get('/{activity_slug}', 'ActivityController@participant');
-        Route::get('/admin/{activity_slug}', 'ActivityController@administrator');
+        Route::prefix('a')->group(function() {
+            Route::get('/admin/{activity_slug}', 'ActivityController@administrator');
+            Route::get('/{activity_slug}', 'ActivityController@participant');
+        });
     });

@@ -13,4 +13,8 @@ export default class extends BaseResource{
     create(attributes) {
         return this.request('post',  '/logic', attributes);
     }
+
+    audience(logicId) {
+        return this.request('get', '/logic/' + logicId + '/audience');
+    }
 }

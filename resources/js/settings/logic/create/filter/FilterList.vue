@@ -48,11 +48,12 @@
 
         computed: {
             relevantFilters() {
-                return this.filters.filter(filter => {
-                    return (this.forLogic === 'role'
-                        || (this.forLogic === 'group' && filter.for !== 'role')
-                        || (this.forLogic === 'user' && filter.for === 'user'));
-                })
+                return this.filters;
+                // .filter(filter => {
+                //     return (this.forLogic === 'role'
+                //         || (this.forLogic === 'group' && filter.for !== 'role')
+                //         || (this.forLogic === 'user' && filter.for === 'user'));
+                // })
             }
         }
     }

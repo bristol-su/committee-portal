@@ -9,6 +9,12 @@
 
             </filters>
         </b-card>
+
+        <b-card header="Audience" header-class="view-header" class="show-card">
+            <audience :logic-id="logic.id">
+
+            </audience>
+        </b-card>
     </div>
 </template>
 
@@ -17,9 +23,11 @@
     import DataItem from "../../../utilities/DataItem";
     import FilterGroup from "./filters/FilterGroup";
     import Filters from "./filters/Filters";
+    import Audience from "./audience/Audience";
+
     export default {
         name: "Show",
-        components: {Filters, FilterGroup, DataItem, Logic},
+        components: {Filters, FilterGroup, DataItem, Logic, Audience},
         props: {
             logic: {
                 required: true,

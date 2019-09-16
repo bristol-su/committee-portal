@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Support\Module\Contracts\ModuleRepository;
+use BristolSU\Support\Module\Contracts\ModuleRepository;
 use Illuminate\Contracts\Validation\Rule;
 
 class ModuleAlias implements Rule

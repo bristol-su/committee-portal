@@ -32,7 +32,7 @@
                 required: true,
                 type: String
             },
-            completion: {
+            completionEvents: {
                 required: false,
                 default: function() {
                     return [];
@@ -66,7 +66,7 @@
 
         computed: {
             completionOptions() {
-                return this.completion.map(option => {
+                return this.completionEvents.map(option => {
                     return {
                         value: option.event,
                         text: option.name + ' (' + option.description + ')'

@@ -5,7 +5,7 @@ namespace Tests\Unit\Rules;
 
 
 use App\Rules\ModuleAlias;
-use App\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
+use BristolSU\Support\Module\Contracts\ModuleRepository as ModuleRepositoryContract;
 use Nwidart\Modules\Module;
 use Tests\TestCase;
 

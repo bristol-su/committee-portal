@@ -2,10 +2,10 @@
 
 namespace Tests\Integration\Http\Controllers\Settings;
 
-use App\Support\Activity\Activity;
-use App\Support\Logic\Logic;
-use App\Support\ModuleInstance\ModuleInstance;
-use App\User;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\Logic\Logic;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\User\User;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 

@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
 
@@ -77,17 +77,17 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => BristolSU\Support\User\User::class,
         ],
 
         'roles' => [
             'driver' => 'role-provider',
-            'model' => \App\Support\Control\Models\Role::class
+            'model' => \BristolSU\Support\Control\Models\Role::class
         ],
 
         'groups' => [
             'driver' => 'group-provider',
-            'model' => \App\Support\Control\Models\Group::class
+            'model' => \BristolSU\Support\Control\Models\Group::class
         ],
 
     ],

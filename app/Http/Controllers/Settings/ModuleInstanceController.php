@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Support\Activity\Activity;
-use App\Support\ModuleInstance\ModuleInstance;
+use BristolSU\Support\Activity\Activity;
+use BristolSU\Support\ModuleInstance\ModuleInstance;
 
 class ModuleInstanceController extends Controller
 {
