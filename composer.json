@@ -46,16 +46,6 @@
             "Tests\\": "tests/"
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../modules/upload-file"
-        },
-        {
-            "type": "path",
-            "url": "../support/support"
-        }
-    ],
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
