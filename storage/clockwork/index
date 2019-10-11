@@ -3183,3 +3183,7 @@
 1570827050-7528-1718851485,1570827050.654,GET,/api/logic/4,"App\Http\Controllers\Api\LogicController@show",200,103.24788093567
 1570827050-7531-1459528061,1570827050.661,GET,/api/logic/9,"App\Http\Controllers\Api\LogicController@show",200,96.58408164978
 1570827050-7701-1864941944,1570827050.653,GET,/api/logic/9,"App\Http\Controllers\Api\LogicController@show",200,120.3989982605
+1570828821-9458-526783409,1570828821.881,GET,/,"App\Http\Controllers\Pages\GuestController@index",302,68.367958068848
+1570828822-1754-542071280,1570828821.959,GET,/portal,"App\Http\Controllers\Pages\PortalController@portal",302,219.16389465332
+1570828822-9093-1797722279,1570828822.187,GET,/p/welcome-fair,"App\Http\Controllers\Pages\ActivityController@participant",200,725.2049446106
+1570828824-3885-1948877813,1570828824.203,GET,/api/me/roles,"App\Http\Controllers\Api\Relationships\MeRolesController@index",200,188.89784812927

@@ -26,8 +26,8 @@ class PortalController extends Controller
         if ($adminActivities->count() > 0) {
             return Response::redirectTo('a/' . $adminActivities->first()->slug);
         }
-
-        throw new HttpException(404, 'You have no activities!');
+	
+	return Response::redirectTo('settings');
     }
 
 }
