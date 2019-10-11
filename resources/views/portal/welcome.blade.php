@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('bristolsu::base')
 
 @section('title', 'Welcome')
 @section('content')
@@ -20,3 +20,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
+@endpush

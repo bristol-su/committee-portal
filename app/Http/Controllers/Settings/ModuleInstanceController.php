@@ -14,7 +14,7 @@ class ModuleInstanceController extends Controller
         if(!$activity->is($moduleInstance->activity)) {
             abort(404, 'The module instance does not belong to the activity');
         }
-        return view('settings.module_instances.show')->with('moduleInstance', $moduleInstance);
+        return view('settings.module_instances.show')->with('moduleInstance', $moduleInstance->load('actions'));
     }
 
     public function create(Activity $activity)

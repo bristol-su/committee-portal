@@ -9,8 +9,7 @@ Route::middleware(['auth:web', 'verified'])
 Route::middleware(['auth:web', 'verified'])
     ->post('/login/role', 'Auth\LogIntoRoleController@login');
 
-// Welcome Route
-Route::middleware('guest')->get('/', 'PortalController@guestView');
+
 
 // Settings routes
 Route::prefix('settings')->namespace('Settings')->group(function () {
@@ -21,14 +20,20 @@ Route::prefix('settings')->namespace('Settings')->group(function () {
 
     Route::prefix('/activity/{activity}')->group(function () {
         Route::resource('module_instance', 'ModuleInstanceController')->only(['show', 'create']);
+        Route::prefix('/module_instance/{module_instance}')->group(function() {
+            Route::resource('action', 'ActionController')->only(['show', 'create']);
+        });
     });
+
 });
 
 // Portal Routes
-Route::middleware('portal')->namespace('Pages')->group(function () {
+Route::namespace('Pages')->group(function () {
+    Route::middleware('guest')->get('/', 'GuestController@index');
+    Route::middleware('portal')->group(function() {
         Route::get('/portal', 'PortalController@portal')->name('portal');
-        Route::prefix('a')->group(function() {
-            Route::get('/admin/{activity_slug}', 'ActivityController@administrator');
-            Route::get('/{activity_slug}', 'ActivityController@participant');
-        });
+        Route::get('/a/{activity_slug}', 'ActivityController@administrator');
+        Route::get('/p/{activity_slug}', 'ActivityController@participant');
     });
+
+});

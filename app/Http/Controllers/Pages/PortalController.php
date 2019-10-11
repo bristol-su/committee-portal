@@ -19,11 +19,11 @@ class PortalController extends Controller
     public function portal(Request $request, ActivityRepositoryContract $activityRepository)
     {
         $userActivities = collect($activityRepository->getForParticipant());
-        if($userActivities->count() > 0) {
-            return Response::redirectTo('a/' . $userActivities->first()->slug);
+        if ($userActivities->count() > 0) {
+            return Response::redirectTo('p/' . $userActivities->first()->slug);
         }
         $adminActivities = collect($activityRepository->getForAdministrator());
-        if($adminActivities->count() > 0) {
+        if ($adminActivities->count() > 0) {
             return Response::redirectTo('a/' . $adminActivities->first()->slug);
         }
 

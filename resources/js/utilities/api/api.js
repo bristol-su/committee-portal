@@ -7,10 +7,13 @@ import Filters from './resources/filters';
 import FilterInstances from './resources/filterinstances';
 import ModuleInstances from './resources/moduleinstances';
 import Me from './resources/me';
+import Action from './resources/action';
+import ActionInstance from './resources/actionInstance';
+import ActionInstanceField from './resources/actionInstanceField';
 
 // TODO Implement Cache
 export default class {
-    constructor(baseUrl) {
+    constructor(baseUrl, axios) {
         this._http = axios.create({
             baseURL: baseUrl,
             withCredentials: true,
@@ -18,6 +21,18 @@ export default class {
                 'X-Requested-With': 'XMLHttpRequest',
             }
         });
+    }
+
+    action() {
+        return new Action(this._http);
+    }
+
+    actionInstance() {
+        return new ActionInstance(this._http);
+    }
+
+    actionInstanceField() {
+        return new ActionInstanceField(this._http);
     }
 
     activity() {

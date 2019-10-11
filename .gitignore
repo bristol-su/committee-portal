@@ -19,3 +19,4 @@ public/css/*
 public/mix-manifest.json
 report.*
 /coverage
+/storage/clockwork

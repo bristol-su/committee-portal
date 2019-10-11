@@ -4,7 +4,7 @@
             Participant:
             <a v-for="event in participant"
                :key="event.id + 'participant'"
-                :href="'/a/' + event.slug">
+                :href="'/p/' + event.slug">
                     <b-list-group-item
                         :active="isSelected(event, false)">
                         {{event.name}}
@@ -16,7 +16,7 @@
             Administrator:
             <a v-for="event in administrator"
                :key="event.id + 'administrator'"
-               :href="'/a/admin/' + event.slug">
+               :href="'/a/' + event.slug">
                 <b-list-group-item
                     :active="isSelected(event, true)">
                 {{event.name}}

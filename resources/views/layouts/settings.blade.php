@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('bristolsu::base')
 
 @section('title', 'Site Settings')
 
 @section('content')
+    <div id="vue-root">
         <b-row class="settings" id="root-site-settings">
             <b-col cols="2">
-                    <sidebar></sidebar>
+                <sidebar></sidebar>
 
             </b-col>
             <b-col>
@@ -30,10 +31,10 @@
                 </div>
             </b-col>
         </b-row>
-
+    </div>
 
 @endsection
 
 @push('scripts')
-    <script src="{{asset('js/settings.js')}}"></script>
+    <script src="{{mix('js/app.js')}}"></script>
 @endpush

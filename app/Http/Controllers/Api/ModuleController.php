@@ -19,4 +19,9 @@ class ModuleController
 
     }
 
+    public function show(Module $module)
+    {
+        return $module;
+    }
+
 }

@@ -1,4 +1,4 @@
-<div id="committee-portal-header-root">
+<div id="header-vue-root">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
 
@@ -15,9 +15,6 @@
                 </a>
             @endauth
 
-            {{--<a class="navbar-brand" href="{{ url('/') }}"><img alt="Bristol SU Logo"--}}
-                                                               {{--src="https://s3-eu-west-1.amazonaws.com/nusdigital/union_logo/images/281/original/open-uri20180703-28672-t8fr30."--}}
-                                                                   {{--style="width: 75%; height: auto;"/>--}}
             <!-- Navigation toggle for smaller screens -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -73,3 +70,7 @@
     </nav>
 
 </div>
+
+@push('scripts')
+    <script src="{{ mix('js/header.js') }}"></script>
+@endpush

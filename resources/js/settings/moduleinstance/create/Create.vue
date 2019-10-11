@@ -21,8 +21,7 @@
                 <behaviour
                     :for-logic="forLogic"
                     @update="updateBehaviour"
-                    :completionEvents = selectedModule.completionEvents>
-
+                >
                 </behaviour>
             </tab-content>
             <tab-content title="Settings">
@@ -86,7 +85,6 @@
                     active: null,
                     visible: null,
                     mandatory: null,
-                    complete: '',
                     module_instance_settings: null,
                     module_instance_permissions: null
                 },
@@ -109,7 +107,6 @@
                     'active': this.form.active,
                     'visible':  this.form.visible,
                     'mandatory': this.form.mandatory,
-                    'complete': this.form.complete,
                     'module_instance_settings_id': this.form.module_instance_settings,
                     'module_instance_permissions_id': this.form.module_instance_permissions
                 })

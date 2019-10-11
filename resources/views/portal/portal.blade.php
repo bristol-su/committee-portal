@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('bristolsu::base')
 
 @section('title', 'Portal Home')
 @section('content')
     <div id="portal">
-        <div class="py-5">
+        <div class="py-5" id="vue-root">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -36,5 +36,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ mix('js/portal.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 @endpush

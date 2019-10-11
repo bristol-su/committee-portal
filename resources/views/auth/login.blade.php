@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('bristolsu::base')
 
 @section('title', 'Login')
 

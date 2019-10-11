@@ -91,10 +91,6 @@ class Kernel extends HttpKernel
             'verified',
         ],
 
-        'module' => [
-            InjectModuleInstance::class,
-            InjectActivityInstance::class
-        ]
     ];
 
     /**

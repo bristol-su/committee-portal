@@ -29,8 +29,9 @@ class ViewServiceProvider extends ServiceProvider
         // TODO Replace with repositories
 
         View::composer(['portal.portal'], DashboardComposer::class);
-        View::composer(['layouts.app'], JavascriptComposer::class);
-        View::composer(['templates.header'], CurrentRoleComposer::class);
+        View::composer(['bristolsu::base'], JavascriptComposer::class);
+        View::composer(['partials.header'], CurrentRoleComposer::class);
+
         View::composer(['admin.settings.activities.sidebar'], function ($view) {
             $view->with('events', Activity::all());
         });

@@ -48,12 +48,12 @@
     },
     "repositories": [
         {
-            "type": "vcs",
+            "type": "path",
             "url": "../modules/upload-file"
         },
         {
-            "type": "vcs",
-            "url": "../support"
+            "type": "path",
+            "url": "../support/support"
         }
     ],
     "scripts": {

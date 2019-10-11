@@ -43,11 +43,10 @@
             },
 
             url(event, moduleInstance) {
-                return '/a/'
+                return (this.admin?'/a/':'/p/')
                     + event.slug
                     + '/'
-                    + moduleInstance.slug
-                    + (this.admin?'/admin':'');
+                    + moduleInstance.slug;
             }
         }
     }

@@ -18,10 +18,13 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('filter', 'FilterController')->only(['index']);
     Route::apiResource('filter_instances', 'FilterInstanceController')->only(['store']);
     Route::apiResource('logic', 'LogicController')->only(['index', 'show', 'store']);
-    Route::apiResource('module', 'ModuleController')->only(['index']);
+    Route::apiResource('module', 'ModuleController')->only(['index', 'show']);
     Route::apiResource('module_instance_permission', 'ModuleInstancePermissionController')->only(['show', 'store', 'update']);
     Route::apiResource('module_instance_setting', 'ModuleInstanceSettingController')->only(['show', 'store', 'update']);
     Route::apiResource('module_instance', 'ModuleInstanceController')->only(['store']);
+    Route::apiResource('action', 'ActionController')->only(['index']);
+    Route::apiResource('action_instance', 'ActionInstanceController')->only(['store', 'update']);
+    Route::apiResource('action_instance_field', 'ActionInstanceFieldController')->only(['store', 'update']);
 
     Route::namespace('Relationships')->group(function() {
         Route::get('/activity/{activity}/module_instances', 'ActivityModuleInstancesController@index');
@@ -30,7 +33,6 @@ Route::middleware('auth:api')->group(function() {
         Route::get('/logic/{logic}/audience', 'LogicAudienceController@index');
 
         Route::get('/me/roles', 'MeRolesController@index');
-        Route::get('/me/roles/current', 'MeRolesController@currentRole');
 
     });
 

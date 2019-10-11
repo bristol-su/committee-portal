@@ -15,9 +15,6 @@
 
             </logic-select>
         </b-form-group>
-        <b-form-group label="Complete on?">
-            <b-form-select v-model="complete" :options="completionOptions"></b-form-select>
-        </b-form-group>
     </div>
 </template>
 
@@ -32,12 +29,6 @@
                 required: true,
                 type: String
             },
-            completionEvents: {
-                required: false,
-                default: function() {
-                    return [];
-                }
-            }
         },
 
         data() {
@@ -45,7 +36,6 @@
                 active: null,
                 visible: null,
                 mandatory: null,
-                complete: ''
             }
         },
 
@@ -59,21 +49,8 @@
             mandatory() {
                 this.$emit('update', 'mandatory', this.mandatory);
             },
-            complete() {
-                this.$emit('update', 'complete', this.complete);
-            },
         },
 
-        computed: {
-            completionOptions() {
-                return this.completionEvents.map(option => {
-                    return {
-                        value: option.event,
-                        text: option.name + ' (' + option.description + ')'
-                    }
-                })
-            }
-        }
     }
 </script>
 

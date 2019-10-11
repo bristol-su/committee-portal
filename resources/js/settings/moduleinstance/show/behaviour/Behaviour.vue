@@ -9,19 +9,16 @@
         <data-item title="Mandatory For">
             <logic-preview :logic-id="mandatoryId"></logic-preview>
         </data-item>
-        <data-item title="Complete On">
-            <complete :event="completeEvent"></complete>
-        </data-item>
     </div>
 </template>
 
 <script>
     import DataItem from "../../../../utilities/DataItem";
     import LogicPreview from "./LogicPreview";
-    import Complete from "./Complete";
+
     export default {
         name: "Behaviour",
-        components: {Complete, LogicPreview, DataItem},
+        components: {LogicPreview, DataItem},
         props: {
             activeId: {
                 required: true,
@@ -34,10 +31,6 @@
             mandatoryId: {
                 required: true,
                 type: Number
-            },
-            completeEvent: {
-                required: true,
-                type: String
             },
         }
     }

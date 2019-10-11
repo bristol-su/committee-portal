@@ -4,12 +4,13 @@ export default class {
         this._client = client;
     }
 
-    request(method, url, body)
+    request(method, url, body, params)
     {
         return this._client.request({
             url: url,
             method: method,
-            data: body
+            data: body,
+            params: params,
         })
     }
 }

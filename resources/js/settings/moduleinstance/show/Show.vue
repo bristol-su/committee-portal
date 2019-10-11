@@ -11,8 +11,7 @@
             <behaviour
                 :active-id="moduleInstance.active"
                 :visible-id="moduleInstance.visible"
-                :mandatory-id="moduleInstance.mandatory"
-                :complete-event="moduleInstance.complete">
+                :mandatory-id="moduleInstance.mandatory">
 
             </behaviour>
         </b-card>
@@ -29,6 +28,12 @@
             </permissions>
         </b-card>
 
+        <b-card header="Actions" header-class="view-header" class="show-card">
+            <actions :module-instance="moduleInstance">
+
+            </actions>
+        </b-card>
+
     </div>
 </template>
 
@@ -37,9 +42,11 @@
     import Behaviour from "./behaviour/Behaviour";
     import Permissions from "./permissions/Permissions";
     import Settings from "./settings/Settings";
+    import Actions from './actions/Actions';
+
     export default {
         name: "Show",
-        components: {Settings, Permissions, Behaviour, ModuleInstance},
+        components: {Settings, Permissions, Behaviour, ModuleInstance, Actions},
         props: {
             moduleInstance: {
                 required: true,

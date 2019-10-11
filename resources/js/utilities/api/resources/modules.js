@@ -10,4 +10,8 @@ export default class extends BaseResource{
         return this.request('get', '/module');
     }
 
+    getByAlias(alias) {
+        return this.request('get', '/module/' + alias);
+    }
+
 }
