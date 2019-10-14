@@ -67,3 +67,7 @@
 
 </div>
 
+
+@push('scripts')
+    <script src="{{ mix('js/header.js') }}"></script>
+@endpush
