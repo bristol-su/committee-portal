@@ -40,12 +40,12 @@
                         title: 'Activities'
                     },
                     {
-                        href: '/settings/activity',
+                        href: '/activity',
                         title: 'All Activities',
                         icon: 'fa fa-plus',
                     },
                     {
-                        href: '/settings/activity/create',
+                        href: '/activity/create',
                         title: 'Create Activity',
                         icon: 'fa fa-plus',
                     },
@@ -54,12 +54,12 @@
                         title: 'Logic'
                     },
                     {
-                        href: '/settings/logic',
+                        href: '/logic',
                         title: 'All Logic',
                         icon: 'fa fa-plus',
                     },
                     {
-                        href: '/settings/logic/create',
+                        href: '/logic/create',
                         title: 'Create Logic',
                         icon: 'fa fa-plus',
                     },

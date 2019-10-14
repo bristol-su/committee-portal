@@ -10,6 +10,8 @@ import Me from './resources/me';
 import Action from './resources/action';
 import ActionInstance from './resources/actionInstance';
 import ActionInstanceField from './resources/actionInstanceField';
+import Group from './resources/group';
+import Role from './resources/role';
 
 // TODO Implement Cache
 export default class {
@@ -69,5 +71,13 @@ export default class {
 
     me() {
         return new Me(this._http);
+    }
+
+    group() {
+        return new Group(this._http);
+    }
+
+    role() {
+        return new Role(this._http);
     }
 }

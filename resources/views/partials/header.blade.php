@@ -6,16 +6,16 @@
             @auth
                 <a class="navbar-brand" href="{{ homeURL() }}">
                     <img style="max-height: 40px" src="{{serveStatic('su-logo.jpg')}}"/>
-                        &nbsp;&nbsp;
+                    &nbsp;&nbsp;
                     {{ config('app.name', 'Committee Portal') }}
                 </a>
             @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Committee Portal') }}
                 </a>
-            @endauth
+        @endauth
 
-            <!-- Navigation toggle for smaller screens -->
+        <!-- Navigation toggle for smaller screens -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -34,11 +34,7 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @else
-                        @if($currentRole === null)
-                            <log-into-role></log-into-role>
-                        @else
-                            <log-into-role :current-role="{{$currentRole}}"></log-into-role>
-                        @endif
+
 
                     <!-- Account Management -->
                         <li class="nav-item dropdown">
@@ -51,10 +47,10 @@
                                 <!-- Home -->
                                 <a class="dropdown-item" href="{{ homeURL() }}">Home</a>
                                 <!-- Settings -->
-{{--                                @can('view-site-settings-page')--}}
-                                    <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
-{{--                                @endcan--}}
-                                <!-- Logout -->
+                                {{--                                @can('view-site-settings-page')--}}
+                                <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
+                            {{--                                @endcan--}}
+                            <!-- Logout -->
                                 <a class="dropdown-item" href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -71,6 +67,3 @@
 
 </div>
 
-@push('scripts')
-    <script src="{{ mix('js/header.js') }}"></script>
-@endpush

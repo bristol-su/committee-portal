@@ -13,7 +13,7 @@
 
 <script>
     export default {
-        name: "portal",
+        name: "ModuleInstances",
         props: {
             event: {
                 required: true,

@@ -12,7 +12,7 @@ class ActionController extends Controller
 
     public function show(Activity $activity, ModuleInstance $moduleInstance, ActionInstance $actionInstance)
     {
-        return view('settings.actions.show')->with('action', $actionInstance);
+        return view('settings.actions.show')->with('actionInstances', $actionInstance);
     }
 
     public function create(Activity $activity, ModuleInstance $moduleInstance)

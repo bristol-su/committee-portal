@@ -83,7 +83,7 @@
                 this.$api.logic().create(this.form)
                     .then(response => {
                         this.$notify.success('Logic ' + this.form.name + ' created!');
-                        window.setTimeout(() => {window.location.href = '/settings/logic/' + response.data.id}, 3000);
+                        window.setTimeout(() => {window.location.href = '/logic/' + response.data.id}, 3000);
                     })
                     .catch(error => this.$notify.alert('Logic could not be created: ' + error.message))
             }

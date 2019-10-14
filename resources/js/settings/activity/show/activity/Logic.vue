@@ -54,7 +54,7 @@
 
         computed: {
             url() {
-                return process.env.MIX_APP_URL + '/settings/logic/' + this.logic.id;
+                return process.env.MIX_APP_URL + '/logic/' + this.logic.id;
             }
         }
     }

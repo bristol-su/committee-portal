@@ -112,7 +112,7 @@
                 })
                     .then(response => {
                         this.$notify.success('Module Instance ' + this.form.name + ' created!');
-                        window.setTimeout(() => {window.location.href = '/settings/activity/' + this.activityId + '/module_instance/' + response.data.id}, 3000);
+                        window.setTimeout(() => {window.location.href = '/activity/' + this.activityId + '/module_instance/' + response.data.id}, 3000);
                     })
                     .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
 

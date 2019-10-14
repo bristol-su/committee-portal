@@ -2,7 +2,7 @@
     <div>
         <b-table :fields="fields" :items="activities">
             <template slot="actions" slot-scope="data">
-                <a :href="'/settings/activity/' + data.item.id">
+                <a :href="'/activity/' + data.item.id">
                     <b-button variant="secondary">View</b-button>
                 </a>
             </template>

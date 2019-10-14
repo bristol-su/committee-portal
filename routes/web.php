@@ -6,14 +6,18 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 Route::middleware(['auth:web', 'verified'])
     ->get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
-Route::middleware(['auth:web', 'verified'])
-    ->post('/login/role', 'Auth\LogIntoRoleController@login');
+Route::middleware(['auth:web', 'verified'])->group(function() {
+    Route::get('/login/role/{activity_slug}', 'Auth\LogIntoRoleController@show')->name('login.role');
+    Route::post('/login/role/{activity_slug}', 'Auth\LogIntoRoleController@login');
+    Route::get('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@show')->name('login.group');
+    Route::post('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@login');
+});
 
 
 
 // Settings routes
-Route::prefix('settings')->namespace('Settings')->group(function () {
-    Route::get('/', 'SettingsController@index')->name('settings');
+Route::namespace('Settings')->group(function () {
+    Route::get('/settings', 'SettingsController@index')->name('settings');
 
     Route::resource('activity', 'ActivityController')->only(['index', 'create', 'show']);
     Route::resource('logic', 'LogicController')->only(['index', 'show', 'create']);
@@ -32,8 +36,12 @@ Route::namespace('Pages')->group(function () {
     Route::middleware('guest')->get('/', 'GuestController@index');
     Route::middleware('portal')->group(function() {
         Route::get('/portal', 'PortalController@portal')->name('portal');
-        Route::get('/a/{activity_slug}', 'ActivityController@administrator');
-        Route::get('/p/{activity_slug}', 'ActivityController@participant');
+        Route::get('/a', 'PortalController@administrator')->name('administrator');
+        Route::get('/p', 'PortalController@participant')->name('participant');
+        Route::middleware('activity')->group(function() {
+            Route::get('/a/{activity_slug}', 'ActivityController@administrator')->name('administrator.activity');
+            Route::get('/p/{activity_slug}', 'ActivityController@participant')->name('participant.activity');
+        });
     });
 
 });

@@ -26,6 +26,9 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('action_instance', 'ActionInstanceController')->only(['store', 'update']);
     Route::apiResource('action_instance_field', 'ActionInstanceFieldController')->only(['store', 'update']);
 
+    Route::apiResource('group', 'GroupController')->only(['show']);
+    Route::apiResource('role', 'RoleController')->only(['show']);
+
     Route::namespace('Relationships')->group(function() {
         Route::get('/activity/{activity}/module_instances', 'ActivityModuleInstancesController@index');
 

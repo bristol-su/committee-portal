@@ -2,7 +2,7 @@
     <span>
         <span v-if="loading">Loading</span>
         <span v-else>
-            {{logic.name}} <a :href="'/settings/logic/' + logic.id"><b-button variant="secondary" size="sm">View</b-button></a>
+            {{logic.name}} <a :href="'/logic/' + logic.id"><b-button variant="secondary" size="sm">View</b-button></a>
         </span>
     </span>
 </template>

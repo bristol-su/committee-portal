@@ -28,7 +28,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         // TODO Replace with repositories
 
-        View::composer(['portal.portal'], DashboardComposer::class);
+        View::composer(['layouts.portal'], DashboardComposer::class);
         View::composer(['bristolsu::base'], JavascriptComposer::class);
         View::composer(['partials.header'], CurrentRoleComposer::class);
 

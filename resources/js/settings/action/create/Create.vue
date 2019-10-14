@@ -93,7 +93,7 @@
             saveAndExit() {
                 this.saveAction();
                 this.$notify.success('Action successfully saved');
-                window.location.href = '/settings/activity/' + this.moduleInstance.activity_id + '/module_instance/' + this.moduleInstance.id;
+                window.location.href = '/activity/' + this.moduleInstance.activity_id + '/module_instance/' + this.moduleInstance.id;
             },
         },
 

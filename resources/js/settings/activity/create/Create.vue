@@ -38,6 +38,7 @@
                 >
                 <b-form-radio v-model="activity_for" name="some-radios" value="group">Group</b-form-radio>
                 <b-form-radio v-model="activity_for" name="some-radios" value="user">User</b-form-radio>
+                <b-form-radio v-model="activity_for" name="some-radios" value="role">Role</b-form-radio>
             </b-form-group>
 
             <b-form-group label="Who is this activity for?">
@@ -125,7 +126,7 @@
                     .then(response => {
                         this.$notify.success('Activity Created');
                         window.setTimeout(function() {
-                            window.location.href = '/settings/activity/' + response.data.id;
+                            window.location.href = '/activity/' + response.data.id;
                         }, 3000);
                     })
                     .catch(error => this.$notify.alert('Could not create activity: ' + error.message))

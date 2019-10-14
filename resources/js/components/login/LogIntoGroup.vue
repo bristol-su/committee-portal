@@ -3,29 +3,29 @@
 
     <b-row>
         <b-col>
-            To access the activity '{{activity.name}}', you need to log into a role.
+            To access the activity '{{activity.name}}', you need to log into a group.
 
         </b-col>
     </b-row>
 
     <b-row>
         <b-col md="9" sm="12">
-            <b-form-select v-model="roleId" :options="roleOptions">
+            <b-form-select v-model="groupId" :options="groupOptions">
 
             </b-form-select>
         </b-col>
 
         <b-col md="3" sm="12">
-            <b-button variant="secondary" @click="login" :disabled="!selectedRole">
+            <b-button variant="secondary" @click="login" :disabled="!selectedGroup">
                 Login
             </b-button>
         </b-col>
     </b-row>
 
-    <form id="log-into-role-form" ref="logIntoRole" :action="loginUrl" method="POST" style="display: none;">
+    <form id="log-into-group-form" ref="logIntoGroup" :action="loginUrl" method="POST" style="display: none;">
         <input type="hidden" name="_token" :value="$csrf">
         <input type="hidden" name="redirect" :value="redirectUrl">
-        <input type="hidden" ref="roleId" name="role_id">
+        <input type="hidden" ref="groupId" name="group_id">
     </form>
 
     </div>
@@ -36,7 +36,7 @@
     export default {
 
         props: {
-            roles: {
+            groups: {
                 type: Array,
                 default: function() {
                     return [];
@@ -54,33 +54,33 @@
 
         data() {
             return {
-                roleId: null,
+                groupId: null,
             }
         },
 
         methods: {
             login() {
-                if(this.selectedRole) {
-                    this.$refs.roleId.value = this.roleId;
-                    this.$refs.logIntoRole.submit();
+                if(this.selectedGroup) {
+                    this.$refs.groupId.value = this.groupId;
+                    this.$refs.logIntoGroup.submit();
                 }
             }
         },
 
         computed: {
-            roleOptions() {
-                return this.roles.map(role => {
+            groupOptions() {
+                return this.groups.map(group => {
                     return {
-                        text: role.pivot.position_name + ' of ' + role.group.name + ' - ' + role.pivot.committee_year + '/' + (role.pivot.committee_year + 1).toString().substring(2,4),
-                        value: role.id
+                        text: 'Membership of ' + group.name,
+                        value: group.id
                     }
                 })
             },
             loginUrl() {
-                return '/login/role/' + this.activity.slug;
+                return '/login/group/' + this.activity.slug;
             },
-            selectedRole() {
-                return this.roleId !== null;
+            selectedGroup() {
+                return this.groupId !== null;
             },
             redirectUrl() {
                 if(this.redirectTo === null) {

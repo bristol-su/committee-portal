@@ -2,8 +2,14 @@
 
 namespace App\Exceptions;
 
+use BristolSU\Support\Activity\Exception\ActivityRequiresGroup;
+use BristolSU\Support\Activity\Exception\ActivityRequiresRole;
+use BristolSU\Support\Activity\Exception\ActivityRequiresUser;
+use BristolSU\Support\User\User;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -29,7 +35,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,12 +46,31 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Exception $exception
+     * @return Response
      */
     public function render($request, Exception $exception)
     {
+        if (!$request->expectsJson()) {
+
+            if ($exception instanceof ActivityRequiresUser) {
+                return redirect()->route('login');
+            }
+            if ($exception instanceof ActivityRequiresGroup) {
+                return redirect()->route('login.group', [
+                    'activity_slug' => $exception->getActivity()->slug,
+                    'redirect' => $request->fullUrl()
+                ]);
+            }
+            if ($exception instanceof ActivityRequiresRole) {
+                return redirect()->route('login.role', [
+                    'activity_slug' => $exception->getActivity()->slug,
+                    'redirect' => $request->fullUrl()
+                ]);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

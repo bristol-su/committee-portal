@@ -11,10 +11,6 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 @endpush
 
-@push('scripts')
-{{--    <script src="{{ mix('js/global.js') }}"></script>--}}
-@endpush
-
 @push('meta-tags')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

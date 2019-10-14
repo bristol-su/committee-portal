@@ -47,10 +47,7 @@
 
         computed: {
             options() {
-                return this.logic.filter(logic => {
-                    return ((this.forLogic === 'group' && logic.for !== 'role')
-                        || (this.forLogic === 'user' && logic.for === 'user'));
-                }).map(logic => {
+                return this.logic.map(logic => {
                         return {
                             text: logic.name,
                             value: logic.id

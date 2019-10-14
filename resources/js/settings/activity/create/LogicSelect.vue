@@ -48,15 +48,11 @@
 
         computed: {
             options() {
-                return this.logic.filter(logic => {
-                    return (this.activityFor === 'user' && (logic.for === 'user' || logic.for === 'role'))
-                        || this.activityFor === 'group'
-                        || this.activityFor === null;
-                }).map(logic => {
-                        return {
-                            text: logic.name,
-                            value: logic.id
-                        }
+                return this.logic.map(logic => {
+                    return {
+                        text: logic.name,
+                        value: logic.id
+                    }
                 });
             }
         }
