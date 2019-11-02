@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+kjhkjehkjhkwejhrwkehkjrh
 // Authentication Routes
 Auth::routes(['verify' => true]);
 Route::middleware(['auth:web', 'verified'])
