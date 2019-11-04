@@ -2,7 +2,7 @@
     <div>
         <b-form-select @input="$emit('input', $event)" :value="value" :options="options" class="mb-3">
             <!-- This slot appears above the options from 'options' prop -->
-            <template slot="first">
+            <template v-slot:cell(first)="data">
                 <option :value="null" disabled>-- Please select an option --</option>
             </template>
         </b-form-select>

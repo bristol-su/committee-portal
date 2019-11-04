@@ -16,7 +16,7 @@ class LogIntoRoleController extends Controller
 
     public function show(Request $request, Activity $activity, RoleRepository $roleRepository, Authentication $authentication)
     {
-        $roles = collect($roleRepository->allFromStudentControlID($authentication->getUser()->control_id))->filter(function($role) use ($activity) {
+        $roles = collect($roleRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($role) use ($activity) {
             $logicTester = app()->make(\BristolSU\Support\Logic\Contracts\LogicTester::class);
             return $logicTester->evaluate($activity->forLogic, null, null, $role);
         });

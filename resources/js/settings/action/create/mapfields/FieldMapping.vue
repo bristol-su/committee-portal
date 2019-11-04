@@ -2,7 +2,7 @@
     <b-card :sub-title="field.helptext" :title="field.label">
         <b-card-text>
             <b-form-select :options="eventOptions" v-model="mapping" class="mb-3">
-                <template slot="first">
+                <template v-slot:cell(first)="data">
                     <option :value="null" disabled>-- Please select an option --</option>
                 </template>
             </b-form-select>

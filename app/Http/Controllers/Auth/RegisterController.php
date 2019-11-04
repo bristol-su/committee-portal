@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\UserVerificationRequestGenerated;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\UnionCloudController;
-use App\Packages\ControlDB\Models\CommitteeRole;
-use App\Packages\ControlDB\Models\Student;
 use BristolSU\Support\Control\Contracts\Repositories\User as ControlUserContract;
 use BristolSU\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
 use BristolSU\Support\User\Contracts\UserRepository;
@@ -28,7 +25,7 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)
     {

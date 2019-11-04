@@ -5,24 +5,21 @@ namespace App\Http\Controllers\Pages;
 
 
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\Activity\Contracts\Repository as ActivityRepositoryContract;
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\Control\Contracts\Models\Group;
+use BristolSU\Support\Authentication\Contracts\UserAuthentication;
 use BristolSU\Support\Control\Contracts\Repositories\Group as GroupRepository;
 use BristolSU\Support\Control\Contracts\Repositories\Role as RoleRepository;
-use BristolSU\Support\Logic\Facade\LogicTester;
+use BristolSU\Support\Control\Contracts\Repositories\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PortalController extends Controller
 {
 
-    public function portal(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
+    public function portal(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication)
     {
-        $controlId = $authentication->getUser()->control_id;
+        $controlId = $userAuthentication->getUser()->control_id;
 
         if($activityRepository->getForParticipant($authentication->getUser())->count() > 0) {
             return Response::redirectTo('p');
@@ -58,11 +55,12 @@ class PortalController extends Controller
         return Response::redirectTo('settings');
     }
 
-    public function participant(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
+    public function participant(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication, User $userRepository)
     {
-        $controlId = $authentication->getUser()->control_id;
+        $controlId = $userAuthentication->getUser()->control_id;
         $activities = ['role' => [], 'group' => [], 'user' => []];
-
+        $user = $userRepository->getById($controlId);
+        $activities['user'] = $activityRepository->getForParticipant($user);
         foreach($roleRepository->allFromStudentControlID($controlId) as $role) {
             $activities['role'][$role->id] = $activityRepository->getForParticipant(null, null, $role);
         }
@@ -71,16 +69,17 @@ class PortalController extends Controller
             $activities['group'][$group->id] = $activityRepository->getForParticipant(null, $group, null);
         }
 
-        $activities['user'] = $activityRepository->getForParticipant($authentication->getUser());
+        $user = $userRepository->getById($controlId);
+        $activities['user'] = $activityRepository->getForParticipant($user);
         return view('portal.home')->with([
             'activities' => $activities,
             'administrator' => false
         ]);
     }
 
-    public function administrator(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
+    public function administrator(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication, User $userRepository)
     {
-        $controlId = $authentication->getUser()->control_id;
+        $controlId = $userAuthentication->getUser()->control_id;
         $activities = ['role' => [], 'group' => [], 'user' => []];
 
         foreach($roleRepository->allFromStudentControlID($controlId) as $role) {
@@ -91,7 +90,8 @@ class PortalController extends Controller
             $activities['group'][$group->id] = $activityRepository->getForAdministrator(null, $group, null);
         }
 
-        $activities['user'] = $activityRepository->getForAdministrator($authentication->getUser());
+        $user = $userRepository->getById($controlId);
+        $activities['user'] = $activityRepository->getForAdministrator($user);
         return view('portal.home')->with([
             'activities' => $activities,
             'administrator' => true

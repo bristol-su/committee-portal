@@ -12,16 +12,6 @@ use Tests\TestCase;
 
 class LogicFiltersControllerTest extends TestCase
 {
-
-    private $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->be($this->user, 'api');
-    }
-
     /** @test */
     public function index_returns_404_if_logic_not_found(){
         $response = $this->json('get', '/api/logic/1/filters');

@@ -11,14 +11,6 @@ use Tests\TestCase;
 
 class ActivityModuleInstancesControllerTest extends TestCase
 {
-    private $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->be($this->user, 'api');
-    }
 
     /** @test */
     public function index_returns_404_if_activity_not_found(){

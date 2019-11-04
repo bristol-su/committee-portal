@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-table :fields="fields" :items="logics">
-            <template slot="actions" slot-scope="data">
+            <template v-slot:cell(actions)="data">
                 <a :href="'/logic/' + data.item.id">
                     <b-button variant="secondary">View</b-button>
                 </a>

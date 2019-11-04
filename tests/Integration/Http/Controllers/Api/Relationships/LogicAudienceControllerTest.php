@@ -10,15 +10,6 @@ use Tests\TestCase;
 
 class LogicAudienceControllerTest extends TestCase
 {
-    private $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->user = factory(User::class)->create();
-        $this->be($this->user, 'api');
-    }
-
     /** @test */
     public function index_calls_the_audience_function(){
         $logic = factory(Logic::class)->create();

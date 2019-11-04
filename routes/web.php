@@ -11,6 +11,8 @@ Route::middleware(['auth:web', 'verified'])->group(function() {
     Route::post('/login/role/{activity_slug}', 'Auth\LogIntoRoleController@login');
     Route::get('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@show')->name('login.group');
     Route::post('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@login');
+    Route::get('/login/user/{activity_slug}', 'Auth\LogIntoUserController@show')->name('login.user');
+    Route::post('/login/user/{activity_slug}', 'Auth\LogIntoUserController@login');
 });
 
 
@@ -39,8 +41,8 @@ Route::namespace('Pages')->group(function () {
         Route::get('/a', 'PortalController@administrator')->name('administrator');
         Route::get('/p', 'PortalController@participant')->name('participant');
         Route::middleware('activity')->group(function() {
-            Route::get('/a/{activity_slug}', 'ActivityController@administrator')->name('administrator.activity');
-            Route::get('/p/{activity_slug}', 'ActivityController@participant')->name('participant.activity');
+            Route::middleware('administrator')->get('/a/{activity_slug}', 'ActivityController@administrator')->name('administrator.activity');
+            Route::middleware('participant')->get('/p/{activity_slug}', 'ActivityController@participant')->name('participant.activity');
         });
     });
 

@@ -46,7 +46,9 @@
                 return (this.admin?'/a/':'/p/')
                     + event.slug
                     + '/'
-                    + moduleInstance.slug;
+                    + moduleInstance.slug
+                    + '/'
+                    + moduleInstance.alias;
             }
         }
     }

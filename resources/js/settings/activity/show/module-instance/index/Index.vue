@@ -7,7 +7,7 @@
             <b-row>
                 <b-col>
                     <b-table striped hover :items="modules" :fields="moduleFields">
-                        <template slot="view" slot-scope="data">
+                        <template v-slot:cell(view)="data">
                             <a :href="'/activity/' + activity.id + '/module_instance/' + data.item.id"><b-button variant="primary">View</b-button></a>
                         </template>
                     </b-table>

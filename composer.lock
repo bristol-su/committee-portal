@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1c9e5a8c354fd74825339a6b4bb3986",
+    "content-hash": "59ebf3ac59fa9ea9e60a10fd397dfc0c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.112.20",
+            "version": "3.112.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c84de8adf2b014124b0058013805caf2ae384137"
+                "reference": "bf9370f1b2833f2db7d1d051a79d71e71c5e6fb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c84de8adf2b014124b0058013805caf2ae384137",
-                "reference": "c84de8adf2b014124b0058013805caf2ae384137",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/bf9370f1b2833f2db7d1d051a79d71e71c5e6fb0",
+                "reference": "bf9370f1b2833f2db7d1d051a79d71e71c5e6fb0",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-10-11T18:14:55+00:00"
+            "time": "2019-10-15T18:12:28+00:00"
         },
         {
             "name": "brianium/habitat",
@@ -196,16 +196,10 @@
         {
             "name": "bristol-su/support",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bristol-su/support.git",
-                "reference": "f174b0ac0fdb488e2792427353067aede5f6b437"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/support/zipball/f174b0ac0fdb488e2792427353067aede5f6b437",
-                "reference": "f174b0ac0fdb488e2792427353067aede5f6b437",
-                "shasum": ""
+                "type": "path",
+                "url": "../support/support",
+                "reference": "6b59c3ff04e7d8161c6ad59a031b0b4b10965803"
             },
             "require": {
                 "brianium/paratest": "^3.0",
@@ -237,7 +231,11 @@
                     "database/factories/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "BristolSU\\Support\\Tests\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -246,22 +244,15 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ],
-            "time": "2019-10-14T01:40:00+00:00"
+            ]
         },
         {
             "name": "bristol-su/upload-file",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bristol-su/upload-file.git",
-                "reference": "fea7732ebd40f3ba694661c6428853f4a7f9d541"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/fea7732ebd40f3ba694661c6428853f4a7f9d541",
-                "reference": "fea7732ebd40f3ba694661c6428853f4a7f9d541",
-                "shasum": ""
+                "type": "path",
+                "url": "../modules/upload-file",
+                "reference": "8275e1d8cc735da1eae9d79be73172eb81cd7338"
             },
             "require": {
                 "bristol-su/support": "dev-master",
@@ -283,7 +274,11 @@
                     "BristolSU\\Module\\UploadFile\\": "app/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "BristolSU\\Module\\Tests\\UploadFile\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -292,8 +287,7 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ],
-            "time": "2019-10-11T21:01:51+00:00"
+            ]
         },
         {
             "name": "composer/semver",
@@ -1708,16 +1702,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.2.0",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd"
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cacce5a77fa94793cf25345d67387632134d75dd",
-                "reference": "cacce5a77fa94793cf25345d67387632134d75dd",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/80914c430fb5e49f492812d704ba6aeec03d80a2",
+                "reference": "80914c430fb5e49f492812d704ba6aeec03d80a2",
                 "shasum": ""
             },
             "require": {
@@ -1850,7 +1844,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-10-08T12:50:06+00:00"
+            "time": "2019-10-15T13:38:24+00:00"
         },
         {
             "name": "laravel/passport",
@@ -2687,16 +2681,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.25.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/443fe5f1498147e0fbc792142b5dc43e2e8a533f",
+                "reference": "443fe5f1498147e0fbc792142b5dc43e2e8a533f",
                 "shasum": ""
             },
             "require": {
@@ -2750,7 +2744,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-14T14:18:59+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7235,23 +7229,23 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.8",
+            "version": "5.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4"
+                "reference": "44c6787311242a979fa15c704327c20e7221a0e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/dcb6e1006bb5fd1e392b4daa68932880f37550d4",
-                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/44c6787311242a979fa15c704327c20e7221a0e4",
+                "reference": "44c6787311242a979fa15c704327c20e7221a0e4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.2.20",
+                "friendsofphp/php-cs-fixer": "~2.2.20||~2.15.1",
                 "json-schema/json-schema-test-suite": "1.2.0",
                 "phpunit/phpunit": "^4.8.35"
             },
@@ -7297,7 +7291,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2019-01-14T23:55:14+00:00"
+            "time": "2019-09-25T14:49:45+00:00"
         },
         {
             "name": "nunomaduro/collision",

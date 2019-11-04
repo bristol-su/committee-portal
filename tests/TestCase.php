@@ -9,4 +9,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseTransactions;
 
+    public function alias(): string
+    {
+        return 'support';
+    }
 }

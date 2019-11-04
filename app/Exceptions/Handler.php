@@ -5,7 +5,6 @@ namespace App\Exceptions;
 use BristolSU\Support\Activity\Exception\ActivityRequiresGroup;
 use BristolSU\Support\Activity\Exception\ActivityRequiresRole;
 use BristolSU\Support\Activity\Exception\ActivityRequiresUser;
-use BristolSU\Support\User\User;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
@@ -55,7 +54,10 @@ class Handler extends ExceptionHandler
         if (!$request->expectsJson()) {
 
             if ($exception instanceof ActivityRequiresUser) {
-                return redirect()->route('login');
+                return redirect()->route('login.user', [
+                    'activity_slug' => $exception->getActivity()->slug,
+                    'redirect' => $request->fullUrl()
+                ]);
             }
             if ($exception instanceof ActivityRequiresGroup) {
                 return redirect()->route('login.group', [
@@ -70,6 +72,8 @@ class Handler extends ExceptionHandler
                 ]);
             }
         }
+
+        // TODO Handle exceptions above if expects json
 
         return parent::render($request, $exception);
     }

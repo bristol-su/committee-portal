@@ -2,7 +2,7 @@
     <div>
         <b-form-select :options="dropdownOptions" class="mb-3" @input="moduleChanged">
             <!-- This slot appears above the options from 'options' prop -->
-            <template slot="first">
+            <template v-slot:cell(first)="data">
                 <option :value="null" disabled>-- Please select an option --</option>
             </template>
         </b-form-select>

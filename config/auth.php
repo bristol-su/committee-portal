@@ -1,5 +1,9 @@
 <?php
 
+use BristolSU\Support\Control\Models\Group;
+use BristolSU\Support\Control\Models\Role;
+use BristolSU\Support\Control\Models\User;
+
 return [
 
     /*
@@ -54,7 +58,12 @@ return [
         'group' => [
             'driver' => 'session',
             'provider' => 'groups'
-        ]
+        ],
+
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'controlusers'
+        ],
     ],
 
     /*
@@ -80,14 +89,19 @@ return [
             'model' => BristolSU\Support\User\User::class,
         ],
 
+        'controlusers' => [
+            'driver' => 'user-provider',
+            'model' => User::class,
+        ],
+
         'roles' => [
             'driver' => 'role-provider',
-            'model' => \BristolSU\Support\Control\Models\Role::class
+            'model' => Role::class
         ],
 
         'groups' => [
             'driver' => 'group-provider',
-            'model' => \BristolSU\Support\Control\Models\Group::class
+            'model' => Group::class
         ],
 
     ],
