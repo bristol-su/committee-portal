@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\Authentication\Contracts\Authentication;
+use BristolSU\Support\Control\Contracts\Repositories\Group as GroupRepository;
 use BristolSU\Support\Control\Contracts\Repositories\Role;
 use BristolSU\Support\Control\Contracts\Repositories\Role as RoleRepository;
 use BristolSU\Support\Logic\Facade\LogicTester;
@@ -14,11 +15,12 @@ use Illuminate\Http\Request;
 class LogIntoRoleController extends Controller
 {
 
-    public function show(Request $request, Activity $activity, RoleRepository $roleRepository, Authentication $authentication)
+    public function show(Request $request, Activity $activity, RoleRepository $roleRepository, Authentication $authentication, GroupRepository $groupRepository)
     {
-        $roles = collect($roleRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($role) use ($activity) {
+        $user = $authentication->getUser();
+        $roles = collect($roleRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($role) use ($activity, $user, $groupRepository) {
             $logicTester = app()->make(\BristolSU\Support\Logic\Contracts\LogicTester::class);
-            return $logicTester->evaluate($activity->forLogic, null, null, $role);
+            return $logicTester->evaluate($activity->forLogic, $user, $groupRepository->getById($role->group_id), $role);
         });
 
         return view('auth.login.role')->with(['roles' => $roles, 'activity' => $activity, 'redirectTo' => $request->input('redirect')]);

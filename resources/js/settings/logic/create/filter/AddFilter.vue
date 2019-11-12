@@ -3,7 +3,7 @@
         <b-button variant="secondary" style="width: 100%" v-b-modal="title">Add Filter</b-button>
 
         <b-modal :id="title" title="Choose a Filter" no-stacking ok-only ok-title="Cancel">
-            <filter-list :for-logic="forLogic" @click="setupFilter">
+            <filter-list @click="setupFilter">
 
             </filter-list>
         </b-modal>
@@ -35,10 +35,6 @@
                 required: true,
                 type: String
             },
-            forLogic: {
-                required: true,
-                type: String
-            }
         },
 
         data() {

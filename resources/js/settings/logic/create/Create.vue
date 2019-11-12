@@ -30,26 +30,20 @@
             ></b-form-input>
         </b-form-group>
 
-        <b-form-group label="Who does this logic apply to?">
-            <b-form-radio name="for" v-model="form.for" value="user">Users</b-form-radio>
-            <b-form-radio name="for" v-model="form.for" value="group">Groups</b-form-radio>
-            <b-form-radio name="for" v-model="form.for" value="role">Roles</b-form-radio>
-        </b-form-group>
-
-        <b-form-group label="Filters" v-if="form.for !== null">
-            <filter-group :for-logic="form.for" title="All True" v-model="form.all_true" >
+        <b-form-group label="Filters">
+            <filter-group title="All True" v-model="form.all_true" >
 
             </filter-group>
 
-            <filter-group :for-logic="form.for" title="All False" v-model="form.all_false">
+            <filter-group title="All False" v-model="form.all_false">
 
             </filter-group>
 
-            <filter-group :for-logic="form.for" title="Any Must Be True" v-model="form.any_true">
+            <filter-group title="Any Must Be True" v-model="form.any_true">
 
             </filter-group>
 
-            <filter-group :for-logic="form.for" title="Any Must Be False" v-model="form.any_false">
+            <filter-group title="Any Must Be False" v-model="form.any_false">
 
             </filter-group>
         </b-form-group>
@@ -69,7 +63,6 @@
                 form: {
                     name: '',
                     description: '',
-                    for: null,
                     all_true: [],
                     all_false: [],
                     any_true: [],

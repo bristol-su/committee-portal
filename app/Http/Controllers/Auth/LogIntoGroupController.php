@@ -14,9 +14,11 @@ class LogIntoGroupController extends Controller
 
     public function show(Request $request, Activity $activity, GroupRepository $groupRepository, Authentication $authentication)
     {
-        $groups = collect($groupRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($group) use ($activity) {
+        // TODO Enable roles to be used here too.
+        $user = $authentication->getUser();
+        $groups = collect($groupRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($group) use ($activity, $user) {
             $logicTester = app()->make(LogicTester::class);
-            return $logicTester->evaluate($activity->forLogic, null, $group, null);
+            return $logicTester->evaluate($activity->forLogic, $user, $group, null);
         });
 
         return view('auth.login.group')->with(['groups' => $groups, 'activity' => $activity, 'redirectTo' => $request->input('redirect')]);

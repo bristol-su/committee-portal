@@ -22,6 +22,7 @@ import ActionCreate from './settings/action/create/Create';
 import Activities from './components/portal/activity/index/show/Activities';
 import LogIntoRole from './components/login/LogIntoRole';
 import LogIntoGroup from './components/login/LogIntoGroup';
+import LogIntoAdmin from './components/login/LogIntoAdmin';
 import ToggleAdminOrParticipant from './components/portal/ToggleAdminOrParticipant';
 
 Vue.use(BootstrapVue);
@@ -65,7 +66,8 @@ new Vue({
         ToggleAdminOrParticipant,
 
         LogIntoRole,
-        LogIntoGroup
+        LogIntoGroup,
+        LogIntoAdmin
     }
 });
 

@@ -13,12 +13,14 @@ Route::middleware(['auth:web', 'verified'])->group(function() {
     Route::post('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@login');
     Route::get('/login/user/{activity_slug}', 'Auth\LogIntoUserController@show')->name('login.user');
     Route::post('/login/user/{activity_slug}', 'Auth\LogIntoUserController@login');
+    Route::get('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@show')->name('login.admin');
+    Route::post('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@login');
 });
 
 
 
 // Settings routes
-Route::namespace('Settings')->group(function () {
+Route::namespace('Settings')->middleware('portal')->group(function () {
     Route::get('/settings', 'SettingsController@index')->name('settings');
 
     Route::resource('activity', 'ActivityController')->only(['index', 'create', 'show']);

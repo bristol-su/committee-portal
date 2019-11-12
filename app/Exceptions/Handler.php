@@ -2,9 +2,11 @@
 
 namespace App\Exceptions;
 
-use BristolSU\Support\Activity\Exception\ActivityRequiresGroup;
-use BristolSU\Support\Activity\Exception\ActivityRequiresRole;
-use BristolSU\Support\Activity\Exception\ActivityRequiresUser;
+use BristolSU\Support\Authorization\Exception\ActivityRequiresAdmin;
+use BristolSU\Support\Authorization\Exception\ActivityRequiresGroup;
+use BristolSU\Support\Authorization\Exception\ActivityRequiresRole;
+use BristolSU\Support\Authorization\Exception\ActivityRequiresUser;
+use BristolSU\Support\Authorization\Exception\ModuleInactive;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
@@ -70,6 +72,15 @@ class Handler extends ExceptionHandler
                     'activity_slug' => $exception->getActivity()->slug,
                     'redirect' => $request->fullUrl()
                 ]);
+            }
+            if($exception instanceof ActivityRequiresAdmin) {
+                return redirect()->route('login.admin', [
+                    'activity_slug' => $exception->getActivity()->slug,
+                    'redirect' => $request->fullUrl()
+                ]);
+            }
+            if($exception instanceof ModuleInactive) {
+                dd($exception);
             }
         }
 

@@ -19,34 +19,37 @@ class PortalController extends Controller
 
     public function portal(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication)
     {
-        $controlId = $userAuthentication->getUser()->control_id;
+        return Response::redirectTo('p');
 
-        if($activityRepository->getForParticipant($authentication->getUser())->count() > 0) {
+        $controlId = $userAuthentication->getUser()->control_id;
+        $user = $authentication->getUser();
+
+        if ($activityRepository->getForParticipant($user)->count() > 0) {
             return Response::redirectTo('p');
 
         }
-        if($activityRepository->getForAdministrator($authentication->getUser())->count() > 0) {
+        if ($activityRepository->getForAdministrator($user)->count() > 0) {
             return Response::redirectTo('a');
 
         }
 
-        foreach($roleRepository->allFromStudentControlID($controlId) as $role) {
-            if($activityRepository->getForParticipant(null, null, $role)->count() > 0) {
+        foreach ($roleRepository->allFromStudentControlID($controlId) as $role) {
+            if ($activityRepository->getForParticipant(null, null, $role)->count() > 0) {
                 return Response::redirectTo('p');
 
             }
-            if($activityRepository->getForAdministrator(null, null, $role)->count() > 0) {
+            if ($activityRepository->getForAdministrator(null, null, $role)->count() > 0) {
                 return Response::redirectTo('a');
 
             }
         }
 
-        foreach($groupRepository->allFromStudentControlID($controlId) as $group) {
-            if($activityRepository->getForParticipant(null, $group, null)->count() > 0) {
+        foreach ($groupRepository->allFromStudentControlID($controlId) as $group) {
+            if ($activityRepository->getForParticipant(null, $group, null)->count() > 0) {
                 return Response::redirectTo('p');
 
             }
-            if($activityRepository->getForAdministrator(null, $group, null)->count() > 0) {
+            if ($activityRepository->getForAdministrator(null, $group, null)->count() > 0) {
                 return Response::redirectTo('a');
 
             }
@@ -60,38 +63,43 @@ class PortalController extends Controller
         $controlId = $userAuthentication->getUser()->control_id;
         $activities = ['role' => [], 'group' => [], 'user' => []];
         $user = $userRepository->getById($controlId);
-        $activities['user'] = $activityRepository->getForParticipant($user);
-        foreach($roleRepository->allFromStudentControlID($controlId) as $role) {
-            $activities['role'][$role->id] = $activityRepository->getForParticipant(null, null, $role);
+        $activities['user'] = collect($activityRepository->getForParticipant($user))->filter(function($activity) {
+            return $activity->activity_for !== 'group' && $activity->activity_for !== 'role';
+        });
+
+        foreach ($groupRepository->allFromStudentControlID($controlId) as $group) {
+            $activities['group'][$group->id] = collect($activityRepository->getForParticipant($user, $group, null))->filter(function($activity) {
+                return $activity->activity_for !== 'role';
+            });
         }
 
-        foreach($groupRepository->allFromStudentControlID($controlId) as $group) {
-            $activities['group'][$group->id] = $activityRepository->getForParticipant(null, $group, null);
+        foreach ($roleRepository->allFromStudentControlID($controlId) as $role) {
+            $group = $groupRepository->getById($role->group_id);
+            $activities['role'][$role->id] = $activityRepository->getForParticipant($user, $group, $role);
         }
 
-        $user = $userRepository->getById($controlId);
-        $activities['user'] = $activityRepository->getForParticipant($user);
         return view('portal.home')->with([
             'activities' => $activities,
             'administrator' => false
         ]);
     }
 
-    public function administrator(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication, User $userRepository)
+    public function administrator(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
     {
-        $controlId = $userAuthentication->getUser()->control_id;
         $activities = ['role' => [], 'group' => [], 'user' => []];
-
-        foreach($roleRepository->allFromStudentControlID($controlId) as $role) {
-            $activities['role'][$role->id] = $activityRepository->getForAdministrator(null, null, $role);
-        }
-
-        foreach($groupRepository->allFromStudentControlID($controlId) as $group) {
-            $activities['group'][$group->id] = $activityRepository->getForAdministrator(null, $group, null);
-        }
-
-        $user = $userRepository->getById($controlId);
+        $user = $authentication->getUser();
         $activities['user'] = $activityRepository->getForAdministrator($user);
+
+
+        foreach ($groupRepository->allFromStudentControlID($user->id) as $group) {
+            $activities['group'][$group->id] = $activityRepository->getForAdministrator($user, $group, null);
+        }
+
+        foreach ($roleRepository->allFromStudentControlID($user->id) as $role) {
+            $group = $groupRepository->getById($role->group_id);
+            $activities['role'][$role->id] = $activityRepository->getForAdministrator($user, $group, $role);
+        }
+
         return view('portal.home')->with([
             'activities' => $activities,
             'administrator' => true

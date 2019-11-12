@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use BristolSU\Support\Filters\Commands\CacheFilters;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,10 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
-//        $schedule->command('telescope:prune')->daily();
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command(CacheFilters::class)->hourly();
     }
 
     /**

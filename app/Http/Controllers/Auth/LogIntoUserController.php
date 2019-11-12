@@ -15,6 +15,7 @@ class LogIntoUserController extends Controller
 
     public function show(Request $request, Activity $activity, UserRepository $userRepository, UserAuthentication $userAuthentication, Authentication $authentication)
     {
+        // TODO Show user, group and roles!
         $user = $userRepository->getById($userAuthentication->getUser()->control_id);
 
         $authentication->setUser($user);

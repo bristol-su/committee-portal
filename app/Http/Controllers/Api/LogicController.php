@@ -29,7 +29,6 @@ class LogicController extends Controller
         $logic = $repository->create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'for' => $request->input('for')
         ]);
 
         // TODO Refactor below

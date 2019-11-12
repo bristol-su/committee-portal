@@ -20,7 +20,7 @@
                         </b-list-group-item>
                     </b-list-group>
                 </p>
-                <add-filter :title="title" @addFilter="addFilter" :for-logic="forLogic">
+                <add-filter :title="title" @addFilter="addFilter">
 
                 </add-filter>
             </div>
@@ -42,10 +42,6 @@
                 required: true,
                 type: String
             },
-            forLogic: {
-                required: true,
-                type: String
-            }
         },
 
         data() {

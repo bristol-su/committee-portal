@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-list-group>
-            <b-list-group-item hrerf="#" @click="$emit('click', filter)" v-for="filter in relevantFilters" :key="filter.alias" class="flex-column align-items-start">
+            <b-list-group-item hrerf="#" @click="$emit('click', filter)" v-for="filter in filters" :key="filter.alias" class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{filter.name}}</h5>
                     <small>{{filter.for}}</small>
@@ -27,13 +27,6 @@
             }
         },
 
-        props: {
-            forLogic: {
-                required: true,
-                type: String
-            }
-        },
-
         created() {
             this.loadFilters();
         },
@@ -46,16 +39,6 @@
             }
         },
 
-        computed: {
-            relevantFilters() {
-                return this.filters;
-                // .filter(filter => {
-                //     return (this.forLogic === 'role'
-                //         || (this.forLogic === 'group' && filter.for !== 'role')
-                //         || (this.forLogic === 'user' && filter.for === 'user'));
-                // })
-            }
-        }
     }
 </script>
 

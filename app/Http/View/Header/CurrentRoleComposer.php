@@ -24,6 +24,7 @@ class CurrentRoleComposer
 
     public function compose(View $view)
     {
+
         $view->with('currentRole', $this->authentication->getRole());
     }
 }
