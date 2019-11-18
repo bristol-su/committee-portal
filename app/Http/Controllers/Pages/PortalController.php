@@ -58,22 +58,21 @@ class PortalController extends Controller
         return Response::redirectTo('settings');
     }
 
-    public function participant(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication, User $userRepository)
+    public function participant(Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
     {
-        $controlId = $userAuthentication->getUser()->control_id;
+        $user = $authentication->getUser();
         $activities = ['role' => [], 'group' => [], 'user' => []];
-        $user = $userRepository->getById($controlId);
         $activities['user'] = collect($activityRepository->getForParticipant($user))->filter(function($activity) {
             return $activity->activity_for !== 'group' && $activity->activity_for !== 'role';
         });
 
-        foreach ($groupRepository->allFromStudentControlID($controlId) as $group) {
+        foreach ($groupRepository->allThroughUser($user) as $group) {
             $activities['group'][$group->id] = collect($activityRepository->getForParticipant($user, $group, null))->filter(function($activity) {
                 return $activity->activity_for !== 'role';
             });
         }
 
-        foreach ($roleRepository->allFromStudentControlID($controlId) as $role) {
+        foreach ($roleRepository->allThroughUser($user) as $role) {
             $group = $groupRepository->getById($role->group_id);
             $activities['role'][$role->id] = $activityRepository->getForParticipant($user, $group, $role);
         }
@@ -84,18 +83,18 @@ class PortalController extends Controller
         ]);
     }
 
-    public function administrator(Request $request, Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
+    public function administrator(Authentication $authentication, ActivityRepositoryContract $activityRepository, RoleRepository $roleRepository, GroupRepository $groupRepository)
     {
         $activities = ['role' => [], 'group' => [], 'user' => []];
         $user = $authentication->getUser();
         $activities['user'] = $activityRepository->getForAdministrator($user);
 
 
-        foreach ($groupRepository->allFromStudentControlID($user->id) as $group) {
+        foreach ($groupRepository->allThroughUser($user) as $group) {
             $activities['group'][$group->id] = $activityRepository->getForAdministrator($user, $group, null);
         }
 
-        foreach ($roleRepository->allFromStudentControlID($user->id) as $role) {
+        foreach ($roleRepository->allThroughUser($user) as $role) {
             $group = $groupRepository->getById($role->group_id);
             $activities['role'][$role->id] = $activityRepository->getForAdministrator($user, $group, $role);
         }

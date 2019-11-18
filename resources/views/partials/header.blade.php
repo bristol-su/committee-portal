@@ -4,7 +4,7 @@
 
             <!-- Left side of the navbar -->
             @auth
-                <a class="navbar-brand" href="{{ homeURL() }}">
+                <a class="navbar-brand" href="{{url('/')}}">
                     <img style="max-height: 40px" src="{{serveStatic('su-logo.jpg')}}"/>
                     &nbsp;&nbsp;
                     {{ config('app.name', 'Committee Portal') }}
@@ -45,7 +45,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <!-- Home -->
-                                <a class="dropdown-item" href="{{ homeURL() }}">Home</a>
+                                <a class="dropdown-item" href="{{url('/')}}">Home</a>
                                 <!-- Settings -->
                                 {{--                                @can('view-site-settings-page')--}}
                                 <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>

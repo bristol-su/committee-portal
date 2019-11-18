@@ -12,9 +12,7 @@ class MeRolesController extends Controller
 
     public function index(RoleRepository $roleRepository, Authentication $authentication)
     {
-        return $roleRepository->allFromStudentControlID(
-            $authentication->getUser()->control_id
-        );
+        return $roleRepository->allThroughUser($authentication->getUser());
     }
 
 }

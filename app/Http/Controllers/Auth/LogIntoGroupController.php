@@ -16,7 +16,7 @@ class LogIntoGroupController extends Controller
     {
         // TODO Enable roles to be used here too.
         $user = $authentication->getUser();
-        $groups = collect($groupRepository->allFromStudentControlID($authentication->getUser()->id))->filter(function($group) use ($activity, $user) {
+        $groups = collect($groupRepository->allThroughUser($authentication->getUser()->id))->filter(function($group) use ($activity, $user) {
             $logicTester = app()->make(LogicTester::class);
             return $logicTester->evaluate($activity->forLogic, $user, $group, null);
         });

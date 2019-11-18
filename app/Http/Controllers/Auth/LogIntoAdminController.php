@@ -23,13 +23,13 @@ class LogIntoAdminController extends Controller
             $canActAs['user'] = $user;
         }
 
-        foreach ($groupRepository->allFromStudentControlID($user->id) as $group) {
+        foreach ($groupRepository->allThroughUser($user) as $group) {
             if($logicTester->evaluate($activity->adminLogic, $user, $group)) {
                 $canActAs['groups'][] = $group;
             }
         }
 
-        foreach ($roleRepository->allFromStudentControlID($user->id) as $role) {
+        foreach ($roleRepository->allThroughUser($user) as $role) {
             $group = $groupRepository->getById($role->group_id);
             if($logicTester->evaluate($activity->adminLogic, $user, $group, $role)) {
                 $canActAs['roles'][] = $role;

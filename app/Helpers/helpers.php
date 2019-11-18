@@ -21,9 +21,3 @@ if (!function_exists('serveStatic')) {
                 .config('filesystems.static_content.folder').'/'.$filename;
     }
 }
-
-if(!function_exists('homeURL')) {
-    function homeURL() {
-        return '/portal';
-    }
-}
