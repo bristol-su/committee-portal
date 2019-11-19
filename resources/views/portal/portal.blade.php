@@ -1,15 +1,19 @@
-@extends('layouts.portal')
+@extends('layouts.app')
 
-@section('header-name')
-    {{$activity->name}} @if($admin)- Admin @endif
-@endsection
+@section('app-content')
+    <div class="container-fluid" style="text-align: center">
 
-@section('portal-content')
-    <module-instances
-    :event="{{$activity}}"
-    :admin="{{($admin?'true':'false')}}"
-    :evaluation="{{$evaluation}}">
+    <toggle-admin-or-participant
+    :admin="{{($administrator?'true':'false')}}">
 
-    </module-instances>
+    </toggle-admin-or-participant>
+
+    <activities
+        :activities="{{json_encode($activities)}}"
+        :admin="{{($administrator?'true':'false')}}"
+        :user-id="{{app(\BristolSU\Support\Authentication\Contracts\UserAuthentication::class)->getUser()->control_id}}">
+    </activities>
+
+    </div>
 
 @endsection

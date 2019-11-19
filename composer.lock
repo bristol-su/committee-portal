@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59ebf3ac59fa9ea9e60a10fd397dfc0c",
+    "content-hash": "4169554fcc51e18d9b247f8e2a0f3218",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.117.1",
+            "version": "3.117.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "6951cd08326d939f1fd1097a490fccb9751a59d7"
+                "reference": "3dc81df70f1cdf2842c85915548bffb870c1e1da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6951cd08326d939f1fd1097a490fccb9751a59d7",
-                "reference": "6951cd08326d939f1fd1097a490fccb9751a59d7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3dc81df70f1cdf2842c85915548bffb870c1e1da",
+                "reference": "3dc81df70f1cdf2842c85915548bffb870c1e1da",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-11-14T19:27:06+00:00"
+            "time": "2019-11-15T19:21:02+00:00"
         },
         {
             "name": "brianium/habitat",
@@ -200,7 +200,7 @@
             "dist": {
                 "type": "path",
                 "url": "../support/support",
-                "reference": "6453c1d9b257e189ac353af90730d7070f348e6f"
+                "reference": "7e391f95c0a22d80cdb0e1e7f065f4fdce1c2ece"
             },
             "require": {
                 "brianium/paratest": "^3.0",
@@ -218,6 +218,9 @@
                 "laravel": {
                     "providers": [
                         "BristolSU\\Support\\SupportServiceProvider"
+                    ],
+                    "dont-discover": [
+                        "laravel/passport"
                     ]
                 }
             },
@@ -451,16 +454,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c15dcd24b756f9e52ea7c3ae8227354f3628f11a"
+                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c15dcd24b756f9e52ea7c3ae8227354f3628f11a",
-                "reference": "c15dcd24b756f9e52ea7c3ae8227354f3628f11a",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/89a5c76c39c292f7798f964ab3c836c3f8192a55",
+                "reference": "89a5c76c39c292f7798f964ab3c836c3f8192a55",
                 "shasum": ""
             },
             "require": {
@@ -530,7 +533,7 @@
                 "riak",
                 "xcache"
             ],
-            "time": "2019-11-11T10:31:52+00:00"
+            "time": "2019-11-15T14:31:57+00:00"
         },
         {
             "name": "doctrine/dbal",

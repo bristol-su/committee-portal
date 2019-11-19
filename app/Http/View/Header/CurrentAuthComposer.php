@@ -6,7 +6,7 @@ use BristolSU\Support\Authentication\Contracts\Authentication;
 use BristolSU\Support\Control\Contracts\Models\Role;
 use Illuminate\Contracts\View\View;
 
-class CurrentRoleComposer
+class CurrentAuthComposer
 {
     /**
      * @var Authentication
@@ -24,7 +24,8 @@ class CurrentRoleComposer
 
     public function compose(View $view)
     {
-
+        $view->with('currentUser', $this->authentication->getUser());
+        $view->with('currentGroup', $this->authentication->getGroup());
         $view->with('currentRole', $this->authentication->getRole());
     }
 }

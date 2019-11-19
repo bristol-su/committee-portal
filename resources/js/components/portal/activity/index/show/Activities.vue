@@ -3,7 +3,8 @@
 
         <user-activities
             :activities="userActivity"
-            :admin="admin">
+            :admin="admin"
+            :user-id="userId">
 
         </user-activities>
 
@@ -43,6 +44,9 @@
             admin: {
                 default: false,
                 type: Boolean
+            },
+            userId: {
+                required: true,
             }
         },
 

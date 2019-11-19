@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Http\View\Header\CurrentRoleComposer;
-use App\Http\View\Portal\DashboardComposer;
+use App\Http\View\Header\CurrentAuthComposer;
+use App\Http\View\Portal\ActivitySidebarComposer;
 use App\Http\View\Utilities\JavascriptComposer;
 use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\Logic\Facade\LogicTester;
@@ -28,9 +28,9 @@ class ViewServiceProvider extends ServiceProvider
     {
         // TODO Replace with repositories
 
-        View::composer(['layouts.portal'], DashboardComposer::class);
+        View::composer(['layouts.portal'], ActivitySidebarComposer::class);
         View::composer(['bristolsu::base'], JavascriptComposer::class);
-        View::composer(['partials.header'], CurrentRoleComposer::class);
+        View::composer(['partials.header'], CurrentAuthComposer::class);
 
         View::composer(['admin.settings.activities.sidebar'], function ($view) {
             $view->with('events', Activity::all());

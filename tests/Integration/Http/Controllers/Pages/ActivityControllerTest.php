@@ -43,14 +43,14 @@ class ActivityControllerTest extends TestCase
     public function admin_returns_the_correct_view(){
         $activity = factory(Activity::class)->create();
         $response = $this->loadActivity($activity, true);
-        $response->assertViewIs('portal.portal');
+        $response->assertViewIs('portal.activity');
     }
 
     /** @test */
     public function participant_returns_the_correct_view(){
         $activity = factory(Activity::class)->create();
         $response = $this->loadActivity($activity, false);
-        $response->assertViewIs('portal.portal');
+        $response->assertViewIs('portal.activity');
     }
 
     /** @test */

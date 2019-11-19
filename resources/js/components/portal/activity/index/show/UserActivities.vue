@@ -7,7 +7,8 @@
                     :key="activity.id" xs="12" sm="6" md="3">
                     <user-activity
                         :activity="activity"
-                        :admin="admin">
+                        :admin="admin"
+                        :user-id="userId">
 
                     </user-activity>
                 </b-col>
@@ -33,6 +34,9 @@
             admin: {
                 type: Boolean,
                 default: false
+            },
+            userId: {
+                required: true
             }
         },
 

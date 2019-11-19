@@ -14,7 +14,7 @@ class ActivityController extends Controller
 
     public function administrator(Activity $activity, ActivityEvaluatorContract $activityEvaluator)
     {
-        return view('portal.portal')->with([
+        return view('portal.activity')->with([
             'activity' => $activity,
             'admin' => true,
             'evaluation' => collect($activityEvaluator->evaluateAdministrator($activity))
@@ -23,7 +23,7 @@ class ActivityController extends Controller
 
     public function participant(Activity $activity, ActivityEvaluatorContract $activityEvaluator)
     {
-        return view('portal.portal')->with([
+        return view('portal.activity')->with([
             'activity' => $activity,
             'admin' => false,
             'evaluation' => collect($activityEvaluator->evaluateParticipant($activity))

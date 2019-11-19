@@ -54,7 +54,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
-        'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,
         'cache.headers' => SetCacheHeaders::class,
         'can' => Authorize::class,
@@ -84,11 +83,6 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:150,1',
             'bindings',
-        ],
-
-        'portal' => [
-            'auth:web',
-            'verified',
         ],
 
     ];

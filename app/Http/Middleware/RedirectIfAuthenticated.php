@@ -2,11 +2,22 @@
 
 namespace App\Http\Middleware;
 
+use BristolSU\Support\Authentication\Contracts\UserAuthentication;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
+    /**
+     * @var UserAuthentication
+     */
+    private $userAuthentication;
+
+    public function __construct(UserAuthentication $userAuthentication)
+    {
+        $this->userAuthentication = $userAuthentication;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -15,9 +26,9 @@ class RedirectIfAuthenticated
      * @param  string|null $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
+        if ($this->userAuthentication->getUser() !== null) {
             return redirect()->route('portal');
         }
 

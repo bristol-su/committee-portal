@@ -13,12 +13,12 @@
                 <hr/>
                 <div class="row">
                     <div class="col-md-3">
-                        <activity-sidebar
-                                :activities="{{$activities}}"
-                                :current-event="{{$activity}}"
-                                >
-
-                        </activity-sidebar>
+{{--                        <activity-sidebar--}}
+{{--                                :activities="{{$activities}}"--}}
+{{--                                :current-activity="{{$activity}}"--}}
+{{--                                >--}}
+{{----}}
+{{--                        </activity-sidebar>--}}
 
                     </div>
                     <div class="col-md-9">

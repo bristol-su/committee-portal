@@ -2,9 +2,9 @@
 
 @section('app-content')
     <log-into-admin
-        :user="{{($act_as['user']??'null')}}"
-        :groups="{{$act_as['groups']}}"
-        :roles="{{$act_as['roles']}}"
+        :user="{{$user}}"
+        :groups="{{$groups}}"
+        :roles="{{$roles}}"
         :activity="{{$activity}}"
         redirect-to="{{$redirectTo}}">
 

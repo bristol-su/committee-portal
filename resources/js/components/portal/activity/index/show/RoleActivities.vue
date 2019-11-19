@@ -32,7 +32,7 @@
                 }
             },
             roleId: {
-                required: true
+                required: true,
             },
             admin: {
                 type: Boolean,

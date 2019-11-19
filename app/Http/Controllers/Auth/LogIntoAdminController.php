@@ -6,53 +6,54 @@ use App\Http\Controllers\Controller;
 use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\Activity\Contracts\Repository as ActivityRepositoryContract;
 use BristolSU\Support\Authentication\Contracts\Authentication;
+use BristolSU\Support\Authentication\Contracts\UserAuthentication;
+use BristolSU\Support\Control\Contracts\Models\Group;
+use BristolSU\Support\Control\Contracts\Models\Role;
 use BristolSU\Support\Control\Contracts\Repositories\Group as GroupRepository;
-use BristolSU\Support\Control\Contracts\Repositories\Role;
 use BristolSU\Support\Control\Contracts\Repositories\Role as RoleRepository;
+use BristolSU\Support\Control\Contracts\Repositories\User as UserRepository;
 use BristolSU\Support\Logic\Contracts\LogicTester;
 use Illuminate\Http\Request;
 
 class LogIntoAdminController extends Controller
 {
 
-    public function show(Request $request, Activity $activity, Authentication $authentication, RoleRepository $roleRepository, GroupRepository $groupRepository, LogicTester $logicTester)
+    public function show(Request $request, Activity $activity, UserRepository $userRepository, RoleRepository $roleRepository, GroupRepository $groupRepository, UserAuthentication $userAuthentication)
     {
-        $canActAs = ['roles' => collect(), 'groups' => collect(), 'user' => null];
-        $user = $authentication->getUser();
-        if($logicTester->evaluate($activity->adminLogic, $user)) {
-            $canActAs['user'] = $user;
-        }
+        $user = $userRepository->getById($userAuthentication->getUser()->control_id);
 
-        foreach ($groupRepository->allThroughUser($user) as $group) {
-            if($logicTester->evaluate($activity->adminLogic, $user, $group)) {
-                $canActAs['groups'][] = $group;
-            }
-        }
+        $roles = collect($roleRepository->allThroughUser($user))->filter(function (Role $role) use ($activity, $user) {
+            return app()->make(LogicTester::class)->evaluate($activity->adminLogic, $user, $role->group(), $role);
+        });
 
-        foreach ($roleRepository->allThroughUser($user) as $role) {
-            $group = $groupRepository->getById($role->group_id);
-            if($logicTester->evaluate($activity->adminLogic, $user, $group, $role)) {
-                $canActAs['roles'][] = $role;
-            }
-        }
+        $groups = collect($groupRepository->allThroughUser($user))->filter(function (Group $group) use ($activity, $user) {
+            return app()->make(LogicTester::class)->evaluate($activity->adminLogic, $user, $group);
+        });
+
+        $user = (app(LogicTester::class)->evaluate($activity->adminLogic, $user) ? $user : null);
 
         return view('auth.login.admin')->with([
-            'act_as' => $canActAs,
+            'user' => $user,
+            'groups' => $groups,
+            'roles' => $roles,
             'activity' => $activity,
             'redirectTo' => $request->input('redirect')
         ]);
     }
 
-    public function login(Request $request, Authentication $authentication, GroupRepository $groupRepository, RoleRepository $roleRepository)
+    public function login(Request $request, Authentication $authentication)
     {
-        if($request->input('type') === 'group') {
-            $authentication->setGroup(
-                $groupRepository->getById($request->input('type_id'))
-            );
-        } elseif($request->input('type') === 'role') {
-            $authentication->setRole(
-                $roleRepository->getById($request->input('type_id'))
-            );
+        if($request->input('login_type') === 'role') {
+            $role = app(RoleRepository::class)->getById($request->input('login_id'));
+            $authentication->setRole($role);
+            $authentication->setUser(app(UserRepository::class)->getById(app(UserAuthentication::class)->getUser()->control_id));
+        } elseif($request->input('login_type') === 'group') {
+            $group = app(GroupRepository::class)->getById($request->input('login_id'));
+            $authentication->setGroup($group);
+            $authentication->setUser(app(UserRepository::class)->getById(app(UserAuthentication::class)->getUser()->control_id));
+        } elseif($request->input('login_type') === 'user') {
+            $user = app(UserRepository::class)->getById($request->input('login_id'));
+            $authentication->setUser($user);
         }
 
         return redirect()->to($request->input('redirect', back()->getTargetUrl()));

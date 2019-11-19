@@ -2,12 +2,8 @@
 
 namespace App\Providers;
 
-use BristolSU\Support\Permissions\Models\SitewidePermission;
-use BristolSU\Support\Permissions\Models\StaticPermissionOverride;
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Support\Facades\Auth;
+use BristolSU\Support\Authentication\Contracts\UserAuthentication;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,7 +23,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+    }
 
-
+    public function register()
+    {
+        $this->app->rebinding('request', function ($app, $request) {
+            $request->setUserResolver(function () use ($app) {
+                return app(UserAuthentication::class)->getUser();
+            });
+        });
     }
 }

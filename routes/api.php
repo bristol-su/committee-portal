@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('auth:api')->group(function() {
+Route::middleware(['auth', 'verified'])->group(function() {
     Route::apiResource('activity', 'ActivityController')->only(['store']);
     Route::apiResource('filter', 'FilterController')->only(['index']);
     Route::apiResource('filter_instances', 'FilterInstanceController')->only(['store']);
@@ -25,7 +24,7 @@ Route::middleware('auth:api')->group(function() {
     Route::apiResource('action', 'ActionController')->only(['index']);
     Route::apiResource('action_instance', 'ActionInstanceController')->only(['store', 'update']);
     Route::apiResource('action_instance_field', 'ActionInstanceFieldController')->only(['store', 'update']);
-
+    Route::apiResource('site_permission', 'SitePermissionController')->only('index', 'show');
     Route::apiResource('group', 'GroupController')->only(['show']);
     Route::apiResource('role', 'RoleController')->only(['show']);
 

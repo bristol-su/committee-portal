@@ -3,7 +3,7 @@
 
     <b-row>
         <b-col>
-            To access the activity '{{activity.name}}', you need to log into a group.
+            To access the activity '{{activity.name}}', you need to log into a user.
 
         </b-col>
     </b-row>
@@ -48,6 +48,10 @@
                 default: function() {
                     return [];
                 }
+            },
+            user: {
+                type: Object,
+                required: false
             },
             activity: {
                 type: Object,
@@ -99,11 +103,21 @@
                     }
                 })
             },
+            userOptions() {
+                if(this.user !== null) {
+                    return {
+                        text: 'Your user account',
+                        value: 'user:' + this.user.id
+                    }
+                } else {
+                    return null;
+                }
+            },
             options() {
-                return this.groupOptions.concat(this.roleOptions);
+                return [this.userOptions].concat(this.groupOptions).concat(this.roleOptions);
             },
             loginUrl() {
-                return '/login/group/' + this.activity.slug;
+                return '/login/user/' + this.activity.slug;
             },
             hasSelectedOption() {
                 return this.loginId !== null && this.loginType !== null;

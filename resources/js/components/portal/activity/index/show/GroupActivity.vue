@@ -5,7 +5,8 @@
         <form id="redirect-to-activity" ref="redirectToActivity" :action="loginUrl" method="POST" style="display: none;">
             <input type="hidden" name="_token" :value="$csrf">
             <input type="hidden" name="redirect" :value="redirectUrl">
-            <input type="hidden" ref="groupId" name="group_id" :value="groupId">
+            <input type="hidden" name="login_type" value="group">
+            <input type="hidden" ref="groupId" name="login_id" :value="groupId">
         </form>
     </div>
 </template>

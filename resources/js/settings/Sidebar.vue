@@ -42,7 +42,7 @@
                     {
                         href: '/activity',
                         title: 'All Activities',
-                        icon: 'fa fa-plus',
+                        icon: 'fa fa-align-justify',
                     },
                     {
                         href: '/activity/create',
@@ -56,12 +56,21 @@
                     {
                         href: '/logic',
                         title: 'All Logic',
-                        icon: 'fa fa-plus',
+                        icon: 'fa fa-users',
                     },
                     {
                         href: '/logic/create',
                         title: 'Create Logic',
                         icon: 'fa fa-plus',
+                    },
+                    {
+                        header: true,
+                        title: 'Permissions'
+                    },
+                    {
+                        href: '/site_permission',
+                        title: 'Site Permissions',
+                        icon: 'fa fa-lock',
                     },
                 ]
             }

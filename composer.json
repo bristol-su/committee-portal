@@ -61,5 +61,12 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "laravel/passport"
+            ]
+        }
     }
 }

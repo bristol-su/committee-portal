@@ -2,7 +2,7 @@
 
 namespace Tests\Integration\Http\View\Header;
 
-use App\Http\View\Header\CurrentRoleComposer;
+use App\Http\View\Header\CurrentAuthComposer;
 use BristolSU\Support\Authentication\Contracts\Authentication;
 use BristolSU\Support\Control\Models\Role;
 use Illuminate\Contracts\View\View;
@@ -20,7 +20,7 @@ class CurrentRoleComposerTest extends TestCase
         $view = $this->prophesize(View::class);
         $view->with('currentRole', $role)->shouldBeCalled();
 
-        $composer = new CurrentRoleComposer($authentication->reveal());
+        $composer = new CurrentAuthComposer($authentication->reveal());
         $composer->compose($view->reveal());
     }
 

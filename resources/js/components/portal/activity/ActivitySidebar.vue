@@ -23,7 +23,7 @@
                 required: true,
                 type: Array
             },
-            currentEvent: {
+            currentActivity: {
                 required: true,
                 type: Object,
             },
@@ -31,7 +31,7 @@
 
         methods: {
             isSelected(activity) {
-                return activity.id === this.currentEvent.id;
+                return activity.id === this.currentActivity.id;
             }
         }
     }

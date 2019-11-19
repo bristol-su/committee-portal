@@ -33,7 +33,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @else
+                @else
 
 
                     <!-- Account Management -->
@@ -45,6 +45,17 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <!-- Home -->
+                                <a class="dropdown-item" href="#">
+                                    @if($currentRole !== null)
+                                        Acting as {{$currentRole->positionName()}} of {{$currentRole->group()->name()}}
+                                    @elseif($currentGroup !== null)
+                                        Acting in your membership to {{$currentGroup->name()}}
+                                    @elseif($currentUser !== null)
+                                        Acting as yourself
+                                    @else
+                                        Not acting as anything
+                                    @endif
+                                </a>
                                 <a class="dropdown-item" href="{{url('/')}}">Home</a>
                                 <!-- Settings -->
                                 {{--                                @can('view-site-settings-page')--}}

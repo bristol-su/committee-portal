@@ -2,7 +2,7 @@ import Activity from './resources/activity';
 import Logic from "./resources/logic";
 import Modules from './resources/modules';
 import Settings from './resources/settings';
-import Permissions from './resources/permissions'
+import ModuleInstancePermissions from './resources/moduleinstancepermissions';
 import Filters from './resources/filters';
 import FilterInstances from './resources/filterinstances';
 import ModuleInstances from './resources/moduleinstances';
@@ -12,6 +12,7 @@ import ActionInstance from './resources/actionInstance';
 import ActionInstanceField from './resources/actionInstanceField';
 import Group from './resources/group';
 import Role from './resources/role';
+import SitePermissions from './resources/sitepermissions';
 
 // TODO Implement Cache
 export default class {
@@ -53,8 +54,12 @@ export default class {
         return new Settings(this._http);
     }
 
-    permissions() {
-        return new Permissions(this._http);
+    moduleinstancepermissions() {
+        return new ModuleInstancePermissions(this._http);
+    }
+
+    sitepermissions() {
+        return new SitePermissions(this._http);
     }
 
     filters() {
