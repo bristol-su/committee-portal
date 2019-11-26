@@ -61,7 +61,7 @@
                     return 'Access through their membership to ' + group.name;
                 }));
                 methods = methods.concat(audienceItem.roles.map(role => {
-                    return 'Access through their role as ' + role.pivot.position_name + ' to ' + role.group.name;
+                    return 'Access through their role as ' + role.position.name + ' to ' + role.group.name;
                 }));
                 console.log(methods);
                 return methods;

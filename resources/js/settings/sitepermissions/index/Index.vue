@@ -3,7 +3,7 @@
         <b-table :fields="fields" :items="permissions">
 
             <template v-slot:cell(assign)="data">
-                <a :href="'/site_permission/' + data.item.ability + '/'">
+                <a :href="'/site-permission/' + data.item.ability + '/'">
                     <b-button variant="secondary" size="sm">Assign</b-button>
                 </a>
             </template>

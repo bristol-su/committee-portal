@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbcf7a60fae8303cf4c033bceb432708",
+    "content-hash": "67ebcb4e62381e905b8a393e81fe50f5",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -197,16 +197,10 @@
         {
             "name": "bristol-su/control-db-implementation",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bristol-su/control-db-implementation.git",
-                "reference": "72f22ee95a16f432f70abc2f92a77db0f6f0cdb3"
-            },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/72f22ee95a16f432f70abc2f92a77db0f6f0cdb3",
-                "reference": "72f22ee95a16f432f70abc2f92a77db0f6f0cdb3",
-                "shasum": ""
+                "type": "path",
+                "url": "../support/control-implementation",
+                "reference": "72f22ee95a16f432f70abc2f92a77db0f6f0cdb3"
             },
             "require": {
                 "bristol-su/support": "dev-master",
@@ -230,7 +224,6 @@
                     "database/factories"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -240,8 +233,7 @@
                     "email": "tt15951@my.bristol.ac.uk"
                 }
             ],
-            "description": "An implementation of the control contracts using a local database in a laravel app",
-            "time": "2019-11-21T08:57:13+00:00"
+            "description": "An implementation of the control contracts using a local database in a laravel app"
         },
         {
             "name": "bristol-su/support",

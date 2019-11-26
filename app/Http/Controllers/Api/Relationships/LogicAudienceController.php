@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Relationships;
 
 
 use App\Http\Controllers\Controller;
+use BristolSU\Support\Logic\Audience\AudienceMember;
 use BristolSU\Support\Logic\Contracts\Audience\LogicAudience;
 use BristolSU\Support\Logic\Logic;
 

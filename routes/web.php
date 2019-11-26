@@ -21,15 +21,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@show')->name('login.admin');
     Route::post('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@login');
 
-    Route::middleware('nonmodule')->namespace('Settings')->group(function() {
+    Route::middleware(['nonmodule', 'can:view-settings'])->namespace('Settings')->group(function() {
         // Settings routes
         Route::get('/settings', 'SettingsController@index')->name('settings');
         Route::resource('activity', 'ActivityController')->only(['index', 'create', 'show']);
         Route::resource('logic', 'LogicController')->only(['index', 'show', 'create']);
-        Route::resource('site_permission', 'SitePermissionController')->only(['index', 'show']);
+        Route::resource('site-permission', 'SitePermissionController')->only(['index', 'show']);
         Route::prefix('/activity/{activity}')->group(function () {
-            Route::resource('module_instance', 'ModuleInstanceController')->only(['show', 'create']);
-            Route::prefix('/module_instance/{module_instance}')->group(function() {
+            Route::resource('module-instance', 'ModuleInstanceController')->only(['show', 'create']);
+            Route::prefix('/module-instance/{module_instance}')->group(function() {
                 Route::resource('action', 'ActionController')->only(['show', 'create']);
             });
         });

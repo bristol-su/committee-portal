@@ -8,14 +8,14 @@
                 <b-col>
                     <b-table striped hover :items="modules" :fields="moduleFields">
                         <template v-slot:cell(view)="data">
-                            <a :href="'/activity/' + activity.id + '/module_instance/' + data.item.id"><b-button variant="primary">View</b-button></a>
+                            <a :href="'/activity/' + activity.id + '/module-instance/' + data.item.id"><b-button variant="primary">View</b-button></a>
                         </template>
                     </b-table>
                 </b-col>
             </b-row>
             <b-row>
                 <b-col style="text-align: right; padding-right: 10px;">
-                    <a :href="'/activity/' + activity.id + '/module_instance/create'">
+                    <a :href="'/activity/' + activity.id + '/module-instance/create'">
                         <b-button variant="secondary">Add new module</b-button>
                     </a>
                 </b-col>

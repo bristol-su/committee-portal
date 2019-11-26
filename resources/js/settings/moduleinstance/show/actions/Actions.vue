@@ -14,7 +14,7 @@
 
         <b-row>
             <b-col style="text-align: right; padding-right: 10px;">
-                <a :href="'/activity/' + moduleInstance.activity.id + '/module_instance/' + moduleInstance.id + '/action/create'">
+                <a :href="'/activity/' + moduleInstance.activity.id + '/module-instance/' + moduleInstance.id + '/action/create'">
                     <b-button variant="secondary">Add an Action</b-button>
                 </a>
             </b-col>

@@ -68,7 +68,7 @@
                         title: 'Permissions'
                     },
                     {
-                        href: '/site_permission',
+                        href: '/site-permission',
                         title: 'Site Permissions',
                         icon: 'fa fa-lock',
                     },

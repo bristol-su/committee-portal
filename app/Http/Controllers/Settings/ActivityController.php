@@ -12,6 +12,7 @@ class ActivityController extends Controller
 
     public function index(ActivityRepository $repository)
     {
+        $this->authorize('index-activities');
         return view('settings.activity.index')->with([
             'activities' => $repository->all()
         ]);
@@ -19,11 +20,13 @@ class ActivityController extends Controller
 
     public function create()
     {
+        $this->authorize('create-activities');
         return view('settings.activity.create');
     }
 
     public function show(Activity $activity)
     {
+        $this->authorize('show-activities');
         return view('settings.activity.show')->with(['activity' => $activity]);
     }
 

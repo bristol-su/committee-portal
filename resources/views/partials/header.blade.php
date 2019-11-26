@@ -58,9 +58,9 @@
                                 </a>
                                 <a class="dropdown-item" href="{{url('/')}}">Home</a>
                                 <!-- Settings -->
-                                {{--                                @can('view-site-settings-page')--}}
-                                <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
-                            {{--                                @endcan--}}
+                                @can('view-settings')
+                                    <a class="dropdown-item" href="{{ route('settings') }}">Settings</a>
+                            @endcan
                             <!-- Logout -->
                                 <a class="dropdown-item" href="#"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -3,6 +3,7 @@ import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue'
 import AWN from "awesome-notifications";
 import api from "./utilities/api/api";
+import control from "./utilities/control/api";
 import VueFormGenerator from 'vue-form-generator'
 
 
@@ -39,6 +40,7 @@ if (token) {
     axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 }
 Vue.prototype.$api = new api(portal.API_URL, axios);
+Vue.prototype.$control = new control(portal.API_URL + '/control', axios);
 Vue.prototype.$csrf = token.content;
 
 window.Event = new Vue();

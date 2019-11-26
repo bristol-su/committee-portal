@@ -2,9 +2,9 @@
     <div>
         <b-table :fields="fields" :items="activities">
             <template v-slot:cell(actions)="data">
-<!--                <a :href="'/activity/' + data.item.id">-->
+                <a :href="'/activity/' + data.item.id">
                     <b-button variant="secondary">View</b-button>
-<!--                </a>-->
+                </a>
             </template>
         </b-table>
     </div>
