@@ -6,9 +6,6 @@
         <data-item title="Description">
             {{logic.description}}
         </data-item>
-        <data-item title="for">
-            {{logic.for}}
-        </data-item>
     </div>
 </template>
 
