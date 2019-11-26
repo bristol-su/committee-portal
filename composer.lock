@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67ebcb4e62381e905b8a393e81fe50f5",
+    "content-hash": "5b790f6126464a258350b9f31cb2b497",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.122.0",
+            "version": "3.123.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "43b4af8179c91d220f6e4bbe1e57588ed5ad4f27"
+                "reference": "3bf671629a3b2a5a5694f8dfee15686e586b33b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/43b4af8179c91d220f6e4bbe1e57588ed5ad4f27",
-                "reference": "43b4af8179c91d220f6e4bbe1e57588ed5ad4f27",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3bf671629a3b2a5a5694f8dfee15686e586b33b6",
+                "reference": "3bf671629a3b2a5a5694f8dfee15686e586b33b6",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-11-25T19:13:38+00:00"
+            "time": "2019-11-26T19:08:40+00:00"
         },
         {
             "name": "brianium/habitat",
@@ -197,10 +197,16 @@
         {
             "name": "bristol-su/control-db-implementation",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bristol-su/control-db-implementation.git",
+                "reference": "98088b099195b09286dd7a2f80f6f8646d0a5a82"
+            },
             "dist": {
-                "type": "path",
-                "url": "../support/control-implementation",
-                "reference": "72f22ee95a16f432f70abc2f92a77db0f6f0cdb3"
+                "type": "zip",
+                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/98088b099195b09286dd7a2f80f6f8646d0a5a82",
+                "reference": "98088b099195b09286dd7a2f80f6f8646d0a5a82",
+                "shasum": ""
             },
             "require": {
                 "bristol-su/support": "dev-master",
@@ -224,6 +230,7 @@
                     "database/factories"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -233,15 +240,22 @@
                     "email": "tt15951@my.bristol.ac.uk"
                 }
             ],
-            "description": "An implementation of the control contracts using a local database in a laravel app"
+            "description": "An implementation of the control contracts using a local database in a laravel app",
+            "time": "2019-11-26T13:41:56+00:00"
         },
         {
             "name": "bristol-su/support",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bristol-su/support.git",
+                "reference": "0b39857636f0c156b8fbc96b909d089b25c3a0f8"
+            },
             "dist": {
-                "type": "path",
-                "url": "../support/support",
-                "reference": "d10d2f20056fbd825b80554e387fe2d0dc108364"
+                "type": "zip",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/0b39857636f0c156b8fbc96b909d089b25c3a0f8",
+                "reference": "0b39857636f0c156b8fbc96b909d089b25c3a0f8",
+                "shasum": ""
             },
             "require": {
                 "brianium/paratest": "^3.0",
@@ -277,11 +291,7 @@
                     "database/factories/"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "BristolSU\\Support\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -290,15 +300,22 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ]
+            ],
+            "time": "2019-11-26T19:56:38+00:00"
         },
         {
             "name": "bristol-su/upload-file",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../modules/upload-file",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bristol-su/upload-file.git",
                 "reference": "8f7e546297212167dd35e77fac34a78a8f51248f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/8f7e546297212167dd35e77fac34a78a8f51248f",
+                "reference": "8f7e546297212167dd35e77fac34a78a8f51248f",
+                "shasum": ""
             },
             "require": {
                 "bristol-su/support": "dev-master",
@@ -320,11 +337,7 @@
                     "BristolSU\\Module\\UploadFile\\": "app/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "BristolSU\\Module\\Tests\\UploadFile\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -333,7 +346,8 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ]
+            ],
+            "time": "2019-11-15T10:49:17+00:00"
         },
         {
             "name": "composer/semver",
@@ -1767,16 +1781,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.5.2",
+            "version": "v6.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cca8906654e72d7bb118c3c18bb55e74c109a766"
+                "reference": "b48528ba5422ac909dbabf0b1cc34534928e7bce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cca8906654e72d7bb118c3c18bb55e74c109a766",
-                "reference": "cca8906654e72d7bb118c3c18bb55e74c109a766",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b48528ba5422ac909dbabf0b1cc34534928e7bce",
+                "reference": "b48528ba5422ac909dbabf0b1cc34534928e7bce",
                 "shasum": ""
             },
             "require": {
@@ -1909,7 +1923,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-11-19T14:52:01+00:00"
+            "time": "2019-11-26T15:33:08+00:00"
         },
         {
             "name": "laravel/passport",
