@@ -42,6 +42,20 @@
             "app/Helpers/helpers.php"
         ]
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url":  "../support/support"
+        },
+        {
+            "type": "path",
+            "url":  "../support/control-implementation"
+        },
+        {
+            "type": "path",
+            "url":  "../modules/upload-file"
+        }
+    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

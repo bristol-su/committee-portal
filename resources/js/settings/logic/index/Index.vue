@@ -29,7 +29,6 @@
                 fields: [
                     'name',
                     'description',
-                    'for',
                     'actions'
                 ]
             }
