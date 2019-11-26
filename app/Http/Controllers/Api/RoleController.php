@@ -11,6 +11,9 @@ class RoleController extends Controller
 
     public function show($role, RoleRepository $roleRepository)
     {
-        return $roleRepository->getById($role);
+        $role = $roleRepository->getById($role);
+        $role->group = $role->group();
+        $role->position = $role->position();
+        return $role;
     }
 }

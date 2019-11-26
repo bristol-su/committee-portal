@@ -57,7 +57,11 @@ class RegisterController extends Controller
         }
 
         // Create them on control
-        $controlUser = $controlUserRepository->findOrCreateByDataId($dataUser->id());
+        try {
+            $controlUser = $controlUserRepository->getByDataPlatformId($dataUser->id());
+        } catch (\Exception $e) {
+            $controlUser = $controlUserRepository->create($dataUser->id());
+        }
 
         // Create user
         $user = $this->userRepository->create([

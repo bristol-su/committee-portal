@@ -11,13 +11,14 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "laracasts/utilities": "^3.0",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^6.5",
         "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "php-console/php-console": "^3.1",
         "bristol-su/support": "dev-master",
-        "bristol-su/upload-file": "dev-master"
+        "bristol-su/upload-file": "dev-master",
+        "bristol-su/control-db-implementation": "dev-master"
     },
     "require-dev": {
         "itsgoingd/clockwork": "^4",

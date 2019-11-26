@@ -18,9 +18,12 @@
 
                         {{ __('Before proceeding, please check your email for a verification link.') }}
                         {{ __('If you did not receive the email') }}, <a
-                                href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>
-                        or refer to our <a target="_blank" href="{{config('portal.knowledge_base.url')}}">knowledge base</a>.
-
+                            href="#"
+                            onclick="event.preventDefault(); document.getElementById('resend-form').submit();"> {{ __('click here to request another') }}</a>
+                        or refer to our <a target="_blank" href="{{config('portal.knowledge_base.url')}}">knowledge
+                            base</a>.
+                        <form id="resend-form" action="{{ route('verification.resend') }}" method="POST"
+                              style="display: none;">@csrf</form>
                     </div>
                 </div>
             </div>
