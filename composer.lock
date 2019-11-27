@@ -200,12 +200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/control-db-implementation.git",
-                "reference": "98088b099195b09286dd7a2f80f6f8646d0a5a82"
+                "reference": "1d983108d88247d4552b53821aebe8e3f497a9ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/98088b099195b09286dd7a2f80f6f8646d0a5a82",
-                "reference": "98088b099195b09286dd7a2f80f6f8646d0a5a82",
+                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/1d983108d88247d4552b53821aebe8e3f497a9ca",
+                "reference": "1d983108d88247d4552b53821aebe8e3f497a9ca",
                 "shasum": ""
             },
             "require": {
@@ -241,7 +241,7 @@
                 }
             ],
             "description": "An implementation of the control contracts using a local database in a laravel app",
-            "time": "2019-11-26T13:41:56+00:00"
+            "time": "2019-11-27T09:43:42+00:00"
         },
         {
             "name": "bristol-su/support",

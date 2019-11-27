@@ -240,8 +240,4 @@ return [
 
     'cookie_domain' => env('COOKIE_DOMAIN', '.bristolsu.org.uk'),
 
-    'module' => [
-        'path' => __DIR__.'/../app/Modules'
-    ],
-
 ];
