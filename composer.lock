@@ -249,12 +249,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/support.git",
-                "reference": "a16b11d502f337c4460ae2331ad839ec80649f10"
+                "reference": "8d1e3cbaf2d5c29b051f94ad1a6a2a7dac0a28fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/support/zipball/a16b11d502f337c4460ae2331ad839ec80649f10",
-                "reference": "a16b11d502f337c4460ae2331ad839ec80649f10",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/8d1e3cbaf2d5c29b051f94ad1a6a2a7dac0a28fe",
+                "reference": "8d1e3cbaf2d5c29b051f94ad1a6a2a7dac0a28fe",
                 "shasum": ""
             },
             "require": {
@@ -301,7 +301,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2019-11-26T20:36:24+00:00"
+            "time": "2019-11-27T10:26:32+00:00"
         },
         {
             "name": "bristol-su/upload-file",
