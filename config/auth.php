@@ -1,5 +1,6 @@
 <?php
 
+use BristolSU\Support\ActivityInstance\ActivityInstance;
 use BristolSU\Support\Control\Models\Group;
 use BristolSU\Support\Control\Models\Role;
 use BristolSU\Support\Control\Models\User;
@@ -64,6 +65,11 @@ return [
             'driver' => 'session',
             'provider' => 'controlusers'
         ],
+
+        'activity-instance' => [
+            'driver' => 'session',
+            'provider' => 'activity-instances'
+        ],
     ],
 
     /*
@@ -102,6 +108,11 @@ return [
         'groups' => [
             'driver' => 'group-provider',
             'model' => Group::class
+        ],
+
+        'activity-instances' => [
+            'driver' => 'activity-instance-provider',
+            'model' => ActivityInstance::class
         ],
 
     ],
