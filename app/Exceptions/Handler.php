@@ -2,6 +2,10 @@
 
 namespace App\Exceptions;
 
+use BristolSU\Support\ActivityInstance\Contracts\ActivityInstanceResolver;
+use BristolSU\Support\ActivityInstance\Contracts\DefaultActivityInstanceGenerator;
+use BristolSU\Support\ActivityInstance\Exceptions\NotInActivityInstanceException;
+use BristolSU\Support\Authentication\Contracts\ResourceIdGenerator;
 use BristolSU\Support\Authorization\Exception\ActivityRequiresAdmin;
 use BristolSU\Support\Authorization\Exception\ActivityRequiresGroup;
 use BristolSU\Support\Authorization\Exception\ActivityRequiresRole;
@@ -81,6 +85,17 @@ class Handler extends ExceptionHandler
             }
             if($exception instanceof ModuleInactive) {
                 dd($exception);
+            }
+            if($exception instanceof NotInActivityInstanceException) {
+                $activity = $request->route('activity_slug');
+                $activityInstance = app(DefaultActivityInstanceGenerator::class)
+                    ->generate(
+                        $activity,
+                        $activity->activity_for,
+                        app(ResourceIdGenerator::class)->fromString($activity->activity_for)
+                    );
+                app(ActivityInstanceResolver::class)->setActivityInstance($activityInstance);
+                return redirect()->to($request->url());
             }
         }
 

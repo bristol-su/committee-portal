@@ -6,6 +6,9 @@
         <data-item title="Description">
             {{activity.description}}
         </data-item>
+        <data-item title="Type">
+            {{activity.type}}
+        </data-item>
         <data-item title="Url">
             <a :href="url">{{url}}</a>
         </data-item>

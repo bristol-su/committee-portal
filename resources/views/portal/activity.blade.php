@@ -5,6 +5,7 @@
 @endsection
 
 @section('portal-content')
+
     <module-instances
     :activity="{{$activity}}"
     :admin="{{($admin?'true':'false')}}"
@@ -12,4 +13,9 @@
 
     </module-instances>
 
+    @if($activity->type === 'multi-completable')
+        <activity-instance-switcher
+            :current-activity-instance="{{$activityInstance}}"
+            :activity-instances="{{$activityInstances}}"></activity-instance-switcher>
+    @endif
 @endsection

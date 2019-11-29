@@ -27,6 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::apiResource('site-permission', 'SitePermissionController')->only('index', 'show');
     Route::apiResource('group', 'GroupController')->only(['show']);
     Route::apiResource('role', 'RoleController')->only(['show']);
+    Route::apiResource('completion-condition-instance', 'CompletionConditionInstanceController')->only(['store']);
+    Route::apiResource('activity-instance', 'ActivityInstanceController')->only(['store']);
 
     Route::namespace('Relationships')->group(function() {
         Route::get('/activity/{activity}/module-instance', 'ActivityModuleInstancesController@index');

@@ -13,6 +13,8 @@ import ActionInstanceField from './resources/actionInstanceField';
 import Group from './resources/group';
 import Role from './resources/role';
 import SitePermissions from './resources/sitepermissions';
+import CompletionConditions from './resources/completionconditions';
+import ActivityInstance from './resources/activityinstance';
 
 // TODO Implement Cache
 export default class {
@@ -30,6 +32,9 @@ export default class {
         return new Action(this._http);
     }
 
+    completionConditions() {
+        return new CompletionConditions(this._http);
+    }
     actionInstance() {
         return new ActionInstance(this._http);
     }
@@ -52,6 +57,10 @@ export default class {
 
     settings() {
         return new Settings(this._http);
+    }
+
+    activityInstance() {
+        return new ActivityInstance(this._http);
     }
 
     moduleinstancepermissions() {
