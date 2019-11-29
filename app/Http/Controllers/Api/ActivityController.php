@@ -17,6 +17,7 @@ class ActivityController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'slug' => $request->input('slug'),
+            'type' => $request->input('type'),
             'activity_for' => $request->input('activity_for'),
             'for_logic' => $request->input('for_logic'),
             'admin_logic' => $request->input('admin_logic'),

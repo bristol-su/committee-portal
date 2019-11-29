@@ -29,6 +29,8 @@ import ToggleAdminOrParticipant from './components/portal/ToggleAdminOrParticipa
 import SitePermissions from './settings/sitepermissions/index/Index';
 import SitePermission from './settings/sitepermissions/show/Show';
 
+import ActivityInstanceSwitcher from './components/portal/activity/ActivityInstanceSwitcher';
+
 Vue.use(BootstrapVue);
 Vue.use(VueFormGenerator);
 Vue.prototype.$http = axios;
@@ -76,7 +78,9 @@ new Vue({
         LogIntoAdmin,
 
         SitePermissions,
-        SitePermission
+        SitePermission,
+
+        ActivityInstanceSwitcher
 
     }
 });

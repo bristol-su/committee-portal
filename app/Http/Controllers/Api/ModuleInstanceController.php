@@ -17,7 +17,7 @@ class ModuleInstanceController extends Controller
     {
         return $moduleInstanceRepo->create($request->only([
             'alias', 'activity_id', 'name', 'description', 'slug', 'active', 'visible', 'mandatory', 'complete',
-            'module_instance_settings_id', 'module_instance_permissions_id'
+            'module_instance_settings_id', 'module_instance_permissions_id', 'completion_condition_instance_id'
         ]));
     }
 

@@ -19,7 +19,9 @@
             </tab-content>
             <tab-content title="Behaviour">
                 <behaviour
+                    :completion-conditions="selectedModule.completionConditions"
                     :for-logic="forLogic"
+                    :activity="activity"
                     @update="updateBehaviour"
                 >
                 </behaviour>
@@ -69,9 +71,9 @@
                 required: true,
                 type: String
             },
-            activityId: {
+            activity: {
                 required: true,
-                type: Number
+                type: Object
             }
         },
 
@@ -86,7 +88,8 @@
                     visible: null,
                     mandatory: null,
                     module_instance_settings: null,
-                    module_instance_permissions: null
+                    module_instance_permissions: null,
+                    completion_condition_instance_id: null
                 },
                 selectedModule: {}
             }
@@ -100,7 +103,7 @@
             saveActivity() {
                 this.$api.moduleInstances().create({
                     'alias': this.form.alias,
-                    'activity_id': this.activityId,
+                    'activity_id': this.activity.id,
                     'name': this.form.name,
                     'description': this.form.description,
                     'slug': this.form.slug,
@@ -108,11 +111,12 @@
                     'visible':  this.form.visible,
                     'mandatory': this.form.mandatory,
                     'module_instance_settings_id': this.form.module_instance_settings,
-                    'module_instance_permissions_id': this.form.module_instance_permissions
+                    'module_instance_permissions_id': this.form.module_instance_permissions,
+                    'completion_condition_instance_id': this.form.completion_condition_instance_id
                 })
                     .then(response => {
                         this.$notify.success('Module Instance ' + this.form.name + ' created!');
-                        window.setTimeout(() => {window.location.href = '/activity/' + this.activityId + '/module_instance/' + response.data.id}, 3000);
+                        window.setTimeout(() => {window.location.href = '/activity/' + this.activity.id + '/module-instance/' + response.data.id}, 3000);
                     })
                     .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
 

@@ -1,7 +1,7 @@
 <template>
     <a :href="url">
         <b-button variant="primary" class="module-instance" :disabled="inactive" :class="{hidden: hidden, mandatory: mandatory}">
-            {{moduleInstance.name}}
+            {{moduleInstance.name}} {{evaluation}}
         </b-button>
     </a>
 
