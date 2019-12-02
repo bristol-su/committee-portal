@@ -17,6 +17,11 @@
 
             </active>
         </data-item>
+        <data-item title="Progress">
+            <a :href="'/activity/' + activity.id + '/progress'">
+                <b-button size="xs">Click here to see progress</b-button>
+            </a>
+        </data-item>
     </div>
 </template>
 

@@ -18,4 +18,6 @@
             :current-activity-instance="{{$activityInstance}}"
             :activity-instances="{{$activityInstances}}"></activity-instance-switcher>
     @endif
+
+    Red = mandatory, green = completed
 @endsection

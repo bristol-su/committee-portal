@@ -1,4 +1,6 @@
 import User from './resources/user';
+import Group from './resources/group';
+import Position from './resources/position';
 
 // TODO Implement Cache
 export default class {
@@ -14,5 +16,13 @@ export default class {
 
     user() {
         return new User(this._http);
+    }
+
+    group() {
+        return new Group(this._http);
+    }
+
+    position() {
+        return new Position(this._http);
     }
 }

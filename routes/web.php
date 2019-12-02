@@ -42,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
             Route::get('/portal', 'PortalController@portal')->name('portal');
             Route::get('/a', 'PortalController@administrator')->name('administrator');
             Route::get('/p', 'PortalController@participant')->name('participant');
+            Route::get('/activity/{activity}/progress', 'ActivityProgressController@index');
+
         });
 
         Route::middleware('activity')->group(function() {

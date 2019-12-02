@@ -28,6 +28,16 @@ export default class {
         });
     }
 
+    // TODO Does this always work?
+    asRole(roleId) {
+        this._http.interceptors.request.use(function(config) {
+            config.params['role_id'] = roleId;
+        }, function (error) {
+            return Promise.reject(error);
+        });
+        return this;
+    }
+
     action() {
         return new Action(this._http);
     }

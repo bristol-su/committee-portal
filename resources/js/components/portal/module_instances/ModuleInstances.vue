@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="row">
         <module-instance
             v-for="moduleInstance in activity.module_instances"
             :key="moduleInstance.id"

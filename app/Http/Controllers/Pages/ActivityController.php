@@ -7,52 +7,39 @@ use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\ActivityInstance\ActivityInstance;
 use BristolSU\Support\ActivityInstance\Contracts\ActivityInstanceRepository;
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\ModuleInstance\Contracts\Evaluator\ActivityInstanceEvaluator as ActivityInstanceEvaluatorContract;
+use BristolSU\Support\ModuleInstance\Contracts\Evaluator\ActivityInstanceEvaluator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use BristolSU\Support\Authentication\Contracts\ResourceIdGenerator;
 
 class ActivityController extends Controller
 {
 
-    public function administrator(Activity $activity, ActivityInstance $activityInstance, ActivityInstanceEvaluatorContract $activityEvaluator, ActivityInstanceRepository $activityInstanceRepository)
+    public function administrator(Activity $activity, ActivityInstance $activityInstance)
     {
-        $resourceType = app(Activity::class)->activity_for;
-        if($resourceType === 'user') {
-            $resourceId = app(Authentication::class)->getUser()->id;
-        }
-        if($resourceType === 'group') {
-            $resourceId = app(Authentication::class)->getGroup()->id;
-        }
-        if($resourceType === 'role') {
-            $resourceId = app(Authentication::class)->getRole()->id;
-        }
+        $resourceType = $activity->activity_for;
+        $resourceId = app(ResourceIdGenerator::class)->fromString($resourceType);
+
         return view('portal.activity')->with([
             'activity' => $activity->load('moduleInstances'),
             'activityInstance' => $activityInstance,
-            'activityInstances' => $activityInstanceRepository->allFor($activity->id, $resourceType, $resourceId),
+            'activityInstances' => app(ActivityInstanceRepository::class)->allFor($activity->id, $resourceType, $resourceId),
             'admin' => true,
-            'evaluation' => collect($activityEvaluator->evaluateAdministrator($activityInstance))
+            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateAdministrator($activityInstance))
         ]);
     }
 
-    public function participant(Activity $activity, ActivityInstance $activityInstance, ActivityInstanceEvaluatorContract $activityEvaluator, ActivityInstanceRepository $activityInstanceRepository)
+    public function participant(Activity $activity, ActivityInstance $activityInstance)
     {
-        $resourceType = app(Activity::class)->activity_for;
-        if($resourceType === 'user') {
-            $resourceId = app(Authentication::class)->getUser()->id;
-        }
-        if($resourceType === 'group') {
-            $resourceId = app(Authentication::class)->getGroup()->id;
-        }
-        if($resourceType === 'role') {
-            $resourceId = app(Authentication::class)->getRole()->id;
-        }
+        $resourceType = $activity->activity_for;
+        $resourceId = app(ResourceIdGenerator::class)->fromString($resourceType);
+
         return view('portal.activity')->with([
             'activity' => $activity->load('moduleInstances'),
             'activityInstance' => $activityInstance,
-            'activityInstances' => $activityInstanceRepository->allFor($activity->id, $resourceType, $resourceId),
+            'activityInstances' => app(ActivityInstanceRepository::class)->allFor($activity->id, $resourceType, $resourceId),
             'admin' => false,
-            'evaluation' => collect($activityEvaluator->evaluateParticipant($activityInstance))
+            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateParticipant($activityInstance))
         ]);
     }
 
