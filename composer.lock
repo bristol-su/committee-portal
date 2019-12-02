@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed243b582d746c42591abf813a21ffaa",
+    "content-hash": "c0cac6f892561000bc7b00ccc07c0e29",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -246,10 +246,16 @@
         {
             "name": "bristol-su/support",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bristol-su/support.git",
+                "reference": "157824e5ee172d2dbd8d3d6820c7b9bb773420b2"
+            },
             "dist": {
-                "type": "path",
-                "url": "../support/support",
-                "reference": "f84579083da876f1743d29d6f9479cab42fda863"
+                "type": "zip",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/157824e5ee172d2dbd8d3d6820c7b9bb773420b2",
+                "reference": "157824e5ee172d2dbd8d3d6820c7b9bb773420b2",
+                "shasum": ""
             },
             "require": {
                 "brianium/paratest": "^3.0",
@@ -285,11 +291,7 @@
                     "database/factories/"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "BristolSU\\Support\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -298,15 +300,22 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ]
+            ],
+            "time": "2019-12-02T20:04:28+00:00"
         },
         {
             "name": "bristol-su/upload-file",
             "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../modules/upload-file",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bristol-su/upload-file.git",
                 "reference": "574e70002274fda5662c73d03ca95b02c6ca631b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/574e70002274fda5662c73d03ca95b02c6ca631b",
+                "reference": "574e70002274fda5662c73d03ca95b02c6ca631b",
+                "shasum": ""
             },
             "require": {
                 "bristol-su/support": "@dev",
@@ -328,11 +337,7 @@
                     "BristolSU\\Module\\UploadFile\\": "app/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "BristolSU\\Module\\Tests\\UploadFile\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -341,7 +346,8 @@
                     "name": "Toby Twigger",
                     "email": "toby.twigger@bristol.ac.uk"
                 }
-            ]
+            ],
+            "time": "2019-11-29T14:29:33+00:00"
         },
         {
             "name": "composer/semver",
