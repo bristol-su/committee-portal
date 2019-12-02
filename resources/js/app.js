@@ -29,6 +29,7 @@ import ToggleAdminOrParticipant from './components/portal/ToggleAdminOrParticipa
 import SitePermissions from './settings/sitepermissions/index/Index';
 import SitePermission from './settings/sitepermissions/show/Show';
 import RoleActivityProgress from './components/progress/activity/RoleActivityProgress';
+import GroupActivityProgress from './components/progress/activity/GroupActivityProgress';
 
 import ActivityInstanceSwitcher from './components/portal/activity/ActivityInstanceSwitcher';
 
@@ -82,8 +83,8 @@ new Vue({
         SitePermission,
 
         ActivityInstanceSwitcher,
-        RoleActivityProgress
-
+        RoleActivityProgress,
+        GroupActivityProgress
     }
 });
 

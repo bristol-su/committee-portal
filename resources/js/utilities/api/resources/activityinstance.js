@@ -6,10 +6,4 @@ export default class extends BaseResource{
         return this.request('post', '/activity-instance', attributes);
     }
 
-    
-    evaluation(activityInstanceId) {
-        return this.request('get', '/activity/' + activityInstanceId + '/evaluation');
-    }
-
-
 }

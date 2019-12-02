@@ -17,6 +17,9 @@
                     @if($activity->activity_for === 'role')
                         <role-activity-progress
                             :activity="{{$activity}}"></role-activity-progress>
+                    @elseif($activity->activity_for === 'group')
+                        <group-activity-progress
+                            :activity="{{$activity}}"></group-activity-progress>
                     @else
                         Not supported yet
                     @endif

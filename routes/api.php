@@ -29,10 +29,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::apiResource('role', 'RoleController')->only(['show']);
     Route::apiResource('completion-condition-instance', 'CompletionConditionInstanceController')->only(['store']);
     Route::apiResource('activity-instance', 'ActivityInstanceController')->only(['store']);
+    Route::get('/activity/{activity}/progress', 'ActivityProgressController@show');
 
     Route::namespace('Relationships')->group(function() {
         Route::get('/activity/{activity}/module-instance', 'ActivityModuleInstancesController@index');
-        Route::get('/activity-instance/{activity_instance}/evaluation', 'ActivityModuleInstanceEvaluationController@index');
 
         Route::get('/logic/{logic}/filters', 'LogicFiltersController@index');
         Route::get('/logic/{logic}/audience', 'LogicAudienceController@index');

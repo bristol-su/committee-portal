@@ -6,4 +6,7 @@ export default class extends BaseResource{
         return this.request('post', '/activity', attributes);
     }
 
+    progress(activityId) {
+        return this.request('get', '/activity/' + activityId + '/progress');
+    }
 }

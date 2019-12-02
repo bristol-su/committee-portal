@@ -34,9 +34,11 @@ class LogicAudienceController extends Controller
     public function group(Logic $logic, LogicAudience $audience)
     {
         return collect($audience->audience($logic))->filter(function (AudienceMember $audienceMember) {
-            return $audienceMember->groups()->count() > 0;
+            return $audienceMember->groups()->count() > 0 || $audienceMember->roles()->count() > 0;
         })->map(function (AudienceMember $audienceMember) {
-            return $audienceMember->groups();
+            return $audienceMember->groups()->merge($audienceMember->roles()->map(function(Role $role) {
+                return $role->group();
+            }));
         })->flatten(1)->unique(function (Group $group) {
             return $group->id();
         })->values();

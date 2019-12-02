@@ -19,6 +19,7 @@ export default class extends BaseResource{
     }
 
 
+
     userAudience(logicId) {
         return this.request('get', '/logic/' + logicId + '/audience/user');
     }
