@@ -88,12 +88,24 @@ class Handler extends ExceptionHandler
             }
             if($exception instanceof NotInActivityInstanceException) {
                 $activity = $request->route('activity_slug');
-                $activityInstance = app(DefaultActivityInstanceGenerator::class)
-                    ->generate(
-                        $activity,
-                        $activity->activity_for,
-                        app(ResourceIdGenerator::class)->fromString($activity->activity_for)
-                    );
+                try {
+                    $activityInstance = app(DefaultActivityInstanceGenerator::class)
+                        ->generate(
+                            $activity,
+                            $activity->activity_for,
+                            app(ResourceIdGenerator::class)->fromString($activity->activity_for)
+                        );
+                } catch (Exception $e) {
+                    if($activity->activity_for === 'user') {
+                        throw new ActivityRequiresUser('', 0, null, $activity);
+                    }
+                    if($activity->activity_for === 'group') {
+                        throw new ActivityRequiresGroup('', 0, null, $activity);
+                    }
+                    if($activity->activity_for === 'role') {
+                        throw new ActivityRequiresRole('', 0, null, $activity);
+                    }
+                }
                 app(ActivityInstanceResolver::class)->setActivityInstance($activityInstance);
                 return redirect()->to($request->url());
             }
