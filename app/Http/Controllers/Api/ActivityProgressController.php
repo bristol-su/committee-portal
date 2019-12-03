@@ -16,24 +16,27 @@ class ActivityProgressController
 
     public function show(Activity $activity, ActivityInstanceRepository $activityInstanceRepository, DefaultActivityInstanceGenerator $defaultActivityInstanceGenerator)
     {
+        // Get all activity instances
         $activityInstances = $activityInstanceRepository->allForActivity($activity->id)->map(function(ActivityInstance $activityInstance) {
             $activityInstance->load('moduleInstances');
             $activityInstance->moduleInstances->map(function($moduleInstance) use ($activityInstance) {
-                $moduleInstance->evaluation = ModuleInstanceEvaluator::evaluateParticipant($activityInstance, $moduleInstance)->toArray();
+                $moduleInstance->evaluation = ModuleInstanceEvaluator::evaluateResource($activityInstance, $moduleInstance)->toArray();
                 return $moduleInstance;
             });
             return $activityInstance;
         });
 
+        //TODO  Take care of this through events when setting up the activity
         $participantsWithActivityInstances = collect($activityInstances)->pluck('resource_id')->unique()->values();
-
         $audience = $this->getAudience($activity);
         $audience = $audience->filter(function($participant) use ($participantsWithActivityInstances) {
             return !in_array($participant->id(), $participantsWithActivityInstances->toArray());
         });
         foreach($audience as $participant) {
+            // TODO Not generating progress
             $activityInstances[] = $defaultActivityInstanceGenerator->generate($activity, $activity->activity_for, $participant->id());
         }
+
         return $activityInstances;
     }
 

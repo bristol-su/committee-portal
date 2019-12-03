@@ -15,7 +15,7 @@ use BristolSU\Support\Authentication\Contracts\ResourceIdGenerator;
 class ActivityController extends Controller
 {
 
-    public function administrator(Activity $activity, ActivityInstance $activityInstance)
+    public function administrator(Activity $activity, ActivityInstance $activityInstance, Authentication $authentication)
     {
         $resourceType = $activity->activity_for;
         $resourceId = app(ResourceIdGenerator::class)->fromString($resourceType);
@@ -25,11 +25,11 @@ class ActivityController extends Controller
             'activityInstance' => $activityInstance,
             'activityInstances' => app(ActivityInstanceRepository::class)->allFor($activity->id, $resourceType, $resourceId),
             'admin' => true,
-            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateAdministrator($activityInstance))
+            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateAdministrator($activityInstance, $authentication->getUser(), $authentication->getGroup(), $authentication->getRole()))
         ]);
     }
 
-    public function participant(Activity $activity, ActivityInstance $activityInstance)
+    public function participant(Activity $activity, ActivityInstance $activityInstance, Authentication $authentication)
     {
         $resourceType = $activity->activity_for;
         $resourceId = app(ResourceIdGenerator::class)->fromString($resourceType);
@@ -39,7 +39,7 @@ class ActivityController extends Controller
             'activityInstance' => $activityInstance,
             'activityInstances' => app(ActivityInstanceRepository::class)->allFor($activity->id, $resourceType, $resourceId),
             'admin' => false,
-            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateParticipant($activityInstance))
+            'evaluation' => collect(app(ActivityInstanceEvaluator::class)->evaluateParticipant($activityInstance, $authentication->getUser(), $authentication->getGroup(), $authentication->getRole()))
         ]);
     }
 
