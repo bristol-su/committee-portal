@@ -35,7 +35,6 @@
 
         methods: {
             evaluate(progress) {
-                console.log('Testing');
                 return this.$refs.conditionLayout.evaluate(progress);
             },
 

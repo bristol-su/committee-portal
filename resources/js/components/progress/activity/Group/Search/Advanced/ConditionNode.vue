@@ -118,7 +118,52 @@
                             if(value === '') {
                                 return true;
                             }
-                            return this.calculateStatus(progress).toUpperCase().indexOf(value.toUpperCase()) !== -1;
+                            let incompleted = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false).length;
+                            let completed = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === true).length;
+                            if (incompleted === 0 && completed > 0) {
+                                status = 'Finished';
+                            } else if (incompleted === 0 && completed === 0) {
+                                status = 'N/A';
+                            } else if (incompleted > 0 && completed === 0) {
+                                status = 'Not started';
+                            } else if (incompleted > 0 && completed > 0) {
+                                status = 'In progress';
+                            } else {
+                                status = 'N/A';
+                            }
+                            return status.toUpperCase().indexOf(value.toUpperCase()) !== -1;
+                        }
+                    }, {
+                        key: 'progressIsBelow',
+                        text: 'The progress percentage is equal to or below',
+                        valueText: 'Percentage',
+                        handler: function (progress, value) {
+                            if(value === '') {
+                                return true;
+                            }
+                            let incompleted = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false).length;
+                            let completed = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === true).length;
+                            if (incompleted + completed === 0) {
+                                return true;
+                            }
+                            let percentage = Math.round((completed / (incompleted + completed)) * 100);
+                            return percentage <= parseInt(value);
+                        }
+                    }, {
+                        key: 'progressIsAbove',
+                        text: 'The progress percentage is equal to or above',
+                        valueText: 'Percentage',
+                        handler: function (progress, value) {
+                            if(value === '') {
+                                return true;
+                            }
+                            let incompleted = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false).length;
+                            let completed = progress.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === true).length;
+                            if (incompleted + completed === 0) {
+                                return true;
+                            }
+                            let percentage = Math.round((completed / (incompleted + completed)) * 100);
+                            return percentage >= parseInt(value);
                         }
                     }
                 ]
@@ -148,20 +193,6 @@
                 });
             },
 
-            calculateStatus(progressInstance) {
-                let incompleted = this.calculateIncomplete(progressInstance).length;
-                let completed = this.calculateComplete(progressInstance).length;
-                if (incompleted === 0 && completed > 0) {
-                    return 'Finished';
-                } else if (incompleted === 0 && completed === 0) {
-                    return 'N/A';
-                } else if (incompleted > 0 && completed === 0) {
-                    return 'Not started';
-                } else if (incompleted > 0 && completed > 0) {
-                    return 'In progress';
-                }
-                return 'N/A';
-            },
 
             calculateComplete(progressInstance) {
                 return progressInstance.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === true);
@@ -169,6 +200,15 @@
 
             calculateIncomplete(progressInstance) {
                 return progressInstance.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false);
+            },
+
+            calculatePercentage(progressInstance) {
+                let incompleted = this.calculateIncomplete(progressInstance).length;
+                let completed = this.calculateComplete(progressInstance).length;
+                if (incompleted + completed === 0) {
+                    return 'N/A';
+                }
+                return Math.round((completed / (incompleted + completed)) * 100);
             },
         },
 
