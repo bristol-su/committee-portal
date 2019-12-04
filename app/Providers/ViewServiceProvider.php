@@ -28,7 +28,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         // TODO Replace with repositories
 
-        View::composer(['layouts.portal'], ActivitySidebarComposer::class);
+        View::composer(['portal.activity'], ActivitySidebarComposer::class);
         View::composer(['bristolsu::base'], JavascriptComposer::class);
         View::composer(['partials.header'], CurrentAuthComposer::class);
 

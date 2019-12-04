@@ -47,20 +47,9 @@ class ActivitySidebarComposer
      */
     public function compose(View $view)
     {
-        // TODO What should the sidebar actually contain?
-        $user = null;
-        $group = null;
-        $role = null;
-        if($this->activity->activity_for === 'user') {
-            $user = $this->authentication->getUser();
-        } elseif($this->activity->activity_for === 'group') {
-            $user = $this->authentication->getUser();
-            $group = $this->authentication->getGroup();
-        } elseif($this->activity->activity_for === 'role') {
-            $user = $this->authentication->getUser();
-            $group = $this->authentication->getGroup();
-            $role = $this->authentication->getRole();
-        }
+        $user = $this->authentication->getUser();
+        $group = $this->authentication->getGroup();
+        $role = $this->authentication->getRole();
         if($this->request->is('a/*')) {
             $view->with('activities', $this->activityRepository->getForAdministrator($user, $group, $role));
         } elseif($this->request->is('p/*')) {
