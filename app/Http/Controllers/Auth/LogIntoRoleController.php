@@ -32,10 +32,14 @@ class LogIntoRoleController extends Controller
     public function show(Request $request, UserAuthentication $userAuthentication, Activity $activity, RoleRepository $roleRepository, UserRepository $userRepository)
     {
         $user = $userRepository->getById($userAuthentication->getUser()->control_id);
+        /** @var AudienceMember $audienceMember */
+        $audienceMember = app(AudienceMember::class, ['user' => $user]);
 
-        $roles = collect($roleRepository->allThroughUser($user))->filter(function(Role $role) use ($activity, $user) {
-            return app()->make(LogicTester::class)->evaluate($activity->forLogic, $user, $role->group(), $role);
-        });
+        return view('auth.login.user')->with([
+            'roles' => $audienceMember->roles(),
+            'activity' => $activity,
+            'redirectTo' => $request->input('redirect')
+        ]);
 
         return view('auth.login.role')->with(['roles' => $roles, 'activity' => $activity, 'redirectTo' => $request->input('redirect')]);
     }

@@ -13,7 +13,7 @@ use Tests\TestCase;
 class ActivityControllerTest extends TestCase
 {
 
-    private $user;
+    protected $user;
 
     public function setUp(): void
     {

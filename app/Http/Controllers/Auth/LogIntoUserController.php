@@ -11,27 +11,26 @@ use BristolSU\Support\Control\Contracts\Models\Role;
 use BristolSU\Support\Control\Contracts\Repositories\Group as GroupRepository;
 use BristolSU\Support\Control\Contracts\Repositories\Role as RoleRepository;
 use BristolSU\Support\Control\Contracts\Repositories\User as UserRepository;
+use BristolSU\Support\Logic\Audience\AudienceMember;
 use BristolSU\Support\Logic\Contracts\LogicTester;
 use Illuminate\Http\Request;
 
 class LogIntoUserController extends Controller
 {
 
-    public function show(Request $request, Activity $activity, GroupRepository $groupRepository, RoleRepository $roleRepository, UserRepository $userRepository, UserAuthentication $userAuthentication)
+    public function show(Request $request, Activity $activity,GroupRepository $groupRepository, RoleRepository $roleRepository, UserRepository $userRepository, UserAuthentication $userAuthentication)
     {
         $user = $userRepository->getById($userAuthentication->getUser()->control_id);
+        /** @var AudienceMember $audienceMember */
+        $audienceMember = app(AudienceMember::class, ['user' => $user]);
 
-        $roles = collect($roleRepository->allThroughUser($user))->filter(function (Role $role) use ($activity, $user) {
-            return app()->make(LogicTester::class)->evaluate($activity->forLogic, $user, $role->group(), $role);
-        });
-
-        $groups = collect($groupRepository->allThroughUser($user))->filter(function (Group $group) use ($activity, $user) {
-            return app()->make(LogicTester::class)->evaluate($activity->forLogic, $user, $group);
-        });
-
-        $user = (app(LogicTester::class)->evaluate($activity->forLogic, $user) ? $user : null);
-
-        return view('auth.login.user')->with(['user' => $user, 'groups' => $groups, 'roles' => $roles, 'activity' => $activity, 'redirectTo' => $request->input('redirect')]);
+        return view('auth.login.user')->with([
+            'user' => ($audienceMember->canBeUser()?$user:null),
+            'groups' => $audienceMember->groups(),
+            'roles' => $audienceMember->roles(),
+            'activity' => $activity,
+            'redirectTo' => $request->input('redirect')
+        ]);
     }
 
     public function login(Request $request, Authentication $authentication, UserRepository $userRepository)

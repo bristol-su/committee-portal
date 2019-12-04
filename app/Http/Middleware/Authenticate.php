@@ -54,7 +54,7 @@ class Authenticate
     protected function redirectTo($request)
     {
         if(!$request->expectsJson()) {
-            return '/portal';
+            return '/';
         }
     }
 
