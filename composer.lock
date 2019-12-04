@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.126.0",
+            "version": "3.127.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "9e5bbd07ac1d8ab0e12025355502599899b2dc5a"
+                "reference": "c7f8c962ad2bb1430e673f14505870d8573a55d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/9e5bbd07ac1d8ab0e12025355502599899b2dc5a",
-                "reference": "9e5bbd07ac1d8ab0e12025355502599899b2dc5a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c7f8c962ad2bb1430e673f14505870d8573a55d6",
+                "reference": "c7f8c962ad2bb1430e673f14505870d8573a55d6",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-12-03T20:03:12+00:00"
+            "time": "2019-12-04T01:40:14+00:00"
         },
         {
             "name": "brianium/habitat",
@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/support.git",
-                "reference": "9eb45d36eaa41e62f4e9187c5bf4357b30a3e1dd"
+                "reference": "a5586e7d5ba5f407b915d5283e00e125efef9fa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/support/zipball/9eb45d36eaa41e62f4e9187c5bf4357b30a3e1dd",
-                "reference": "9eb45d36eaa41e62f4e9187c5bf4357b30a3e1dd",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/a5586e7d5ba5f407b915d5283e00e125efef9fa3",
+                "reference": "a5586e7d5ba5f407b915d5283e00e125efef9fa3",
                 "shasum": ""
             },
             "require": {
@@ -302,7 +302,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2019-12-03T22:12:58+00:00"
+            "time": "2019-12-03T22:31:13+00:00"
         },
         {
             "name": "bristol-su/upload-file",

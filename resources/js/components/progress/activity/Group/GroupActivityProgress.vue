@@ -130,7 +130,7 @@
                 } else {
                     this.filteredTableItems = this.progress;
                 }
-                this.tableLoadingc = false;
+                this.tableLoading = false;
             },
 
             calculateStatus(progressInstance) {

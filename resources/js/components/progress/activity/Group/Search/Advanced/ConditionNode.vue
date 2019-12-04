@@ -37,56 +37,88 @@
                         text: 'Step is Complete',
                         valueText: 'Step Name',
                         handler: function (progress, value) {
-                            return true;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.module_instances
+                                .filter(moduleInstance => moduleInstance.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 && moduleInstance.evaluation.complete === true)
+                                .length > 0;
                         }
                     }, {
                         key: 'stepIsIncomplete',
                         text: 'Step is Incomplete',
                         valueText: 'Step Name',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.module_instances
+                                .filter(moduleInstance => moduleInstance.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 && moduleInstance.evaluation.complete === false)
+                                .length > 0;
                         },
                     }, {
                         key: 'stepIsMandatory',
                         text: 'Step is Mandatory',
                         valueText: 'Step Name',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.module_instances
+                                .filter(moduleInstance => moduleInstance.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 && moduleInstance.evaluation.mandatory === true)
+                                .length > 0;
                         },
                     }, {
                         key: 'stepIsOptional',
                         text: 'Step is Optional',
                         valueText: 'Step Name',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.module_instances
+                                .filter(moduleInstance => moduleInstance.name.toUpperCase().indexOf(value.toUpperCase()) !== -1 && moduleInstance.evaluation.mandatory === false)
+                                .length > 0;
                         },
                     }, {
                         key: 'groupNameIs',
                         text: 'Group name is exactly',
                         valueText: 'Group Name',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.participant.name.toUpperCase() === value.toUpperCase();
                         }
                     }, {
                         key: 'groupNameContains',
                         text: 'Group name contains the characters',
                         valueText: 'Characters',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.participant.name.toUpperCase().indexOf(value.toUpperCase()) !== -1;
                         }
                     }, {
                         key: 'groupNameDoesNotContain',
                         text: 'Group name does not contain the characters',
                         valueText: 'Characters',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return progress.participant.name.toUpperCase().indexOf(value.toUpperCase()) === -1;
                         }
                     }, {
-                        key: 'statusIsFinished',
+                        key: 'statusIs',
                         text: 'The status of the activity is',
                         valueText: 'Status',
                         handler: function (progress, value) {
-                            return false;
+                            if(value === '') {
+                                return true;
+                            }
+                            return this.calculateStatus(progress).toUpperCase().indexOf(value.toUpperCase()) !== -1;
                         }
                     }
                 ]
@@ -114,8 +146,30 @@
                     filter: this.condition.filter,
                     filterValue: val
                 });
-            }
+            },
 
+            calculateStatus(progressInstance) {
+                let incompleted = this.calculateIncomplete(progressInstance).length;
+                let completed = this.calculateComplete(progressInstance).length;
+                if (incompleted === 0 && completed > 0) {
+                    return 'Finished';
+                } else if (incompleted === 0 && completed === 0) {
+                    return 'N/A';
+                } else if (incompleted > 0 && completed === 0) {
+                    return 'Not started';
+                } else if (incompleted > 0 && completed > 0) {
+                    return 'In progress';
+                }
+                return 'N/A';
+            },
+
+            calculateComplete(progressInstance) {
+                return progressInstance.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === true);
+            },
+
+            calculateIncomplete(progressInstance) {
+                return progressInstance.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false);
+            },
         },
 
         computed: {
