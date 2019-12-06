@@ -23,6 +23,30 @@ return [
                             'model' => 'description'
                         ]
                     ]
+                ],
+                [
+                    'legend' => "Status Changes",
+                    'fields' => [
+                        [
+                            'type' => 'select',
+                            'label' =>  'Initial Status',
+                            'hint' => 'What status should all new files have?',
+                            'model' => 'initial_status',
+                            'values' => [
+                                'Awaiting Approval', 'Approved', 'Approved Pending Comments', 'Rejected'
+                            ]
+                        ],
+                        [
+                            'type' => 'checklist',
+                            'label' =>  'Available Statuses',
+                            'hint' => 'A comma separated list of available statuses',
+                            'listBox' => true,
+                            'model' => 'statuses',
+                            'values' => [
+                                'Awaiting Approval', 'Approved', 'Approved Pending Comments', 'Rejected'
+                            ]
+                        ],
+                    ]
                 ]
 
             ]
@@ -30,6 +54,8 @@ return [
         'model' => [
             'title' => 'Default Title',
             'description' => '',
+            'initial_status' => 'Awaiting Approval',
+            'statuses' => ['Awaiting Approval', 'Approved', 'Rejected']
 
         ],
         'options' => [
