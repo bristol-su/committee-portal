@@ -297,6 +297,21 @@
             calculateIncomplete(progressInstance) {
                 return progressInstance.module_instances.filter(moduleInstance => moduleInstance.evaluation.complete === false);
             },
+
+            calculateStatus(progressInstance) {
+                let incompleted = this.calculateIncomplete(progressInstance).length;
+                let completed = this.calculateComplete(progressInstance).length;
+                if (incompleted === 0 && completed > 0) {
+                    return 'Finished';
+                } else if (incompleted === 0 && completed === 0) {
+                    return 'N/A';
+                } else if (incompleted > 0 && completed === 0) {
+                    return 'Not started';
+                } else if (incompleted > 0 && completed > 0) {
+                    return 'In progress';
+                }
+                return 'N/A';
+            },
         },
 
         computed: {
