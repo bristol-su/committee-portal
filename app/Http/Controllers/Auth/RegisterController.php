@@ -51,6 +51,7 @@ class RegisterController extends Controller
         try {
             $dataUser = $dataPlatformUserRepository->getByIdentity($request->input('identity'));
         } catch (\Exception $e) {
+            dd($e);
             return back()
                 ->withErrors(['identity' => 'Could not find your account on our website'])
                 ->withInput();

@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckForMaintenanceMode;
+use App\Http\Middleware\DummyMiddleware;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
@@ -52,6 +53,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // TODO Remove verification dummy middleware
     protected $routeMiddleware = [
         'auth' => Authenticate::class,
         'bindings' => SubstituteBindings::class,
@@ -60,7 +62,7 @@ class Kernel extends HttpKernel
         'guest' => RedirectIfAuthenticated::class,
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
-        'verified' => EnsureEmailIsVerified::class,
+        'verified' => DummyMiddleware::class,
     ];
 
     /**
