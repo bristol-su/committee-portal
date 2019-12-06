@@ -29,3 +29,9 @@ If we could just build these core blocks once, anyone could string them together
 Each 'building block' is a Laravel microservice, usually with only a couple of pages and some logic, integrated into the [Bristol SU Support Package](https://github.com/bristol-su/support) which provides the functionality to take your Laravel app and put it beside multiple other apps to make a process. Through controlling access to different processes, we are providing a fully featured, customisable administrative portal, to suit any processes/ways of working a student union (or any other organisation) may have, all open sourced and free!
 
 This is still a work in progress, although the portal is starting to take shape, and so any help would be appreciated in getting this project to a deployable standard. Similarly, if you think you or your organisation may be able to use the portal, we'd love to hear from you and keep in touch! If you have any ideas, feature requests or questions, pop me an email at [toby.twigger@bristol.ac.uk](mailto:toby.twigger@bristol.ac.uk)), or if you're interested in using the portal and want us to keep in touch, simply fill out [this form](https://www.bristolsu.org.uk/portalinterest) (all fields are optional, and we'll only contact you with major updates around the portal).
+
+## Installation
+
+- Clone the project
+- Install dependencies (```composer install && npm install```)
+- Edit the .env.example file to connect to a database and serve
