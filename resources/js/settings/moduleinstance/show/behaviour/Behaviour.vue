@@ -6,7 +6,7 @@
         <data-item title="Visible For">
             <logic-preview :logic-id="visibleId"></logic-preview>
         </data-item>
-        <data-item title="Mandatory For">
+        <data-item title="Mandatory For" v-if="completableActivity">
             <logic-preview :logic-id="mandatoryId"></logic-preview>
         </data-item>
     </div>
@@ -32,6 +32,11 @@
                 required: true,
                 type: Number
             },
+            completableActivity: {
+                required: false,
+                type: Boolean,
+                default: true
+            }
         }
     }
 </script>

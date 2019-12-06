@@ -17,4 +17,18 @@ export default class extends BaseResource{
     audience(logicId) {
         return this.request('get', '/logic/' + logicId + '/audience');
     }
+
+
+
+    userAudience(logicId) {
+        return this.request('get', '/logic/' + logicId + '/audience/user');
+    }
+
+    groupAudience(logicId) {
+        return this.request('get', '/logic/' + logicId + '/audience/group');
+    }
+
+    roleAudience(logicId) {
+        return this.request('get', '/logic/' + logicId + '/audience/role');
+    }
 }
