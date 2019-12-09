@@ -13,7 +13,7 @@
         "fideloper/proxy": "^4.0",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "^6.5",
-        "laravel/passport": "^7.3",
+        "laravel/passport": "^8.0",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "php-console/php-console": "^3.1",
