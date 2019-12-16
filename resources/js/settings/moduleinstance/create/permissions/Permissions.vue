@@ -33,11 +33,9 @@
         name: "ModulePermissions",
         components: {LogicSelect},
         props: {
-            permissions: {
-                required: false,
-                default: function() {
-                    return []
-                }
+            moduleInstance: {
+                required: true,
+                type: Object
             }
         },
 

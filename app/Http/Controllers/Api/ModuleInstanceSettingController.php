@@ -28,9 +28,7 @@ class ModuleInstanceSettingController extends Controller
     public function update(ModuleInstanceSetting $setting, Request $request)
     {
         $setting->fill([
-            'key' => $request->input('key', $setting->key),
             'value' => $request->input('value', $setting->value),
-            'module_instance_id' => $request->input('module_instance_id', $setting->module_instance_id)
         ]);
         $setting->save();
         return $setting;

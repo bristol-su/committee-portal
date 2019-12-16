@@ -14,4 +14,9 @@ export default class extends BaseResource{
         return this.request('put', '/module-instance-permission/' + id, attributes);
     }
 
+
+    forModuleInstance(moduleInstanceId) {
+        return this.request('get', '/module-instance/' + moduleInstanceId + '/module-instance-permission')
+    }
+
 }

@@ -250,7 +250,7 @@
             "dist": {
                 "type": "path",
                 "url": "../support/support",
-                "reference": "b4300493914552666d22abee35b98810f06d7fa4"
+                "reference": "c35eb1b2a6448818bc97873207efe8367cb03413"
             },
             "require": {
                 "brianium/paratest": "^3.0",
@@ -308,7 +308,7 @@
             "dist": {
                 "type": "path",
                 "url": "../modules/typeform",
-                "reference": "3dbe8cf42f601f9c706208436e178fc9e1eedb05"
+                "reference": "6acc462e14518eda3083227b095070df95c8d940"
             },
             "require": {
                 "bristol-su/support": "@dev",
@@ -352,7 +352,7 @@
             "dist": {
                 "type": "path",
                 "url": "../modules/upload-file",
-                "reference": "127bfe2082142184032bc3a45f5d476f353d2bf5"
+                "reference": "a4b255a63ad0307d5eb861f2209ff96a64577013"
             },
             "require": {
                 "bristol-su/support": "@dev",

@@ -1,7 +1,7 @@
 import Activity from './resources/activity';
 import Logic from "./resources/logic";
 import Modules from './resources/modules';
-import Settings from './resources/settings';
+import ModuleInstanceSettings from './resources/moduleInstanceSettings';
 import ModuleInstancePermissions from './resources/moduleinstancepermissions';
 import Filters from './resources/filters';
 import FilterInstances from './resources/filterinstances';
@@ -76,8 +76,8 @@ export default class {
         return new Modules(this._http);
     }
 
-    settings() {
-        return new Settings(this._http);
+    moduleInstanceSettings() {
+        return new ModuleInstanceSettings(this._http);
     }
 
     activityInstance() {

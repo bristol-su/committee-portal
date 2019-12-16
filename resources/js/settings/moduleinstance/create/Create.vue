@@ -29,24 +29,13 @@
 
 
             <tab-content title="Services" v-if="hasModuleInstance">
-                <services
-                    :required="selectedModule.services.required"
-                    :optional="selectedModule.services.optional"
-                    v-if="hasServices">
-                </services>
-                <div v-else><h4>No services needed by this module.</h4></div>
+                <services :module-instance="moduleInstance"></services>
             </tab-content>
             <tab-content title="Settings" v-if="hasModuleInstance">
-                <settings
-                    :settings="selectedModule.settings">
-
-                </settings>
+                <settings :module-instance="moduleInstance"></settings>
             </tab-content>
             <tab-content title="Permissions" v-if="hasModuleInstance">
-                <permissions
-                    :permissions="selectedModule.permissions">
-
-                </permissions>
+                <permissions :module-instance="moduleInstance"></permissions>
             </tab-content>
 
         </form-wizard>
@@ -99,8 +88,8 @@
                     mandatory: null,
                     completion_condition_instance_id: null
                 },
-                selectedModule: {},
-                moduleInstanceId: null
+                moduleInstance: null,
+                selectedModule: {}
             }
         },
 
@@ -123,7 +112,7 @@
                 })
                     .then(response => {
                         this.$notify.success('Module Instance ' + this.form.name + ' created!');
-                        this.moduleInstanceId = response.data.id;
+                        this.moduleInstance = response.data;
                     })
                     .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
 
@@ -133,15 +122,8 @@
 
         computed: {
             hasModuleInstance() {
-                return this.moduleInstanceId !== null;
+                return this.moduleInstance !== null;
             },
-            hasServices() {
-                if(this.selectedModule.hasOwnProperty('services')) {
-                    return (this.selectedModule.services.required !== undefined && this.selectedModule.services.required.length > 0) ||
-                        (this.selectedModule.services.optional !== undefined && this.selectedModule.services.optional.length > 0);
-                }
-                return false;
-            }
         }
     }
 </script>

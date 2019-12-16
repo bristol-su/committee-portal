@@ -53,6 +53,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::post('/site-permission/{site_permission}/user/{control_user_id}', 'SitePermissionUserController@store');
         Route::delete('/site-permission/{site_permission}/user/{control_user_id}', 'SitePermissionUserController@delete');
 
+        Route::prefix('/module-instance/{module_instance_id}')->group(function() {
+            Route::apiResource('module-instance-setting', 'ModuleInstanceModuleInstanceSettingController')->only(['index']);
+            Route::apiResource('module-instance-permission', 'ModuleInstanceModuleInstanceSettingController')->only(['index']);
+        });
+
     });
 
     Route::namespace('Control')->prefix('control')->group(function() {

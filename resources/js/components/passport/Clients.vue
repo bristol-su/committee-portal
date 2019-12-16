@@ -125,6 +125,23 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <!-- Confidential -->
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label">Confidential</label>
+
+                                <div class="col-md-9">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" v-model="createForm.confidential">
+                                        </label>
+                                    </div>
+
+                                    <span class="form-text text-muted">
+                                        Require the client to authenticate with a secret. Confidential clients can hold credentials in a secure way without exposing them to unauthorized parties. Public applications, such as native desktop or JavaScript SPA applications, are unable to hold secrets securely.
+                                    </span>
+                                </div>
+                            </div>
                         </form>
                     </div>
 
@@ -222,7 +239,8 @@
                 createForm: {
                     errors: [],
                     name: '',
-                    redirect: ''
+                    redirect: '',
+                    confidential: true
                 },
 
                 editForm: {
