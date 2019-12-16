@@ -72,6 +72,15 @@
                         title: 'Site Permissions',
                         icon: 'fa fa-lock',
                     },
+                    {
+                        header: true,
+                        title: 'Connections'
+                    },
+                    {
+                        href: '/connector',
+                        title: 'Connectors',
+                        icon: 'fa fa-plug',
+                    },
                 ]
             }
         },

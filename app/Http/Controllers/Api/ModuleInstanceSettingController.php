@@ -5,28 +5,34 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use BristolSU\Support\Module\Module;
-use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSettings;
+use BristolSU\Support\ModuleInstance\Settings\ModuleInstanceSetting;
 use Illuminate\Http\Request;
 
 class ModuleInstanceSettingController extends Controller
 {
 
-    public function show(ModuleInstanceSettings $moduleInstanceSettings)
+    public function show(ModuleInstanceSetting $moduleInstanceSetting)
     {
-        return $moduleInstanceSettings;
+        return $moduleInstanceSetting;
     }
 
     public function store(Request $request)
     {
-        return ModuleInstanceSettings::create([
-            'settings' => $request->input('settings')
+        return ModuleInstanceSetting::create([
+            'key' => $request->input('key'),
+            'value' => $request->input('value'),
+            'module_instance_id' => $request->input('module_instance_id')
         ]);
     }
 
-    public function update(ModuleInstanceSettings $settings, Request $request)
+    public function update(ModuleInstanceSetting $setting, Request $request)
     {
-        $settings->settings = $request->input('settings', $settings->settings);
-        $settings->save();
-        return $settings;
+        $setting->fill([
+            'key' => $request->input('key', $setting->key),
+            'value' => $request->input('value', $setting->value),
+            'module_instance_id' => $request->input('module_instance_id', $setting->module_instance_id)
+        ]);
+        $setting->save();
+        return $setting;
     }
 }

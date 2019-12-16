@@ -43,7 +43,7 @@
 
         methods: {
             loadSettings() {
-                this.$api.moduleinstancepermissions().get(this.permissionId)
+                this.$api.moduleInstancePermissions().get(this.permissionId)
                     .then(response => this.permissions = response.data)
                     .catch(error => this.$notify.alert('Something went wrong getting permission information: ' + error.message))
                     .then(() => this.loading = false);

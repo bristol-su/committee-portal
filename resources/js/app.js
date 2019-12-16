@@ -6,7 +6,6 @@ import api from "./utilities/api/api";
 import control from "./utilities/control/api";
 import VueFormGenerator from 'vue-form-generator'
 
-
 import ModuleInstances from './components/portal/module_instances/ModuleInstances';
 import ActivitySidebar from "./components/portal/activity/ActivitySidebar";
 import Sidebar from './settings/Sidebar';
@@ -30,6 +29,8 @@ import SitePermissions from './settings/sitepermissions/index/Index';
 import SitePermission from './settings/sitepermissions/show/Show';
 import RoleActivityProgress from './components/progress/activity/RoleActivityProgress';
 import GroupActivityProgress from './components/progress/activity/Group/GroupActivityProgress';
+
+import ConnectorIndex from './settings/connector/index/Index';
 
 import ActivityInstanceSwitcher from './components/portal/activity/ActivityInstanceSwitcher';
 
@@ -84,7 +85,9 @@ new Vue({
 
         ActivityInstanceSwitcher,
         RoleActivityProgress,
-        GroupActivityProgress
+        GroupActivityProgress,
+
+        ConnectorIndex
     }
 });
 

@@ -15,6 +15,9 @@ import Role from './resources/role';
 import SitePermissions from './resources/sitepermissions';
 import CompletionConditions from './resources/completionconditions';
 import ActivityInstance from './resources/activityinstance';
+import Connector from './resources/connector';
+import Connection from './resources/connection';
+import ModuleInstanceServices from './resources/moduleinstanceservices';
 
 // TODO Implement Cache
 export default class {
@@ -40,6 +43,14 @@ export default class {
 
     action() {
         return new Action(this._http);
+    }
+
+    connector() {
+        return new Connector(this._http);
+    }
+
+    connection() {
+        return new Connection(this._http);
     }
 
     completionConditions() {
@@ -73,11 +84,11 @@ export default class {
         return new ActivityInstance(this._http);
     }
 
-    moduleinstancepermissions() {
+    moduleInstancePermissions() {
         return new ModuleInstancePermissions(this._http);
     }
 
-    sitepermissions() {
+    sitePermissions() {
         return new SitePermissions(this._http);
     }
 
@@ -103,5 +114,9 @@ export default class {
 
     role() {
         return new Role(this._http);
+    }
+
+    moduleInstanceServices() {
+        return new ModuleInstanceServices(this._http);
     }
 }

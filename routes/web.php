@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('activity', 'ActivityController')->only(['index', 'create', 'show']);
         Route::resource('logic', 'LogicController')->only(['index', 'show', 'create']);
         Route::resource('site-permission', 'SitePermissionController')->only(['index', 'show']);
+        Route::resource('connector', 'ConnectorController')->only(['index']);
         Route::prefix('/activity/{activity}')->group(function () {
             Route::resource('module-instance', 'ModuleInstanceController')->only(['show', 'create']);
             Route::prefix('/module-instance/{module_instance}')->group(function() {

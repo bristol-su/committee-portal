@@ -2,8 +2,7 @@
     <div>
         <form-wizard
             title="Create a new module"
-            subtitle=""
-            @on-complete="saveActivity">
+            subtitle="">
             <tab-content title="Module Type">
                 <module-type v-model="form.alias" @module="selectedModule = $event">
 
@@ -23,20 +22,29 @@
                     :for-logic="forLogic"
                     :activity="activity"
                     @update="updateBehaviour"
+                    @createModuleInstance="createModuleInstance"
                 >
                 </behaviour>
             </tab-content>
-            <tab-content title="Settings">
+
+
+            <tab-content title="Services" v-if="hasModuleInstance">
+                <services
+                    :required="selectedModule.services.required"
+                    :optional="selectedModule.services.optional"
+                    v-if="hasServices">
+                </services>
+                <div v-else><h4>No services needed by this module.</h4></div>
+            </tab-content>
+            <tab-content title="Settings" v-if="hasModuleInstance">
                 <settings
-                    :settings="selectedModule.settings"
-                    v-model="form.module_instance_settings">
+                    :settings="selectedModule.settings">
 
                 </settings>
             </tab-content>
-            <tab-content title="Permissions">
+            <tab-content title="Permissions" v-if="hasModuleInstance">
                 <permissions
-                    :permissions="selectedModule.permissions"
-                    v-model="form.module_instance_permissions">
+                    :permissions="selectedModule.permissions">
 
                 </permissions>
             </tab-content>
@@ -53,11 +61,13 @@
     import Permissions from "./permissions/Permissions";
     import Behaviour from "./behaviour/Behaviour";
     import ModuleType from "./type/ModuleType";
+    import Services from './services/Services';
 
     export default {
         name: "Create",
 
         components: {
+            Services,
             ModuleType,
             Behaviour,
             Permissions,
@@ -87,11 +97,10 @@
                     active: null,
                     visible: null,
                     mandatory: null,
-                    module_instance_settings: null,
-                    module_instance_permissions: null,
                     completion_condition_instance_id: null
                 },
-                selectedModule: {}
+                selectedModule: {},
+                moduleInstanceId: null
             }
         },
 
@@ -100,7 +109,7 @@
                 this.form[type] = value;
             },
 
-            saveActivity() {
+            createModuleInstance() {
                 this.$api.moduleInstances().create({
                     'alias': this.form.alias,
                     'activity_id': this.activity.id,
@@ -110,16 +119,28 @@
                     'active': this.form.active,
                     'visible':  this.form.visible,
                     'mandatory': this.form.mandatory,
-                    'module_instance_settings_id': this.form.module_instance_settings,
-                    'module_instance_permissions_id': this.form.module_instance_permissions,
                     'completion_condition_instance_id': this.form.completion_condition_instance_id
                 })
                     .then(response => {
                         this.$notify.success('Module Instance ' + this.form.name + ' created!');
-                        window.setTimeout(() => {window.location.href = '/activity/' + this.activity.id + '/module-instance/' + response.data.id}, 3000);
+                        this.moduleInstanceId = response.data.id;
                     })
                     .catch(error => this.$notify.alert('Something went wrong: ' + error.message));
 
+            },
+
+        },
+
+        computed: {
+            hasModuleInstance() {
+                return this.moduleInstanceId !== null;
+            },
+            hasServices() {
+                if(this.selectedModule.hasOwnProperty('services')) {
+                    return (this.selectedModule.services.required !== undefined && this.selectedModule.services.required.length > 0) ||
+                        (this.selectedModule.services.optional !== undefined && this.selectedModule.services.optional.length > 0);
+                }
+                return false;
             }
         }
     }

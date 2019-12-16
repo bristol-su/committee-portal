@@ -65,14 +65,14 @@
         methods: {
 
             createPermissions() {
-                this.$api.moduleinstancepermissions().create(this.formattedForm)
+                this.$api.moduleInstancePermissions().create(this.formattedForm)
                     .then(response => this.id = response.data.id)
                     .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
                     .then(() => this.$emit('input', this.id));
             },
 
             updatePermissions() {
-                this.$api.moduleinstancepermissions().update(this.id, this.formattedForm)
+                this.$api.moduleInstancePermissions().update(this.id, this.formattedForm)
                     .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
                     .then(() => this.$emit('input', this.id));
             },

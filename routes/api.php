@@ -19,12 +19,17 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::apiResource('logic', 'LogicController')->only(['index', 'show', 'store']);
     Route::apiResource('module', 'ModuleController')->only(['index', 'show']);
     Route::apiResource('module-instance-permission', 'ModuleInstancePermissionController')->only(['show', 'store', 'update']);
+    Route::apiResource('module-instance-service', 'ModuleInstanceServiceController')->only(['show', 'store', 'update']);
     Route::apiResource('module-instance-setting', 'ModuleInstanceSettingController')->only(['show', 'store', 'update']);
     Route::apiResource('module-instance', 'ModuleInstanceController')->only(['store']);
     Route::apiResource('action', 'ActionController')->only(['index']);
     Route::apiResource('action-instance', 'ActionInstanceController')->only(['store', 'update']);
     Route::apiResource('action-instance-field', 'ActionInstanceFieldController')->only(['store', 'update']);
     Route::apiResource('site-permission', 'SitePermissionController')->only('index', 'show');
+    Route::apiResource('connector', 'ConnectorController')->only('index', 'show');
+    Route::apiResource('connection', 'ConnectionController')->only('index');
+    Route::apiResource('connection', 'ConnectionController')->only('index', 'destroy', 'update', 'store');
+    Route::get('connection/{connection_id}/test', 'ConnectionController@test');
     Route::apiResource('group', 'GroupController')->only(['show']);
     Route::apiResource('role', 'RoleController')->only(['show']);
     Route::apiResource('completion-condition-instance', 'CompletionConditionInstanceController')->only(['store']);
@@ -33,6 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::namespace('Relationships')->group(function() {
         Route::get('/activity/{activity}/module-instance', 'ActivityModuleInstancesController@index');
+
+        Route::get('service/{service}/connection', 'ServiceConnectionController@index');
 
         Route::get('/logic/{logic}/filters', 'LogicFiltersController@index');
         Route::get('/logic/{logic}/audience', 'LogicAudienceController@index');

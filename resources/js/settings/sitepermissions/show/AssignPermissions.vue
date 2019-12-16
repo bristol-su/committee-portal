@@ -42,7 +42,7 @@
 
         methods: {
             loadPermissions() {
-                this.$api.sitepermissions().usersWith(this.permission.ability)
+                this.$api.sitePermissions().usersWith(this.permission.ability)
                     .then(response => this.permissions = response.data)
                     .catch(error => this.$notify.alert('Could not load users with permission: ' + error.message));
             },
@@ -54,9 +54,9 @@
             changePermission(status, userId) {
                 let request;
                 if(status) {
-                    request = this.$api.sitepermissions().giveUserPermissionTo(userId, this.permission.ability);
+                    request = this.$api.sitePermissions().giveUserPermissionTo(userId, this.permission.ability);
                 } else {
-                    request = this.$api.sitepermissions().revokeUserFrom(userId, this.permission.ability);
+                    request = this.$api.sitePermissions().revokeUserFrom(userId, this.permission.ability);
                 }
                 request
                     .then(response => this.$notify.success('Changed permissions'))

@@ -2,6 +2,9 @@
     <div style="text-align: left;">
         <vue-form-generator :schema="settings.schema" :model="settings.model" :options="settings.options" @model-updated="update">
         </vue-form-generator>
+
+        <b-button @click="createSettings">Create Settings</b-button>
+
     </div>
 </template>
 
@@ -26,9 +29,10 @@
 
         data() {
             return {
-                id: null
+                moduleInstanceSettings: null
             }
         },
+
         // TODO Should update/create on clicking 'next' as opposed to debouncing
         methods: {
             update: _.debounce(function() {

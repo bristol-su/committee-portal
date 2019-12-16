@@ -22,6 +22,8 @@
 
             </completion-condition>
         </b-form-group>
+
+        <b-button @click="$emit('createModuleInstance')">Create Module Instance</b-button>
     </div>
 </template>
 

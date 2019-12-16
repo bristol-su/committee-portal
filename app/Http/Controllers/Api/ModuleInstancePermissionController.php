@@ -4,30 +4,36 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Permissions\Models\ModuleInstancePermissions;
+use BristolSU\Support\Permissions\Models\ModuleInstancePermission;
 use Illuminate\Http\Request;
 
 class ModuleInstancePermissionController extends Controller
 {
 
-    public function show(ModuleInstancePermissions $moduleInstancePermissions)
+    public function show(ModuleInstancePermission $moduleInstancePermission)
     {
-        return $moduleInstancePermissions;
+        return $moduleInstancePermission;
     }
 
     public function store(Request $request)
     {
-        return ModuleInstancePermissions::create([
-            'participant_permissions' => $request->input('participant_permissions'),
-            'admin_permissions' => $request->input('admin_permissions')
+        return ModuleInstancePermission::create([
+            'logic_id' => $request->input('logic_id'),
+            'ability' => $request->input('ability'),
+            'module_instance_id' => $request->input('module_instance_id'),
+            'type' => $request->input('type')
         ]);
     }
 
-    public function update(ModuleInstancePermissions $permissions, Request $request)
+    public function update(ModuleInstancePermission $permission, Request $request)
     {
-        $permissions->participant_permissions = $request->input('participant_permissions', $permissions->participant_permissions);
-        $permissions->admin_permissions = $request->input('admin_permissions', $permissions->admin_permissions);
-        $permissions->save();
-        return $permissions;
+        $permission->fill([
+            'logic_id' => $request->input('logic_id', $permission->logic_id),
+            'ability' => $request->input('ability', $permission->ability),
+            'module_instance_id' => $request->input('module_instance_id', $permission->module_instance_id),
+            'type' => $request->input('type', $permission->type)
+        ]);
+        $permission->save();
+        return $permission;
     }
 }

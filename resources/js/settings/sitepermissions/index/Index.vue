@@ -31,7 +31,7 @@
 
         methods: {
             getPermissions() {
-                this.$api.sitepermissions().all()
+                this.$api.sitePermissions().all()
                     .then(response => this.permissionObject = response.data)
                     .catch(error => this.$notify.alert('Could not retrieve permissions'));
             }

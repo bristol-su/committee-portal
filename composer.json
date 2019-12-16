@@ -19,6 +19,7 @@
         "php-console/php-console": "^3.1",
         "bristol-su/support": "dev-master",
         "bristol-su/upload-file": "@dev",
+        "bristol-su/typeform": "@dev",
         "bristol-su/control-db-implementation": "@dev"
     },
     "require-dev": {
@@ -54,6 +55,20 @@
             "@php artisan package:discover --ansi"
         ]
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../modules/typeform"
+        },
+        {
+            "type": "path",
+            "url": "../modules/upload-file"
+        },
+        {
+            "type": "path",
+            "url": "../support/support"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": [
