@@ -1,38 +1,40 @@
 <template>
     <div style="text-align: left;">
-        <b-card header="Module Instance Registration Information" header-class="view-header" class="show-card">
-            <module-instance
-            :module-instance="moduleInstance">
 
-            </module-instance>
-        </b-card>
+        <div>
+            <b-card no-body>
+                <b-tabs card pills vertical>
+                    <b-tab active title="Module Information">
+                        <module-instance
+                            :module-instance="moduleInstance">
 
-        <b-card header="Behaviour" header-class="view-header" class="show-card">
-            <behaviour
-                :active-id="moduleInstance.active"
-                :visible-id="moduleInstance.visible"
-                :mandatory-id="moduleInstance.mandatory">
+                        </module-instance>
+                    </b-tab>
+                    <b-tab title="Behaviour">
+                        <behaviour
+                            :module-instance="moduleInstance">
+                        </behaviour>
+                    </b-tab>
+                    <b-tab title="Settings">
+                        <settings :module-instance="moduleInstance"></settings>
+                    </b-tab>
+                    <b-tab title="Permissions">
+                        <permissions :module-instance="moduleInstance"></permissions>
 
-            </behaviour>
-        </b-card>
+                    </b-tab>
+                    <b-tab title="Services">
+                        <services :module-instance="moduleInstance"></services>
 
-        <b-card header="Settings" header-class="view-header" class="show-card">
-            <settings :setting-id="moduleInstance.module_instance_settings_id">
+                    </b-tab>
+                    <b-tab title="Actions">
+                        <actions :module-instance="moduleInstance">
 
-            </settings>
-        </b-card>
+                        </actions>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+        </div>
 
-        <b-card header="Permissions" header-class="view-header" class="show-card">
-            <permissions :permission-id="moduleInstance.module_instance_permissions_id">
-
-            </permissions>
-        </b-card>
-
-        <b-card header="Actions" header-class="view-header" class="show-card">
-            <actions :module-instance="moduleInstance">
-
-            </actions>
-        </b-card>
 
     </div>
 </template>
@@ -40,13 +42,14 @@
 <script>
     import ModuleInstance from "./moduleinstance/ModuleInstance";
     import Behaviour from "./behaviour/Behaviour";
-    import Permissions from "./permissions/Permissions";
-    import Settings from "./settings/Settings";
+    import Permissions from "./../create/permissions/Permissions";
+    import Settings from "./../create/settings/Settings";
     import Actions from './actions/Actions';
+    import Services from '../create/services/Services';
 
     export default {
         name: "Show",
-        components: {Settings, Permissions, Behaviour, ModuleInstance, Actions},
+        components: {Services, Settings, Permissions, Behaviour, ModuleInstance, Actions},
         props: {
             moduleInstance: {
                 required: true,

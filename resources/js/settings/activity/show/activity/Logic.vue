@@ -10,9 +10,6 @@
             <data-item title="Description">
                 {{logic.description}}
             </data-item>
-            <data-item title="Applicable To">
-                {{logic.for}}
-            </data-item>
             <data-item title="View">
                 <a :href="url"><b-button variant="secondary" size="sm">View</b-button></a>
             </data-item>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use BristolSU\Support\ModuleInstance\Connection\ModuleInstanceService;
+use BristolSU\Support\ModuleInstance\Contracts\Connection\ModuleInstanceServiceRepository;
 use Illuminate\Http\Request;
 
 class ModuleInstanceServiceController extends Controller
@@ -21,17 +22,22 @@ class ModuleInstanceServiceController extends Controller
         $moduleInstanceService->connection_id = $request->input('connection_id');
         $moduleInstanceService->module_instance_id = $request->input('module_instance_id');
 
-        return ModuleInstanceService::create([
-            'service' => $request->input('participant_services'),
-            '' => $request->input('admin_services')
-        ]);
+        $moduleInstanceService->save();
+
+        return $moduleInstanceService;
     }
 
-    public function update(ModuleInstanceService $services, Request $request)
+    public function update(ModuleInstanceService $service, Request $request)
     {
-        $services->participant_services = $request->input('participant_services', $services->participant_services);
-        $services->admin_services = $request->input('admin_services', $services->admin_services);
-        $services->save();
-        return $services;
+        $service->connection_id = $request->input('connection_id', $service->connection_id);
+
+        $service->save();
+
+        return $service;
+    }
+
+    public function index(ModuleInstanceServiceRepository $repository)
+    {
+        return $repository->all();
     }
 }

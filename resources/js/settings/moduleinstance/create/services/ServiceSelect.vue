@@ -5,10 +5,12 @@
             :label="service"
             :label-for="service"
             description="Select a connection or create a new one"
+            v-if="!loading"
             >
 
-            <b-form-select :options="connectionOptions" @input="assignService" :value="value"></b-form-select>
+            <b-form-select :options="connectionOptions" @input="saveService" :value="value"></b-form-select>
         </b-form-group>
+        <div v-else>Loading...</div>
     </div>
 </template>
 
@@ -21,48 +23,90 @@
                 type: String,
                 required: true
             },
-            connections: {
+            assignedServices: {
+                type: Array,
                 required: false,
-                default: function() {
+                default() {
                     return [];
-                },
-                type: Array
+                }
             },
-            value: {
-                required: false,
-                type: Number,
-                default: null
+            moduleInstanceId: {
+                required: true,
+                type: Number
             }
         },
 
         data() {
-            return {}
+            return {
+                connections: [],
+                connectionsLoading: true
+            }
+        },
+
+        created() {
+            this.loadConnections();
         },
 
         methods: {
-            assignService(id) {
-                let attributes = {
-                    service: ''
-                };
-                if(this.moduleInstanceServiceId !== null) {
-                    this.$api.moduleInstanceServices().update(this.moduleInstanceServiceId)
+            loadConnections() {
+                this.connectionsLoading = true;
+                this.$api.connection().allForService(this.service)
+                    .then(response => this.connections = response.data)
+                    .catch(error => this.$notify.alert('Could not load connections for ' + this.service + ': ' + error.message))
+                    .then(() => this.connectionsLoading = false);
+            },
+
+            saveService(connectionId) {
+                if (this.hasCurrentConnection) {
+                    this.updateService(connectionId);
                 } else {
-                    this.$api.moduleInstanceServices().create()
+                    this.createService(connectionId);
                 }
+            },
+
+            updateService(connectionId) {
+                this.$api.moduleInstanceServices().update(this.currentConnection.id, connectionId)
+                    .then(response => {
+                        this.$notify.success('Updated service connection');
+                        this.$emit('updated', response.data);
+                    })
+                    .catch(error => this.$notify.alert('Could not update the service: ' + error.message));
+            },
+
+            createService(connectionId) {
+                this.$api.moduleInstanceServices().create(this.service, connectionId, this.moduleInstanceId)
+                    .then(response => {
+                        this.$notify.success('Created service connection');
+                        this.$emit('created', response.data);
+                    })
+                    .catch(error => this.$notify.alert('Could not create the service: ' + error.message));
             }
         },
 
         computed: {
             connectionOptions() {
-                if(this.connections.length === 0) {
-                    return [];
-                }
                 return this.connections.map(connection => {
-                    return {value: connection.id, text: connection.name}
+                    return {text: connection.name, value: connection.id}
                 })
             },
-            moduleInstanceServiceId() {
-                return this.value;
+            currentConnection() {
+                let services = this.assignedServices.filter(assignment => true);
+                if(services.length > 0) {
+                    return services[0];
+                }
+                return null;
+            },
+            hasCurrentConnection() {
+                return this.currentConnection !== null;
+            },
+            value() {
+                if(this.hasCurrentConnection) {
+                    return this.currentConnection.connection_id;
+                }
+                return null;
+            },
+            loading() {
+                return this.connectionsLoading;
             }
         },
     }

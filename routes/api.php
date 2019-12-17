@@ -19,7 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::apiResource('logic', 'LogicController')->only(['index', 'show', 'store']);
     Route::apiResource('module', 'ModuleController')->only(['index', 'show']);
     Route::apiResource('module-instance-permission', 'ModuleInstancePermissionController')->only(['show', 'store', 'update']);
-    Route::apiResource('module-instance-service', 'ModuleInstanceServiceController')->only(['show', 'store', 'update']);
+    Route::apiResource('module-instance-service', 'ModuleInstanceServiceController')->only(['show', 'store', 'update', 'index']);
     Route::apiResource('module-instance-setting', 'ModuleInstanceSettingController')->only(['show', 'store', 'update']);
     Route::apiResource('module-instance', 'ModuleInstanceController')->only(['store']);
     Route::apiResource('action', 'ActionController')->only(['index']);
@@ -55,7 +55,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
         Route::prefix('/module-instance/{module_instance_id}')->group(function() {
             Route::apiResource('module-instance-setting', 'ModuleInstanceModuleInstanceSettingController')->only(['index']);
-            Route::apiResource('module-instance-permission', 'ModuleInstanceModuleInstanceSettingController')->only(['index']);
+            Route::apiResource('module-instance-permission', 'ModuleInstanceModuleInstancePermissionController')->only(['index']);
+            Route::apiResource('module-instance-service', 'ModuleInstanceModuleInstanceServiceController')->only(['index']);
         });
 
     });

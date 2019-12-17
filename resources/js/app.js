@@ -48,8 +48,6 @@ Vue.prototype.$api = new api(portal.API_URL, axios);
 Vue.prototype.$control = new control(portal.API_URL + '/control', axios);
 Vue.prototype.$csrf = token.content;
 
-window.Event = new Vue();
-
 new Vue({
     el: '#vue-root',
 
@@ -87,8 +85,9 @@ new Vue({
         RoleActivityProgress,
         GroupActivityProgress,
 
-        ConnectorIndex
+        ConnectorIndex,
+
     }
 });
 
-
+window.Vue = Vue;

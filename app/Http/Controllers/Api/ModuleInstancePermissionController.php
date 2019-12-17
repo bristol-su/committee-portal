@@ -20,8 +20,7 @@ class ModuleInstancePermissionController extends Controller
         return ModuleInstancePermission::create([
             'logic_id' => $request->input('logic_id'),
             'ability' => $request->input('ability'),
-            'module_instance_id' => $request->input('module_instance_id'),
-            'type' => $request->input('type')
+            'module_instance_id' => $request->input('module_instance_id')
         ]);
     }
 
@@ -29,9 +28,6 @@ class ModuleInstancePermissionController extends Controller
     {
         $permission->fill([
             'logic_id' => $request->input('logic_id', $permission->logic_id),
-            'ability' => $request->input('ability', $permission->ability),
-            'module_instance_id' => $request->input('module_instance_id', $permission->module_instance_id),
-            'type' => $request->input('type', $permission->type)
         ]);
         $permission->save();
         return $permission;

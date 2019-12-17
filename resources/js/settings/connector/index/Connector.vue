@@ -23,7 +23,7 @@
 
         </b-card>
 
-        <b-modal id="new-connection-modal" :title="'New ' + connector.name + ' connection'">
+        <b-modal :id="'new-connection-modal-' + connector.alias" :title="'New ' + connector.name + ' connection'">
             <new-connection
                 :connector="connector">
 
@@ -51,7 +51,7 @@
 
         methods: {
             addConnection() {
-                this.$bvModal.show('new-connection-modal');
+                this.$bvModal.show('new-connection-modal-' + this.connector.alias);
             }
         },
 

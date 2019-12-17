@@ -1,12 +1,7 @@
 <template>
-    <b-row>
-        <b-col cols="2"></b-col>
-        <b-col>
-            <p>
-                <strong>{{title}}</strong>:
-                <slot></slot>
-            </p>
-        </b-col>
+    <b-row class="mb-2">
+        <b-col class="text-sm-right" sm="3"><b>{{title}}:</b></b-col>
+        <b-col><slot></slot></b-col>
     </b-row>
 </template>
 

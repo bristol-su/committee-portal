@@ -6,12 +6,14 @@ export default class extends BaseResource{
         return this.request('get', '/module-instance-permission/' + id);
     }
 
-    create(attributes) {
-        return this.request('post', '/module-instance-permission', attributes);
+    create(ability, logicId, moduleInstanceId) {
+        return this.request('post', '/module-instance-permission', {
+            ability: ability, logic_id: logicId, module_instance_id: moduleInstanceId}
+        );
     }
 
-    update(id, attributes) {
-        return this.request('put', '/module-instance-permission/' + id, attributes);
+    update(id, logicId) {
+        return this.request('put', '/module-instance-permission/' + id, {logic_id: logicId});
     }
 
 

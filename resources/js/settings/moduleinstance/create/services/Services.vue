@@ -2,61 +2,70 @@
     <div>
         <h4>Required Services</h4>
         <service-select
-            v-for="service in required"
-            :key="service" :service="service" :connections="connections[service]">
+            :assigned-services="assignedServices"
+            :key="service" :module-instance-id="moduleInstance.id" :service="service"
+            v-for="service in services.required" @updated="updateAssignedService" @created="createAssignedService">
         </service-select>
+
         <h4>Optional Services</h4>
+        <service-select
+            :assigned-services="assignedServices"
+            :key="service" :module-instance-id="moduleInstance.id" :service="service"
+            v-for="service in services.optional" @updated="updateAssignedService" @created="createAssignedService">
+        </service-select>
     </div>
 </template>
 
 <script>
     import ServiceSelect from './ServiceSelect';
+
     export default {
         name: "Services",
         components: {ServiceSelect},
         props: {
-            required: {
-                type: Array,
-                default: function () {
-                    []
-                }
-            },
-            optional: {
-                type: Array,
-                default: function () {
-                    []
-                }
+            moduleInstance: {
+                required: true,
+                type: Object
             }
         },
 
         data() {
             return {
-                connections: {}
+                services: {
+                    required: [],
+                    optional: []
+                },
+                assignedServices: []
             }
         },
 
         created() {
             this.loadServices();
+            this.loadAssignedServices();
         },
 
         methods: {
             loadServices() {
-                this.services.forEach(service => {
-                    this.$api.connection().allForService(service)
-                        .then(response => this.$set(this.connections, service, response.data))
-                        .catch(error => this.$notify.alert('Could not load connections: ' + error.message));
-                })
+                this.$api.modules().getByAlias(this.moduleInstance.alias)
+                    .then(response => this.services = {
+                        required: response.data.services.required, optional: response.data.services.optional
+                    })
+                    .catch(error => this.$notify.alert('Could not load connections: ' + error.message));
             },
-            assignService(id, service) {
 
+            loadAssignedServices() {
+                this.$api.moduleInstanceServices().forModuleInstance(this.moduleInstance.id)
+                    .then(response => this.assignedServices = response.data)
+                    .catch(error => this.$notify.alert('Could not load assigned services: ' + error.message));
+            },
+            updateAssignedService(service) {
+                let index = this.assignedServices.indexOf(this.assignedServices.filter(a => a.id === service.id)[0]);
+                this.assignedServices.splice(index, 1, service);
+            },
+            createAssignedService(service) {
+                this.assignedServices.push(service);
             }
         },
-
-        computed: {
-            services() {
-                return this.required.concat(this.optional);
-            }
-        }
     }
 </script>
 

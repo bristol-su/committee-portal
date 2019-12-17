@@ -1,29 +1,34 @@
 <template>
     <div style="text-align: left;">
-        <b-card header="Activity" header-class="view-header" class="show-card">
-            <activity :activity="activity">
 
-            </activity>
-        </b-card>
+        <div>
+            <b-card no-body>
+                <b-tabs card pills vertical>
+                    <b-tab active title="Activity Information">
+                        <activity :activity="activity">
 
-        <b-card header="Participants" header-class="view-header" class="show-card">
-            <logic :logic-id="activity.for_logic">
+                        </activity>
+                    </b-tab>
+                    <b-tab title="Participants">
+                        <logic :logic-id="activity.for_logic">
 
-            </logic>
-        </b-card>
+                        </logic>
+                    </b-tab>
+                    <b-tab title="Admins">
+                        <logic :logic-id="activity.admin_logic">
 
-        <b-card header="Administrators" header-class="view-header" class="show-card">
-            <logic :logic-id="activity.admin_logic">
+                        </logic>
+                    </b-tab>
+                    <b-tab title="Modules">
+                        <module-index
+                            :activity="activity">
 
-            </logic>
-        </b-card>
+                        </module-index>
+                    </b-tab>
+                </b-tabs>
+            </b-card>
+        </div>
 
-        <b-card header="Modules" header-class="view-header" class="show-card">
-            <module-index
-                :activity="activity">
-
-            </module-index>
-        </b-card>
 
     </div>
 </template>

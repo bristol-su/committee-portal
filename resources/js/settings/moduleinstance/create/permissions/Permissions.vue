@@ -1,37 +1,34 @@
 <template>
     <div>
-        <div class="panel-body">
-            <b-form-group
-                :description="permission.description"
-                :id="permission.ability + '-label'"
-                :key="permission.ability"
-                :label="permission.name"
-                :label-for="permission.ability"
+        <div class="panel-body" v-if="!loading">
+            <h4>Participant Permissions</h4>
+            <permission-logic-select
                 v-for="permission in participantPermissions"
-            >
-                <logic-select v-model="participant[permission.ability]"></logic-select>
-            </b-form-group>
+                :key="permission.ability"
+                :permission="permission"
+                :logic="logic"
+                :module-instance-id="moduleInstance.id"
+                :assigned-permissions="moduleInstancePermissions"></permission-logic-select>
 
             <br/><hr/><br/>
-            <b-form-group
-                :description="permission.description"
-                :id="permission.ability + '-label'"
-                :key="permission.ability"
-                :label="permission.name"
-                :label-for="permission.ability"
-                v-for="permission in adminPermissions"
-            >
-                <logic-select v-model="admin[permission.ability]"></logic-select>
-            </b-form-group>
+            <h4>Admin Permissions</h4>
+
+            <permission-logic-select
+                    v-for="permission in adminPermissions"
+                    :key="permission.ability"
+                    :permission="permission"
+                    :logic="logic"
+                    :module-instance-id="moduleInstance.id"
+                    :assigned-permissions="moduleInstancePermissions"></permission-logic-select>
         </div>
     </div>
 </template>
 
 <script>
-    import LogicSelect from "./LogicSelect";
+    import PermissionLogicSelect from "./PermissionLogicSelect";
     export default {
         name: "ModulePermissions",
-        components: {LogicSelect},
+        components: {PermissionLogicSelect},
         props: {
             moduleInstance: {
                 required: true,
@@ -41,56 +38,60 @@
 
         data() {
             return {
-                participant: {},
-                admin: {},
-                id: null
+                permissions: [],
+                moduleInstancePermissions: [],
+                logic: [],
+                permissionsLoading: false,
+                moduleInstancePermissionsLoading: false,
+                logicLoading: false
             }
         },
 
-        watch: {
-            formattedForm: {
-                deep: true,
-                handler: _.debounce(function() {
-                    if(this.id === null) {
-                        this.createPermissions();
-                    } else {
-                        this.updatePermissions();
-                    }
-                }, 1000)
-            }
+        created() {
+            this.loadPermissions();
+            this.loadLogic();
         },
 
         methods: {
-
-            createPermissions() {
-                this.$api.moduleInstancePermissions().create(this.formattedForm)
-                    .then(response => this.id = response.data.id)
-                    .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
-                    .then(() => this.$emit('input', this.id));
+            loadPermissions() {
+                this.permissionsLoading = true;
+                this.$api.modules().getByAlias(this.moduleInstance.alias)
+                    .then(response => {
+                        this.permissions = response.data.permissions;
+                        this.moduleInstancePermissionsLoading = true;
+                        this.permissionsLoading = false;
+                        this.loadModuleInstancePermissions();
+                    })
+                    .catch(error => this.$notify.alert('Could not load permissions: ' + error.message));
             },
-
-            updatePermissions() {
-                this.$api.moduleInstancePermissions().update(this.id, this.formattedForm)
-                    .catch(error => this.$notify.alert('There was a problem creating the permissions: ' + error.message))
-                    .then(() => this.$emit('input', this.id));
+            loadModuleInstancePermissions() {
+                this.$api.moduleInstancePermissions().forModuleInstance(this.moduleInstance.id)
+                    .then(response => {
+                        this.moduleInstancePermissions = response.data;
+                        // this.moduleInstancePermissions.forEach(permission => this.$set(this.model, permission.key, permission.value));
+                    })
+                    .catch(error => this.$notify.alert('Could not load module permissions: ' + error.message))
+                    .then(() => this.moduleInstancePermissionsLoading = false);
             },
+            loadLogic() {
+                this.logicLoading = true;
+                this.$api.logic().all()
+                    .then(response => this.logic = response.data)
+                    .catch(error => this.$notify('Could not load logic groups'))
+                    .then(() => this.logicLoading = false);
+            }
         },
 
         computed: {
+            loading() {
+                return this.permissionsLoading || this.moduleInstancePermissionsLoading;
+            },
             participantPermissions() {
-                return this.permissions.filter(permission => permission.module_type === 'participant');
+                return this.permissions.filter(permission => permission.module_type === 'participant')
             },
             adminPermissions() {
-                return this.permissions.filter(permission => permission.module_type === 'administrator');
-            },
-
-            formattedForm() {
-                return {
-                    participant_permissions: this.participant,
-                    admin_permissions: this.admin
-                }
+                return this.permissions.filter(permission => permission.module_type === 'administrator')
             }
-
         }
     }
 </script>
