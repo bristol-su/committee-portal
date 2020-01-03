@@ -27,7 +27,7 @@ import LogIntoAdmin from './components/login/LogIntoAdmin';
 import ToggleAdminOrParticipant from './components/portal/ToggleAdminOrParticipant';
 import SitePermissions from './settings/sitepermissions/index/Index';
 import SitePermission from './settings/sitepermissions/show/Show';
-import RoleActivityProgress from './components/progress/activity/RoleActivityProgress';
+import ActivityProgress from './components/progress/activity/ActivityProgress';
 import GroupActivityProgress from './components/progress/activity/Group/GroupActivityProgress';
 
 import ConnectorIndex from './settings/connector/index/Index';
@@ -82,7 +82,7 @@ new Vue({
         SitePermission,
 
         ActivityInstanceSwitcher,
-        RoleActivityProgress,
+        ActivityProgress,
         GroupActivityProgress,
 
         ConnectorIndex,

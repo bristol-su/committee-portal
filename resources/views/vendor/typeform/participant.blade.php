@@ -27,6 +27,14 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @if(settings('collect_responses'))
+                        <responses
+                                :responses="{{$responses}}"></responses>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endsection

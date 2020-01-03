@@ -7,15 +7,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
-                    @dd($responses)
-                    We've loaded your user information from typeform: {{$userinfo}}
-                    @if(settings('collect_responses'))
 
-                    @endif
-                    
                     <h2 class="">{{settings('title')}}</h2>
                     <p class="">{!! settings('description') !!}</p>
 
+                    @if(settings('collect_responses'))
+                        <responses
+                                :responses="{{$responses}}"
+                                :can-refresh-responses="{{(\BristolSU\Support\Permissions\Facade\PermissionTester::evaluate('typeform.admin.refresh-form-responses')?'true':'false')}}"></responses>
+                    @endif
                 </div>
             </div>
         </div>

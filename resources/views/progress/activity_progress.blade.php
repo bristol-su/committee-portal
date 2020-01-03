@@ -14,15 +14,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    @if($activity->activity_for === 'role')
-                        <role-activity-progress
-                            :activity="{{$activity->load('moduleInstances')}}"></role-activity-progress>
-                    @elseif($activity->activity_for === 'group')
-                        <group-activity-progress
-                            :activity="{{$activity->load('moduleInstances')}}"></group-activity-progress>
-                    @else
-                        Not supported yet
-                    @endif
+{{--                    <activity-progress--}}
+{{--                            :activity="{{$activity->load('moduleInstances')}}"></activity-progress>--}}
+                    <group-activity-progress
+                        :activity="{{$activity->load('moduleInstances')}}"></group-activity-progress>
                 </div>
             </div>
         </div>

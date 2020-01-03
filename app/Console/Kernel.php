@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use BristolSU\Support\Filters\Commands\CacheFilters;
+use BristolSU\Support\ModuleInstance\Contracts\Scheduler\CommandStore;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,6 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(CacheFilters::class)->hourly();
+
+        foreach(app(CommandStore::class)->all() as $alias => $commands) {
+            foreach($commands as $command => $cron) {
+                $schedule->command($command)->cron($cron);
+            }
+        }
     }
 
     /**
