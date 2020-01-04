@@ -3,8 +3,8 @@
 namespace Tests\Integration\Http\Controllers\Auth;
 
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\Control\Contracts\Repositories\Role as RoleRepository;
-use BristolSU\Support\Control\Models\Role;
+use BristolSU\ControlDB\Contracts\Repositories\Role as RoleRepository;
+use BristolSU\ControlDB\Models\Role;
 use BristolSU\Support\User\User;
 use Tests\TestCase;
 

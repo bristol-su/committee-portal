@@ -12,12 +12,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     // Custom Authentication Routes
     Route::get('/password/set', 'Auth\VerificationController@showResetPasswordForm');
-    Route::get('/login/role/{activity_slug}', 'Auth\LogIntoRoleController@show')->name('login.role');
-    Route::post('/login/role/{activity_slug}', 'Auth\LogIntoRoleController@login');
-    Route::get('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@show')->name('login.group');
-    Route::post('/login/group/{activity_slug}', 'Auth\LogIntoGroupController@login');
-    Route::get('/login/user/{activity_slug}', 'Auth\LogIntoUserController@show')->name('login.user');
-    Route::post('/login/user/{activity_slug}', 'Auth\LogIntoUserController@login');
+    Route::get('/login/participant/{activity_slug}', 'Auth\LogIntoParticipantController@show')->name('login.participant');
+    Route::post('/login/participant/{activity_slug}', 'Auth\LogIntoParticipantController@login');
     Route::get('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@show')->name('login.admin');
     Route::post('/login/admin/{activity_slug}', 'Auth\LogIntoAdminController@login');
 

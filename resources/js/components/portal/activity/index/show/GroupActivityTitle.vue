@@ -1,42 +1,13 @@
 <template>
-    <div>
-        <b-card :title="title">
-            <b-row>
-                <b-col
-                    v-for="activity in activities"
-                    :key="activity.id" xs="12" sm="6" md="3">
-                    <group-activity
-                        :activity="activity"
-                        :group-id="groupId"
-                        :admin="admin">
-
-                    </group-activity>
-                </b-col>
-            </b-row>
-        </b-card>
-
-
-    </div>
+    <span>{{title}}</span>
 </template>
 
 <script>
-    import GroupActivity from './GroupActivity';
     export default {
-        name: "GroupActivities",
-        components: {GroupActivity},
+        name: "GroupActivityTitle",
         props: {
-            activities: {
-                type: Array,
-                default: function() {
-                    return [];
-                }
-            },
             groupId: {
-                required: true
-            },
-            admin: {
-                type: Boolean,
-                default: false
+                required: true,
             }
         },
 

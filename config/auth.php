@@ -1,9 +1,9 @@
 <?php
 
 use BristolSU\Support\ActivityInstance\ActivityInstance;
-use BristolSU\Support\Control\Models\Group;
-use BristolSU\Support\Control\Models\Role;
-use BristolSU\Support\Control\Models\User;
+use BristolSU\ControlDB\Models\Group;
+use BristolSU\ControlDB\Models\Role;
+use BristolSU\ControlDB\Models\User;
 
 return [
 

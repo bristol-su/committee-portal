@@ -1,42 +1,13 @@
 <template>
-    <div>
-        <b-card :title="title">
-            <b-row>
-                <b-col
-                    v-for="activity in activities"
-                    :key="activity.id" xs="12" sm="6" md="3">
-                    <role-activity
-                        :activity="activity"
-                        :role-id="roleId"
-                        :admin="admin">
-
-                    </role-activity>
-                </b-col>
-            </b-row>
-        </b-card>
-
-
-    </div>
+    <span>{{title}}</span>
 </template>
 
 <script>
-    import RoleActivity from './RoleActivity';
     export default {
-        name: "RoleActivities",
-        components: {RoleActivity},
+        name: "RoleActivityTitle",
         props: {
-            activities: {
-                type: Array,
-                default: function() {
-                    return [];
-                }
-            },
             roleId: {
                 required: true,
-            },
-            admin: {
-                type: Boolean,
-                default: false
             }
         },
 

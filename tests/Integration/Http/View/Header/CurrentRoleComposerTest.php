@@ -4,7 +4,7 @@ namespace Tests\Integration\Http\View\Header;
 
 use App\Http\View\Header\CurrentAuthComposer;
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\Control\Models\Role;
+use BristolSU\ControlDB\Models\Role;
 use Illuminate\Contracts\View\View;
 use Tests\TestCase;
 

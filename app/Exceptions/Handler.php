@@ -13,6 +13,7 @@ use BristolSU\Support\Authorization\Exception\ActivityRequiresUser;
 use BristolSU\Support\Authorization\Exception\ModuleInactive;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -53,26 +54,16 @@ class Handler extends ExceptionHandler
      *
      * @param Request $request
      * @param Exception $exception
-     * @return Response
+     * @return Response|RedirectResponse
      */
     public function render($request, Exception $exception)
     {
         if (!$request->expectsJson()) {
 
-            if ($exception instanceof ActivityRequiresUser) {
-                return redirect()->route('login.user', [
-                    'activity_slug' => $exception->getActivity()->slug,
-                    'redirect' => $request->fullUrl()
-                ]);
-            }
-            if ($exception instanceof ActivityRequiresGroup) {
-                return redirect()->route('login.group', [
-                    'activity_slug' => $exception->getActivity()->slug,
-                    'redirect' => $request->fullUrl()
-                ]);
-            }
-            if ($exception instanceof ActivityRequiresRole) {
-                return redirect()->route('login.role', [
+            if ($exception instanceof ActivityRequiresUser
+             || $exception instanceof ActivityRequiresGroup
+             || $exception instanceof ActivityRequiresRole) {
+                return redirect()->route('login.participant', [
                     'activity_slug' => $exception->getActivity()->slug,
                     'redirect' => $request->fullUrl()
                 ]);

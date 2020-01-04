@@ -1,41 +1,45 @@
 <template>
     <div>
 
-        <user-activities
+        <activity-group
+            class="activity-group"
             :activities="userActivity"
             :admin="admin"
-            :user-id="userId">
+            type="user"
+            :resource-id="userId">
 
-        </user-activities>
+        </activity-group>
 
-        <group-activities
+        <activity-group
+            class="activity-group"
             v-for="(groupActivitySet, groupId) in groupActivities"
             :key="groupId"
             :activities="groupActivitySet"
-            :group-id="groupId"
+            type="group"
+            :resource-id="groupId"
             :admin="admin">
 
-        </group-activities>
+        </activity-group>
 
-        <role-activities
+        <activity-group
+            class="activity-group"
             v-for="(roleActivitySet, roleId) in roleActivities"
             :key="roleId"
             :activities="roleActivitySet"
-            :role-id="roleId"
+            type="role"
+            :resource-id="roleId"
             :admin="admin">
 
-        </role-activities>
+        </activity-group>
 
     </div>
 </template>
 
 <script>
-    import RoleActivities from './RoleActivities';
-    import UserActivities from './UserActivities';
-    import GroupActivities from './GroupActivities';
+    import ActivityGroup from './ActivityGroup';
     export default {
         name: "Activities",
-        components: {GroupActivities, UserActivities, RoleActivities},
+        components: {ActivityGroup},
         props: {
             activities: {
                 required: true,
@@ -73,5 +77,8 @@
 </script>
 
 <style scoped>
+    .activity-group {
+        padding: 10px;
+    }
 
 </style>

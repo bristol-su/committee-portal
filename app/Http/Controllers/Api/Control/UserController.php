@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Control;
 
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Control\Contracts\Repositories\User as UserRepository;
+use BristolSU\ControlDB\Contracts\Repositories\User as UserRepository;
 
 class UserController extends Controller
 {

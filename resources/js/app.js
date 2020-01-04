@@ -20,10 +20,7 @@ import LogicCreate from './settings/logic/create/Create';
 import ActionShow from './settings/action/show/Show';
 import ActionCreate from './settings/action/create/Create';
 import Activities from './components/portal/activity/index/show/Activities';
-import LogIntoRole from './components/login/LogIntoRole';
-import LogIntoGroup from './components/login/LogIntoGroup';
-import LogIntoUser from './components/login/LogIntoUser';
-import LogIntoAdmin from './components/login/LogIntoAdmin';
+import LogIntoResource from './components/login/LogIntoResource';
 import ToggleAdminOrParticipant from './components/portal/ToggleAdminOrParticipant';
 import SitePermissions from './settings/sitepermissions/index/Index';
 import SitePermission from './settings/sitepermissions/show/Show';
@@ -73,10 +70,7 @@ new Vue({
         Activities,
         ToggleAdminOrParticipant,
 
-        LogIntoRole,
-        LogIntoGroup,
-        LogIntoUser,
-        LogIntoAdmin,
+        LogIntoResource,
 
         SitePermissions,
         SitePermission,

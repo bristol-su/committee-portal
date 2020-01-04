@@ -3,7 +3,7 @@
 namespace App\Http\View\Header;
 
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\Control\Contracts\Models\Role;
+use BristolSU\ControlDB\Contracts\Models\Role;
 use Illuminate\Contracts\View\View;
 
 class CurrentAuthComposer

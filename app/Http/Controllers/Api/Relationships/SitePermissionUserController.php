@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Relationships;
 
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Control\Contracts\Models\User;
-use BristolSU\Support\Control\Contracts\Repositories\User as UserRepository;
+use BristolSU\ControlDB\Contracts\Models\User;
+use BristolSU\ControlDB\Contracts\Repositories\User as UserRepository;
 use BristolSU\Support\Permissions\Models\ModelPermission;
 use BristolSU\Support\Permissions\Models\Permission;
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Control;
 
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Control\Contracts\Repositories\Position as PositionRepository;
+use BristolSU\ControlDB\Contracts\Repositories\Position as PositionRepository;
 
 class PositionController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\UserVerificationRequestGenerated;
 use App\Http\Controllers\Controller;
-use BristolSU\Support\Control\Contracts\Repositories\User as ControlUserContract;
+use BristolSU\ControlDB\Contracts\Repositories\User as ControlUserContract;
 use BristolSU\Support\DataPlatform\Contracts\Repositories\User as DataPlatformUserContract;
 use BristolSU\Support\User\Contracts\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
