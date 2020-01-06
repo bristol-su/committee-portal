@@ -7,9 +7,7 @@ use BristolSU\Support\ActivityInstance\Contracts\DefaultActivityInstanceGenerato
 use BristolSU\Support\ActivityInstance\Exceptions\NotInActivityInstanceException;
 use BristolSU\Support\Authentication\Contracts\ResourceIdGenerator;
 use BristolSU\Support\Authorization\Exception\ActivityRequiresAdmin;
-use BristolSU\Support\Authorization\Exception\ActivityRequiresGroup;
-use BristolSU\Support\Authorization\Exception\ActivityRequiresRole;
-use BristolSU\Support\Authorization\Exception\ActivityRequiresUser;
+use BristolSU\Support\Authorization\Exception\ActivityRequiresParticipant;
 use BristolSU\Support\Authorization\Exception\ModuleInactive;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -60,9 +58,7 @@ class Handler extends ExceptionHandler
     {
         if (!$request->expectsJson()) {
 
-            if ($exception instanceof ActivityRequiresUser
-             || $exception instanceof ActivityRequiresGroup
-             || $exception instanceof ActivityRequiresRole) {
+            if ($exception instanceof ActivityRequiresParticipant) {
                 return redirect()->route('login.participant', [
                     'activity_slug' => $exception->getActivity()->slug,
                     'redirect' => $request->fullUrl()
