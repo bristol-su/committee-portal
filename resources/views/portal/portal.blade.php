@@ -11,7 +11,7 @@
     <activities
         :activities="{{json_encode($activities)}}"
         :admin="{{($administrator?'true':'false')}}"
-        :user-id="{{app(\BristolSU\Support\Authentication\Contracts\UserAuthentication::class)->getUser()->control_id}}">
+        :user-id="{{app(\BristolSU\Support\User\Contracts\UserAuthentication::class)->getUser()->control_id}}">
     </activities>
 
     </div>

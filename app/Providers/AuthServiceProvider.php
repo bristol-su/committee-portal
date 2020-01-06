@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use BristolSU\Support\Authentication\Contracts\UserAuthentication;
+use BristolSU\Support\User\Contracts\UserAuthentication;
 use BristolSU\Support\Permissions\Facade\Permission;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

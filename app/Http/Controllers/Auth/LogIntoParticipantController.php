@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use BristolSU\Support\Activity\Activity;
 use BristolSU\Support\Authentication\Contracts\Authentication;
-use BristolSU\Support\Authentication\Contracts\UserAuthentication;
+use BristolSU\Support\User\Contracts\UserAuthentication;
 use BristolSU\ControlDB\Contracts\Models\Group;
 use BristolSU\ControlDB\Contracts\Models\Role;
 use BristolSU\ControlDB\Contracts\Repositories\Group as GroupRepository;

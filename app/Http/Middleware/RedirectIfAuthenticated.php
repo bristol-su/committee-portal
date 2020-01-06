@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use BristolSU\Support\Authentication\Contracts\UserAuthentication;
+use BristolSU\Support\User\Contracts\UserAuthentication;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 

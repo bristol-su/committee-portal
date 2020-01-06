@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/control-db-implementation.git",
-                "reference": "0b914a43ebb11c6808c1bf872fb5fd8d3ffbdbb0"
+                "reference": "d71725a8e7442f35e1225149a9fb3d8103e5430f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/0b914a43ebb11c6808c1bf872fb5fd8d3ffbdbb0",
-                "reference": "0b914a43ebb11c6808c1bf872fb5fd8d3ffbdbb0",
+                "url": "https://api.github.com/repos/bristol-su/control-db-implementation/zipball/d71725a8e7442f35e1225149a9fb3d8103e5430f",
+                "reference": "d71725a8e7442f35e1225149a9fb3d8103e5430f",
                 "shasum": ""
             },
             "require": {
@@ -243,7 +243,7 @@
                 }
             ],
             "description": "An implementation of the control contracts using a local database in a laravel app",
-            "time": "2020-01-04T16:02:38+00:00"
+            "time": "2020-01-06T10:58:08+00:00"
         },
         {
             "name": "bristol-su/support",
@@ -251,17 +251,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/support.git",
-                "reference": "b851ad582be81134be09b451530714978f9fb409"
+                "reference": "6eeaf8047337e56ca3ade26d8d1a9d35107907f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/support/zipball/b851ad582be81134be09b451530714978f9fb409",
-                "reference": "b851ad582be81134be09b451530714978f9fb409",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/6eeaf8047337e56ca3ade26d8d1a9d35107907f3",
+                "reference": "6eeaf8047337e56ca3ade26d8d1a9d35107907f3",
                 "shasum": ""
             },
             "require": {
                 "brianium/paratest": "^3.0",
-                "bristol-su/control-db-implementation": "dev-master",
+                "bristol-su/control-db-implementation": "@dev",
                 "ext-json": "*",
                 "laracasts/utilities": "^3.0",
                 "laravel/framework": "^6.0",
@@ -271,6 +271,9 @@
                 "php": "^7.2",
                 "tobytwigger/form-schema-generator": "^1.1",
                 "twigger/unioncloud": "^1.0.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.3"
             },
             "type": "library",
             "extra": {
@@ -305,7 +308,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-04T17:12:58+00:00"
+            "time": "2020-01-06T17:37:00+00:00"
         },
         {
             "name": "bristol-su/typeform",
@@ -313,12 +316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/typeform.git",
-                "reference": "437a9af3ab023ec6efd9bd3d11b1243c50c93371"
+                "reference": "5b6103b8a3936bc94fd4b0f3a15027b50aebc68b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/typeform/zipball/437a9af3ab023ec6efd9bd3d11b1243c50c93371",
-                "reference": "437a9af3ab023ec6efd9bd3d11b1243c50c93371",
+                "url": "https://api.github.com/repos/bristol-su/typeform/zipball/5b6103b8a3936bc94fd4b0f3a15027b50aebc68b",
+                "reference": "5b6103b8a3936bc94fd4b0f3a15027b50aebc68b",
                 "shasum": ""
             },
             "require": {
@@ -354,7 +357,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-04T15:29:55+00:00"
+            "time": "2020-01-06T17:43:04+00:00"
         },
         {
             "name": "bristol-su/typeform-service",
@@ -362,12 +365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/typeform-service.git",
-                "reference": "81521c82360b25c58a942bfbe787d71a7e66c7c6"
+                "reference": "225163f367f36821aa8946cc38f81a8342445f55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/typeform-service/zipball/81521c82360b25c58a942bfbe787d71a7e66c7c6",
-                "reference": "81521c82360b25c58a942bfbe787d71a7e66c7c6",
+                "url": "https://api.github.com/repos/bristol-su/typeform-service/zipball/225163f367f36821aa8946cc38f81a8342445f55",
+                "reference": "225163f367f36821aa8946cc38f81a8342445f55",
                 "shasum": ""
             },
             "require": {
@@ -402,7 +405,7 @@
                 }
             ],
             "description": "A third party service for typeform",
-            "time": "2020-01-04T15:30:13+00:00"
+            "time": "2020-01-06T17:40:45+00:00"
         },
         {
             "name": "bristol-su/upload-file",
@@ -410,12 +413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/upload-file.git",
-                "reference": "7411edeb8164be188135a8f0f6d0cff2d912009b"
+                "reference": "8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/7411edeb8164be188135a8f0f6d0cff2d912009b",
-                "reference": "7411edeb8164be188135a8f0f6d0cff2d912009b",
+                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1",
+                "reference": "8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1",
                 "shasum": ""
             },
             "require": {
@@ -448,7 +451,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-04T15:29:42+00:00"
+            "time": "2020-01-06T17:42:54+00:00"
         },
         {
             "name": "composer/semver",
@@ -1102,12 +1105,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "3e3b1e562bf33c7bbd4aefdc810523cc8b00b562"
+                "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/3e3b1e562bf33c7bbd4aefdc810523cc8b00b562",
-                "reference": "3e3b1e562bf33c7bbd4aefdc810523cc8b00b562",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/c4b8d12921999d8a561004371701dbc2e05b5ece",
+                "reference": "c4b8d12921999d8a561004371701dbc2e05b5ece",
                 "shasum": ""
             },
             "require": {
@@ -1151,7 +1154,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-01-02T12:23:54+00:00"
+            "time": "2020-01-05T14:11:20+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1778,6 +1781,142 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "laminas/laminas-diactoros",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-diactoros.git",
+                "reference": "6b6984ea48e6f709d956f2bd70940025b45ba039"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/6b6984ea48e6f709d956f2bd70940025b45ba039",
+                "reference": "6b6984ea48e6f709d956f2bd70940025b45ba039",
+                "shasum": ""
+            },
+            "require": {
+                "laminas/laminas-zendframework-bridge": "^1.0",
+                "php": "^7.1",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "conflict": {
+                "phpspec/prophecy": "<1.9.0"
+            },
+            "provide": {
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "replace": {
+                "zendframework/zend-diactoros": "self.version"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "http-interop/http-factory-tests": "^0.5.0",
+                "laminas/laminas-coding-standard": "~1.0.0",
+                "php-http/psr7-integration-tests": "dev-master",
+                "phpunit/phpunit": "^7.5.18"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev",
+                    "dev-develop": "2.2.x-dev",
+                    "dev-release-1.8": "1.8.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions/create_uploaded_file.php",
+                    "src/functions/marshal_headers_from_sapi.php",
+                    "src/functions/marshal_method_from_sapi.php",
+                    "src/functions/marshal_protocol_version_from_sapi.php",
+                    "src/functions/marshal_uri_from_sapi.php",
+                    "src/functions/normalize_server.php",
+                    "src/functions/normalize_uploaded_files.php",
+                    "src/functions/parse_cookie_header.php",
+                    "src/functions/create_uploaded_file.legacy.php",
+                    "src/functions/marshal_headers_from_sapi.legacy.php",
+                    "src/functions/marshal_method_from_sapi.legacy.php",
+                    "src/functions/marshal_protocol_version_from_sapi.legacy.php",
+                    "src/functions/marshal_uri_from_sapi.legacy.php",
+                    "src/functions/normalize_server.legacy.php",
+                    "src/functions/normalize_uploaded_files.legacy.php",
+                    "src/functions/parse_cookie_header.legacy.php"
+                ],
+                "psr-4": {
+                    "Laminas\\Diactoros\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "PSR HTTP Message implementations",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "http",
+                "laminas",
+                "psr",
+                "psr-7"
+            ],
+            "time": "2020-01-02T22:31:15+00:00"
+        },
+        {
+            "name": "laminas/laminas-zendframework-bridge",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
+                "reference": "deb8841f78b728ba9d0d9267f28a4f7dd76dd697"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/deb8841f78b728ba9d0d9267f28a4f7dd76dd697",
+                "reference": "deb8841f78b728ba9d0d9267f28a4f7dd76dd697",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.1",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev",
+                    "dev-develop": "1.1.x-dev"
+                },
+                "laminas": {
+                    "module": "Laminas\\ZendFrameworkBridge"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/autoload.php"
+                ],
+                "psr-4": {
+                    "Laminas\\ZendFrameworkBridge\\": "src//"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Alias legacy ZF class names to Laminas Project equivalents.",
+            "keywords": [
+                "ZendFramework",
+                "autoloading",
+                "laminas",
+                "zf"
+            ],
+            "time": "2019-12-31T15:25:26+00:00"
+        },
+        {
             "name": "laracasts/utilities",
             "version": "3.0.1",
             "source": {
@@ -1840,12 +1979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1a45d9de85121d5596a95fbcda93a6809c4f58bf"
+                "reference": "d5deffa4d5468521e170cb7650019e5972b34c97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1a45d9de85121d5596a95fbcda93a6809c4f58bf",
-                "reference": "1a45d9de85121d5596a95fbcda93a6809c4f58bf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d5deffa4d5468521e170cb7650019e5972b34c97",
+                "reference": "d5deffa4d5468521e170cb7650019e5972b34c97",
                 "shasum": ""
             },
             "require": {
@@ -1979,7 +2118,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-01-04T15:09:32+00:00"
+            "time": "2020-01-06T14:43:15+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1987,12 +2126,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "413a32601340f3738c3859608e7fc92214589bd5"
+                "reference": "3cbf7980e0e80b50b0960128966c52760c486d3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/413a32601340f3738c3859608e7fc92214589bd5",
-                "reference": "413a32601340f3738c3859608e7fc92214589bd5",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/3cbf7980e0e80b50b0960128966c52760c486d3a",
+                "reference": "3cbf7980e0e80b50b0960128966c52760c486d3a",
                 "shasum": ""
             },
             "require": {
@@ -2008,14 +2147,15 @@
                 "illuminate/encryption": "^6.0|^7.0",
                 "illuminate/http": "^6.0|^7.0",
                 "illuminate/support": "^6.0|^7.0",
+                "laminas/laminas-diactoros": "^2.2",
                 "league/oauth2-server": "^8.0",
                 "php": "^7.2",
                 "phpseclib/phpseclib": "^2.0",
-                "symfony/psr-http-message-bridge": "^1.0",
-                "zendframework/zend-diactoros": "^2.0"
+                "symfony/psr-http-message-bridge": "^1.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^4.4|^5.0",
                 "phpunit/phpunit": "^8.0"
             },
             "type": "library",
@@ -2050,7 +2190,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2020-01-02T14:52:55+00:00"
+            "time": "2020-01-06T14:32:04+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3028,12 +3168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "ba9cf39999ac23b99824d9cce39c18bf87b42fff"
+                "reference": "88f3a669c12e576887dfded483e971d6c333adbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ba9cf39999ac23b99824d9cce39c18bf87b42fff",
-                "reference": "ba9cf39999ac23b99824d9cce39c18bf87b42fff",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88f3a669c12e576887dfded483e971d6c333adbe",
+                "reference": "88f3a669c12e576887dfded483e971d6c333adbe",
                 "shasum": ""
             },
             "require": {
@@ -3072,7 +3212,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-12-20T11:15:00+00:00"
+            "time": "2020-01-04T23:34:49+00:00"
         },
         {
             "name": "opis/closure",
@@ -3191,12 +3331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "b92e31c5b101fc87bc5c3137610151dcae82f0e3"
+                "reference": "5c7478a00d76a048552769e47cc7253f8ad62519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/b92e31c5b101fc87bc5c3137610151dcae82f0e3",
-                "reference": "b92e31c5b101fc87bc5c3137610151dcae82f0e3",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/5c7478a00d76a048552769e47cc7253f8ad62519",
+                "reference": "5c7478a00d76a048552769e47cc7253f8ad62519",
                 "shasum": ""
             },
             "require": {
@@ -3248,7 +3388,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2019-12-31T01:37:59+00:00"
+            "time": "2020-01-05T02:05:31+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4074,12 +4214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5eefc2ef1d9d19595ec05f25922279c95cb2c87a"
+                "reference": "751614c461cfe0d9cf79729535a8066ef7fcd40f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5eefc2ef1d9d19595ec05f25922279c95cb2c87a",
-                "reference": "5eefc2ef1d9d19595ec05f25922279c95cb2c87a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/751614c461cfe0d9cf79729535a8066ef7fcd40f",
+                "reference": "751614c461cfe0d9cf79729535a8066ef7fcd40f",
                 "shasum": ""
             },
             "require": {
@@ -4149,7 +4289,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-12-31T13:37:22+00:00"
+            "time": "2020-01-06T16:57:45+00:00"
         },
         {
             "name": "psr/cache",
@@ -4758,12 +4898,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "81601e236afb661d9ddb85a9d8467a6f1156cd2f"
+                "reference": "c961b8746a1eb3016d36494c1eb88f90c752c67c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/81601e236afb661d9ddb85a9d8467a6f1156cd2f",
-                "reference": "81601e236afb661d9ddb85a9d8467a6f1156cd2f",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/c961b8746a1eb3016d36494c1eb88f90c752c67c",
+                "reference": "c961b8746a1eb3016d36494c1eb88f90c752c67c",
                 "shasum": ""
             },
             "require": {
@@ -4771,7 +4911,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5 || ^8.0",
-                "symfony/process": "^2 || ^3.3 || ^4 || ^5"
+                "symfony/process": "^4 || ^5"
             },
             "type": "library",
             "extra": {
@@ -4806,7 +4946,7 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2019-12-27T07:42:46+00:00"
+            "time": "2020-01-06T13:13:10+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -7078,77 +7218,6 @@
                 "validate"
             ],
             "time": "2019-11-24T13:36:37+00:00"
-        },
-        {
-            "name": "zendframework/zend-diactoros",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "c0ebb95dcfa353355a5cc383ce4e223264d7d119"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/c0ebb95dcfa353355a5cc383ce4e223264d7d119",
-                "reference": "c0ebb95dcfa353355a5cc383ce4e223264d7d119",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0"
-            },
-            "conflict": {
-                "phpspec/prophecy": "<1.9.0"
-            },
-            "provide": {
-                "psr/http-factory-implementation": "1.0",
-                "psr/http-message-implementation": "1.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "ext-dom": "*",
-                "ext-libxml": "*",
-                "http-interop/http-factory-tests": "^0.5.0",
-                "php-http/psr7-integration-tests": "dev-master",
-                "phpunit/phpunit": "^7.5.18",
-                "zendframework/zend-coding-standard": "~1.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1.x-dev",
-                    "dev-develop": "2.2.x-dev",
-                    "dev-release-1.8": "1.8.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/functions/create_uploaded_file.php",
-                    "src/functions/marshal_headers_from_sapi.php",
-                    "src/functions/marshal_method_from_sapi.php",
-                    "src/functions/marshal_protocol_version_from_sapi.php",
-                    "src/functions/marshal_uri_from_sapi.php",
-                    "src/functions/normalize_server.php",
-                    "src/functions/normalize_uploaded_files.php",
-                    "src/functions/parse_cookie_header.php"
-                ],
-                "psr-4": {
-                    "Zend\\Diactoros\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "PSR HTTP Message implementations",
-            "keywords": [
-                "http",
-                "psr",
-                "psr-7"
-            ],
-            "abandoned": "laminas/laminas-diactoros",
-            "time": "2019-12-07T18:55:44+00:00"
         }
     ],
     "packages-dev": [

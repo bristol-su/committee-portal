@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use BristolSU\Support\Authentication\Contracts\UserAuthentication;
+use BristolSU\Support\User\Contracts\UserAuthentication;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
