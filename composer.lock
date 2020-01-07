@@ -8,26 +8,26 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.130.3",
+            "version": "3.131.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "916356edb5c30fa564d02de94bde51a9c0bb4469"
+                "reference": "371ca02855c92c13e36fa5f6d38e68211354c979"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/916356edb5c30fa564d02de94bde51a9c0bb4469",
-                "reference": "916356edb5c30fa564d02de94bde51a9c0bb4469",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/371ca02855c92c13e36fa5f6d38e68211354c979",
+                "reference": "371ca02855c92c13e36fa5f6d38e68211354c979",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-simplexml": "*",
-                "guzzlehttp/guzzle": "^5.3.3|^6.2.1",
-                "guzzlehttp/promises": "~1.0",
+                "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
+                "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.4.1",
-                "mtdowling/jmespath.php": "~2.2",
+                "mtdowling/jmespath.php": "^2.5",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -88,7 +88,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-01-02T19:13:50+00:00"
+            "time": "2020-01-06T19:10:20+00:00"
         },
         {
             "name": "brianium/habitat",
@@ -251,12 +251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/support.git",
-                "reference": "6eeaf8047337e56ca3ade26d8d1a9d35107907f3"
+                "reference": "91113a14105bc0af7e944dfe1db52be546f60c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/support/zipball/6eeaf8047337e56ca3ade26d8d1a9d35107907f3",
-                "reference": "6eeaf8047337e56ca3ade26d8d1a9d35107907f3",
+                "url": "https://api.github.com/repos/bristol-su/support/zipball/91113a14105bc0af7e944dfe1db52be546f60c45",
+                "reference": "91113a14105bc0af7e944dfe1db52be546f60c45",
                 "shasum": ""
             },
             "require": {
@@ -308,7 +308,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-06T17:37:00+00:00"
+            "time": "2020-01-07T12:45:26+00:00"
         },
         {
             "name": "bristol-su/typeform",
@@ -316,12 +316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/typeform.git",
-                "reference": "5b6103b8a3936bc94fd4b0f3a15027b50aebc68b"
+                "reference": "d3e13a14b21cf65e7eff96718efda1610e73b66d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/typeform/zipball/5b6103b8a3936bc94fd4b0f3a15027b50aebc68b",
-                "reference": "5b6103b8a3936bc94fd4b0f3a15027b50aebc68b",
+                "url": "https://api.github.com/repos/bristol-su/typeform/zipball/d3e13a14b21cf65e7eff96718efda1610e73b66d",
+                "reference": "d3e13a14b21cf65e7eff96718efda1610e73b66d",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-06T17:43:04+00:00"
+            "time": "2020-01-06T17:58:38+00:00"
         },
         {
             "name": "bristol-su/typeform-service",
@@ -413,12 +413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bristol-su/upload-file.git",
-                "reference": "8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1"
+                "reference": "34f24c84aa046d871e20b273a76dea880596c5fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1",
-                "reference": "8ec3a9ffd8486a4dd963d36efff519a7fe0d29f1",
+                "url": "https://api.github.com/repos/bristol-su/upload-file/zipball/34f24c84aa046d871e20b273a76dea880596c5fe",
+                "reference": "34f24c84aa046d871e20b273a76dea880596c5fe",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +451,7 @@
                     "email": "toby.twigger@bristol.ac.uk"
                 }
             ],
-            "time": "2020-01-06T17:42:54+00:00"
+            "time": "2020-01-06T18:24:50+00:00"
         },
         {
             "name": "composer/semver",
@@ -1979,12 +1979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d5deffa4d5468521e170cb7650019e5972b34c97"
+                "reference": "f3c1f4898552ef7cfd7f422a164c3ed791ff8d29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d5deffa4d5468521e170cb7650019e5972b34c97",
-                "reference": "d5deffa4d5468521e170cb7650019e5972b34c97",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f3c1f4898552ef7cfd7f422a164c3ed791ff8d29",
+                "reference": "f3c1f4898552ef7cfd7f422a164c3ed791ff8d29",
                 "shasum": ""
             },
             "require": {
@@ -2118,7 +2118,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-01-06T14:43:15+00:00"
+            "time": "2020-01-06T22:33:40+00:00"
         },
         {
             "name": "laravel/passport",
@@ -2126,12 +2126,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "3cbf7980e0e80b50b0960128966c52760c486d3a"
+                "reference": "6c1ea42e66100b15ecad89b0e1c5ccaa12b4331b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/3cbf7980e0e80b50b0960128966c52760c486d3a",
-                "reference": "3cbf7980e0e80b50b0960128966c52760c486d3a",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/6c1ea42e66100b15ecad89b0e1c5ccaa12b4331b",
+                "reference": "6c1ea42e66100b15ecad89b0e1c5ccaa12b4331b",
                 "shasum": ""
             },
             "require": {
@@ -2190,7 +2190,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2020-01-06T14:32:04+00:00"
+            "time": "2020-01-06T21:32:54+00:00"
         },
         {
             "name": "laravel/tinker",
